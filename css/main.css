@@ -32,6 +32,7 @@ code {
 
 .sidebar {
   background-color: #f6e9d8;
+  margin-bottom: 40px;
 }
 .sidebar li a {
   padding: 6px 10px 6px 30px;
@@ -81,7 +82,7 @@ code {
 }
 .main img:not(.transparent) {
   padding: 1px;
-  border: 1px solid #bbb;
+  border: 2px solid #bbb;
   max-width: 100%;
   background-color: white;
 }
