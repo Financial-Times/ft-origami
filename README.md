@@ -1,4 +1,3 @@
-ft-showtime
-===========
+## This is a gh-pages branch
 
-Universal front end component standards for FT web products
+Please visit http://financial-times.github.io/ft-showtime

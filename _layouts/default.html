@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>{{ page.title }} - {{ site.name }}</title>
+        <meta name="viewport" content="width=device-width">
+
+        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0-rc1/css/bootstrap.min.css">
+        <link rel="stylesheet" href="{{ site.baseurl }}css/main.css">
+
+    </head>
+    <body>
+
+      <div class="container">
+
+        <div class='page-header'>
+          <h1>Showtime</h1>
+          <p class='lead'>Universal front end component standards for FT web products</p>
+        </div>
+
+        <div class='row'>
+
+          <div class='col-lg-3'>
+            <ul class="nav sidebar">
+              <li class="{% if page.title == 'Overview' %}active{% endif %}">
+                <a href="/">Overview</a>
+              </li>
+              <li class="{% if page.title == 'Principles' %}active{% endif %}">
+                <a href="/docs/principles">Principles</a>
+              </li>
+              <li class="{% if page.title == 'Component types' %}active{% endif %}">
+                <a href="/docs/component-types">Component types</a>
+                {% if page.section == 'Component types' %}
+                <ul class='nav subnav'>
+                  <li class="{% if page.title == 'Modules' %}active{% endif %}">
+                    <a href="/docs/component-types/modules">Modules</a>
+                  </li>
+                  <li class="{% if page.title == 'Web services' %}active{% endif %}">
+                    <a href="/docs/component-types/web-services">Web services</a>
+                  </li>
+                  <li class="{% if page.title == 'Client side includes' %}active{% endif %}">
+                    <a href="/docs/component-types/client-includes">Client side includes</a>
+                  </li>
+                  <li class="{% if page.title == 'Middleware' %}active{% endif %}">
+                    <a href="/docs/component-types/middleware">Middleware</a>
+                  </li>
+                </ul>
+                {% endif %}
+              </li>
+              <li class="{% if page.title == 'Build service' %}active{% endif %}">
+                <a href="/docs/build-service">Build service</a>
+              </li>
+              <li class="{% if page.title == 'Syntax requirements' %}active{% endif %}">
+                <a href="/docs/syntax-requirements">Syntax requirements</a>
+              </li>
+              <li class="{% if page.title == 'Use cases' %}active{% endif %}">
+                <a href="/docs/use-cases">Use case examples</a>
+              </li>
+            </ul>
+          </div>
+
+          <div class='col-lg-9 main'>
+            {{ content }}
+          </div>
+
+        </div> <!-- /row -->
+      </div> <!-- /container -->
+
+      <div class='footer'>
+        <div class='container'>
+          <p class='pull-right'><a href='http://github.com/financial-times/ft-showtime'>View project on Github</a></p>
+          <p>&copy; THE FINANCIAL TIMES LTD {{ site.time | date:'%Y' }}. FT and 'Financial Times' are trademarks of The Financial Times Ltd.</p>
+        </div>
+      </div>
+
+    </body>
+</html>
