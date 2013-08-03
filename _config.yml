@@ -1,3 +1,4 @@
 name: Showtime docs
 pygments: true
 relative_permalinks: false
+baseurl: /ft-showtime

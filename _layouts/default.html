@@ -7,7 +7,7 @@
         <meta name="viewport" content="width=device-width">
 
         <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0-rc1/css/bootstrap.min.css">
-        <link rel="stylesheet" href="{{ site.baseurl }}css/main.css">
+        <link rel="stylesheet" href="{{ site.baseurl }}/css/main.css">
 
     </head>
     <body>
@@ -27,35 +27,35 @@
                 <a href="/">Overview</a>
               </li>
               <li class="{% if page.title == 'Principles' %}active{% endif %}">
-                <a href="/docs/principles">Principles</a>
+                <a href="{{ site.baseurl }}/docs/principles">Principles</a>
               </li>
               <li class="{% if page.title == 'Component types' %}active{% endif %}">
-                <a href="/docs/component-types">Component types</a>
+                <a href="{{ site.baseurl }}/docs/component-types">Component types</a>
                 {% if page.section == 'Component types' %}
                 <ul class='nav subnav'>
                   <li class="{% if page.title == 'Modules' %}active{% endif %}">
-                    <a href="/docs/component-types/modules">Modules</a>
+                    <a href="{{ site.baseurl }}/docs/component-types/modules">Modules</a>
                   </li>
                   <li class="{% if page.title == 'Web services' %}active{% endif %}">
-                    <a href="/docs/component-types/web-services">Web services</a>
+                    <a href="{{ site.baseurl }}/docs/component-types/web-services">Web services</a>
                   </li>
                   <li class="{% if page.title == 'Client side includes' %}active{% endif %}">
-                    <a href="/docs/component-types/client-includes">Client side includes</a>
+                    <a href="{{ site.baseurl }}/docs/component-types/client-includes">Client side includes</a>
                   </li>
                   <li class="{% if page.title == 'Middleware' %}active{% endif %}">
-                    <a href="/docs/component-types/middleware">Middleware</a>
+                    <a href="{{ site.baseurl }}/docs/component-types/middleware">Middleware</a>
                   </li>
                 </ul>
                 {% endif %}
               </li>
               <li class="{% if page.title == 'Build service' %}active{% endif %}">
-                <a href="/docs/build-service">Build service</a>
+                <a href="{{ site.baseurl }}/docs/build-service">Build service</a>
               </li>
               <li class="{% if page.title == 'Syntax requirements' %}active{% endif %}">
-                <a href="/docs/syntax-requirements">Syntax requirements</a>
+                <a href="{{ site.baseurl }}/docs/syntax-requirements">Syntax requirements</a>
               </li>
               <li class="{% if page.title == 'Use cases' %}active{% endif %}">
-                <a href="/docs/use-cases">Use case examples</a>
+                <a href="{{ site.baseurl }}/docs/use-cases">Use case examples</a>
               </li>
             </ul>
           </div>

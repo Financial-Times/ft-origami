@@ -18,7 +18,7 @@ Product developers may also make use of other techniques for pulling FT or third
 
 The following diagram shows how a product application can use a combination of different types of component to build a page:
 
-![Architecture diagram]({{site.baseurl}}img/architecture.png)
+![Architecture diagram]({{site.baseurl}}/img/architecture.png)
 
 The three layers divide areas of responsibility for the web platform.  The bottom layer comprises data services - the APIs, production systems, and backends that create and hold the master copy of content and services that we offer to readers.  These include the content and search APIs, Clamo, and other production systems including feeds and APIs from third parties.  At the top layer is the website the product developer is building, and its direct interactions with the end user, normally via Akamai.  The product application will make use of data services itself to build its own unique content or features, but it will also want to draw in prepared components.  This is where the middle layer sits, and is the subject of this spec.
 
