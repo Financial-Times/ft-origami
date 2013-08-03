@@ -8,7 +8,6 @@
 
         <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0-rc1/css/bootstrap.min.css">
         <link rel="stylesheet" href="{{ site.baseurl }}/css/main.css">
-
     </head>
     <body>
 
@@ -73,8 +72,12 @@
 
       <div class='footer'>
         <div class='container'>
-          <p class='pull-right'><a href='http://github.com/financial-times/ft-showtime'>View project on Github</a></p>
-          <p>&copy; THE FINANCIAL TIMES LTD {{ site.time | date:'%Y' }}. FT and 'Financial Times' are trademarks of The Financial Times Ltd.</p>
+          <div class='row'>
+            <div class='col-lg-12'>
+              <p class='pull-right'><a href='http://github.com/financial-times/ft-showtime'>View project on Github</a></p>
+              <p>&copy; THE FINANCIAL TIMES LTD {{ site.time | date:'%Y' }}. FT and 'Financial Times' are trademarks of The Financial Times Ltd.</p>
+            </div>
+          </div>
         </div>
       </div>
 
