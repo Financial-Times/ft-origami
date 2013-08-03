@@ -80,10 +80,12 @@ code {
 .main > *:first-child {
   margin-top: 0;
 }
+.main img {
+  max-width: 100%;
+}
 .main img:not(.transparent) {
   padding: 1px;
   border: 2px solid #bbb;
-  max-width: 100%;
   background-color: white;
 }
 .main .alert-big {
