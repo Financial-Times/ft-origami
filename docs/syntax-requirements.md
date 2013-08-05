@@ -7,7 +7,7 @@ permalink: /docs/syntax-requirements/
 
 # Language specific syntax requirements
 
-These rules apply to any code written as part of a Showtime component
+These rules apply to any code written as part of an Origami component
 
 ## JavaScript
 

@@ -6,7 +6,7 @@ permalink: /docs/build-service/
 
 # Build service
 
-Since Showtime components are very granular, product developers may find themselves spending a considerable amount of time concerned with setting up dependency management, and build processes to do things such as minification and concatenation of source files.  The **build service** exists to allow developers to avoid this effort where desired.  This is especially useful for bootstrapping early stage prototypes as well as building hacks, experiments, and adding components to legacy applications.
+Since Origami components are very granular, product developers may find themselves spending a considerable amount of time concerned with setting up dependency management, and build processes to do things such as minification and concatenation of source files.  The **build service** exists to allow developers to avoid this effort where desired.  This is especially useful for bootstrapping early stage prototypes as well as building hacks, experiments, and adding components to legacy applications.
 
 The service offers high availability, reliability, and its own cache layer, so can be used for client-side requests.  It offers three main endpoints:
 

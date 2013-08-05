@@ -1,4 +1,4 @@
-name: Showtime docs
+name: Origami
 pygments: true
 relative_permalinks: false
-baseurl: /ft-showtime
+baseurl: /ft-origami

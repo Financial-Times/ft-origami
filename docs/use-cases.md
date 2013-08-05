@@ -6,7 +6,7 @@ permalink: /docs/use-cases/
 
 # Application to use cases
 
-This section describes how the Showtime standard can be applied to specific use cases for product applications that we have at the FT.
+This section describes how the Origami standard can be applied to specific use cases for product applications that we have at the FT.
 
 ## FT Web app (app.ft.com)
 

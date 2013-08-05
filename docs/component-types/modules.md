@@ -1,3 +1,4 @@
+
 ---
 layout: default
 title: Modules
@@ -22,7 +23,7 @@ Modules might contain resources such as JS modules, Sass modules, fonts, images,
 
 ## Requirements
 
-The following requirements apply to creating a Showtime-compatible module component:
+The following requirements apply to creating a Origami-compatible module component:
 
 * *Should* be used for any resource that is (when required by a dependency manager) a collection of only static files or JavaScript
 * *May* contain any resource that is JavaScript, any declarative language (HTML, CSS, JSON etc), or binary data.

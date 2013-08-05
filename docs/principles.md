@@ -4,7 +4,7 @@ title: Principles
 permalink: /docs/principles/
 ---
 
-# Principles of Showtime
+# Principles of Origami
 
 This front end strategy commits us to the following principles:
 

@@ -7,7 +7,7 @@ permalink: /docs/component-types/
 
 # Types of components
 
-Showtime-compatible components come in two flavours:
+Origami-compatible components come in two flavours:
 
 * Module components
 * Web service components
