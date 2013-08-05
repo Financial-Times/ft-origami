@@ -27,6 +27,7 @@ These rules apply to any code written as part of a Showtime component
 ## CSS
 
 * Classes must be prefixed with ft- for velcro classes, and unprefixed for classes specific to any particular module **TODO: Check with Wilson**
+* **SMCSS standard? - in use for Velcro?**
 * **TODO**
 
 ## HTML
