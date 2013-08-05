@@ -7,44 +7,49 @@ permalink: /docs/component-types/web-services/
 
 # Web service components
 
-A **web service** component is offered as a URL endpoint that delivers content.  The product developer includes this in their project either on demand on a request by request basis (using [ESI](http://en.wikipedia.org/wiki/Edge_Side_Includes) or similar technology), or by downloading the content on a regular schedule and pushing it into a local cache.  This is designed for content that is being changed frequently, so product developers should take care to respect cache control directives emitted by the service.  Examples of good use cases for web services are:
+A **web service** component is offered as a URL endpoint that delivers content.  The product developer includes this in their project either on demand on a request by request basis (using [ESI](http://en.wikipedia.org/wiki/Edge_Side_Includes) or similar technology), or by downloading the content on a regular schedule and pushing it into a local cache.  This is designed for content that is being changed frequently, so product developers should take care to respect [cache control](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.9) directives emitted by the service.  Examples of good use cases for web services are:
 
 * FT Main navigation
 * Most read / shared / commented
 * Jobs from exec-appointments
+* Fetching individual tweets from twitter
 
 ## API
 
-Web services must expose an HTTP endpoint on the hostname `{modulename}.modules.ft.com` as follows:
-
-    /output[/v{version}[/{format}]]
-
-Where `{version}` is the (major) version of the web service output, and `{format}` is either html or json.
-
+Web services must expose an HTTP endpoint on the hostname `{componentname}.origami.ft.com`, which conforms to the requirements included below.  Web service components are available as raw source in git, but are not intended to be run by product developers.  The component is the hosted service, rather than the application that runs it.
 
 ## Requirements
 
 * *Should* be used for components that comprise editorial content or data that is not practical to consider part of the source code of a module component.
-* *Must not* output any executable code (use module components for that).
-* Where `{version}` is not specified in a request, *must* use the most recent version.
-* Where `{format}` is not specified in a request, *should* use content-negotiation (the HTTP `Accept` header), and as a default *must* return HTML output.
-* Minor version changes in the web service application *must not* be exposed on the web service's HTTP API
-* When returning HTML, *must* meet the [standard for HTML](/docs/syntax-requirements) that forms part of components
-* When providing JSON output, *must* meet the [standard for JSON](/docs/syntax-requirements) that forms part of components
-* *Should* support JSONp callback via the querystring parameter `callback`
-* *May* accept other querystring parameters if desired to allow for module specific customisation of output.
-* *May* provide any other HTTP endpoints as desired
+* *Must not* output any executable code (use module components for that)
+* *Must* include a mandatory version number element to the API path for all API endpoints
+* *Must* support both HTML and JSON output, and where a format is not specified in a request, *should* use content-negotiation (the HTTP `Accept` header), and as a default *must* return HTML output.
+* Minor version changes in the web service application *must not* be exposed on the version number included in the API endpoint URL
+* When returning HTML, *must* meet the [standard for HTML](/docs/syntax-requirements)
+* When providing JSON output, *must* meet the [standard for JSON](/docs/syntax-requirements)
+* *Should* support JSONp callback via the querystring parameter `callback` (when returning HTML with a JSON callback, the HTML string should be escaped and quoted)
+* *Should* be RESTful
+* *May* accept any querystring parameters, POST data, URL parameters or other input as desired to allow for module specific features.
 * *Should* serve CORS response headers to allow the endpoints to be consumed in-browser from any origin (though consuming in-browser is discouraged)
 * *Must* include explicit `Cache-control` header in HTTP responses, which product applications must respect.
-* *Must* increment `{version}` when a change is made to the structure of the data returned or the markup used in HTML output.
-* When `{version}` is incremented, must continue to support previous versions for a minimum of 3 months.
+* When a change is made to the structure of the data returned or the markup used in HTML output...
+** *Must* provide a new set of API endpoints with updated version number
+** *Must* continue to support previous versions for a minimum of 3 months
 * If a prior version is to be dropped, the service must give at least 3 months notice via an email notification to the Github watcher list, and also by setting an `X-Service-Termination-Date:` header on HTTP responses.  When the termination date is reached, the content as at that date *should* continue to be served on that URL indefinitely.  This way, product applications still using a web service version that is no longer supported will likely continue to work, but will no longer get updated data.
+
+## Naming conventions
+
+Web services source code repositories should be named using a short descriptive one-word term, prefixed with `ft-` and suffixed with `-service`.  The service hostname should drop the prefix.  Examples:
+
+	ft-tweet-service -> tweet-service.origami.ft.com
+	ft-nav-service -> nav-service.origami.ft.com
+	ft-mostpopular-service -> mostpopular-service.origami.ft.com
 
 ## Example
 
 The following HTTP request-response is compliant with the above requirements and the [syntax requirements](/docs/syntax-requirements) for the response body:
 
-	GET /output/v1/html?level=first&selectedUrl=http%3A%2F%2Fwww.ft.com%2Fcompanies HTTP/1.1
+	GET /v1/navigation.html?level=first&selectedUrl=http%3A%2F%2Fwww.ft.com%2Fcompanies HTTP/1.1
 	User-Agent: curl/7.24.0 (x86_64-apple-darwin12.0) libcurl/7.24.0 OpenSSL/0.9.8x zlib/1.2.5
 	Host: navigation.modules.ft.com
 	Accept: text/html

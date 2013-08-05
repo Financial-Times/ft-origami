@@ -14,7 +14,7 @@ We'll prioritise generic use cases over popular use cases, and popular use cases
 
 ### 2. No special cases
 
-No single product or project will affect the way a component is built. No product is more or less important than any other, and we will identify use cases in a *minimum of three products* before building a component.  We will seek to standardise and provide a best practice implementation of anything that has been implemented in more than two different projects, to avoid developers needing to continue to repeat work already done by other developers.
+No single product or project will affect the way a component is built. No product is more or less important than any other, and we will require something to have real reuse potential and be genuinely generic in order to allow something to become a component.   This avoids creating components with unintentional product bias or maintaining components that we don't need.  We will seek to standardise and provide a best practice implementation of anything that has been implemented in more than two different projects, to avoid developers needing to continue to repeat work already done by other developers.
 
 ### 3. Ease of use
 

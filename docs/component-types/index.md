@@ -12,7 +12,7 @@ Origami-compatible components come in two flavours:
 * Module components
 * Web service components
 
-Git repositories holding static resources and JavaScript modules are **module components**.  However, much of what a product developer may want to include in a site from a central source will be dynamic content, such as the most read content across FT, or the up to date global navigation section list.  These snippets of ever-changing content are available from HTTP endpoints known as **web service components**.
+Git repositories holding static resources and [CommonJS][1] JavaScript modules are **module components**.  However, much of what a product developer may want to include in a site from a central source will be dynamic content, such as the most read content across FT, or the up to date global navigation section list.  These snippets of ever-changing content are available from HTTP endpoints known as **web service components**.
 
 Product developers may also make use of other techniques for pulling FT or third party content or services into their application. **Client side includes**, JavaScript libraries included from third parties directly into a page using `<script>` tags, are often used - examples of those in current use include Twitter, Podhoster and Tynt.  Pages served through Akamai can also make use of logic that runs on the Akamai platform to modify either the request or the response in between the end user and the product application.  These bits of Akamai-based logic will be called **middleware** in this spec.  Below we define the circumstances in which it's reasonable to create and use client side libraries or middleware, but in principle we prefer to create modules or web services.
 
@@ -28,3 +28,5 @@ Read more about each type of component:
 * [Web services](/docs/component-types/web-services)
 * [Client side includes](/docs/component-types/client-includes)
 * [Middleware](/docs/component-types/middleware)
+
+[1]: https://github.com/commonjs/commonjs/blob/master/docs/specs/modules/1.0.html.markdown
