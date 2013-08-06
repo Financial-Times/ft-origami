@@ -156,7 +156,7 @@ If the request was not valid, a `400 Bad Request` is returned, with a plain text
 If the request was valid but the build failed, a `500 Internal Server Error` is returned, with a plain text explanation in the response body.  The most common causes of a 500 error are dependency conflicts or compilation errors from Sass.
 
 
-### GET /page/{template}:{version}
+### GET /page/`template`:`version`
 
 Outputs a complete HTML page with [Mustache](http://mustache.github.io/) template placeholders for third party content, and `<script>` and `<link>` tags to pull in a predefined set of resources from the build service.
 
@@ -179,7 +179,7 @@ Outputs a complete HTML page with [Mustache](http://mustache.github.io/) templat
 **TODO: Define response.**
 
 
-### GET /files/{module}/{version}/{path}
+### GET /files/`module`/`version`/`path`
 
 Loads and returns a file from a module component's repo.
 

@@ -28,14 +28,14 @@ The following requirements apply to creating a Origami-compatible module compone
 * *May* contain any resource that is a CommonJS JavaScript module, any declarative language (HTML, CSS, JSON etc), or binary data.
 * *Must not* be used for imperative code except JavaScript (and JavaScript must have a client-side use case to be considered a front end component)
 * Where there is a dependency on a web service component, each version of the web service *must* be compatible with all versions of the module that carry the same major version number (and conversely, all versions of the module must be compatible with the version of the web service that shares the module's major version number).  For example, version 2.4.5, 2.4.6, and 2.7 of a module should all use version 2 of the web service.
-* Where the module contains JavaScript or SCSS, there *must* be a single 'root' file from which all other files of the same language are ultimate dependencies (and these root files must be listed in the package config)
+* Where the module contains JavaScript or SCSS, there *must* be a single 'main' file from which all other files of the same language are ultimate dependencies (using `require` or `@import` as appropriate).  These main files must be listed in the package config under 'roots'.
 * *Must* include an npm-compatible `package.json` (in the root of the repo) which must conform to the [npm standard for package.json files][2] and the requirements set out in 'Packaging and build configuration' below.
 * *Must not* include package management config for any package manager other than npm
 * *May* contain any number of .{thing}ignore files (but .npmignore is discouraged in favour of a `files` list in package.json)
 * *Should* be organised as simply as possible and not include any extraneous files
 * *Must* include a README.md file in the root of the repo, which must contain, where applicable:
-** Any markup structure on which the module depends (if that markup is not provided by a web service).  For example, a module providing CSS to style addresses, should include a guide to writing the correct markup.
-** Links to repos of web services that exist to provide markup or data that is used by the module.
+	* Any markup structure on which the module depends (if that markup is not provided by a web service).  For example, a module providing CSS to style addresses, should include a guide to writing the correct markup.
+	* Links to repos of web services that exist to provide markup or data that is used by the module.
 
 
 ## File structure
@@ -65,17 +65,18 @@ A module component could be organised like this, but this does not imply any req
 
 The module must include a package.json file in the root of the project, which must conform to the following requirements:
 
-** *Must* include a useful `name` and `description`
-** *Must* include a `version` based on [Semver][3] rules
-** *Must* include a `bugs` URL if the module has an issue tracker to which bugs should be reported (including if the issue tracker is GitHub issues), and the email address of the module maintainer if there is no issues tracker
-** *Must* include a `files` array containing a list of the files and folders within the module that are relevant to anyone requiring the module into their project.  This *should not* include documentation, tests, or .ignore files, but *should* include source files and the package.json file.
-** *Must* include a `main` value *if* the module contains any JavaScript, set to the path to the root JavaScript module.
-** *Must* include a `repository` value with the URL of the git repo where the module lives.
-** *Must* include a `dependencies` object *if* the module has any dependencies and should accept as wide a range of versions of dependencies as possible (also see 'Module subdependencies' below)
-** *Must include a (non-standard) `roots` object, containing keys for 'css' and/or 'js', where the values are the file paths to each respective root module (the file from which all other files of the same language in the same repo will be ultimate dependencies).  In the case of JavaScript, the value of the 'js' key will be the same as the value of the top level config key `main`.
-** *Should* include a `homepage` URL if the module has documentation other than the README in the root of the repo (eg if you have a GitHub pages site or docs on developer.ft.com, put the link to them here)
-** *Must not* include any of the following standard defined properties: publishConfig, preferGlobal, cpu, os, engineStrict, engines, config, bin.
-** *May* include any other standard defined property
+* *Must* include a useful `name` and `description`
+* *Must* include a `version` based on [Semver][3] rules
+* *Must* include a `bugs` URL if the module has an issue tracker to which bugs should be reported (including if the issue tracker is GitHub issues), and the email address of the module maintainer if there is no issues tracker
+* *Must* include a `files` property containing a list of the files and folders within the module that are relevant to anyone requiring the module into their project.  This *should not* include documentation, tests, or .ignore files, but *should* include source files and the package.json file.
+* *Must* include a `main` property *if* the module contains any JavaScript, set to the path to the root JavaScript module.
+* *Must* include a `repository` property with the URL of the git repo where the module lives.
+* *Must* include a `private` property with the value set to `true`.
+* *Must* include a `dependencies` object *if* the module has any dependencies and should accept as wide a range of versions of dependencies as possible (also see 'Module subdependencies' below)
+* *Must* include a (non-standard) `roots` object, containing keys for 'css' and/or 'js', where the values are the file paths to each respective root module (the file from which all other files of the same language in the same repo will be ultimate dependencies).  In the case of JavaScript, the value of the 'js' key will be the same as the value of the top level config key `main`.
+* *Should* include a `homepage` URL if the module has documentation other than the README in the root of the repo (eg if you have a GitHub pages site or docs on developer.ft.com, put the link to them here)
+* *Must not* include any of the following standard defined properties: publishConfig, preferGlobal, cpu, os, engineStrict, engines, config, bin.
+* *May* include any other standard defined property
 
 The following is an example `package.json` file that meets the above spec:
 
@@ -137,7 +138,7 @@ OK, so you want to write your own page, and you want to choose a specific set of
 
 	<link rel='stylesheet' href='http://buildservice.ft.com/bundle/css?modules=nav:2.3,tweet:1,cookiewarn:2.3' />
 
-Construct a URL to load a bundle of JS or CSS from the [Build service resource compiler][4], and simply append all the modules you want to the end of the URL.  The Build service will require all the modules that you want (including their dependencies), create a single bundled resource (using browserify or compass, for JS and CSS respectively), minify the result (using closure compiler or compass) and serve it to you on the URL you requested.  Put the URL in a `<script>` or `<link>` tag, and your modules are loaded directly into your page.
+Construct a URL to load a bundle of JS or CSS from the [Build service resource compiler][4], and simply append all the modules you want to the end of the URL.  The Build service will require all the modules that you want (including their dependencies), create a single bundled resource (using browserify or Sass, for JS and CSS respectively), minify the result (using closure compiler or compass) and serve it to you on the URL you requested.  Put the URL in a `<script>` or `<link>` tag, and your modules are loaded directly into your page.
 
 This works well for CSS and JS modules.  If the module you want provides a font, SVG, images, or other static resources that don't require packaging but can still be included from the browser, you can still avoid serving the files yourself by using the [Build service file proxy][5].  Again just construct a URL to the resource you want.
 
