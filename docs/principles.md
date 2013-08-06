@@ -18,7 +18,7 @@ No single product or project will affect the way a component is built. No produc
 
 ### 3. Ease of use
 
-It will be possible for a developer to use any of our components with no more than ten minutes work and they will not require any help or support from us to do so.  We will not require developers to build or compile components if they don't want to, and commit to supplying them as ready-to-use as possible by providing a [build service](/docs/build-service/).  Our interfaces will follow consistent patterns so that knowing how to use one of our components means a developer will know how to use all of our components.  Learning is expensive, unnecessary learning is waste.
+It will be possible for a developer to use any of our components with no more than ten minutes work and they will not require any help or support from us to do so.  We will not require developers to build or compile components if they don't want to, and commit to supplying them as ready-to-use as possible by providing a [build service]({{site.baseurl}}/docs/build-service/).  Our interfaces will follow consistent patterns so that knowing how to use one of our components means a developer will know how to use all of our components.  Learning is expensive, unnecessary learning is waste.
 
 ### 4. No opinion on how you should build your application
 
