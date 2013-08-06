@@ -24,9 +24,9 @@ The three layers divide areas of responsibility for the web platform.  The botto
 
 Read more about each type of component:
 
-* [Modules](/docs/component-types/modules)
-* [Web services](/docs/component-types/web-services)
-* [Client side includes](/docs/component-types/client-includes)
-* [Middleware](/docs/component-types/middleware)
+* [Modules]({{site.baseurl}}/docs/component-types/modules)
+* [Web services]({{site.baseurl}}/docs/component-types/web-services)
+* [Client side includes]({{site.baseurl}}/docs/component-types/client-includes)
+* [Middleware]({{site.baseurl}}/docs/component-types/middleware)
 
 [1]: https://github.com/commonjs/commonjs/blob/master/docs/specs/modules/1.0.html.markdown
