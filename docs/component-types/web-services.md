@@ -33,8 +33,8 @@ Web services must expose an HTTP endpoint on the hostname `{componentname}.origa
 * *Should* serve CORS response headers to allow the endpoints to be consumed in-browser from any origin (though consuming in-browser is discouraged)
 * *Must* include explicit `Cache-control` header in HTTP responses, which product applications must respect.
 * When a change is made to the structure of the data returned or the markup used in HTML output...
-** *Must* provide a new set of API endpoints with updated version number
-** *Must* continue to support previous versions for a minimum of 3 months
+	* *Must* provide a new set of API endpoints with updated version number
+	* *Must* continue to support previous versions for a minimum of 3 months
 * If a prior version is to be dropped, the service must give at least 3 months notice via an email notification to the Github watcher list, and also by setting an `X-Service-Termination-Date:` header on HTTP responses.  When the termination date is reached, the content as at that date *should* continue to be served on that URL indefinitely.  This way, product applications still using a web service version that is no longer supported will likely continue to work, but will no longer get updated data.
 
 ## Naming conventions
@@ -44,6 +44,10 @@ Web services source code repositories should be named using a short descriptive 
 	ft-tweet-service -> tweet-service.origami.ft.com
 	ft-nav-service -> nav-service.origami.ft.com
 	ft-mostpopular-service -> mostpopular-service.origami.ft.com
+
+## Internal architecture for versioning
+
+When a new version of the web service is released, the web service developer may choose to implement this by running multiple versions of the service behind a routing layer, such that `/v1/someendpoint` and `/v2/someendpoint` ultimately result in the same `/someendpoint` request being made to one or other of two separate instances of the web service.  This is acknowledged as a valid approach, but other web service developers may simply wish to run one instance of the web service that can handle all versioned endpoints.  This standard does not care about the internal architecture choices that the web service developer makes provided that the external interface satisifes the requirements set out above.
 
 ## Example
 

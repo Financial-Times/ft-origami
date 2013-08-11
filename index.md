@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Overview
+title: Home
 ---
 
 <img src='{{ site.baseurl }}/img/devices.png' alt='FT on a variety of devices' class='transparent' />
@@ -10,3 +10,8 @@ title: Overview
 This standard is equally for component developers and those who want to build websites using existing components.  These two roles will be distinguished in this standard as **component developer** and **product developer**.
 
 The things being built by component developers are **components**, while the sites, products, tools or services being build by the product developers as new services to FT readers are **product applications**.
+
+## Where to start
+
+* If you're a non-technical stakeholder wondering what all the fuss is about and how Origami will affect you, read the [overview](/docs/overview), which explains what problems we are solving and how Origami will help
+* If you're a component or product developer, understand the [principles](/docs/principles) and check out the [types of components](/docs/component-types) which contain specifications for how to build components as well as how to use them.

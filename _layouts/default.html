@@ -5,6 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <title>{{ page.title }} - {{ site.name }}</title>
         <meta name="viewport" content="width=device-width">
+        <meta name="robots" content="noindex, nofollow">
 
         <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0-rc1/css/bootstrap.min.css">
         <link rel="stylesheet" href="{{ site.baseurl }}/css/main.css">
@@ -26,8 +27,11 @@
 
           <div class='col-lg-3'>
             <ul class="nav sidebar">
+              <li class="{% if page.title == 'Home' %}active{% endif %}">
+                <a href="{{ site.baseurl }}/">Home</a>
+              </li>
               <li class="{% if page.title == 'Overview' %}active{% endif %}">
-                <a href="{{ site.baseurl }}/">Overview</a>
+                <a href="{{ site.baseurl }}/docs/overview">Overview</a>
               </li>
               <li class="{% if page.title == 'Principles' %}active{% endif %}">
                 <a href="{{ site.baseurl }}/docs/principles">Principles</a>
@@ -59,6 +63,9 @@
               </li>
               <li class="{% if page.title == 'Use cases' %}active{% endif %}">
                 <a href="{{ site.baseurl }}/docs/use-cases">Use case examples</a>
+              </li>
+              <li class="{% if page.title == 'Roadmap' %}active{% endif %}">
+                <a href="{{ site.baseurl }}/docs/roadmap">Roadmap and current activity</a>
               </li>
             </ul>
           </div>
