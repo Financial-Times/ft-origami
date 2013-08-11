@@ -22,7 +22,7 @@ For FT to thrive as a digital organisation, we need to solve some serious techno
 * **Every project requires elite skills** in numerous areas, placing a huge bottleneck on the engineers that have those skills - skills like ads integration and access control.
 * When different systems built by different teams try to integrate with one another, **hugely embarassing problems** on the scale of the pictured style issue *can* occur, and sometimes do.
 
-![The Business blog lacking core styles](/img/brokenblog.png)
+![The Business blog lacking core styles]({{site.baseurl}}/img/brokenblog.png)
 
 
 ### Repeating work.. again, again, again
@@ -33,7 +33,7 @@ There are lots of examples of this kind of thing.  While www.ft.com has always b
 
 With the **FT Web App**, we've discovered a whole new way of repeating work.  markets.ft.com already offers all the markets data features we want to offer readers, and yet FT Labs built a new version of Markets Data within the web app, because the version made by MarkIT is not responsively designed and so doesn't work on phones and tablets.  We did the same with **FT Clippings**.
 
-![Markets data, twice](/img/marketsdata-twice.jpg)
+![Markets data, twice]({{site.baseurl}}/img/marketsdata-twice.jpg)
 
 With **Fast FT**, we wanted to avoid building two versions of the same thing, so we built a single product that could be included in both the web app *and* ft.com pages, using a bodge to enable it to 'hijack' a page that belongs to another site.  This saved some effort, but now means that every single Fast FT post shares the same URL and is invisible to Google.
 
@@ -67,7 +67,7 @@ We often need one service to integrate with another, but too often we don't reco
 
 <p class='lead'>The paywall works perfectly for what it as designed for, but it wasn't designed to protect pages not on www.ft.com.  Putting an article not on ft.com behind the pay wall requires a process of multiple redirects, loading of 'fake' pages, hidden frames, and use of ancient, long obsolete templates.</p>
 
-![Paywall on blogs.ft.com](/img/barrier.png)
+![Paywall on blogs.ft.com]({{site.baseurl}}/img/barrier.png)
 
 That we can put pages on (for example) blogs.ft.com behind the paywall at all is a testament to the ingenuity of the technology team and our ability over the years to bash existing solutions that have been designed to be one shape into another shape entirely, as business requirements change.  However, if we had considered that the access service was a component of 'the digital FT', not a part of the www.ft.com product, it might have been designed very differently.
 
@@ -83,6 +83,6 @@ The most catestrophic consequence of this happens when the wrapper template is u
 
 The web has grown up, and discovered concepts that have been around in all other kinds of software engineering for years.
 
-We've published a set of [principles](/docs/principles) that will guide the development of a new generation of components to gradually replace what we have today.  The
+We've published a set of [principles]({{site.baseurl}}/docs/principles) that will guide the development of a new generation of components to gradually replace what we have today.  The
 
 * deprecated websites should be left in 'managed decline' on older versions of dependencies (BBC does this with their old news pages for example).
