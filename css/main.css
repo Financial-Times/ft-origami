@@ -101,6 +101,7 @@ pre code {
 }
 .main table {
   border-collapse: collapse;
+  margin: 1em 0;
 }
 .main td, .main th {
   vertical-align: top;
