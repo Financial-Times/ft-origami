@@ -9,6 +9,12 @@
 
         <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0-rc1/css/bootstrap.min.css">
         <link rel="stylesheet" href="{{ site.baseurl }}/css/main.css">
+        <link rel="stylesheet" href="http://assets.annotateit.org/annotator/v1.2.5/annotator.min.css">
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/3.2.1/css/font-awesome.min.css">
+
+        <script src='//cdnjs.cloudflare.com/ajax/libs/showdown/0.3.1/showdown.min.js'></script>
+        <script src='//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js'></script>
+        <script src='{{ site.baseurl }}/js/annotator-full.js'></script>
     </head>
     <body>
 
@@ -68,6 +74,8 @@
                 <a href="{{ site.baseurl }}/docs/roadmap">Roadmap and current activity</a>
               </li>
             </ul>
+
+            <p class='annotator-link'><i class='icon-edit'></i> <a href=''>Login with Github</a> to annotate and view existing annotations.</p>
           </div>
 
           <div class='col-lg-9 main'>
@@ -88,5 +96,36 @@
         </div>
       </div>
 
+      <script>
+      jQuery(function ($) {
+        $.ajax({
+          url: 'http://dev.labs.ft.com/andrew/annotator/token.php',
+          xhrFields: {
+            withCredentials: true
+          },
+          success: function(resp) {
+            if (resp !== "Not authenticated") {
+              resp = JSON.parse(resp);
+              $('.main').annotator().annotator('setupPlugins', {
+                tokenUrl: 'http://dev.labs.ft.com/andrew/annotator/token.php'
+              }, {
+                Auth: {
+                  token: resp.token
+                },
+                Store: {
+                  showViewPermissionsCheckbox: false,
+                  showEditPermissionsCheckbox: false
+                },
+                Permissions: {
+                  user: resp.name
+                }
+              });
+            } else {
+              $('.annotator-link').show().find('a').attr('href', 'http://dev.labs.ft.com/andrew/annotator/token.php?login=1&redir='+encodeURIComponent(location.href));
+            }
+          }
+        })
+      });
+      </script>
     </body>
 </html>

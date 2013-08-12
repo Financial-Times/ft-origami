@@ -67,6 +67,10 @@ pre code {
 .subnav li.active > a {
   padding-left: 25px;
 }
+.annotator-link {
+  margin-left: 30px;
+  display: none;
+}
 
 /* Content */
 
