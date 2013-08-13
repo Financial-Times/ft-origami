@@ -117,7 +117,13 @@
                   showEditPermissionsCheckbox: false
                 },
                 Permissions: {
-                  user: resp.name
+                  user: resp.name,
+                  permissions: {
+                    'read':   [],
+                    'update': [],
+                    'delete': [],
+                    'admin':  []
+                  }
                 }
               });
             } else {
