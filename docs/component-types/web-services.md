@@ -32,10 +32,15 @@ Web services must expose an HTTP endpoint on the hostname `{componentname}.origa
 * *May* accept any querystring parameters, POST data, URL parameters or other input as desired to allow for module specific features.
 * *Should* serve CORS response headers to allow the endpoints to be consumed in-browser from any origin (though consuming in-browser is discouraged)
 * *Must* include explicit `Cache-control` header in HTTP responses, which product applications must respect.
+* *Must* provide a mechanism for developers to subscribe to email notifications of version deprecation, which *should* be a github watcher list.
 * When a change is made to the structure of the data returned or the markup used in HTML output...
 	* *Must* provide a new set of API endpoints with updated version number
 	* *Must* continue to support previous versions for a minimum of 3 months
-* If a prior version is to be dropped, the service must give at least 3 months notice via an email notification to the Github watcher list, and also by setting an `X-Service-Termination-Date:` header on HTTP responses.  When the termination date is reached, the content as at that date *should* continue to be served on that URL indefinitely.  This way, product applications still using a web service version that is no longer supported will likely continue to work, but will no longer get updated data.
+	* *Must* work to agree a termination date for the previous version with its consumers and the wider business
+* If a prior version is to be terminated...
+	* *Must* give at least 3 months notice via an email notification to the notification list
+	* *Must* set an `X-Service-Termination-Date:` header on all HTTP responses using an RFC1123 format date
+	* Following the expiry of the termination date, and for ever more, *should* return either a `410 Gone` or a static copy of the last content to be generated.
 
 ## Naming conventions
 

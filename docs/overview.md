@@ -17,8 +17,8 @@ Contents:
 
 For FT to thrive as a digital organisation, we need to solve some serious technology problems.  They thwart our attempts to do innovative work.  They suck up development resources and leave us with nothing to move forward with.  They threaten to leave us constantly fighting to keep up with our competition.
 
-* Despite having limited technology resources, **we do the same work multiple times**, like updating the design of the FT navigation bar which has to be done separately on dozens of websites
-* Services or features on which other bits of our technology depend are forced to live **long beyond their useful life**, such as cookies that we still send despite their having being technically retired *seven years ago*.
+* Despite having limited technology resources, **we do the same work multiple times**, like slideshows, which have had to be implemented repeatedly on many websites
+* Services or features on which other bits of our technology depend are forced to live **long beyond their useful life**, such as the many elements of the classic stack.
 * **Every project requires elite skills** in numerous areas, placing a huge bottleneck on the engineers that have those skills - skills like ads integration and access control.
 * When different systems built by different teams try to integrate with one another, **hugely embarassing problems** on the scale of the pictured style issue *can* occur, and sometimes do.
 
@@ -37,8 +37,6 @@ With the **FT Web App**, we've discovered a whole new way of repeating work.  ma
 
 With **Fast FT**, we wanted to avoid building two versions of the same thing, so we built a single product that could be included in both the web app *and* ft.com pages, using a bodge to enable it to 'hijack' a page that belongs to another site.  This saved some effort, but now means that every single Fast FT post shares the same URL and is invisible to Google.
 
-This type of repetition is caused by having two digital channels (the web app and ft.com), one of which doesn't really work for desktop users, and one of which doesn't really work for mobile users.  The web app is globally recognised as a gold standard in touch based user experience, but that doesn't mean that every single FT service needs to be replicated within it in order to work for mobile users.
-
 <div class='well'><h4>How to solve it</h4>Where features or elements of design are used in multiple websites, we need to build them to be usable in all those cases, and portable between them, rather than always building features solely in the context of one product.  These components should not be seen as an intrinsic part of <em>any</em> product, but instead as part of the <b>new digital FT</b>.</div>
 
 ### Unable to let go and move on
@@ -54,8 +52,6 @@ Having to keep old stuff running is (like a ship dragging an anchor) a major han
 ### Experts needed everywhere
 
 It used to be that building websites was pretty easy.  Now, the difference in expertise from a beginner to an advanced web developer is huge.  It's rare for expert web developers to know the entire web platform, instead, people begin to specialise.  To have a modern website that looks good and has all the fancy features we've come to expect, expensive expert engineers are needed.  We can't afford to do this for every project.
-
-<p class='lead'>TODO: Choose a good example</p>
 
 Imagine if every time you wanted to go to the shops, you had to build a car.  By yourself you might manage a go-cart.  An expert could build a Jaguar.  But if an expert designed all the bits, got them mas produced and published detailed instructions, you could build a Jaguar too.
 

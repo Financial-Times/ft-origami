@@ -30,6 +30,7 @@ The following requirements apply to creating a Origami-compatible module compone
 * Where there is a dependency on a web service component, each version of the web service *must* be compatible with all versions of the module that carry the same major version number (and conversely, all versions of the module must be compatible with the version of the web service that shares the module's major version number).  For example, version 2.4.5, 2.4.6, and 2.7 of a module should all use version 2 of the web service.
 * Where the module contains JavaScript or SCSS, there *must* be a single 'main' file from which all other files of the same language are ultimate dependencies (using `require` or `@import` as appropriate).  These main files must be listed in the package config under 'roots'.
 * *Must* include an npm-compatible `package.json` (in the root of the repo) which must conform to the [npm standard for package.json files][2] and the requirements set out in 'Packaging and build configuration' below.
+* *Must* be stored in a Git repo (which *should* be GitHub) accessible to any FT network
 * *Must not* include package management config for any package manager other than npm
 * *May* contain any number of .{thing}ignore files (but .npmignore is discouraged in favour of a `files` list in package.json)
 * *Should* be organised as simply as possible and not include any extraneous files
@@ -63,7 +64,9 @@ A module component could be organised like this, but this does not imply any req
 
 ## Packaging and build configuration
 
-The module must include a package.json file in the root of the project, which must conform to the following requirements:
+When a developer goes to use a module, and finds that it has config for a particular package management system, they should be able to assume that the same package manager can be used to install *any* Origami module.  So it's important that all Origami modules share the same package config and do not include any 'special' config for package managaement systems that aren't compatible with all modules.
+
+Therefore the module must include a package.json file in the root of the project, which must conform to the following requirements:
 
 * *Must* include a useful `name` and `description`
 * *Must* include a `version` based on [Semver][3] rules
@@ -128,13 +131,13 @@ Modules should be named using a short descriptive one-word term, prefixed with `
 
 If you are building a product and want to include some Origami modules, there are several ways you can do it.  There's listed here in increasing order of effort required:
 
-### 1. Use the Build service to fetch a pre-build page
+### 1. Use the Build service to fetch a pre-built page
 
 If you don't even want to write your own HTML page or decide which components you want - you just want to add some extra content to an existing page template, use the build service to download a complete HTML page containing all the components you need.  The page comes as a Mustache template, so you can then add your own data into the placeholders using a [Mustache implementation](http://mustache.github.io/), which are available in almost any language you might need.
 
 ### 2. Use the Build service directly in web page source
 
-OK, so you want to write your own page, and you want to choose a specific set of components, but you don't want a build process.  Check this out:
+If you want to write your own page, and you want to choose a specific set of components, but you don't want a build process, you can still use the build service, but by writing your own `link` and `script` tags:
 
 	<link rel='stylesheet' href='http://buildservice.ft.com/bundle/css?modules=nav:2.3,tweet:1,cookiewarn:2.3' />
 
@@ -147,7 +150,6 @@ This works well for CSS and JS modules.  If the module you want provides a font,
 	<?php
 	$origami_css = file_get_contents('http://buildservice.ft.com/bundle/css?modules=nav:2.3,tweet:1');
 	// Continue your build process
-	?>
 
 If you need a bit more customisation than you can get by using the build service from the browser, or you want to improve performance by bundling Origami modules with your own, you can use the build service from your own application.  We don't make any assumptions about what technology you're using for your product, but as long as it can make HTTP requests, it can load build service URLs, so you can load the resources that you want and then bundle them as appropriate.
 

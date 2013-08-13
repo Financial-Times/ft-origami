@@ -8,7 +8,7 @@ permalink: /docs/build-service/
 
 Since Origami components are very granular, product developers may find themselves spending a considerable amount of time concerned with setting up dependency management, and build processes to do things such as minification and concatenation of source files.  The **build service** exists to allow developers to avoid this effort if desired.  This is especially useful for bootstrapping early stage prototypes as well as building hacks, experiments, and adding components to legacy applications.
 
-The service offers high availability, reliability, and its own cache layer, so can be used for client-side requests.  It offers three main endpoints:
+The service offers high availability, reliability, HTTPS with the same hostname and path, and its own cache layer, so can be used for client-side requests.  It offers three main endpoints:
 
 	http://buildservice.ft.com/bundles/[css|js]
 	http://buildservice.ft.com/pages
@@ -74,7 +74,7 @@ The file proxy is also useful when requesting CSS from the build service, becaus
 
 ## Domain sharding
 
-The build service will support unlimited subdomains which will also resolve to the build service, to allow for domain sharding, if the developer requires it (eg a.buildservice.ft.com, b.buildservice.ft.com).
+The build service will support a, b, c and d subdomains which will also resolve to the build service, to allow for domain sharding, if the developer requires it (eg a.buildservice.ft.com, b.buildservice.ft.com).
 
 
 ## Version inputs
@@ -82,9 +82,18 @@ The build service will support unlimited subdomains which will also resolve to t
 Where the build service accepts module version numbers as inputs, the version numbers are expected to be Semver patterns to match tags on the module's git repo.  If a version number is not specified, the build service will use the most recent tag that conforms to a Semver pattern.  Using specific commit sha1s is not supported but could be in future.
 
 
+## Caching and rebuilding
+
+Requested bundles, pages and files will be generated on demand and then cached indefinitely.  Where it's a bundle that includes Semver versions of modules, the build service will check periodically to see if the matching version has changed (the matching version may differ from the version actually used in the current bundle due to multiple modules requesting the same dependency at different semver ranges).  If so, it will re-run the build and swap out the existing cached version for the new one.
+
+If bundles receive no requests at all for a period of two weeks, they'll be deleted.  If requested subsequently, that bundle will need to be rebuilt, so initial requests for it will fail to return any content.  This is not expected to be a problem since it will only affect bundles that have virtually no traffic.
+
+The build service consumer *must* cache the output of any build service endpoint using standard HTTP caching rules, respecting the Cache-control header, including taking advantage of the circumstances in which it is permitted to deliver a stale response.
+
+
 ## API reference
 
-### GET /bundle/js
+### GET /bundles/js
 
 Fetch a set of modules and build a JavaScript bundle.
 
@@ -114,15 +123,15 @@ If the requested bundle is already available, a `200 OK` status code will be ret
 
 If an existing bundle is not available, but the request is valid, a `201 Accepted` status will be returned, and if not already in progress, the bundling will commence in the background.  An `X-FT-Build-Status` response header will be included in the response giving the date the build started in [RFC1123](http://www.ietf.org/rfc/rfc1123.txt) format, the current status, and an optional progress indication for that stage of the build:
 
-	X-FT-Build-Status: {build_start_date}; {status} {progress}
-	X-FT-Build-Status: Tue, 15 Nov 2012 08:12:31 GMT; downloading 2/6
+	X-FT-Build-Status: {build_hash}; {build_start_date}; {status} {progress}
+	X-FT-Build-Status: 1b1ab000a9b5642f6b8726039f1e79477b57c103; Tue, 15 Nov 2012 08:12:31 GMT; downloading 2/6
 
 If the request was not valid, a `400 Bad Request` is returned, with a plain text explanation in the response body
 
 If the request was valid but the build failed, a `500 Internal Server Error` is returned, with a plain text explanation in the response body.  The most common causes of a 500 error are dependency conflicts or linting errors from closure compiler.
 
 
-### GET /bundle/css
+### GET /bundles/css
 
 Fetch a set of modules and build a CSS bundle.
 
