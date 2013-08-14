@@ -16,7 +16,7 @@ A **web service** component is offered as a URL endpoint that delivers content. 
 
 ## API
 
-Web services must expose an HTTP endpoint on the hostname `{componentname}.origami.ft.com`, which conforms to the requirements included below.  Web service components are available as raw source in git, but are not intended to be run by product developers.  The component is the hosted service, rather than the application that runs it.
+Web services must expose an HTTP endpoint on the hostname `{componentname}.origami.ft.com`, which conforms to the requirements included below.  Web service components are available as raw source in git, but are not intended to be run by product developers unless they want to for testing.  The component is the hosted service, rather than the application that runs it.
 
 ## Requirements
 
@@ -31,26 +31,27 @@ Web services must expose an HTTP endpoint on the hostname `{componentname}.origa
 * *Should* be RESTful
 * *May* accept any querystring parameters, POST data, URL parameters or other input as desired to allow for module specific features.
 * *Should* serve CORS response headers to allow the endpoints to be consumed in-browser from any origin (though consuming in-browser is discouraged)
-* *Must* include explicit `Cache-control` header in HTTP responses, which product applications must respect.
+* *Must* include explicit `Cache-Control` header in HTTP responses, which product applications must respect.
 * *Must* provide a mechanism for developers to subscribe to email notifications of version deprecation, which *should* be a github watcher list.
 * When a change is made to the structure of the data returned or the markup used in HTML output...
 	* *Must* provide a new set of API endpoints with updated version number
 	* *Must* continue to support previous versions for a minimum of 3 months
-	* *Must* work to agree a termination date for the previous version with its consumers and the wider business
-* If a prior version is to be terminated...
+	* *Must* begin work to agree a termination date for the previous version with its consumers and the wider business
+* When a prior version is to be terminated...
 	* *Must* give at least 3 months notice via an email notification to the notification list
 	* *Must* set an `X-Service-Termination-Date:` header on all HTTP responses using an RFC1123 format date
 	* Following the expiry of the termination date, and for ever more, *should* return either a `410 Gone` or a static copy of the last content to be generated.
 
 ## Naming conventions
 
-Web services source code repositories should be named using a short descriptive one-word term, prefixed with `ft-` and suffixed with `-service`.  The service hostname should drop the prefix.  Examples:
+Web services source code repositories should be named using a short descriptive one-word term, suffixed with `-service`.  The service hostname should drop the suffix.  Examples:
 
-	ft-tweet-service -> tweet-service.origami.ft.com
-	ft-nav-service -> nav-service.origami.ft.com
-	ft-mostpopular-service -> mostpopular-service.origami.ft.com
+	== REPO ==         == HOSTNAME ==
+	tweet-srv          tweet.origami.ft.com
+	nav-srv            nav.origami.ft.com
+	mostpopular-srv    mostpopular.origami.ft.com
 
-## Internal architecture for versioning
+## Handing versioning internally
 
 When a new version of the web service is released, the web service developer may choose to implement this by running multiple versions of the service behind a routing layer, such that `/v1/someendpoint` and `/v2/someendpoint` ultimately result in the same `/someendpoint` request being made to one or other of two separate instances of the web service.  This is acknowledged as a valid approach, but other web service developers may simply wish to run one instance of the web service that can handle all versioned endpoints.  This standard does not care about the internal architecture choices that the web service developer makes provided that the external interface satisifes the requirements set out above.
 
@@ -60,7 +61,7 @@ The following HTTP request-response is compliant with the above requirements and
 
 	GET /v1/navigation.html?level=first&selectedUrl=http%3A%2F%2Fwww.ft.com%2Fcompanies HTTP/1.1
 	User-Agent: curl/7.24.0 (x86_64-apple-darwin12.0) libcurl/7.24.0 OpenSSL/0.9.8x zlib/1.2.5
-	Host: navigation.modules.ft.com
+	Host: nav.modules.ft.com
 	Accept: text/html
 
 	HTTP/1.1 200 OK
@@ -73,7 +74,7 @@ The following HTTP request-response is compliant with the above requirements and
 	Access-Control-Allow-Credentials: true
 	Access-Control-Allow-Origin: *
 
-	<nav class="ft-module-navigation">
+	<nav class="ft-nav-mdl">
 	<ol>
 	<li  data-track-pos="0"><a href="http://www.ft.com">Home</a></li>
 	<li  data-track-pos="1"><a href="http://www.ft.com/world/uk">UK</a></li>

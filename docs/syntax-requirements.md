@@ -22,7 +22,7 @@ These rules apply to any code written as part of an Origami component
 
 ### Syntax convention rules
 
-**TODO:Jshint config**
+**TODO: Agree Jshint config**
 
 ## CSS
 
