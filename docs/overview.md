@@ -41,6 +41,12 @@ With **Fast FT**, we wanted to avoid building two versions of the same thing, so
 
 <div class='well'><h4>How to solve it</h4>Where features or elements of design are used in multiple websites, we need to build them to be usable in all those cases, and portable between them, rather than always building features solely in the context of one product.  These components should not be seen as an intrinsic part of <em>any</em> product, but instead as part of the <b>new digital FT</b>.</div>
 
+### Bringing clarity to product development
+
+At the moment a 'new' developer, whether 3rd party or internal, looking to create a branded FT.com product has a lot of work to do. They will need to deconstruct a current page and/or wade through large amounts of code just to find out how to layout a page and style some consitent UI components. It is also likely to consume the time, potentially large amounts of it, of developers who are familiar with the codebase. This prevents them getting on with their own new product development.
+
+<div class='well'><h4>How to solve it</h4>Anything we build should be consitently documented, esoteric terminology should be defined in a glossary. Our brand guidlines and how they relate to Origami/Velcro should form a part of the overall documentation effort. There should be little or no reason for a 'new' developer should have to communicate directly with the maintainers of the componentss.</div>
+
 ### Unable to let go and move on
 
 Right now, given the way in which products have historically been (and to some extent still are) built in isolation by separated teams (and often by outside agencies), it's actually hard to know where a particular style or feature has been copied and might still exist.  Equally, low level foundations need to be kept around for years even though they've been superceded, simply because we don't know what might be using them.
