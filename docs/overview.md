@@ -18,9 +18,11 @@ Contents:
 For FT to thrive as a digital organisation, we need to solve some serious technology problems.  They thwart our attempts to do innovative work.  They suck up development resources and leave us with nothing to move forward with.  They threaten to leave us constantly fighting to keep up with our competition.
 
 * Despite having limited technology resources, **we do the same work multiple times**, like slideshows, which have had to be implemented repeatedly on many websites
+* The way are pages are assembled, and how they function is esoteric. This makes is very difficult for 3rd parties, or even other business units, to make sense of work already completed and make use of it. It leads to incosistency, bloated software and brand divergence. *
 * Services or features on which other bits of our technology depend are forced to live **long beyond their useful life**, such as the many elements of the classic stack.
 * **Every project requires elite skills** in numerous areas, placing a huge bottleneck on the engineers that have those skills - skills like ads integration and access control.
 * When different systems built by different teams try to integrate with one another, **hugely embarassing problems** on the scale of the pictured style issue *can* occur, and sometimes do.
+
 
 ![The Business blog lacking core styles]({{site.baseurl}}/img/brokenblog.png)
 
