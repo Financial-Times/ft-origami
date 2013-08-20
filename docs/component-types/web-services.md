@@ -7,7 +7,7 @@ permalink: /docs/component-types/web-services/
 
 # Web service components
 
-A **web service** component is offered as a URL endpoint that delivers content.  The product developer includes this in their project either on demand on a request by request basis (using [ESI](http://en.wikipedia.org/wiki/Edge_Side_Includes) or similar technology), or by downloading the content on a regular schedule and pushing it into a local cache.  This is designed for content that is being changed frequently, so product developers should take care to respect [cache control](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.9) directives emitted by the service.  Examples of good use cases for web services are:
+A **web service** component is offered as a URL endpoint that delivers content.  The product developer includes this in their project either on demand on a request by request basis (using [ESI](http://en.wikipedia.org/wiki/Edge_Side_Includes) or similar technology), or by downloading the content on a regular schedule and pushing it into a local cache.  This is designed for content that is being changed frequently, so product developers should take care to respect [cache control](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.9) directives emitted by the service.  Web service components are available as raw source in git, but are not intended to be run by product developers unless they want to for testing.  The component is the hosted service, rather than the application that runs it.  Examples of good use cases for web services are:
 
 * FT Main navigation
 * Most read / shared / commented
@@ -16,7 +16,7 @@ A **web service** component is offered as a URL endpoint that delivers content. 
 
 ## API
 
-Web services must expose an HTTP endpoint on the hostname `{componentname}.origami.ft.com`, which conforms to the requirements included below.  Web service components are available as raw source in git, but are not intended to be run by product developers unless they want to for testing.  The component is the hosted service, rather than the application that runs it.
+Web services must expose an HTTP endpoint on the hostname `{componentname}.webservices.ft.com`, which conforms to the requirements included below.
 
 ## Requirements
 
@@ -47,9 +47,9 @@ Web services must expose an HTTP endpoint on the hostname `{componentname}.origa
 Web services source code repositories should be named using a short descriptive one-word term, suffixed with `-service`.  The service hostname should drop the suffix.  Examples:
 
 	== REPO ==             == HOSTNAME ==
-	tweet-service          tweet.origami.ft.com
-	nav-service            nav.origami.ft.com
-	mostpopular-service    mostpopular.origami.ft.com
+	tweet-service          tweet.webservices.ft.com
+	nav-service            nav.webservices.ft.com
+	mostpopular-service    mostpopular.webservices.ft.com
 
 ## Handing versioning internally
 
