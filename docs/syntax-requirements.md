@@ -40,7 +40,7 @@ These rules apply to any code written as part of an Origami component
 
 * Where a component contains a chunk of HTML, it must be (by itself) well formed XML (ie. it must have a single root element, all elements that are opened must be closed, closing tags must be in order)
 * Use semantic markup where native elements exist to describe the content (so use `<address>` not `<div class='address'>`)
-* The root element should have a class name of `ft-module-{modulename}`
+* The root element should have a class name of `ft-{modulename}-module`
 * ID and event handler attributes are not permitted
 * No non-HTML content (eg `<script>`, `<style>`)
 
