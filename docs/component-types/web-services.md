@@ -29,7 +29,7 @@ Web services must expose an HTTP endpoint on the hostname `{componentname}.origa
 * When providing JSON output, *must* meet the [standard for JSON](/docs/syntax-requirements)
 * *Should* support JSONp callback via the querystring parameter `callback` (when returning HTML with a JSON callback, the HTML string should be escaped and quoted)
 * *Should* be RESTful
-* *May* accept any querystring parameters, POST data, URL parameters or other input as desired to allow for module specific features.
+* *May* accept any querystring parameters, POST data, URL parameters or other input as desired to allow for module specific features (this may include accepting input and then simply reformatting it and including it in the output, but component developers *should* avoid doing this in services whose output also draws from other content sources).
 * *Should* serve CORS response headers to allow the endpoints to be consumed in-browser from any origin (though consuming in-browser is discouraged)
 * *Must* include explicit `Cache-Control` header in HTTP responses, which product applications must respect.
 * *Must* provide a mechanism for developers to subscribe to email notifications of version deprecation, which *should* be a github watcher list.
