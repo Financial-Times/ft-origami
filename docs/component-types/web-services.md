@@ -55,6 +55,10 @@ Web services source code repositories should be named using a short descriptive 
 
 When a new version of the web service is released, the web service developer may choose to implement this by running multiple versions of the service behind a routing layer, such that `/v1/someendpoint` and `/v2/someendpoint` ultimately result in the same `/someendpoint` request being made to one or other of two separate instances of the web service.  This is acknowledged as a valid approach, but other web service developers may simply wish to run one instance of the web service that can handle all versioned endpoints.  This standard does not care about the internal architecture choices that the web service developer makes provided that the external interface satisifes the requirements set out above.
 
+## De-duplication of output
+
+Web service components do not offer any de-duplication of content.  If a product developer wants to draw from multiple Origami sources, and de-dupe where the same individual content item may appear from more than one of those sources, that's not a problem that Origami will solve for them, but could be solved at the product level by consuming data rather than markup.  This will transfer more work onto the product, so if duplicated entries can be tolerated, the product will benefit from being easier to build and maintain.
+
 ## Example
 
 The following HTTP request-response is compliant with the above requirements and the [syntax requirements](/docs/syntax-requirements) for the response body:
