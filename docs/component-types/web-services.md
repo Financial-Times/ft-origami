@@ -29,6 +29,7 @@ Web services must expose an HTTP endpoint on the hostname `{componentname}.webse
 * When providing JSON output, *must* meet the [standard for JSON](/docs/syntax-requirements)
 * *Should* support JSONp callback via the querystring parameter `callback` (when returning HTML with a JSON callback, the HTML string should be escaped and quoted)
 * *Should* be RESTful
+* *Should* draw templates from a module component where practical (to allow product developers to consume them and do the templating themselves), and if it does so those templates *must* be Mustache
 * *May* accept any querystring parameters, POST data, URL parameters or other input as desired to allow for module specific features (this may include accepting input and then simply reformatting it and including it in the output, but component developers *should* avoid doing this in services whose output also draws from other content sources).
 * *Should* serve CORS response headers to allow the endpoints to be consumed in-browser from any origin (though consuming in-browser is discouraged)
 * *Must* include explicit `Cache-Control` header in HTTP responses, which product applications must respect.

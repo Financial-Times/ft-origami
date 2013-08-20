@@ -25,7 +25,7 @@ Modules might contain resources such as JS modules, Sass modules, fonts, images,
 The following requirements apply to creating a Origami-compatible module component:
 
 * *Should* be used for any resource that is (when required by a dependency manager) a collection of only static files or JavaScript
-* *May* contain any resource that is a CommonJS JavaScript module, any declarative language (HTML, CSS, JSON etc), or binary data.
+* *May* contain any resource that is a CommonJS JavaScript module, any declarative language that is agnostic of server-side technology stack (HTML, Mustache, CSS, SASS, JSON etc), or binary data.
 * *Should* store CSS as raw SCSS, so that products and other modules can make use of variables and mixins
 * *Must not* be used for imperative code except JavaScript (and JavaScript must have a client-side use case to be considered a front end component)
 * Where there is a dependency on a web service component (eg because the module is a JavaScript library that makes AJAX requests to a service), each version of the web service *must* be compatible with all versions of the module that carry the same major version number (and conversely, all versions of the module must be compatible with the version of the web service that shares the module's major version number).  For example, version 2.4.5, 2.4.6, and 2.7 of a module should all use version 2 of the web service.
