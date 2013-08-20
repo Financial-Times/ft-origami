@@ -46,10 +46,10 @@ Web services must expose an HTTP endpoint on the hostname `{componentname}.origa
 
 Web services source code repositories should be named using a short descriptive one-word term, suffixed with `-service`.  The service hostname should drop the suffix.  Examples:
 
-	== REPO ==         == HOSTNAME ==
-	tweet-srv          tweet.origami.ft.com
-	nav-srv            nav.origami.ft.com
-	mostpopular-srv    mostpopular.origami.ft.com
+	== REPO ==             == HOSTNAME ==
+	tweet-service          tweet.origami.ft.com
+	nav-service            nav.origami.ft.com
+	mostpopular-service    mostpopular.origami.ft.com
 
 ## Handing versioning internally
 
@@ -74,7 +74,7 @@ The following HTTP request-response is compliant with the above requirements and
 	Access-Control-Allow-Credentials: true
 	Access-Control-Allow-Origin: *
 
-	<nav class="ft-nav-mdl">
+	<nav class="ft-nav-module">
 	<ol>
 	<li  data-track-pos="0"><a href="http://www.ft.com">Home</a></li>
 	<li  data-track-pos="1"><a href="http://www.ft.com/world/uk">UK</a></li>

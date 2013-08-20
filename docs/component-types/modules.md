@@ -137,12 +137,12 @@ If the component author wishes to include an `examples` or `dist` folder to prov
 
 ## Naming conventions
 
-Modules should be named using a short descriptive one-word term, suffixed with `-mdl` for 'module', as the name for the repository.  CSS classes should use the same name but add an `ft-` prefix.  Examples:
+Modules should be named using a short descriptive one-word term, suffixed with `-module`, as the name for the repository.  CSS classes should use the same name but add an `ft-` prefix.  Examples:
 
-	== REPO ==          == CSS CLASS ==
-	tweet-mdl           ft-tweet-mdl
-	nav-mdl             ft-nav-mdl
-	cookiewarn-mdl      ft-cookiewarn-mdl
+	== REPO ==             == CSS CLASS ==
+	tweet-module           ft-tweet-module
+	nav-module             ft-nav-module
+	cookiewarn-module      ft-cookiewarn-module
 
 
 ## Using modules in a product application

@@ -36,13 +36,13 @@ Where a resource compiler request results in multiple versions of the same modul
 	Cannot complete build: conflicting dependencies exist.
 
 	ft-velcro:
-	  - Required at version 1.7 by nav-mdl
-	  - Required at version 1.9 by cookiewarn-mdl
+	  - Required at version 1.7 by nav-module
+	  - Required at version 1.9 by cookiewarn-module
 
 	ft-base-js:
 	  - Required at version 2.7.4 in <querystring>
-	  - Required at version ~3.2 by nav-mdl
-	  - Required at version 4.* by signinstatus-mdl
+	  - Required at version ~3.2 by nav-module
+	  - Required at version 4.* by signinstatus-module
 
 Dependency conflicts must be resolved by either the product developer requesting a different version of the modules that contain the conflicting dependencies, or by the component developer updating the components to allow a broader range of versions of the dependency.
 
