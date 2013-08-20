@@ -120,7 +120,7 @@ Fetch a set of modules and build a JavaScript bundle.
 
 If the requested bundle is already available, a `200 OK` status code will be returned with the bundle in the response body.
 
-If the bundle is not immediately available, but the request is valid, a `201 Accepted` status will be returned, and if not already in progress, the build will commence in the background.  An `X-FT-Build-Status` response header will be included in the response giving the identifier for the build, the date the build started in [RFC1123](http://www.ietf.org/rfc/rfc1123.txt) format, the current status, and an optional progress indication for that stage of the build:
+If the bundle is not immediately available, but the request is valid, a `202 Accepted` status will be returned, and if not already in progress, the build will commence in the background.  An `X-FT-Build-Status` response header will be included in the response giving the identifier for the build, the date the build started in [RFC1123](http://www.ietf.org/rfc/rfc1123.txt) format, the current status, and an optional progress indication for that stage of the build:
 
 	X-FT-Build-Status: {build_hash}; {build_start_date}; {status} {progress}
 	X-FT-Build-Status: 1b1ab000a9b5642f6b8726039f1e79477b57c103; Tue, 15 Nov 2012 08:12:31 GMT; downloading 2/6
@@ -154,7 +154,7 @@ Fetch a set of modules and build a CSS bundle.
 
 If the requested bundle is already available, a `200 OK` status code will be returned with the bundle in the response body.
 
-If an existing bundle is not available, but the request is valid, a `201 Accepted` status will be returned, and if not already in progress, the bundling will commence in the background.  An `X-FT-Build-Status` response header will be included in the response giving the date the build started in [RFC1123](http://www.ietf.org/rfc/rfc1123.txt) format, the current status, and an optional progress indication for that stage of the build:
+If an existing bundle is not available, but the request is valid, a `202 Accepted` status will be returned, and if not already in progress, the bundling will commence in the background.  An `X-FT-Build-Status` response header will be included in the response giving the date the build started in [RFC1123](http://www.ietf.org/rfc/rfc1123.txt) format, the current status, and an optional progress indication for that stage of the build:
 
 	X-FT-Build-Status: {build_hash}; {build_start_date}; {status} {progress}
 	X-FT-Build-Status: 1b1ab000a9b5642f6b8726039f1e79477b57c103; Tue, 15 Nov 2012 08:12:31 GMT; downloading 2/6
