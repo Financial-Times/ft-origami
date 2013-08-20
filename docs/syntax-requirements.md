@@ -42,7 +42,7 @@ These rules apply to any code written as part of an Origami component
 * Use semantic markup where native elements exist to describe the content (so use `<address>` not `<div class='address'>`)
 * The root element should have a class name of `ft-{modulename}-module`
 * ID and event handler attributes are not permitted
-* No non-HTML content (eg `<script>`, `<style>`)
+* No non-HTML content (eg `<script>`, `<style>`, `<link>`)
 
 ## JSON
 
