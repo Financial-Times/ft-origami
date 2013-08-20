@@ -11,6 +11,12 @@ Origami is the new proposed way of building websites at the FT.  It's time for s
 Contents:
 
 1. [Problems we're solving](#the_problems_were_solving)
+	* [Repeating work](#repeating_work_again_again_again)
+	* [Impenetrable systems](#impenetrable_systems_create_huge_barriers_to_new_developers)
+	* [Unable to let go and move on](#unable_to_let_go_and_move_on)
+	* [Experts needed everywhere](#experts_needed_everywhere)
+	* [Square pegs and round holes](#square_pegs_and_round_holes)
+
 2. [The Origami way](#the_origami_way)
 
 ## The problems we're solving
@@ -18,7 +24,7 @@ Contents:
 For FT to thrive as a digital organisation, we need to solve some serious technology problems.  They thwart our attempts to do innovative work.  They suck up development resources and leave us with nothing to move forward with.  They threaten to leave us constantly fighting to keep up with our competition.
 
 * Despite having limited technology resources, **we do the same work multiple times**, like slideshows, which have had to be implemented repeatedly on many websites
-* The way are pages are assembled, and how they function is esoteric. This makes is very difficult for 3rd parties, or even other business units, to make sense of work already completed and make use of it. It leads to incosistency, bloated software and brand divergence.
+* The way pages are assembled, and how they function is esoteric. This makes is very difficult for 3rd parties, or even other business units, to make sense of work already completed and make use of it.  It leads to inconsistency, bloated software and brand divergence.
 * Services or features on which other bits of our technology depend are forced to live **long beyond their useful life**, such as the many elements of the classic stack.
 * **Every project requires elite skills** in numerous areas, placing a huge bottleneck on the engineers that have those skills - skills like ads integration and access control.
 * When different systems built by different teams try to integrate with one another, **hugely embarassing problems** on the scale of the pictured style issue *can* occur, and sometimes do.
@@ -41,7 +47,7 @@ With **Fast FT**, we wanted to avoid building two versions of the same thing, so
 
 <div class='well'><h4>How to solve it</h4>Where features or elements of design are used in multiple websites, we need to build them to be usable in all those cases, and portable between them, rather than always building features solely in the context of one product.  These components should not be seen as an intrinsic part of <em>any</em> product, but instead as part of the <b>new digital FT</b>.</div>
 
-### Bringing clarity to product development
+### Impenetrable systems create huge barriers to new developers
 
 At the moment a 'new' developer, whether 3rd party or internal, looking to create a branded FT.com product has a lot of work to do. They will need to deconstruct a current page and/or wade through large amounts of code just to find out how to layout a page and style some consitent UI components. It is also likely to consume the time, potentially large amounts of it, of developers who are familiar with the codebase. This prevents them getting on with their own new product development.
 
