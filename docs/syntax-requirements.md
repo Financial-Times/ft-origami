@@ -22,13 +22,19 @@ These rules apply to any code written as part of an Origami component
 
 ### Syntax convention rules
 
-**TODO: Agree Jshint config**
+**TODO: Agree Jshint config - issue #25**
+
 
 ## CSS
 
-* Classes must be prefixed with ft- for velcro classes, and unprefixed for classes specific to any particular module **TODO: Check with Wilson**
-* **SMCSS standard? - in use for Velcro?**
-* **TODO**
+### Class naming
+
+* Classes that mark the outer element of a module should be named `ft-{modulename}-module`.
+* Classes that are not restricted to a module root should be named `ft-{classname}`.
+* Classes that are constrained by a module root class selector should be unadorned.
+
+### Other stuff TODO
+
 
 ## HTML
 
@@ -40,4 +46,4 @@ These rules apply to any code written as part of an Origami component
 
 ## JSON
 
-**TBC - define some standard formats for certain shapes of data, eg RSS type feeds?**
+**TBC - define some standard formats for certain shapes of data, eg RSS type feeds? Issue #23**
