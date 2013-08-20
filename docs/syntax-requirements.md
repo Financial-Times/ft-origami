@@ -35,6 +35,8 @@ These rules apply to any code written as part of an Origami component
 
 ### Other stuff TODO
 
+* Don't use `!important`
+
 
 ## HTML
 
