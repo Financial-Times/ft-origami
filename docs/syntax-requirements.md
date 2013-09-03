@@ -13,7 +13,7 @@ These rules apply to any code written as part of an Origami component
 
 ### Encapsulation rules
 
-* Add no objects to the global scope, other than JSONp callback function names.  Variables declared outside of any enclosing function are permitted, provided that the module requires a commonJS interface.  If you don't want to depend on CommonJS, wrap the module in an IIFE.
+* Add no objects to the global scope, other than JSONp callback function names.  Variables declared outside of any enclosing function are permitted, provided that the module requires a commonJS interface.  If you don't want to depend on CommonJS, wrap the module in an [IIFE](http://en.wikipedia.org/wiki/Immediately-invoked_function_expression).
 * If the module does not require CommonJS it must include a [Universal Module Definition](https://github.com/umdjs/umd/blob/master/returnExports.js) that includes support for CommonJS.
 * Do not execute any code on parse
 * Export, at a minimum, an `init` and a `destroy` method
@@ -63,7 +63,39 @@ Developers *should* stick to the above `jshintrc` config, since this represents 
 * Use semantic markup where native elements exist to describe the content (so use `<address>` not `<div class='address'>`)
 * The root element should have a class name of `ft-{modulename}-module`
 * ID and event handler attributes are not permitted
-* No non-HTML content (eg `<script>`, `<style>`, `<link>`)
+* No non-HTML content (eg `<script>`, `<style>`, `<link>`, `<base>`)
+* Do not use the `javascript:` handler in `href` attributes.
+* Do not use the `target` attribute. This is for the Product application to implement.
+* _Proposed:_ Do not use `<iframe>` with HTML responses although it is possible to add these to the document via javascript.
+* _Proposed:_ Error pages (400-500) should return an empty response. It's up to the product application to provide content in this event. (or alternatively is it up to the product app to ignore the body of an 400-500 response?)
+* _Proposed:_ Do not use `<title>`.
+
+### Attribute based features
+
+Includes [Microdata](http://www.w3.org/html/wg/drafts/microdata/master/), [WAI-ARIA](http://www.w3.org/WAI/intro/aria) and other `data-*` attribute specs.
+
+** TBC - general guidelines for how to work with all HTML attribute based requirements including integrating as-yet-undefined specs.
+
+#### `data-*`
+
+Though no open web standards use data attributes, there are lots of first and third party libraries that rely on these. Sometimes there are cross-cutting concerns like tracking. These may be integrated into your component or added later by a product application. Some guidelines on how to deal with this...
+
+* consider having a short namespace for data attributes you introduce. For example all data attributes within your components could be prefixed with `data-tweet-*`.
+
+### Microdata
+
+* Use of Microdata is not compulsory but encouraged.
+* Use an FT model/schema if available. Failing that use the most appropriate schema from schema.org.
+* If your component has a JSON response that references a schema then the HTML response should also include Microdata attributes to provide the semantics.
+* Do not use the `itemref` attribute as the require the use of `id` too.
+
+### WAI-ARIA
+
+* use of [widget](http://www.w3.org/TR/wai-aria/roles#widget_roles) and [document structure](http://www.w3.org/TR/wai-aria/roles#document_structure_roles) roles are encouraged but not required. If used please follow the spec accurately across the entire component code base, half an implementation is worse than none at all.
+* be cautious about using [landmark](http://www.w3.org/TR/wai-aria/roles#landmark_roles) roles as the are probably (but not always) the concern of the production application.
+* do not use `role="main"` in you component.
+* [abstract](http://www.w3.org/TR/wai-aria/roles#abstract_roles) roles must not be used.
+
 
 ## JSON
 
