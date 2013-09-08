@@ -33,6 +33,8 @@ Web services must expose an HTTP endpoint on the hostname `{componentname}.webse
 * *May* accept any querystring parameters, POST data, URL parameters or other input as desired to allow for service specific features (this may include accepting input and then simply reformatting it and including it in the output, but component developers *should* avoid doing this in services whose output also draws from other content sources).
 * *Should* serve permissive CORS response headers to allow the endpoints to be consumed in-browser from any origin (though consuming in-browser is discouraged)
 * *Must* include explicit `Cache-Control` header in HTTP responses, which product applications must respect.
+* *Must* serve content on the bare versioned endpoints (eg `/v1/`) that documents the API methods available.
+* *Must* redirect the root path `/` to the current version documentation endpoint
 * *Must* provide a mechanism for developers to subscribe to email notifications of version deprecation (which *should* be a github watcher list).
 * When a [non-backwards compatible change](#changes-and-versioning) is made to any output of the service...
 	* *Must* provide a new set of API endpoints with updated version number
@@ -73,6 +75,7 @@ Instructing a service to use a test data source must not be coupled in any way t
 An Orgami web service must declare itself to be Origami compliant and make itself discoverable:
 
 * The web service's code must be stored on a VCS server known to the Origami registry
+* The component must contain a `README.md` file in the root directory, containing documentation for (or links to documentation for)
 * The component must contain a `.origamiconfig` file in the root directory of the repo, containing a JSON object with properties `origamiType` set to `service`, `origamiVersion` set to `1.0` (as a string), and `serviceUrl` set to the URL at which the live service is hosted.
 
 An example `.origamiconfig` file is shown below:
