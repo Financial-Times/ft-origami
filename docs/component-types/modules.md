@@ -59,10 +59,25 @@ A module component could be organised like this, but this does not imply any req
 	|   └─ svg
 	|       └─ icon1.svg
 	├─ .gitignore
+	├─ .origamiconfig
 	├─ bower.json
 	├─ main.js
 	├─ main.scss
 	└─ README.md
+
+## Discovery
+
+An Orgami module must declare itself to be Origami compliant and make itself discoverable:
+
+* The module's code must be stored on a VCS server known to the Origami registry
+* The component must contain a `.origamiconfig` file in the root directory of the repo, containing a JSON object with properties `origamiType` set to `module`, and `origamiVersion` set to `1.0` (as a string).
+
+An example `.origamiconfig` file is shown below:
+
+	{
+	  "origamiType": "module",
+	  "origamiVersion": "1.0",
+	}
 
 
 ## Packaging and build configuration
@@ -92,8 +107,6 @@ The following is an example `bower.json` file that meets the above spec:
 			"examples"
 		]
 	}
-
-**TODO**: *What about modules that require a load of npm stuff to build for dev and testing?  Should we include package.json rules such as:*
 
 Optionally, a module may include an npm-compatible `package.json` file, to allow it to install dependencies for development and testing.  These package configs should explictly exclude `dependencies`, `files` and `main` properties to avoid any implication that the npm config is designed to allow the module to be installed as a package using npm.  Instead, `devDependencies` should be used.
 

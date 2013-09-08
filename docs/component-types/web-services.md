@@ -68,6 +68,21 @@ The product developer *must* use the current live version of the component for t
 
 Instructing a service to use a test data source must not be coupled in any way to using a different version of the service itself.
 
+### Discovery
+
+An Orgami web service must declare itself to be Origami compliant and make itself discoverable:
+
+* The web service's code must be stored on a VCS server known to the Origami registry
+* The component must contain a `.origamiconfig` file in the root directory of the repo, containing a JSON object with properties `origamiType` set to `service`, `origamiVersion` set to `1.0` (as a string), and `serviceUrl` set to the URL at which the live service is hosted.
+
+An example `.origamiconfig` file is shown below:
+
+	{
+	  "origamiType": "service",
+	  "origamiVersion": "1.0",
+	  "serviceUrl": "http://tweet.webservices.ft.com"
+	}
+
 ### De-duplication of output
 
 Web service components *should* not offer any de-duplication of content.  If a product developer wants to draw from multiple Origami sources, and de-dupe where the same individual content item may appear from more than one of those sources, that's not a problem that Origami will solve for them, but could be solved at the product level by consuming data rather than markup.
