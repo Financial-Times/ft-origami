@@ -20,21 +20,21 @@ Web services must expose an HTTP endpoint on the hostname `{componentname}.webse
 
 ## Requirements
 
-* *Should* be used for components that comprise editorial content or data that is not practical to consider part of the source code of a module component.
+* *Should* be used for components that produce dynamic editorial content or data that is not practical to consider part of the source code of a module component (usually because it changes too frequently or there are too many possible permutations)
 * *Must not* output any executable code (use module components for that)
 * *Must* include a mandatory version number element to the API path for all API endpoints
 * *Must* support both HTML and JSON output, and where a format is not specified in a request, *should* use content-negotiation (the HTTP `Accept` header), and as a default *must* return HTML output.
 * Minor version changes in the web service application *must not* be exposed on the version number included in the API endpoint URL
-* When returning HTML, *must* meet the [standard for HTML](/docs/syntax-requirements)
-* When providing JSON output, *must* meet the [standard for JSON](/docs/syntax-requirements)
+* When returning HTML, *must* meet the [standard for HTML]({{site.baseurl}}/docs/syntax-requirements)
+* When providing JSON output, *must* meet the [standard for JSON]({{site.baseurl}}/docs/syntax-requirements)
 * *Should* support JSONp callback via the querystring parameter `callback` (when returning HTML with a JSON callback, the HTML string should be escaped and quoted)
-* *Should* be RESTful
-* *Should* draw templates from a module component where practical (to allow product developers to consume them and do the templating themselves), and if it does so those templates *must* be Mustache
-* *May* accept any querystring parameters, POST data, URL parameters or other input as desired to allow for module specific features (this may include accepting input and then simply reformatting it and including it in the output, but component developers *should* avoid doing this in services whose output also draws from other content sources).
-* *Should* serve CORS response headers to allow the endpoints to be consumed in-browser from any origin (though consuming in-browser is discouraged)
+* *Should* be RESTful, ie. should use the most appropriate HTTP verb and URLs that semantically describe the resource to be acted upon
+* *Should* draw templates from a module component where practical (to allow product developers to consume them and do the templating themselves), and if it does so those templates *must* be Mustache.  Conversely, templates built into the web service may be of any standard.
+* *May* accept any querystring parameters, POST data, URL parameters or other input as desired to allow for service specific features (this may include accepting input and then simply reformatting it and including it in the output, but component developers *should* avoid doing this in services whose output also draws from other content sources).
+* *Should* serve permissive CORS response headers to allow the endpoints to be consumed in-browser from any origin (though consuming in-browser is discouraged)
 * *Must* include explicit `Cache-Control` header in HTTP responses, which product applications must respect.
-* *Must* provide a mechanism for developers to subscribe to email notifications of version deprecation, which *should* be a github watcher list.
-* When a change is made to the structure of the data returned or the markup used in HTML output...
+* *Must* provide a mechanism for developers to subscribe to email notifications of version deprecation (which *should* be a github watcher list).
+* When a [non-backwards compatible change](#changes-and-versioning) is made to any output of the service...
 	* *Must* provide a new set of API endpoints with updated version number
 	* *Must* continue to support previous versions for a minimum of 3 months
 	* *Must* begin work to agree a termination date for the previous version with its consumers and the wider business
@@ -43,7 +43,7 @@ Web services must expose an HTTP endpoint on the hostname `{componentname}.webse
 	* *Must* set an `X-Service-Termination-Date:` header on all HTTP responses using an RFC1123 format date
 	* Following the expiry of the termination date, and for ever more, *should* return either a `410 Gone` or a static copy of the last content to be generated.
 
-## Naming conventions
+### Naming conventions
 
 Web services source code repositories should be named using a short descriptive one-word term, suffixed with `-service`.  The service hostname should drop the suffix.  Examples:
 
@@ -52,17 +52,29 @@ Web services source code repositories should be named using a short descriptive 
 	nav-service            nav.webservices.ft.com
 	mostpopular-service    mostpopular.webservices.ft.com
 
-## Handing versioning internally
+### Changes and versioning
+
+A "backwards compatible change" is defined as one that, in the case of JSON output, adds a new property to an object, or adds or removes elements from an array.  Any changes that remove existing properties of objects, or change the type of a value, should be considered breaking.  In the case of HTML output, any change that requires accompanying changes in a module component (CSS, JavaScript or other resources that act on the HTML) should be considered breaking.  Breaking changes require the service to maintain the existing functionality and release a new version.
 
 When a new version of the web service is released, the web service developer may choose to implement this by running multiple versions of the service behind a routing layer, such that `/v1/someendpoint` and `/v2/someendpoint` ultimately result in the same `/someendpoint` request being made to one or other of two separate instances of the web service.  This is acknowledged as a valid approach, but other web service developers may simply wish to run one instance of the web service that can handle all versioned endpoints.  This standard does not care about the internal architecture choices that the web service developer makes provided that the external interface satisifes the requirements set out above.
 
-## De-duplication of output
+### Environments
 
-Web service components do not offer any de-duplication of content.  If a product developer wants to draw from multiple Origami sources, and de-dupe where the same individual content item may appear from more than one of those sources, that's not a problem that Origami will solve for them, but could be solved at the product level by consuming data rather than markup.  This will transfer more work onto the product, so if duplicated entries can be tolerated, the product will benefit from being easier to build and maintain.
+A web service component developer *must* make available a live instance of their service (at `{componentname}.webservices.ft.com`), the source code (in a git repo), and instructions for building and running the service.
+
+If the web service uses a data source or other depended-upon service for which multiple environments are available, the service *must* support switching between them at startup (either using a command line flag, or a config file, but either way it must be included in the documentation)
+
+The product developer *must* use the current live version of the component for testing integration with their product, not an upcoming release or a test or dev environment of the service.  The service component developer is not required to maintain and make available any running instance of the service other than the live one.
+
+Instructing a service to use a test data source must not be coupled in any way to using a different version of the service itself.
+
+### De-duplication of output
+
+Web service components *should* not offer any de-duplication of content.  If a product developer wants to draw from multiple Origami sources, and de-dupe where the same individual content item may appear from more than one of those sources, that's not a problem that Origami will solve for them, but could be solved at the product level by consuming data rather than markup.
 
 ## Example
 
-The following HTTP request-response is compliant with the above requirements and the [syntax requirements](/docs/syntax-requirements) for the response body:
+The following HTTP request-response is compliant with the above requirements and the [syntax requirements]({{site.baseurl}}/docs/syntax-requirements) for the response body:
 
 	GET /v1/navigation.html?level=first&selectedUrl=http%3A%2F%2Fwww.ft.com%2Fcompanies HTTP/1.1
 	User-Agent: curl/7.24.0 (x86_64-apple-darwin12.0) libcurl/7.24.0 OpenSSL/0.9.8x zlib/1.2.5
