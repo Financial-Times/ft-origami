@@ -27,6 +27,7 @@ Web services must expose an HTTP endpoint on the hostname `{componentname}.webse
 * Minor version changes in the web service application *must not* be exposed on the version number included in the API endpoint URL
 * When returning HTML, *must* meet the [standard for HTML]({{site.baseurl}}/docs/syntax-requirements)
 * When providing JSON output, *must* meet the [standard for JSON]({{site.baseurl}}/docs/syntax-requirements)
+* *Must* provide monitoring endpoints and data conforming to the [FT Health page standard](https://docs.google.com/a/ft.com/document/d/18hefJjImF5IFp9WvPAm9Iq5_GmWzI9ahlKSzShpQl1s/edit)
 * *Should* support JSONp callback via the querystring parameter `callback` (when returning HTML with a JSON callback, the HTML string should be escaped and quoted)
 * *Should* be RESTful, ie. should use the most appropriate HTTP verb and URLs that semantically describe the resource to be acted upon
 * *Should* draw templates from a module component where practical (to allow product developers to consume them and do the templating themselves), and if it does so those templates *must* be Mustache.  Conversely, templates built into the web service may be of any standard.
