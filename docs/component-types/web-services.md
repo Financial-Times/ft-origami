@@ -79,7 +79,7 @@ The following HTTP request-response is compliant with the above requirements and
 	Access-Control-Allow-Credentials: true
 	Access-Control-Allow-Origin: *
 
-	<nav class="ft-nav-module" data-track-component="nav">
+	<nav class="ft-nav-module" data-track-component="nav" data-track-version="0.0.1">
 	<ol>
 	<li data-track-pos="0"><a href="http://www.ft.com">Home</a></li>
 	<li data-track-pos="1"><a href="http://www.ft.com/world/uk">UK</a></li>
