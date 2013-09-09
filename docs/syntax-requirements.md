@@ -66,7 +66,7 @@ Developers *should* stick to the above `jshintrc` config, since this represents 
 * No non-HTML content (eg `<script>`, `<style>`, `<link>`)
 
 ### Tracking requirements
-* The root element should have the following data attribute: `data-track-component="{modulename}"`
+* The root element should have the following data attributes: `data-track-component="{modulename}"` and  `data-track-version="{module version}"`
 * Links should have a data attribute added to their parent element: `data-track-pos="{incrementing number}"`
   * Where `{incrementing number}` is a number starting at zero and increments for each parent element.
 * Sub regions in the component, such as a sub-list of links inside a list of links should have a data attribute added to the parent of the region: `data-track-region="{region name}"`
@@ -74,7 +74,7 @@ Developers *should* stick to the above `jshintrc` config, since this represents 
 
 #### Tracking example
 ```
-<headlines class="ft-headlines-module" data-track-component="headlines">
+<headlines class="ft-headlines-module" data-track-component="headlines" data-track-version="0.0.1">
   <ul>
     <li data-track-pos="0"><a href="http://www.ft.com">Home</a></li>
     <li data-track-pos="1"><a href="http://www.ft.com/uk">UK</a></li>
