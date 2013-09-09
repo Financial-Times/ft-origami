@@ -67,4 +67,108 @@ Developers *should* stick to the above `jshintrc` config, since this represents 
 
 ## JSON
 
-**TBC - define some standard formats for certain shapes of data, eg RSS type feeds? Issue #23**
+** General rules**
+
+* Use camelCase. Don't use snake_case.
+* The entire response should be contained in a root object `{}`. The root object cannot be an array `[]`.
+* Only use arrays for a collection when you need an ordinal list or it's dictated by an existing schema. Instead prefer objects for collections especially when the JSON document has internal reference between objects.
+* A field's type must be consistent across all object. For example, a field should not be used to hold a string and then later in the document a number. It's also possible to use `null` to represent an uninitialised/no-value scalar. This is not recommended for arrays and objects, instead prefer an empty array/object. i.e. `[]` or `{}`.
+* Errors need a minimal JSON(p) response body:
+
+```json
+{
+  "code": {int},
+  "message": {String}
+}
+
+```
+But can also include a nested error structure. For example:
+
+```json
+{
+  "code": 500,
+  "message": "Internal server error",
+  "error": [
+    {
+      "code": 1222,
+      "field": "someField",
+      "message": "This is totally broke"
+    }
+  ]
+}
+```
+
+* Consider, as a best practice, using an 'envelope' for your domain data. This could be a field called `data`, `items` or `results`. Your choice could depend on the format of the JSON, the Microdata spec uses the `item` field for example and OData uses `results`. It also allows metadata fields to be kept separate and helps you later support a number of JSON formats.
+
+A very simple service that describes social interactions for an article might be:
+
+```json
+{
+	"_schema": "http://myservice.webservices.ft.com/json-schema/SocialCount"
+	"_format": "json-schema",
+	"_itemtype": "http://schema.ft.com/SocialCount",
+	"data": {
+		"articleUrl": "http://www.ft.com/cms/89f000d2-18a6-11e3-83b9-00144feab7de.html"
+		"tweets": 10,
+		"facebookLikes": 210,
+		"comments": 7
+	}
+}
+```
+
+**Schema and JSON formats**
+
+Note: There are competing specs for how to format JSON: JSON-LD, ODATA etc. It is yet to be decided whether FT will adopt them. The choice of which to use will be down to wider adoption at FT, the Origami spec will be updated to reflect this later.
+
+* Generally speaking root fields prefixed with an underscore will be used for Origami defined metadata. This doesn't interfere with JSON-LD or the OData JSON format, or any field names from schema.org. For example:
+
+```json
+{
+	"_schema": "http://myservice.webservices.ft.com/json-schema/Thing"
+	"_format": "json-schema",
+	"_itemtype": "http://schema.ft.com/Thing",
+	"data": {
+	 "_foo": "Underscores are ok here too."
+	}
+}
+```
+
+* The root `_format` field hints to the consumer the rules for processing the document. They'll probably then be able to use a library built to deal with JSON formatted to a known spec.
+
+Values for `_format` can be:
+
+	1. "none" when your the JSON is not formatted according to a known spec. 
+	1. "json-ld" use this when the JSON is formatted according to the [JSON-LD spec](http://json-ld.org/spec/latest/json-ld/)
+	1. "odata" use this when the JSON is formatted according to the [OData Spec](http://www.odata.org/documentation/odata-v2-documentation/json-format/)
+	1. "json-microdata". Use this when the [format](http://foolip.org/microdatajs/live/) follows the [Microdata spec for representing items with JSON](http://www.w3.org/TR/2011/WD-microdata-20110525/#json).
+
+i.e.
+
+```json
+{
+	"_format": "json-ld"
+	...
+}
+```
+
+* Services should use (or otherwise extend) FT schema so that the vocabulary used across different services become consistent and familiar to the developer. If there is no FT model then use a public from schema.org if there is something relevant available. In many cases we hope that FT models which in fact be extensions of those from a public domain such as schema.org but it's likely there will need to be some deviations. If you find yourself inventing a new model do ask around to find similarities with other models so your service can offer a familiar vocabulary.
+
+Use the `_itemtype` field to indicate the Type. This field name borrows from [Microdata](http://schema.org/docs/gs.html) where there is an equivalent HTML attribute.
+
+```json
+{
+	"_itemtype": "http://schema.org/NewsArticle"
+	...
+}
+```
+
+* Consider making a [JSON-schema document](http://json-schema.org/example1.html). This helps consumers of your service in a number of ways.
+
+The `_schema` field is used for the URL of this document. Note that a JSON-Schema document should have a `application/schema+json` content-type.
+
+```json
+{
+	"_schema": "http://myservice.webservices.ft.com/v1/json-schema/NewsArticle"
+	...
+}
+```
