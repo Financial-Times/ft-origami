@@ -110,11 +110,11 @@ The following HTTP request-response is compliant with the above requirements and
 	Access-Control-Allow-Credentials: true
 	Access-Control-Allow-Origin: *
 
-	<nav class="ft-nav-module">
+	<nav class="ft-nav-module" data-component="nav" data-version="0.0.1">
 	<ol>
-	<li  data-track-pos="0"><a href="http://www.ft.com">Home</a></li>
-	<li  data-track-pos="1"><a href="http://www.ft.com/world/uk">UK</a></li>
-	<li  data-track-pos="2"><a href="http://www.ft.com/world">World</a></li>
+	<li data-track-pos="0"><a href="http://www.ft.com">Home</a></li>
+	<li data-track-pos="1"><a href="http://www.ft.com/world/uk">UK</a></li>
+	<li data-track-pos="2"><a href="http://www.ft.com/world">World</a></li>
 	<li class="selected" data-track-pos="3"><a href="http://www.ft.com/companies">Companies</a>
 	  <ol class="second-level">
 	    <li class="has-third-level">
@@ -138,12 +138,12 @@ The following HTTP request-response is compliant with the above requirements and
 	    <li class="rss"><a href="http://www.ft.com/rss/companies"><img src="http://navigation-module.herokuapp.com/navigation/ft/img/rss-icon.gif" width="14" height="14" alt="RSS"></a></li>
 	  </ol>
 	</li>
-	<li  data-track-pos="4"><a href="http://www.ft.com/markets">Markets</a></li>
-	<li  data-track-pos="5"><a href="http://www.ft.com/global-economy">Global Economy</a></li>
-	<li  data-track-pos="6"><a href="http://www.ft.com/lex">Lex</a></li>
-	<li  data-track-pos="7"><a href="http://www.ft.com/comment">Comment</a></li>
-	<li  data-track-pos="8"><a href="http://www.ft.com/management">Management</a></li>
-	<li  data-track-pos="9"><a href="http://www.ft.com/personal-finance">Personal Finance</a></li>
-	<li  data-track-pos="10"><a href="http://www.ft.com/life-arts">Life & Arts</a></li>
+	<li data-track-pos="4"><a href="http://www.ft.com/markets">Markets</a></li>
+	<li data-track-pos="5"><a href="http://www.ft.com/global-economy">Global Economy</a></li>
+	<li data-track-pos="6"><a href="http://www.ft.com/lex">Lex</a></li>
+	<li data-track-pos="7"><a href="http://www.ft.com/comment">Comment</a></li>
+	<li data-track-pos="8"><a href="http://www.ft.com/management">Management</a></li>
+	<li data-track-pos="9"><a href="http://www.ft.com/personal-finance">Personal Finance</a></li>
+	<li data-track-pos="10"><a href="http://www.ft.com/life-arts">Life & Arts</a></li>
 	</ol>
 	</nav>

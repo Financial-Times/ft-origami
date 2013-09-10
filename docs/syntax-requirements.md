@@ -65,6 +65,31 @@ Developers *should* stick to the above `jshintrc` config, since this represents 
 * ID and event handler attributes are not permitted
 * No non-HTML content (eg `<script>`, `<style>`, `<link>`)
 
+### Tracking requirements
+* The root element should have the following data attributes: `data-component="{modulename}"` and  `data-version="{module version}"`
+* Links should have a data attribute added to their parent element: `data-track-pos="{incrementing number}"`
+  * Where `{incrementing number}` is a number starting at zero and increments for each parent element.
+* Sub regions in the component, such as a sub-list of links inside a list of links should have a data attribute added to the parent of the region: `data-track-region="{region name}"`
+  * TODO: Should region be one of a set number of values? e.g. 'storyPackage'
+
+#### Tracking example
+```
+<headlines class="ft-headlines-module" data-component="headlines" data-version="0.0.1">
+  <ul>
+    <li data-track-pos="0"><a href="http://www.ft.com">Home</a></li>
+    <li data-track-pos="1"><a href="http://www.ft.com/uk">UK</a></li>
+    <li data-track-pos="2"><a href="http://www.ft.com/world">World</a>
+      <ul data-track-region="storyPackage">
+      	<li><a href="http://www.ft.com/world/us">US</a></li>
+      	<li><a href="http://www.ft.com/world/china">China</a></li>
+      	<li><a href="http://www.ft.com/world/kazakstan">Kazakstan</a></li>
+      </ul>
+    </li>
+  </ul>
+</headlines>
+```
+
+
 ## JSON
 
 **TBC - define some standard formats for certain shapes of data, eg RSS type feeds? Issue #23**
