@@ -20,6 +20,7 @@ Web services must expose an HTTP endpoint on the hostname `{componentname}.webse
 
 ## Requirements
 
+* *Must* contain a valid [Origami manifest file]({{site.baseurl}}/docs/syntax/origamiconfig)
 * *Should* be used for components that produce dynamic editorial content or data that is not practical to consider part of the source code of a module component (usually because it changes too frequently or there are too many possible permutations)
 * *Must not* output any executable code (use module components for that)
 * *Must* include a mandatory version number element to the API path for all API endpoints
@@ -72,21 +73,6 @@ The product developer *must* use the current live version of the component for t
 
 Instructing a service to use a test data source must not be coupled in any way to using a different version of the service itself.
 
-### Discovery
-
-An Orgami web service must declare itself to be Origami compliant and make itself discoverable:
-
-* The web service's code must be stored on a VCS server known to the Origami registry
-* The component must contain a `README.md` file in the root directory, containing documentation for (or links to documentation for)
-* The component must contain a `.origamiconfig` file in the root directory of the repo, containing a JSON object with properties `origamiType` set to `service`, `origamiVersion` set to `1.0` (as a string), and `serviceUrl` set to the URL at which the live service is hosted.
-
-An example `.origamiconfig` file is shown below:
-
-	{
-	  "origamiType": "service",
-	  "origamiVersion": "1.0",
-	  "serviceUrl": "http://tweet.webservices.ft.com"
-	}
 
 ### De-duplication of output
 

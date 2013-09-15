@@ -61,11 +61,27 @@
                 </ul>
                 {% endif %}
               </li>
+              <li class="{% if page.title == 'Syntax' %}active{% endif %}">
+                <a href="{{ site.baseurl }}/docs/syntax">Syntax</a>
+                {% if page.section == 'Syntax' %}
+                <ul class='nav subnav'>
+                  <li class="{% if page.title == 'JavaScript' %}active{% endif %}">
+                    <a href="{{ site.baseurl }}/docs/syntax/js">JavaScript</a>
+                  </li>
+                  <li class="{% if page.title == 'HTML' %}active{% endif %}">
+                    <a href="{{ site.baseurl }}/docs/syntax/html">HTML</a>
+                  </li>
+                  <li class="{% if page.title == 'SCSS' %}active{% endif %}">
+                    <a href="{{ site.baseurl }}/docs/syntax/scss">SCSS</a>
+                  </li>
+                  <li class="{% if page.title == 'origamiconfig' %}active{% endif %}">
+                    <a href="{{ site.baseurl }}/docs/syntax/origamiconfig">.origamiconfig</a>
+                  </li>
+                </ul>
+                {% endif %}
+              </li>
               <li class="{% if page.title == 'Build service' %}active{% endif %}">
                 <a href="{{ site.baseurl }}/docs/build-service">Build service</a>
-              </li>
-              <li class="{% if page.title == 'Syntax requirements' %}active{% endif %}">
-                <a href="{{ site.baseurl }}/docs/syntax-requirements">Syntax requirements</a>
               </li>
               <li class="{% if page.title == 'Use cases' %}active{% endif %}">
                 <a href="{{ site.baseurl }}/docs/use-cases">Use case examples</a>

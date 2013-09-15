@@ -24,6 +24,7 @@ Modules might contain resources such as JS modules, Sass modules, fonts, images,
 
 The following requirements apply to creating a Origami-compatible module component:
 
+* *Must* contain a valid [Origami manifest file]({{site.baseurl}}/docs/syntax/origamiconfig)
 * *Should* be used for any resource that is (when required by a dependency manager) a collection of only static files or JavaScript
 * *May* contain any resource that is a CommonJS JavaScript module, any declarative language that is agnostic of server-side technology stack (HTML, Mustache, CSS, SASS, JSON etc), or binary data.
 * *Should* store CSS as raw SCSS, so that products and other modules can make use of variables and mixins
@@ -64,20 +65,6 @@ A module component could be organised like this, but this does not imply any req
 	├─ main.js
 	├─ main.scss
 	└─ README.md
-
-## Discovery
-
-An Orgami module must declare itself to be Origami compliant and make itself discoverable:
-
-* The module's code must be stored on a VCS server known to the Origami registry
-* The component must contain a `.origamiconfig` file in the root directory of the repo, containing a JSON object with properties `origamiType` set to `module`, and `origamiVersion` set to `1.0` (as a string).
-
-An example `.origamiconfig` file is shown below:
-
-	{
-	  "origamiType": "module",
-	  "origamiVersion": "1.0",
-	}
 
 
 ## Packaging and build configuration
