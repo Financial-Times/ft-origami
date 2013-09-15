@@ -30,6 +30,7 @@ Web services must expose an HTTP endpoint on the hostname `{componentname}.webse
 * When providing JSON output, *must* meet the [standard for JSON]({{site.baseurl}}/docs/syntax-requirements)
 * *Must* require requests to contain an identification string set by the requesting application, either in a `source` query string parameter or an `X-FT-Source` HTTP header.  Must support both.  If neither is present, must return a `400 Bad Request` response status code.
 * *Must* provide monitoring endpoints and data conforming to the [FT Health page standard](https://docs.google.com/a/ft.com/document/d/18hefJjImF5IFp9WvPAm9Iq5_GmWzI9ahlKSzShpQl1s/edit)
+* When an error occurs that prevents the service returning the output requested, the response *must* have an empty content body.  The service *must* provide additoonal debug information in server-side logs, and *may* choose to provide some or all of the same information via HTTP headers.
 * *Should* support JSONp callback via the querystring parameter `callback` (when returning HTML with a JSON callback, the HTML string should be escaped and quoted)
 * *Should* be RESTful, ie. should use the most appropriate HTTP verb and URLs that semantically describe the resource to be acted upon
 * *Should* draw templates from a module component where practical (to allow product developers to consume them and do the templating themselves), and if it does so those templates *must* be Mustache.  Conversely, templates built into the web service may be of any standard.
