@@ -21,4 +21,8 @@ These rules apply to any code written as part of an Origami component, and provi
 
 ## Data models
 
+Use of [Microdata](http://schema.org/docs/gs.html) is not compulsory but strongly encouraged.  Use an FT model if one is available. Failing that use the most appropriate schema from schema.org.  Use of schema should be consistent across a serivce's JSON and HTML responses. Therefore, if a service component has `_itemtype` as a JSON root field, it should embed the same metadata in the HTML via Microdata.  To avoid multiple instances of singletons, the `_itemref` attribute cannot be used since the `id` is banned by the singleton rule.
+
+In addition to public microdata we also define the following reusable FT models:
+
 * **TODO**
