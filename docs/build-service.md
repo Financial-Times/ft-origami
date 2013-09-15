@@ -88,6 +88,10 @@ If bundles receive no requests at all for a period of two weeks, they'll be dele
 
 The build service consumer *must* cache the output of any build service endpoint using standard HTTP caching rules, respecting the Cache-Control header, including taking advantage of circumstances in which it is permitted to deliver a stale response.
 
+## Availability strategy
+
+The build service will be highly available, and shared-nothing, so each node will be responsible individually for caching its own copy of the build bundles.  Product developers will be expected to prime the build service cache before releasing their product to public traffic, but will not need to prime each node individually.  New build service nodes coming online will take a copy of all existing bundles before being made available to the load balancer.
+
 
 ## API reference
 
