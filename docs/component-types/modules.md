@@ -29,11 +29,12 @@ The following requirements apply to creating a Origami-compatible module compone
 * *May* contain any resource that is a CommonJS JavaScript module, any declarative language that is agnostic of server-side technology stack (HTML, Mustache, CSS, SASS, JSON etc), or binary data.
 * *Should* store CSS as raw SCSS, so that products and other modules can make use of variables and mixins
 * *Must not* be used for imperative code except JavaScript (and JavaScript must have a client-side use case to be considered a front end component)
+* *Must not* contain build scripts other than for development and testing.  *Must* be buildable using the standard build process described by the [build service]({{site.baseurl}}/docs/build-service/).
 * Where there is a dependency on a web service component (eg because the module is a JavaScript library that makes AJAX requests to a service), each version of the web service *must* be compatible with all versions of the module that carry the same major version number (and conversely, all versions of the module must be compatible with the version of the web service that shares the module's major version number).  For example, version 2.4.5, 2.4.6, and 2.7 of a module should all use version 2 of the web service.
 * Where the module contains JavaScript or SCSS, there *must* be a single 'main' file from which all other files of the same language are ultimate dependencies (using `require` or `@import` as appropriate).  These main files must be called `main.js` and `main.scss` respectively and must be in the module root.
 * *May* include an bower-compatible `bower.json` file (in the root of the repo) which if present *must* conform to the requirements set out in 'Packaging and build configuration' below.
 * *Must* be stored in a Git repo (which *should* be GitHub) accessible to any FT network
-* *Must not* include package management config for any package manager other than Bower **(TODO: What about modules that require a ton of npm stuff for dev and testing?)**
+* *Must not* include package management config for any package manager other than Bower, except for package config whose only purpose is to load dependencies for development or testing of the component.
 * *May* contain any number of .{thing}ignore files
 * *Should* be organised as simply as possible and not include any extraneous files
 * *Must* include a README.md file in the root of the repo, which must contain, where applicable:
@@ -95,7 +96,7 @@ The following is an example `bower.json` file that meets the above spec:
 		]
 	}
 
-Optionally, a module may include an npm-compatible `package.json` file, to allow it to install dependencies for development and testing.  These package configs should explictly exclude `dependencies`, `files` and `main` properties to avoid any implication that the npm config is designed to allow the module to be installed as a package using npm.  Instead, `devDependencies` should be used.
+Optionally, a module *may* include an npm-compatible `package.json` file, to allow it to install dependencies for development and testing (in fact, a module may install dependencies for development and testing using any package management system).  These package configs should explictly exclude `dependencies`, `files` and `main` properties to avoid any implication that the npm config is designed to allow the module to be installed as a package using npm.  Instead, `devDependencies` should be used.
 
 * *Must* include a useful `name` and `description`
 * *Must* include a `version` based on [Semver][3] rules
@@ -126,7 +127,7 @@ The following is an example `package.json` file that meets the above spec:
 
 Modules should have as few subdependencies as possible.  Where the dependency is required to test the module or view the examples, but not to use it, it should be listed in `devDependencies` not in `dependencies`.
 
-When listing dependencies in the `dependencies` section of the package configuration, specify compatible versions using as wide a range as possible, always ending on a less-than-next-major-version unless you have good reason to limit automatic upgrades.  Where the dependency is an Origami module that is *also a dependency of many other Origami modules*, it's especially important to verify and assert the widest version compatibility possible.
+When listing dependencies in the `dependencies` section of the `bower.json` package configuration, specify compatible versions using as wide a range as possible, allowing for automatic point release updates.  Where the dependency is an Origami module that is *also a dependency of many other Origami modules*, it's especially important to verify and assert the widest version compatibility possible.
 
 
 ## Tests and examples
