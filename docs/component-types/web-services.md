@@ -76,6 +76,22 @@ The product developer *must* use the current live version of the component for t
 
 Instructing a service to use a test data source must not be coupled in any way to using a different version of the service itself.
 
+### Required endpoints
+
+Web services must implement the following endpoints, for each version of the application, as well as at the root of the service host (apart from `/about` - see below). The root variant *may* redirect to the latest version variant, or *may* simply produce the same output as the latest version variant.  It is also OK to output the same data for all version variants if the data has not changed between versions.
+
+<table>
+<tr><td><code>/</code></td><td>Description of the service and instructions for use, designed for human consumption.  This <em>should</em> be HTML, and <em>may</em> choose to use the standard Origami documentation stylesheet.</td></tr>
+<tr><td><code>/health.txt</code></td><td>A health status page conforming to the <a href="https://docs.google.com/a/ft.com/document/d/18hefJjImF5IFp9WvPAm9Iq5_GmWzI9ahlKSzShpQl1s/edit">FT Health check standard</a></td></tr>
+<tr><td><code>/health.json</code></td><td>Health status JSON data conforming to the <a href="https://docs.google.com/a/ft.com/document/d/18hefJjImF5IFp9WvPAm9Iq5_GmWzI9ahlKSzShpQl1s/edit">FT Health check standard</a></td></tr>
+<tr><td><code>/health</code></td><td>Health status (JSON or text as appropraite) conforming to the <a href="https://docs.google.com/a/ft.com/document/d/18hefJjImF5IFp9WvPAm9Iq5_GmWzI9ahlKSzShpQl1s/edit">FT Health check standard</a></td></tr>
+<tr><td><code>/metrics</code></td><td>A JSON document listing current metrics to allow automated monitoring, in the <a href='{{site.baseurl}}/docs/syntax/metrics'>metrics</a> format</td></tr>
+<tr><td><code>/about</code> (root only)</td><td>A JSON document linking to all available versions of the service, in the <a href='{{site.baseurl}}/docs/syntax/web-service-index'>web service index format</a></td></tr>
+<tr><td><code>/{version}/about</code> (versions only)</td><td>A JSON document in the <a href='{{site.baseurl}}/docs/syntax/web-service-description'>web service description format</a></td></tr>
+</table>
+
+If a web service has two versions, `v1` and `v2`, there *must* be three of each of the above.  Using the `/health.json` endpoint as an example, the complete paths `/health.json`, `/v1/health.json` and `/v2/health.json` *must* be recognised and served by the web service, and *may* return the same content.  The `about` data *must* also be available from three URLs, but will follow the [web service description format]({{site.baseurl}}/docs/syntax/web-service-description) format for those that are version prefixed, and the [web service index]({{site.baseurl}}/docs/syntax/web-service-index) format for the one that isn't.
+
 
 ### De-duplication of output
 

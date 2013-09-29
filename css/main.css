@@ -10,6 +10,7 @@ a:hover {
 }
 code {
   background-color: #f6e9d8;
+  white-space: pre-wrap;
 }
 .page-header {
   border-bottom: 4px solid #a7a59b;
