@@ -1,7 +1,7 @@
 ---
 layout: default
-title: Syntax requirements
-section: Syntax requirements
+title: Syntax
+section: Syntax
 permalink: /docs/syntax/
 ---
 
