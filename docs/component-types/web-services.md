@@ -53,10 +53,12 @@ Web services must expose an HTTP endpoint on the hostname `{componentname}.webse
 
 Web services source code repositories should be named using a short descriptive one-word term, suffixed with `-service`.  The service hostname should drop the suffix.  Examples:
 
-	== REPO ==             == HOSTNAME ==
-	tweet-service          tweet.webservices.ft.com
-	nav-service            nav.webservices.ft.com
-	mostpopular-service    mostpopular.webservices.ft.com
+<table>
+<tr><th>Repo name</th><th>Host name</th></tr>
+<tr><td>tweet-service</td><td>tweet.webservices.ft.com</td></tr>
+<tr><td>nav-service</td><td>nav.webservices.ft.com</td></tr>
+<tr><td>mostpopular-service</td><td>mostpopular.webservices.ft.com</td></tr>
+</table>
 
 ### Changes and versioning
 

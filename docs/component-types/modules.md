@@ -38,7 +38,7 @@ The following requirements apply to creating a Origami-compatible module compone
 * *May* contain any number of .{thing}ignore files
 * *Should* be organised as simply as possible and not include any extraneous files
 * *Must* include a README.md file in the root of the repo, which must contain, where applicable:
-	* Any markup structure on which the module depends (if that markup is not provided by a web service).  For example, a module providing CSS to style addresses, should include a guide to writing the correct markup.
+	* Any markup structure on which the module depends (if that markup is not provided by a web service).  For example, a module providing CSS to style addresses, should include a guide to writing the correct markup.  A JavaScript module that requires configuration via `data-` attributes should document those attributes.
 	* Links to repos of web services that exist to provide markup or data that is used by the module.
 
 
@@ -130,10 +130,12 @@ If the component author wishes to include an `examples` or `dist` folder to prov
 
 Modules should be named using a short descriptive one-word term, suffixed with `-module`, as the name for the repository.  CSS classes should use the same name but add an `ft-` prefix.  Examples:
 
-	== REPO ==             == CSS CLASS ==
-	tweet-module           ft-tweet-module
-	nav-module             ft-nav-module
-	cookiewarn-module      ft-cookiewarn-module
+<table>
+<tr><th>Repo name</th><th>CSS class</th></tr>
+<tr><td>tweet-module</td><td>ft-tweet-module</td></tr>
+<tr><td>nav-module</td><td>ft-nav-module</td></tr>
+<tr><td>cookiewarn-module</td><td>ft-cookiewarn-module</td></tr>
+</table>
 
 
 ## Using modules in a product application
