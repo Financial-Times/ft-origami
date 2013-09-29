@@ -98,24 +98,14 @@ The following is an example `bower.json` file that meets the above spec:
 
 Optionally, a module *may* include an npm-compatible `package.json` file, to allow it to install dependencies for development and testing (in fact, a module may install dependencies for development and testing using any package management system).  These package configs should explictly exclude `dependencies`, `files` and `main` properties to avoid any implication that the npm config is designed to allow the module to be installed as a package using npm.  Instead, `devDependencies` should be used.
 
-* *Must* include a useful `name` and `description`
-* *Must* include a `version` based on [Semver][3] rules
-* *Must* include a `repository` property with the URL of the git repo where the module lives.
 * *Must* include a `private` property with the value set to `true`.
 * *Must* include a `devDependencies` object *if* the module has any npm dependencies for dev or testing
-* *Must not* include any of the following standard defined properties: dependencies, files, main, bugs, publishConfig, preferGlobal, cpu, os, engineStrict, engines, config, bin.
-* *May* include any other standard defined property
+* *Must not* include any of the following standard npm defined properties: dependencies, files, main, bugs, publishConfig, preferGlobal, cpu, os, engineStrict, engines, config, bin.
+* *May* include any other standard npm-defined property
 
 The following is an example `package.json` file that meets the above spec:
 
 	{
-		"name": "ft-tweet-module",
-		"description": "Styles for rendering tweets on FT pages",
-		"version": "1.0.0",
-		"repository": {
-			"type": "git",
-			"url": "https://github.com/Financial-Times/ft-tweet.git"
-		},
 		"devDependencies": {
 			"grunt": "*",
 			"node-sass": "*"
