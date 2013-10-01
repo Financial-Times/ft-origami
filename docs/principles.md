@@ -46,4 +46,4 @@ We'll make it insanely easy to do things the standard way, regardless of your te
 
 ### 10. Better for users
 
-Our components will improve the overall experience for our end users, by making their experience predicatable, cohesive and performant. 
+Our components will improve the overall experience for our end users, by making their experience predictable, cohesive and performant. These principles aim to establish a template for a better workflow that helps developers to help users.
