@@ -34,7 +34,7 @@ Everything we make will be completely transparent, so developers can see how it 
 
 ### 7. Safe encapsulation
 
-Our components will be fully encapsulated (if possible) or namespaced (if not) and will not interfere with one another. They will be good citizens of the page.
+Our components will be fully encapsulated (if possible) or namespaced (if not). Components will be good page neighbours, by never interfering with one another.
 
 ### 8. No unnecessary dependencies
 
