@@ -30,7 +30,7 @@ Nothing we provide will change unexpectedly.  We will allow developers to remain
 
 ### 6. Complete transparency
 
-Everything we make will be completely transparent, so developers can see how it works and not have to second guess what we're doing.
+Everything we make will be completely transparent, so developers can see how it works and not have to second guess what we're doing. We will communicate readily and be receptive to questions.
 
 ### 7. Safe encapsulation
 
