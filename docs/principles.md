@@ -30,11 +30,11 @@ Nothing we provide will change unexpectedly.  We will allow developers to remain
 
 ## 6. Complete transparency
 
-Everything we make will be completely transparent, so developers can see how it works and not have to second guess what we're doing.
+Everything we make will be completely transparent, so developers can see how it works and not have to second guess what we're doing. We will communicate readily and be receptive to questions.
 
 ## 7. Safe encapsulation
 
-Our components will be fully encapsulated (if possible) or namespaced (if not) and will not interfere with one another. They will be good citizens of the page.
+Our components will be fully encapsulated (if possible) or namespaced (if not). Components will be good page neighbours, by never interfering with one another.
 
 ## 8. No unnecessary dependencies
 
@@ -43,3 +43,7 @@ We will minimise dependencies on other systems, whether we own them or not.  The
 ## 9. Encouragement and evangelism
 
 We'll make it insanely easy to do things the standard way, regardless of your technology stack, we'll help you do it, and we'll inform and educate throughout the business to advocate using our components so we get maximum value out of them.  If you want to do something in a non-standard way, we won't get in your way, but we will not help either.
+
+### 10. Better for users
+
+Our components will improve the overall experience for our end users, by making their experience predictable, cohesive and performant. These principles aim to establish a template for a better workflow that helps developers to help users.
