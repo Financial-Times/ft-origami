@@ -118,6 +118,10 @@ Fetch a set of modules and build a JavaScript bundle.
 	<td><code>export</code></td>
 	<td>Querystring</td>
 	<td><em>(Optional)</em> If present, tells browserify to generate a <a href='https://github.com/umdjs/umd'>UMD</a> bundle for the supplied export name. This bundle works with other module systems and sets the name given as a window global if no module system is found.  This parameter passes the <code>-s</code> option to browserify).</td>
+</tr><tr>
+	<td><code>debug</code></td>
+	<td>Querystring</td>
+	<td><em>(Optional)</em> If present and true, the generated bundle will include a module list showing dependency relationships in a JavaScript comment block, preceding the bundle's code.</td>
 </tr>
 </table>
 
@@ -152,6 +156,10 @@ Fetch a set of modules and build a CSS bundle.
 	<td><code>style</code></td>
 	<td>Querystring</td>
 	<td><em>(Optional)</em> Determines the use of whitespace in the output.  Options are the same as those available for [Sass's command line style option](http://sass-lang.com/docs/yardoc/file.SASS_REFERENCE.html#output_style).  Defaults to 'compressed'.</td>
+</tr><tr>
+	<td><code>debug</code></td>
+	<td>Querystring</td>
+	<td><em>(Optional)</em> If present and true, the generated bundle will include a module list showing dependency relationships in a CSS comment block, preceding the bundle's code.</td>
 </tr>
 </table>
 
