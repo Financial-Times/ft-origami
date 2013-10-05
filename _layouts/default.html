@@ -7,11 +7,12 @@
         <meta name="viewport" content="width=device-width">
         <meta name="robots" content="noindex, nofollow">
 
-        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0-rc1/css/bootstrap.min.css">
-        <link rel="stylesheet" href="{{ site.baseurl }}/css/main.css">
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.0/css/bootstrap.min.css">
         <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/3.2.1/css/font-awesome.min.css">
+        <link rel="stylesheet" href="{{ site.baseurl }}/css/main.css">
+        <link rel="stylesheet" href="{{ site.baseurl }}/css/prettify.css">
 
-        <script src='//cdnjs.cloudflare.com/ajax/libs/showdown/0.3.1/showdown.min.js'></script>
+        <script src='//cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.js'></script>
         <script src='//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js'></script>
     </head>
     <body>
@@ -119,5 +120,9 @@
           </div>
         </div>
       </div>
+
+      <script>
+        $(prettyPrint);
+      </script>
     </body>
 </html>

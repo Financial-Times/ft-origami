@@ -28,6 +28,7 @@ In some cases, especially for tracking use cases, a module may act on portions o
 
 JavaScript *must* be linted with [JSHint](http://www.jshint.com/).  If you wish to specify a particular JSHint configuration you may do so at the module level with a `.jshintrc` file, and at the file level with a `/*jshint: ... */` comment.  If you specify neither of these, code *must* pass a JSHint check with the following settings:
 
+<?prettify linenums=1?>
 	{
 	  forin: true,
 	  noarg: true,

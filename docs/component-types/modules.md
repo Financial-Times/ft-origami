@@ -84,16 +84,17 @@ When a developer goes to use a module, and finds that it has config for a partic
 
 The following is an example `bower.json` file that meets the above spec:
 
+<?prettify linenums=1?>
 	{
-		"name": "ft-tweet-module",
-		"description": "Styles for rendering tweets on FT pages",
-		"version": "1.0.0",
-		"dependencies": {
-			"ft-velcro": "git://github.com:Financial-Times/ft-velcro.git#>=1.2.0 <1.3.0"
-		},
-		"ignore": [
-			"examples"
-		]
+	  "name": "ft-tweet-module",
+	  "description": "Styles for rendering tweets on FT pages",
+	  "version": "1.0.0",
+	  "dependencies": {
+	    "ft-velcro": "git://github.com:Financial-Times/ft-velcro.git#>=1.2.0 <1.3.0"
+	  },
+	  "ignore": [
+	    "examples"
+	  ]
 	}
 
 Optionally, a module *may* include an npm-compatible `package.json` file, to allow it to install dependencies for development and testing (in fact, a module may install dependencies for development and testing using any package management system).  These package configs should explictly exclude `dependencies`, `files` and `main` properties to avoid any implication that the npm config is designed to allow the module to be installed as a package using npm.  Instead, `devDependencies` should be used.
@@ -105,11 +106,12 @@ Optionally, a module *may* include an npm-compatible `package.json` file, to all
 
 The following is an example `package.json` file that meets the above spec:
 
+<?prettify linenums=1?>
 	{
-		"devDependencies": {
-			"grunt": "*",
-			"node-sass": "*"
-		}
+	  "devDependencies": {
+	    "grunt": "*",
+	    "node-sass": "*"
+	  }
 	}
 
 
@@ -130,7 +132,7 @@ If the component author wishes to include an `examples` or `dist` folder to prov
 
 Modules should be named using a short descriptive one-word term, suffixed with `-module`, as the name for the repository.  CSS classes should use the same name but add an `ft-` prefix.  Examples:
 
-<table>
+<table class='table'>
 <tr><th>Repo name</th><th>CSS class</th></tr>
 <tr><td>tweet-module</td><td>ft-tweet-module</td></tr>
 <tr><td>nav-module</td><td>ft-nav-module</td></tr>
@@ -158,6 +160,7 @@ This works well for CSS and JS modules.  If the module you want provides a font,
 
 ### 3. Use the build service from your product application
 
+<?prettify linenums=1?>
 	<?php
 	$origami_css = file_get_contents('http://buildservice.ft.com/bundle/css?modules=nav:2.3,tweet:1');
 	// Continue your build process

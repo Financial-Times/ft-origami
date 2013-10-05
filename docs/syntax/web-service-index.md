@@ -11,7 +11,7 @@ All Origami web services are required to expose an `/about` endpoint to list the
 
 ## Format
 
-<table>
+<table class='table'>
 <tr>
 	<th>Property</th>
 	<th>Type</th>
@@ -45,10 +45,11 @@ All Origami web services are required to expose an `/about` endpoint to list the
 
 ## Example
 
+<?prettify linenums=1?>
 	{
-		"name": "tweet-service",
-		"versions": [
-			"http://tweet.webservices.ft.com/v1",
-			"http://tweet.webservices.ft.com/v2"
-		]
+	  "name": "tweet-service",
+	  "versions": [
+	    "http://tweet.webservices.ft.com/v1",
+	    "http://tweet.webservices.ft.com/v2"
+	  ]
 	}

@@ -26,6 +26,7 @@ Examples of valid resource compilation requests:
 
 Product developers should most likely choose to request all JS modules in a single bundle request, and likewise for CSS, and then write them into the `<head>` of their HTML document:
 
+<?prettify linenums=1?>
 	<link rel='stylesheet' href='http://buildservice.ft.com/bundles/css?modules=nav:2.3,tweet:1,velcro' />
 	<script src='http://buildservice.ft.com/bundles/js?modules=nav:2.3,tweet:1,tracking:3.5,ads:1.2' />
 
@@ -77,7 +78,7 @@ The file proxy is also useful when requesting CSS from the build service, becaus
 
 ## Domain sharding
 
-The build service will support a, b, c and d subdomains which will also resolve to the build service, to allow for domain sharding, if the developer requires it (eg a.buildservice.ft.com, b.buildservice.ft.com).
+The build service will support a, b, c and d subdomains which will also resolve to the build service, to allow for domain sharding, if the developer requires it (eg `a.buildservice.ft.com`, `b.buildservice.ft.com`).
 
 
 ## Caching and rebuilding
@@ -99,10 +100,10 @@ The build service will be highly available, and shared-nothing, so each node wil
 
 Fetch a set of modules and build a JavaScript bundle.
 
-<table>
+<table class='table'>
 <tr>
 	<th>Param</th>
-	<th>Where</th>
+	<th>Where?</th>
 	<th>Description</th>
 </tr><tr>
 	<td><code>modules</code></td>
@@ -138,7 +139,7 @@ If the request was valid but the build failed, a `500 Internal Server Error` is 
 
 Fetch a set of modules and build a CSS bundle.
 
-<table>
+<table class='table'>
 <tr>
 	<th>Param</th>
 	<th>Where</th>
@@ -172,7 +173,7 @@ If the request was valid but the build failed, a `500 Internal Server Error` is 
 
 Outputs a complete HTML page with [Mustache](http://mustache.github.io/) template placeholders for product content, and `<script>` and `<link>` tags to pull in a predefined set of resources from the build service.
 
-<table>
+<table class='table'>
 <tr>
 	<th>Param</th>
 	<th>Where</th>
@@ -195,7 +196,7 @@ Outputs a complete HTML page with [Mustache](http://mustache.github.io/) templat
 
 Loads and returns a file from a module component's repo.
 
-<table>
+<table class='table'>
 <tr>
 	<th>Param</th>
 	<th>Where</th>

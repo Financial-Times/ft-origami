@@ -11,7 +11,7 @@ All Origami web services are required to expose `/{version}/about` endpoints to 
 
 ## Format
 
-<table>
+<table class='table'>
 <tr>
 	<th>Property</th>
 	<th>Type</th>
@@ -57,11 +57,12 @@ All Origami web services are required to expose `/{version}/about` endpoints to 
 
 ## Example
 
+<?prettify linenums=1?>
 	{
-		"name": "tweet-service",
-		"apiVersion": 1,
-		"appVersion": "1.3.1",
-		"dateCreated": "2013-09-25T09:32:12+0200"
-		"support": "origamisupport-service-tweet@ft.com",
-		"supportStatus": "active",
+	  "name": "tweet-service",
+	  "apiVersion": 1,
+	  "appVersion": "1.3.1",
+	  "dateCreated": "2013-09-25T09:32:12+0200"
+	  "support": "origamisupport-service-tweet@ft.com",
+	  "supportStatus": "active",
 	}

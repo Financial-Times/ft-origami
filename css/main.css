@@ -1,17 +1,65 @@
+
+/* Bootstrap overrides
+   This seems preferable to generating a customised bootstrap CSS file as it enables us to use bootstrap unmodified direct from CDN. */
+
 body {
-  background-color: #FFF1E0;
+  background-color: #FFF1E0; /* $ftColor-Pink */
   padding-bottom: 40px;
 }
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 300;
+}
 a {
-  color: #2e6e9e;
+  color: #2e6e9e; /* $ftColor-Blue */
 }
 a:hover {
   color: black;
+  text-decoration: none;
 }
 code {
-  background-color: #f6e9d8;
+  color: #9b164f;  /* $ftColor-Claret */
+  background-color: #f6e9d8; /* ftColor-Tint1 */
   white-space: pre-wrap;
 }
+pre {
+  word-wrap: inherit;
+  overflow-x: auto;
+  background-color: #f6e9d8; /* ftColor-Tint1 */
+  border-color: #e9decf; /* $ftColor-Tint2 */
+}
+pre code {
+  white-space: pre;
+}
+.well {
+  background-color: #f6e9d8; /* ftColor-Tint1 */
+  border-color: #e9decf; /* $ftColor-Tint2 */
+}
+.well
+.table {
+  margin: 1em 0;
+  background: #f6e9d8; /* $ftColor-Tint1 */
+  border-left: 5px solid #f6e9d8; /* $ftColor-Tint1 */
+  border-right: 5px solid #f6e9d8; /* $ftColor-Tint1 */
+  border-top: 3px solid #f6e9d8; /* $ftColor-Tint1 */
+  border-bottom: 3px solid #f6e9d8; /* $ftColor-Tint1 */
+}
+.table thead>tr>th,
+.table tbody>tr>th,
+.table>tr>th {
+  border-bottom: 2px solid #a7a59b; /* $ftColor-WarmGrey1 */
+}
+.table tbody>tr>td,
+.table>tr>td {
+  border-bottom: 1px solid #cec6b9; /* $ftColor-Tint3 */
+}
+.table>tbody>tr:nth-child(odd)>td,
+.table>tbody>tr:nth-child(odd)>th {
+  background-color: #f6e9d8; /* $ftColor-Tint1 */
+}
+
+
+/* Header and footer */
+
 .page-header {
   border-bottom: 4px solid #a7a59b;
   margin-bottom: 45px;
@@ -23,16 +71,6 @@ code {
   border-top: 1px dotted #999;
   margin-top: 20px;
   padding-top: 20px;
-}
-code {
-  background-color: #f6e9d8;
-}
-pre {
-  word-wrap: inherit;
-  overflow-x: auto;
-}
-pre code {
-  white-space: pre;
 }
 
 
@@ -68,10 +106,7 @@ pre code {
 .subnav li.active > a {
   padding-left: 25px;
 }
-.annotator-link {
-  margin-left: 30px;
-  display: none;
-}
+
 
 /* Content */
 
@@ -79,12 +114,11 @@ pre code {
   border-bottom: 1px solid #999;
   font-weight: normal;
   font-size: 225%;
+  margin: 0 0 0.8em 0;
 }
 .main h2 {
-  border-bottom: 1px solid #ccc;
-  font-weight: normal;
-  font-size: 175%;
-  margin-top: 1.5em;
+  font-size: 190%;
+  margin: 1.5em 0 0.8em 0;
 }
 .main h3 {
   font-size: 140%;
@@ -104,21 +138,8 @@ pre code {
   font-size: 150%;
   margin: 1em 0;
 }
-.main table {
-  border-collapse: collapse;
-  margin: 1em 0;
-}
-.main td, .main th {
-  vertical-align: top;
-  text-align: left;
-  padding: 6px 10px;
-  border: 1px solid #a7a59b;
-  background-color: #f6e9d8;
-}
-.main th {
-  font-weight: bold;
-  color: #FFF;
-  background: #A7A59B;
+.main li>p {
+  margin-bottom:0; /* Fix for nested bulleted/numbered lists (Markdown does not consistently wrap in para tags)
 }
 
 

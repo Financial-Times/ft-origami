@@ -13,7 +13,7 @@ All origami components, whether modules or web services, should be discoverable 
 
 `.origamiconfig` is a JSON format file, with the following properties:
 
-<table>
+<table class='table'>
 <tr>
 	<th>Property</th>
 	<th>Type</th>
@@ -72,11 +72,12 @@ All origami components, whether modules or web services, should be discoverable 
 
 ## Example
 
+<?prettify linenums=1?>
 	{
-		"description": "Tweet service",
-		"origamiType": "service",
-		"origamiVersion": 1,
-		"support": "origamisupport-service-tweet@ft.com",
-		"supportStatus": "active",
-		"serviceUrl": "http://tweet.webservices.ft.com"
+	  "description": "Tweet service",
+	  "origamiType": "service",
+	  "origamiVersion": 1,
+	  "support": "origamisupport-service-tweet@ft.com",
+	  "supportStatus": "active",
+	  "serviceUrl": "http://tweet.webservices.ft.com"
 	}
