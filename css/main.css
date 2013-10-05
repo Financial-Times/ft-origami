@@ -139,7 +139,7 @@ pre code {
   margin: 1em 0;
 }
 .main li>p {
-  margin-bottom:0; /* Fix for nested bulleted/numbered lists (Markdown does not consistently wrap in para tags)
+  margin-bottom:0; /* Fix for nested bulleted/numbered lists (Markdown does not consistently wrap in para tags) */
 }
 
 
