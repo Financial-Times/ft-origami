@@ -75,11 +75,11 @@ When a developer goes to use a module, and finds that it has config for a partic
 [Bower](http://bower.io/) is the package manager supported by Origami.  If a module has no dependencies, bower does not require any package configuration, though the module *must* be tagged in git with Semver-compatible version numbers (eg `v0.0.4`).  Component authors may choose to provide a `bower.json` file anyway, and must do so if the module has dependencies, and if they do it must conform to the following requirements:
 
 * *Must* include a useful `name`
-* *Must* include a `version` based on [Semver][3] rules
-* *Must* include a `main` property *if* the module contains any JavaScript, and *must* be set to the value `main.js`.
+* *Must* include a `main` property *if* the module contains any JavaScript, and if present, *must* be set to the value `main.js`.
 * *Must* include a `dependencies` object *if* the module has any Origami dependencies and should accept as wide a range of versions of dependencies as possible (also see 'Module subdependencies' below)
 * *Must* include an `ignore` property listing all files and directories in the module that are not required by product developers
 * *May* include `devDependencies` if appropriate
+* *Must not* include a `version` property.  The version property is not needed and risks being out of sync with the repo tag
 * *Should* not include anything else
 
 The following is an example `bower.json` file that meets the above spec:
@@ -88,7 +88,6 @@ The following is an example `bower.json` file that meets the above spec:
 	{
 	  "name": "ft-tweet-module",
 	  "description": "Styles for rendering tweets on FT pages",
-	  "version": "1.0.0",
 	  "dependencies": {
 	    "ft-velcro": "git://github.com:Financial-Times/ft-velcro.git#>=1.2.0 <1.3.0"
 	  },
@@ -111,7 +110,8 @@ The following is an example `package.json` file that meets the above spec:
 	  "devDependencies": {
 	    "grunt": "*",
 	    "node-sass": "*"
-	  }
+	  },
+	  "private": true
 	}
 
 
