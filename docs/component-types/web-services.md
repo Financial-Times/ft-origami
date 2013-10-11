@@ -24,10 +24,10 @@ Web services must expose an HTTP endpoint on the hostname `{componentname}.webse
 * *Should* be used for components that produce dynamic editorial content or data that is not practical to consider part of the source code of a module component (usually because it changes too frequently or there are too many possible permutations)
 * *Must not* output any executable code (use module components for that)
 * *Must* include a mandatory version number element to the API path for all API endpoints
-* *Must* support both HTML and JSON output, and where a format is not specified in a request, *should* use content-negotiation (the HTTP `Accept` header), and as a default *must* return HTML output.
 * Minor version changes in the web service application *must not* be exposed on the version number included in the API endpoint URL
+* *Should* support both HTML and JSON output (see below for details)
 * When returning HTML, *must* meet the [standard for HTML]({{site.baseurl}}/docs/syntax-requirements)
-* When providing JSON output, *must* meet the [standard for JSON]({{site.baseurl}}/docs/syntax-requirements)
+* When returning JSON, *must* meet the [standard for JSON]({{site.baseurl}}/docs/syntax-requirements)
 * *Must* require requests to contain an identification string set by the requesting application, either in a `source` query string parameter or an `X-FT-Source` HTTP header.  Must support both.  If neither is present, must return a `400 Bad Request` response status code.
 * *Must* provide monitoring endpoints and data conforming to the [FT Health page standard](https://docs.google.com/a/ft.com/document/d/18hefJjImF5IFp9WvPAm9Iq5_GmWzI9ahlKSzShpQl1s/edit)
 * When an error occurs that prevents the service returning the output requested, the HTTP response code *must* be in the 5xx or 4xx range, and the response *must* have an empty content body unless debug information has been requested via a query string parameter.  The web service *should* implement such a parameter, if it does the parameter *must* be called `showerrors`, and the presence of this parameter should always turn on visible errors unless it has a value which is set to 0.
@@ -36,7 +36,7 @@ Web services must expose an HTTP endpoint on the hostname `{componentname}.webse
 * *Should* draw templates from a module component where practical (to allow product developers to consume them and do the templating themselves), and if it does so those templates *must* be Mustache.  Conversely, templates built into the web service may be of any standard.
 * *May* accept any querystring parameters, POST data, URL parameters or other input as desired to allow for service specific features (this may include accepting input and then simply reformatting it and including it in the output, but component developers *should* avoid doing this in services whose output also draws from other content sources).
 * *Should* serve permissive CORS response headers to allow the endpoints to be consumed in-browser from any origin (though consuming in-browser is discouraged)
-* *Must* include explicit `Cache-Control` header in HTTP responses, which product applications must respect.
+* *Must* include explicit `Cache-Control` header in all HTTP responses that have a 2xx or 3xx response status, which product applications must respect.
 * *Must* serve content on the bare versioned endpoints (eg `/v1/`) that documents the API methods available.
 * *Must* redirect the root path `/` to the current version documentation endpoint
 * *Must* provide a mechanism for developers to subscribe to email notifications of version deprecation (which *should* be a github watcher list).
@@ -59,6 +59,10 @@ Web services source code repositories should be named using a short descriptive 
 <tr><td>nav-service</td><td>nav.webservices.ft.com</td></tr>
 <tr><td>mostpopular-service</td><td>mostpopular.webservices.ft.com</td></tr>
 </table>
+
+### Output formats
+
+Some web services provide data to include in a website (eg a tweet service), while others may output little more than an acknowledgement (eg an analytics collector).  Where a web service's output is intended to be content for inclusion in a web page, it *should* be offered as HTML and JSON.
 
 ### Changes and versioning
 

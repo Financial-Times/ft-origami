@@ -44,6 +44,6 @@ We will minimise dependencies on other systems, whether we own them or not.  The
 
 We'll make it insanely easy to do things the standard way, regardless of your technology stack, we'll help you do it, and we'll inform and educate throughout the business to advocate using our components so we get maximum value out of them.  If you want to do something in a non-standard way, we won't get in your way, but we will not help either.
 
-### 10. Better for users
+## 10. Better for users
 
 Our components will improve the overall experience for our end users, by making their experience predictable, cohesive and performant. These principles aim to establish a template for a better workflow that helps developers to help users.
