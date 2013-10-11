@@ -108,6 +108,7 @@ The following HTTP request-response is compliant with the above requirements and
 	User-Agent: curl/7.24.0 (x86_64-apple-darwin12.0) libcurl/7.24.0 OpenSSL/0.9.8x zlib/1.2.5
 	Host: nav.modules.ft.com
 	Accept: text/html
+	X-FT-Source: Example application
 
 	HTTP/1.1 200 OK
 	Server: Apache
