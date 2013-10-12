@@ -82,7 +82,9 @@ pre code {
 }
 .sidebar li a {
   padding: 6px 10px 6px 30px;
-  color: ;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 .sidebar li.active > a {
   background-color: #e9decf;
@@ -105,6 +107,13 @@ pre code {
 }
 .subnav li.active > a {
   padding-left: 25px;
+}
+#pagenav.affix {
+  width: 263px;
+  top: 50px;
+}
+#pagenav li a {
+  color: #9b164f;  /* $ftColor-Claret */
 }
 
 

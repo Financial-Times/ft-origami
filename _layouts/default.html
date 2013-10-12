@@ -14,6 +14,8 @@
 
         <script src='//cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.js'></script>
         <script src='//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js'></script>
+        <script src='//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.0/js/bootstrap.min.js'></script>
+        <script src='{{ site.baseurl }}/js/pagenav.js'></script>
     </head>
     <body>
 
@@ -31,7 +33,7 @@
         <div class='row'>
 
           <div class='col-lg-3'>
-            <ul class="nav sidebar">
+            <ul class="nav sidebar" id='sitenav'>
               <li class="{% if page.title == 'Home' %}active{% endif %}">
                 <a href="{{ site.baseurl }}/">Home</a>
               </li>
