@@ -50,7 +50,7 @@ All Origami web services are required to expose multiple `/metrics` endpoints (o
 		The current value of the metric.  In the case of counter metrics, a number.  In the case of boolean metrics, a boolean.  Should not be present for movingaverage metrics.
 	</td>
 </tr><tr>
-	<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>units</code></td>
+	<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>unit</code></td>
 	<td><em>string</em>*</td>
 	<td>Count only.  Plural name of the unit of measurement in which val is expressed.  Common values should be 'seconds', 'bytes', 'items', 'processes'.  Prefer base level orders of magnitude (ie. express time in seconds, not milliseconds, and data size in bytes, not megabytes)</td>
 </tr><tr>
