@@ -29,7 +29,6 @@ $(function() {
 				var thisos = $(this).offset().top;
 				if (thisos <= scrollos && $('#pagenav-'+this.id).length) {
 					candidate = $('#pagenav-'+this.id);
-					console.log('candidate', this.id);
 				} else if (thisos > scrollos && candidate) {
 					return false;
 				}
