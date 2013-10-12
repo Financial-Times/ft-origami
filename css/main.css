@@ -108,14 +108,19 @@ pre code {
 .subnav li.active > a {
   padding-left: 25px;
 }
-#pagenav.affix {
-  width: 263px;
-  top: 50px;
-}
 #pagenav li a {
   color: #9b164f;  /* $ftColor-Claret */
 }
-
+#pagenav.affix {
+  position: static;
+}
+@media (min-width: 1200px) {
+  #pagenav.affix {
+    position: fixed;
+    width: 263px;
+    top: 50px;
+  }
+}
 
 /* Content */
 
