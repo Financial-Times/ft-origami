@@ -34,7 +34,10 @@ pre code {
   background-color: #f6e9d8; /* ftColor-Tint1 */
   border-color: #e9decf; /* $ftColor-Tint2 */
 }
-.well
+.table-wrap {
+  width: 100%;
+  overflow: auto;
+}
 .table {
   margin: 1em 0;
   background: #f6e9d8; /* $ftColor-Tint1 */
@@ -125,17 +128,34 @@ pre code {
 /* Content */
 
 .main h1 {
-  border-bottom: 1px solid #999;
   font-weight: normal;
-  font-size: 225%;
+  font-size: 180%;
   margin: 0 0 0.8em 0;
 }
 .main h2 {
-  font-size: 190%;
+  font-size: 140%;
+  font-weight: bold;
   margin: 1.5em 0 0.8em 0;
 }
 .main h3 {
-  font-size: 140%;
+  font-size: 120%;
+  border-bottom: 1px solid #ddd;
+}
+@media (min-width:768px) {
+  .main h1 {
+    border-bottom: 1px solid #999;
+    font-size: 225%;
+    margin: 0 0 0.8em 0;
+  }
+  .main h2 {
+    font-size: 190%;
+    font-weight: 300;
+    margin: 1.5em 0 0.8em 0;
+  }
+  .main h3 {
+    font-size: 140%;
+    border: 0;
+  }
 }
 .main > *:first-child {
   margin-top: 0;
