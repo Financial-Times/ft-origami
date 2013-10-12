@@ -21,31 +21,31 @@ All Origami web services are required to expose `/{version}/about` endpoints to 
 	<td></td>
 	<td></td>
 </tr><tr>
-	<td><code>&nbsp;&nbsp;name</code></td>
+	<td>&nbsp;&nbsp;<code>name</code></td>
 	<td>string*</td>
 	<td>The <b>repo</b> name of the web service</td>
 </tr><tr>
-	<td><code>&nbsp;&nbsp;apiVersion</code></td>
+	<td>&nbsp;&nbsp;<code>apiVersion</code></td>
 	<td>number*</td>
 	<td>Integer version number of the API described by this document (ie. the version exposed in the URL path)</td>
 </tr><tr>
-	<td><code>&nbsp;&nbsp;appVersion</code></td>
+	<td>&nbsp;&nbsp;<code>appVersion</code></td>
 	<td>string*</td>
 	<td>Code version number (ie the version tag on the revision of the code that is checked out into this running instance)</td>
 </tr><tr>
-	<td><code>&nbsp;&nbsp;dateCreated</code></td>
+	<td>&nbsp;&nbsp;<code>dateCreated</code></td>
 	<td>string*</td>
 	<td>ISO8601-format date when the app was first created</td>
 </tr><tr>
-	<td><code>&nbsp;&nbsp;docs</code></td>
+	<td>&nbsp;&nbsp;<code>docs</code></td>
 	<td>string*</td>
 	<td>A URL where full docuentation for the service can be found, which *should* be the root URL of the service</td>
 </tr><tr>
-	<td><code>&nbsp;&nbsp;support</code></td>
+	<td>&nbsp;&nbsp;<code>support</code></td>
 	<td>string*</td>
 	<td>Copied from the matching property in the component's <a href='{{site.baseurl}}/docs/syntax/origamiconfig'>.origamiconfig</a> file.</td>
 </tr><tr>
-	<td><code>&nbsp;&nbsp;supportStatus</code></td>
+	<td>&nbsp;&nbsp;<code>supportStatus</code></td>
 	<td>string*</td>
 	<td>Copied from the matching property in the component's <a href='{{site.baseurl}}/docs/syntax/origamiconfig'>.origamiconfig</a> file.</td>
 </tr><tr>

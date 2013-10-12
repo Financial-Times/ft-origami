@@ -21,19 +21,19 @@ All Origami web services are required to expose an `/about` endpoint to list the
 	<td></td>
 	<td></td>
 </tr><tr>
-	<td><code>&nbsp;&nbsp;name</code></td>
+	<td>&nbsp;&nbsp;<code>name</code></td>
 	<td>string*</td>
 	<td>The <b>repo</b> name of the web service</td>
 </tr><tr>
-	<td><code>&nbsp;&nbsp;versions [</code></td>
+	<td>&nbsp;&nbsp;<code>versions [</code></td>
 	<td>array*</td>
 	<td>A list of versions</td>
 </tr><tr>
-	<td><code>&nbsp;&nbsp;&nbsp;&nbsp;"..."</code></td>
+	<td>&nbsp;&nbsp;&nbsp;&nbsp;<code>"..."</code></td>
 	<td>string*</td>
 	<td>URL of a version of the web service.  Repeat for additional versions.</td>
 </tr><tr>
-	<td><code>&nbsp;&nbsp;]</code></td>
+	<td>&nbsp;&nbsp;<code>]</code></td>
 	<td></td>
 	<td></td>
 </tr><tr>

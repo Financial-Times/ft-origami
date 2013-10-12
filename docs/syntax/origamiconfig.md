@@ -23,19 +23,19 @@ All origami components, whether modules or web services, should be discoverable 
 	<td></td>
 	<td></td>
 </tr><tr>
-	<td><code>&nbsp;&nbsp;description</code></td>
+	<td>&nbsp;&nbsp;<code>description</code></td>
 	<td>string*</td>
 	<td>A short (&lt; 5 words, ideally) description of the purpose of the component</td>
 </tr><tr>
-	<td><code>&nbsp;&nbsp;origamiType</code></td>
+	<td>&nbsp;&nbsp;<code>origamiType</code></td>
 	<td>string*</td>
 	<td>The value 'module' where the component conforms to the <a href='{{site.baseurl}}/docs/component-types/modules'>module</a> spec, or 'service' where it conforms to the <a href='{{site.baseurl}}/docs/component-types/web-services'>web service</a> spec.</td>
 </tr><tr>
-	<td><code>&nbsp;&nbsp;origamiVersion</code></td>
+	<td>&nbsp;&nbsp;<code>origamiVersion</code></td>
 	<td>integer*</td>
 	<td>Version of Origami to which the component conforms.  Currently must be set to 1.</td>
 </tr><tr>
-	<td><code>&nbsp;&nbsp;support</code></td>
+	<td>&nbsp;&nbsp;<code>support</code></td>
 	<td>string*</td>
 	<td>
 		<p>Where a product developer can go for support on this component.  Either an email address (which should be a group or role based address, nota named individual), or the URL of the component's bug or issue tracker (eg a GitHub issues URL, or other issue tracker such as Redmine).</p>
@@ -48,7 +48,7 @@ All origami components, whether modules or web services, should be discoverable 
 		</ul>
 	</td>
 </tr><tr>
-	<td><code>&nbsp;&nbsp;supportStatus</code></td>
+	<td>&nbsp;&nbsp;<code>supportStatus</code></td>
 	<td>string*</td>
 	<td><p>Current support status of the component.  Set to one of:</p>
 		<ul>
@@ -60,7 +60,7 @@ All origami components, whether modules or web services, should be discoverable 
 		</ul>
 	</td>
 </tr><tr>
-	<td><code>&nbsp;&nbsp;serviceUrl</code></td>
+	<td>&nbsp;&nbsp;<code>serviceUrl</code></td>
 	<td>string</td>
 	<td>(optional) For web services only, the URL on which the service is provided.  Required for web services.</td>
 </tr><tr>
