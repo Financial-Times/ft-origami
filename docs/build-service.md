@@ -32,7 +32,7 @@ Product developers should most likely choose to request all JS modules in a sing
 
 ### Dependency conflicts
 
-Where a resource compiler request results in multiple versions of the same module being included, the build service will generate an error page instead of the requested output.  The error page includes information about which modules caused the dependency conflict, and which versions of the depended-upon module are in contention.  For example:
+Where a resource compiler request results in multiple versions of the same module being included, the build service will generate an error page (if error output is enabled) instead of the requested output.  The error page includes information about which modules caused the dependency conflict, and which versions of the depended-upon module are in contention.  For example (exact format to be determined):
 
 	Cannot complete build: conflicting dependencies exist.
 
@@ -41,9 +41,11 @@ Where a resource compiler request results in multiple versions of the same modul
 	  - Required at version 1.9 by cookiewarn-module
 
 	ft-base-js:
-	  - Required at version 2.7.4 in <querystring>
+	  - Required at version 2.7.4 in MASTER-BUNDLE
 	  - Required at version ~3.2 by nav-module
 	  - Required at version 4.* by signinstatus-module
+
+Note that some dependencies are required by the explicit module list sent to the build server (referred to above as MASTER-BUNDLE) while others are dependencies of those modules.
 
 Dependency conflicts must be resolved by either the product developer requesting a different version of the modules that contain the conflicting dependencies, or by the component developer updating the components to allow a broader range of versions of the dependency.
 
@@ -91,7 +93,17 @@ The build service consumer *must* cache the output of any build service endpoint
 
 ## Availability strategy
 
-The build service will be highly available, and shared-nothing, so each node will be responsible individually for caching its own copy of the build bundles.  Product developers will be expected to prime the build service cache before releasing their product to public traffic, but will not need to prime each node individually.  New build service nodes coming online will take a copy of all existing bundles before being made available to the load balancer.
+The build service will be highly available, and shared-nothing, so each node will be responsible individually for caching its own copy of the built bundles.  A load balancing strategy will be implemented in front of build service nodes which will follow this workflow:
+
+1. Send request to a random node that has not yet been tried for this request.
+2. If response has a `200`, `3xx` or `4xx` status, send the response back to the client and stop.
+3. If there are any other nodes available that have not been tried yet, go back to step 1.
+4. If the request contains a `sync=1` parameter, send the latest response back to the client and stop.
+5. Add a sync=1 parameter to the request and go back to step 1.
+
+## Concurrency
+
+The build service will be capable of running more than one build at the same time, but will not concurrently run more than one identical build.  The second and subsequent requests for the same resource received while the first is building will not cause a second build to be started, but will simply receive a `202` response (if async) or block waiting for the original build to finish (if sync).
 
 
 ## API reference
@@ -113,7 +125,7 @@ Fetch a set of modules and build a JavaScript bundle.
 </tr><tr>
 	<td><code>minify</code></td>
 	<td>Querystring</td>
-	<td><em>(Optional)</em> If present, specifies how the build service should minify the built resources.  Options are 'cc-simple' or 'cc-advanced' for <a href='https://developers.google.com/closure/compiler/'>Google closure compiler</a>, or 'none' for no minification.  Default is 'cc-simple'.</td>
+	<td><em>(Optional)</em> If present, specifies how the build service should minify the built resources.  Options are 'cc-simple' for <a href='https://developers.google.com/closure/compiler/'>Google closure compiler</a>, or 'none' for no minification.  Default is 'cc-simple'.  Closure compiler advanced optimisations are not available since the module code would need to be compatible with it, and this is unlikely to be the case for all modules.</td>
 </tr><tr>
 	<td><code>export</code></td>
 	<td>Querystring</td>
@@ -121,7 +133,19 @@ Fetch a set of modules and build a JavaScript bundle.
 </tr><tr>
 	<td><code>debug</code></td>
 	<td>Querystring</td>
-	<td><em>(Optional)</em> If present and true, the generated bundle will include a module list showing dependency relationships in a JavaScript comment block, preceding the bundle's code.</td>
+	<td><em>(Optional)</em> If present and true, the successfully generated bundle will include a module list showing dependency relationships in a JavaScript comment block, preceding the bundle's code.</td>
+</tr><tr>
+	<td><code>showerrors</code></td>
+	<td>Querystring</td>
+	<td><em>(Optional)</em> If present and true, the build service will show error details in the content body when returning a non-200 response (usually the console output of the build process).  If false or omitted, the content body will be blank on error.</td>
+</tr><tr>
+	<td><code>sync</code></td>
+	<td>Querystring</td>
+	<td><em>(Optional)</em> If present and true, and there is no cached version of the build available, the build will be performed syncronously and the HTTP connection will be held open until the finished bundle is ready.  These requests will never receive a <code>202</code> response.</td>
+</tr><tr>
+	<td><code>newerthan</code></td>
+	<td>Querystring</td>
+	<td><em>(Optional)</em> If present and set to a valid <a href='http://en.wikipedia.org/wiki/ISO_8601'>ISO 8601</a> date in the past, the build service will not consider any cached copies of the build which are older than the date given, and if necessary will therefore begin a new build as if there were no build cached.</td>
 </tr>
 </table>
 
@@ -129,14 +153,16 @@ Fetch a set of modules and build a JavaScript bundle.
 
 If the requested bundle is already available, a `200 OK` status code will be returned with the bundle in the response body.
 
-If the bundle is not immediately available, but the request is valid, a `202 Accepted` status will be returned, and if not already in progress, the build will commence in the background.  An `X-FT-Build-Status` response header will be included in the response giving the identifier for the build, the date the build started in [RFC1123](http://www.ietf.org/rfc/rfc1123.txt) format, the current status, and an optional progress indication for that stage of the build:
+If an existing bundle is not available, but the request is valid, a `202 Accepted` status will be returned, and if not already in progress, the building and bundling will commence in the background (except where the `sync` parameter has been set).
 
-	X-FT-Build-Status: {build_hash}; {build_start_date}; {status} {progress}
-	X-FT-Build-Status: 1b1ab000a9b5642f6b8726039f1e79477b57c103; Tue, 15 Nov 2012 08:12:31 GMT; downloading 2/6
+All `2xx` responses will include an `X-FT-Build-Info` response header, giving the build hash, the date the build started in [RFC1123](http://www.ietf.org/rfc/rfc1123.txt) format, the hostname of the build server, and the current status (one of 'downloading', 'building', 'minifying', 'cached'):
 
-If the request was not valid, a `400 Bad Request` is returned, with a plain text explanation in the response body
+	X-FT-Build-Info: {build_hash}; {build_start_date}; {build_server}; {status}
+	X-FT-Build-Info: 1b1ab000a9b5642f6b8726039f1e79477b57c103; Tue, 15 Nov 2012 08:12:31 GMT; prod04-build02-uk1; cached
 
-If the request was valid but the build failed, a `500 Internal Server Error` is returned, with a plain text explanation in the response body.  The most common causes of a 500 error are dependency conflicts or linting errors from closure compiler.
+If the request was not valid, a `400 Bad Request` is returned, with a plain text explanation in the response body (if `showerrors is set`).
+
+If the request was valid but the build failed, a `500 Internal Server Error` is returned, with a plain text explanation in the response body (if `showerrrors` is set).  The most common causes of a 500 error are dependency conflicts or linting errors from closure compiler.  The build must also fail if the resulting bundle exceeds 5MB in size.
 
 
 ### GET /bundles/css
@@ -155,11 +181,23 @@ Fetch a set of modules and build a CSS bundle.
 </tr><tr>
 	<td><code>style</code></td>
 	<td>Querystring</td>
-	<td><em>(Optional)</em> Determines the use of whitespace in the output.  Options are the same as those available for [Sass's command line style option](http://sass-lang.com/docs/yardoc/file.SASS_REFERENCE.html#output_style).  Defaults to 'compressed'.</td>
+	<td><em>(Optional)</em> Determines the use of whitespace in the output.  Options are the same as those available for <a href='http://sass-lang.com/docs/yardoc/file.SASS_REFERENCE.html#output_style'>Sass's command line style option</a>.  Defaults to 'compressed'.</td>
 </tr><tr>
 	<td><code>debug</code></td>
 	<td>Querystring</td>
-	<td><em>(Optional)</em> If present and true, the generated bundle will include a module list showing dependency relationships in a CSS comment block, preceding the bundle's code.</td>
+	<td><em>(Optional)</em> If present and true, the successfully generated bundle will include the ID of the build, and a module list showing dependency relationships in a CSS comment block, preceding the bundle's code.</td>
+</tr><tr>
+	<td><code>showerrors</code></td>
+	<td>Querystring</td>
+	<td><em>(Optional)</em> If present and true, the build service will show error details in the content body when returning a non-200 response (usually the console output of the build process).  If false or omitted, the content body will be blank on error.</td>
+</tr><tr>
+	<td><code>sync</code></td>
+	<td>Querystring</td>
+	<td><em>(Optional)</em> If present and true, and there is no cached version of the build available, the build will be performed syncronously and the HTTP connection will be held open until the finished bundle is ready.  These requests will never receive a <code>202</code> response.</td>
+</tr><tr>
+	<td><code>newerthan</code></td>
+	<td>Querystring</td>
+	<td><em>(Optional)</em> If present and set to a valid <a href='http://en.wikipedia.org/wiki/ISO_8601'>ISO 8601</a> date in the past, the build service will not consider any cached copies of the build which are older than the date given, and if necessary will therefore begin a new build as if there were no build cached.</td>
 </tr>
 </table>
 
@@ -167,14 +205,16 @@ Fetch a set of modules and build a CSS bundle.
 
 If the requested bundle is already available, a `200 OK` status code will be returned with the bundle in the response body.
 
-If an existing bundle is not available, but the request is valid, a `202 Accepted` status will be returned, and if not already in progress, the bundling will commence in the background.  An `X-FT-Build-Status` response header will be included in the response giving the date the build started in [RFC1123](http://www.ietf.org/rfc/rfc1123.txt) format, the current status, and an optional progress indication for that stage of the build:
+If an existing bundle is not available, but the request is valid, a `202 Accepted` status will be returned, and if not already in progress, the building and bundling will commence in the background (except where the `sync` parameter has been set).
 
-	X-FT-Build-Status: {build_hash}; {build_start_date}; {status} {progress}
-	X-FT-Build-Status: 1b1ab000a9b5642f6b8726039f1e79477b57c103; Tue, 15 Nov 2012 08:12:31 GMT; downloading 2/6
+All `2xx` responses will include an `X-FT-Build-Info` response header, giving the build hash, the date the build started in [RFC1123](http://www.ietf.org/rfc/rfc1123.txt) format, the hostname of the build server, and the current status (one of 'downloading', 'building', 'minifying', 'cached'):
 
-If the request was not valid, a `400 Bad Request` is returned, with a plain text explanation in the response body
+	X-FT-Build-Info: {build_hash}; {build_start_date}; {build_server}; {status}
+	X-FT-Build-Info: 1b1ab000a9b5642f6b8726039f1e79477b57c103; Tue, 15 Nov 2012 08:12:31 GMT; prod04-build02-uk1; cached
 
-If the request was valid but the build failed, a `500 Internal Server Error` is returned, with a plain text explanation in the response body.  The most common causes of a 500 error are dependency conflicts or compilation errors from Sass.
+If the request was not valid, a `400 Bad Request` is returned, with a plain text explanation in the response body (if `showerrors is set`)
+
+If the request was valid but the build failed, a `500 Internal Server Error` is returned, with a plain text explanation in the response body (if `showerrors` is set).  The most common causes of a 500 error are dependency conflicts or compilation errors from Sass.  The build must also fail if the resulting bundle exceeds 5MB in size.
 
 
 ### GET /page/`template`:`version`
@@ -224,4 +264,4 @@ Loads and returns a file from a module component's repo.
 </tr>
 </table>
 
-The most recent tagged version of the file that matches the specified Semver version number will be returned.
+The most recent tagged version of the file that matches the specified Semver version number will be returned, subject to a maximum file size of 5MB.
