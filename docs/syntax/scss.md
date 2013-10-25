@@ -13,11 +13,17 @@ Origami has adopted SASS and specifically the most common SCSS variant, as the p
 
 * Specificity should be minimised
 * Specificity should primarily come from class naming, rather than selectors
+    - GOOD: `.ft-thing-title`
+	- BAD: `div.header div.titleContainer h1`
 * Keep selectors short. Ideally just one class
 * Avoid IDs
 * Avoid using only tag names, except when applying a reset
 * Avoid using tag names in addition to classes
-* Avoid relying on a specific element structure (e.g. ``.module h1 span``) unless you’re really confident that the structure will never change
+	- GOOD: `.ft-thing-module`
+	- BAD: `div.ft-thing-module`
+* Avoid relying on a specific element structure unless you’re really confident that the structure will never change
+    - GOOD: `.ft-thing-title-icon`
+    - BAD: `.ft-thing-module h1 span`
 * Avoid specificity wars. Don’t use increased specificity to overcome an existing overly-specific selector - make the existing one less specific, or use new class names etc
 
 ## Class naming
@@ -26,27 +32,30 @@ Origami has adopted SASS and specifically the most common SCSS variant, as the p
 * Classes that are not restricted to a module root should be named ``ft-{classname}``.
 * Classes that are constrained by a module root class selector should be unadorned.
 * Consider separating styles into categories, according to [SMACSS](http://smacss.com/) principles:
-    * *Base* - resets, defaults
-    * *Layout* - for dividing the page into the major sections
-    * *Module* - the reusable, modular components of a design, including minor (intra-module) layout
-    * *State* - hover, disabled, etc
-    * *Theme* - colours, typography etc
+	- *Base* - resets, defaults
+	- *Layout* - for dividing the page into the major sections
+	- *Module* - the reusable, modular components of a design, including minor (intra-module) layout
+	- *State* - hover, disabled, etc
+	- *Theme* - colours, typography etc
 
 ## State
+
 * Define default style first, then state-specific styles
 * Name states according to these definitions:
-    * *hover* - (:hover) when mouse pointer is over element
-    * *focus* - (:focus) when key events will be targetted to the element
-    * *error* - element is in error state, e.g. a form field
-    * *disabled* - element cannot be interacted with
-    * *selected* - element is chosen out of a larger group
-* Bear in mind iOS's emulated-hover behaviour on elements whose ``:hover`` style changes ``display`` or ``visibility``
+	- *hover* - (:hover) when mouse pointer is over element
+	- *focus* - (:focus) when key events will be targetted to the element
+	- *error* - element is in error state, e.g. a form field
+	- *disabled* - element cannot be interacted with
+	- *selected* - element is chosen out of a larger group
+* Consider iOS's emulated-hover behaviour on elements whose ``:hover`` style changes ``display`` or ``visibility``
 * Consider all forms of user input, not just mouse.
 
 ## Attributes
 
 * Where vendor-specific attributes are used, use a mixin to apply the various attributes. This allows the vendor-specific attributes to be removed from just one place as browser support changes.
-* Prefer conditional (``.lt-ie9``) classes over CSS hacks
+* Prefer conditional classes over CSS hacks
+    - GOOD: `.lt-ie8 .module { height: 100px; }`
+    - BAD: `.module { height*: 100px; }`
 * Avoid CSS expressions and behaviours, except to polyfill essential features for older browsers (e.g. boxsizing.htc for ``box-sizing: border-box``)
 * Order attributes consistently. The use of [CSS Comb](http://csscomb.com/) is recommended to automate this.
 * Do not use ``!important``
