@@ -59,6 +59,9 @@ Origami has adopted SASS and specifically the most common SCSS variant, as the p
 
 ## Code organisation and formatting
 
+* When listing multiple comma-separated selectors, put each one on a new line.
+* Each attribute should be on a new line and indented.
+
 ### Files and folders
 
 * SASS variables, mixins and functions should be in their own files, separate from the code that uses them
@@ -87,9 +90,5 @@ SASS variables, mixins and functions are global (within all SASS files being pro
 * Use of SASS nesting can easily result in unnecessarily long, inefficient, and overly-specific selectors.
 * If nesting is used, it should be done so sparingly and to a maximum of 2 levels.
 
-## Code formatting
-
-* When listing multiple comma-separated selectors, put each one on a new line.
-* Each attribute should be on a new line and indented.
 
 
