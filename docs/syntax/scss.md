@@ -13,7 +13,7 @@ Origami has adopted SASS and specifically the most common SCSS variant, as the p
 
 * Specificity should be minimised
 * Specificity should primarily come from class naming, rather than selectors
-    - GOOD: `.ft-thing-title`
+	- GOOD: `.ft-thing-title`
 	- BAD: `div.header div.titleContainer h1`
 * Keep selectors short. Ideally just one class
 * Avoid IDs
@@ -22,8 +22,8 @@ Origami has adopted SASS and specifically the most common SCSS variant, as the p
 	- GOOD: `.ft-thing-module`
 	- BAD: `div.ft-thing-module`
 * Avoid relying on a specific element structure unless you’re really confident that the structure will never change
-    - GOOD: `.ft-thing-title-icon`
-    - BAD: `.ft-thing-module h1 span`
+	- GOOD: `.ft-thing-title-icon`
+	- BAD: `.ft-thing-module h1 span`
 * Avoid specificity wars. Don’t use increased specificity to overcome an existing overly-specific selector - make the existing one less specific, or use new class names etc
 
 ## Class naming
