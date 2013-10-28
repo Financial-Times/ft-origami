@@ -2,3 +2,4 @@ name: Origami
 pygments: true
 relative_permalinks: false
 baseurl: /ft-origami
+exclude: [bower_components, scss]

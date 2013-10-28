@@ -158,7 +158,7 @@ This works well for CSS and JS modules.  If the module you want provides a font,
 ### 3. Use the build service from your product application
 
 <?prettify linenums=1?>
-	<?php
+	\<?php
 	$origami_css = file_get_contents('http://buildservice.ft.com/bundle/css?modules=nav:2.3,tweet:1');
 	// Continue your build process
 
