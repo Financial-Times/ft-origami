@@ -1,0 +1,73 @@
+// /* Sidebar */
+
+.sidebar {
+  background-color: #f6e9d8;
+  padding-left: 0;
+  margin-top: 0;
+  list-style: none;
+}
+.sidebar li a {
+  overflow: hidden;
+  padding: 6px 10px 6px 30px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  position: relative;
+  display: block; 
+}
+.sidebar li.active > a {
+  padding-left: 15px;
+  background-color: #e9decf;
+  color: black;
+  font-weight: bold;
+  pointer-events: none;
+}
+.sidebar li.active > a:before {
+  display: inline-block;
+  width: 15px;
+  content: "▸";
+}
+.sidebar li a:hover {
+  background-color: #EBE2D3;
+}
+
+.sidebar {
+  @extend %ftGridNoLeftGutter;
+  @extend %ftGridNoRightGutter-s;
+  @extend %ftGridNoRightGutter-m;
+}
+
+.subnav li > a {
+  padding: 3px 10px 3px 40px;
+  font-size: 90%;
+}
+.subnav li.active > a {
+  padding-left: 25px;
+}
+#pagenav li a {
+  color: #9b164f;  /* $ftColor-Claret */
+}
+#pagenav.affix {
+  position: static;
+}
+
+
+@include ftGridRespondTo ($ftGridLarge)  {
+  #pagenav.affix {
+    position: fixed;
+    width: 263px;
+    top: 50px;
+  }
+}
+
+@include ftGridRespondTo ($ftGridExtraLarge)  {
+  #pagenav.affix {
+    position: fixed;
+    width: 263px;
+    top: 50px;
+  }
+}
+
+
+@include ftGridRespondTo ($ftGridDefault) {
+  
+}
