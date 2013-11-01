@@ -48,11 +48,6 @@
   }
 }
 
-@include ftGridRespondTo ($ftGridLarge) {
-  
-}
-
-
 @include ftGridRespondTo ($ftGridMedium) {
   
   .page-header h1 {
@@ -73,7 +68,7 @@
   .page-header {
     margin: 10px 0;
   }
-  
+
   .page-header h1 {
     font-size: 2em;
     margin-top: 5px;
@@ -89,4 +84,11 @@
     margin-bottom: 5px;
     margin-top: 0;
   }
+}
+
+
+.footer {
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px dotted #999;
 }

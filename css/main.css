@@ -8,9 +8,18 @@ body {
 .ft-grid-row,
 .ft-grid-box,
 .ft-grid-page {
-  clear: both;
   margin: 0 auto;
+}
+
+.ft-grid-row {
+  clear: both;
   width: 100%;
+}
+
+.ft-grid-row:after {
+  content: '';
+  display: block;
+  clear: both;
 }
 
 .ft-grid-row,
@@ -141,6 +150,58 @@ body {
 
   [class*="-s12"] {
     clear: none;
+  }
+
+  [class*="-s0"] {
+    width: auto;
+  }
+
+  [class*="-s1"] {
+    width: auto;
+  }
+
+  [class*="-s2"] {
+    width: auto;
+  }
+
+  [class*="-s3"] {
+    width: auto;
+  }
+
+  [class*="-s4"] {
+    width: auto;
+  }
+
+  [class*="-s5"] {
+    width: auto;
+  }
+
+  [class*="-s6"] {
+    width: auto;
+  }
+
+  [class*="-s7"] {
+    width: auto;
+  }
+
+  [class*="-s8"] {
+    width: auto;
+  }
+
+  [class*="-s9"] {
+    width: auto;
+  }
+
+  [class*="-s10"] {
+    width: auto;
+  }
+
+  [class*="-s11"] {
+    width: auto;
+  }
+
+  [class*="-s12"] {
+    width: auto;
   }
 }
 @media screen {
@@ -715,14 +776,6 @@ li.L1, li.L3, li.L5, li.L7, li.L9 {
   background: #F1E5D4;
 }
 
-/* Bootstrap overrides
-   This seems preferable to generating a customised bootstrap CSS file as it enables us to use bootstrap unmodified direct from CDN. */
-.ft-grid-row:after {
-  display: block;
-  clear: both;
-  content: '';
-}
-
 body {
   padding-bottom: 40px;
   background-color: #FFF1E0;
@@ -780,7 +833,10 @@ pre code {
 }
 
 .table {
+  border-collapse: collapse;
+  border-spacing: 0;
   margin: 1em 0;
+  width: 100%;
   border-top: 3px solid #f6e9d8;
   /* $ftColor-Tint1 */
   border-right: 5px solid #f6e9d8;
@@ -795,7 +851,19 @@ pre code {
 
 .table thead > tr > th,
 .table tbody > tr > th,
+.table tfoot > tr > th,
+.table thead > tr > td,
+.table tbody > tr > td,
+.table tfoot > tr > td {
+  padding: 8px;
+  line-height: 1.428571429;
+  border-top: 1px solid #dddddd;
+}
+
+.table thead > tr > th,
+.table tbody > tr > th,
 .table > tr > th {
+  vertical-align: bottom;
   border-bottom: 2px solid #a7a59b;
   /* $ftColor-WarmGrey1 */
 }
@@ -804,22 +872,13 @@ pre code {
 .table > tr > td {
   border-bottom: 1px solid #cec6b9;
   /* $ftColor-Tint3 */
+  vertical-align: top;
 }
 
 .table > tbody > tr:nth-child(odd) > td,
 .table > tbody > tr:nth-child(odd) > th {
   background-color: #f6e9d8;
   /* $ftColor-Tint1 */
-}
-
-.main {
-  overflow: hidden;
-}
-
-.footer {
-  margin-top: 20px;
-  padding-top: 20px;
-  border-top: 1px dotted #999999;
 }
 
 .main h1 {
@@ -837,6 +896,10 @@ pre code {
 .main h3 {
   font-size: 120%;
   border-bottom: 1px solid #dddddd;
+}
+
+.main h4 {
+  font-size: 18px;
 }
 
 @media screen and (min-width: 1001px) and (max-width: 1400px) {
@@ -918,10 +981,6 @@ pre code {
   margin-bottom: 5px;
 }
 
-h4 {
-  font-size: 18px;
-}
-
 .page-header {
   margin-top: 0;
   margin-bottom: 0;
@@ -994,6 +1053,12 @@ h4 {
     margin-top: 0;
   }
 }
+.footer {
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px dotted #999999;
+}
+
 .sidebar {
   background-color: #f6e9d8;
   padding-left: 0;
@@ -1059,4 +1124,208 @@ h4 {
     width: 263px;
     top: 50px;
   }
+}
+body {
+  padding-bottom: 40px;
+  background-color: #FFF1E0;
+  /* $ftColor-Pink */
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+  color: #333;
+  font-size: 14px;
+  line-height: 1.428571429;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 300;
+}
+
+h1 {
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+a {
+  color: #2e6e9e;
+  /* $ftColor-Blue */
+  text-decoration: none;
+}
+
+a:hover {
+  color: black;
+  text-decoration: none;
+}
+
+code {
+  background-color: #e9decf;
+  /* ftColor-Tint2 */
+  color: #9b164f;
+  /* $ftColor-Claret */
+  white-space: pre-wrap;
+}
+
+pre {
+  overflow-x: auto;
+  border-color: #e9decf;
+  /* $ftColor-Tint2 */
+  background-color: #f6e9d8;
+  /* ftColor-Tint1 */
+  word-wrap: inherit;
+}
+
+pre code {
+  white-space: pre;
+}
+
+.table-wrap {
+  overflow: auto;
+  width: 100%;
+}
+
+.table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  margin: 1em 0;
+  width: 100%;
+  border-top: 3px solid #f6e9d8;
+  /* $ftColor-Tint1 */
+  border-right: 5px solid #f6e9d8;
+  /* $ftColor-Tint1 */
+  border-bottom: 3px solid #f6e9d8;
+  /* $ftColor-Tint1 */
+  border-left: 5px solid #f6e9d8;
+  /* $ftColor-Tint1 */
+  background: #f6e9d8;
+  /* $ftColor-Tint1 */
+}
+
+.table thead > tr > th,
+.table tbody > tr > th,
+.table tfoot > tr > th,
+.table thead > tr > td,
+.table tbody > tr > td,
+.table tfoot > tr > td {
+  padding: 8px;
+  line-height: 1.428571429;
+  border-top: 1px solid #dddddd;
+}
+
+.table thead > tr > th,
+.table tbody > tr > th,
+.table > tr > th {
+  vertical-align: bottom;
+  border-bottom: 2px solid #a7a59b;
+  /* $ftColor-WarmGrey1 */
+}
+
+.table tbody > tr > td,
+.table > tr > td {
+  border-bottom: 1px solid #cec6b9;
+  /* $ftColor-Tint3 */
+  vertical-align: top;
+}
+
+.table > tbody > tr:nth-child(odd) > td,
+.table > tbody > tr:nth-child(odd) > th {
+  background-color: #f6e9d8;
+  /* $ftColor-Tint1 */
+}
+
+.main h1 {
+  font-weight: normal;
+  font-size: 180%;
+  margin: 0 0 0.8em 0;
+}
+
+.main h2 {
+  font-size: 140%;
+  font-weight: bold;
+  margin: 1.5em 0 0.8em 0;
+}
+
+.main h3 {
+  font-size: 120%;
+  border-bottom: 1px solid #dddddd;
+}
+
+.main h4 {
+  font-size: 18px;
+}
+
+@media screen and (min-width: 1001px) and (max-width: 1400px) {
+  .main h1 {
+    border-bottom: 1px solid #999999;
+    font-size: 225%;
+    margin: 0 0 0.8em 0;
+  }
+
+  .main h2 {
+    font-size: 190%;
+    font-weight: 300;
+    margin: 1.5em 0 0.8em 0;
+  }
+
+  .main h3 {
+    font-size: 140%;
+    border: 0;
+  }
+}
+@media screen and (min-width: 1401px) {
+  .main h1 {
+    border-bottom: 1px solid #999999;
+    font-size: 225%;
+    margin: 0 0 0.8em 0;
+  }
+
+  .main h2 {
+    font-size: 190%;
+    font-weight: 300;
+    margin: 1.5em 0 0.8em 0;
+  }
+
+  .main h3 {
+    font-size: 140%;
+    border: 0;
+  }
+}
+.main > *:first-child {
+  margin-top: 0;
+}
+
+.main img {
+  max-width: 100%;
+  margin: 0 auto;
+  display: block;
+}
+
+.main img:not(.transparent) {
+  padding: 1px;
+  border: 2px solid #bbbbbb;
+  background-color: white;
+}
+
+.main .alert-big {
+  font-size: 150%;
+  margin: 1em 0;
+}
+
+.main li > p {
+  margin-bottom: 0;
+  /* Fix for nested bulleted/numbered lists (Markdown does not consistently wrap in para tags) */
+}
+
+.well {
+  min-height: 20px;
+  padding: 19px;
+  margin-bottom: 20px;
+  border: 1px solid #e9decf;
+  border-radius: 4px;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
+  background-color: #f6e9d8;
+  /* ftColor-Tint1 */
+}
+
+.list-group-item-heading {
+  margin-top: 0;
+  margin-bottom: 5px;
 }

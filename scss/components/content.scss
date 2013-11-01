@@ -1,13 +1,3 @@
-
-/* Bootstrap overrides
-   This seems preferable to generating a customised bootstrap CSS file as it enables us to use bootstrap unmodified direct from CDN. */
-
-.ft-grid-row:after {
-  display: block;
-  clear: both;
-  content: '';
-}
-
 body {
   padding-bottom: 40px;
   background-color: #FFF1E0; /* $ftColor-Pink */
@@ -45,26 +35,46 @@ pre {
 pre code {
   white-space: pre;
 }
+
+
 .table-wrap {
   overflow: auto;
   width: 100%;
 }
+
 .table {
+  border-collapse: collapse;
+  border-spacing: 0;
   margin: 1em 0;
+  width: 100%;
   border-top: 3px solid #f6e9d8; /* $ftColor-Tint1 */
   border-right: 5px solid #f6e9d8; /* $ftColor-Tint1 */
   border-bottom: 3px solid #f6e9d8; /* $ftColor-Tint1 */
   border-left: 5px solid #f6e9d8; /* $ftColor-Tint1 */
   background: #f6e9d8; /* $ftColor-Tint1 */
+}  
+
+.table thead>tr>th, 
+.table tbody>tr>th, 
+.table tfoot>tr>th, 
+.table thead>tr>td, 
+.table tbody>tr>td, 
+.table tfoot>tr>td {
+  padding: 8px;
+  line-height: 1.428571429;
+  border-top: 1px solid #ddd;
 }
+
 .table thead>tr>th,
 .table tbody>tr>th,
 .table>tr>th {
+  vertical-align: bottom;
   border-bottom: 2px solid #a7a59b; /* $ftColor-WarmGrey1 */
 }
 .table tbody>tr>td,
 .table>tr>td {
   border-bottom: 1px solid #cec6b9; /* $ftColor-Tint3 */
+  vertical-align: top;
 }
 .table>tbody>tr:nth-child(odd)>td,
 .table>tbody>tr:nth-child(odd)>th {
@@ -72,21 +82,7 @@ pre code {
 }
 
 
-.main {
-  overflow: hidden;
-}
 
-.footer {
-  margin-top: 20px;
-  padding-top: 20px;
-  border-top: 1px dotted #999;
-}
-
-
-
-
-
-// /* Content */
 
 .main h1 {
   font-weight: normal;
@@ -102,6 +98,11 @@ pre code {
   font-size: 120%;
   border-bottom: 1px solid #ddd;
 }
+
+.main h4  {
+  font-size: 18px;
+}
+
 @include ftGridRespondTo($ftGridLarge) {
   .main h1 {
     border-bottom: 1px solid #999;
@@ -173,8 +174,3 @@ pre code {
   margin-bottom: 5px;
 }
 
-h4  {
-  font-size: 18px;
-}
-
-// /* Add the FT Developer logo to the right of the page header on wider devices */
