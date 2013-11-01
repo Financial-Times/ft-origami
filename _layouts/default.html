@@ -19,19 +19,19 @@
     </head>
     <body>
 
-      <div class="ft-grid-row">
+      <div class="ft-grid-page">
 
         <div class="ft-grid-row page-header">
-          <div class="ft-grid-col-d9-s12-m10">
+          <div class="ft-grid-col-d9-s12-m8 page-header-text">
             <h1>{{ site.name }}</h1>
             <p class='lead'>Universal front end component standards for FT web products</p>
           </div>
-          <span class="ft-grid-col-d3-s0-m2 page-header-logo"></span>
+          <span class="ft-grid-col-d3-s0-m4 page-header-logo"></span>
         </div>
 
         <div class="ft-grid-row">
 
-          <div class="ft-grid-col-d3-m4-s12">
+          <div class="ft-grid-col-d3-l4-m12-s12">
             <ul class="nav sidebar" id='sitenav'>
               <li class="{% if page.title == 'Home' %}active{% endif %}">
                 <a href="{{ site.baseurl }}/">Home</a>
@@ -104,7 +104,7 @@
             </ul>
           </div>
 
-          <div class="ft-grid-col-d9-m8-s12">
+          <div class="ft-grid-col-d9-l8-m12-s12 main">
             {{ content }}
           </div>
 
