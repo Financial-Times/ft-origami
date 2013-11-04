@@ -57,8 +57,11 @@
 }
 
 @include ftGridRespondTo ($ft-origami-large-layouts)  {
+
   #pagenav.affix {
     position: fixed;
     top: 50px;
+    width: ftGridPixelWidthOfColumn($ft-grid-large-max-width, 3);
+    
   }
 }
