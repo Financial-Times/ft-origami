@@ -1,16 +1,24 @@
 // /* Sidebar */
-
-.nav {
+.sidebar {
+  @extend %ft-grid-no-left-gutter-s;
+  @extend %ft-grid-no-left-gutter-m;
+  @extend %ft-grid-no-right-gutter-s;
+  @extend %ft-grid-no-right-gutter-m;
+  margin-top: 0;
+  padding-right: 0;
   padding-left: 0;
   list-style: none;
 }
 
-.sidebar {
+.nav {
   margin-top: 0;
+  margin-bottom: 10px;
+  padding-right: 0;
   padding-left: 0;
   background-color: #f6e9d8;
   list-style: none;
 }
+
 .sidebar li a {
   position: relative;
   display: block;
@@ -22,7 +30,7 @@
 .sidebar li.active > a {
   padding-left: 15px;
   background-color: #e9decf;
-  color: black;
+  color: black; 
   font-weight: bold;
   pointer-events: none;
 }
@@ -35,12 +43,7 @@
   background-color: #EBE2D3;
 }
 
-.sidebar {
-  @extend %ft-grid-no-left-gutter;
-  @extend %ft-grid-no-right-gutter-s;
-  @extend %ft-grid-no-right-gutter-m;
-  padding-right: 0;
-}
+
 
 .subnav li > a {
   padding: 3px 10px 3px 40px;
@@ -57,7 +60,7 @@
   position: static;
 }
 
-@include ftGridRespondTo ($ft-origami-large-layouts)  {
+@include ftGridRespondTo ($ft-grid-large)  {
   $navCols: 3, 12;
   #pagenav.affix {
     position: fixed;

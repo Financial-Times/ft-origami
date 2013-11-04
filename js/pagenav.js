@@ -11,7 +11,7 @@ $(function() {
 		lis.push('<li id="pagenav-'+this.id+'"><a href="#'+this.id+'">'+this.innerText+'</a></li>');
 	});
 	if (lis.length < 2) return;
-	list = '<ul class="nav sidebar ft-grid-col-d12" id="pagenav">'+lis.join('')+'</ul>';
+	list = '<ul class="nav ft-grid-col-d12" id="pagenav">'+lis.join('')+'</ul>';
 
 	// Insert the new nav list after the existing one
 	$('#sitenav').after(list);
