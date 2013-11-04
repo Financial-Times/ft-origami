@@ -404,7 +404,7 @@ body {
     width: 100%;
   }
 }
-@media screen and (min-width: 1001px) and (max-width: 1400px) {
+@media screen and (min-width: 1001px) {
   .ft-grid-row,
   .ft-grid-page {
     max-width: 960px;
@@ -471,78 +471,6 @@ body {
   }
 
   [class*="-l12"] {
-    float: none;
-    clear: both;
-    width: 100%;
-  }
-}
-@media screen and (min-width: 1401px) {
-  .ft-grid-row,
-  .ft-grid-page {
-    max-width: 1360px;
-  }
-
-  .page-header .page-header-text {
-    margin-left: -10px;
-  }
-
-  [class*="-xlhide"],
-  [class*="-xl0"] {
-    display: none;
-  }
-
-  [class*="-xl1"] {
-    width: 8.33333%;
-  }
-
-  [class*="-xl2"] {
-    width: 16.66667%;
-  }
-
-  [class*="-xl3"] {
-    width: 25%;
-  }
-
-  [class*="-xl4"] {
-    width: 33.33333%;
-  }
-
-  [class*="-xl5"] {
-    width: 41.66667%;
-  }
-
-  [class*="-xl6"] {
-    width: 50%;
-  }
-
-  [class*="-xl7"] {
-    width: 58.33333%;
-  }
-
-  [class*="-xl8"] {
-    width: 66.66667%;
-  }
-
-  [class*="-xl9"] {
-    width: 75%;
-  }
-
-  [class*="-xl10"] {
-    width: 83.33333%;
-  }
-
-  [class*="-xl11"] {
-    width: 91.66667%;
-  }
-
-  /* ensures d12 and d0 can be over-ridden by styles for xl layout */
-  [class*="-xl1"], [class*="-xl2"], [class*="-xl3"], [class*="-xl4"], [class*="-xl5"], [class*="-xl6"], [class*="-xl7"], [class*="-xl8"], [class*="-xl9"], [class*="-xl10"], [class*="-xl11"] {
-    float: left;
-    clear: none;
-    display: block;
-  }
-
-  [class*="-xl12"] {
     float: none;
     clear: both;
     width: 100%;
@@ -931,25 +859,7 @@ pre code {
   font-size: 18px;
 }
 
-@media screen and (min-width: 1001px) and (max-width: 1400px) {
-  .main h1 {
-    margin: 0 0 0.8em 0;
-    border-bottom: 1px solid #999999;
-    font-size: 225%;
-  }
-
-  .main h2 {
-    margin: 1.5em 0 0.8em 0;
-    font-weight: 300;
-    font-size: 190%;
-  }
-
-  .main h3 {
-    border: 0;
-    font-size: 140%;
-  }
-}
-@media screen and (min-width: 1401px) {
+@media screen and (min-width: 1001px) {
   .main h1 {
     margin: 0 0 0.8em 0;
     border-bottom: 1px solid #999999;
@@ -1127,6 +1037,10 @@ pre code {
   background-color: #EBE2D3;
 }
 
+.sidebar {
+  padding-right: 0;
+}
+
 .subnav li > a {
   padding: 3px 10px 3px 40px;
   font-size: 90%;
@@ -1145,14 +1059,7 @@ pre code {
   position: static;
 }
 
-@media screen and (min-width: 1001px) and (max-width: 1400px) {
-  #pagenav.affix {
-    position: fixed;
-    top: 50px;
-    width: 240px;
-  }
-}
-@media screen and (min-width: 1401px) {
+@media screen and (min-width: 1001px) {
   #pagenav.affix {
     position: fixed;
     top: 50px;
@@ -1314,25 +1221,7 @@ pre code {
   font-size: 18px;
 }
 
-@media screen and (min-width: 1001px) and (max-width: 1400px) {
-  .main h1 {
-    margin: 0 0 0.8em 0;
-    border-bottom: 1px solid #999999;
-    font-size: 225%;
-  }
-
-  .main h2 {
-    margin: 1.5em 0 0.8em 0;
-    font-weight: 300;
-    font-size: 190%;
-  }
-
-  .main h3 {
-    border: 0;
-    font-size: 140%;
-  }
-}
-@media screen and (min-width: 1401px) {
+@media screen and (min-width: 1001px) {
   .main h1 {
     margin: 0 0 0.8em 0;
     border-bottom: 1px solid #999999;
