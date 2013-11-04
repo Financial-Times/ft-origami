@@ -31,7 +31,8 @@
         <div class="ft-grid-row">
 
           <div class="ft-grid-col-d3-m12-s12">
-            <ul class="nav sidebar" id='sitenav'>
+            <div class="ft-grid-row">
+            <ul class="nav sidebar ft-grid-col-d12" id='sitenav'>
               <li class="{% if page.title == 'Home' %}active{% endif %}">
                 <a href="{{ site.baseurl }}/">Home</a>
               </li>
@@ -101,6 +102,7 @@
                 <a href="{{ site.baseurl }}/docs/roadmap">Roadmap and current activity</a>
               </li>
             </ul>
+            </div>
           </div>
 
           <div class="ft-grid-col-d9-m12-s12 main">

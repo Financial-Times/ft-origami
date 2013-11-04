@@ -39,6 +39,7 @@
   @extend %ft-grid-no-left-gutter;
   @extend %ft-grid-no-right-gutter-s;
   @extend %ft-grid-no-right-gutter-m;
+  padding-right: 0;
 }
 
 .subnav li > a {
@@ -57,11 +58,11 @@
 }
 
 @include ftGridRespondTo ($ft-origami-large-layouts)  {
-
+  $navCols: 3, 12;
   #pagenav.affix {
     position: fixed;
     top: 50px;
-    width: ftGridPixelWidthOfColumn($ft-grid-large-max-width, 3);
+    width: ftGridPixelWidthOfColumn($ft-grid-large-max-width, $navCols);
     
   }
 }
