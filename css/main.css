@@ -998,6 +998,11 @@ pre code {
   border-top: 1px dotted #999999;
 }
 
+.nav {
+  padding-left: 0;
+  list-style: none;
+}
+
 .sidebar {
   margin-top: 0;
   padding-left: 0;
@@ -1054,11 +1059,6 @@ pre code {
   #pagenav.affix {
     position: fixed;
     top: 50px;
-  }
-
-  #pagenav.affix,
-  #pagenav.affix-top {
-    width: 263px;
   }
 }
 body {

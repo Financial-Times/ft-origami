@@ -1,5 +1,10 @@
 // /* Sidebar */
 
+.nav {
+  padding-left: 0;
+  list-style: none;
+}
+
 .sidebar {
   margin-top: 0;
   padding-left: 0;
@@ -43,6 +48,7 @@
 .subnav li.active > a {
   padding-left: 25px;
 }
+
 #pagenav li a {
   color: #9b164f;  /* $ftColor-Claret */
 }
@@ -55,16 +61,4 @@
     position: fixed;
     top: 50px;
   }
-
-  #pagenav.affix,
-  #pagenav.affix-top {
-    width: 263px;
-  }
-}
-
-
-
-
-@include ftGridRespondTo ($ft-grid-default) {
-  
 }
