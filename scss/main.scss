@@ -1,7 +1,9 @@
+$ft-grid-large-to-xl-break: false;
 @import "../bower_components/grid-module/main.scss";  
+$ft-origami-large-layouts: $ft-grid-large, $ft-grid-extra-large;
+
+
 @import "components/prettify.scss";  
-
-
 @import "components/content.scss";  
 @import "components/header.scss";  
 @import "components/nav.scss";  

@@ -30,7 +30,7 @@
 
         <div class="ft-grid-row">
 
-          <div class="ft-grid-col-d3-l4-m12-s12">
+          <div class="ft-grid-col-d3-m12-s12">
             <ul class="nav sidebar" id='sitenav'>
               <li class="{% if page.title == 'Home' %}active{% endif %}">
                 <a href="{{ site.baseurl }}/">Home</a>
@@ -44,7 +44,7 @@
               <li class="{% if page.title == 'Component types' %}active{% endif %}">
                 <a href="{{ site.baseurl }}/docs/component-types">Component types</a>
                 {% if page.section == 'Component types' %}
-                <ul class='nav subnav'>
+                <ul class="nav subnav">
                   <li class="{% if page.title == 'Modules' %}active{% endif %}">
                     <a href="{{ site.baseurl }}/docs/component-types/modules">Modules</a>
                   </li>
@@ -63,7 +63,7 @@
               <li class="{% if page.title == 'Syntax' %}active{% endif %}">
                 <a href="{{ site.baseurl }}/docs/syntax">Syntax</a>
                 {% if page.section == 'Syntax' %}
-                <ul class='nav subnav'>
+                <ul class="nav subnav">
                   <li class="{% if page.title == 'JavaScript' %}active{% endif %}">
                     <a href="{{ site.baseurl }}/docs/syntax/js">JavaScript</a>
                   </li>
@@ -103,7 +103,7 @@
             </ul>
           </div>
 
-          <div class="ft-grid-col-d9-l8-m12-s12 main">
+          <div class="ft-grid-col-d9-m12-s12 main">
             {{ content }}
           </div>
 
