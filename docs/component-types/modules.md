@@ -74,6 +74,7 @@ When a developer goes to use a module, and finds that it has config for a partic
 
 [Bower](http://bower.io/) is the package manager supported by Origami.  If a module has no dependencies, bower does not require any package configuration, though the module *must* be tagged in git with Semver-compatible version numbers (eg `v0.0.4`).  Component authors may choose to provide a `bower.json` file anyway, and must do so if the module has dependencies, and if they do it must conform to the following requirements:
 
+* *Must* include a `name` property set to the repo name, eg 'grid-module'
 * *Must* include a `main` property *if* the module contains any JavaScript, and if present, *must* be set to the value `main.js`.
 * *Must* include a `dependencies` object *if* the module has any Origami dependencies and should accept as wide a range of versions of dependencies as possible (also see 'Module subdependencies' below)
 * *Must* include an `ignore` property listing all files and directories in the module that are not required by product developers
