@@ -1,4 +1,3 @@
-@charset "UTF-8";
 html,
 body {
   margin: 0;
@@ -128,14 +127,6 @@ body {
     margin-left: -10px;
     margin-right: -10px;
     width: auto;
-  }
-
-  .sidebar {
-    margin-left: 0;
-  }
-
-  .sidebar {
-    margin-right: 0;
   }
 
   [class*="ft-grid-col"] {
@@ -703,7 +694,7 @@ body {
 }
 pre.prettyprint {
   padding: 2px;
-  border: 1px solid #888888;
+  border: 1px solid #888;
 }
 
 ol.linenums {
@@ -824,8 +815,9 @@ pre code {
 .table tbody > tr > td,
 .table tfoot > tr > td {
   padding: 8px;
-  border-top: 1px solid #dddddd;
+  border-top: 1px solid #ddd;
   line-height: 1.428571429;
+  text-align: left;
 }
 
 .table thead > tr > th,
@@ -862,7 +854,7 @@ pre code {
 }
 
 .main h3 {
-  border-bottom: 1px solid #dddddd;
+  border-bottom: 1px solid #ddd;
   font-size: 120%;
 }
 
@@ -873,7 +865,7 @@ pre code {
 @media screen and (min-width: 1001px) {
   .main h1 {
     margin: 0 0 0.8em 0;
-    border-bottom: 1px solid #999999;
+    border-bottom: 1px solid #999;
     font-size: 225%;
   }
 
@@ -900,7 +892,7 @@ pre code {
 
 .main img:not(.transparent) {
   padding: 1px;
-  border: 2px solid #bbbbbb;
+  border: 2px solid #bbb;
   background-color: white;
 }
 
@@ -1006,7 +998,7 @@ pre code {
 .footer {
   margin-top: 20px;
   padding-top: 20px;
-  border-top: 1px dotted #999999;
+  border-top: 1px dotted #999;
 }
 
 .sidebar {
@@ -1186,8 +1178,9 @@ pre code {
 .table tbody > tr > td,
 .table tfoot > tr > td {
   padding: 8px;
-  border-top: 1px solid #dddddd;
+  border-top: 1px solid #ddd;
   line-height: 1.428571429;
+  text-align: left;
 }
 
 .table thead > tr > th,
@@ -1224,7 +1217,7 @@ pre code {
 }
 
 .main h3 {
-  border-bottom: 1px solid #dddddd;
+  border-bottom: 1px solid #ddd;
   font-size: 120%;
 }
 
@@ -1235,7 +1228,7 @@ pre code {
 @media screen and (min-width: 1001px) {
   .main h1 {
     margin: 0 0 0.8em 0;
-    border-bottom: 1px solid #999999;
+    border-bottom: 1px solid #999;
     font-size: 225%;
   }
 
@@ -1262,7 +1255,7 @@ pre code {
 
 .main img:not(.transparent) {
   padding: 1px;
-  border: 2px solid #bbbbbb;
+  border: 2px solid #bbb;
   background-color: white;
 }
 
