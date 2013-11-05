@@ -87,9 +87,7 @@ Web services must implement the following endpoints, for each version of the app
 
 <table class='table'>
 <tr><td><code>/</code></td><td>Description of the service and instructions for use, designed for human consumption.  This <em>should</em> be HTML, and <em>may</em> choose to use the standard Origami documentation stylesheet.</td></tr>
-<tr><td><code>/health.txt</code></td><td>A health status page conforming to the <a href="https://docs.google.com/a/ft.com/document/d/18hefJjImF5IFp9WvPAm9Iq5_GmWzI9ahlKSzShpQl1s/edit">FT Health check standard</a></td></tr>
-<tr><td><code>/health.json</code></td><td>Health status JSON data conforming to the <a href="https://docs.google.com/a/ft.com/document/d/18hefJjImF5IFp9WvPAm9Iq5_GmWzI9ahlKSzShpQl1s/edit">FT Health check standard</a></td></tr>
-<tr><td><code>/health</code></td><td>Health status (JSON or text as appropraite) conforming to the <a href="https://docs.google.com/a/ft.com/document/d/18hefJjImF5IFp9WvPAm9Iq5_GmWzI9ahlKSzShpQl1s/edit">FT Health check standard</a></td></tr>
+<tr><td><code>/health</code></td><td>Health status JSON data conforming to the <a href="https://docs.google.com/a/ft.com/document/d/18hefJjImF5IFp9WvPAm9Iq5_GmWzI9ahlKSzShpQl1s/edit">FT Health check standard</a></td></tr>
 <tr><td><code>/metrics</code></td><td>A JSON document listing current metrics to allow automated monitoring, in the <a href='{{site.baseurl}}/docs/syntax/metrics'>metrics</a> format</td></tr>
 <tr><td><code>/about</code></td><td><em>(root only)</em> A JSON document linking to all available versions of the service, in the <a href='{{site.baseurl}}/docs/syntax/web-service-index'>web service index format</a><br/><em>(version endpoints only)</em> A JSON document in the <a href='{{site.baseurl}}/docs/syntax/web-service-description'>web service description format</a></td></tr>
 </table>
