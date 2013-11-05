@@ -20,7 +20,7 @@ a {
 a:hover {
   color: black;
   text-decoration: none;
-} 
+}
 
 
 code,
@@ -30,7 +30,7 @@ pre {
 
 code {
   padding: 2px 4px;
-  border-radius: 4px;  
+  border-radius: 4px;
   background-color: #f6e9d8; //#e9decf; /* ftColor-Tint2 */
   color: #9b164f;  /* $ftColor-Claret */
   white-space: pre-wrap;
@@ -86,17 +86,18 @@ pre code {
   border-bottom: 3px solid #f6e9d8; /* $ftColor-Tint1 */
   border-left: 5px solid #f6e9d8; /* $ftColor-Tint1 */
   background: #f6e9d8; /* $ftColor-Tint1 */
-}  
+}
 
-.table thead>tr>th, 
-.table tbody>tr>th, 
-.table tfoot>tr>th, 
-.table thead>tr>td, 
-.table tbody>tr>td, 
+.table thead>tr>th,
+.table tbody>tr>th,
+.table tfoot>tr>th,
+.table thead>tr>td,
+.table tbody>tr>td,
 .table tfoot>tr>td {
   padding: 8px;
   border-top: 1px solid #ddd;
   line-height: 1.428571429;
+  text-align: left;
 }
 
 .table thead>tr>th,
@@ -190,7 +191,7 @@ pre code {
 }
 .main li>p {
   margin-bottom:0; /* Fix for nested bulleted/numbered lists (Markdown does not consistently wrap in para tags) */
-} 
+}
 
 .well {
   margin-bottom: 20px;
