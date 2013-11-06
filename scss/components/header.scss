@@ -23,8 +23,8 @@
 }
 
 .page-header .page-header-text {
-  @extend %ft-grid-no-left-gutter-l;
-  @extend %ft-grid-no-left-gutter-xl;
+  // @extend %ft-grid-no-left-gutter-l !optional;
+  // @extend %ft-grid-no-left-gutter-xl !optional;
 }
 
 @include ftGridRespondTo ($ft-grid-default) {
