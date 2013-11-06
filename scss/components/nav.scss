@@ -63,7 +63,7 @@
 }
 
 @include ftGridRespondTo ($ft-grid-large)  {
-  $navCols: 3, 12;
+  $navCols: 4, 12;
   #pagenav.affix {
     position: fixed;
     top: 50px;

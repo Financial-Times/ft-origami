@@ -1038,7 +1038,7 @@ pre code {
   #pagenav.affix {
     position: fixed;
     top: 50px;
-    width: 240px;
+    width: 320.0px;
   }
 }
 body {
