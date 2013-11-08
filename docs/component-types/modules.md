@@ -150,7 +150,7 @@ If you don't even want to write your own HTML page or decide which components yo
 
 If you want to write your own page, and you want to choose a specific set of components, but you don't want a build process, you can still use the build service, but by writing your own `link` and `script` tags:
 
-	<link rel='stylesheet' href='http://buildservice.ft.com/bundle/css?modules=nav:2.3,tweet:1,cookiewarn:2.3' />
+	<link rel='stylesheet' href='http://buildservice.ft.com/bundle/css?modules=nav@2.3,tweet@1,cookiewarn@2.3' />
 
 Construct a URL to load a bundle of JS or CSS from the [Build service resource compiler][4], and simply append all the modules you want to the end of the URL.  The Build service will require all the modules that you want (including their dependencies), create a single bundled resource (using browserify or Sass, for JS and CSS respectively), minify the result (using closure compiler or compass) and serve it to you on the URL you requested.  Put the URL in a `<script>` or `<link>` tag, and your modules are loaded directly into your page.
 
@@ -160,7 +160,7 @@ This works well for CSS and JS modules.  If the module you want provides a font,
 
 <?prettify linenums=1?>
 	<?php
-	$origami_css = file_get_contents('http://buildservice.ft.com/bundle/css?modules=nav:2.3,tweet:1');
+	$origami_css = file_get_contents('http://buildservice.ft.com/bundle/css?modules=nav@2.3,tweet@1');
 	// Continue your build process
 
 If you need a bit more customisation than you can get by using the build service from the browser, or you want to improve performance by bundling Origami modules with your own, you can use the build service from your own application.  We don't make any assumptions about what technology you're using for your product, but as long as it can make HTTP requests, it can load build service URLs, so you can load the resources that you want and then bundle them as appropriate.
