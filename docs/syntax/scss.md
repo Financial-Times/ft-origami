@@ -13,7 +13,7 @@ Origami has adopted [SASS](http://sass-lang.com/) and specifically the most comm
 
 * Specificity should be minimised
 * Specificity should primarily come from class naming, rather than selectors
-    - GOOD: `.ft-thing-title`
+	- GOOD: `.ft-thing-title`
 	- BAD: `div.header div.titleContainer h1`
 * Keep selectors short. Ideally just one class
 * Avoid IDs
@@ -54,8 +54,8 @@ Origami has adopted [SASS](http://sass-lang.com/) and specifically the most comm
 
 * Where vendor-specific properties are used, use a mixin to apply the various properties. This allows the vendor-specific ones to be removed from just one place as browser support changes.
 * Prefer [feature flag](/ft-origami/docs/syntax/html/) and conditional classes to CSS hacks
-    - GOOD: `.lt-ie8 .module { height: 100px; }`
-    - BAD: `.module { height*: 100px; }`
+	- GOOD: `.lt-ie8 .module { height: 100px; }`
+	- BAD: `.module { height*: 100px; }`
 * Order properties consistently. The use of [CSS Comb](http://csscomb.com/) is recommended to automate this.
 
 ## Values
