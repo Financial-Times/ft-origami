@@ -21,8 +21,8 @@ The resource compiler operates on the endpoints starting with `/bundles`. It loa
 Examples of valid resource compilation requests:
 
 	/bundles/js?modules={module}@{version},{module}@{version}...
-	/bundles/js?modules=ads@1.2,tracking@3,cookiewarn@3.3.1
-	/bundles/css?modules=velcro@1.7.3,font,grid@3
+	/bundles/js?modules=o-ads@1.2,o-tracking@3,o-cookiewarn@3.3.1
+	/bundles/css?modules=o-signinstatus@1.7.3,o-fonts,o-grid@3
 
 Product developers should most likely choose to request all JS modules in a single bundle request, and likewise for CSS, and then write them into the `<head>` of their HTML document:
 
