@@ -7,61 +7,63 @@ permalink: /docs/syntax/scss/
 
 # SCSS standards
 
-Origami has adopted [SASS](http://sass-lang.com/) and specifically the most common SCSS variant, as the preferred way of declaring style information.
+Origami has adopted [SASS](http://sass-lang.com/) and specifically the most common SCSS variant, as the preferred way of declaring style information.  The following rules apply to creating styles for **components**, but could also be adopted in large part for product developers.
+
+SASS features should be used only where they result in increased clarity and reuse. Care should be taken that the resulting CSS is not compromised by unnecessary SASS nesting.
 
 ## Selectors
 
-* Specificity should be minimised
+* Specificity should be minimised. Use [BEM](http://csswizardry.com/2013/01/mindbemding-getting-your-head-round-bem-syntax/) where there is any chance of components being nested.
 * Specificity should primarily come from class naming, rather than selectors
-	- GOOD: `.ft-thing-title`
-	- BAD: `div.header div.titleContainer h1`
+	- GOOD: `.o-tweet__title`
+	- BAD: `div.tweet .header h1`
 * Keep selectors short. Ideally just one class
 * Avoid IDs
 * Avoid using only tag names, except when applying a reset
 * Avoid using tag names in addition to classes
-	- GOOD: `.ft-thing-module`
-	- BAD: `div.ft-thing-module`
+	- GOOD: `.o-thing`
+	- BAD: `div.o-thing`
 * Avoid relying on a specific element structure unless you’re really confident that the structure will never change
-	- GOOD: `.ft-thing-title-icon`
-	- BAD: `.ft-thing-module h1 span`
+	- GOOD: `.o-thing-title-icon`
+	- BAD: `.o-thing h1 span`
 * Avoid specificity wars. Don’t use increased specificity to overcome an existing overly-specific selector - make the existing one less specific, or use new class names.
 
-## Class naming
+## Naming conventions
 
-* Classes that mark the outer element of a module should be named `ft-{modulename}-module`.
-* Classes that are not restricted to a module root should be named `ft-{classname}`.
-* Classes that are constrained by a module root class selector should be unadorned.
-* Consider separating styles into categories, according to [SMACSS](http://smacss.com/) principles:
-	- *Base* - resets, defaults
-	- *Layout* - for dividing the page into the major sections
-	- *Module* - the reusable, modular components of a design, including minor (intra-module) layout
-	- *State* - hover, disabled, etc
-	- *Theme* - colours, typography etc
+* Classes that mark the outer element of a module component *must* be named `o-{modulename}` (o is for Origami).  The `o-` prefix should not be used by product developers for their own CSS.
+* Classes that are not restricted to a module root *must* be named `o-{classname}`.  This is
+* Classes that style elements within a module root element should use single selectors based on [BEM](http://csswizardry.com/2013/01/mindbemding-getting-your-head-round-bem-syntax/), especially if the component might contain other components (eg in the case of a 'grid' component), to avoid one component's styles affecting the appearance of a component within it.  Where a component can never contain any child components (eg a 'tweet' component or a 'gallery' component), they may instead choose to use simple class names and increase specificity with the module root selector as a parent.
+* SASS variables, mixins and functions are global (within all SASS files being processed at one time), so name them to avoid conflicts. e.g. `$o-grid-col-width` instead of just `$col-width`.
 
 ## State
 
-* Define default style first, then state-specific styles
-* Name states according to these definitions:
-	- *hover* - (:hover) when mouse pointer is over element
-	- *focus* - (:focus) when key events will be targetted to the element
-	- *error* - element is in error state, e.g. a form field
-	- *disabled* - element cannot be interacted with
-	- *selected* - element is chosen out of a larger group
+* Use BEM modifiers to indicate state, except where state is switched automatically by the browser and selectable using pseudoclasses:
+	- *:hover* - (:hover) when mouse pointer is over element
+	- *:focus* - (:focus) when key events will be targetted to the element
+	- *--error* - element is in error state, e.g. a form field
+	- *--disabled* - element cannot be interacted with
+	- *--selected* - element is chosen out of a larger group (use in preference to 'active')
 * Consider iOS's emulated-hover behaviour on elements whose `:hover` style changes `display` or `visibility`
 * Consider all forms of user input, not just mouse.
 
 ## Properties
 
-* Where vendor-specific properties are used, use a mixin to apply the various properties. This allows the vendor-specific ones to be removed from just one place as browser support changes.
-* Prefer [feature flag](/ft-origami/docs/syntax/html/) and conditional classes to CSS hacks
-	- GOOD: `.lt-ie8 .module { height: 100px; }`
-	- BAD: `.module { height*: 100px; }`
-* Order properties consistently. The use of [CSS Comb](http://csscomb.com/) is recommended to automate this.
+* Where vendor-specific properties are used, prefer to use a mixin to apply the various properties. This allows the vendor-specific ones to be removed from just one place as browser support changes.
+* Prefer [feature flag](/ft-origami/docs/syntax/html/) and conditional classes to CSS hacks.  Where you use a conditional class, make it configurable so that the product developer can use whatever classname they want, and can apply the legacy support to whichever user agents they want
+	- GOOD: `$o-tweet-legacy-selector .thing { height: 100px; }`
+	- BAD: `.thing { height*: 100px; }`
+* Order properties consistently. The use of [CSS Comb](http://csscomb.com/) is recommended to automate this, and should be used during development so that other developers beneift from cleaner code being available in the source tree.
 
 ## Values
 
-* Do not use `!important`
+* Component CSS *must* not use `!important` (valid use cases for important exist, but only at the product level)
 * Avoid CSS expressions and behaviours, except to polyfill essential features for older browsers (e.g. boxsizing.htc for `box-sizing: border-box`)
+
+### SASS variables
+
+* All variable assignments *must* end with `!default` to enable them to be overridden
+* Should be defined in their own file.
+* Variables for use by third parties should generally be defined by their purpose, rather than their value: e.g. `$bg-color-skyline` rather than `$biege`
 
 ## Media queries
 
@@ -69,10 +71,42 @@ Origami has adopted [SASS](http://sass-lang.com/) and specifically the most comm
 * Define them in one place using mixins
 * Use variables for the values used in the media query (min-width, max-width etc)
 
+
 ## Code organisation and formatting
+
+### Structuring CSS source and imports
+
+Separate styles into categories, according to the following [SMACSS](http://smacss.com/)-inspired layers:
+
+- *Settings* - variable definitions only
+- *Tools* - mixins, functions
+- *Generics* - resets and very generic styles to apply to all elements
+- *Base* - Default brand styles
+- *Objects* - Generic styles for component primitives such as `.media`, `.box`, `.tabs`, `.list` etc.
+- *GUI* - Module styles for specific components such as `.tabs-style1`, `.most-popular-content`
+- *Trumps* - Simple modifiers that should trump everything else, and are marked `!important`, eg `.caps`, `.left`, `.no-margin`
+
+Components *must* import all their dependencies, interspersing their own code, such that the above order is, as far as possible, maintained. For example:
+
+<?prettify linenums=1?>
+	/* Settings */
+	@import 'o-colors/main';
+	$o-tweet-background = $o-colors-box-background !default;
+
+	/* Base */
+	@import 'o-typography/main';
+
+	/* Objects */
+	@import 'o-box';
+
+	/* GUI */
+	.o-tweet {
+		@extends box;
+	}
 
 When listing multiple comma-separated selectors, put each one on a new line:
 
+<?prettify linenums=1?>
     .footer-link:hover,
     .footer-link:focus {
         //
@@ -80,9 +114,10 @@ When listing multiple comma-separated selectors, put each one on a new line:
 
 Each attribute should be on a new line and indented:
 
+<?prettify linenums=1?>
     .footer-link {
         font-size: 12px;
-        color: $ft-color-link;
+        color: $o-color-link-text;
     }
 
 ### Files and folders
@@ -104,22 +139,3 @@ Avoid obvious comments:
 * Comments should be used to explain code whose purpose is to fix obscure browser bugs. Ideally the comment should include a URL to a page giving full details of the bug.
 * Comments should be used to explain mixins and functions
 * Comments may be used to indicate logically separate sections of files, however separate files is generally preferred
-
-## SASS features
-
-SASS features should be used only where they result in increased clarity and reuse. Care should be taken that the resulting CSS is not compromised by unnecessary SASS nesting etc.
-
-SASS variables, mixins and functions are global (within all SASS files being processed at one time), so name them to avoid conflicts. e.g. `$ft-grid-col-width` instead of just `$col-width`
-
-### Variables
-
-* Should be defined in their own file.
-* Variables for use by third parties should generally be defined by their purpose, rather than their value: e.g. `$bg-color-skyline` rather than `$biege`
-
-### Nesting
-
-* Use of SASS nesting can easily result in unnecessarily long, inefficient, and overly-specific selectors.
-* If nesting is used, it should be done so sparingly and to a maximum of 2 levels.
-
-
-

@@ -8,16 +8,15 @@ permalink: /docs/roadmap/
 
 ## Current activity
 
-* Validating the entire high-level approach with an external consultant **Andrew**
-* Consulting with Harry Roberts on the CSS strategy
+* Building some initial components **Rhys, Dan, Andrew, Rik**
 * Defining a list of potential components from which we'll prioritise component development **Andrew, Rik**
 * Building a prototype of the Build service **Kornel, Andrew**
-* Defining technology specific standards for JS and HTML **Andrew, Luke**
+* Defining technology specific standards for JS, CSS and HTML **Andrew, Dan, Luke, Rik**
 
 ## Planned work
 
 * Split the navigation app into a navigation web service and a navigation module.
-* Define a precise scope for Velcro with an external enterprise CSS expert
-* Deliver Velcro in conformance with a standard component specification.
+* Split Velcro into modules
+* Redefine Velcro as a style guide site that brings together all Velcro modules, and build it
 * Build out further components to conformance with component standards, in order of decreasing value to the business.
 * Validate component architecture with the proposed technology stack for Responsive Articles

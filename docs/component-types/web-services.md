@@ -37,7 +37,7 @@ Web services must expose an HTTP endpoint on the hostname `{componentname}.webse
 * *Should* draw templates from a module component where practical (to allow product developers to consume them and do the templating themselves), and if it does so those templates *must* be Mustache.  Conversely, templates built into the web service may be of any standard.
 * *May* accept any querystring parameters, POST data, URL parameters or other input as desired to allow for service specific features (this may include accepting input and then simply reformatting it and including it in the output, but component developers *should* avoid doing this in services whose output also draws from other content sources).
 * *Should* serve permissive CORS response headers to allow the endpoints to be consumed in-browser from any origin (though consuming in-browser is discouraged)
-* *Must* include explicit `Cache-Control` header in all HTTP responses that have a 2xx or 3xx response status, which product applications must respect.
+* *Must* include an explicit `Cache-Control` header in all HTTP responses that have a 2xx or 3xx response status, which product applications must respect.
 * *Must* serve content on the bare versioned endpoints (eg `/v1/`) that documents the API methods available.
 * *Must* redirect the root path `/` to the current version documentation endpoint
 * *Must* provide a mechanism for developers to subscribe to email notifications of version deprecation (which *should* be a github watcher list).
@@ -52,7 +52,7 @@ Web services must expose an HTTP endpoint on the hostname `{componentname}.webse
 
 ### Naming conventions
 
-Web services source code repositories should be named using a short descriptive one-word term, suffixed with `-service`.  The service hostname should drop the suffix.  Examples:
+Web services source code repositories should be named using a short descriptive term (hypenated when appropriate), suffixed with `-service`.  The service hostname should drop the suffix.  Examples:
 
 <table class='table'>
 <tr><th>Repo name</th><th>Host name</th></tr>
@@ -83,7 +83,7 @@ Instructing a service to use a different (eg. test) data source must not be coup
 
 ### Required endpoints
 
-Web services must implement the following endpoints, for each version of the application, as well as at the root of the service host (apart from `/about` - see below). The root variant *may* redirect to the latest version variant, or *may* simply produce the same output as the latest version variant.  It is also OK to output the same data for all version variants if the data has not changed between versions.
+Web services *must* implement the following endpoints, for each version of the application, as well as at the root of the service host (apart from `/about` - see below). The root variant *may* redirect to the latest version variant, or *may* simply produce the same output as the latest version variant.  It is also OK to output the same data for all version variants if the data has not changed between versions.
 
 <table class='table'>
 <tr><td><code>/</code></td><td>Description of the service and instructions for use, designed for human consumption.  This <em>should</em> be HTML, and <em>may</em> choose to use the standard Origami documentation stylesheet.</td></tr>
@@ -92,7 +92,7 @@ Web services must implement the following endpoints, for each version of the app
 <tr><td><code>/about</code></td><td><em>(root only)</em> A JSON document linking to all available versions of the service, in the <a href='{{site.baseurl}}/docs/syntax/web-service-index'>web service index format</a><br/><em>(version endpoints only)</em> A JSON document in the <a href='{{site.baseurl}}/docs/syntax/web-service-description'>web service description format</a></td></tr>
 </table>
 
-If a web service has two versions, `v1` and `v2`, there *must* be three of each of the above.  Using the `/health.json` endpoint as an example, the complete paths `/health.json`, `/v1/health.json` and `/v2/health.json` *must* be recognised and served by the web service, and *may* return the same content.  The `about` data *must* also be available from three URLs, but will follow the [web service description format]({{site.baseurl}}/docs/syntax/web-service-description) format for those that are version prefixed, and the [web service index]({{site.baseurl}}/docs/syntax/web-service-index) format for the one that isn't.
+If a web service has two versions, `v1` and `v2`, there *must* be three of each of the above.  Using the `/health` endpoint as an example, the complete paths `/health`, `/v1/health` and `/v2/health` *must* be recognised and served by the web service, and *may* return the same content.  The `about` data *must* also be available from three URLs, but will follow the [web service description format]({{site.baseurl}}/docs/syntax/web-service-description) format for those that are version prefixed, and the [web service index]({{site.baseurl}}/docs/syntax/web-service-index) format for the one that isn't.
 
 
 ### De-duplication of output
@@ -119,12 +119,12 @@ The following HTTP request-response is compliant with the above requirements and
 	Access-Control-Allow-Credentials: true
 	Access-Control-Allow-Origin: *
 
-	<nav class="ft-nav-module" data-component="nav" data-version="0.0.1">
+	<nav class="o-ft-nav" data-o-component="o-ft-nav" data-o-version="0.0.1">
 	<ol>
-	<li data-track-pos="0"><a href="http://www.ft.com">Home</a></li>
-	<li data-track-pos="1"><a href="http://www.ft.com/world/uk">UK</a></li>
-	<li data-track-pos="2"><a href="http://www.ft.com/world">World</a></li>
-	<li class="selected" data-track-pos="3"><a href="http://www.ft.com/companies">Companies</a>
+	<li data-o-track-pos="0"><a href="http://www.ft.com">Home</a></li>
+	<li data-o-track-pos="1"><a href="http://www.ft.com/world/uk">UK</a></li>
+	<li data-o-track-pos="2"><a href="http://www.ft.com/world">World</a></li>
+	<li class="selected" data-o-track-pos="3"><a href="http://www.ft.com/companies">Companies</a>
 	  <ol class="second-level">
 	    <li class="has-third-level">
 	      <a href="http://www.ft.com/companies/energy">Energy</a>
@@ -147,12 +147,12 @@ The following HTTP request-response is compliant with the above requirements and
 	    <li class="rss"><a href="http://www.ft.com/rss/companies"><img src="http://navigation-module.herokuapp.com/navigation/ft/img/rss-icon.gif" width="14" height="14" alt="RSS"></a></li>
 	  </ol>
 	</li>
-	<li data-track-pos="4"><a href="http://www.ft.com/markets">Markets</a></li>
-	<li data-track-pos="5"><a href="http://www.ft.com/global-economy">Global Economy</a></li>
-	<li data-track-pos="6"><a href="http://www.ft.com/lex">Lex</a></li>
-	<li data-track-pos="7"><a href="http://www.ft.com/comment">Comment</a></li>
-	<li data-track-pos="8"><a href="http://www.ft.com/management">Management</a></li>
-	<li data-track-pos="9"><a href="http://www.ft.com/personal-finance">Personal Finance</a></li>
-	<li data-track-pos="10"><a href="http://www.ft.com/life-arts">Life & Arts</a></li>
+	<li data-o-track-pos="4"><a href="http://www.ft.com/markets">Markets</a></li>
+	<li data-o-track-pos="5"><a href="http://www.ft.com/global-economy">Global Economy</a></li>
+	<li data-o-track-pos="6"><a href="http://www.ft.com/lex">Lex</a></li>
+	<li data-o-track-pos="7"><a href="http://www.ft.com/comment">Comment</a></li>
+	<li data-o-track-pos="8"><a href="http://www.ft.com/management">Management</a></li>
+	<li data-o-track-pos="9"><a href="http://www.ft.com/personal-finance">Personal Finance</a></li>
+	<li data-o-track-pos="10"><a href="http://www.ft.com/life-arts">Life & Arts</a></li>
 	</ol>
 	</nav>

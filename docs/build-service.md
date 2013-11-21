@@ -27,8 +27,8 @@ Examples of valid resource compilation requests:
 Product developers should most likely choose to request all JS modules in a single bundle request, and likewise for CSS, and then write them into the `<head>` of their HTML document:
 
 <?prettify linenums=1?>
-	<link rel='stylesheet' href='http://buildservice.ft.com/bundles/css?modules=nav@2.3,tweet@1,velcro' />
-	<script src='http://buildservice.ft.com/bundles/js?modules=nav@2.3,tweet@1,tracking@3.5,ads@1.2' />
+	<link rel='stylesheet' href='http://buildservice.ft.com/bundles/css?modules=o-ft-nav@2.3,o-tweet@1,colors' />
+	<script src='http://buildservice.ft.com/bundles/js?modules=o-ft-nav@2.3,o-tweet@1,o-tracking@3.5,o-ads@1.2' />
 
 ### Dependency conflicts
 
@@ -36,14 +36,14 @@ Where a resource compiler request results in multiple versions of the same modul
 
 	Cannot complete build: conflicting dependencies exist.
 
-	ft-velcro:
-	  - Required at version 1.7 by nav-module
-	  - Required at version 1.9 by cookiewarn-module
+	o-colors:
+	  - Required at version 1.7 by o-nav
+	  - Required at version 1.9 by o-cookiewarn
 
-	ft-base-js:
+	o-typography:
 	  - Required at version 2.7.4 in MASTER-BUNDLE
-	  - Required at version ~3.2 by nav-module
-	  - Required at version 4.* by signinstatus-module
+	  - Required at version ~3.2 by o-nav
+	  - Required at version 4.* by o-signinstatus
 
 Note that some dependencies are required by the explicit module list sent to the build server (referred to above as MASTER-BUNDLE) while others are dependencies of those modules.
 
