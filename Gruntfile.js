@@ -8,7 +8,7 @@ module.exports = function(grunt) {
           style: 'expanded'
         },
         files: {
-          './css/main.css': './scss/main.scss'
+          './buildcache/main.css': './scss/main.scss'
         }
       }
     },
