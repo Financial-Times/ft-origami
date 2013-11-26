@@ -75,14 +75,12 @@ SASS features should be used only where they result in increased clarity and reu
 
 When your styles refer to external resources, notably fonts and images, the module must define the following three SASS variables as defaults, prior to referencing the subresource (replacing `modulename` with the appropriate module name, eg 'colors'):
 
-<?prettify linenums=1?>
 	$o-global-subresource-path-prefix = '/bower_components' !default;
 	$o-modulename-current-version = '' !default;
 	$o-modulename-subresource-path-prefix = $o-global-subresource-path-prefix + /modulename + $o-modulename-current-version + / !default;
 
 When referencing a subresource, the module-specific path prefix should be prepended to a path from the root of the module:
 
-<?prettify linenums=1?>
 	background: url($o-modulename-subresource-path-prefix + /img/logo.png);
 
 This policy is designed to enable product developers to easily use the build service, which will define `current-version` variables for each module in the bundle, and will set the global prefix to its own hostname.   This will mean that in the case of the example above, assuming version 1.2 of the colors module, the subresource would be requested from:
