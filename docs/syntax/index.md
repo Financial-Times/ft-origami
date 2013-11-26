@@ -14,6 +14,7 @@ These rules apply to any code written as part of an Origami component, and provi
 * [JavaScript]({{site.baseurl}}/docs/syntax/js)
 * [SCSS]({{site.baseurl}}/docs/syntax/scss)
 * [HTML]({{site.baseurl}}/docs/syntax/html)
+* [Mustache]({{site.baseurl}}/docs/syntax/mustache)
 
 ## Configuration standards
 
