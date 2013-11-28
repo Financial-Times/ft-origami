@@ -67,7 +67,7 @@ Having to keep old stuff running is (like a ship dragging an anchor) a major han
 
 It used to be that building websites was pretty easy.  Now, the difference in expertise from a beginner to an advanced web developer is huge.  It's rare for expert web developers to know the entire web platform, instead, people begin to specialise.  To have a modern website that looks good and has all the fancy features we've come to expect, expensive expert engineers are needed.  We can't afford to do this for every project.
 
-Imagine if every time you wanted to go to the shops, you had to build a car.  By yourself you might manage a go-cart.  An expert could build a Jaguar.  But if an expert designed all the bits, got them mas produced and published detailed instructions, you could build a Jaguar too.
+Imagine if every time you wanted to go to the shops, you had to build a car.  By yourself you might manage a go-cart.  An expert could build a Jaguar.  But if an expert designed all the bits, got them mass produced and published detailed instructions, you could build a Jaguar too.
 
 <div class='well'><h4 class='list-group-item-heading'>How to solve it</h4>Let the experts make components which wrap up their cleverness in packages which are then far easier for developers with less specialised skills to put together.</div>
 
