@@ -100,35 +100,7 @@ When loading from installed modules there is no need for a version number becaus
 
 ## Code organisation and formatting
 
-### Structuring CSS source and imports
-
-Separate styles into categories, according to the following [SMACSS](http://smacss.com/)-inspired layers:
-
-- *Settings* - variable definitions only
-- *Tools* - mixins, functions
-- *Generics* - resets and very generic styles to apply to all elements
-- *Base* - Default brand styles
-- *Objects* - Generic styles for component primitives such as `.media`, `.box`, `.tabs`, `.list` etc.
-- *GUI* - Module styles for specific components such as `.tabs-style1`, `.most-popular-content`
-- *Trumps* - Simple modifiers that should trump everything else, and are marked `!important`, eg `.caps`, `.left`, `.no-margin`
-
-Components *must* import all their dependencies, interspersing their own code, such that the above order is, as far as possible, maintained. For example:
-
-<?prettify linenums=1?>
-	/* Settings */
-	@import 'o-colors/main';
-	$o-tweet-background = $o-colors-box-background !default;
-
-	/* Base */
-	@import 'o-typography/main';
-
-	/* Objects */
-	@import 'o-box';
-
-	/* GUI */
-	.o-tweet {
-		@extends box;
-	}
+### Layout
 
 When listing multiple comma-separated selectors, put each one on a new line:
 
