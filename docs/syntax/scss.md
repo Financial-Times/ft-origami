@@ -67,11 +67,16 @@ SASS features should be used only where they result in increased clarity and reu
 * Variables *should* be defined in a dedicated file.
 * Variables intended for use externally by consuming products and modules *should* be defined by their purpose, rather than their value: e.g. `$o-colors-skyline-bg` rather than `$o-colors-beige`
 
-## Media queries
+## Responsiveness
 
-* Consider browsers that don't support media queries. Default styles may need to be declared outside of a media query, then overridden with ones in a media query
-* Define them in one place using mixins
-* Use variables for the values used in the media query (min-width, max-width etc)
+Modules are responsible for providing responsive behaviours where appropriate.  There are a number of strategies available.  We intend to standardise this but do not yet have agreement on the best strategy.  In the meantime, component authors are requested to raise their use case and preference on issue [#68](https://github.com/Financial-Times/ft-origami/issues/68) in the issue tracker.  Currently we see the following possible solutions:
+
+1. **Module includes media queries** and manages its responsiveness autonomously.  This makes the component easiest to consume by products, but only works for full width modules, makes it hard to *prevent* a module acting responsively when the page width of the product is fixed, and by default may result in numerous rather un-coordinated breakpoints.  If using this strategy, all breakpoint length measurements must be configurable variables.
+2. **Module includes mixins**, such as `o-tweet-responsive-narrow`, which a product developer may include in their media queries.  This has the benefit of allowing product developers to manage breakpoints in a way that suits their content more holistically, and means unused responsive styles will be compiled out when the bundle is built.  However, it requires the product developer to do additional work to enable the module's responsive behaviour, and could not easily be supported by the build service.
+3. **Module includes responsive classes**, a similar approach to using mixins, but product developers would control responsiveness by adding or removing classes in the markup rather than importing mixins in their CSS.  This allows product developers to make use of the responsiveness even when fetching CSS from the build service, but changing from one responsive style to another would require JavaScript.
+4. **Module includes multiple markup templates**, which contain potentially starkly different markup for rendering the same data model.  This allows components to more easily change beyond recognition when going from one responsive mode to another (eg a vertical accordian becomes a horizontal tab bar), but would require much more extensive development work by the product developer if they wanted to use multiple templates.
+
+Regardless of which of the above strategies is used, components *must* by default render themselves correctly in at least a coherent non-responsive way.
 
 ## Subresources
 
