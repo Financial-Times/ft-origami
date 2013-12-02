@@ -131,7 +131,7 @@ Modules should be named using a short descriptive term (hypenated if necessary) 
 
 ## Where to store modules
 
-Modules *must* be stored in git repos.  This may be any of the following, but they are listed in order of preference:
+Modules *must* be stored in git repos with the same name as the module itself.  The host server may be any of the following, but they are listed in order of preference:
 
 1. Public GitHub (there should be very few front end modules that we don't want to publicly disclose)
 2. FT's GitBlit
