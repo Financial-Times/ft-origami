@@ -56,7 +56,7 @@ SASS features should be used only where they result in increased clarity and reu
 
 ## Values
 
-* Component CSS *must* not use `!important` (valid use cases for important exist, but only at the product level)
+* Component CSS *should* not use `!important`.  Valid use cases for !important exist, but usually only at the product level.  If !important is used in a component, a comment should be left in code to explain why it was necessary.
 * Avoid CSS expressions and behaviours, except to polyfill essential features for older browsers (e.g. boxsizing.htc for `box-sizing: border-box`)
 
 ### SASS variables
