@@ -13,9 +13,9 @@ SASS features should be used only where they result in increased clarity and reu
 
 ## Selectors
 
-* Specificity should be minimised. Use [BEM](http://csswizardry.com/2013/01/mindbemding-getting-your-head-round-bem-syntax/) where there is any chance of components being nested.
-* Specificity should primarily come from class naming, rather than selectors
-	- GOOD: `.o-tweet__title`
+* Specificity *must* be minimised. Use [BEM](http://csswizardry.com/2013/01/mindbemding-getting-your-head-round-bem-syntax/) where there is any chance of components being nested.
+* Specificity *must* primarily come from class naming, rather than selectors.  Selectors *may* use multiple operands if necessary, for example to prefix a class with a configuarable selector, or to apply adjacency rules:
+	- GOOD: `.o-tweet__title`, `$o-tweet-legacy-behaviour .o-tweet__user`, `.o-tweet__media + .o-tweet__stats`
 	- BAD: `div.tweet .header h1`
 * Keep selectors short. Ideally just one class
 * Avoid IDs
