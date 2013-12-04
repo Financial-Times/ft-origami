@@ -80,28 +80,7 @@ Regardless of which of the above strategies is used, components *must* by defaul
 
 ## Subresources
 
-When your styles refer to external resources, notably fonts and images, the module must define the following three SASS variables as defaults, prior to referencing the subresource (replacing `modulename` with the appropriate module name, eg 'colors'):
-
-	$o-global-subresource-path-prefix = '/bower_components' !default;
-	$o-modulename-current-version = '' !default;
-	$o-modulename-subresource-path-prefix = $o-global-subresource-path-prefix + /modulename + $o-modulename-current-version + / !default;
-
-When referencing a subresource, the module-specific path prefix should be prepended to a path from the root of the module:
-
-	background: url($o-modulename-subresource-path-prefix + /img/logo.png);
-
-This policy is designed to enable product developers to easily use the build service, which will define `current-version` variables for each module in the bundle, and will set the global prefix to its own hostname.   This will mean that in the case of the example above, assuming version 1.2 of the colors module, the subresource would be requested from:
-
-	http://buildservice.ft.com/files/o-colors/1.2/img/logo.png
-
-This allows the build service to fully resolve the exact version of the right file, and serve it.  Equally, product developers may leave the prefix and version variables unchanged, in which case the default behaviour will request the resources from:
-
-	/bower_components/o-colors/img/logo.png
-
-If the product developer has installed the Origami modules in a `bower_components` directory (which is typical) and that directory is at the root of their web server's public document tree, the default variable values will make the subresources Just Work&trade;.  However, it's usually advisable not to install packages inside your web root, so the product developer is expected to want to redefine `$o-global-subresource-path-prefix` and implement a route for this within their front controller, mapping it to the location of their bower_components directory in their file tree.
-
-When loading from installed modules there is no need for a version number because the subresource file will be part of the same installed package from which the CSS is drawn.
-
+When your styles refer to external resources, notably fonts and images, the module *must* use `assets-module` to declare paths to these resources in a robust, build-agnostic fashion. Please see [the module's repository](http://git.svc.ft.com/summary/?r=origami/assets-module.git) for documentation and the rationale behind enforcing this approach.
 
 ## Code organisation and formatting
 
