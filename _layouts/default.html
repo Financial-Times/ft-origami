@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>{{ page.title }} - {{ site.name }}</title>
+        <meta name="viewport" content="width=device-width">
+        <meta name="robots" content="noindex, nofollow">
+
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/3.2.1/css/font-awesome.min.css">
+        <link rel="stylesheet" href="{{ site.baseurl }}/buildcache/main.css">
+
+        <script src='//cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.js'></script>
+        <script src='//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js'></script>
+        <script src='//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.0/js/bootstrap.min.js'></script>
+        <script src='{{ site.baseurl }}/js/pagenav.js'></script>
+        <script src='{{ site.baseurl }}/js/tablewrap.js'></script>
+    </head>
+    <body>
+
+      <div class="ft-grid-page">
+
+        <div class="ft-grid-row page-header">
+          <div class="ft-grid-col-d9-s12-m8 page-header-text">
+            <h1>{{ site.name }}</h1>
+            <p class='lead'>Universal front end component standards for FT web products</p>
+          </div>
+          <span class="ft-grid-col-d3-s0-m4 page-header-logo"></span>
+        </div>
+
+        <div class="ft-grid-row">
+
+          <div class="ft-grid-col-d4-m12-s12">
+            <div class="ft-grid-row sidebar">
+            <ul class="nav ft-grid-col-d12" id='sitenav'>
+              <li class="{% if page.title == 'Home' %}active{% endif %}">
+                <a href="{{ site.baseurl }}/">Home</a>
+              </li>
+              <li class="{% if page.title == 'Overview' %}active{% endif %}">
+                <a href="{{ site.baseurl }}/docs/overview">Overview</a>
+              </li>
+              <li class="{% if page.title == 'Principles' %}active{% endif %}">
+                <a href="{{ site.baseurl }}/docs/principles">Principles</a>
+              </li>
+              <li class="{% if page.title == 'Component types' %}active{% endif %}">
+                <a href="{{ site.baseurl }}/docs/component-types">Component types</a>
+                {% if page.section == 'Component types' %}
+                <ul class="nav subnav">
+                  <li class="{% if page.title == 'Modules' %}active{% endif %}">
+                    <a href="{{ site.baseurl }}/docs/component-types/modules">Modules</a>
+                  </li>
+                  <li class="{% if page.title == 'Web services' %}active{% endif %}">
+                    <a href="{{ site.baseurl }}/docs/component-types/web-services">Web services</a>
+                  </li>
+                  <li class="{% if page.title == 'Client side includes' %}active{% endif %}">
+                    <a href="{{ site.baseurl }}/docs/component-types/client-includes">Client side includes</a>
+                  </li>
+                  <li class="{% if page.title == 'Middleware' %}active{% endif %}">
+                    <a href="{{ site.baseurl }}/docs/component-types/middleware">Middleware</a>
+                  </li>
+                </ul>
+                {% endif %}
+              </li>
+              <li class="{% if page.title == 'Syntax' %}active{% endif %}">
+                <a href="{{ site.baseurl }}/docs/syntax">Syntax</a>
+                {% if page.section == 'Syntax' %}
+                <ul class="nav subnav">
+                  <li class="{% if page.title == 'JavaScript' %}active{% endif %}">
+                    <a href="{{ site.baseurl }}/docs/syntax/js">JavaScript</a>
+                  </li>
+                  <li class="{% if page.title == 'HTML' %}active{% endif %}">
+                    <a href="{{ site.baseurl }}/docs/syntax/html">HTML</a>
+                  </li>
+                  <li class="{% if page.title == 'SCSS' %}active{% endif %}">
+                    <a href="{{ site.baseurl }}/docs/syntax/scss">SCSS</a>
+                  </li>
+                  <li class="{% if page.title == 'Mustache' %}active{% endif %}">
+                    <a href="{{ site.baseurl }}/docs/syntax/mustache">Mustache</a>
+                  </li>
+                  <li class="{% if page.title == 'origamiconfig' %}active{% endif %}">
+                    <a href="{{ site.baseurl }}/docs/syntax/origamiconfig">.origamiconfig</a>
+                  </li>
+                  <li class="{% if page.title == 'Web service description' %}active{% endif %}">
+                    <a href="{{ site.baseurl }}/docs/syntax/web-service-description">Web service description</a>
+                  </li>
+                  <li class="{% if page.title == 'Web service index' %}active{% endif %}">
+                    <a href="{{ site.baseurl }}/docs/syntax/web-service-index">Web service index</a>
+                  </li>
+                  <li class="{% if page.title == 'Metrics format' %}active{% endif %}">
+                    <a href="{{ site.baseurl }}/docs/syntax/metrics">Metrics</a>
+                  </li>
+                </ul>
+                {% endif %}
+              </li>
+              <li class="{% if page.title == 'Build service' %}active{% endif %}">
+                <a href="{{ site.baseurl }}/docs/build-service">Build service</a>
+              </li>
+              <li class="{% if page.title == 'Third party component A List' %}active{% endif %}">
+                <a href="{{ site.baseurl }}/docs/3rd-party-a-list">Third party component A List</a>
+              </li>
+              <li class="{% if page.title == 'Use cases' %}active{% endif %}">
+                <a href="{{ site.baseurl }}/docs/use-cases">Use case examples</a>
+              </li>
+              <li class="{% if page.title == 'Roadmap' %}active{% endif %}">
+                <a href="{{ site.baseurl }}/docs/roadmap">Roadmap and current activity</a>
+              </li>
+            </ul>
+            </div>
+          </div>
+
+          <div class="ft-grid-col-d8-m12-s12 main">
+            {{ content }}
+          </div>
+
+        </div> <!-- /row -->
+      </div> <!-- /container -->
+
+      <div class='footer ft-grid-row'>
+          <div class='ft-grid-col-d12'>
+              <p class='pull-right'><a href='http://github.com/financial-times/ft-origami'>View project on Github</a></p>
+              <p>&copy; THE FINANCIAL TIMES LTD {{ site.time | date:'%Y' }}. FT and 'Financial Times' are trademarks of The Financial Times Ltd.</p>
+          </div>
+      </div>
+
+      <script>
+        $(prettyPrint);
+      </script>
+    </body>
+</html>

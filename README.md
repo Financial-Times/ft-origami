@@ -1,3 +1,4 @@
-## Universal front end component standards for FT web products
+## This is a gh-pages branch
 
-Please see http://financial-times.github.io/ft-origami to view the standard, or switch to the **gh-pages** branch to view the source of the spec.
+Please visit http://financial-times.github.io/ft-origami
+
