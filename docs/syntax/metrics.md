@@ -26,7 +26,7 @@ All Origami web services are required to expose multiple `/metrics` endpoints (o
 	<td>Set to 1.</td>
 </tr><tr>
 	<td>&nbsp;&nbsp;<code>metrics&nbsp;{</code></td>
-	<td>array*</td>
+	<td>object*</td>
 	<td>A list of metrics</td>
 </tr><tr>
 	<td>&nbsp;&nbsp;&nbsp;&nbsp;<code><em>metricname</em>&nbsp;{</code></td>
@@ -48,6 +48,12 @@ All Origami web services are required to expose multiple `/metrics` endpoints (o
 	<td><em>varies</em>*</td>
 	<td>
 		The current value of the metric.  In the case of counter metrics, a number.  In the case of boolean metrics, a boolean.  Should not be present for movingaverage metrics.
+	</td>
+</tr><tr>
+	<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>description</code></td>
+	<td><em>string</em></td>
+	<td>
+		Optional short description to provide any supplemental information about this metric
 	</td>
 </tr><tr>
 	<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>unit</code></td>
@@ -102,10 +108,10 @@ All Origami web services are required to expose multiple `/metrics` endpoints (o
 	{
 	  "schemaVersion": 1,
 	  "metrics": {
-	     "queueLength": {"type": "counter", "count": 74, "lastUpdated":"2013-08-15T09:34:00Z"},
-	     "workerProcessCount": {"type":"counter", "count":4, "lastUpdated":"2013-08-15T09:34:00Z"},
+	     "queueLength": {"type": "counter", "val": 74, "lastUpdated":"2013-08-15T09:34:00Z"},
+	     "workerProcessCount": {"type":"counter", "val":4, "lastUpdated":"2013-08-15T09:34:00Z"},
 	     "memcacheConnected": {"type":"boolean", "val":true, "lastUpdated":"2013-08-15T09:34:00Z"},
 	     "twitterReachable": {"type":"boolean", "val":true, "lastUpdated":"2013-08-15T09:34:00Z"},
-	     "twitterRespTime": {"type":"average", "period":60, "mean":3.65, "min":0.8, "max":7.65, "stddev":0.45, "lastUpdated":"2013-08-15T09:34:00Z"}
+	     "twitterRespTime": {"type":"movingaverage", "period":60, "mean":3.65, "min":0.8, "max":7.65, "stddev":0.45, "lastUpdated":"2013-08-15T09:34:00Z"}
 	   }
 	}
