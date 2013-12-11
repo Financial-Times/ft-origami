@@ -15,6 +15,17 @@ A **web service** component is offered as a URL endpoint that delivers content o
 * Fetching individual tweets from twitter
 * Collecting analytics
 
+### Naming conventions
+
+Web services source code repositories should be named using a short descriptive term (hypenated when appropriate), suffixed with `-service`.  The service hostname should drop the suffix.  Examples:
+
+<table class='table'>
+<tr><th>Repo name</th><th>Host name</th></tr>
+<tr><td>tweet-service</td><td>tweet.webservices.ft.com</td></tr>
+<tr><td>nav-service</td><td>nav.webservices.ft.com</td></tr>
+<tr><td>mostpopular-service</td><td>mostpopular.webservices.ft.com</td></tr>
+</table>
+
 ## API
 
 Web services must expose an HTTP endpoint on the hostname `{componentname}.webservices.ft.com`, which conforms to the requirements included below.
@@ -49,17 +60,6 @@ Web services must expose an HTTP endpoint on the hostname `{componentname}.webse
 	* *Must* give at least 3 months notice via an email notification to the notification list
 	* *Must* set an `X-Service-Termination-Date:` header on all HTTP responses using an RFC1123 format date
 	* Following the expiry of the termination date, and for ever more, *should* return either a `410 Gone` or a static copy of the last content to be generated.
-
-### Naming conventions
-
-Web services source code repositories should be named using a short descriptive term (hypenated when appropriate), suffixed with `-service`.  The service hostname should drop the suffix.  Examples:
-
-<table class='table'>
-<tr><th>Repo name</th><th>Host name</th></tr>
-<tr><td>tweet-service</td><td>tweet.webservices.ft.com</td></tr>
-<tr><td>nav-service</td><td>nav.webservices.ft.com</td></tr>
-<tr><td>mostpopular-service</td><td>mostpopular.webservices.ft.com</td></tr>
-</table>
 
 ### Output formats
 
