@@ -22,7 +22,7 @@ Modules might contain resources such as JS modules, Sass modules, fonts, images,
 
 ## Naming conventions
 
-Modules should be named using a short descriptive term (hyphenated if necessary) as the name for the repository prefixed with `o-` for Origami.  CSS classes should be the same.  Examples: `o-tweet`, `o-colors`, `o-grid`, `o-tabs`, `o-tabs-style1`, `o-cookiewarn`, `o-ft-nav`.
+Modules *must* be named using a short descriptive term (hyphenated if necessary) as the name for the repository prefixed with `o-` for Origami.  CSS classes should be the same.  Examples: `o-tweet`, `o-colors`, `o-grid`, `o-tabs`, `o-tabs-style1`, `o-cookiewarn`, `o-ft-nav`.
 
 ## Requirements
 
