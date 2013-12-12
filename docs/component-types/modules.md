@@ -22,7 +22,7 @@ Modules might contain resources such as JS modules, Sass modules, fonts, images,
 
 ## Naming conventions
 
-Modules should be named using a short descriptive term (hyphenated if necessary) as the name for the repository prefixed with `o-` for Origami.  CSS classes should be the same.  Examples: `o-tweet`, `o-colors`, `o-grid`, `o-tabs`, `o-tabs-style1`, `o-cookiewarn`, `o-ft-nav`.
+Modules *must* be named using a short descriptive term (hyphenated if necessary) as the name for the repository prefixed with `o-` for Origami.  CSS classes should be the same.  Examples: `o-tweet`, `o-colors`, `o-grid`, `o-tabs`, `o-tabs-style1`, `o-cookiewarn`, `o-ft-nav`.
 
 ## Requirements
 
@@ -35,7 +35,7 @@ The following requirements apply to creating a Origami-compatible module compone
 * *Must not* contain build scripts other than for development and testing.  *Must* be buildable using the standard build process described by the [build service]({{site.baseurl}}/docs/build-service/), and all development and testing scripts *must* be excluded when the module is installed.
 * Where there is a dependency on a web service component (eg because the module is a JavaScript library that makes AJAX requests to a service), each version of the web service *must* be compatible with all versions of the module that carry the same major version number (and conversely, all versions of the module must be compatible with the version of the web service that shares the module's major version number).  For example, version 2.4.5, 2.4.6, and 2.7 of a module should all use version 2 of the web service.
 * Where the module contains JavaScript or SCSS, there *must* be a single 'main' file from which all other files of the same language are ultimate dependencies (using `require` or `@import` as appropriate).  These main files must be called `main.js` and `main.scss` respectively and must be in the module root.
-* Where the module contains markup templates, there may be more than one 'top level' alternative for the product developer to choose from.  If the module contains a single exportable template, it *must* be called `main.ms`.  If there are more than one, they *must* be prefixed `main-`, eg `main-large.ms`, `main-regular.ms`.  Multiple main templates *must* all support an identical data model.
+* Where the module contains markup templates, there may be more than one 'top level' alternative for the product developer to choose from.  If the module contains a single exportable template, it *must* be called `main.mustache`.  If there are more than one, they *must* be prefixed `main-`, eg `main-large.mustache`, `main-regular.mustache`.  Multiple main templates *must* all support an identical data model.
 * *May* include an bower-compatible `bower.json` file (in the root of the repo) which if present *must* conform to the requirements set out in 'Packaging and build configuration' below.
 * *Must* be stored in a Git repo accessible to any FT network (see [recommendations for module locations](#where-to-store-modules) below)
 * *Must not* include package management config for any package manager other than Bower, except for package config whose only purpose is to load dependencies for development or testing of the component.
