@@ -46,6 +46,32 @@ The following requirements apply to creating a Origami-compatible module compone
 	* Links to repos of web services that exist to provide markup or data that is used by the module.
 
 
+## File structure
+
+A module component could be organised like this, but this does not imply any requirements aside from those listed above.  The following can be considered an opinion on a good file structure for a module.
+
+	.
+	├─ examples
+	├─ tests
+	├─ src
+	|   ├─ javascript
+	|   |   ├─ module1.js
+	|   |   └─ module2.js
+	|   ├─ scss
+	|   |   ├─ module1.scss
+	|   |   └─ module2.scss
+	|   ├─ images
+	|   |   └─ logo.png
+	|   └─ svg
+	|       └─ icon1.svg
+	├─ .gitignore
+	├─ .origamiconfig
+	├─ bower.json
+	├─ main.js
+	├─ main.scss
+	└─ README.md
+
+
 
 [1]: https://github.com/commonjs/commonjs/blob/master/docs/specs/modules/1.0.html.markdown
 [3]: http://semver.org/
