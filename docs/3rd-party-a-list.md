@@ -27,7 +27,7 @@ Origami components may have dependencies (via Bower) on third party components. 
 		<td>JavaScript utils</td>
 		<td><a href='https://github.com/lodash/lodash'>Lo-dash</a></td>
 		<td>Underscore</td>
-		<td>Lo-dash is roughly functionally equivilent to Underscore, but generally delivers faster performance, and includes some useful things not available in Underscore.</td>
+		<td>Lo-dash is roughly functionally equivalent to Underscore, but generally delivers faster performance, and includes some useful things not available in Underscore.</td>
 	</tr><tr>
 		<td>Template engine</td>
 		<td><a href='https://github.com/wycats/handlebars.js/'>Handlebars</a></td>
