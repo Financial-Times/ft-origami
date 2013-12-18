@@ -22,7 +22,7 @@ Modules might contain resources such as JS modules, Sass modules, fonts, images,
 
 ## Naming conventions
 
-Modules *must* be named using a short descriptive term (hyphenated if necessary) as the name for the repository prefixed with `o-` for Origami.  CSS classes should be the same.  Examples: `o-tweet`, `o-colors`, `o-grid`, `o-tabs`, `o-tabs-style1`, `o-cookiewarn`, `o-ft-nav`.
+Modules *must* be named using a short descriptive term (hyphenated if necessary) prefixed with `o-` (for Origami) as the name for the repository and CSS classes.  Examples: `o-tweet`, `o-colors`, `o-grid`, `o-tabs`, `o-tabs-style1`, `o-cookiewarn`, `o-ft-nav`.
 
 ## Requirements
 
@@ -123,8 +123,8 @@ Modules should have as few subdependencies as possible.  Where the dependency is
 
 When listing dependencies in the `dependencies` section of the `bower.json` package configuration, specify compatible versions using as wide a range as possible, allowing for automatic point release updates.  Where the dependency is an Origami module that is *also a dependency of many other Origami modules*, it's especially important to verify and assert the widest version compatibility possible. Where a dependency is an origami module it *must* be listed under its original name (in order to avoid causing conflicts in the [Build service resource compiler][4])
 
-* Good: `"o-colors": "git://github.com:Financial-Times/o-colors.git#>=1.2.0 <1.3.0"` 
-* Bad: `"colors-legacy": "git://github.com:Financial-Times/o-colors.git#1.1.0"` 
+* Good: `"o-colors": "git://github.com:Financial-Times/o-colors.git#>=1.2.0 <1.3.0"`
+* Bad: `"colors-legacy": "git://github.com:Financial-Times/o-colors.git#1.1.0"`
 
 ## Tests and examples
 

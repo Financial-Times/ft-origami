@@ -30,8 +30,8 @@ SASS features should be used only where they result in increased clarity and reu
 
 ## Naming conventions
 
-* Classes that mark the outer element of a module component *must* be named `o-{modulename}` (o is for Origami).  The `o-` prefix should not be used by product developers for their own CSS.
-* Classes that are not restricted to a module root *must* be named `o-{classname}`.  This is
+* Classes that mark the outer element of a module component *must* have the same name as the module (which will start with `o-`).  The `o-` prefix *should* not be used by product developers for their own CSS.
+* Classes that are not restricted to a module root *must* be named `o-{classname}`, which may be different from the name of the module.  For example, a module called `o-typography` may contain a class called `o-allcaps`.
 * Classes that style elements within a module root element should use single selectors based on [BEM](http://csswizardry.com/2013/01/mindbemding-getting-your-head-round-bem-syntax/), especially if the component might contain other components (eg in the case of a 'grid' component), to avoid one component's styles affecting the appearance of a component within it.  Where a component can never contain any child components (eg a 'tweet' component or a 'gallery' component), they may instead choose to use simple class names and increase specificity with the module root selector as a parent.
 * SASS variables, mixins and functions are global (within all SASS files being processed at one time), so name them to avoid conflicts. e.g. `$o-gallery-thumb-width` instead of just `$thumb-width`.
 
