@@ -72,6 +72,53 @@ A module component could be organised like this, but this does not imply any req
 	└─ README.md
 
 
+## Packaging and build configuration
+
+When a developer goes to use a module, and finds that it has config for a particular package management system, they should be able to assume that the same package manager can be used to install *any* Origami module.  So it's important that all Origami modules share the same package config and do not include any 'special' config for package managaement systems that aren't compatible with all modules.
+
+[Bower](http://bower.io/) is the package manager supported by Origami.  If a module has no dependencies, Bower does not require any package configuration, though the module *must* be tagged in git with Semver-compatible version numbers (eg `v0.0.4`).  Component authors may choose to provide a `bower.json` file anyway, and *must* do so if the module has dependencies, and if they do it must conform to the following requirements:
+
+* *Must* include a `name` property set to the repo name, eg 'grid-module'
+* *Must* include a `main` property *if* the module contains any JavaScript, and if present, *must* be set to the value `main.js`.
+* *Must* include a `dependencies` object *if* the module has any Origami dependencies and should accept as wide a range of versions of dependencies as possible (also see 'Module subdependencies' below)
+* *Must* include an `ignore` property listing all files and directories in the module that are not required by product developers, which must include anything that is not declarative code or front end JavaScript.
+* *May* include `devDependencies` if appropriate
+* *Must not* include a `version` property.  The version property is not needed and risks being out of sync with the repo tag
+* *Should* not include anything else
+
+The following is an example `bower.json` file that meets the above spec:
+
+<?prettify linenums=1?>
+	{
+	  "name": "o-grid",
+	  "dependencies": {
+	    "o-colors": "git://github.com:Financial-Times/o-colors.git#>=1.2.0 <1.3.0"
+	  },
+	  "ignore": [
+	    "examples"
+	  ]
+	}
+
+Optionally, a module *may* include an npm-compatible `package.json` file, to allow it to install dependencies for development and testing (in fact, a module may install dependencies for development and testing using any package management system).  These package configs should explictly exclude `dependencies`, `files` and `main` properties to avoid any implication that the npm config is designed to allow the module to be installed as a package using npm.  Instead, `devDependencies` should be used.
+
+* *Must* include a `private` property with the value set to `true`.
+* *Must* include a `devDependencies` object *if* the module has any npm dependencies for dev or testing
+* *Must not* include any of the following standard npm defined properties: dependencies, files, main, bugs, publishConfig, preferGlobal, cpu, os, engineStrict, engines, config, bin.
+* *May* include any other standard npm-defined property
+
+The following is an example `package.json` file that meets the above spec:
+
+<?prettify linenums=1?>
+	{
+	  "devDependencies": {
+	    "grunt": "*",
+	    "node-sass": "*"
+	  },
+	  "private": true
+	}
+
+
+
 
 [1]: https://github.com/commonjs/commonjs/blob/master/docs/specs/modules/1.0.html.markdown
 [3]: http://semver.org/
