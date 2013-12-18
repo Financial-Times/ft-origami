@@ -164,10 +164,17 @@ This works well for CSS and JS modules.  If the module you want provides a font,
 ### 3. Use the build service from your product application
 
 <?prettify linenums=1?>
-	<?php
 	$origami_css = file_get_contents('http://buildservice.ft.com/bundle/css?modules=nav@2.3,tweet@1');
-	// Continue your build process
 
+If you need a bit more customisation than you can get by using the build service from the browser, or you want to improve performance by bundling Origami modules with your own, you can use the build service from your own application.  We don't make any assumptions about what technology you're using for your product, but as long as it can make HTTP requests, it can load build service URLs, so you can load the resources that you want and then bundle them as appropriate.
+
+Note that any subresources required by CSS files in the browser will still be loaded directly from the build service.
+
+### 4. Build it yourself
+
+	bower install
+
+If you have the ability to run bower, or an alternative dependency manager based on git tags, you can install Origami modules by creating your own `bower.json` and listing all the modules you want as dependencies of your own project.  When you run `bower install`, all the modules you've requested will be loaded into the `bower_components` subfolder of your project root, and you can then find and compile all the various parts as you like.  Typically this would involve using [Sass][6] for CSS and [Browserify][7] for JavaScript.
 
 
 
