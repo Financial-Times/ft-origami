@@ -118,6 +118,24 @@ The following is an example `package.json` file that meets the above spec:
 	}
 
 
+## Module subdependencies
+
+Modules should have as few subdependencies as possible.  Where the dependency is required to test the module or view the examples, but not to use it, it should be listed in `devDependencies` not in `dependencies`.
+
+When listing dependencies in the `dependencies` section of the `bower.json` package configuration, specify compatible versions using as wide a range as possible, allowing for automatic point release updates.  Where the dependency is an Origami module that is *also a dependency of many other Origami modules*, it's especially important to verify and assert the widest version compatibility possible. Where a dependency is an origami module it *must* be listed under its original name (in order to avoid causing conflicts in the [Build service resource compiler][4])
+
+* Good: `"o-colors": "git://github.com:Financial-Times/o-colors.git#>=1.2.0 <1.3.0"`
+* Bad: `"colors-legacy": "git://github.com:Financial-Times/o-colors.git#1.1.0"`
+
+
+## Tests and examples
+
+We don't seek to standardise how a component author chooses to test their code, only that all test related files should be in the `tests` directory (and that the tests directory should not be installable).  The source files of the component should be in `src` (except the main JS and/or SASS file).  The project must contain a `README.md` formatted in markdown.
+
+If the component author wishes to include an `examples` or `dist` folder to provide examples or pre-compiled versions of the source, they're welcome to do so, but these aren't required.  The build service is able to build modules on demand, so the need for pre-compiled versions is limited.
+
+
+
 
 
 [1]: https://github.com/commonjs/commonjs/blob/master/docs/specs/modules/1.0.html.markdown
