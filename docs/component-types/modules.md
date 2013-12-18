@@ -133,6 +133,33 @@ When listing dependencies in the `dependencies` section of the `bower.json` pack
 We don't seek to standardise how a component author chooses to test their code, only that all test related files should be in the `tests` directory (and that the tests directory should not be installable).  The source files of the component should be in `src` (except the main JS and/or SASS file).  The project must contain a `README.md` formatted in markdown.
 
 If the component author wishes to include an `examples` or `dist` folder to provide examples or pre-compiled versions of the source, they're welcome to do so, but these aren't required.  The build service is able to build modules on demand, so the need for pre-compiled versions is limited.
+## Where to store modules
+
+Modules *must* be stored in git repos with the same name as the module itself.  The host server may be any of the following, but they are listed in order of preference:
+
+1. Public GitHub (there should be very few front end modules that we don't want to publicly disclose)
+2. FT's GitBlit
+3. FT Labs' GitHub Enterprise
+4. Private repo on public GitHub (this is expensive - prefer one of the other options if possible)
+
+
+## Using modules in a product application
+
+If you are building a product and want to include some Origami modules, there are several ways you can do it.  They're listed here in increasing order of effort required:
+
+### 1. Use the Build service to fetch a pre-built page
+
+If you don't even want to write your own HTML page or decide which components you want - you just want to add some extra content to an existing page template, use the build service to download a complete HTML page containing all the components you need.  The page comes as a Mustache template, so you can then add your own data into the placeholders using a [Mustache implementation](http://mustache.github.io/), which are available in almost any language you might need.
+
+### 2. Use the Build service directly in web page source
+
+If you want to write your own page, and you want to choose a specific set of components, but you don't want a build process, you can still use the build service, but by writing your own `link` and `script` tags:
+
+	<link rel='stylesheet' href='http://buildservice.ft.com/bundle/css?modules=nav@2.3,tweet@1,cookiewarn@2.3' />
+
+Construct a URL to load a bundle of JS or CSS from the [Build service resource compiler][4], and simply append all the modules you want to the end of the URL.  The Build service will require all the modules that you want (including their dependencies), create a single bundled resource (using Browserify or Sass, for JS and CSS respectively), minify the result (using Closure compiler or Compass) and serve it to you on the URL you requested.  Put the URL in a `<script>` or `<link>` tag, and your modules are loaded directly into your page.
+
+This works well for CSS and JS modules.  If the module you want provides a font, SVG, images, or other static resources that don't require packaging but can still be included from the browser, you can still avoid serving the files yourself by using the [Build service file proxy][5].  Again just construct a URL to the resource you want.
 
 
 
