@@ -1,0 +1,211 @@
+body {
+  padding-bottom: 40px;
+  background-color: #FFF1E0; /* $ftColor-Pink */
+  color: #333;
+  font-size: 14px;
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+  line-height: 1.428571429;
+}
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 300;
+}
+h1 {
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+a {
+  color: #2e6e9e; /* $ftColor-Blue */
+  text-decoration: none;
+}
+a:hover {
+  color: black;
+  text-decoration: none;
+}
+
+
+code,
+pre {
+  font-family: Monaco, Menlo, Consolas, "Courier New", monospace;
+}
+
+code {
+  padding: 2px 4px;
+  border-radius: 4px;
+  background-color: #f6e9d8; //#e9decf; /* ftColor-Tint2 */
+  color: #9b164f;  /* $ftColor-Claret */
+  white-space: pre-wrap;
+  font-size: 90%;
+}
+
+pre {
+  display: block;
+  overflow-x: auto;
+  margin: 0 0 10px;
+  padding: 9.5px;
+  border: 1px solid #e9decf; /* $ftColor-Tint2 */
+  border-radius: 4px;
+  background-color: #f6e9d8; /* ftColor-Tint1 */
+  color: #333333;
+  word-wrap: inherit;
+  word-break: break-all;
+  font-size: 13px;
+  line-height: 1.428571429;
+}
+
+pre.prettyprint {
+  margin-bottom: 20px;
+}
+
+pre code {
+  padding: 0;
+  border: 0;
+  background-color: transparent;
+  color: inherit;
+  white-space: pre;
+  font-size: inherit;
+}
+
+.pre-scrollable {
+  overflow-y: scroll;
+  max-height: 340px;
+}
+
+
+.table-wrap {
+  overflow: auto;
+  width: 100%;
+}
+
+.table {
+  margin: 1em 0;
+  width: 100%;
+  border-spacing: 0;
+  border-collapse: collapse;
+  border-top: 3px solid #f6e9d8; /* $ftColor-Tint1 */
+  border-right: 5px solid #f6e9d8; /* $ftColor-Tint1 */
+  border-bottom: 3px solid #f6e9d8; /* $ftColor-Tint1 */
+  border-left: 5px solid #f6e9d8; /* $ftColor-Tint1 */
+  background: #f6e9d8; /* $ftColor-Tint1 */
+}
+
+.table thead>tr>th,
+.table tbody>tr>th,
+.table tfoot>tr>th,
+.table thead>tr>td,
+.table tbody>tr>td,
+.table tfoot>tr>td {
+  padding: 8px;
+  border-top: 1px solid #ddd;
+  line-height: 1.428571429;
+  text-align: left;
+}
+
+.table thead>tr>th,
+.table tbody>tr>th,
+.table>tr>th {
+  border-bottom: 2px solid #a7a59b; /* $ftColor-WarmGrey1 */
+  vertical-align: bottom;
+}
+.table tbody>tr>td,
+.table>tr>td {
+  border-bottom: 1px solid #cec6b9; /* $ftColor-Tint3 */
+  vertical-align: top;
+}
+.table>tbody>tr:nth-child(odd)>td,
+.table>tbody>tr:nth-child(odd)>th {
+  background-color: #f6e9d8; /* $ftColor-Tint1 */
+}
+
+
+
+
+.main h1 {
+  margin: 0 0 0.8em 0;
+  font-weight: normal;
+  font-size: 180%;
+}
+.main h2 {
+  margin: 1.5em 0 0.8em 0;
+  font-weight: bold;
+  font-size: 140%;
+}
+.main h3 {
+  border-bottom: 1px solid #ddd;
+  font-size: 120%;
+}
+
+.main h4  {
+  font-size: 18px;
+}
+
+@include ftGridRespondTo($ft-grid-large) {
+  .main h1 {
+    margin: 0 0 0.8em 0;
+    border-bottom: 1px solid #999;
+    font-size: 225%;
+  }
+  .main h2 {
+    margin: 1.5em 0 0.8em 0;
+    font-weight: 300;
+    font-size: 190%;
+  }
+  .main h3 {
+    border: 0;
+    font-size: 140%;
+  }
+}
+
+@include ftGridRespondTo($ft-grid-extra-large) {
+  .main h1 {
+    margin: 0 0 0.8em 0;
+    border-bottom: 1px solid #999;
+    font-size: 225%;
+  }
+  .main h2 {
+    margin: 1.5em 0 0.8em 0;
+    font-weight: 300;
+    font-size: 190%;
+  }
+  .main h3 {
+    border: 0;
+    font-size: 140%;
+  }
+}
+
+.main > *:first-child {
+  margin-top: 0;
+}
+.main img {
+  display: block;
+  margin: 0 auto;
+  max-width: 100%;
+}
+.main img:not(.transparent) {
+  padding: 1px;
+  border: 2px solid #bbb;
+  background-color: white;
+}
+.main .alert-big {
+  margin: 1em 0;
+  font-size: 150%;
+}
+.main li>p {
+  margin-bottom:0; /* Fix for nested bulleted/numbered lists (Markdown does not consistently wrap in para tags) */
+}
+
+.well {
+  margin-bottom: 20px;
+  padding: 19px;
+  min-height: 20px;
+  border: 1px solid #e9decf;
+  border-radius: 4px;
+  background-color: #f6e9d8; /* ftColor-Tint1 */
+  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.05);
+  box-shadow: inset 0 1px 1px rgba(0,0,0,0.05);
+}
+
+.list-group-item-heading {
+  margin-top: 0;
+  margin-bottom: 5px;
+}
+

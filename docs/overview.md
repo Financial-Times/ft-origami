@@ -45,13 +45,13 @@ With the **FT Web App**, we've discovered a whole new way of repeating work.  ma
 
 With **Fast FT**, we wanted to avoid building two versions of the same thing, so we built a single product that could be included in both the web app *and* ft.com pages, using a bodge to enable it to 'hijack' a page that belongs to another site.  This saved some effort, but now means that every single Fast FT post shares the same URL and is invisible to Google.
 
-<div class='well'><h4>How to solve it</h4>Where features or elements of design are used in multiple websites, we need to build them to be usable in all those cases, and portable between them, rather than always building features solely in the context of one product.  These components should not be seen as an intrinsic part of <em>any</em> product, but instead as part of the <b>new digital FT</b>.</div>
+<div class='well'><h4 class='list-group-item-heading'>How to solve it</h4>Where features or elements of design are used in multiple websites, we need to build them to be usable in all those cases, and portable between them, rather than always building features solely in the context of one product.  These components should not be seen as an intrinsic part of <em>any</em> product, but instead as part of the <b>new digital FT</b>.</div>
 
 ### Impenetrable systems create huge barriers to new developers
 
 At the moment a 'new' developer, whether 3rd party or internal, looking to create a branded FT.com product has a lot of work to do. They will need to deconstruct a current page and/or wade through large amounts of code just to find out how to layout a page and style some consitent UI components. It is also likely to consume the time, potentially large amounts of it, of developers who are familiar with the codebase. This prevents them getting on with their own new product development.
 
-<div class='well'><h4>How to solve it</h4>Anything we build should be consitently documented with esoteric terminology defined in a glossary. Our brand guidelines and how they relate to Origami/Velcro should form a part of the overall documentation effort. There should be little or no reason for a 'new' developer to communicate directly with the maintainers of the Origami components or the design team.</div>
+<div class='well'><h4 class='list-group-item-heading'>How to solve it</h4>Anything we build should be consitently documented with esoteric terminology defined in a glossary. Our brand guidelines and how they relate to Origami/Velcro should form a part of the overall documentation effort. There should be little or no reason for a 'new' developer to communicate directly with the maintainers of the Origami components or the design team.</div>
 
 ### Unable to let go and move on
 
@@ -61,15 +61,15 @@ Right now, given the way in which products have historically been (and to some e
 
 Having to keep old stuff running is (like a ship dragging an anchor) a major handicap on the ability of the FT to adopt new, modern practices.
 
-<div class='well'><h4>How to solve it</h4>Have a plan for retiring a service before it even goes live.  Require product teams and BAs to account for the cost of keeping up with evolving platform services when determining the cost of a project.  Have the technology advertise its own demise clearly to all who use it.</div>
+<div class='well'><h4 class='list-group-item-heading'>How to solve it</h4>Have a plan for retiring a service before it even goes live.  Require product teams and BAs to account for the cost of keeping up with evolving platform services when determining the cost of a project.  Have the technology advertise its own demise clearly to all who use it.</div>
 
 ### Experts needed everywhere
 
 It used to be that building websites was pretty easy.  Now, the difference in expertise from a beginner to an advanced web developer is huge.  It's rare for expert web developers to know the entire web platform, instead, people begin to specialise.  To have a modern website that looks good and has all the fancy features we've come to expect, expensive expert engineers are needed.  We can't afford to do this for every project.
 
-Imagine if every time you wanted to go to the shops, you had to build a car.  By yourself you might manage a go-cart.  An expert could build a Jaguar.  But if an expert designed all the bits, got them mas produced and published detailed instructions, you could build a Jaguar too.
+Imagine if every time you wanted to go to the shops, you had to build a car.  By yourself you might manage a go-cart.  An expert could build a Jaguar.  But if an expert designed all the bits, got them mass produced and published detailed instructions, you could build a Jaguar too.
 
-<div class='well'><h4>How to solve it</h4>Let the experts make components which wrap up their cleverness in packages which are then far easier for developers with less specialised skills to put together.</div>
+<div class='well'><h4 class='list-group-item-heading'>How to solve it</h4>Let the experts make components which wrap up their cleverness in packages which are then far easier for developers with less specialised skills to put together.</div>
 
 ### Square pegs and round holes
 
@@ -85,7 +85,7 @@ Another great example of this is the 'wrappers' - page templates produced as a b
 
 The most catastrophic consequence of this happens when the wrapper template is updated and the third party pulls a new copy of it, and then finds that their work is no longer compatible with the wrapper, and bad visual effects result from this.  In reaction to exactly this problem, FT Labs stopped updating wrappers, finding that it was more reliable to simply stick with one they knew worked, even if it was getting progressively more out of date.  This unfortunately caused an even worse problem - ultimately some of the files the wrapper depended on were removed from the web, and the site broke anyway (see pic at the top of this overview).
 
-<div class='well'><h4>How to solve it</h4>Let those who are responsible for a product website serve the entire website.  Give them self-contained components with well defined boundaries that they can incorporate into their products in a way that won't interfere with anything else on the page.  Set well documented standards for these components so product developers know what they're dealing with.</div>
+<div class='well'><h4 class='list-group-item-heading'>How to solve it</h4>Let those who are responsible for a product website serve the entire website.  Give them self-contained components with well defined boundaries that they can incorporate into their products in a way that won't interfere with anything else on the page.  Set well documented standards for these components so product developers know what they're dealing with.</div>
 
 ## The Origami way
 

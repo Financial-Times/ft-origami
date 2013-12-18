@@ -1,0 +1,25 @@
+---
+layout: default
+title: Syntax
+section: Syntax
+permalink: /docs/syntax/
+---
+
+# Syntax rules and standards
+
+These rules apply to any code written as part of an Origami component, and provide standards for use of languages as well as models for standard representations of data within components.
+
+## Language standards
+
+* [JavaScript]({{site.baseurl}}/docs/syntax/js)
+* [SCSS]({{site.baseurl}}/docs/syntax/scss)
+* [HTML]({{site.baseurl}}/docs/syntax/html)
+* [Mustache]({{site.baseurl}}/docs/syntax/mustache)
+
+## Configuration standards
+
+* [.origamiconfig]({{site.baseurl}}/docs/syntax/origamiconfig) component manifest format
+
+## Data models
+
+Use of [Microdata](http://schema.org/docs/gs.html) is not compulsory but strongly encouraged.  Use an FT model if one is available. Failing that use the most appropriate schema from schema.org.

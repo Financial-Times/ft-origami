@@ -1,0 +1,73 @@
+// /* Sidebar */
+.sidebar {
+  margin-top: 0;
+  list-style: none;
+}
+
+.nav {
+  margin-top: 0;
+  margin-bottom: 10px;
+  list-style: none;
+  // @extend %ft-grid-no-left-gutter-s;
+  // @extend %ft-grid-no-left-gutter-m;
+  // @extend %ft-grid-no-right-gutter-s;
+  // @extend %ft-grid-no-right-gutter-m;
+}
+
+.subnav {
+  margin-bottom: 0;
+  padding: 0;
+}
+
+.nav li {
+  background-color: #f6e9d8;
+}
+
+.sidebar li a {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  padding: 6px 10px 6px 30px;
+  text-overflow: ellipsis;
+  white-space: nowrap; 
+}
+.sidebar li.active > a {
+  padding-left: 15px;
+  background-color: #e9decf;
+  color: black; 
+  font-weight: bold;
+  pointer-events: none;
+}
+.sidebar li.active > a:before {
+  display: inline-block;
+  width: 15px;
+  content: "▸";
+}
+.sidebar li a:hover {
+  background-color: #EBE2D3;
+}
+
+.subnav li > a {
+  padding: 3px 10px 3px 40px;
+  font-size: 90%;
+}
+.subnav li.active > a {
+  padding-left: 25px;
+}
+
+#pagenav li a {
+  color: #9b164f;  /* $ftColor-Claret */
+}
+#pagenav.affix {
+  position: static;
+}
+
+@include ftGridRespondTo ($ft-grid-large)  {
+  $navCols: 4, 12;
+  #pagenav.affix {
+    position: fixed;
+    top: 50px;
+    width: ftGridPixelWidthOfColumn($ft-grid-large-max-width, $navCols);
+    
+  }
+}
