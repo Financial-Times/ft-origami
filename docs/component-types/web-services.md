@@ -38,8 +38,7 @@ Web services must expose an HTTP endpoint on the hostname `{componentname}.webse
 * *Must* include a mandatory version number element to the API path for all API endpoints
 * Minor version changes in the web service application *must not* be exposed on the version number included in the API endpoint URL
 * *Should* support both HTML and JSON output (see below for details)
-* When returning HTML, *must* meet the [standard for HTML]({{site.baseurl}}/docs/syntax-requirements)
-* When returning JSON, *must* meet the [standard for JSON]({{site.baseurl}}/docs/syntax-requirements)
+* When returning HTML, *must* meet the [standard for HTML]({{site.baseurl}}/docs/syntax/html)
 * *Must* require requests to API endpoints to contain an identification string set by the requesting application, either in a `source` query string parameter or an `X-FT-Source` HTTP header.  Must support both.  If neither is present, must return a `400 Bad Request` response status code.  Requests to non-API endpoints such as the root path, /about or /metrics *should not* require the source parameter.
 * *Must* provide monitoring endpoints and data conforming to the [FT Health page standard](https://docs.google.com/a/ft.com/document/d/18hefJjImF5IFp9WvPAm9Iq5_GmWzI9ahlKSzShpQl1s/edit)
 * When an error occurs that prevents the service returning the output requested, the HTTP response code *must* be in the 5xx or 4xx range, and the response *must* have an empty content body unless debug information has been requested via a query string parameter.  The web service *should* implement such a parameter, if it does the parameter *must* be called `showerrors`, and the presence of this parameter should always turn on visible errors unless it has a value which is set to 0.
