@@ -91,7 +91,7 @@ Web services *must* implement the following endpoints, for each version of the a
 <tr><td><code>/__about</code></td><td><em>(root only)</em> A JSON document linking to all available versions of the service, in the <a href='{{site.baseurl}}/docs/syntax/web-service-index'>web service index format</a><br/><em>(version endpoints only)</em> A JSON document in the <a href='{{site.baseurl}}/docs/syntax/web-service-description'>web service description format</a></td></tr>
 </table>
 
-If a web service has two versions, `v1` and `v2`, there *must* be three of each of the above.  Using the `/health` endpoint as an example, the complete paths `/health`, `/v1/health` and `/v2/health` *must* be recognised and served by the web service, and *may* return the same content.  The `about` data *must* also be available from three URLs, but will follow the [web service description format]({{site.baseurl}}/docs/syntax/web-service-description) format for those that are version prefixed, and the [web service index]({{site.baseurl}}/docs/syntax/web-service-index) format for the one that isn't.
+If a web service has two versions, `v1` and `v2`, there *must* be three of each of the above.  Using the `/health` endpoint as an example, the complete paths `/__health`, `/v1/__health` and `/v2/__health` *must* be recognised and served by the web service, and *may* return the same content.  The `__about` data *must* also be available from three URLs, but will follow the [web service description format]({{site.baseurl}}/docs/syntax/web-service-description) format for those that are version prefixed, and the [web service index]({{site.baseurl}}/docs/syntax/web-service-index) format for the one that isn't.
 
 
 ### De-duplication of output
