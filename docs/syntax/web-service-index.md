@@ -11,7 +11,7 @@ All Origami web services are required to expose an `/about` endpoint to list the
 
 ## Format
 
-<table class='table'>
+<table class='o-techdocs-table'>
 <tr>
 	<th>Property</th>
 	<th>Type</th>

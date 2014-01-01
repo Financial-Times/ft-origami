@@ -112,7 +112,7 @@ The build service will be capable of running more than one build at the same tim
 
 Fetch a set of modules and build a JavaScript bundle.
 
-<table class='table'>
+<table class='o-techdocs-table'>
 <tr>
 	<th>Param</th>
 	<th>Where?</th>
@@ -169,7 +169,7 @@ If the request was valid but the build failed, a `500 Internal Server Error` is 
 
 Fetch a set of modules and build a CSS bundle.
 
-<table class='table'>
+<table class='o-techdocs-table'>
 <tr>
 	<th>Param</th>
 	<th>Where</th>
@@ -221,7 +221,7 @@ If the request was valid but the build failed, a `500 Internal Server Error` is 
 
 Outputs a complete HTML page with [Mustache](http://mustache.github.io/) template placeholders for product content, and `<script>` and `<link>` tags to pull in a predefined set of resources from the build service.
 
-<table class='table'>
+<table class='o-techdocs-table'>
 <tr>
 	<th>Param</th>
 	<th>Where</th>
@@ -244,7 +244,7 @@ Outputs a complete HTML page with [Mustache](http://mustache.github.io/) templat
 
 Loads and returns a file from a module component's repo.
 
-<table class='table'>
+<table class='o-techdocs-table'>
 <tr>
 	<th>Param</th>
 	<th>Where</th>

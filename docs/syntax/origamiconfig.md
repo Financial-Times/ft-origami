@@ -13,7 +13,7 @@ All origami components, whether modules or web services, should be discoverable 
 
 `.origamiconfig` is a JSON format file, with the following properties:
 
-<table class='table'>
+<table class='o-techdocs-table'>
 <tr>
 	<th>Property</th>
 	<th>Type</th>

@@ -11,7 +11,7 @@ All Origami web services are required to expose `/{version}/about` endpoints to 
 
 ## Format
 
-<table class='table'>
+<table class='o-techdocs-table'>
 <tr>
 	<th>Property</th>
 	<th>Type</th>
