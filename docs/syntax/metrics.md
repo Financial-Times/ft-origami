@@ -7,7 +7,7 @@ permalink: /docs/syntax/metrics/
 
 # Metrics format
 
-All Origami web services are required to expose multiple `/metrics` endpoints (one for each version, and one at the root) to publish metrics on the current state of the system.  The response give at this URL must be a JSON document conforming to the following format.
+All Origami web services are required to expose multiple `/__metrics` endpoints (one for each version, and one at the root) to publish metrics on the current state of the system.  The response give at this URL must be a JSON document conforming to the following format.
 
 ## Format
 
