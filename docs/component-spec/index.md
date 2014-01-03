@@ -1,11 +1,13 @@
 ---
 layout: default
-title: Component types
-section: Component types
-permalink: /docs/component-types/
+title: Component spec
+section: Component spec
+permalink: /docs/component-spec/
 ---
 
-# Types of components
+# Component specification
+
+This section defines the requirements for Origmai-conforming components.  Product developers may also
 
 Origami-compatible components come in two flavours:
 

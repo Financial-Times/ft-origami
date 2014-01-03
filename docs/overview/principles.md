@@ -1,7 +1,8 @@
 ---
 layout: default
-title: Principles
-permalink: /docs/principles/
+title: Statement of principles
+section: Overview
+permalink: /docs/overview/principles/
 ---
 
 # Principles of Origami
@@ -16,7 +17,7 @@ We'll favour solutions that use industry standards over those that define anythi
 
 No single product or project will affect the way a component is built. No product is more or less important than any other, and we will require multiple demonstrable use cases in different products in order to allow something to become a component.   This avoids creating components with unintentional product bias or maintaining components that we don't need.  This should not stop projects from having a decoupled architecture, but if there aren't enough currently known use cases to create a component, it should not be considered to be one.
 
-## 3. Ease of use
+## 3. Easy to use
 
 It will be possible for a developer to use any of our components at any time with no more than one hour of work and they will not require any help or support from us to do so.  We will not require developers to build or compile components if they don't want to, and commit to supplying them as ready-to-use as possible by providing a [build service]({{site.baseurl}}/docs/build-service/).  Our interfaces will follow consistent patterns so that knowing how to use one of our components means a developer will know how to use all of our components.  Learning is expensive, unnecessary learning is waste.
 

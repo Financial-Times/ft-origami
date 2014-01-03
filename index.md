@@ -1,6 +1,7 @@
 ---
 layout: default
 title: Home
+section: Overview
 ---
 
 <img src='{{ site.baseurl }}/img/devices.png' alt='FT on a variety of devices' class='transparent' />
@@ -13,5 +14,6 @@ The things being built by component developers are **components**, while the sit
 
 ## Where to start
 
-* If you're a non-technical stakeholder wondering what all the fuss is about and how Origami will affect you, read the [overview]({{site.baseurl}}/docs/overview), which explains what problems we are solving and how Origami will help
-* If you're a component or product developer, understand the [principles]({{site.baseurl}}/docs/principles) and check out the [types of components]({{site.baseurl}}/docs/component-types) which contain specifications for how to build components as well as how to use them.
+* If you're a non-technical stakeholder wondering what all the fuss is about and how Origami will affect you, read the [overview]({{site.baseurl}}/docs/overview/non-technical), which explains what problems we are solving and how Origami will help
+* If you're a product developer, read the [developer guide]({{site.baseurl}}/docs/developer-guide) to understand how to use Origami components in your product.
+* If you're a component developer, read the [component spec]({{site.baseurl}}/docs/component-spec) which sets out the rules that your components must conform to in order to be Origami components.
