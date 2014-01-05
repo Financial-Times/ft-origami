@@ -23,7 +23,7 @@
           <div class="o-grid-col|3|m12|s12| o-techdocs-sidebar">
             <ul class="o-techdocs-nav">
               <li class="{% if page.title == 'Home' %}o-techdocs-nav__item--active{% endif %}">
-                <a href="{{ site.baseurl }}/docs/overview">Overview</a>
+                <a href="{{ site.baseurl }}/">Overview</a>
                 {% if page.section == 'Overview' %}
                 <ul class="o-techdocs-nav o-techdocs-nav__sub">
                   <li class="{% if page.title == 'Non-technical explainer' %}o-techdocs-nav__item--active{% endif %}">
@@ -59,7 +59,7 @@
               </li>
               <li class="{% if page.title == 'Syntax' %}o-techdocs-nav__item--active{% endif %}">
                 <a href="{{ site.baseurl }}/docs/syntax">Syntax standards</a>
-                {% if page.section == 'Syntax standards' %}
+                {% if page.section == 'Syntax' %}
                 <ul class="o-techdocs-nav o-techdocs-nav__sub">
                   <li class="{% if page.title == 'JavaScript' %}o-techdocs-nav__item--active{% endif %}">
                     <a href="{{ site.baseurl }}/docs/syntax/js">JavaScript</a>
@@ -93,7 +93,10 @@
                 {% if page.section == 'Developer guide' %}
                 <ul class="o-techdocs-nav o-techdocs-nav__sub">
                   <li class="{% if page.title == 'Using modules' %}o-techdocs-nav__item--active{% endif %}">
-                    <a href="{{ site.baseurl }}/docs/developer-guide/modules/">Using modules</a>
+                    <a href="{{ site.baseurl }}/docs/developer-guide/building-modules/">Building modules</a>
+                  </li>
+                  <li class="{% if page.title == 'Using the build service' %}o-techdocs-nav__item--active{% endif %}">
+                    <a href="{{ site.baseurl }}/docs/developer-guide/build-service/">Using the build service</a>
                   </li>
                   <li class="{% if page.title == 'Using web services' %}o-techdocs-nav__item--active{% endif %}">
                     <a href="{{ site.baseurl }}/docs/developer-guide/web-services/">Using web services</a>
@@ -116,7 +119,7 @@
 
         </div> <!-- /row -->
 
-        <div class='o-techdocs-footer'>
+        <div class='o-techdocs-footer o-techdocs-content'>
           <p><a class='o-techdocs-pull-right' href='http://github.com/financial-times/ft-origami'>View project on Github</a>&copy; THE FINANCIAL TIMES LTD {{ site.time | date:'%Y' }}. FT and 'Financial Times' are trademarks of The Financial Times Ltd.</p>
         </div>
 

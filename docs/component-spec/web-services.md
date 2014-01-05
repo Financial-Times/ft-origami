@@ -1,8 +1,8 @@
 ---
 layout: default
 title: Web services
-section: Component types
-permalink: /docs/component-types/web-services/
+section: Component spec
+permalink: /docs/component-spec/web-services/
 ---
 
 # Web service components

@@ -1,22 +1,23 @@
 ---
 layout: default
-title: Build service
-permalink: /docs/build-service/
+title: Using the build service
+section: Developer guide
+permalink: /docs/developer-guide/build-service/
 ---
 
-# Build service
+# Using the build service
 
-Since Origami components are very granular, product developers may find themselves spending a considerable amount of time concerned with setting up dependency management, and build processes to do things such as minification and concatenation of source files.  The **build service** exists to allow developers to avoid this effort if desired.  This is especially useful for bootstrapping early stage prototypes as well as building hacks, experiments, and adding components to legacy applications.
+If building modules sounds like a lot of work, you can let someone else do it for you and use our **build service**, which performs all the build steps listed above on a central build server and then serves your requested bundles directly to your user's browser.
 
-The service offers high availability, reliability, HTTPS with the same hostname and path, and its own cache layer, so can be used for client-side requests.  It offers three endpoints:
+This is especially useful for bootstrapping early stage prototypes as well as building hacks, experiments, and adding components to legacy applications.  The service offers high availability, reliability, HTTPS with the same hostname and path, and its own cache layer, so can be used for client-side requests.  It offers the following endpoints:
 
 	http://buildservice.ft.com/bundles/[css|js]
-	http://buildservice.ft.com/pages
 	http://buildservice.ft.com/files
+	// TODO: Kornel: Add API endpoint here
 
 ## Resource compiler (/bundles)
 
-The resource compiler operates on the endpoints starting with `/bundles`. It loads a number of specified modules using bower (including all their dependencies), bundles and minifies the result and returns it as an HTTP response.  Individual sub-endpoints serve JS and CSS (see API reference below).
+The resource compiler operates on the endpoints starting with `/bundles`. It packages the specified modules (including all their dependencies), bundles and minifies the result and returns it as an HTTP response.  Individual sub-endpoints serve JS and CSS.
 
 Examples of valid resource compilation requests:
 
@@ -24,7 +25,7 @@ Examples of valid resource compilation requests:
 	/bundles/js?modules=o-ads@1.2,o-tracking@3,o-cookiewarn@3.3.1
 	/bundles/css?modules=o-signinstatus@1.7.3,o-fonts,o-grid@3
 
-Product developers should most likely choose to request all JS modules in a single bundle request, and likewise for CSS, and then write them into the `<head>` of their HTML document:
+You should most likely request all the JS modules you want in a single bundle request, and likewise for CSS, and then write them into the `<head>` or end of the `<body>` of your HTML document:
 
 <?prettify linenums=1?>
 	<link rel='stylesheet' href='http://buildservice.ft.com/bundles/css?modules=o-ft-nav@2.3,o-tweet@1,colors' />
@@ -64,36 +65,29 @@ The build service performs the build process by executing these steps in order:
 1. Cache the module_bundle file against this build request and discard the temporary module.
 
 
-## Page wrapper (/pages)
-
-If product developers need a fairly standard set of components in a pretty standard arrangement, or simply don't really care and want to be guided as to what to put on the page, it may be useful to provide a complete, pre-composed page, into which they can simply insert content.  These page templates are git repos, so that changes can be easily tracked - and suggested via pull requests.  This also offers a reference implementation of a complete front end build, and a platform for running functional module tests.
-
-**TODO: To be continued.  Will probably support resolving partials from other repos, and ESIs for including content from web service components**
-
-
 ## File proxy (/files)
 
-This API offers the ability to request, over HTTP, any single file from any known module component.  This is useful to make use of modules that provide static resources such as images, fonts, audio, video or other media, but which the product developer does not want to require using a dependency manager.
+This API offers the ability to request, over HTTP, any single file from any known module component.  This is useful to make use of modules that provide static resources such as images, fonts, audio, video or other media, without having to install them.
 
-The file proxy is also useful when requesting CSS from the build service, because embedded image URLs would be rewritten to go through the proxy, allowing CSS loaded through the resource compiler to still load any included backgrounds.  JavaScript modules might also feasibly include code to load resources from their module, but modules that do this will not be supported by the build service due to the complexity of locating and rewriting paths in JavaScript code.
+The file proxy is also used by the resource compiler when creating bundles of JS or CSS that load external resources on demand.  This allows CSS loaded through the resource compiler to still load any included backgrounds, and JavaScript modules may make AJAX requests to load static resources from their repos.
 
 
 ## Domain sharding
 
-The build service will support a, b, c and d subdomains which will also resolve to the build service, to allow for domain sharding, if the developer requires it (eg `a.buildservice.ft.com`, `b.buildservice.ft.com`).
+The build service supports a, b, c and d subdomains which will also resolve to the build service, to allow for domain sharding, if you require it (eg `a.buildservice.ft.com`, `b.buildservice.ft.com`).  Be aware that domain sharding is often unnecessary and overzealous use of sharding will have a *negative* effect on your page load time.  See Jonathan Klein's post on [Reducing Domain Sharding](http://calendar.perfplanet.com/2013/reducing-domain-sharding/).
 
 
 ## Caching and rebuilding
 
-Requested bundles, pages and files will be generated on demand and then cached indefinitely.  Where it's a bundle that includes Semver versions of modules, the build service will check periodically to see if the matching version has changed (the matching version may differ from the version actually used in the current bundle due to multiple modules requesting the same dependency at different semver ranges).  If so, it will re-run the build and swap out the existing cached version for the new one.
+Requested bundles and files are generated on demand and then cached indefinitely.  Where it's a bundle that includes Semver versions of modules, the build service checks periodically to see if the matching version has changed (the matching version may differ from the version actually used in the current bundle due to multiple modules requesting the same dependency at different semver ranges).  If so, it will re-run the build and swap out the existing cached version for the new one.
 
 If bundles receive no requests at all for a period of two weeks, they'll be deleted.  If requested subsequently, that bundle will need to be rebuilt, so initial requests for it will fail to return any content.  This is not expected to be a problem since it will only affect bundles that have virtually no traffic, and since even search crawlers would keep the bundle alive, it's unlikely that anything with a publicly available URL would be deleted.
 
-The build service consumer *must* cache the output of any build service endpoint using standard HTTP caching rules, respecting the Cache-Control header, including taking advantage of circumstances in which it is permitted to deliver a stale response.
+If you are loading build service URLs from the server side, you *must* fully respect [cache control](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.9) directives emitted by the build service.
 
 ## Availability strategy
 
-The build service will be highly available, and shared-nothing, so each node will be responsible individually for caching its own copy of the built bundles.  A load balancing strategy will be implemented in front of build service nodes which will follow this workflow:
+The build service is highly available, and shared-nothing, so each node is responsible individually for caching its own copy of the built bundles.  A load balancing strategy is implemented in front of build service nodes which follows this workflow:
 
 1. Send request to a random node that has not yet been tried for this request.
 2. If response has a `200`, `3xx` or `4xx` status, send the response back to the client and stop.
@@ -103,7 +97,7 @@ The build service will be highly available, and shared-nothing, so each node wil
 
 ## Concurrency
 
-The build service will be capable of running more than one build at the same time, but will not concurrently run more than one identical build.  The second and subsequent requests for the same resource received while the first is building will not cause a second build to be started, but will simply receive a `202` response (if async) or block waiting for the original build to finish (if sync).
+The build service is capable of running more than one build at the same time, but will not concurrently run more than one identical build.  The second and subsequent requests for the same resource received while the first is building will not cause a second build to be started, but will simply receive a `202` response (if async) or block waiting for the original build to finish (if sync).
 
 
 ## API reference
@@ -120,16 +114,16 @@ Fetch a set of modules and build a JavaScript bundle.
 </tr><tr>
 	<td><code>modules</code></td>
 	<td>Querystring</td>
-	<td>A comma separated list of modules in the form <code>modulename:version</code>.  Modulename may be a full URL (URL-encoded), or just the name of the repository.  Where it is not a URL, the build service will try to find it as a repository from known Git sources.  <code>version</code> is optional - if not present the build service will build the most recent version of the module, if it is present, it will be interpreted using Semver rules and the best matching version will be built.  Using specific commit sha1s is not supported.
+	<td>A comma separated list of modules in the form <code>modulename@version</code>.  Modulename may be a full URL (URL-encoded), or just the name of the repository.  Where it is not a URL, the build service will try to find it as a repository from known Git sources.  <code>version</code> is optional - if not present the build service will build the most recent version of the module, if it is present, it will be interpreted using Semver rules and the best matching version will be built.  Using specific commit sha1s is not supported.
 </td>
 </tr><tr>
 	<td><code>minify</code></td>
 	<td>Querystring</td>
-	<td><em>(Optional)</em> If present, specifies how the build service should minify the built resources.  Options are 'cc-simple' for <a href='https://developers.google.com/closure/compiler/'>Google closure compiler</a>, or 'none' for no minification.  Default is 'cc-simple'.  Closure compiler advanced optimisations are not available since the module code would need to be compatible with it, and this is unlikely to be the case for all modules.</td>
+	<td><em>(Optional)</em> If present, specifies how the build service should minify the built resources.  Options are 'cc-simple' for <a href='https://developers.google.com/closure/compiler/'>Google closure compiler</a> simple optimisations, or 'none' for no minification.  Default is 'cc-simple'.  Closure compiler advanced optimisations are not available since the module code would need to be compatible with it, and this is unlikely to be the case for all modules.</td>
 </tr><tr>
 	<td><code>export</code></td>
 	<td>Querystring</td>
-	<td><em>(Optional)</em> If present, tells browserify to generate a <a href='https://github.com/umdjs/umd'>UMD</a> bundle for the supplied export name. This bundle works with other module systems and sets the name given as a window global if no module system is found.  This parameter passes the <code>-s</code> option to browserify).</td>
+	<td><em>(Optional)</em> If present, tells browserify to generate a <a href='https://github.com/umdjs/umd'>UMD</a> bundle for the supplied export name. UMD works with other module systems and if no module system is found sets the specified name as a window global (this parameter passes the <code>-s</code> option to browserify).</td>
 </tr><tr>
 	<td><code>debug</code></td>
 	<td>Querystring</td>
@@ -162,7 +156,7 @@ All `2xx` responses will include an `X-FT-Build-Info` response header, giving th
 
 If the request was not valid, a `400 Bad Request` is returned, with a plain text explanation in the response body (if `showerrors is set`).
 
-If the request was valid but the build failed, a `500 Internal Server Error` is returned, with a plain text explanation in the response body (if `showerrrors` is set).  The most common causes of a 500 error are dependency conflicts or linting errors from closure compiler.  The build must also fail if the resulting bundle exceeds 5MB in size.
+If the request was valid but the build failed, a `500 Internal Server Error` is returned, with a plain text explanation in the response body (if `showerrrors` is set).  The most common causes of a 500 error are dependency conflicts or linting errors from closure compiler.  The build will also fail if the resulting bundle exceeds 5MB in size.
 
 
 ### GET /bundles/css
@@ -177,7 +171,7 @@ Fetch a set of modules and build a CSS bundle.
 </tr><tr>
 	<td><code>modules</code></td>
 	<td>Querystring</td>
-	<td>A comma separated list of modules in the form <code>modulename:version</code>.  Modulename may be a full URL (URL-encoded), or just the name of the repository.  Where it is not a URL, the build service will try to find it as a repository from known Git sources.  <code>version</code> is optional - if not present the build service will build the most recent version of the module, if it is present, it will be interpreted using Semver rules and the best matching version will be built.  Using specific commit sha1s is not supported.</td>
+	<td>A comma separated list of modules in the form <code>modulename@version</code>.  Modulename may be a full URL (URL-encoded), or just the name of the repository.  Where it is not a URL, the build service will try to find it as a repository from known Git sources.  <code>version</code> is optional - if not present the build service will build the most recent version of the module, if it is present, it will be interpreted using Semver rules and the best matching version will be built.  Using specific commit sha1s is not supported.</td>
 </tr><tr>
 	<td><code>style</code></td>
 	<td>Querystring</td>
@@ -215,29 +209,6 @@ All `2xx` responses will include an `X-FT-Build-Info` response header, giving th
 If the request was not valid, a `400 Bad Request` is returned, with a plain text explanation in the response body (if `showerrors is set`)
 
 If the request was valid but the build failed, a `500 Internal Server Error` is returned, with a plain text explanation in the response body (if `showerrors` is set).  The most common causes of a 500 error are dependency conflicts or compilation errors from Sass.  The build must also fail if the resulting bundle exceeds 5MB in size.
-
-
-### GET /page/`template`:`version`
-
-Outputs a complete HTML page with [Mustache](http://mustache.github.io/) template placeholders for product content, and `<script>` and `<link>` tags to pull in a predefined set of resources from the build service.
-
-<table class='o-techdocs-table'>
-<tr>
-	<th>Param</th>
-	<th>Where</th>
-	<th>Description</th>
-</tr><tr>
-	<td><code>template</code></td>
-	<td>URL</td>
-	<td>Name of a git repo containing a template that is to be rendered.  <b>TODO: template syntax?  Allow partials from other repos?</b></td>
-</tr><tr>
-	<td><code>version</code></td>
-	<td>URL</td>
-	<td><em>(Optional)</em> Semver compliant version number reference.</td>
-</tr>
-</table>
-
-**TODO: Define response.**
 
 
 ### GET /files/`module`/`version`/`path`
