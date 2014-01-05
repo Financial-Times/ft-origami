@@ -7,7 +7,9 @@ permalink: /docs/developer-guide/building-modules/
 
 # Building and using Origami modules
 
-Building Origami modules manually gives you the most flexibility and control, but you will need to use some specific tools.  This tutorial assumes you are starting from a fresh install of a UNIX-like OS with a bash shell and have cloned or initalised a git repo for your project somewhere on the filesystem.  If you're a bit further along than that, feel free to skip any steps you've already completed.
+Building Origami modules manually gives you the most flexibility and control, but you will need to use some specific tools.  Remember that in many cases you may be able to get started faster by using the [build service](../build-service), which will do all this for you.
+
+This tutorial assumes you are starting from a fresh install of a UNIX-like OS with a bash shell and have cloned or initalised a git repo for your project somewhere on the filesystem.  If you're a bit further along than that, feel free to skip any steps you've already completed.
 
 ## 1. Install NodeJS, npm, bower and grunt
 
