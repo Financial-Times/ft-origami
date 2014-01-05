@@ -11,14 +11,17 @@ These rules apply to any code written as part of an Origami component, and provi
 
 ## Language standards
 
-* [JavaScript]({{site.baseurl}}/docs/syntax/js)
-* [SCSS]({{site.baseurl}}/docs/syntax/scss)
-* [HTML]({{site.baseurl}}/docs/syntax/html)
-* [Mustache]({{site.baseurl}}/docs/syntax/mustache)
+* [JavaScript](js)
+* [SCSS](scss)
+* [HTML](html)
+* [Mustache](mustache)
 
 ## Configuration standards
 
-* [.origamiconfig]({{site.baseurl}}/docs/syntax/origamiconfig) component manifest format
+* [.origamiconfig](origamiconfig) component manifest format
+* [Web service description format](web-service-description)
+* [Web service index format](web-service-index)
+* [Metrics format](metrics)
 
 ## Data models
 
