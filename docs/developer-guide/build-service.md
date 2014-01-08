@@ -13,7 +13,7 @@ This is especially useful for bootstrapping early stage prototypes as well as bu
 
 	http://buildservice.ft.com/bundles/[css|js]
 	http://buildservice.ft.com/files
-	// TODO: Kornel: Add API endpoint here
+	http://buildservice.ft.com/modules
 
 ## Resource compiler (/bundles)
 
@@ -236,3 +236,64 @@ Loads and returns a file from a module component's repo.
 </table>
 
 The most recent tagged version of the file that matches the specified Semver version number will be returned, subject to a maximum file size of 5MB.
+
+
+### GET /modules/`module`@`version`
+
+Returns information in JSON format describing the module.
+
+<table class='o-techdocs-table'>
+<tr>
+	<th>Property</th>
+	<th>Type</th>
+	<th>Description</th>
+</tr><tr>
+	<td><code>bowerEndpoint</code></td>
+	<td>String</td>
+	<td>Name or URL of the package with an optional version number. It's in a format accepted by the <code>bower install</code> command.</td>
+</tr><tr>
+	<td><code>bowerManifest</code></td>
+	<td>Object</td>
+	<td>Content of the <a href="https://github.com/bower/bower#defining-a-package"><code>.bower.json</code></a> file that's created by the <code>bower install</code> command. It contains the exact version of the package and its dependencies.</td>
+</tr><tr>
+	<td><code>origamiManifest</code></td>
+	<td>Object</td>
+	<td>Content of the <a href="/ft-origami/docs/syntax/origamiconfig/"><code>.origamiconfig</code></a> file if it was found in the package.</td>
+</tr><tr>
+	<td><code>build</code></td>
+	<td>Object</td>
+	<td>Results of build tasks performed on the package. All properties in this object are optional. Each property in this object contains an object with a <code>valid</code> and an optional <code>error</code> properties.</td>
+</tr><tr>
+	<td><code>build.bundler.valid</code></td>
+	<td>Boolean</td>
+	<td><code>true</code> if the package could be fetched and installed by the build service.</td>
+</tr><tr>
+	<td><code>build.bundler.error</code></td>
+	<td>String</td>
+	<td>Message describing installation failure, if any.</td>
+</tr><tr>
+	<td><code>build.origami.valid</code></td>
+	<td>Boolean</td>
+	<td><code>true</code> if this is an Origami module and no conformance errors were found.</td>
+</tr><tr>
+	<td><code>build.origami.error</code></td>
+	<td>String</td>
+	<td>Message describing the conformance error, if any.</td>
+</tr><tr>
+	<td><code>build.css.valid</code></td>
+	<td>Boolean</td>
+	<td><code>true</code> if CSS and SASS files in the package compiled successfully.</td>
+</tr><tr>
+	<td><code>build.css.error</code></td>
+	<td>String</td>
+	<td>SASS compilation error message, if any.</td>
+</tr><tr>
+	<td><code>build.js.valid</code></td>
+	<td>Boolean</td>
+	<td><code>true</code> if JS was concatenated and minified without problems.</td>
+</tr><tr>
+	<td><code>build.js.error</code></td>
+	<td>String</td>
+	<td>JS compilation error message, if any.</td>
+</tr>
+</table>
