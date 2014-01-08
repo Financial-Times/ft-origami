@@ -211,7 +211,7 @@ If the request was not valid, a `400 Bad Request` is returned, with a plain text
 If the request was valid but the build failed, a `500 Internal Server Error` is returned, with a plain text explanation in the response body (if `showerrors` is set).  The most common causes of a 500 error are dependency conflicts or compilation errors from Sass.  The build must also fail if the resulting bundle exceeds 5MB in size.
 
 
-### GET /files/`module`/`version`/`path`
+### GET /files/`module`@`version`/`path`
 
 Loads and returns a file from a module component's repo.
 
@@ -223,7 +223,7 @@ Loads and returns a file from a module component's repo.
 </tr><tr>
 	<td><code>module</code></td>
 	<td>URL</td>
-	<td>Name of a git repo containing a the file to return</td>
+	<td>Name of a git repo containing a the file to return.</td>
 </tr><tr>
 	<td><code>version</code></td>
 	<td>URL</td>
