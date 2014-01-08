@@ -33,7 +33,9 @@ SASS features should be used only where they result in increased clarity and reu
 * Classes that mark the outer element of a module component *must* have the same name as the module (which will start with `o-`).  The `o-` prefix *should* not be used by product developers for their own CSS.
 * Classes that are not restricted to a module root *must* be named `o-{classname}`, which may be different from the name of the module.  For example, a module called `o-typography` may contain a class called `o-allcaps`.
 * Classes that style elements within a module root element should use single selectors based on [BEM](http://csswizardry.com/2013/01/mindbemding-getting-your-head-round-bem-syntax/), especially if the component might contain other components (eg in the case of a 'grid' component), to avoid one component's styles affecting the appearance of a component within it.  Where a component can never contain any child components (eg a 'tweet' component or a 'gallery' component), they may instead choose to use simple class names and increase specificity with the module root selector as a parent.
-* SASS variables, mixins and functions are global (within all SASS files being processed at one time), so name them to avoid conflicts. e.g. `$o-gallery-thumb-width` instead of just `$thumb-width`.
+* SASS variables, mixins and functions are global (within all SASS files being processed at one time), so name them to avoid conflicts. 
+    - GOOD: `$o-gallery-thumb-width`, `@mixin oGalleryCalculatePadding()`
+    - BAD: `$thumb-width`, `@mixin calculatePadding()`
 
 ## State
 
@@ -52,6 +54,7 @@ SASS features should be used only where they result in increased clarity and reu
 * Order properties consistently. The use of [CSS Comb](http://csscomb.com/) is recommended to automate this, and should be used during development so that other developers beneift from cleaner code being available in the source tree.
 
 ## Hacks and feature/user-agent detection
+
 * Prefer [feature flag](/ft-origami/docs/syntax/html/) and conditional classes to CSS hacks. Where you use a conditional class, make it configurable so that the product developer can use whatever classname they want, and can apply the legacy support to whichever user agents they want. [Modernizr](/ft-origami/docs/3rd-party-a-list/) is the preferred tool for applying conditional classes to the html.
 	- GOOD: `$o-modulename-nosvg .thing { display: none; }`
 	- BAD: `.no-inlinesvg .thing {display: none}`
