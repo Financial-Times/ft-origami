@@ -51,19 +51,10 @@ SASS features should be used only where they result in increased clarity and reu
 ## Properties
 
 * Where vendor-specific properties are used, prefer to use a mixin to apply the various properties. This allows the vendor-specific ones to be removed from just one place as browser support changes.
+* Prefer [feature flag](/ft-origami/docs/syntax/html/) and conditional classes to CSS hacks.  Where you use a conditional class, make it configurable so that the product developer can use whatever classname they want, and can apply the legacy support to whichever user agents they want
+	- GOOD: `$o-tweet-legacy-selector .thing { height: 100px; }`
+	- BAD: `.thing { height*: 100px; }`
 * Order properties consistently. The use of [CSS Comb](http://csscomb.com/) is recommended to automate this, and should be used during development so that other developers beneift from cleaner code being available in the source tree.
-
-## Hacks and feature/user-agent detection
-
-* Prefer [feature flag](/ft-origami/docs/syntax/html/) and conditional classes to CSS hacks. Where you use a conditional class, make it configurable so that the product developer can use whatever classname they want, and can apply the legacy support to whichever user agents they want. [Modernizr](/ft-origami/docs/3rd-party-a-list/) is the preferred tool for applying conditional classes to the html.
-	- GOOD: `$o-modulename-nosvg .thing { display: none; }`
-	- BAD: `.no-inlinesvg .thing {display: none}`
-	- BAD: `.thing { display*: none; }`
-
-* If targeting a particular user agent is unavoidable the module *must* use the selector variables provided by [o-useragent](http://git.svc.ft.com/summary/?r=origami/o-useragent.git). If o-useragent doesn't already contain a variable to target the user agent you need, add a variable to it and release a new patch.
-	- GOOD: `$o-useragent-ie7 .thing { height: 100%; }`
-	- BAD: `.ie7 .thing { height: 100%; }`
-	- BAD: `.thing { height*: 100%; }`
 
 ## Values
 
@@ -93,7 +84,11 @@ Regardless of which of the above strategies is used, components *must* by defaul
 
 When your styles refer to external resources, notably fonts and images, the module *must* use `o-assets` to declare paths to these resources in a robust, build-agnostic fashion. Please see [the module's repository](http://git.svc.ft.com/summary/?r=origami/o-assets.git) for documentation and the rationale behind enforcing this approach.
 
+## Optional output of styles
 
+Modules *must* by default output a complete set of selectors and style rules needed to style every possible configuration of each component part (with the exception of sub-components which define their own styles).
+
+Modules *should* provide a mechanism for suppressing output of styles which are not required by every instance of the module. This mechanism *must* be activated by means of a sass variable `$o-modulename-is-silent: false !default;` which *must* have a default value of `false`. *(An example of an implementation satisfying these conditions can be found in the `oFtTypographyClass` mixin of the o-ft-typography module)*.
 
 ## Code organisation and formatting
 
