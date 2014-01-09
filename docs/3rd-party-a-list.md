@@ -29,6 +29,11 @@ Origami components may have dependencies (via Bower) on third party components. 
 		<td>Underscore</td>
 		<td>Lo-dash is roughly functionally equivalent to Underscore, but generally delivers faster performance, and includes some useful things not available in Underscore.</td>
 	</tr><tr>
+		<td>Progressive enhancement</td>
+		<td><a href='http://modernizr.com/'>Modernizr</a></td>
+		<td>HTML Shiv, jQuery.support, jQuery.browser</td>
+		<td>Modernizr contains feature detects for a large range of browser APIs, as well as providing useful utilities for dealing with browser prefixes and html5 semantic elements in older browsers. It also offers the ability to create lightweight <a href='http://modernizr.com/download/'>custom builds</a></td>
+	</tr><tr>
 		<td>Template engine</td>
 		<td><a href='https://github.com/wycats/handlebars.js/'>Handlebars</a></td>
 		<td>Mustache<br/>Hogan</td>
