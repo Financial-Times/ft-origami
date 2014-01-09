@@ -1,6 +1,9 @@
 {
   "name": "origami",
   "private": true,
+  "scripts": {
+    "postinstall": "bower install"
+  },
   "devDependencies": {
     "grunt": "~0.4.1",
     "grunt-contrib-sass": "*",
