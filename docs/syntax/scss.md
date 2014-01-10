@@ -37,13 +37,13 @@ SASS features should be used only where they result in increased clarity and reu
 
 ## State
 
-* Use BEM modifiers to indicate state, except where state is switched automatically by the browser and selectable using pseudoclasses:
+* BEM modifiers *should* be used to indicate state, except where state is switched automatically by the browser and selectable using pseudoclasses:
 	- *:hover* - (:hover) when mouse pointer is over element
 	- *:focus* - (:focus) when key events will be targetted to the element
 	- *--error* - element is in error state, e.g. a form field
 	- *--disabled* - element cannot be interacted with
 	- *--selected* - element is chosen out of a larger group (use in preference to 'active')
-* Consider iOS's emulated-hover behaviour on elements whose `:hover` style changes `display` or `visibility`
+* Where hover effects are included, [o-hoverable](https://github.com/Financial-Times/o-hoverable) *must* be used to allow the hover effects to be turned off.
 * Consider all forms of user input, not just mouse.
 
 ## Properties

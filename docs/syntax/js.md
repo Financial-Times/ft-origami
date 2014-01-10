@@ -57,3 +57,7 @@ JavaScript modules in Origami components may want to load additional files (font
 	someiframe.src = o.resolve('tracking', '/img/logo.png');
 
 Without any explicit configuration, Module Utils will assume, as we do for subresources in SASS, that the modules are installed publicly at a URL path of `/bower_components` on the current host, and will form URLs on that basis.  Product developers are advised to reconfigure Module Utils to accomodate their own server-side URL routing architecture.
+
+## Hover events
+
+Where JavaScript includes bindings to `mouse...` hover events (such as `mouseover`, `mouseout`, `mouseenter`, and `mouseleave`), the [o-hoverable](https://github.com/Financial-Times/o-hoverable) module must be used to make those hover capabilities configurable.
