@@ -24,7 +24,7 @@ Currently the Origami team comprises the following members.  Contact details are
 	<td>Line manager to other members<br/>Editor of the Origami spec<br/>Arbiter of technology decisions</td>
 </tr><tr>
 	<td>Module developer</td>
-	<td>TBC</td>
+	<td>Dan Searle</td>
 	<td>Develop Origami components in CSS and JavaScript</td>
 </tr><tr>
 	<td>Module developer</td>
@@ -33,11 +33,11 @@ Currently the Origami team comprises the following members.  Contact details are
 </tr><tr>
 	<td>Service developer</td>
 	<td>TBC</td>
-	<td>Develop Origami services in any appropriate server technology</td>
+	<td>Develop Origami services in NodeJS</td>
 </tr><tr>
 	<td>Service developer</td>
 	<td>TBC</td>
-	<td>Develop Origami services in any appropriate server technology</td>
+	<td>Develop Origami services in NodeJS</td>
 </tr>
 </table>
 
@@ -61,18 +61,29 @@ In Origami specification documents, the words **MUST**, **MUST NOT**, **SHOULD**
 
 ## Spec change process
 
-On issues affecting the Origami spec, the team will also consult senior front end developers from across the technology group, and take their views into account when making spec changes.  This wider group of front end developers forms the Origami spec advisory group, and currently comprises:
-
-* Rik Still (ft.com)
-* Luke Kavanagh (interactive graphics)
-* Stuart Turner (Advertising)
-* TBC (Web app)
-* TBC (Membership)
-* TBC (Specialist titles)
-* TBC (Dynamic publishing)
+On issues affecting the Origami spec, the team will also consult the Origami advisory group, and take their views into account when making spec changes.
 
 If a spec change is proposed by the spec editor, they will normally create a pull request, and advertise it to the advisory group and other interested parties via the `front-end-web` distribution list.  If no objections are received (via pull request comments) within three business days, the change will be merged.  Once a change is merged, the advisory group will be notified again so that they can keep their programmes up to date with the latest state of the standard, and promote its adoption and use.
 
 Changes to the spec may also be proposed by anyone via a pull request.  These will be reviewed by the spec editor and if approved, submitted to the advisory group.
 
 The spec editor may choose to skip advisory group approval at their discretion, but should do so only for things that are highly likely to be uncontested.
+
+## Advisory group
+
+The Origami advisory group comprises senior front end developers from across FT technology.  Advisory group members are responsible for:
+
+* subscribing to the `front-end-web` mailing list
+* subscribing to Origami spec changes via GitHub
+* passing comment on proposed spec changes on behalf of their project or programme group
+* passing on their team's feedback and requests to the Origami group
+* ensuring that Origami standards are adhered to in their project as far as possible
+
+Current members:
+
+* Rhys Evans (ft.com)
+* Luke Kavanagh (Interactive graphics)
+* Stuart Turner (Advertising)
+* Matt Andrews (Web app)
+* James Nicholls (Membership)
+* TBC (Specialist titles)
