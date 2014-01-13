@@ -23,6 +23,7 @@ If you are not sure which strategy to use, consult the following table of pros a
 <tr><td>Can get set up quickly</td><td>No.  If you're not familar with node and don't have any pre-requisites installed, getting set up could take you a couple of hours</td><td>Yes, a few minutes at most</td></tr>
 <tr><td>Can add your own front-end code to the Origami bundle</td><td>Yes, trivially</td><td>Not easily.  You'd have to publish that code as a standalone repo</td></tr>
 <tr><td>Can use public open source JavaScript modules like jQuery</td><td>Yes</td><td>Yes, provided that they have a commonJS interface</td></tr>
+<tr><td>Can develop without being online</td><td>Yes</td><td>No, you need to be online if your pages pull resources from the build service.</td></tr>
 </table>
 
 Complete instructions for using both are included in this guide:
