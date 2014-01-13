@@ -33,7 +33,7 @@ SASS features should be used only where they result in increased clarity and reu
 * Classes that mark the outer element of a module component *must* have the same name as the module (which will start with `o-`).  The `o-` prefix *should* not be used by product developers for their own CSS.
 * Classes that are not restricted to a module root *must* be named `o-{classname}`, which may be different from the name of the module.  For example, a module called `o-typography` may contain a class called `o-allcaps`.
 * Classes that style elements within a module root element should use single selectors based on [BEM](http://csswizardry.com/2013/01/mindbemding-getting-your-head-round-bem-syntax/), especially if the component might contain other components (eg in the case of a 'grid' component), to avoid one component's styles affecting the appearance of a component within it.  Where a component can never contain any child components (eg a 'tweet' component or a 'gallery' component), they may instead choose to use simple class names and increase specificity with the module root selector as a parent.
-* SASS variables, mixins and functions are global (within all SASS files being processed at one time), so name them to avoid conflicts. 
+* SASS variables, mixins and functions are global (within all SASS files being processed at one time), so name them to avoid conflicts.
     - GOOD: `$o-gallery-thumb-width`, `@mixin oGalleryCalculatePadding()`
     - BAD: `$thumb-width`, `@mixin calculatePadding()`
 
@@ -82,7 +82,7 @@ Regardless of which of the above strategies is used, components *must* by defaul
 
 ## Subresources
 
-When your styles refer to external resources, notably fonts and images, the module *must* use `o-assets` to declare paths to these resources in a robust, build-agnostic fashion. Please see [the module's repository](http://git.svc.ft.com/summary/?r=origami/o-assets.git) for documentation and the rationale behind enforcing this approach.
+When styles refer to external resources such as fonts and images, the module *must* use `o-assets` to declare paths to these resources in a robust, build-agnostic fashion. Please see [the module's repository](http://git.svc.ft.com/summary/?r=origami/o-assets.git) for documentation and the rationale behind enforcing this approach.
 
 ## Optional output of styles
 
