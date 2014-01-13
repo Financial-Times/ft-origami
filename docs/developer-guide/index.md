@@ -13,6 +13,8 @@ When you're building a new web product, chances are you need a lot of stuff that
 
 Origami's front end modules are all compliant with a single standardised build process, and are delivered unbuilt, so you need to build them in order to use them in your application.  There are two ways to do this - either set up the standard build process in your own project, or use our build service to fetch pre-built bundles containing the modules of your choice.
 
+### Build service or manual build?
+
 If you are not sure which strategy to use, consult the following table of pros and cons to help you decide:
 
 <table class='o-techdocs-table'>
@@ -27,6 +29,12 @@ Complete instructions for using both are included in this guide:
 
 * [Building manually](building-modules)
 * [Using the build service](build-service)
+
+### Loading your script bundle
+
+Whether via the build service or your own build process, your Origami modules will eventually compile to two resources - one JavaScript and one CSS.  You should serve the CSS to all user agents, but the JavaScript only to those that meet the minimum standards assumed by Origami module developers.  To ensure that you only run Origami JavaScript in these 'good' browsers, use a 'Cuts the mustard' script loader.  You can always find our most up to date recommendation as the following GitHub gist:
+
+<script src="https://gist.github.com/triblondon/8399821.js"></script>
 
 ## Web services
 
