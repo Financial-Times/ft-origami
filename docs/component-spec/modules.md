@@ -57,7 +57,7 @@ The following requirements apply to creating a Origami-compatible module compone
 * *Must* include a `name` property set to the repo name, eg 'o-grid'
 * *Must* include a `main` property *if* the module contains any JavaScript, and if present, *must* be set to the value `main.js`.
 * *Must* include a `dependencies` object *if* the module has any Origami dependencies and should accept as wide a range of versions of dependencies as possible (also see 'Module subdependencies' below)
-* *Must* include an `ignore` property listing all files and directories in the module that are not required by product developers, which *must* include anything that is not declarative code or front end JavaScript.  The `.origamiconfig` file should not be ignored, since it may be needed by Origami-aware tools that install Origami modules.
+* *Must* include an `ignore` property listing all files and directories in the module that are not required by product developers, which *must* include anything that is not declarative code or front end JavaScript.  The `.origamiconfig` and `README.md` files *should not* be ignored, since they may be needed by Origami-aware tools that install and catalogue Origami modules.
 * *May* include `devDependencies` if appropriate
 * *Must not* include a `version` property.  The version property is not needed and risks being out of sync with the repo tag
 * *Should* not include anything else
