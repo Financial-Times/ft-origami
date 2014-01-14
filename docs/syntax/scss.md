@@ -84,11 +84,30 @@ Regardless of which of the above strategies is used, components *must* by defaul
 
 When styles refer to external resources such as fonts and images, the module *must* use `o-assets` to declare paths to these resources in a robust, build-agnostic fashion. Please see [the module's repository](http://git.svc.ft.com/summary/?r=origami/o-assets.git) for documentation and the rationale behind enforcing this approach.
 
-## Optional output of styles
+## "Silent" styles
 
-Modules *must* by default output a complete set of selectors and style rules needed to style every possible configuration of each component part (with the exception of sub-components which define their own styles).
+For every class selector included in a module's SASS, the module *must* also include the same selector as a placeholder, with the same styles.  Eg:
 
-Modules *should* provide a mechanism for suppressing output of styles which are not required by every instance of the module. This mechanism *must* be activated by means of a sass variable `$o-modulename-is-silent: false !default;` which *must* have a default value of `false`. *(An example of an implementation satisfying these conditions can be found in the `oFtTypographyClass` mixin of the o-ft-typography module)*.
+    .o-thing-foo, %o-thing-foo {
+        margin-top: 1em;
+    }
+
+If the original selector is not a class selector then the placeholder class can use a syntax suggestive of the original selector, which *must* be documented. Eg:
+
+    [data-o-grid-sizing~='S3'], %o-grid-sizing-S3 {
+        width: 30%;
+    }
+
+Modules that make use of styles defined in dependencies *must* use those styles by `@extend`ing the appropriate placeholder class:
+
+    .o-anotherthing-foo, %o-anotherthing-foo {
+        @extend %o-thing-foo;
+        margin-top: 1em;
+    }
+
+Modules *should* provide a mechanism for suppressing output of concrete selectors which may not always be required. If present, this mechanism *must* be activated by means of a sass variable `$o-{modulename}-is-silent` which *must* have a default value of `false`.  In practice, the effect of this *should* be to remove the `.`-prefixed selector, leaving only the mixin.
+
+<aside>An example of an implementation satisfying these conditions can be found in the `oFtTypographyClass` mixin of the o-ft-typography module</aside>
 
 ## Code organisation and formatting
 
