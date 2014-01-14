@@ -86,23 +86,28 @@ When styles refer to external resources such as fonts and images, the module *mu
 
 ## "Silent" styles
 
-For every class selector included in a module's SASS, the module *must* also include the same selector as a mixin, with the same styles.  Eg:
+For every class selector included in a module's SASS, the module *must* also include the same selector as a placeholder, with the same styles.  Eg:
 
     .o-thing-foo, %o-thing-foo {
         margin-top: 1em;
     }
 
-Modules that make use of styles defined in dependencies *must* use those styles by `@include`ing the appropriate mixin:
+If the original selector is not a class selector then the placeholder class can use a syntax suggestive of the original selector, which *must* be documented. Eg:
+
+    [data-o-grid-sizing~='S3'], %o-grid-sizing-S3 {
+        width: 30%;
+    }
+
+Modules that make use of styles defined in dependencies *must* use those styles by `@extend`ing the appropriate placeholder class:
 
     .o-anotherthing-foo, %o-anotherthing-foo {
-        @include %o-thing-foo;
+        @extend %o-thing-foo;
         margin-top: 1em;
     }
 
 Modules *should* provide a mechanism for suppressing output of concrete selectors which may not always be required. If present, this mechanism *must* be activated by means of a sass variable `$o-{modulename}-is-silent` which *must* have a default value of `false`.  In practice, the effect of this *should* be to remove the `.`-prefixed selector, leaving only the mixin.
 
 <aside>An example of an implementation satisfying these conditions can be found in the `oFtTypographyClass` mixin of the o-ft-typography module</aside>
-
 
 ## Code organisation and formatting
 
