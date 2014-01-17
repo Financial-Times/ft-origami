@@ -32,7 +32,7 @@ Web services *must* expose an HTTP endpoint on the hostname `{componentname}.web
 
 ## Requirements
 
-* *Must* contain a valid [Origami manifest file]({{site.baseurl}}/docs/syntax/origamiconfig)
+* *Must* contain a valid [Origami manifest file]({{site.baseurl}}/docs/syntax/origamijson)
 * *Should* be used for components that produce dynamic editorial content or data that is not practical to store statically in a module component (usually because it changes too frequently or there are too many possible permutations).
 * *Should not* output any executable code (use module components for that)
 * *Must* include a mandatory version number element to the API path for all API endpoints

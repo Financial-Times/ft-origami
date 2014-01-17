@@ -18,7 +18,7 @@ These rules apply to any code written as part of an Origami component, and provi
 
 ## Configuration standards
 
-* [.origamiconfig](origamiconfig) component manifest format
+* [origami.json](origamijson) component manifest format
 * [Web service description format](web-service-description)
 * [Web service index format](web-service-index)
 * [Metrics format](metrics)

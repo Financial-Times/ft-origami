@@ -29,7 +29,7 @@ Modules *must* be named using a short descriptive term (hyphenated if necessary)
 
 The following requirements apply to creating a Origami-compatible module component:
 
-* *Must* contain a valid [Origami manifest file]({{site.baseurl}}/docs/syntax/origamiconfig)
+* *Must* contain a valid [Origami manifest file]({{site.baseurl}}/docs/syntax/origamijson)
 * *May* contain any resource that is a CommonJS JavaScript module, any declarative language that is agnostic of server-side technology stack (HTML, Mustache, CSS, SASS, JSON etc), or binary data (may also contain build tasks, tests etc but these must be marked as not installable in package config)
 * *Must* store CSS as SCSS, to enable products and other modules to make use of variables and mixins
 * *Must not* be used for imperative code except JavaScript (and JavaScript must have a client-side use case to be considered a front end component)
@@ -57,7 +57,7 @@ The following requirements apply to creating a Origami-compatible module compone
 * *Must* include a `name` property set to the repo name, eg 'o-grid'
 * *Must* include a `main` property *if* the module contains any JavaScript, and if present, *must* be set to the value `main.js`.
 * *Must* include a `dependencies` object *if* the module has any Origami dependencies and should accept as wide a range of versions of dependencies as possible (also see 'Module subdependencies' below)
-* *Must* include an `ignore` property listing all files and directories in the module that are not required by product developers, which *must* include anything that is not declarative code or front end JavaScript.  The `.origamiconfig` and `README.md` files *should not* be ignored, since they may be needed by Origami-aware tools that install and catalogue Origami modules.
+* *Must* include an `ignore` property listing all files and directories in the module that are not required by product developers, which *must* include anything that is not declarative code or front end JavaScript.  The `origami.json` and `README.md` files *should not* be ignored, since they may be needed by Origami-aware tools that install and catalogue Origami modules.
 * *May* include `devDependencies` if appropriate
 * *Must not* include a `version` property.  The version property is not needed and risks being out of sync with the repo tag
 * *Should* not include anything else
@@ -144,9 +144,9 @@ This section is non-normative.  A module component *may* be organised as follows
 	|   └─ svg
 	|       └─ icon1.svg
 	├─ .gitignore
-	├─ .origamiconfig
 	├─ bower.json
 	├─ main.js
 	├─ main.scss
+	├─ origami.json
 	└─ README.md
 

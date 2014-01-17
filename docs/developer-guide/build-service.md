@@ -258,7 +258,7 @@ Returns information in JSON format describing the module.
 </tr><tr>
 	<td><code>origamiManifest</code></td>
 	<td>Object</td>
-	<td>Content of the <a href="/ft-origami/docs/syntax/origamiconfig/"><code>.origamiconfig</code></a> file if it was found in the package.</td>
+	<td>Content of the <a href="/ft-origami/docs/syntax/origamijson/"><code>origami.json</code></a> file if it was found in the package.</td>
 </tr><tr>
 	<td><code>build</code></td>
 	<td>Object</td>
