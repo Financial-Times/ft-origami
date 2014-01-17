@@ -80,6 +80,10 @@ All origami components, whether modules or web services, should be discoverable 
 	<td>string</td>
 	<td>(optional) For web services only, the URL on which the service is provided.  Required for web services.</td>
 </tr><tr>
+	<td>&nbsp;&nbsp;<code>demos</code></td>
+	<td>array</td>
+	<td>(optional) For modules only, paths within the repo to HTML pages that demonstrate the functionality of the module.  Array, may refer to more than one demo.</td>
+</tr><tr>
 	<td><code>}</code></td>
 	<td></td>
 	<td></td>
