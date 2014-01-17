@@ -107,4 +107,8 @@ All origami components, whether modules or web services, should be discoverable 
 	    "optional": [
 	      "webaudio"
 	    ]
+	  },
+	  "demos": [
+	  	"/demos/demo1.html"
+	  ]
 	}
