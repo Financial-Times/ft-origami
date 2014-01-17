@@ -60,6 +60,22 @@ All origami components, whether modules or web services, should be discoverable 
 		</ul>
 	</td>
 </tr><tr>
+	<td>&nbsp;&nbsp;<code>browserFeatures&nbsp;{</code></td>
+	<td>object</td>
+	<td>A grouping object for browser features required or used by this module</td>
+</tr><tr>
+	<td>&nbsp;&nbsp;&nbsp;&nbsp;<code>required</code></td>
+	<td>array</td>
+	<td>A list of features, as defined by [Modernizr tests](http://modernizr.com/docs/), which the module will assume to exist, and may choose to rely on in its JavaScript code.  If these features do not exist, the module *may* error.</td>
+</tr><tr>
+	<td>&nbsp;&nbsp;&nbsp;&nbsp;<code>optional</code></td>
+	<td>array</td>
+	<td>A list of features, as defined by [Modernizr tests](http://modernizr.com/docs/), which the module will use if they exist.  The absense of the feature may result in the module offering different or reduced functionality, but it will be handled elegantly.</td>
+</tr><tr>
+	<td>&nbsp;&nbsp;<code>},</code></td>
+	<td></td>
+	<td></td>
+</tr><tr>
 	<td>&nbsp;&nbsp;<code>serviceUrl</code></td>
 	<td>string</td>
 	<td>(optional) For web services only, the URL on which the service is provided.  Required for web services.</td>
@@ -74,10 +90,17 @@ All origami components, whether modules or web services, should be discoverable 
 
 <?prettify linenums=1?>
 	{
-	  "description": "Tweet service",
-	  "origamiType": "service",
+	  "description": "Tweet module",
+	  "origamiType": "module",
 	  "origamiVersion": 1,
-	  "support": "origamisupport-service-tweet@ft.com",
+	  "support": "developer@example.com",
 	  "supportStatus": "active",
-	  "serviceUrl": "http://tweet.webservices.ft.com"
+	  "browserFeatures": {
+	    "required": [
+	      "postmessage",
+	      "localstorage"
+	    ],
+	    "optional": [
+	      "webaudio"
+	    ]
 	}
