@@ -13,13 +13,13 @@ The name **module** shall refer to components that:
 
 * Are made available to product developers as a git repo; and
 * Are compliant with the [module specification](modules); and
-* Contain an origamiconfig declaring them to be modules
+* Contain an `origami.json` file declaring them to be modules
 
 The name **web service** shall refer to components that:
 
 * Are made available to product developers as an HTTP API; and
 * Are compliant with the [web services specification](web-services); and
-* Contain an origamiconfig declaring them to be services
+* Contain an `origami.json` declaring them to be services
 
 ## Non-Origami components
 

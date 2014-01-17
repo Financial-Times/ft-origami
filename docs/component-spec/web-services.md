@@ -33,7 +33,7 @@ Web services *must* expose an HTTP endpoint on the hostname `{componentname}.web
 ## Requirements
 
 ### Web services *must*
-* Contain a valid [Origami manifest file]({{site.baseurl}}/docs/syntax/origamiconfig)
+* contain a valid [Origami manifest file]({{site.baseurl}}/docs/syntax/origamijson)
 * Include a mandatory version number element to the API path for all API endpoints
 * *not* expose minor version changes in the web service application on the version number included in the API endpoint URL
 * Meet the [standard for HTML]({{site.baseurl}}/docs/syntax/html) when relevant

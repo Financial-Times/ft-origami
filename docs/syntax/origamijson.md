@@ -1,17 +1,17 @@
 ---
 layout: default
-title: origamiconfig
+title: origami.json
 section: Syntax
-permalink: /docs/syntax/origamiconfig/
+permalink: /docs/syntax/origamijson/
 ---
 
 # Origami manifests
 
-All origami components, whether modules or web services, should be discoverable by the Origami registry and provide information on how the component is supported.  To do this, the component must contain an `.origamiconfig` file in the root of its repository.
+All origami components, whether modules or web services, should be discoverable by the Origami registry and provide information on how the component is supported.  To do this, the component must contain an `origami.json` file in the root of its repository.
 
 ## Format
 
-`.origamiconfig` is a JSON format file, with the following properties:
+`origami.json` is a JSON format file, with the following properties:
 
 <table class='o-techdocs-table'>
 <tr>
