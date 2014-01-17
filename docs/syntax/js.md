@@ -21,6 +21,7 @@ Product developers are encouraged to include Origami JavaScript using a 'cuts th
 * Export, at a minimum, an `init` and a `destroy` method
 * Do not leave any non-garbage collectable traces after `destroy` is called
 * Do not require global variables to be defined prior to the script loading.  If your module requires configuration, read the config from data attributes attached to parts of DOM that your module will own (see following section for details)
+* Do not assume the existence of globals except those defined as part of ECMAScript 3 and features listed in the `browserFeatures/required` section of `origami.json`.
 
 ## Data attributes
 
