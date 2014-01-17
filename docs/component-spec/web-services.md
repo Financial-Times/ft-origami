@@ -32,33 +32,36 @@ Web services *must* expose an HTTP endpoint on the hostname `{componentname}.web
 
 ## Requirements
 
-* *Must* contain a valid [Origami manifest file]({{site.baseurl}}/docs/syntax/origamijson)
-* *Should* be used for components that produce dynamic editorial content or data that is not practical to store statically in a module component (usually because it changes too frequently or there are too many possible permutations).
-* *Should not* output any executable code (use module components for that)
-* *Must* include a mandatory version number element to the API path for all API endpoints
-* Minor version changes in the web service application *must not* be exposed on the version number included in the API endpoint URL
-* *Should* support both HTML and JSON output (see below for details)
-* When returning HTML, *must* meet the [standard for HTML]({{site.baseurl}}/docs/syntax/html)
-* *Must* require requests to API endpoints to contain an identification string set by the requesting application, either in a `source` query string parameter or an `X-FT-Source` HTTP header.  Must support both.  If neither is present, must return a `400 Bad Request` response status code.  Requests to non-API endpoints such as the root path, /__about or /__metrics *should not* require the source parameter.
-* *Must* provide monitoring endpoints and data conforming to the [FT Health page standard](https://docs.google.com/a/ft.com/document/d/18hefJjImF5IFp9WvPAm9Iq5_GmWzI9ahlKSzShpQl1s/edit)
+### Web services *must*
+* contain a valid [Origami manifest file]({{site.baseurl}}/docs/syntax/origamijson)
+* Include a mandatory version number element to the API path for all API endpoints
+* *not* expose minor version changes in the web service application on the version number included in the API endpoint URL
+* Meet the [standard for HTML]({{site.baseurl}}/docs/syntax/html) when relevant
+* Require requests to API endpoints to contain an identification string set by the requesting application, either in a `source` query string parameter or an `X-FT-Source` HTTP header.  Must support both.  If neither is present, must return a `400 Bad Request` response status code.  Requests to non-API endpoints such as the root path, /__about or /__metrics *should not* require the source parameter.
+* Provide monitoring endpoints and data conforming to the [FT Health page standard](https://docs.google.com/a/ft.com/document/d/18hefJjImF5IFp9WvPAm9Iq5_GmWzI9ahlKSzShpQl1s/edit)
 * When an error occurs that prevents the service returning the output requested, the HTTP response code *must* be in the 5xx or 4xx range, and the response *must* have an empty content body unless debug information has been requested via a query string parameter.  The web service *should* implement such a parameter.  If it does, the parameter *must* be called `showerrors`, and the presence of this parameter *must* always turn on visible errors unless it has a value which is set to 0.
-* *Should* support JSONp callback, and if it does, it *must* do so using the querystring parameter `callback` (when returning HTML with a JSON callback, the HTML string *must* be escaped and quoted)
-* *Should* be RESTful, ie. should use the most appropriate HTTP verb and URLs that semantically describe the resource to be acted upon
-* *Should* draw templates from a module component where practical (to allow product developers to consume them and do the templating themselves), and if it does, those templates *must* be Mustache format.  Conversely, templates built into the web service may be of any format.
-* *May* accept any querystring parameters, POST data, URL parameters or other input as desired to allow for service specific features (this may include accepting input and then simply reformatting it and including it in the output, but component developers *should* avoid doing this in services whose output also draws from other content sources).
-* *Should* serve permissive CORS response headers to allow the endpoints to be consumed in-browser from any origin (though consuming in-browser is discouraged)
-* *Must* include an explicit `Cache-Control` header in all HTTP responses that have a 2xx or 3xx response status
-* *Must* serve content on the bare versioned endpoints (eg `/v1/`) that documents the API methods available.  Documentation content thus served *should* use the `o-techdocs` module for formatting and layout.
-* *Must* redirect the root path `/` to the documentation endpoint for the latest API version
-* *Must* provide a mechanism for developers to subscribe to email notifications of version deprecation (which *should* be a github watcher list, if available).
+* Include an explicit `Cache-Control` header in all HTTP responses that have a 2xx or 3xx response status
+* Serve content on the bare versioned endpoints (eg `/v1/`) that documents the API methods available.  Documentation content thus served *should* use the `o-techdocs` module for formatting and layout.
+* Redirect the root path `/` to the documentation endpoint for the latest API version
+* Provide a mechanism for developers to subscribe to email notifications of version deprecation (which *should* be a github watcher list, if available).
 * When a [non-backwards compatible change](#changes-and-versioning) is made to any output of the service:
-	* the service *must* provide a new set of API endpoints with updated version number; and
-	* the service *must* continue to support previous versions for a minimum of 3 months; and
+	* provide a new set of API endpoints with updated version number; and
+	* continue to support previous versions for a minimum of 3 months; and
 	* the developer *must* begin work to agree a termination date for the previous version with its consumers and the wider business.
 * When a prior version is to be terminated,
 	* the developer *must* give at least 3 months notice via an email notification to the notification list; and
 	* the service *must* include an `X-Service-Termination-Date:` header in all HTTP responses on that version's API endpoints, using an RFC1123 format date; and
 	* following the expiry of the termination date, and for ever more, the service *should* return either a `410 Gone` or a static copy of the last content to be generated.
+
+### Web services *should*
+* Be used for components that produce dynamic editorial content or data that is not practical to store statically in a module component (usually because it changes too frequently or there are too many possible permutations).
+* Support both HTML and JSON output (see below for details)
+* Serve permissive CORS response headers to allow the endpoints to be consumed in-browser from any origin (though consuming in-browser is discouraged)
+* Support JSONp callback, and if it does, it *must* do so using the querystring parameter `callback` (when returning HTML with a JSON callback, the HTML string *must* be escaped and quoted)
+* Be RESTful, ie. should use the most appropriate HTTP verb and URLs that semantically describe the resource to be acted upon
+* Draw templates from a module component where practical (to allow product developers to consume them and do the templating themselves), and if it does, those templates *must* be Mustache format.  Conversely, templates built into the web service may be of any format.
+* Accept any querystring parameters, POST data, URL parameters or other input as desired to allow for service specific features (this may include accepting input and then simply reformatting it and including it in the output, but component developers *should* avoid doing this in services whose output also draws from other content sources).
+* *not* output any executable code (use module components for that)
 
 ### Output formats
 
