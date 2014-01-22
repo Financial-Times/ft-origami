@@ -33,8 +33,8 @@ SASS features should be used only where they result in increased clarity and reu
 SASS does not have proper encapsulation or scope, so strict adherence to namespacing rules is essential.
 
 * Selectors, SASS variables, mixins and functions must be namespaced with the name of the module.
-    - GOOD: `$o-gallery-thumb-width`, `@mixin oGalleryCalculatePadding()`
-    - BAD: `$thumb-width`, `@mixin calculatePadding()`
+    - GOOD: `$o-gallery-thumb-width`, `@mixin o-gallery-calculate-padding()`
+    - BAD: `$thumb-width`, `@mixin calculate-padding()`
 * Modules *must not* set or modify any CSS or SASS element in another module's namespace.
 * Classes that mark the outer element of a module component *must* have the same name as the module.
 * Classes that style elements within a module root element should use single selectors based on [BEM](http://csswizardry.com/2013/01/mindbemding-getting-your-head-round-bem-syntax/), especially if the component might contain other components (eg in the case of a 'grid' component), to avoid one component's styles affecting the appearance of a component within it.  Where a component can never contain any child components (eg a 'tweet' component or a 'gallery' component), they may instead choose to use simple class names and increase specificity with the module root selector as a parent.
