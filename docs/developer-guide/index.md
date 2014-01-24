@@ -33,9 +33,19 @@ Complete instructions for using both are included in this guide:
 
 ### Loading your script bundle
 
-Whether via the build service or your own build process, your Origami modules will eventually compile to two resources - one JavaScript and one CSS.  You should serve the CSS to all user agents, but the JavaScript only to those that meet the minimum standards assumed by Origami module developers.  To ensure that you only run Origami JavaScript in these 'good' browsers, use a 'Cuts the mustard' script loader.  You can always find our most up to date recommendation as the following GitHub gist:
+Whether via the build service or your own build process, your Origami modules will eventually compile to two resources - one JavaScript and one CSS.  You should serve the CSS to all user agents, but the JavaScript only to those that meet the minimum standards assumed by Origami module developers.  To ensure that you only run Origami JavaScript in these 'good' browsers, use a '[Cuts the mustard](http://responsivenews.co.uk/post/18948466399/cutting-the-mustard)' script loader.
+
+Origami components declare their minimum requirements in terms of [Modernizr](http://modernizr.com/docs/) tests.  To set up a test that verifies the availability of all the features required by the components you're using:
+
+1. Make an aggregated list of the tests from all the `required` sections of your chosen modules' [Origami manifest files]({{site.baseurl}}/docs/syntax/origamijson).
+2. Make a [Modernizr build](http://modernizr.com/download/) that incorporates at least those tests.  Be aware that some of the tests we specify as requirements may not be core Modernizr tests.
+3. Include your Modernizr script in the `<head>` of your page, after your stylesheets.   This enables it to add test result classes to the `<html>` tag *before* the body is rendered, so users do not see any [FOUC](http://en.wikipedia.org/wiki/Flash_of_unstyled_content)s.
+4. Add a 'cuts the mustard' test that checks that the required Modernizr tests pass, and if so, loads your JS bundle.  For those that fail, you can choose to polyfill their functionality and then load the JS anyway, or simply not load the JavaScript.  If you do not add the JavaScript, you **must unwrap** `<noscript class='origami'>` tags, so that the browser benefits from content targeted at those without scripting capability.
+
+Here is a sample script that you can use to invoke the Modernizr tests and add the JS bundle or unwrap the noscript elements based on the result.
 
 <script src="https://gist.github.com/triblondon/8399821.js"></script>
+
 
 ## Web services
 

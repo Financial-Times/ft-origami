@@ -70,7 +70,7 @@ All origami components, whether modules or web services, should be discoverable 
 </tr><tr>
 	<td>&nbsp;&nbsp;&nbsp;&nbsp;<code>optional</code></td>
 	<td>array</td>
-	<td>A list of features, as defined by [Modernizr tests](http://modernizr.com/docs/), which the module will use if they exist.  The absense of the feature may result in the module offering different or reduced functionality, but it will be handled elegantly.</td>
+	<td>A list of features, as defined by [Modernizr tests](http://modernizr.com/docs/), which the module will use if they are available in the browser.  The absense of the feature may result in the module offering different or reduced functionality, but it will be handled elegantly.</td>
 </tr><tr>
 	<td>&nbsp;&nbsp;<code>},</code></td>
 	<td></td>

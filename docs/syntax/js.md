@@ -23,6 +23,11 @@ Product developers are encouraged to include Origami JavaScript using a 'cuts th
 * Do not require global variables to be defined prior to the script loading.  If your module requires configuration, read the config from data attributes attached to parts of DOM that your module will own (see following section for details)
 * Do not assume the existence of globals except those defined as part of ECMAScript 3 and features listed in the `browserFeatures/required` section of `origami.json`.
 
+<aside>
+	<h4>What about polyfills?</h4>
+	Remember that the rule about globals applies to polyfills too.  Don't include polyfills in component code.  If you want to use a modern browser feature, you can a) declare it as a requirement in your Origami manifest; b) declare it as optional, test for it, and if not present, skip that functionality; or c) include code (either your own or a dependency that provides the feature <em>without adding it outside of your module scope</em>.
+</aside>
+
 ## Data attributes
 
 If a module requires configuration, this should be done using data- attributes on the HTML element that is the root element of the DOM owned by the module.  Data attributes should be named `data-{modulename}-{key}`, eg `data-tweet-id`.  The module may also create attributes of this form at runtime.
