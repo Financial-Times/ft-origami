@@ -29,24 +29,29 @@ Modules *must* be named using a short descriptive term (hyphenated if necessary)
 
 The following requirements apply to creating a Origami-compatible module component:
 
-* *Must* contain a valid [Origami manifest file]({{site.baseurl}}/docs/syntax/origamijson)
 * *May* contain any resource that is a CommonJS JavaScript module, any declarative language that is agnostic of server-side technology stack (HTML, Mustache, CSS, SASS, JSON etc), or binary data (may also contain build tasks, tests etc but these must be marked as not installable in package config)
-* *Must* store CSS as SCSS, to enable products and other modules to make use of variables and mixins
-* *Must not* be used for imperative code except JavaScript (and JavaScript must have a client-side use case to be considered a front end component)
-* *Must not* contain build scripts except as required for development and testing.  *Must* be buildable using the standard build process described by the [build service]({{site.baseurl}}/docs/developer-guide/build-service/)
-* All build, development and testing scripts *must* be listed as ignores in the module's bowser configuration.
-* Where there is a dependency on a web service component (eg because the module is a JavaScript library that makes AJAX requests to a service), each version of the web service *must* be compatible with all versions of the module that carry the same major version number (and conversely, all versions of the module must be compatible with the version of the web service that shares the module's major version number).  For example, version 2.4.5, 2.4.6, and 2.7 of a module *must* all be compatible with version 2 of the web service.
-* Where the module contains JavaScript or SCSS, there *must* be a single 'main' file from which all other files of the same language are ultimate dependencies (using `require` or `@import` as appropriate).  These main files *must* be called `main.js` and `main.scss` respectively and *must* be in the module root.
-* Where the module contains markup templates, there may be more than one 'top level' alternative for the product developer to choose from.  If the module contains a single exportable template, it *must* be called `main.mustache`.  If there is more than one, they *must* be prefixed `main-`, eg `main-large.mustache`, `main-regular.mustache`.  Multiple main templates *must* all support an identical data model.
-* *Should* include a bower-compatible `bower.json` file (in the root of the repo) which if present *must* conform to the requirements set out in 'Packaging and build configuration' below.
-* *Must* be stored in a Git repo accessible to any FT network (see [recommendations for module locations](#where-to-store-modules) below)
-* *Must not* include package management config for any package manager other than Bower, except for package config whose only purpose is to load dependencies for development or testing of the component.
-* *May* contain any number of .{thing}ignore files
-* *Must* include a README.md file in the root of the repo, which must contain, where applicable:
+
+### Modules *must*:
+
+* contain a valid [Origami manifest file]({{site.baseurl}}/docs/syntax/origamijson)
+* store CSS as SCSS, to enable products and other modules to make use of variables and mixins
+* not be used for imperative code except JavaScript (and JavaScript must have a client-side use case to be considered a front end component)
+* not contain build scripts except as required for development and testing.
+* be buildable using the standard build process described by the [build service]({{site.baseurl}}/docs/developer-guide/build-service/)
+* list all build, development and testing scripts as ignores in the module's bowser configuration.
+* where there is a dependency on a web service component (eg because the module is a JavaScript library that makes AJAX requests to a service), be compatible with the version of the web service API that carries the same major version number asthe module.  For example, version 2.4.5, 2.4.6, and 2.7 of a module *must* all be compatible with API version 2 of the web service.
+* contain a single 'main' file for each included language from which all other files of the same language are ultimate dependencies (using `require` for JS, `@import` for CSS or `{>}` for mustache as appropriate).  These main files *must* be called `main.js`, `main.scss` and `main.mustache` respectively and *must* be in the module root.
+* include a README.md file in the root of the repo, which must contain, where applicable:
 	* Any markup structure on which the module depends (if that markup is not provided by a web service).  For example, a module providing CSS to style postal addresses, should include a guide to writing the correct markup.  A JavaScript module that requires configuration via `data-` attributes should document those attributes.
 	* Links to repos of web services that exist to provide markup or data that is used by the module.
-* SASS *must* conform to the syntax and language standards for (use of SASS in Origami components)[../syntax/scss]
-* JavaScript *must* conform to the syntax and language standards for (use of JavaScript in Origami components)[../syntax/javascript]
+* be stored in a Git repo accessible to any FT network (see [recommendations for module locations](#where-to-store-modules) below)
+* not include package management config for any package manager other than Bower, except for package config whose only purpose is to load dependencies for development or testing of the component and which does not render the repo installable by that packaging system
+* if it contains SASS files, conform to the syntax and language standards for (use of SASS in Origami components)[../syntax/scss]
+* if it contains JavaScript files, conform to the syntax and language standards for (use of JavaScript in Origami components)[../syntax/javascript]
+
+### Module *should*:
+
+* include a bower-compatible `bower.json` file (in the root of the repo) which if present *must* conform to the requirements set out in 'Packaging and build configuration' below.
 
 ## Packaging and build configuration
 
