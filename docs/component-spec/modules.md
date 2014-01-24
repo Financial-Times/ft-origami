@@ -48,6 +48,7 @@ The following requirements apply to creating a Origami-compatible module compone
 * not include package management config for any package manager other than Bower, except for package config whose only purpose is to load dependencies for development or testing of the component and which does not render the repo installable by that packaging system
 * if it contains SASS files, conform to the syntax and language standards for (use of SASS in Origami components)[../syntax/scss]
 * if it contains JavaScript files, conform to the syntax and language standards for (use of JavaScript in Origami components)[../syntax/javascript]
+* consider touch, keyboard and mouse interaction where applicable
 
 ### Module *should*:
 

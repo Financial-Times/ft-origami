@@ -11,57 +11,67 @@ Origami has adopted [SASS](http://sass-lang.com/) and specifically the most comm
 
 SASS features should be used only where they result in increased clarity and reuse. Care should be taken that the resulting CSS is not compromised by unnecessary SASS nesting.
 
-## Selectors
+## Selectors
 
-* Specificity *must* be minimised. Use [BEM](http://csswizardry.com/2013/01/mindbemding-getting-your-head-round-bem-syntax/) where there is any chance of components being nested.
-* Specificity *must* primarily come from class naming, rather than selectors.  Selectors *may* use multiple operands if necessary, for example to prefix a class with a configuarable selector, or to apply adjacency rules:
-	- GOOD: `.o-tweet__title`, `$o-tweet-legacy-behaviour .o-tweet__user`, `.o-tweet__media + .o-tweet__stats`
-	- BAD: `div.tweet .header h1`
-* Keep selectors short. Ideally just one class
-* Avoid IDs
-* Avoid using only tag names, except when applying a reset
-* Avoid using tag names in addition to classes
-	- GOOD: `.o-thing`
-	- BAD: `div.o-thing`
-* Avoid relying on a specific element structure unless you’re really confident that the structure will never change
-	- GOOD: `.o-thing-title-icon`
-	- BAD: `.o-thing h1 span`
-* Avoid specificity wars. Don’t use increased specificity to overcome an existing overly-specific selector - make the existing one less specific, or use new class names.
-
-## Encapsulation
+### Naming conventions and encapsulation
 
 SASS does not have proper encapsulation or scope, so strict adherence to namespacing rules is essential.
 
-* Selectors, SASS variables, mixins and functions must be namespaced with the name of the module.
-    - GOOD: `$o-gallery-thumb-width`, `@mixin oGalleryCalculatePadding()`
-    - BAD: `$thumb-width`, `@mixin calculatePadding()`
+* Class and placeholder selectors (`.` and `%`) and SASS variables (`$`) *must* be prefixed with the module name, and written as hypen separated lowercase strings
+    - GOOD: `.o-thing--large`, `$o-grid-mq-type: width;`
+    - BAD: `.largething`, '$GridIsResponsive: true;'
+* Mixins and functions *must* be prefixed with the module name, and written in camel case
+    - GOOD: `@mixin oGalleryCalculatePadding()`
+    - BAD: `@mixin calculate-padding()`
+* Tag selectors (unprefixed, eg `h1`) *must not* be used alone, but may be used if prefixed with a correctly namespaced selector
+    - GOOD: `.o-thing__content > h1`
+    - BAD: `h1`
+* ID selectors (`#`) *must not* be used at all
 * Modules *must not* set or modify any CSS or SASS element in another module's namespace.
-* Classes that mark the outer element of a module component *must* have the same name as the module.
-* Classes that style elements within a module root element should use single selectors based on [BEM](http://csswizardry.com/2013/01/mindbemding-getting-your-head-round-bem-syntax/), especially if the component might contain other components (eg in the case of a 'grid' component), to avoid one component's styles affecting the appearance of a component within it.  Where a component can never contain any child components (eg a 'tweet' component or a 'gallery' component), they may instead choose to use simple class names and increase specificity with the module root selector as a parent.
+* Classes that mark the outer element of a module component *must* have the same name as the module
 
-## State
+
+### Specificity
+
+* Specificity *must* be minimised. Use [BEM](http://csswizardry.com/2013/01/mindbemding-getting-your-head-round-bem-syntax/), especially if the component might contain other components (eg in the case of a 'grid' component), to avoid one component's styles affecting the appearance of a component within it.  Where a component can never contain any child components (eg a 'tweet' component or a 'gallery' component), they may instead choose to use simple class names and increase specificity with the module root selector as a parent.
+* Selectors *should* contain a single operand, with the following exceptions:
+    * To prefix a class for feature targeting, where the first operand is a documented [Modernizr](http://modernizr.com/docs/) test class name, and the second is a correctly namespaced selector (the feature selector *should* be configurable, and set to the Modernizr value by default)
+        - GOOD: `$o-tweet-featureflag-svg .o-tweet__twitter-logo`
+    * To apply styles to naked tags (those without a class) inside an element marked with a module specific class.  In these cases, use a child operator to minimize the chance of interference with other modules
+        - ACCEPTABLE: `.o-thing__content h1`
+        - BETTER: `.o-thing__content > h1`
+    * To use the adjacent element operator:
+    	- GOOD: `.o-tweet__media + .o-tweet__stats`
+* Combination selectors, those that specify a combination of tag name, class and/or ID in the same selector token *must not* be used
+	- GOOD: `.o-thing`
+	- BAD: `div.o-thing`, `span#output-area`
+* Increased specificity *must not* be used to overcome an existing overly-specific selector - make the existing one less specific, or use new class names.
+
+
+### State
 
 * BEM modifiers *should* be used to indicate state, except where state is switched automatically by the browser and selectable using pseudoclasses:
-	- *:hover* - (:hover) when mouse pointer is over element
-	- *:focus* - (:focus) when key events will be targetted to the element
-	- *--error* - element is in error state, e.g. a form field
-	- *--disabled* - element cannot be interacted with
-	- *--selected* - element is chosen out of a larger group (use in preference to 'active')
+	- `$o-hoverable-if-hover-enabled :hover` - element is currently under the pointer
+	- `:focus` - element is the target for any text input
+	- `--error` - element is in error state, e.g. a form field
+	- `--disabled` - element cannot be interacted with
+	- `--selected` - element is chosen out of a larger group (prefer this instead of 'active')
 * Where hover effects are included, [o-hoverable](https://github.com/Financial-Times/o-hoverable) *must* be used to allow the hover effects to be turned off.
-* Consider all forms of user input, not just mouse.
 
-## Properties
 
-* Where vendor-specific properties are used, prefer to use a mixin to apply the various properties. This allows the vendor-specific ones to be removed from just one place as browser support changes.
-* Prefer [feature flag](/ft-origami/docs/syntax/html/) and conditional classes to CSS hacks.  Where you use a conditional class, make it configurable so that the product developer can use whatever classname they want, and can apply the legacy support to whichever user agents they want
-	- GOOD: `$o-tweet-legacy-selector .thing { height: 100px; }`
-	- BAD: `.thing { height*: 100px; }`
-* Order properties consistently. The use of [CSS Comb](http://csscomb.com/) is recommended to automate this, and should be used during development so that other developers beneift from cleaner code being available in the source tree.
+## Properties and values
+
+## Property names
+
+* Where vendor-specific properties are used, a mixin *should* be used to apply the various properties. This allows the vendor-specific ones to be removed from just one place as browser support changes.
+* CSS hacks to target particular browsers *must not* be used.  Instead, use the **o-useragent** module.
+* Properties *should* be ordered consistently.  [CSS Comb](http://csscomb.com/) *should* be used to automate this, and *should* be used during development so that other developers beneift from cleaner code being available in the source tree.
 
 ## Values
 
-* Component CSS *should* not use `!important`.  Valid use cases for !important exist, but usually only at the product level.  If !important is used in a component, a comment should be left in code to explain why it was necessary.
-* Avoid CSS expressions and behaviours, except to polyfill essential features for older browsers (e.g. boxsizing.htc for `box-sizing: border-box`)
+* Component CSS *should* not use `!important`.  Valid use cases for `!important` exist, but usually only at the product level.  If `!important` is used in a component, a comment *must* be left in code to explain why it was necessary.
+* CSS expressions and behaviours *should* not be used, except to polyfill essential features for older browsers (e.g. boxsizing.htc for `box-sizing: border-box`)
+
 
 ### SASS variables
 
@@ -70,6 +80,7 @@ SASS does not have proper encapsulation or scope, so strict adherence to namespa
 * Modules *must not* overwrite variables defined by another module.  Instead, a module *may* define a new variable in its own namespace and set it to the value of the dependency's variable.
 * Variables *should* be defined in a dedicated file.
 * Variables intended for use externally by consuming products and modules *should* be defined by their purpose, rather than their value: e.g. `$o-colors-skyline-bg` rather than `$o-colors-beige`
+
 
 ## Responsiveness
 
@@ -82,9 +93,11 @@ Modules are responsible for providing responsive behaviours where appropriate.  
 
 Regardless of which of the above strategies is used, components *must* by default render themselves correctly in at least a coherent non-responsive way.
 
+
 ## Subresources
 
 When styles refer to external resources such as fonts and images, the module *must* use `o-assets` to declare paths to these resources in a robust, build-agnostic fashion. Please see [the module's repository](http://git.svc.ft.com/summary/?r=origami/o-assets.git) for documentation and the rationale behind enforcing this approach.
+
 
 ## "Silent" styles
 
@@ -100,40 +113,36 @@ If the original selector is not a class selector then the placeholder class can 
         width: 30%;
     }
 
-Modules that make use of styles defined in dependencies *must* use those styles by `@extend`ing the appropriate placeholder class:
+Modules that make use of styles defined in other modules *must* use those styles by `@extend`ing the appropriate placeholder class:
 
     .o-anotherthing-foo, %o-anotherthing-foo {
         @extend %o-thing-foo;
         margin-top: 1em;
     }
 
-Modules *should* provide a mechanism for suppressing output of concrete selectors which may not always be required. If present, this mechanism *must* be activated by means of a sass variable `$o-{modulename}-is-silent` which *must* have a default value of `false`.  In practice, the effect of this *should* be to remove the `.`-prefixed selector, leaving only the mixin.
+Modules *should* provide a mechanism for suppressing output of any concrete selectors which may not always be required. If present, this mechanism *must* be activated by means of a sass variable `$o-{modulename}-is-silent` which *must* have a default value of `false`.  In practice, the effect of this *should* be to remove the `.`-prefixed selector, leaving only the placeholder (along with any functions, variables and mixins).
 
 <aside>An example of an implementation satisfying these conditions can be found in the `oFtTypographyClass` mixin of the o-ft-typography module</aside>
+
 
 ## Code organisation and formatting
 
 ### Layout
 
-When listing multiple comma-separated selectors, put each one on a new line:
+When listing multiple comma-separated selectors, each one *must* be placed on a new line.  Each property *must* be on a new line and indented (type of indent, tabs or spaces, is not standardised: developers *must* respect whatever indent type is already in use when editing existing modules)
 
 <?prettify linenums=1?>
-    .footer-link:hover,
-    .footer-link:focus {
-        //
-    }
-
-Each attribute should be on a new line and indented:
-
-<?prettify linenums=1?>
-    .footer-link {
+    .o-footer__link:hover,
+    .o-footer__link:focus {
         font-size: 12px;
         color: $o-color-link-text;
     }
 
+
 ### Files and folders
 
 * SASS variables, mixins and functions should be in their own files, separate from the code that uses them
+
 
 ### Comments
 
