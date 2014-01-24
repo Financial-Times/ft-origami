@@ -84,14 +84,11 @@ SASS does not have proper encapsulation or scope, so strict adherence to namespa
 
 ## Responsiveness
 
-Modules are responsible for providing responsive behaviours where appropriate.  There are a number of strategies available.  We intend to standardise this but do not yet have agreement on the best strategy.  In the meantime, component authors are requested to raise their use case and preference on issue [#68](https://github.com/Financial-Times/ft-origami/issues/68) in the issue tracker.  Currently we see the following possible solutions:
+Modules are responsible for providing responsive behaviours where appropriate, but take care not to build in responsive behaviour that may not be desired by the product.
 
-1. **Module includes media queries** and manages its responsiveness autonomously.  This makes the component easiest to consume by products, but only works for full width modules, makes it hard to *prevent* a module acting responsively when the page width of the product is fixed, and by default may result in numerous rather un-coordinated breakpoints.  If using this strategy, all breakpoint length measurements must be configurable variables.
-2. **Module includes mixins**, such as `o-tweet-responsive-narrow`, which a product developer may include in their media queries.  This has the benefit of allowing product developers to manage breakpoints in a way that suits their content more holistically, and means unused responsive styles will be compiled out when the bundle is built.  However, it requires the product developer to do additional work to enable the module's responsive behaviour, and could not easily be supported by the build service.
-3. **Module includes responsive classes**, a similar approach to using mixins, but product developers would control responsiveness by adding or removing classes in the markup rather than importing mixins in their CSS.  This allows product developers to make use of the responsiveness even when fetching CSS from the build service, but changing from one responsive style to another would require JavaScript.
-4. **Module includes multiple markup templates**, which contain potentially starkly different markup for rendering the same data model.  This allows components to more easily change beyond recognition when going from one responsive mode to another (eg a vertical accordian becomes a horizontal tab bar), but would require much more extensive development work by the product developer if they wanted to use multiple templates.
-
-Regardless of which of the above strategies is used, components *must* by default render themselves correctly in at least a coherent non-responsive way.
+* Modules that in most or all use cases will span the full width of a page (eg o-ft-header, o-ft-footer, o-grid) *may* contain media queries, or mix in placeholder classes from other modules that contain media queries.  If so, the breakpoints in the media queries *must* be configurable as SASS variables.
+* All other modules *must* provide placeholder (and concrete if not in silent mode) classes to modify their appearance to suit different sizes of container, eg `o-tweet--large`, `o-tweet--medium` etc.  Product developers may then use these placeholders to mix in module responsiveness into their own media query breakpoints.
+* When there is no media query support in the user agent (in the case of modules that use media queries) or the module's responsive placeholders have not been used, the module *must* render in its most compact visual form.
 
 
 ## Subresources
