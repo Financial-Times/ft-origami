@@ -61,19 +61,19 @@ SASS does not have proper encapsulation or scope, so strict adherence to namespa
 
 ## Properties and values
 
-## Property names
+### Property names
 
 * Where vendor-specific properties are used, a mixin *should* be used to apply the various properties. This allows the vendor-specific ones to be removed from just one place as browser support changes.
 * CSS hacks to target particular browsers *must not* be used.  Instead, use the **o-useragent** module.
 * Properties *should* be ordered consistently.  [CSS Comb](http://csscomb.com/) *should* be used to automate this, and *should* be used during development so that other developers beneift from cleaner code being available in the source tree.
 
-## Values
+### Values
 
 * Component CSS *should* not use `!important`.  Valid use cases for `!important` exist, but usually only at the product level.  If `!important` is used in a component, a comment *must* be left in code to explain why it was necessary.
 * CSS expressions and behaviours *should* not be used, except to polyfill essential features for older browsers (e.g. boxsizing.htc for `box-sizing: border-box`)
 
 
-### SASS variables
+## SASS variables
 
 * If a variable could potentially be used as a configurable option in products consuming the module, the variable *must* be defined with `!default` and added to the module's documentation
 * Variables that are internal to a module and which should not be used or set outside of it *must* be prefixed with an underscore, *should* be defined without !default, and *should not* be included in the module's documentation.  Since SASS has no private scope, these underscore variables are not protected from overwriting so we use convention to distinguish them from public variables.
