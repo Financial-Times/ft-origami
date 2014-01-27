@@ -13,4 +13,4 @@ Mustache templates must conform to the following rules
 
 * When including partials, use a relative path
 * Do not include partials from other modules.  Partials must come from the same module as the parent template
-* Always namespace variables used in the template i.e. `{{o-modulename.heading}}` not `{{heading}}`
+* Always namespace variables used in the template i.e. <code>&#123;{o-modulename.heading}&#125;</code> not <code>&#123;{heading}&#125;</code>
