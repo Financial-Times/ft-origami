@@ -46,13 +46,17 @@ The following requirements apply to creating a Origami-compatible module compone
 	* Links to repos of web services that exist to provide markup or data that is used by the module.
 * be stored in a Git repo accessible to any FT network (see [recommendations for module locations](#where-to-store-modules) below)
 * not include package management config for any package manager other than Bower, except for package config whose only purpose is to load dependencies for development or testing of the component and which does not render the repo installable by that packaging system
-* if it contains SASS files, conform to the syntax and language standards for [use of SASS in Origami components](../syntax/scss)
-* if it contains JavaScript files, conform to the syntax and language standards for [use of JavaScript in Origami components](../syntax/javascript)
+* where they contain SASS files, conform to the syntax and language standards for [use of SASS in Origami components](../syntax/scss)
+* where they contain JavaScript files, conform to the syntax and language standards for [use of JavaScript in Origami components](../syntax/javascript)
+* where they are openly hosted on GitHub and have CI, use [Travis](https://travis-ci.org) to do the CI
 * consider touch, keyboard and mouse interaction where applicable
 
-### Module *should*:
+
+### Modules *should*:
 
 * include a bower-compatible `bower.json` file (in the root of the repo) which if present *must* conform to the requirements set out in 'Packaging and build configuration' below.
+* have automated CI, and if they do it *must* include verification that the module can be built using the mechanism described in the build service guide (see "Continuous integration" below)
+
 
 ## Packaging and build configuration
 
@@ -119,6 +123,19 @@ Where a dependency is an Origami module it *must* be listed under its original n
 Component authors *may* test their component however they like, provided that all test related files *should* be in the `tests` directory, and that test related files *must* not be installable.  The source files of the component *should* be in `src` (except the main JS and/or SASS file).  The project *must* contain a `README.md` formatted in markdown.
 
 Component authors *may* include an `examples` or `dist` folder to provide examples or pre-compiled versions of the source, but these *should* not be installable.
+
+
+## Continuous integration
+
+Modules *should* implement CI, and if the module is openly hosted on GitHub, *must* use Travis CI to do so.  A good practice for this is demonstrated by the [o-techdocs](https://github.com/Financial-Times/o-techdocs) module.  First, set up a grunt-based build process.  The following gruntfile will compile modules in a way that is Origami compliant:
+
+<script src="https://gist.github.com/triblondon/8687515.js"></script>
+
+The files `main.scss` and `main.js` from the root of the module will be compiled to `bundle.css` and `bundle.js` in the `/buildcache` directory.  Now create a Travis config and test script:
+
+<script src="https://gist.github.com/triblondon/8686330.js"></script>
+
+Finally, enable Travis for your project from your [Travis profile page])(https://travis-ci.org/profile).  Modules that are not openly published on GitHub *should* use Jenkins for CI.
 
 
 ## Where to store modules
