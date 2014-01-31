@@ -110,10 +110,10 @@ If the original selector is not a class selector then the placeholder class can 
         width: 30%;
     }
 
-Modules that make use of styles defined in other modules *must* use those styles by `@extend`ing the appropriate placeholder class:
+Modules that make use of styles defined in other modules *must* use those styles by `@extend`ing the appropriate placeholder class (the `!optional` flag *should* be used to prevent compilation errors if something (e.g. a product developer changing a setting) causes that  placeholder class to be suppressed):
 
     .o-anotherthing-foo, %o-anotherthing-foo {
-        @extend %o-thing-foo;
+        @extend %o-thing-foo !optional;
         margin-top: 1em;
     }
 
