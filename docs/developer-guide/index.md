@@ -40,11 +40,17 @@ Origami components declare their minimum requirements in terms of [Modernizr](ht
 1. Make an aggregated list of the tests from all the `required` sections of your chosen modules' [Origami manifest files]({{site.baseurl}}/docs/syntax/origamijson).
 2. Make a [Modernizr build](http://modernizr.com/download/) that incorporates at least those tests.  Be aware that some of the tests we specify as requirements may not be core Modernizr tests.
 3. Include your Modernizr script in the `<head>` of your page, after your stylesheets.   This enables it to add test result classes to the `<html>` tag *before* the body is rendered, so users do not see any [FOUC](http://en.wikipedia.org/wiki/Flash_of_unstyled_content)s.
-4. Add a 'cuts the mustard' test that checks that the required Modernizr tests pass, and if so, loads your JS bundle.  For those that fail, you can choose to polyfill their functionality and then load the JS anyway, or simply not load the JavaScript.  If you do not add the JavaScript, you **must unwrap** `<noscript class='origami'>` tags, so that the browser benefits from content targeted at those without scripting capability.
+4. Add a 'cuts the mustard' test that checks that the required Modernizr tests pass, and if so, loads your JS bundle.  For those that fail, you can choose to polyfill their functionality and then load the JS anyway, or simply not load the JavaScript.  If you do not add the JavaScript, you **must unwrap** appropriate `<noscript>` tags, so that the browser benefits from content targeted at those without scripting capability.
 
 Here is a sample script that you can use to invoke the Modernizr tests and add the JS bundle or unwrap the noscript elements based on the result.
 
 <script src="https://gist.github.com/triblondon/8399821.js"></script>
+
+<aside>
+	<h4>Setting the bar</h4>
+	<p>You might find that your bundle includes a minority of modules with especially onerous feature requirements.  In that case, you may like to consider having two bundles with different levels of requirements, and separate CTM tests.  This is best avoided if you can, but if you do need more granular support, it's an option.</p>
+	<p>If you choose to do this, you can unwrap <code>noscript</code> tags more selectively by targeting them by their module name class rather than the generic <code>origami</code> class.</p>
+</aside>
 
 
 ## Web services
