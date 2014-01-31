@@ -57,6 +57,7 @@ SASS does not have proper encapsulation or scope, so strict adherence to namespa
 	- `--disabled` - element cannot be interacted with
 	- `--selected` - element is chosen out of a larger group (prefer this instead of 'active')
 * Where hover effects are included, [o-hoverable](https://github.com/Financial-Times/o-hoverable) *must* be used to allow the hover effects to be turned off.
+* A module's styles *must* render the module correctly when javascript is unavailable. Styles that need suppressing when javascript is unavailable should be prefixed with `.o-modulename--js` and the module should take care of adding this class to its containing element when its js initialises
 
 
 ## Properties and values
