@@ -81,8 +81,8 @@ All Origami web services are required to expose multiple `/__metrics` endpoints 
 	<td>Movingaverage only.  Largest value that falls within the period.</td>
 </tr><tr>
 	<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>stddev</code></td>
-	<td><em>number</em>*</td>
-	<td>Movingaverage only.  Standard deviation of all values that fall within the period</td>
+	<td><em>number</em></td>
+	<td>Movingaverage only (optional).  Standard deviation of all values that fall within the period</td>
 </tr><tr>
 	<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>lastUpdated</code></td>
 	<td><em>string</em></td>
