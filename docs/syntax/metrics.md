@@ -60,6 +60,10 @@ All Origami web services are required to expose multiple `/__metrics` endpoints 
 	<td><em>string</em>*</td>
 	<td>Count only.  Plural name of the unit of measurement in which val is expressed.  Common values should be 'seconds', 'bytes', 'items', 'processes'.  Prefer base level orders of magnitude (ie. express time in seconds, not milliseconds, and data size in bytes, not megabytes)</td>
 </tr><tr>
+	<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>since</code></td>
+	<td><em>string</em></td>
+	<td>Count only.  ISO8601 format date specifying the time at which the count was last reset.</td>
+</tr><tr>
 	<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>period</code></td>
 	<td><em>number</em>*</td>
 	<td>Movingaverage only.  Number of seconds over which the moving average is computed.</td>
