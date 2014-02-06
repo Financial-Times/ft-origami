@@ -60,6 +60,10 @@ All Origami web services are required to expose multiple `/__metrics` endpoints 
 	<td><em>string</em>*</td>
 	<td>Count only.  Plural name of the unit of measurement in which val is expressed.  Common values should be 'seconds', 'bytes', 'items', 'processes'.  Prefer base level orders of magnitude (ie. express time in seconds, not milliseconds, and data size in bytes, not megabytes)</td>
 </tr><tr>
+	<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>since</code></td>
+	<td><em>string</em></td>
+	<td>Count only.  ISO8601 format date specifying the time at which the count was last reset.</td>
+</tr><tr>
 	<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>period</code></td>
 	<td><em>number</em>*</td>
 	<td>Movingaverage only.  Number of seconds over which the moving average is computed.</td>
@@ -81,8 +85,8 @@ All Origami web services are required to expose multiple `/__metrics` endpoints 
 	<td>Movingaverage only.  Standard deviation of all values that fall within the period</td>
 </tr><tr>
 	<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>lastUpdated</code></td>
-	<td><em>string</em>*</td>
-	<td>The time at which the data was last updated (which may be the current time if data is computed on demand, but allows for slow-sunning metrics to be cached).  Date in ISO8601 format.</td>
+	<td><em>string</em></td>
+	<td>The time at which the data was last updated (which may be the current time if data is computed on demand, but allows for slow-sunning metrics to be cached).  Date in ISO8601 format.  If omitted, the data should be correct as at the date indicated in the <code>Last-modified</code> HTTP response header.</td>
 </tr><tr>
 	<td>&nbsp;&nbsp;&nbsp;&nbsp;<code>},</code></td>
 	<td></td>
@@ -101,6 +105,8 @@ All Origami web services are required to expose multiple `/__metrics` endpoints 
 	<td></td>
 </tr>
 </table>
+
+The HTTP response that delivers the metrics content *must* contain a `Last-Modified` response header, whose value should be the last updated time for any metric that does not have its own `lastUpdated` property.
 
 ## Example
 
