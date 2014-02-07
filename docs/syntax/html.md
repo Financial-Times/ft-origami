@@ -53,8 +53,8 @@ If the elements are core to the functionality of the module, the module *should*
 
 When providing `<noscript>` tag examples, module developers *must* include the module name and the string 'origami-noscript' as classes on the tag, and wrap the tag in conditonal comments like this:
 
-	<![if gt IE 8]> <noscript class="origami-noscript origami-module-name"> <![endif]>
-	    <div class="origami-noscript origami-module-name">To comment on this article, you need to upgrade your web browser.  <a href='...'>Learn how to upgrade</a>.</div>
+	<![if gt IE 8]> <noscript class="o--noscript o-comments--noscript"> <![endif]>
+	    <div class="o--noscript o-comments--noscript">To comment on this article, you need to upgrade your web browser.  <a href='...'>Learn how to upgrade</a>.</div>
 	<![if gt IE 8]> </noscript> <![endif]>
 
 This is because in Internet Explorer 8 and below, it's not possible to programmatically access the content of a NOSCRIPT tag, so those browsers will obey the conditional comments and will not wrap the message in a NOSCRIPT tag.
