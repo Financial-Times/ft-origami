@@ -11,4 +11,16 @@ Since this is a GitHub pages site, built CSS and JS bundles must be committed to
 2. Edit main.scss and main.js as desired
 3. Run `grunt` (or if you prefer, `grunt js` or `grunt css`)
 
+## Viewing locally
 
+1. Install Jekyll `gem install jekyll`
+2. Build the documentation `jekyll build`
+3. In `_config.yml` make the baseurl an empty string,
+
+```
+...
+baseurl:
+...
+```
+
+4. Serve it `jekyll serve` and view on http://localhost:4000/ 
