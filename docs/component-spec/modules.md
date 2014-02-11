@@ -135,7 +135,7 @@ The files `main.scss` and `main.js` from the root of the module will be compiled
 
 <script src="https://gist.github.com/triblondon/8686330.js"></script>
 
-Finally, enable Travis for your project from your [Travis profile page])(https://travis-ci.org/profile).  Modules that are not openly published on GitHub *should* use Jenkins for CI.
+Finally, enable Travis for your project from your [Travis profile page](https://travis-ci.org/profile).  Modules that are not openly published on GitHub *should* use Jenkins for CI.
 
 
 ## Where to store modules
