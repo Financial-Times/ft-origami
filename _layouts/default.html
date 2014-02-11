@@ -20,7 +20,7 @@
         </div>
 
         <div class="o-grid-row">
-          <div class="o-grid-col|3|m12|s12| o-techdocs-sidebar">
+          <div data-o-grid-colspan="3 M12 S12" class="o-techdocs-sidebar">
             <ul class="o-techdocs-nav">
               <li class="{% if page.title == 'Home' %}o-techdocs-nav__item--active{% endif %}">
                 <a href="{{ site.baseurl }}/">Overview</a>
@@ -110,7 +110,7 @@
             </ul>
           </div>
 
-          <div class="o-grid-col|9|m12|s12 o-techdocs-content">
+          <div data-o-grid-colspan="9 M12 S12" class="o-techdocs-content">
             {{ content }}
           </div>
 
