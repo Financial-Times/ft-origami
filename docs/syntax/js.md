@@ -48,7 +48,7 @@ Modules *should* handle events during the [bubbling phase](http://stackoverflow.
 
 ## Functions
 
-Modules *should* avoid containing functions with more than 3 arguments.  Where more parameters are required, consider passing an object.
+Modules *should* avoid containing functions with more than 3 arguments.  Where more parameters are required, consider passing an object (and if so, consider using [lo-dash's defaults function](http://lodash.com/docs#defaults))
 
 ## Animation
 
