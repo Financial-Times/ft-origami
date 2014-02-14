@@ -44,7 +44,7 @@ Origami components declare their minimum requirements in terms of [Modernizr](ht
 
 Here is a sample script that you can use to invoke the Modernizr tests and add the JS bundle or unwrap the noscript elements based on the result.
 
-<script src="https://gist.github.com/triblondon/8399821.js"></script>
+* [Download /examples/ctm.js](/examples/ctm.js)
 
 <aside>
 	<h4>Setting the bar</h4>
