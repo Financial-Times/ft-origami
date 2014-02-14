@@ -40,11 +40,11 @@ When using selector engines other than native `querySelector`, modules *must not
 
 ## Events
 
-Modules *may* stop the propagation chain for events that they have created, but *must not* prevent default on browser events, since other modules, or indeed the product, may need to bind to those events for other reasons.
+Modules *may* stop the propagation chain for events that they have created, but *must not* do so for browser events, since other modules, or indeed the product, may need to bind to those events for other reasons.
 
 Any event listeners set up at page load *must* bind on the `<body>` element and use [event delegation](http://stackoverflow.com/questions/1687296/what-is-dom-event-delegation), and *must* be filtered based on the module's own class.
 
-Modules *should* handle events during the [bubbling phase](http://stackoverflow.com/questions/4616694/what-is-event-bubbling-and-capturing), not the capturing phase.
+Modules *should* handle events during the [bubbling phase](http://stackoverflow.com/questions/4616694/what-is-event-bubbling-and-capturing), not the capturing phase (unless the event has no bubbling phase)
 
 ## Functions
 
