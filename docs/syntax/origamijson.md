@@ -29,7 +29,7 @@ All origami components, whether modules or web services, should be discoverable 
 </tr><tr>
 	<td>&nbsp;&nbsp;<code>origamiType</code></td>
 	<td>string*</td>
-	<td>The value 'module' where the component conforms to the <a href='{{site.baseurl}}/docs/component-types/modules'>module</a> spec, or 'service' where it conforms to the <a href='{{site.baseurl}}/docs/component-types/web-services'>web service</a> spec.</td>
+	<td>The value 'module' where the component conforms to the <a href='{{site.baseurl}}/docs/component-spec/modules/'>module</a> spec, or 'service' where it conforms to the <a href='{{site.baseurl}}/docs/component-spec/web-services/'>web service</a> spec.</td>
 </tr><tr>
 	<td>&nbsp;&nbsp;<code>origamiVersion</code></td>
 	<td>integer*</td>

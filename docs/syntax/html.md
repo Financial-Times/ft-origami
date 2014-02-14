@@ -21,8 +21,12 @@ Where Origami components include or output HTML, it should meet the following re
 	- BAD: `<meta name="viewport" content="..." />`
 	- BAD: `<meta charset="utf-8">`
 	- BAD: `<title>`, `<html>`, `<head>`, `<body>`
-	- BAD: the `id` attribute
+	- BAD: the `id` attribute (except as below)
 	- BAD: the ARIA `role="main"` attribute
+* The ID attribute *must not* be used, except where:
+	* it identifies a form element that needs to be targeted by a `for` attribute; **and**
+	* the value is namespaced with the name of the module, eg `o-signin-username`; **and**
+	* the module only has singleton use cases (ie, it is pointless to include it in a product page more than once).  Any instances of forms within modules that may be used more than once on the same page may not have hard-coded IDs, but *may* use Mustache placeholders instead.
 * HTML5 elements are allowed as long they can be polyfilled with JavaScript back to IE7, but markup *must not* contain custom elements.
 * The following **elements** must not be used:
 	* `<script>`
@@ -35,7 +39,6 @@ Where Origami components include or output HTML, it should meet the following re
 * Conditional comments *must not* be used in components or recommended to product developers. Components should instead rely on classes on the `body` or `html` element that indicate feature support. Component authors may require the product application to set any feature support classes supported by [Modernizr](http://modernizr.com/docs/).  Product developers may of course choose to apply those classes using conditional comments rather than using Modernizr.
 * HREFs in markup *must not* use the `javascript:` protocol.
 * The following **attributes** must not be present on any element:
-	* id
 	* target
 	* Event handler attributes, eg `onclick`, `onchange`
 * The root element of a fragment of markup that represents a module, *must*
