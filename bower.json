@@ -1,6 +1,6 @@
 {
     "name": "ft-origami",
     "dependencies": {
-        "o-techdocs": "git://github.com/Financial-Times/o-techdocs.git#~1.0.0"
+        "o-techdocs": "git://github.com/Financial-Times/o-techdocs.git#~1.1.0"
     }
 }

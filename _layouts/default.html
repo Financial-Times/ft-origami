@@ -12,15 +12,14 @@
     </head>
     <body class='o-techdocs'>
 
-      <div class="o-grid-page">
-
-        <div class="o-grid-row o-techdocs-page-header">
+        <div class="o-techdocs-header">
           <h1>{{site.name}}</h1>
-          <p class='o-techdocs-page-header__lead'>Universal front end component standards for FT web products</p>
+          <p>Universal front end component standards for FT web products</p>
         </div>
 
-        <div class="o-grid-row">
-          <div data-o-grid-colspan="3 M12 S12" class="o-techdocs-sidebar">
+        <div class="o-techdocs-layout">
+
+          <div class="o-techdocs-sidebar">
             <ul class="o-techdocs-nav">
               <li class="{% if page.title == 'Home' %}o-techdocs-nav__item--active{% endif %}">
                 <a href="{{ site.baseurl }}/">Overview</a>
@@ -110,17 +109,17 @@
             </ul>
           </div>
 
-          <div data-o-grid-colspan="9 M12 S12" class="o-techdocs-content">
+          <div class="o-techdocs-main o-techdocs-content">
             {{ content }}
           </div>
 
-        </div> <!-- /row -->
-
-        <div class='o-techdocs-footer o-techdocs-content'>
-          <p><a class='o-techdocs-pull-right' href='http://github.com/financial-times/ft-origami'>View project on Github</a>&copy; THE FINANCIAL TIMES LTD {{ site.time | date:'%Y' }}. FT and 'Financial Times' are trademarks of The Financial Times Ltd.</p>
         </div>
 
-      </div> <!-- /page -->
+        <div class='o-techdocs-footer'>
+          <p><a href='http://github.com/financial-times/ft-origami'>View project on Github</a>&copy; THE FINANCIAL TIMES LTD {{ site.time | date:'%Y' }}. FT and 'Financial Times' are trademarks of The Financial Times Ltd.</p>
+        </div>
+
+      </div>
 
       <script src='https://cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.js'></script>
       <script>prettyPrint();</script>
