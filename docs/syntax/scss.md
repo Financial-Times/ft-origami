@@ -57,6 +57,7 @@ SASS does not have proper encapsulation or scope, so strict adherence to namespa
 	- `--disabled` - element cannot be interacted with
 	- `--selected` - element is chosen out of a larger group (prefer this instead of 'active')
 * Where hover effects are included, [o-hoverable](https://github.com/Financial-Times/o-hoverable) *must* be used to allow the hover effects to be turned off.
+* By default, a module's style rules *must* render it in a form suitable for use without JavaScript (which may involve hiding it completely). Any modifications to that style which are desired if the JavaScript component of the module is present must be prefixed with `.o-modulename--js`.
 
 
 ## Properties and values
