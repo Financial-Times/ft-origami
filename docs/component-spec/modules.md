@@ -55,7 +55,7 @@ The following requirements apply to creating a Origami-compatible module compone
 ### Modules *should*:
 
 * include a bower-compatible `bower.json` file (in the root of the repo) which if present *must* conform to the requirements set out in 'Packaging and build configuration' below.
-* have automated CI, and if they do it *should* use node.js as its build engine and *must* include verification that the module can be built using the mechanism described in the build service guide (see "Continuous integration" below)
+* have automated CI, and if they do it *must* include verification that the module can be built using the mechanism described in the build service guide (see also "Continuous integration" below)
 
 
 ## Packaging and build configuration
@@ -127,7 +127,7 @@ Component authors *may* include an `examples` or `dist` folder to provide exampl
 
 ## Continuous integration
 
-Modules *should* implement CI, and if the module is openly hosted on GitHub, *must* use Travis CI to do so. The module *should* also use node.js as the engine that runs the tests. A good practice for this is demonstrated by the [o-techdocs](https://github.com/Financial-Times/o-techdocs) module.  First, set up a grunt-based build process.  The following gruntfile will compile modules in a way that is Origami compliant:
+Modules *should* implement CI, and if the module is openly hosted on GitHub, *must* use Travis CI to do so. Any CI *should* use JavaScript as for the primary test runner script. A good practice for this is demonstrated by the [o-techdocs](https://github.com/Financial-Times/o-techdocs) module.  First, set up a grunt-based build process.  The following gruntfile will compile modules in a way that is Origami compliant:
 
 <script src="https://gist.github.com/triblondon/8687515.js"></script>
 
