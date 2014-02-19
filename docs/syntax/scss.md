@@ -28,7 +28,9 @@ SASS does not have proper encapsulation or scope, so strict adherence to namespa
     - BAD: `h1`
 * ID selectors (`#`) *must not* be used at all
 * Modules *must not* set or modify any CSS or SASS element in another module's namespace.
-* Classes that mark the outer element of a module component *must* have the same name as the module
+* Styles *must not* affect any element except those which:
+    * are in a portion of [owned DOM]({{site.baseurl}}/docs/syntax/html/#owned_dom); or
+    * have an existing class in the module's namespace.
 
 
 ### Specificity
