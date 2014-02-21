@@ -11,9 +11,9 @@ If building modules sounds like a lot of work, you can let someone else do it fo
 
 This is especially useful for bootstrapping early stage prototypes as well as building hacks, experiments, and adding components to legacy applications.  The service offers high availability, reliability, HTTPS with the same hostname and path, and its own cache layer, so can be used for client-side requests.  It offers the following endpoints:
 
-	http://buildservice.ft.com/bundles/[css|js]
-	http://buildservice.ft.com/files
-	http://buildservice.ft.com/modules
+	http://build.origami.ft.com/bundles/[css|js]
+	http://build.origami.ft.com/files
+	http://build.origami.ft.com/modules
 
 ## Resource compiler (/bundles)
 
@@ -28,8 +28,8 @@ Examples of valid resource compilation requests:
 You should most likely request all the JS modules you want in a single bundle request, and likewise for CSS, and then write them into the `<head>` or end of the `<body>` of your HTML document:
 
 <?prettify linenums=1?>
-	<link rel='stylesheet' href='http://buildservice.ft.com/bundles/css?modules=o-ft-nav@2.3,o-tweet@1,colors' />
-	<script src='http://buildservice.ft.com/bundles/js?modules=o-ft-nav@2.3,o-tweet@1,o-tracking@3.5,o-ads@1.2' />
+	<link rel='stylesheet' href='http://build.origami.ft.com/bundles/css?modules=o-ft-nav@2.3,o-tweet@1,colors' />
+	<script src='http://build.origami.ft.com/bundles/js?modules=o-ft-nav@2.3,o-tweet@1,o-tracking@3.5,o-ads@1.2' />
 
 ### Dependency conflicts
 
@@ -74,7 +74,7 @@ The file proxy is also used by the resource compiler when creating bundles of JS
 
 ## Domain sharding
 
-The build service supports a, b, c and d subdomains which will also resolve to the build service, to allow for domain sharding, if you require it (eg `a.buildservice.ft.com`, `b.buildservice.ft.com`).  Be aware that domain sharding is often unnecessary and overzealous use of sharding will have a *negative* effect on your page load time.  See Jonathan Klein's post on [Reducing Domain Sharding](http://calendar.perfplanet.com/2013/reducing-domain-sharding/).
+The build service supports a, b, c and d subdomains which will also resolve to the build service, to allow for domain sharding, if you require it (eg `a.build.origami.ft.com`, `b.build.origami.ft.com`).  Be aware that domain sharding is often unnecessary and overzealous use of sharding will have a *negative* effect on your page load time.  See Jonathan Klein's post on [Reducing Domain Sharding](http://calendar.perfplanet.com/2013/reducing-domain-sharding/).
 
 
 ## Caching and rebuilding
