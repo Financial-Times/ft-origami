@@ -72,11 +72,6 @@ This API offers the ability to request, over HTTP, any single file from any know
 The file proxy is also used by the resource compiler when creating bundles of JS or CSS that load external resources on demand.  This allows CSS loaded through the resource compiler to still load any included backgrounds, and JavaScript modules may make AJAX requests to load static resources from their repos.
 
 
-## Domain sharding
-
-The build service supports a, b, c and d subdomains which will also resolve to the build service, to allow for domain sharding, if you require it (eg `a.build.origami.ft.com`, `b.build.origami.ft.com`).  Be aware that domain sharding is often unnecessary and overzealous use of sharding will have a *negative* effect on your page load time.  See Jonathan Klein's post on [Reducing Domain Sharding](http://calendar.perfplanet.com/2013/reducing-domain-sharding/).
-
-
 ## Caching and rebuilding
 
 Requested bundles and files are generated on demand and then cached indefinitely.  Where it's a bundle that includes Semver versions of modules, the build service checks periodically to see if the matching version has changed (the matching version may differ from the version actually used in the current bundle due to multiple modules requesting the same dependency at different semver ranges).  If so, it will re-run the build and swap out the existing cached version for the new one.
