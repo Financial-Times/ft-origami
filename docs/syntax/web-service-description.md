@@ -39,15 +39,15 @@ All Origami web services are required to expose `/{version}/__about` endpoints t
 </tr><tr>
 	<td>&nbsp;&nbsp;<code>docs</code></td>
 	<td>string*</td>
-	<td>A URL where full docuentation for the service can be found, which *should* be the root URL of the service</td>
+	<td>A URL where full documentation for the service can be found, which *should* be the root URL of the service</td>
 </tr><tr>
 	<td>&nbsp;&nbsp;<code>support</code></td>
 	<td>string*</td>
-	<td>Copied from the matching property in the component's <a href='{{site.baseurl}}/docs/syntax/origamijson'>origami.json</a> file.</td>
+	<td>Copied from the matching property in the component's <a href='{{site.baseurl}}/docs/syntax/origamijson'>origami.json</a> file.  For services that support all API versions in a single code version, it may be necessary to consult prior versions' origami.json files in order to find the appropriate value.</td>
 </tr><tr>
 	<td>&nbsp;&nbsp;<code>supportStatus</code></td>
 	<td>string*</td>
-	<td>Copied from the matching property in the component's <a href='{{site.baseurl}}/docs/syntax/origamijson'>origami.json</a> file.</td>
+	<td>Copied from the matching property in the component's <a href='{{site.baseurl}}/docs/syntax/origamijson'>origami.json</a> file.  For services that support all API versions in a single code version, it may be necessary to consult prior versions' origami.json files in order to find the appropriate value.</td>
 </tr><tr>
 	<td><code>}</code></td>
 	<td></td>
