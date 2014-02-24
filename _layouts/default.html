@@ -7,6 +7,12 @@
         <meta name="viewport" content="width=device-width">
         <meta name="robots" content="noindex, nofollow">
 
+        <script>
+          // Redirect the GH pages hostname to the custom one
+          if (location.hostname.indexOf('.github.io') !== -1) {
+            location.replace(location.href.replace(/[-\w]+\.github\.io\/ft\-origami/, "origami.ft.com"));
+          }
+        </script>
         <link href="{{ site.baseurl }}/buildcache/bundle.css" rel="stylesheet">
         <script src='{{ site.baseurl }}/buildcache/bundle.js'></script>
     </head>
