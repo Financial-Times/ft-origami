@@ -124,10 +124,6 @@ Fetch a set of modules and build a JavaScript bundle.
 	<td>Querystring</td>
 	<td><em>(Optional)</em> If present and true, the successfully generated bundle will include a module list showing dependency relationships in a JavaScript comment block, preceding the bundle's code.</td>
 </tr><tr>
-	<td><code>showerrors</code></td>
-	<td>Querystring</td>
-	<td><em>(Optional)</em> If present and true, the build service will show error details in the content body when returning a non-200 response (usually the console output of the build process).  If false or omitted, the content body will be blank on error.</td>
-</tr><tr>
 	<td><code>sync</code></td>
 	<td>Querystring</td>
 	<td><em>(Optional)</em> If present and true, and there is no cached version of the build available, the build will be performed syncronously and the HTTP connection will be held open until the finished bundle is ready.  These requests will never receive a <code>202</code> response.</td>
@@ -149,9 +145,9 @@ All `2xx` responses will include an `X-FT-Build-Info` response header, giving th
 	X-FT-Build-Info: {build_hash}; {build_start_date}; {build_server}; {status}
 	X-FT-Build-Info: 1b1ab000a9b5642f6b8726039f1e79477b57c103; Tue, 15 Nov 2012 08:12:31 GMT; prod04-build02-uk1; cached
 
-If the request was not valid, a `400 Bad Request` is returned, with a plain text explanation in the response body (if `showerrors is set`).
+If the request was not valid, a `400 Bad Request` is returned, with a plain text explanation in the response body, wrapped in JavaScript comment syntax.
 
-If the request was valid but the build failed, a `500 Internal Server Error` is returned, with a plain text explanation in the response body (if `showerrrors` is set).  The most common causes of a 500 error are dependency conflicts or linting errors from closure compiler.  The build will also fail if the resulting bundle exceeds 5MB in size.
+If the request was valid but the build failed, a `500 Internal Server Error` is returned, with a plain text explanation in the response body.  The most common causes of a 500 error are dependency conflicts or linting errors from closure compiler.  The build will also fail if the resulting bundle exceeds 5MB in size.
 
 
 ### GET /bundles/css
@@ -176,10 +172,6 @@ Fetch a set of modules and build a CSS bundle.
 	<td>Querystring</td>
 	<td><em>(Optional)</em> If present and true, the successfully generated bundle will include the ID of the build, and a module list showing dependency relationships in a CSS comment block, preceding the bundle's code.</td>
 </tr><tr>
-	<td><code>showerrors</code></td>
-	<td>Querystring</td>
-	<td><em>(Optional)</em> If present and true, the build service will show error details in the content body when returning a non-200 response (usually the console output of the build process).  If false or omitted, the content body will be blank on error.</td>
-</tr><tr>
 	<td><code>sync</code></td>
 	<td>Querystring</td>
 	<td><em>(Optional)</em> If present and true, and there is no cached version of the build available, the build will be performed syncronously and the HTTP connection will be held open until the finished bundle is ready.  These requests will never receive a <code>202</code> response.</td>
@@ -201,9 +193,9 @@ All `2xx` responses will include an `X-FT-Build-Info` response header, giving th
 	X-FT-Build-Info: {build_hash}; {build_start_date}; {build_server}; {status}
 	X-FT-Build-Info: 1b1ab000a9b5642f6b8726039f1e79477b57c103; Tue, 15 Nov 2012 08:12:31 GMT; prod04-build02-uk1; cached
 
-If the request was not valid, a `400 Bad Request` is returned, with a plain text explanation in the response body (if `showerrors is set`)
+If the request was not valid, a `400 Bad Request` is returned, with a plain text explanation in the response body, wrapped in CSS comment syntax.
 
-If the request was valid but the build failed, a `500 Internal Server Error` is returned, with a plain text explanation in the response body (if `showerrors` is set).  The most common causes of a 500 error are dependency conflicts or compilation errors from Sass.  The build must also fail if the resulting bundle exceeds 5MB in size.
+If the request was valid but the build failed, a `500 Internal Server Error` is returned, with a plain text explanation in the response body.  The most common causes of a 500 error are dependency conflicts or compilation errors from Sass.  The build must also fail if the resulting bundle exceeds 5MB in size.
 
 
 ### GET /files/`module`@`version`/`path`
