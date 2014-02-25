@@ -81,13 +81,27 @@ Developers *should* stick to the above `jshintrc` config, since this represents 
 
 ## Subresources
 
-JavaScript modules in Origami components may want to load additional files (fonts, JSON data, images etc) that are also part of the component's file tree.  To resolve these paths safely, JS modules wishing to load subresources from their own component *must* resolve the file path using the Origami module utilities module (**TODO**!):
+JavaScript modules in Origami components may want to load additional files (fonts, JSON data, images etc) that are also part of the component's file tree.  To resolve these paths safely, JS modules wishing to load subresources from their own component *must* resolve the file path using the [Origami assets module](https://github.com/Financial-Times/o-assets):
 
 <?prettify linenums=1?>
-	var o = require('o-moduleutils');
-	someiframe.src = o.resolve('tracking', '/img/logo.png');
+	someiframe.src = require('o-assets').resolve('/img/logo.png', 'tracking');
 
-Without any explicit configuration, Module Utils will assume, as we do for subresources in SASS, that the modules are installed publicly at a URL path of `/bower_components` on the current host, and will form URLs on that basis.  Product developers are advised to reconfigure Module Utils to accomodate their own server-side URL routing architecture.
+Without any explicit configuration, `o-assets` will assume, as we do for subresources in SASS, that the modules are installed publicly at a URL path of `/bower_components` on the current host, and will form URLs on that basis.  Product developers are advised to reconfigure o-assets to accomodate their own server-side URL routing architecture.
+
+### Inlining subresources
+
+In some cases it may be desirable or necessary to include the content of a static asset in a JavaScript source bundle (typically to include templates).  To do this, use the `fs::readFileSync` method from NodeJS.  In the [standard Origami build process]({{site.baseurl}}/docs/developer-guide/building-modules) this will be converted into an inline string assignment using the [brfs](https://github.com/substack/brfs) transform ([learn more](https://github.com/Financial-Times/ft-origami/issues/110)).
+
+You would write this in your JavaScript source:
+
+<?prettify linenums=1?>
+	var template = require('fs').readFileSync('main.mustache');
+
+And it would be converted to this by the build process:
+
+<?prettify linenums=1?>
+	var template = "This is the content of main.mustache";
+
 
 ## Hover events
 
