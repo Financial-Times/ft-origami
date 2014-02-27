@@ -50,7 +50,7 @@ All origami components, whether modules or web services, should be discoverable 
 </tr><tr>
 	<td>&nbsp;&nbsp;<code>supportStatus</code></td>
 	<td>string*</td>
-	<td><p>Current support status of the component.  Set to one of:</p>
+	<td><p>Current support status of the component's major version.  Set to one of:</p>
 		<ul>
 			<li>'active' (feature development ongoing, bug reports will be gratefully received and acted upon promptly)</li>
 			<li>'maintained' (not actively developed but reproducible bugs will be fixed promptly and work done where necessary to maintain compatibility with browsers and other components)</li>
