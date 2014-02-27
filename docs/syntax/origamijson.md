@@ -23,19 +23,19 @@ All origami components, whether modules or web services, should be discoverable 
 	<td></td>
 	<td></td>
 </tr><tr>
-	<td>&nbsp;&nbsp;<code>description</code></td>
+	<td><code>&nbsp;&nbsp;description</code></td>
 	<td>string*</td>
 	<td>A short (&lt; 5 words, ideally) description of the purpose of the component</td>
 </tr><tr>
-	<td>&nbsp;&nbsp;<code>origamiType</code></td>
+	<td><code>&nbsp;&nbsp;origamiType</code></td>
 	<td>string*</td>
 	<td>The value 'module' where the component conforms to the <a href='{{site.baseurl}}/docs/component-spec/modules/'>module</a> spec, or 'service' where it conforms to the <a href='{{site.baseurl}}/docs/component-spec/web-services/'>web service</a> spec.</td>
 </tr><tr>
-	<td>&nbsp;&nbsp;<code>origamiVersion</code></td>
+	<td><code>&nbsp;&nbsp;origamiVersion</code></td>
 	<td>integer*</td>
 	<td>Version of Origami to which the component conforms.  Currently must be set to 1.</td>
 </tr><tr>
-	<td>&nbsp;&nbsp;<code>support</code></td>
+	<td><code>&nbsp;&nbsp;support</code></td>
 	<td>string*</td>
 	<td>
 		<p>Where a product developer can go for support on this component.  Either an email address (which should be a group or role based address, nota named individual), or the URL of the component's bug or issue tracker (eg a GitHub issues URL, or other issue tracker such as Redmine).</p>
@@ -48,7 +48,7 @@ All origami components, whether modules or web services, should be discoverable 
 		</ul>
 	</td>
 </tr><tr>
-	<td>&nbsp;&nbsp;<code>supportStatus</code></td>
+	<td><code>&nbsp;&nbsp;supportStatus</code></td>
 	<td>string*</td>
 	<td><p>Current support status of the component's major version.  Set to one of:</p>
 		<ul>
@@ -60,31 +60,47 @@ All origami components, whether modules or web services, should be discoverable 
 		</ul>
 	</td>
 </tr><tr>
-	<td>&nbsp;&nbsp;<code>browserFeatures&nbsp;{</code></td>
+	<td><code>&nbsp;&nbsp;ci&nbsp;{</code></td>
+	<td>object</td>
+	<td>(optional) A set of one or more URLs where build validity information can be found</td>
+</tr><tr>
+	<td><code>&nbsp;&nbsp;&nbsp;&nbsp;travis</code></td>
+	<td>string</td>
+	<td>A <a href='https://travis-ci.org/'>Travis CI</a> build status URL (normally <code>https://api.travis-ci.org/repos/<em>owner</em>/<em>repo</em>/builds.json</code>)</td>
+</tr><tr>
+	<td><code>&nbsp;&nbsp;&nbsp;&nbsp;jenkins</code></td>
+	<td>string</td>
+	<td>A <a href='http://jenkins-ci.org/'>Jenkins</a> build status URL</td>
+</tr><tr>
+	<td><code>&nbsp;&nbsp;},</code></td>
+	<td></td>
+	<td></td>
+</tr><tr>
+	<td><code>&nbsp;&nbsp;browserFeatures&nbsp;{</code></td>
 	<td>object</td>
 	<td>A grouping object for browser features required or used by this module</td>
 </tr><tr>
-	<td>&nbsp;&nbsp;&nbsp;&nbsp;<code>required</code></td>
+	<td><code>&nbsp;&nbsp;&nbsp;&nbsp;required</code></td>
 	<td>array</td>
 	<td>A list of features, as defined by [Modernizr tests](http://modernizr.com/docs/), which the module will assume to exist, and may choose to rely on in its JavaScript code.  If these features do not exist, the module *may* error.</td>
 </tr><tr>
-	<td>&nbsp;&nbsp;&nbsp;&nbsp;<code>optional</code></td>
+	<td><code>&nbsp;&nbsp;&nbsp;&nbsp;optional</code></td>
 	<td>array</td>
 	<td>A list of features, as defined by [Modernizr tests](http://modernizr.com/docs/), which the module will use if they are available in the browser.  The absense of the feature may result in the module offering different or reduced functionality, but it will be handled elegantly.</td>
 </tr><tr>
-	<td>&nbsp;&nbsp;<code>},</code></td>
+	<td><code>&nbsp;&nbsp;},</code></td>
 	<td></td>
 	<td></td>
 </tr><tr>
-	<td>&nbsp;&nbsp;<code>serviceUrl</code></td>
+	<td><code>&nbsp;&nbsp;serviceUrl</code></td>
 	<td>string</td>
 	<td>(optional) For web services only, the URL on which the service is provided.  Required for web services.</td>
 </tr><tr>
-	<td>&nbsp;&nbsp;<code>demos</code></td>
+	<td><code>&nbsp;&nbsp;demos</code></td>
 	<td>array</td>
 	<td>(optional) For modules only, paths within the repo to HTML pages that demonstrate the functionality of the module.  Array, may refer to more than one demo.</td>
 </tr><tr>
-	<td>&nbsp;&nbsp;<code>assetPaths</code></td>
+	<td><code>&nbsp;&nbsp;assetPaths</code></td>
 	<td>array</td>
 	<td>(optional) For modules only, an array of glob patterns that specify the locations of public assets within the repository.  Modules *should* provide a list of asset paths if the module uses the `o-assets` asset loader.  If no asset paths are specified, product developers *must* assume that all files in the module may need to be publicly loaded.</td>
 </tr><tr>
@@ -117,5 +133,8 @@ All origami components, whether modules or web services, should be discoverable 
 	  ],
 	  "assetPaths": [
 	    "/images/logos/*"
-	  ]
+	  ],
+	  "ci": {
+	    "travis": "https://api.travis-ci.org/repos/Financial-Times/o-tweet/builds.json"
+	  }
 	}
