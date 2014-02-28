@@ -10,10 +10,11 @@ permalink: /docs/syntax/html/
 Where Origami components include or output HTML, it should meet the following requirements:
 
 * The markup *must* be [valid HTML5](http://www.whatwg.org/specs/web-apps/current-work/multipage/syntax.html#syntax), except that a DOCTYPE, and opening `<html>` and `<body>` tags should be assumed (ie the markup should be a document body fragment which becomes a valid HTML5 document when enclosed in `<html>` and `<body>` tags).
-* It *must* be well formed XML (ie. it must have a single root element, all elements that are opened must be closed, closing tags must be in order)
-* Valueless attributes *must not* be used, because they are not valid XML:
-	- GOOD: `<button disabled="disabled">Click me</button>`
-	- BAD: `<button disabled>Click me</button>`
+* It *must* be valid HTML5 and must also conform to the following XML rules:
+	* must have a single root element
+	* all elements that are opened must be closed
+	* closing tags must be in order
+	* must not have valueless attributes
 * Semantic markup *must* be used where native elements exist to describe the content:
 	- GOOD: `<address>`
 	- BAD: `<div class="address">`
