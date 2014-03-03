@@ -145,9 +145,8 @@ Finally, enable Travis for your project from your [Travis profile page](https://
 Modules *must* be stored in git repos with the same name as the module itself.  The host server *must* be one of the following, listed in order of preference (from most preferred to least):
 
 1. Public GitHub (github.com/Financial-Times)
-2. FT's GitBlit (git.svc.ft.com)
-3. FT Labs' GitHub Enterprise (git.ak.ft.com)
-4. Private repo on public GitHub (github.com/Financial-Times)
+2. Stash (git.svc.ft.com:8080)
+3. Private repo on public GitHub (github.com/Financial-Times)
 
 
 ## File structure
