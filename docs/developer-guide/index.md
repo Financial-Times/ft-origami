@@ -11,11 +11,13 @@ When you're building a new web product, chances are you need a lot of stuff that
 
 ## Modules
 
-Origami's front end modules are all compliant with a single standardised build process, and are delivered unbuilt, so you need to build them in order to use them in your application.  There are two ways to do this - either set up the standard build process in your own project, or use our build service to fetch pre-built bundles containing the modules of your choice.
+Origami's front end modules contain SASS, JavaScript and markup templates to create great looking UI elements.  The SASS and JavaScript are designed to be built into minified bundles that you can serve as subresources using `<link>` and `<script>` tags, while the markup templates are there to guide you to generate the necessary HTML in your application.
+
+Modules are all compliant with a single standardised build process, and are delivered unbuilt, so you need to build them in order to use them in your application.  There are two ways to do this - either set up the standard build process in your own project, or use our build service to fetch pre-built bundles containing the modules of your choice.
 
 ### Build service or manual build?
 
-If you are not sure which strategy to use, consult the following table of pros and cons to help you decide:
+If you are not sure which strategy to use to build your CSS and JS, consult the following table of pros and cons to help you decide:
 
 <table class='o-techdocs-table'>
 <tr><th>Feature</th><th>Building manually</th><th>Using the build service</th></tr>
@@ -30,6 +32,12 @@ Complete instructions for using both are included in this guide:
 
 * [Building manually](building-modules)
 * [Using the build service](build-service)
+
+<aside>
+	<h4>Mustache as a spec</h4>
+	<p>Origami modules don't include markup in their build process.  Any templates inlcluded in a module component are simply specifications for the markup you need to write to activate the CSS and JavaScript.  Don't feel the need to consume the templates in your app and run Mustache, though you can if you want to.</p>
+	<p>In the future it's likely that Origami markup will be available as templates in HTML imports</p>
+</aside>
 
 ### Loading your script bundle
 
