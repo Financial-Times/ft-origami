@@ -9,13 +9,17 @@ permalink: /docs/developer-guide/
 
 When you're building a new web product, chances are you need a lot of stuff that's common across many FT sites.  Origami modules provide you with common functional components, behaviours, layouts and styles, while Origami services provide dynamic data services and markup feeds.
 
-## Modules
+Origami's web services all share a common, recognisable pattern.  For more information on use of web services, consult the web services guide:
+
+* [Using web services](web-services)
+
+Modules are more complicated, since they offer units of code that can be integrated into your application.
 
 Origami's front end modules contain SASS, JavaScript and markup templates to create great looking UI elements.  The SASS and JavaScript are designed to be built into minified bundles that you can serve as subresources using `<link>` and `<script>` tags, while the markup templates are there to guide you to generate the necessary HTML in your application.
 
 Modules are all compliant with a single standardised build process, and are delivered unbuilt, so you need to build them in order to use them in your application.  There are two ways to do this - either set up the standard build process in your own project, or use our build service to fetch pre-built bundles containing the modules of your choice.
 
-### Build service or manual build?
+## Build service or manual build?
 
 If you are not sure which strategy to use to build your CSS and JS, consult the following table of pros and cons to help you decide:
 
@@ -39,7 +43,7 @@ Complete instructions for using both are included in this guide:
 	<p>In the future it's likely that Origami markup will be available as templates in HTML imports</p>
 </aside>
 
-### Loading your script bundle
+## Loading your script bundle
 
 Whether via the build service or your own build process, your Origami modules will eventually compile to two resources - one JavaScript and one CSS.  You should serve the CSS to *all user agents*, but the JavaScript only to those that meet the minimum standards assumed by Origami module developers.  To ensure that you only run Origami JavaScript in these 'good' browsers, use a '[Cuts the mustard](http://responsivenews.co.uk/post/18948466399/cutting-the-mustard)' script loader.
 
@@ -50,7 +54,7 @@ Origami components declare their minimum requirements in terms of [Modernizr](ht
 3. Include your Modernizr script in the `<head>` of your page, after your stylesheets.   This enables it to add test result classes to the `<html>` tag *before* the body is rendered, so users do not see any [FOUC](http://en.wikipedia.org/wiki/Flash_of_unstyled_content)s.
 4. Add a 'cuts the mustard' test that checks that the required Modernizr tests pass, and if so, loads your JS bundle. For those Modernizr tests that fail, you can choose to polyfill the functionality and then load the JS anyway, or simply not load the JavaScript.  If you do not add the JavaScript, you **must unwrap** appropriate `<noscript>` tags, so that the browser benefits from content targeted at those without scripting capability.
 
-#### Styles for fallbacks and enhancements
+### Styles for fallbacks and enhancements
 
 Origami contains fallback content to be displayed when required features are not supported by the browser.  To ensure it does not display in up to date browsers, you must add some required style rules to your own stylesheet:
 
@@ -61,7 +65,7 @@ The `js` and `nojs` prefixes are not defined by Origami, but must simply match t
 
 	<html class='no-js'>
 
-#### Example
+### Example
 
 Here is a sample script that you can use to invoke the Modernizr tests and add the JS bundle or unwrap the noscript elements based on the result.
 
@@ -73,9 +77,3 @@ Here is a sample script that you can use to invoke the Modernizr tests and add t
 	<p>If you choose to do this, you can unwrap <code>noscript</code> tags more selectively by targeting them by their module name class rather than the generic <code>origami</code> class.</p>
 </aside>
 
-
-## Web services
-
-Origami's web services all share a common, recognisable pattern.  For more information on use of web services, consult the web services guide:
-
-* [Using web services](web-services)

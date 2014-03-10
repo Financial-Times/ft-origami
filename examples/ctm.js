@@ -26,7 +26,7 @@
 		}
 	} else {
 
-		// Since the CTM test failed, put the page into no-js mode
+		// Since the CTM test failed, put the page into no-js mode by adding a 'no-js' class and removing the 'js' class
 		document.documentElement.className += ' no-js';
 		document.documentElement.className = document.documentElement.className.replace(/\bjs\b/, '');
 	}
