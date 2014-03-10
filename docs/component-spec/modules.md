@@ -120,11 +120,11 @@ Where a dependency is an Origami module it *must* be listed under its original n
 * Bad: `"colors-legacy": "1.1.0"`
 
 
-## Tests and examples
+## Tests and demos
 
 Component authors *may* test their component however they like, provided that all test related files *should* be in the `tests` directory, and that test related files *must* not be installable.  The source files of the component *should* be in `src` (except the main JS and/or SASS file).  The project *must* contain a `README.md` formatted in markdown.
 
-Component authors *may* include an `examples` or `dist` folder to provide examples or pre-compiled versions of the source, but these *should* not be installable.
+Component authors *may* include a `demos` folder to provide examples, but these *must* not be installable.  Demos *must* be created using [origami-build-tools](https://github.com/Financial-Times/origami-build-tools), and *must* be compatible with the demo viewer in the Origami registry.  Demos *must* include the minimum amount of content to show the component, and particularly should not include any headings, backgrounds, margins or other content that are not part of the component itself, unless absolutely essential to the ability to demonstrate the component.
 
 
 ## Continuous integration
