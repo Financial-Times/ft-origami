@@ -65,7 +65,7 @@ These modules are listed as *devDependencies* because they are not required to r
 
 <aside>
 	<h4>Specifying versions</h4>
-	You may like to amend your package.json to replace the versions above with more recent ones.  You can find the latest version on the relevant NPM module page linked above.  The versions shown here are known to work by the Origami team, and are expressed using the [Semver](http://www.semver.org) `^` operator, which accepts updated versions up to but not including the next major version.
+	You may like to amend your package.json to replace the versions above with more recent ones.  You can find the latest version on the relevant NPM module page linked above.  The versions shown here are known to work by the Origami team, and are expressed using the [Semver](http://www.semver.org) `^` operator, which accepts updated versions up to but not including the next major version.  Note that this syntax doesn't work in Bower, where you'll instead need to use <code>>=x.y.z &lt;m</code>
 </aside>
 
 ## 4. Set up a bower package manifest
@@ -77,15 +77,15 @@ Once you know which Origami modules you want, create a `bower.json` file in the 
 	{
 	   "name": "tweet-service",
 	   "dependencies": {
-	      "o-tweet": "git://github.com/triblondon/tweet-module.git#0.1",
-	      "o-techdocs": "git://github.com/Financial-Times/o-techdocs#~0.0.3",
-	      "jquery": "2.0"
+	      "o-tweet": "git://github.com/triblondon/tweet-module.git#>=0.1 <1",
+	      "o-techdocs": "git://github.com/Financial-Times/o-techdocs#>=0.0.3 <1",
+	      "jquery": ">=2.0 <3"
 	   }
 	}
 
 You should set `name` to be the name of your project's repo.  `dependencies` is a list of the front-end modules you would like to use in your project.  If the module is in the [bower registry](http://sindresorhus.com/bower-components/), you can simply specify the version number you want (using [semver](http://semver.org) rules), otherwise you must provide the full path to the component's repository followed by a hash and the version you want.
 
-This time we're listing these are *dependencies*, not *devDependencies*, because they are actually required by your project in production.
+This time we're listing these are *dependencies*, not *devDependencies*, because they are actually required by your project in production.  We're also specifying explicit minimum and maximum versions, because Bower doesn't support `^` (See [#148](https://github.com/Financial-Times/ft-origami/issues/148)).
 
 
 ## 5. Create your master SASS and JavaScript files
