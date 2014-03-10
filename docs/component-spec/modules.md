@@ -110,6 +110,8 @@ The following is an example `package.json` file that meets the above spec:
 
 Modules *should* have as few subdependencies as possible.  Where the dependency is required to test the module or view the examples, but not to use it, it should be listed in `devDependencies` not in `dependencies`.
 
+If any feature of a dependency's subdepencies are used directly then that subdependency *must* also be added as a direct dependency e.g. if your module has `o-ft-typography` as a dependency but makes use of `oFontsInclude()` in its stylesheets then `o-fonts` must also be added as a dependency.
+
 When listing dependencies in the `dependencies` section of the `bower.json` package configuration, the version requried *must* be specified using an explicit greater-than and less-than pattern, starting with the lowest version that is known to work, and allowing automatic upgrades until the next major version (See [#148](https://github.com/Financial-Times/ft-origami/issues/148))
 
 Where the dependency is an Origami module that is *also a dependency of many other Origami modules*, it *must* verify and assert the widest version compatibility possible, including maintaining compatibility with earlier versions unless to do so would be impractical.
@@ -118,7 +120,6 @@ Where a dependency is an Origami module it *must* be listed under its original n
 
 * Good: `"o-colors": ">=1.2.0 <3"`
 * Bad: `"colors-legacy": "1.1.0"`
-
 
 ## Tests and demos
 
