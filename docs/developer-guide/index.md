@@ -61,7 +61,7 @@ Origami contains fallback content to be displayed when required features are not
 	.no-js .o--if-js { display: none !important; }
 	.js .o--if-nojs { display: none !important; }
 
-The `js` and `nojs` prefixes are not defined by Origami, but must simply match the classes you choose to put on your `<html>` element.  Modernizr by default removes a `no-js` class if it exists, and adds a `js` class, so choosing those classes means you can use Modernizr more easily.  Just remember to add a `no-js` class to your HTML tag:
+The `js` and `no-js` classes are not defined by Origami, but must simply match the classes you choose to put on your `<html>` element.  Modernizr by default removes a `no-js` class if it exists, and adds a `js` class, so choosing those classes means you can use Modernizr more easily.  Just remember to add a `no-js` class to your HTML tag:
 
 	<html class='no-js'>
 

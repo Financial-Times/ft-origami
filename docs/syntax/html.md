@@ -62,11 +62,12 @@ Markup may contain elements that do not work without accompanying JavaScript.  W
 
 	<li>Share on Facebook<span class='o-share__count o-share--if-js'></span></li>
 
-If the elements are core to the functionality of the module, the element *must* have a `o-if-js` class, and *should* be accompanied by an element with a class of `o-if-nojs` to offer feature fallback to users where the product developer opts not to run the JavaScript, or the user agent does not support it:
+If the elements are core to the functionality of the module, the element *must* have a `o--if-js` class, and *should* be accompanied by an element with a class of `o--if-nojs` to offer feature fallback to users where the product developer opts not to run the JavaScript, or the user agent does not support it:
 
 	<div class='o--if-js'>Submit a new comment: ... </div>
 	<div class='o--if-nojs'>To comment on this article, you need to upgrade your web browser.  <a href='...'>Learn how to upgrade</a>.</div>
 
+To avoid unnecessary HTTP requests, elements with the class `o--if-no-js` *must not* be (or contain) `<img>` tags, and *must not* have a background image URL set with CSS.  Descendent elements of the `o--if-no-js` element *may* have CSS image backgrounds ([Learn more](http://timkadlec.com/2012/04/media-query-asset-downloading-results/))
 
 ## WAI-ARIA
 
