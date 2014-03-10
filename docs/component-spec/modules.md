@@ -152,8 +152,8 @@ Modules *must* be stored in git repos with the same name as the module itself.  
 This section is non-normative.  A module component *may* be organised as follows, but this does not imply any requirements aside from those listed above.  The following can be considered an opinion on a good file structure for a module.
 
 	.
-	├─ examples
-	├─ tests
+	├─ demos
+	├─ test
 	├─ src
 	|   ├─ javascript
 	|   |   ├─ module1.js
@@ -166,9 +166,9 @@ This section is non-normative.  A module component *may* be organised as follows
 	|   └─ svg
 	|       └─ icon1.svg
 	├─ .gitignore
+	├─ .travis.yml
 	├─ bower.json
 	├─ main.js
 	├─ main.scss
 	├─ origami.json
 	└─ README.md
-
