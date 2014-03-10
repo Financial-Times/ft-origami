@@ -77,15 +77,26 @@ Once you know which Origami modules you want, create a `bower.json` file in the 
 	{
 	   "name": "tweet-service",
 	   "dependencies": {
-	      "o-tweet": "git://github.com/triblondon/tweet-module.git#>=0.1 <1",
-	      "o-techdocs": "git://github.com/Financial-Times/o-techdocs#>=0.0.3 <1",
+	      "o-tweet": ">=0.1 <1",
+	      "o-techdocs": ">=0.0.3 <1",
 	      "jquery": ">=2.0 <3"
 	   }
 	}
 
-You should set `name` to be the name of your project's repo.  `dependencies` is a list of the front-end modules you would like to use in your project.  If the module is in the [bower registry](http://sindresorhus.com/bower-components/), you can simply specify the version number you want (using [semver](http://semver.org) rules), otherwise you must provide the full path to the component's repository followed by a hash and the version you want.
+You should set `name` to be the name of your project's repo.  `dependencies` is a list of the front-end modules you would like to use in your project.  If the module is in the [origami registry](http://registry.origami.ft.com) or the [bower registry](http://sindresorhus.com/bower-components/), you can simply specify the version number you want (using [semver](http://semver.org) rules), otherwise you must provide the full path to the component's repository followed by a hash and the version you want.
 
 This time we're listing these are *dependencies*, not *devDependencies*, because they are actually required by your project in production.  We're also specifying explicit minimum and maximum versions, because Bower doesn't support `^` (See [#148](https://github.com/Financial-Times/ft-origami/issues/148)).
+
+To ensure that bower can find Origami modules, it needs to be set up to search the Origami registry.  To do this, create a `.bowerrc` file in the root of your project's working tree, with the following contents:
+
+	{
+	  "registry": {
+	    "search": [
+	      "http://registry.origami.ft.com",
+	      "https://bower.herokuapp.com"
+	    ]
+	  }
+	}
 
 
 ## 5. Create your master SASS and JavaScript files

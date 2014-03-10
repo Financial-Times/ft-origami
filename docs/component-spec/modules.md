@@ -66,7 +66,7 @@ The following requirements apply to creating a Origami-compatible module compone
 
 * *Must* include a `name` property set to the repo name, eg 'o-grid'
 * *Must* include a `main` property *if* the module contains any JavaScript, and if present, *must* be set to the value `main.js`.
-* *Must* include a `dependencies` object *if* the module has any Origami dependencies and should accept as wide a range of versions of dependencies as possible (also see 'Module subdependencies' below)
+* *Must* include a `dependencies` object *if* the module has any Origami dependencies, specify dependencies without URLs, and accept as wide a range of versions of dependencies as possible (also see 'Module subdependencies' below)
 * *Must* include an `ignore` property listing all files and directories in the module that are not required by product developers, which *must* include anything that is not declarative code or front end JavaScript.  The `origami.json` and `README.md` files *should not* be ignored, since they may be needed by Origami-aware tools that install and catalogue Origami modules.
 * *May* include `devDependencies` if appropriate
 * *Must not* include a `version` property.  The version property is not needed and risks being out of sync with the repo tag
@@ -78,7 +78,7 @@ The following is an example `bower.json` file that meets the above spec:
 	{
 	  "name": "o-grid",
 	  "dependencies": {
-	    "o-colors": "git://github.com:Financial-Times/o-colors.git#>=1.2.0 <1.3.0"
+	    "o-colors": ">=1.2.0 <2"
 	  },
 	  "ignore": [
 	    "examples",
@@ -116,8 +116,8 @@ Where the dependency is an Origami module that is *also a dependency of many oth
 
 Where a dependency is an Origami module it *must* be listed under its original name (in order to avoid causing conflicts in the Build service resource compiler.
 
-* Good: `"o-colors": "git://github.com:Financial-Times/o-colors.git#>=1.2.0 <3"`
-* Bad: `"colors-legacy": "git://github.com:Financial-Times/o-colors.git#1.1.0"`
+* Good: `"o-colors": ">=1.2.0 <3"`
+* Bad: `"colors-legacy": "1.1.0"`
 
 
 ## Tests and examples
