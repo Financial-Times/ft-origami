@@ -129,15 +129,13 @@ Component authors *may* include an `examples` or `dist` folder to provide exampl
 
 ## Continuous integration
 
-Modules *should* implement CI, and if the module is openly hosted on GitHub, *must* use Travis CI to do so. Any CI *should* use JavaScript as for the primary test runner script. A good practice for this is demonstrated by the [o-techdocs](https://github.com/Financial-Times/o-techdocs) module.  First, set up a grunt-based build process.  The following gruntfile will compile modules in a way that is Origami compliant:
+Modules *should* implement CI, and if the module is openly hosted on GitHub, *must* use Travis CI to do so, using the [origami-build-tools](https://github.com/Financial-Times/origami-build-tools) utility.  To invoke this in a module simply create a `.travis.yml` file in the root of the repo containing:
 
-<script src="https://gist.github.com/triblondon/8687515.js"></script>
+<script src="https://gist.github.com/triblondon/9464190.js"></script>
 
-The files `main.scss` and `main.js` from the root of the module will be compiled to `bundle.css` and `bundle.js` in the `/buildcache` directory.  Now create a Travis config and test script:
+Then enable Travis for your project from your [Travis profile page](https://travis-ci.org/profile).  The origami build tool will read your `bower.json` file, build your CSS and JavaScript bundles from your main files (the CSS in both silent and non-silent mode), and will verify that the resulting bundles are valid.
 
-<script src="https://gist.github.com/triblondon/8686330.js"></script>
-
-Finally, enable Travis for your project from your [Travis profile page](https://travis-ci.org/profile).  Modules that are not openly published on GitHub *should* use Jenkins for CI.
+Modules that are not openly published on GitHub *should* use Jenkins for CI.
 
 
 ## Where to store modules
