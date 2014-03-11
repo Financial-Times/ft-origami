@@ -34,6 +34,7 @@ Where Origami components include or output HTML, it should meet the following re
 	* `<style>`
 	* `<base>`
 	* `<link>`
+	* `<noscript>`
 * Those elements and attributes which are deprecated in the HTML5 spec *should* not be used:
 	- BAD: `<applet>`, `<frameset>`, `<font>`, `<link rev="">`, `<td align="right">`
 * `<iframe>` *must* not be used in markup. Iframes may be created by JavaScript.
@@ -57,19 +58,16 @@ If a module has a single root element, that element (with the appropriate class 
 
 ## Anticipating lack of script
 
-Markup may contain elements that do not work without accompanying JavaScript.  Where those elements are progressive enhancements, they *must* be marked with a `modulename--js` class so that they can be made visible by the JavaScript:
+Markup may contain elements that do not work without accompanying JavaScript.  Where those elements are progressive enhancements, they *must* be marked with a `modulename--if-js` class so that they can be made visible by the JavaScript:
 
-	<li>Share on Facebook<span class='o-share__count o-share--js'></span></li>
+	<li>Share on Facebook<span class='o-share__count o-share--if-js'></span></li>
 
-If the elements are core to the functionality of the module, the module *should* advise the use of a `<noscript>` tag to offer feature fallback to users where the product developer opts not to run the JavaScript, or the user agent does not support it.
+If the elements are core to the functionality of the module, the element *must* have a `o--if-js` class, and *should* be accompanied by an element with a class of `o--if-nojs` to offer feature fallback to users where the product developer opts not to run the JavaScript, or the user agent does not support it:
 
-When providing `<noscript>` tag examples, module developers *must* include the module name and the string 'origami-noscript' as classes on the tag, and wrap the tag in conditonal comments like this:
+	<div class='o--if-js'>Submit a new comment: ... </div>
+	<div class='o--if-nojs'>To comment on this article, you need to upgrade your web browser.  <a href='...'>Learn how to upgrade</a>.</div>
 
-	<![if gt IE 8]> <noscript class="o--noscript o-comments--noscript"> <![endif]>
-	    <div class="o--noscript o-comments--noscript">To comment on this article, you need to upgrade your web browser.  <a href='...'>Learn how to upgrade</a>.</div>
-	<![if gt IE 8]> </noscript> <![endif]>
-
-This is because in Internet Explorer 8 and below, it's not possible to programmatically access the content of a NOSCRIPT tag, so those browsers will obey the conditional comments and will not wrap the message in a NOSCRIPT tag.
+To avoid unnecessary HTTP requests, elements with the class `o--if-no-js` *must not* be (or contain) `<img>` tags, and *must not* have a background image URL set with CSS.  Descendent elements of the `o--if-no-js` element *may* have CSS image backgrounds ([Learn more](http://timkadlec.com/2012/04/media-query-asset-downloading-results/))
 
 ## WAI-ARIA
 
