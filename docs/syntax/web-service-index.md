@@ -31,7 +31,7 @@ All Origami web services are required to expose an `/__about` endpoint to list t
 </tr><tr>
 	<td>&nbsp;&nbsp;&nbsp;&nbsp;<code>"..."</code></td>
 	<td>string*</td>
-	<td>URL of a version of the web service.  Repeat for additional versions.</td>
+	<td>URL of a version of the web service.  Repeat for additional versions.  May be specified as a full URL, or just the path component of the URL, in which case the full URL can be determined by using the same scheme and hostname as the URL that served the web service index document.</td>
 </tr><tr>
 	<td>&nbsp;&nbsp;<code>]</code></td>
 	<td></td>
