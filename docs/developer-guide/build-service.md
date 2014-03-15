@@ -109,7 +109,7 @@ Fetch a set of modules and build a JavaScript bundle.
 </tr><tr>
 	<td><code>modules</code></td>
 	<td>Querystring</td>
-	<td>A comma separated list of modules in the form <code>modulename@version</code>.  Modulename may be a full URL (URL-encoded), or just the name of the repository.  Where it is not a URL, the build service will try to find it as a repository from known Git sources.  <code>version</code> is optional - if not present the build service will build the most recent version of the module, if it is present, it will be interpreted using Semver rules and the best matching version will be built.  Using specific commit sha1s is not supported.
+	<td>A comma separated list of modules in the form <code>modulename@version</code>.  Modulename may be a full URL (URL-encoded), or just the name of the repository.  Where it is not a URL, the build service will try to find it as a repository from known Git sources.  <code>version</code> is optional - if not present the build service will build the most recent version of the module, if it is present, it will be interpreted using Semver rules and the best matching version will be built.  Using specific commit sha1s or branch names is not currently supported.
 </td>
 </tr><tr>
 	<td><code>minify</code></td>
@@ -166,7 +166,7 @@ Fetch a set of modules and build a CSS bundle.
 </tr><tr>
 	<td><code>modules</code></td>
 	<td>Querystring</td>
-	<td>A comma separated list of modules in the form <code>modulename@version</code>.  Modulename may be a full URL (URL-encoded), or just the name of the repository.  Where it is not a URL, the build service will try to find it as a repository from known Git sources.  <code>version</code> is optional - if not present the build service will build the most recent version of the module, if it is present, it will be interpreted using Semver rules and the best matching version will be built.  Using specific commit sha1s is not supported.</td>
+	<td>A comma separated list of modules in the form <code>modulename@version</code>.  Modulename may be a full URL (URL-encoded), or just the name of the repository.  Where it is not a URL, the build service will try to find it as a repository from known Git sources.  <code>version</code> is optional - if not present the build service will build the most recent version of the module, if it is present, it will be interpreted using Semver rules and the best matching version will be built.  Using specific commit sha1s or branch names is not currently supported.</td>
 </tr><tr>
 	<td><code>style</code></td>
 	<td>Querystring</td>
