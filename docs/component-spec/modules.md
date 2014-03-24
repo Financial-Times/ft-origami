@@ -114,13 +114,13 @@ If any feature of a dependency's subdepencies are used directly then that subdep
 
 If a module requires that any feature of its dependencies be used directly by products/components consuming the module then it *should* alias that functionality within its own namespace to avoid them having to include the subdependency as a direct dependency e.g o-ft-typography aliases `oFontsInclude` to `oFtTypographyIncludeFont`.
 
-When listing dependencies in the `dependencies` section of the `bower.json` package configuration, the version requried *must* be specified using an explicit greater-than and less-than pattern, starting with the lowest version that is known to work, and allowing automatic upgrades until the next major version (See [#148](https://github.com/Financial-Times/ft-origami/issues/148))
+When listing dependencies in the `dependencies` section of the `bower.json` package configuration, the version requried *must* be specified using the semver `^` operator, allowing for updates up to the next major version, unless a version within that range is known to break the module (note that this doesn't work in the same way for packages that are not yet at version 1, for which, specify an explicit range.  See [#148](https://github.com/Financial-Times/ft-origami/issues/148))
 
 Where the dependency is an Origami module that is *also a dependency of many other Origami modules*, it *must* verify and assert the widest version compatibility possible, including maintaining compatibility with earlier versions unless to do so would be impractical.
 
 Where a dependency is an Origami module it *must* be listed under its original name (in order to avoid causing conflicts in the Build service resource compiler.
 
-* Good: `"o-colors": ">=1.2.0 <3"`
+* Good: `"o-colors": "^1.2.0"`
 * Bad: `"colors-legacy": "1.1.0"`
 
 ## Tests and demos
