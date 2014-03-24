@@ -11,6 +11,10 @@ Origami has adopted [SASS](http://sass-lang.com/) and specifically the most comm
 
 SASS features should be used only where they result in increased clarity and reuse. Care should be taken that the resulting CSS is not compromised by unnecessary SASS nesting.
 
+## SASS version
+
+Component developers and Origami build tools *must* use SASS version ~3.3.0, and *should* fix any issues alerted by the compiler as deprecation warnings from 3.2.
+
 ## Selectors
 
 ### Naming conventions and encapsulation
