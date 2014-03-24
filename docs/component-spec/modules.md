@@ -22,7 +22,7 @@ permalink: /docs/component-spec/modules/
 
 Modules *must* be named using a short descriptive term (hyphenated if necessary) prefixed with `o-` (for Origami) as the name for the repository and CSS classes.
 
-<aside>Examples of good module names include <code>o-tweet</code>, <code>o-colors</code>, <code>o-grid</code>, <code>o-tabs</code>, <code>o-tabs-style1</code>, <code>o-cookiewarn</code>, <code>o-ft-nav</code>.</aside>
+<aside>Examples of good module names include <code>o-tweet</code>, <code>o-colors</code>, <code>o-grid</code>, <code>o-tabs</code>, <code>o-tabs-style1</code>, <code>o-cookiewarn</code>, <code>o-ft-nav</code>.  There is no standard or requirement for the use of <code>-ft-</code> in the name, and for the purposes of this spec it is semantically meaningless.</aside>
 
 
 ## Requirements
