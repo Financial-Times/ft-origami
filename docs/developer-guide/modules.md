@@ -65,7 +65,7 @@ These modules are listed as *devDependencies* because they are not required to r
 
 <aside>
 	<h4>Specifying versions</h4>
-	You may like to amend your package.json to replace the versions above with more recent ones.  You can find the latest version on the relevant NPM module page linked above.  The versions shown here are known to work by the Origami team, and are expressed using the [Semver](http://www.semver.org) `^` operator, which accepts updated versions up to but not including the next major version (note that this doesn't work in the same way for versions < 1 so to get the same behaviour, specify the range explicitly)
+	You may like to amend your package.json to replace the versions above with more recent ones.  You can find the latest version on the relevant NPM module page linked above.  The versions shown here are known to work by the Origami team, and are expressed using the <a href='http://www.semver.org'>Semver</a> <code>^</code> operator, which accepts updated versions up to but not including the next major version (note that this doesn't work in the same way for versions &lt; 1 so to get the same behaviour, specify the range explicitly)
 </aside>
 
 ## 4. Set up a bower package manifest
