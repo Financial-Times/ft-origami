@@ -1,13 +1,13 @@
 ---
 layout: default
-title: Release notes
+title: Changes news feed
 section: Overview
 permalink: /docs/overview/changes/
 ---
 
-# Spec change log
+# Spec changes newsfeed
 
-The following documents the chronology of changes to the Origami spec since 13th January 2014.  If you want more detailed granularity, please refer to the [commit log](https://github.com/Financial-Times/ft-origami/commits/gh-pages).
+The following documents the chronology of changes to the Origami spec and significant (ie. breaking) releases of Origami modules since 13th January 2014.  If you want more detailed granularity, please refer to the [commit log](https://github.com/Financial-Times/ft-origami/commits/gh-pages).
 
 ### 24 March 2014
 
