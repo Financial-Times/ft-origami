@@ -7,39 +7,7 @@ permalink: /docs/overview/governance/
 
 # Governance and policy
 
-The Origami team maintains this site and specification, components and component tools.
-
-## Origami team
-
-Currently the Origami team comprises the following members.  Contact details are available in the staff directory.
-
-<table class='o-techdocs-table'>
-<tr>
-	<th>Role</th>
-	<th>Name</th>
-	<th>Main responsibilities</th>
-</tr><tr>
-	<td>Head of group</td>
-	<td>Andrew Betts</td>
-	<td>Line manager to other members<br/>Editor of the Origami spec<br/>Arbiter of technology decisions</td>
-</tr><tr>
-	<td>Module developer</td>
-	<td>Dan Searle</td>
-	<td>Develop Origami components in CSS and JavaScript</td>
-</tr><tr>
-	<td>Module developer</td>
-	<td>TBC</td>
-	<td>Develop Origami components in CSS and JavaScript</td>
-</tr><tr>
-	<td>Service developer</td>
-	<td>TBC</td>
-	<td>Develop Origami services in NodeJS</td>
-</tr><tr>
-	<td>Service developer</td>
-	<td>TBC</td>
-	<td>Develop Origami services in NodeJS</td>
-</tr>
-</table>
+The Origami team maintains this site and specification, components and component tools.  It is currently led by Andrew Betts.
 
 ## Responsibilities
 
@@ -63,7 +31,7 @@ In Origami specification documents, the words **MUST**, **MUST NOT**, **SHOULD**
 
 On issues affecting the Origami spec, the team will also consult the Origami advisory group, and take their views into account when making spec changes.
 
-If a spec change is proposed by the spec editor, they will normally create a pull request, and advertise it to the advisory group and other interested parties via the `front-end-web` distribution list.  If no objections are received (via pull request comments) within three business days, the change will be merged.  Once a change is merged, the advisory group will be notified again so that they can keep their programmes up to date with the latest state of the standard, and promote its adoption and use.
+If a spec change is proposed by the spec editor, they will normally create a pull request.  If no objections are received (via pull request comments) within three business days, the change will be merged.  Once an important change is merged, the advisory group will be notified again so that they can keep their programmes up to date with the latest state of the standard, and promote its adoption and use.  All non-trivial changes will be recorded in a chagelog that is part of the specification.
 
 Changes to the spec may also be proposed by anyone via a pull request.  These will be reviewed by the spec editor and if approved, submitted to the advisory group.
 
