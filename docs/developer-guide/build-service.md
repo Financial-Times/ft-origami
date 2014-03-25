@@ -131,10 +131,6 @@ Fetch a set of modules and build a JavaScript bundle.
 	<td><code>newerthan</code></td>
 	<td>Querystring</td>
 	<td><em>(Optional)</em> If present and set to a valid <a href='http://en.wikipedia.org/wiki/ISO_8601'>ISO 8601</a> date in the past, the build service will not consider any cached copies of the build which are older than the date given, and if necessary will therefore begin a new build as if there were no build cached.</td>
-</tr><tr>
-	<td><code>include</code></td>
-	<td>Querystring</td>
-	<td><em>(Optional)</em> String, module name and path to a file to *append* to the build's main file before running browserify.  Must be in the form <code>modulename:path</code>, eg <code>o-colors:/demos/demo-src/demo1.js</code></td>
 </tr>
 </table>
 
@@ -183,10 +179,6 @@ Fetch a set of modules and build a CSS bundle.
 	<td><code>newerthan</code></td>
 	<td>Querystring</td>
 	<td><em>(Optional)</em> If present and set to a valid <a href='http://en.wikipedia.org/wiki/ISO_8601'>ISO 8601</a> date in the past, the build service will not consider any cached copies of the build which are older than the date given, and if necessary will therefore begin a new build as if there were no build cached.</td>
-</tr><tr>
-	<td><code>include</code></td>
-	<td>Querystring</td>
-	<td><em>(Optional)</em> String, module name and path to a file to *prepend* to the build's main file before running SASS.  Must be in the form <code>modulename:path</code>, eg <code>o-colors:/demos/demo-src/demo1.sass</code></td>
 </tr>
 </table>
 
