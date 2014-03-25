@@ -15,10 +15,6 @@ The following documents the chronology of changes to the Origami spec and signif
 
 **Sass version**: Modules' Sass must be compilable in Sass 3.3 and avoid emitting deprecation warnings ([Issue](https://github.com/Financial-Times/ft-origami/issues/126))
 
-### 19 March 2014
-
-New major version of [o-fonts](http://github.com/financial-times/o-fonts)@1.0.0. Backwards compatible to 0.7.0
-
 ### 14 March 2014
 
 **Subdependencies**: Modules must not use features of subdependencies directly (e.g using oFontsInclude when only oFtTypography is a direct dependency) and should alias features of their dependencies that consumers are likely to need. ([Issue](https://github.com/Financial-Times/ft-origami/issues/150))
