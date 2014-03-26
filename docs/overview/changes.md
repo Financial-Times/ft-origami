@@ -9,11 +9,35 @@ permalink: /docs/overview/changes/
 
 The following documents the chronology of changes to the Origami spec and significant (ie. breaking) releases of Origami modules since 13th January 2014.  If you want more detailed granularity, please refer to the [commit log](https://github.com/Financial-Times/ft-origami/commits/gh-pages).
 
+### 26 March 2014
+
+**origami-build-tools**: [1.0.0 released](https://github.com/Financial-Times/origami-build-tools/releases/tag/1.0.0): "First release".
+
+### 25 March 2014
+
+**o-ft-forms**: [0.6.1 released](https://github.com/Financial-Times/o-ft-forms/releases/tag/0.6.1): "It's active!".
+
 ### 24 March 2014
 
 **Dependency reference syntax**: Modules strongly recommended to use `^` syntax when specifying dependencies ([Issue](https://github.com/Financial-Times/ft-origami/issues/148))
 
 **Sass version**: Modules' Sass must be compilable in Sass 3.3 and avoid emitting deprecation warnings ([Issue](https://github.com/Financial-Times/ft-origami/issues/126))
+
+### 21 March 2014
+
+**o-fonts**: [1.0.0 released](https://github.com/Financial-Times/o-fonts/releases/tag/1.0.0): "Now requires SASS 3.3".
+
+**o-gallery**: [0.2.1 released](https://github.com/Financial-Times/o-gallery/releases/tag/0.2.1): "Updated o-ft-icons version".
+
+### 20 March 2014
+
+**o-ft-icons**: [1.0.0 released](https://github.com/Financial-Times/o-ft-icons/releases/tag/1.0.0): "Changed status to 'active'".
+
+### 18 March 2014
+
+**o-fonts-assets**: 0.1.0 released (private repo).
+
+**o-ft-buttons**: [1.0.0 released](https://github.com/Financial-Times/o-ft-buttons/releases/tag/1.0.0): "Origami buttons - unified design".
 
 ### 14 March 2014
 
@@ -87,6 +111,8 @@ The following documents the chronology of changes to the Origami spec and signif
 
 **SASS Syntax**: Require `!optional` to be used when extending placeholder classes
 
+**o-ft-typography**: [1.0.0 released](https://github.com/Financial-Times/o-ft-typography/releases/tag/1.0.0): "Now includes general and article-specific typographic styles".
+
 ### 24 Jan 2014
 
 **Cuts the mustard**: Add process for performing Cuts the mustard test ([Issue](https://github.com/Financial-Times/ft-origami/issues/86))
@@ -105,6 +131,12 @@ The following documents the chronology of changes to the Origami spec and signif
 
 **Scope in JS**: Modules must assume no globals exist except those they have defined in `browserFeatures` and those present in ECMAScript 3. ([Issue](https://github.com/Financial-Times/ft-origami/issues/94))
 
+**o-colors**: [2.0.0 released](https://github.com/Financial-Times/o-colors/releases/tag/2.0.0): "New variable syntax".
+
 ### 13 Jan 2014
 
 **Ignores**: README.md must not be ignored in bower.json, otherwise the README cannot be loaded by the registry
+
+### 7 Jan 2014
+
+**o-colors**: [1.0.0 released](https://github.com/Financial-Times/o-colors/releases/tag/1.0.0): "Now with use-case variables".
