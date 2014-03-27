@@ -111,7 +111,7 @@ The following documents the chronology of changes to the Origami spec and signif
 
 **Owned DOM**: Define 'Owned DOM' and require modules to only modify DOM within their area of owned DOM
 
-**o-useragent** [0.4.0 released](http://registry.origami.ft.com/components/o-colors@0.4.0)**: Changed to use placeholder classes to target useragents. Css incompatible with 0.3.x
+**o-useragent** [0.4.0 released](http://registry.origami.ft.com/components/o-colors@0.4.0): Changed to use placeholder classes to target useragents. Css incompatible with 0.3.x
 
 ### 14 Feb 2014
 
