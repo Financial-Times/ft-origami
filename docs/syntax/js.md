@@ -39,17 +39,42 @@ In some cases, especially for tracking use cases, a module may act on portions o
 
 When using selector engines other than native `querySelector`, modules *must not* use selectors that are incompatible with querySelector.  This allows for an easier future upgrade path to querySelector.
 
-## Events
+## Communicating with host page code and other components
 
-Modules *may* stop the propagation chain for events that they have created, but *must not* do so for browser events, since other modules, or indeed the product, may need to bind to those events for other reasons.
+Modules may wish to communicate, or make possible communication with other components of the same type, other components of different types, or non-component code in the host page.  This should be accomplished with DOM events and API methods.
 
-Any event listeners set up at page load *must* bind on the `<body>` element and use [event delegation](http://stackoverflow.com/questions/1687296/what-is-dom-event-delegation), and *must* be filtered based on the module's own class.
+### API
+
+Modules *may* expose an external API via `module.exports`.  Modules *must not* rely on the existence of any APIs other than those that are explicitly required dependencies, explictly expressed in the `browserFeatures` property of origami.json, or defined as part of the DOM level 2 specification.
+
+### Events
+
+Modules *may* **emit** events to allow loose coupling with other components and the host page.  In doing do, the module *must*:
+
+* use only browser-native DOM events with bubbling enabled
+* specify `createevent` as a required browser feature in the `browserFeatures` section of origami.json
+* where the module wishes to attach custom data payloads to events, specify `customevents` as a required browser feature in addition to 'createevent'
+* trigger events only on elements within the component's owned DOM, or otherwise only on the body element
+* namespace event names with the name of the module in camelcase, eg `oModuleNameEventName`
+
+A valid example of a module emitting a DOM event is shown below:
+
+<?prettify linenums=1?>
+	this.dispatchEvent(new CustomEvent('oTestClick', {
+	  detail: {...},
+	  bubbles: true
+	}));
+
+Modules *may* **bind** to events emitted by themselves, other modules, the host page or the browser.  In doing so, the module *must*:
+
+* *not* stop the progagation chain except for events created by itself
+* bind only to the BODY element and use [event delegation](http://stackoverflow.com/questions/1687296/what-is-dom-event-delegation) to ensure that handlers do not need to be bound every time elements are created.
 
 Modules *should* handle events during the [bubbling phase](http://stackoverflow.com/questions/4616694/what-is-event-bubbling-and-capturing), not the capturing phase (unless the event has no bubbling phase)
 
 ## Functions
 
-Modules *should* avoid containing functions with more than 3 arguments.  Where more parameters are required, consider passing an object (and if so, consider using [lo-dash's defaults function](http://lodash.com/docs#defaults))
+Modules *should* avoid containing functions with more than 3 arguments.  Where more parameters are required, consider passing an object (and if so, consider using [lo-dash's defaults function](http://lodash.com/docs#defaults)).
 
 ## Animation
 
