@@ -41,7 +41,7 @@ When using selector engines other than native `querySelector`, modules *must not
 
 ## Communicating with host page code and other components
 
-Modules may wish to communicate, or make possible communication with other components of the same type, other components of different types, or non-component code in the host page.  This should be accomplished with DOM events and API methods.
+Modules may wish to communicate (or make communication possible) with other components of the same type, other components of different types, or non-component code in the host page.  This should be accomplished with API methods (when invoking known dependencies) and DOM events (in all other cases).
 
 ### API
 
