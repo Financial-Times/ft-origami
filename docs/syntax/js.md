@@ -67,7 +67,7 @@ A valid example of a module emitting a DOM event is shown below:
 
 Modules *may* **bind** to events emitted by themselves, other modules, the host page or the browser.  In doing so, the module *must*:
 
-* *not* stop the progagation chain except for events created by itself
+* *not* stop the propagation chain except for events created by itself
 * bind only to the BODY element and use [event delegation](http://stackoverflow.com/questions/1687296/what-is-dom-event-delegation) to ensure that handlers do not need to be bound every time elements are created.
 
 Modules *should* handle events during the [bubbling phase](http://stackoverflow.com/questions/4616694/what-is-event-bubbling-and-capturing), not the capturing phase (unless the event has no bubbling phase)
