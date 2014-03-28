@@ -39,6 +39,8 @@ In some cases, especially for tracking use cases, a module may act on portions o
 
 When using selector engines other than native `querySelector`, modules *must not* use selectors that are incompatible with querySelector.  This allows for an easier future upgrade path to querySelector.
 
+Modules *may* assume that any HTML markup that relates to their component follows the hierarchical structure specified in their module's Mustache template. However, modules *should not* make assumptions about the order of HTML elements, and should, as far as possible, cope with the presence within the component of elements not specified in the template.
+
 ## Events
 
 Modules *may* stop the propagation chain for events that they have created, but *must not* do so for browser events, since other modules, or indeed the product, may need to bind to those events for other reasons.
