@@ -39,6 +39,11 @@ In some cases, especially for tracking use cases, a module may act on portions o
 
 When using selector engines other than native `querySelector`, modules *must not* use selectors that are incompatible with querySelector.  This allows for an easier future upgrade path to querySelector.
 
+To allow products to modify module markup in reasonable ways (e.g. inserting a custom, static welcome message) selectors that rely on a specific DOM tree or tag names *should* be avoided unless the html spec or the module's core purpose enforces a given html structure.
+
+* GOOD: `.o-modulename__close-button`, `.o-modulename__list > li` (where `.o-modulename__list` is a `ul` or `ol`)
+* BAD: `.o-modulename__heading + p`
+
 ## Events
 
 Modules *may* stop the propagation chain for events that they have created, but *must not* do so for browser events, since other modules, or indeed the product, may need to bind to those events for other reasons.
