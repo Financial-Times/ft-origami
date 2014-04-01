@@ -53,7 +53,7 @@ Modules *may* **emit** events to allow loose coupling with other components and 
 
 * use only browser-native DOM events with bubbling enabled
 * specify `createevent` as a required browser feature in the `browserFeatures` section of origami.json
-* where the module wishes to attach custom data payloads to events, specify `customevents` as a required browser feature in addition to 'createevent', and use the [CustomEvent](https://developer.mozilla.org/en/docs/Web/API/CustomEvent) API.
+* where the module wishes to attach custom data payloads to events, specify `customevents` as a required browser feature in addition to 'createevent', use the [CustomEvent](https://developer.mozilla.org/en/docs/Web/API/CustomEvent) API, and pass an object type in the `details` property.
 * trigger events only on elements within the component's owned DOM, or otherwise only on the body element
 * namespace event names with the name of the module in camelcase, eg `oModuleNameEventName`
 
