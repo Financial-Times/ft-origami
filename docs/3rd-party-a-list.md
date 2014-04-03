@@ -35,11 +35,11 @@ Origami components may have dependencies (via Bower) on third party components. 
 		<td>Modernizr contains feature detects for a large range of browser APIs, as well as providing useful utilities for dealing with browser prefixes and html5 semantic elements in older browsers.</td>
 	</tr><tr>
 		<td>Template engine</td>
-		<td><a href='https://github.com/wycats/handlebars.js/'>Handlebars</a></td>
-		<td>Mustache<br/>Hogan</td>
+		<td><a href='https://github.com/wycats/handlebars.js/'>Hogan</a></td>
+		<td>Mustache<br/>Handlebars</td>
 		<td>
 			<p>It's compatible with Mustache templates, but offers additional features on top of Mustache's syntax. Origami has no opinion on how product developers should build applications, so when a component's purpose is to offer a raw template to the developer, it must use only fully Mustache-compatible syntax (but these components would also not actually require the template engine themselves).</p>
-			<p>Components that contain templates but only use them interally in order to render a UI element, may use the more advanced template syntax offered by Handlebars, and prefer Handlebars as the template engine.</p>
+			<p>Components that contain templates but only use them interally in order to render a UI element, may use the more advanced template syntax offered by Hogan, and prefer Hogan as the template engine.</p>
 		</td>
 	</tr>
 </tbody>
