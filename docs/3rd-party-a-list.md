@@ -41,6 +41,13 @@ Origami components may have dependencies (via Bower) on third party components. 
 			<p>It's compatible with Mustache templates, but offers additional features on top of Mustache's syntax. Origami has no opinion on how product developers should build applications, so when a component's purpose is to offer a raw template to the developer, it must use only fully Mustache-compatible syntax (but these components would also not actually require the template engine themselves).</p>
 			<p>Components that contain templates but only use them interally in order to render a UI element, may use the more advanced template syntax offered by Hogan, and prefer Hogan as the template engine.</p>
 		</td>
+	</tr><tr>
+		<td>Touch interactions</td>
+		<td><a href='http://eightmedia.github.io/hammer.js//'>Hammerjs</a></td>
+		<td></td>
+		<td>
+			<p>It offers a highly extensible, well tested and lightweight way to interact with touch events, including both single- and multi-touch gestures.</p>
+		</td>
 	</tr>
 </tbody>
 </table>
