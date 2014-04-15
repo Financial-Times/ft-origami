@@ -41,17 +41,53 @@ When using selector engines other than native `querySelector`, modules *must not
 
 Modules *may* assume that any HTML markup that relates to their component follows the hierarchical structure specified in their module's Mustache template. However, modules *should not* make assumptions about the order of HTML elements, and should, as far as possible, cope with the presence within the component of elements not specified in the template.
 
-## Events
+## Communicating with host page code and other components
 
-Modules *may* stop the propagation chain for events that they have created, but *must not* do so for browser events, since other modules, or indeed the product, may need to bind to those events for other reasons.
+Modules may wish to communicate (or make communication possible) with other components of the same type, other components of different types, or non-component code in the host page.  This should be accomplished with API methods (when invoking known dependencies) and DOM events (in all other cases).
 
-Any event listeners set up at page load *must* bind on the `<body>` element and use [event delegation](http://stackoverflow.com/questions/1687296/what-is-dom-event-delegation), and *must* be filtered based on the module's own class.
+### API
+
+Modules *may* expose an external API via `module.exports`.  Modules *must not* rely on the existence of any APIs other than those that are explicitly required dependencies, expressed in the `browserFeatures` property of origami.json, or defined as part of the DOM level 2 specification.
+
+### Events
+
+Modules *may* **emit** events to allow loose coupling with other components and the host page.  In doing so, the module *must*:
+
+* use only browser-native DOM events with bubbling enabled
+* specify `createevent` as a required browser feature in the `browserFeatures` section of origami.json
+* where the module wishes to attach custom data payloads to events, specify `customevents` as a required browser feature in addition to 'createevent', use the [CustomEvent](https://developer.mozilla.org/en/docs/Web/API/CustomEvent) API, and pass an object in the `details` property.
+* trigger events only on elements within the component's owned DOM, or otherwise only on the body element
+* namespace event names with the name of the module in camelcase, separated from the event name with a dot, eg `oModuleName.EventName`
+* name the event using the present tense, eg `dialogClose`, not `dialogClosed`.
+
+A valid example of a module emitting a DOM event is shown below:
+
+<?prettify linenums=1?>
+	this.dispatchEvent(new CustomEvent('oTestModule.oTestClick', {
+	  detail: {...},
+	  bubbles: true
+	}));
+
+Modules *may* **bind** to events emitted by themselves, other modules, the host page or the browser.  In doing so, the module:
+
+* *must not* stop the propagation chain except for events created by itself
+* *should* bind only to the BODY element and use [event delegation](http://stackoverflow.com/questions/1687296/what-is-dom-event-delegation) to ensure that handlers do not need to be bound every time elements are created.  If not bound to the body element, handlers *must* be bound to elements within the module's owned DOM.
 
 Modules *should* handle events during the [bubbling phase](http://stackoverflow.com/questions/4616694/what-is-event-bubbling-and-capturing), not the capturing phase (unless the event has no bubbling phase)
 
+### Foreign events
+
+Modules *may* emit events defined by **other modules**, using the other module's namespace, but must only do so if:
+
+* the foreign module is not a direct dependency; and
+* there are no callbacks in the event `details` payload; and
+* the foreign module has invited public use of the event in its documentation and has provided a comprehensive spec for the `details` payload
+
+The only currently known use case for foreign events is in analytics, allowing modules to emit tracking events that may be collected by a tracking module.  For the most part use of this technique creates too much 'magic' behaviour that would not be expected by a product developer and should be avoided.
+
 ## Functions
 
-Modules *should* avoid containing functions with more than 3 arguments.  Where more parameters are required, consider passing an object (and if so, consider using [lo-dash's defaults function](http://lodash.com/docs#defaults))
+Modules *should* avoid containing functions with more than 3 arguments.  Where more parameters are required, consider passing an object (and if so, consider using [lo-dash's defaults function](http://lodash.com/docs#defaults)).
 
 ## Animation
 
