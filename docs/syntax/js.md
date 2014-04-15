@@ -131,12 +131,12 @@ Where external resources are not within Origami modules, a [protocol-relative UR
 
 ### Inlining subresources
 
-In some cases it may be desirable or necessary to include the content of a static asset in a JavaScript source bundle (typically to include templates).  To do this, use the `fs::readFileSync` method from NodeJS.  In the [standard Origami build process]({{site.baseurl}}/docs/developer-guide/building-modules) this will be converted into an inline string assignment using the [brfs](https://github.com/substack/brfs) transform ([learn more](https://github.com/Financial-Times/ft-origami/issues/110)).
+In some cases it may be desirable or necessary to include the content of a static asset in a JavaScript source bundle (typically to include templates).  To do this, use the [textrequireify](http://git.svc.ft.com:8080/projects/OT/repos/textrequireify) transform for browserify, which provides a `requireText` method.  The [standard Origami build process]({{site.baseurl}}/docs/developer-guide/building-modules) includes this, so it is available through the build service ([learn more](https://github.com/Financial-Times/ft-origami/issues/110)).
 
 You would write this in your JavaScript source:
 
 <?prettify linenums=1?>
-	var template = require('fs').readFileSync('main.mustache');
+	var template = requireText('main.mustache');
 
 And it would be converted to this by the build process:
 

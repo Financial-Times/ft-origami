@@ -52,14 +52,14 @@ You need some Node packages to run the build process.  We'll assume you have a p
 	    "grunt-contrib-sass": ">=0.6.0 <1",
 	    "grunt-browserify": "^1.3.0",
 	    "grunt-contrib-watch": ">=0.5.3 <1",
-	    "brfs": "^1.0.0",
+	    "textrequireify": ">=0.1.1 <1",
 	    "debowerify": ">=0.5.1 <1"
 	  }
 	}
 
 You're installing three grunt plugins: [contrib-sass](https://npmjs.org/package/grunt-contrib-sass) to compile SASS (which uses the Ruby SASS gem you installed in step 2), [browserify](https://npmjs.org/package/grunt-browserify) to compile JavaScript using [browserify](http://browserify.org/), and [contrib-watch](https://npmjs.org/package/grunt-contrib-watch) to allow you to trigger the build process to re-run automatically when you change any of your source files.
 
-You're also installing two browserify transforms: [debowerify](https://npmjs.org/package/debowerify) which allows browserify to compile JavaScript modules that have been installed using bower, and [brfs](https://github.com/substack/brfs) which allows inlining of static assets like templates into JavaScript files.
+You're also installing two browserify transforms: [debowerify](https://npmjs.org/package/debowerify) which allows browserify to compile JavaScript modules that have been installed using bower, and [textrequireify](http://git.svc.ft.com:8080/projects/OT/repos/textrequireify) which allows inlining of static assets like templates into JavaScript files.
 
 These modules are listed as *devDependencies* because they are not required to run your application, only to build it.  Marking your project as *private* means that it cannot accidentally be published to the [npm registry](http://npmjs.org) as a component.
 
@@ -162,7 +162,7 @@ We'll assume for the purposes of this example that your CSS and JS are in `/clie
 	          './public/bundle.js': ['./client/js/main.js'],
 	        },
 	        options: {
-	          transform: ['debowerify', 'brfs']
+	          transform: ['debowerify', 'textrequireify']
 	        }
 	      }
 	    },
