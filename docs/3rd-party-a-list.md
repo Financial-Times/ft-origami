@@ -15,24 +15,24 @@ Origami components may have dependencies (via Bower) on third party components. 
 <tbody>
 	<tr>
 		<td>DOM manipulation</td>
-		<td><a href='https://github.com/jquery/jquery'>jQuery</a></td>
-		<td>Mootools<br/>Dojo<br/>Prototype<br/>YUI</td>
-		<td>A general purpose DOM manipulation library is invariably a common request, and jQuery is also often required by advertisers, so there is a high liklihood it will be on the page anyway.</td>
+		<td>o-dom (TBC)</td>
+		<td>jQuery<br/>Mootools<br/>Dojo<br/>Prototype<br/>YUI</td>
+		<td>A general purpose DOM manipulation library is invariably a common request, but large DOM libraries should be avoided since they contain numerous other features beyond simple DOM manipulation.  See also <a href='#why_not_jquery'>Why not jQuery</a></td>
 	</tr><tr>
 		<td>AJAX</td>
-		<td><a href='https://github.com/jquery/jquery'>jQuery</a></td>
-		<td>?</td>
-		<td>jQuery is so likely to be on the page anyway that using it even just for AJAX has a good chance of reducing page weight compared to using a specialist library</td>
+		<td><a href='https://github.com/Financial-Times/superagent/tree/bower'>superagent</a></td>
+		<td>jQuery</td>
+		<td>Components should <a href='#why_not_jquery'>not use jQuery</a>, and superagent is better.</td>
+	</tr><tr>
+		<td>Event delegation</td>
+		<td><a href='https://github.com/ftlabs/ftdomdelegate'>ftdomdelegate</a></td>
+		<td>jQuery</td>
+		<td>Components should <a href='#why_not_jquery'>not use jQuery</a>.</td>
 	</tr><tr>
 		<td>JavaScript utils</td>
 		<td><a href='https://github.com/lodash/lodash'>Lo-dash</a></td>
 		<td>Underscore</td>
 		<td>Lo-dash is roughly functionally equivalent to Underscore, but generally delivers faster performance, and includes some useful things not available in Underscore.</td>
-	</tr><tr>
-		<td>Progressive enhancement</td>
-		<td><a href='http://modernizr.com/'>Modernizr</a></td>
-		<td>HTML Shiv, jQuery.support, jQuery.browser</td>
-		<td>Modernizr contains feature detects for a large range of browser APIs, as well as providing useful utilities for dealing with browser prefixes and html5 semantic elements in older browsers.</td>
 	</tr><tr>
 		<td>Template engine</td>
 		<td><a href='https://github.com/wycats/handlebars.js/'>Handlebars</a></td>
@@ -44,3 +44,19 @@ Origami components may have dependencies (via Bower) on third party components. 
 	</tr>
 </tbody>
 </table>
+
+
+## Why not Modernizr?
+
+Components are required to not do anything in global scope, which rules out invoking Modernizr directly.  Components wishing to use a new browser feature should simply declare it as a requirement in the browserFeatures section of origami.json.  A product developer can then choose to either load the module only if the required feature is present, or polyfill it to ensure that it is.
+
+
+## Why not jQuery?
+
+jQuery is a commonly requested general purpose library, and may well already be on a product page due to use in the product or demands from advertisers.  However, component authors *should* avoid using jQuery.  As a whole, jQuery is an example of a [god object](http://en.wikipedia.org/wiki/God_object) which poses problems for smooth upgrading of component dependencies (it's much easier to update things if they have smaller APIs and fewer dependents).
+
+There are also specific modules within jQuery that don't operate in an optimal way:
+
+* **Events**: jQuery's event system is great, but it includes a proprietary namespacing strategy which isn't consistent with the way Origami namespacing normally works.  Instead, use [ftdomdelegate](https://github.com/ftlabs/ftdomdelegate), which provides the same familar `on` and `off` methods, with better
+* **Promises**: jQuery lacks promises but does have Deferred, which can achieve similar ends but is not compatible with the standards-based promise.  Instead, use [native promises](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise), and declare `promises` as a requirement for your module in the `browserFeatures` property of origami.json.
+* **Data**: jQuery provides the ability to store arbitrary data against DOM elements outside of the scope of your JavaScript module, which is a practice we would like to avoid.
