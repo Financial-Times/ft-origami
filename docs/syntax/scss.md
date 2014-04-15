@@ -15,7 +15,7 @@ SASS features should be used only where they result in increased clarity and reu
 
 Component developers and Origami build tools *must* use SASS version ~3.3.0, and *should* fix any issues alerted by the compiler as deprecation warnings from 3.2.
 
-## Selectors
+##Selectors
 
 ### Naming conventions and encapsulation
 
@@ -64,6 +64,44 @@ SASS does not have proper encapsulation or scope, so strict adherence to namespa
 	- `--selected` - element is chosen out of a larger group (prefer this instead of 'active')
 * Where hover effects are included, [o-hoverable](https://github.com/Financial-Times/o-hoverable) *must* be used to allow the hover effects to be turned off.
 * By default, a module's style rules *must* render it in a form suitable for use without JavaScript (which may involve hiding it completely). Any modifications to that style which are desired if the JavaScript component of the module is present must be prefixed with `.o-modulename--js`.
+
+
+### Feature flags and UA targeting
+
+Style rules that are intended to apply to only a subset of user agents *should* use feature flags to apply the rules (which is a progressive enhancement technique).  Where feature flagging is not possible, developers *may* choose to target specific user agents (a graceful degradation technique).
+
+#### Feature flags
+
+The following are acceptable types of feature flag, in order of preference:
+
+1. A SASS variable in the current module's namespace, set by default to the name of an appropriate Modernizr feature-detect, eg.
+
+        $oModuleIfInlineSVG: 'inlinesvg' !default;
+        $oModuleIfInlineSVG .oModuleThing {
+            background: url(...inline SVG...);
+        }
+
+2. A function call to another module, whose purpose is to provide a feature detect:
+
+        @import 'o-hoverable/main';
+        #{oHoverableGetFlagSelector()} .oModuleThing:hover {
+            text-decoration: underline;
+        }
+
+3. A SASS variable imported from another module's namespace, where the purpose of the module is to provide a feature detect:
+
+        @import 'o-hoverable/main';
+        $o-hoverable-if-hover-enabled .oModuleThing:hover {
+            text-decoration: underline;
+        }
+
+Component developers *must not* use feature flags that would need to be set manually by a product developer (ie those that do not have feature detect code within Modernizr or feature-detection modules in Origami).
+
+Where a block of styles is feature-flagged, it *must not* be made available as a placeholder class, and *must not* be extended by products or other components (see [issue 159](https://github.com/Financial-Times/ft-origami/issues/159)).
+
+#### UA targeting
+
+Where necessary, components *may* provide style rules targeted at specific user agents.  The [o-useragent](https://github.com/Financial-Times/o-useragent) module must be used to do this.
 
 
 ## Properties and values
