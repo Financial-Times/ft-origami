@@ -126,6 +126,9 @@ JavaScript modules in Origami components may want to load additional files (font
 
 Without any explicit configuration, `o-assets` will assume, as we do for subresources in SASS, that the modules are installed publicly at a URL path of `/bower_components` on the current host, and will form URLs on that basis.  Product developers are advised to reconfigure o-assets to accomodate their own server-side URL routing architecture.
 
+Where external resources are not within Origami modules, a [protocol-relative URL](http://www.paulirish.com/2010/the-protocol-relative-url/) *must* be used (see [issue 173](https://github.com/Financial-Times/ft-origami/issues/173)).
+
+
 ### Inlining subresources
 
 In some cases it may be desirable or necessary to include the content of a static asset in a JavaScript source bundle (typically to include templates).  To do this, use the `fs::readFileSync` method from NodeJS.  In the [standard Origami build process]({{site.baseurl}}/docs/developer-guide/building-modules) this will be converted into an inline string assignment using the [brfs](https://github.com/substack/brfs) transform ([learn more](https://github.com/Financial-Times/ft-origami/issues/110)).

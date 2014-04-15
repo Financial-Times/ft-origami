@@ -35,6 +35,12 @@ Static assets such as images included from the same repository *must* be referen
 
 	<img src='../images/logo.png' />
 
+### Links
+
+Links to real URLs must be [protocol-relative](http://www.paulirish.com/2010/the-protocol-relative-url/):
+
+	<a href='//www.google.com'>Google</a>
+
 ### Data
 
 Placeholders for the module's data model *must* be referenced using a descriptive (lowercased and hyphened) keyword prefixed with the name of the module and a dot, enclosed in double or triple braces as appropriate:
