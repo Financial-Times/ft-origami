@@ -9,7 +9,35 @@ permalink: /docs/overview/changes/
 
 The following documents the chronology of changes to the Origami spec and significant (ie. breaking) releases of Origami modules since 13th January 2014.  If you want more detailed granularity, please refer to the [commit log](https://github.com/Financial-Times/ft-origami/commits/gh-pages).
 
-### 26 March 2014
+###15 April 2014
+
+**Protocol-relative URLs**: Require all URLs referenced in components to be protocol relative to avoid HTTP/HTTPS issues ([Issue](https://github.com/Financial-Times/ft-origami/issues/173))
+
+###11 April 2014
+
+**Modernizr inlining**: Advise product developers to inline their custom build of Modernizr to avoid an extra blocking HTTP request ([Commit](https://github.com/Financial-Times/ft-origami/commit/e324ac9c0639fe48e318496653a264c9d916d3f9))
+
+###10 April 2014
+
+**AJAX**: Recommend use of superagent for AJAX ([Issue](https://github.com/Financial-Times/ft-origami/issues/166))
+
+**Events**: Recommend use of ftdomdelegate to make it easier to bind and unbind native DOM events ([Commit](https://github.com/Financial-Times/ft-origami/commit/1af2b87a704a92f8701c8e9abb6174c48677f4d0))
+
+**jQuery**: Recommend avoiding jQuery in components, with rationale ([Commit](https://github.com/Financial-Times/ft-origami/commit/1af2b87a704a92f8701c8e9abb6174c48677f4d0))
+
+###4 April 2014
+
+**init/destroy**: Updating rules on use of init and destroy methods in components ([Issue](https://github.com/Financial-Times/ft-origami/pull/165))
+
+**Foreign events**: It's allowed for one module to trigger events defined by another module, in certain restricted scenarios ([Commit](https://github.com/Financial-Times/ft-origami/commit/f10bc430bb0c261220e6c1894a34da47a6247c61))
+
+###28 March 2014
+
+**Foreign elements**: Components must be tolerant of foreign markup being introduced into their DOM ([Issue](https://github.com/Financial-Times/ft-origami/pull/158))
+
+**Inter-component communication**: Use of APIs and native DOM events for communicating with and between components in JavaScript ([Issue](https://github.com/Financial-Times/ft-origami/issues/147))
+
+###26 March 2014
 
 **origami-build-tools**: [1.0.0 released](https://github.com/Financial-Times/origami-build-tools@1.0.0): First release
 
@@ -17,11 +45,11 @@ The following documents the chronology of changes to the Origami spec and signif
 
 **o-ft-footer**: [1.0.0 released](http://registry.origami.ft.com/components/o-ft-footer@1.0.0) backwards compatible to 0.7.x
 
-### 25 March 2014
+###25 March 2014
 
 **o-ft-forms**: [0.6.0 released](http://registry.origami.ft.com/components/o-ft-forms@0.6.0): Updates dependencies. Backwards compatible with 0.5.x
 
-### 24 March 2014
+###24 March 2014
 
 **Dependency reference syntax**: Modules strongly recommended to use `^` syntax when specifying dependencies ([Issue](https://github.com/Financial-Times/ft-origami/issues/148))
 
@@ -29,73 +57,73 @@ The following documents the chronology of changes to the Origami spec and signif
 
 **o-useragent** [0.5.0 released](http://registry.origami.ft.com/components/o-useragent@0.5.0) new API for js prefixing utility. Incompatible with 0.4.x
 
-### 21 March 2014
+###21 March 2014
 
 **o-fonts**: [1.0.0 released](http://registry.origami.ft.com/components/o-fonts@1.0.0): Now requires SASS 3.3. API Backwards compatible with 0.x
 
-### 20 March 2014
+###20 March 2014
 
 **o-ft-icons**: [1.0.0 released](http://registry.origami.ft.com/components/o-ft-icons@1.0.0): Changed status to 'active'. Backwards compatible with 0.x
 
-### 18 March 2014
+###18 March 2014
 
 **o-fonts-assets**: [0.1.0 released](http://registry.origami.ft.com/components/o-fonts-assets@0.1.0): Creates repository for FT fonts
 
 **o-ft-buttons**: [1.0.0 released](http://registry.origami.ft.com/components/o-ft-buttons@1.0.0): Origami buttons - unified design
 
-### 19 March 2014
+###19 March 2014
 
 **o-ft-forms**: [0.5.0 released](http://registry.origami.ft.com/components/o-ft-forms@0.5.0): Adds radio and checkbox styles. Backwards compatible with 0.4.x
 
-### 14 March 2014
+###14 March 2014
 
 **Subdependencies**: Modules must not use features of subdependencies directly (e.g using oFontsInclude when only oFtTypography is a direct dependency) and should alias features of their dependencies that consumers are likely to need. ([Issue](https://github.com/Financial-Times/ft-origami/issues/150))
 
 **Web service index syntax**: Web service index endpoint may list versions as paths without full hostname ([Issue](https://github.com/Financial-Times/ft-origami/issues/137))
 
-### 12 March 2014
+###12 March 2014
 
 **o-ft-header**: [0.6.0 released](http://registry.origami.ft.com/components/o-ft-header@0.6.0): Html and css incompatible with 0.5.x
 
 **o-ft-footer**: [0.7.0 released](http://registry.origami.ft.com/components/o-ft-footer@0.7.0): Html and css incompatible with 0.6.x
 
-### 11 March 2014
+###11 March 2014
 
 **Core experience**: Modules must use `no-js` and `js` classes to handle cuts-the-mustard failures
 
-### 10 March 2014
+###10 March 2014
 
 **Bower registry**: Origami registry is now a bower registry and dependencies should use it ([Issue](https://github.com/Financial-Times/ft-origami/issues/100))
 
 **CI**: Modules should use origami-build-tools to verify builds in CI
 
-### 5 March 2014
+###5 March 2014
 
 **Mustache is a spec**: Mustache files need not be consumed as templates, and should be seen as a spec
 
 **Web service description syntax**: Drop requirement for `docs` property
 
-### 28 Feb 2014
+###28 Feb 2014
 
 **XML validity**: Markup need not be valid XML, actually we just require a subset of XML rules
 
 **o-ft-forms**: [0.4.0 released](http://registry.origami.ft.com/components/o-ft-forms@0.4.0): Adds validation styles. Backwards compatible with 0.3.x
 
-### 27 Feb 2014
+###27 Feb 2014
 
 **CI**: Allow CI endpoints to be specified in the Origami manifest file so that build status can be shown in registry
 
 **Support status**: Status overrides all prior statuses on the same major version
 
-### 25 Feb 2014
+###25 Feb 2014
 
 **CI**: CI should use NodeJS as test runner ([Issue](https://github.com/Financial-Times/ft-origami/issues/125))
 
-### 24 Feb 2014
+###24 Feb 2014
 
 **o-assets**: [0.4.0 released](http://registry.origami.ft.com/components/o-assets@0.4.0): Parameters in sass mixin now compulsory. Otherwise backwards compatible with 0.3.x
 
-### 21 Feb 2014
+###21 Feb 2014
 
 **Domain sharding**: No longer supporting domain sharding in web services
 
@@ -107,59 +135,59 @@ The following documents the chronology of changes to the Origami spec and signif
 
 **o-colors**: [2.2.0 released](http://registry.origami.ft.com/components/o-colors@2.2.0): New mechanism for use cases. Backwards compatible but previous mechanism deprecated
 
-### 19 Feb 2014
+###19 Feb 2014
 
 **Owned DOM**: Define 'Owned DOM' and require modules to only modify DOM within their area of owned DOM
 
 **o-useragent** [0.4.0 released](http://registry.origami.ft.com/components/o-colors@0.4.0): Changed to use placeholder classes to target useragents. Css incompatible with 0.3.x
 
-### 14 Feb 2014
+###14 Feb 2014
 
 **JavaScript syntax**: Additional requirements for JavaScript that contains DOM selectors, events, or animation, and limit functions to three arguments. ([Issue](https://github.com/Financial-Times/ft-origami/issues/71))
 
-### 10 Feb 2014
+###10 Feb 2014
 
 **Use of ID**: The ID attibute is now allowed in component markup certain specific circumstances ([Issue](https://github.com/Financial-Times/ft-origami/issues/112))
 
-### 6 Feb 2014
+###6 Feb 2014
 
 **Metrics syntax**: Standard deviation is now optional in metrics output ([Issue](https://github.com/Financial-Times/ft-origami/issues/115)), add `since` property to record time at which count values were last reset, allow and recommend that the last modified date for metrics be set as an HTTP header ([Issue](https://github.com/Financial-Times/ft-origami/issues/113))
 
 **Mustache syntax**: Update rules for referencing other files within Mustache templates ([Issue](https://github.com/Financial-Times/ft-origami/issues/109))
 
-### 3 Feb 2014
+###3 Feb 2014
 
 **CI**: Add requirement for CI ([Issue](https://github.com/Financial-Times/ft-origami/issues/103))
 
-### 31 Jan 2014
+###31 Jan 2014
 
 **SASS Syntax**: Require `!optional` to be used when extending placeholder classes
 
 **o-ft-typography**: [1.0.0 released](http://registry.origami.ft.com/components/o-ft-typography@1.0.0): Now includes general and article-specific typographic styles. Incompatible with 0.x
 
-### 29 Jan 2014
+###29 Jan 2014
 
 **o-ft-header** [0.5.0 released](http://registry.origami.ft.com/components/o-ft-header@0.5.0): Adds support for injecting content into the header. Backwards compatible with 0.4.x
 
-### 24 Jan 2014
+###24 Jan 2014
 
 **Cuts the mustard**: Add process for performing Cuts the mustard test ([Issue](https://github.com/Financial-Times/ft-origami/issues/86))
 
 **Responsiveness in SASS**: Modules must not include media queries unless full width. Placeholder classes should be used to provide alternative visual styling which product developer can mix in to media queries at product level. ([Issue](https://github.com/Financial-Times/ft-origami/issues/68))
 
-### 29 Jan 2014
+###29 Jan 2014
 
 **o-techdocs** [1.0.0 released](http://registry.origami.ft.com/components/o-techdocs@1.0.0): Css for layout incompatible with 0.x
 
-### 21 Jan 2014
+###21 Jan 2014
 
 **o-grid** [2.0.0 released](http://registry.origami.ft.com/components/o-grid@2.0.0): Changes selector syntax. Completely incompatible with 1.x
 
-### 20 Jan 2014
+###20 Jan 2014
 
 **CORS in web services**: Web services are no longer required to support the `X-FT-Source` header as it interferes with straightforward implementation of CORS.
 
-### 17 Jan 2014
+###17 Jan 2014
 
 **Demos**: Added `demos` property to Origami manifest file, allowing modules to list demos to be displayed in registry ([Issue](https://github.com/Financial-Times/ft-origami/issues/92))
 
@@ -169,6 +197,6 @@ The following documents the chronology of changes to the Origami spec and signif
 
 **o-colors**: [2.0.0 released](http://registry.origami.ft.com/components/o-colors@2.0.0): New variable syntax and addition of `oColorsGetColorFor()` mixin
 
-### 13 Jan 2014
+###13 Jan 2014
 
 **Ignores**: README.md must not be ignored in bower.json, otherwise the README cannot be loaded by the registry
