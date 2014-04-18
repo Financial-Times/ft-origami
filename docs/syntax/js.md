@@ -26,7 +26,13 @@ Product developers are encouraged to include Origami JavaScript using a 'cuts th
 
 <aside>
 	<h4>What about polyfills?</h4>
-	Remember that the rule about globals applies to polyfills too.  Don't include polyfills in component code.  If you want to use a modern browser feature, you can a) declare it as a requirement in your Origami manifest; b) declare it as optional, test for it, and if not present, skip that functionality; or c) include code (either your own or a dependency that provides the feature <em>without adding it outside of your module scope</em>.
+	<p>Remember that the rule about globals applies to polyfills too.  Don't include polyfills in component code.  If you want to use a modern browser feature, you must:</p>
+	<ul>
+		<li>declare it as a requirement in your Origami manifest; or</li>
+		<li>declare it as optional, test for it, and if not present, skip that functionality; or</li>
+		<li>include code (either your own or a dependency that provides the feature <em>without adding it outside of your module scope</em>.</li>
+	</ul>
+	<p>Where modern browser features might be vendor-prefixed, you can get the correct prefixed version using <a href='https://github.com/Financial-Times/o-useragent'>o-useragent</a>.</p>
 </aside>
 
 ## Data attributes
