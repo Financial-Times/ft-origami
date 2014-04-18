@@ -95,9 +95,21 @@ The following are acceptable types of feature flag, in order of preference:
             text-decoration: underline;
         }
 
-Component developers *must not* use feature flags that would need to be set manually by a product developer (ie those that do not have feature detect code within Modernizr or feature-detection modules in Origami).
+Component developers *must not* use feature flags that would need to be set manually by a product developer (ie those that do not have feature detect code within Modernizr or feature-detection modules in Origami).  Component developers *must* assume that feature flag classes will be set on the `documentElement`, ie. the HTML tag.
 
-Where a block of styles is feature-flagged, it *must not* be made available as a placeholder class, and *must not* be extended by products or other components (see [issue 159](https://github.com/Financial-Times/ft-origami/issues/159)).
+Where a block of styles is feature-flagged, it *must not* extend any other component's placeholders or classes (see [issue 159](https://github.com/Financial-Times/ft-origami/issues/159)).
+
+<?prettify linenums=1?>
+    .o-mymodule-selector {
+      color: red;
+      @extend %o-yourmodule-placeholder;  // Extending allowed because .o-mymodule-selector is not a feature flag
+    }
+
+    $o-hoverable-if-hover-enabled .o-mymodule-selector {
+      color: red;
+      // No extending allowed here because the selector for this block includes a feature flag
+    }
+
 
 #### UA targeting
 
@@ -145,18 +157,21 @@ When styles refer to external resources such as fonts and images, the module *mu
 
 For every class selector included in a module's SASS, the module *must* also include the same selector as a placeholder, with the same styles.  Eg:
 
+<?prettify linenums=1?>
     .o-thing-foo, %o-thing-foo {
         margin-top: 1em;
     }
 
 If the original selector is not a class selector then the placeholder class can use a syntax suggestive of the original selector, which *must* be documented. Eg:
 
+<?prettify linenums=1?>
     [data-o-grid-sizing~='S3'], %o-grid-sizing-S3 {
         width: 30%;
     }
 
 Modules that make use of styles defined in other modules *must* use those styles by `@extend`ing the appropriate placeholder class (the `!optional` flag *should* be used to prevent compilation errors if something (e.g. a product developer changing a setting) causes that  placeholder class to be suppressed):
 
+<?prettify linenums=1?>
     .o-anotherthing-foo, %o-anotherthing-foo {
         @extend %o-thing-foo !optional;
         margin-top: 1em;
