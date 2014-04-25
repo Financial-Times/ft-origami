@@ -9,6 +9,10 @@ permalink: /docs/overview/changes/
 
 The following documents the chronology of changes to the Origami spec and significant (ie. breaking) releases of Origami modules since 13th January 2014.  If you want more detailed granularity, please refer to the [commit log](https://github.com/Financial-Times/ft-origami/commits/gh-pages).
 
+###25 April 2014
+
+**o-useragent**: [1.0.0 released](http://registry.origami.ft.com/components/o-useragent@1.0.0). Adds vendor prefixing utility to sass. Backwards compatible to 0.5.x
+
 ###15 April 2014
 
 **Protocol-relative URLs**: Require all URLs referenced in components to be protocol relative to avoid HTTP/HTTPS issues ([Issue](https://github.com/Financial-Times/ft-origami/issues/173))
