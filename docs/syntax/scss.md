@@ -15,7 +15,7 @@ SASS features should be used only where they result in increased clarity and reu
 
 Component developers and Origami build tools *must* use SASS version ~3.3.0, and *should* fix any issues alerted by the compiler as deprecation warnings from 3.2.
 
-## Selectors
+##Selectors
 
 ### Naming conventions and encapsulation
 
@@ -66,6 +66,56 @@ SASS does not have proper encapsulation or scope, so strict adherence to namespa
 * By default, a module's style rules *must* render it in a form suitable for use without JavaScript (which may involve hiding it completely). Any modifications to that style which are desired if the JavaScript component of the module is present must be prefixed with `.o-modulename--js`.
 
 
+### Feature flags and UA targeting
+
+Style rules that are intended to apply to only a subset of user agents *should* use feature flags to apply the rules (which is a progressive enhancement technique).  Where feature flagging is not possible, developers *may* choose to target specific user agents (a graceful degradation technique).
+
+#### Feature flags
+
+The following are acceptable types of feature flag, in order of preference:
+
+1. A SASS variable in the current module's namespace, set by default to the name of an appropriate Modernizr feature-detect, eg.
+
+        $oModuleIfInlineSVG: 'inlinesvg' !default;
+        $oModuleIfInlineSVG .oModuleThing {
+            background: url(...inline SVG...);
+        }
+
+2. A function call to another module, whose purpose is to provide a feature detect:
+
+        @import 'o-hoverable/main';
+        #{oHoverableGetFlagSelector()} .oModuleThing:hover {
+            text-decoration: underline;
+        }
+
+3. A SASS variable imported from another module's namespace, where the purpose of the module is to provide a feature detect:
+
+        @import 'o-hoverable/main';
+        $o-hoverable-if-hover-enabled .oModuleThing:hover {
+            text-decoration: underline;
+        }
+
+Component developers *must not* use feature flags that would need to be set manually by a product developer (ie those that do not have feature detect code within Modernizr or feature-detection modules in Origami).  Component developers *must* assume that feature flag classes will be set on the `documentElement`, ie. the HTML tag.
+
+Where a block of styles is feature-flagged, it *must not* extend any other component's placeholders or classes (see [issue 159](https://github.com/Financial-Times/ft-origami/issues/159)).
+
+<?prettify linenums=1?>
+    .o-mymodule-selector {
+      color: red;
+      @extend %o-yourmodule-placeholder;  // Extending allowed because .o-mymodule-selector is not a feature flag
+    }
+
+    $o-hoverable-if-hover-enabled .o-mymodule-selector {
+      color: red;
+      // No extending allowed here because the selector for this block includes a feature flag
+    }
+
+
+#### UA targeting
+
+Where necessary, components *may* provide style rules targeted at specific user agents.  The [o-useragent](https://github.com/Financial-Times/o-useragent) module must be used to do this.
+
+
 ## Properties and values
 
 ### Property names
@@ -110,18 +160,21 @@ Where external resources are not within Origami modules, a [protocol-relative UR
 
 For every class selector included in a module's SASS, the module *must* also include the same selector as a placeholder, with the same styles.  Eg:
 
+<?prettify linenums=1?>
     .o-thing-foo, %o-thing-foo {
         margin-top: 1em;
     }
 
 If the original selector is not a class selector then the placeholder class can use a syntax suggestive of the original selector, which *must* be documented. Eg:
 
+<?prettify linenums=1?>
     [data-o-grid-sizing~='S3'], %o-grid-sizing-S3 {
         width: 30%;
     }
 
 Modules that make use of styles defined in other modules *must* use those styles by `@extend`ing the appropriate placeholder class (the `!optional` flag *should* be used to prevent compilation errors if something (e.g. a product developer changing a setting) causes that  placeholder class to be suppressed):
 
+<?prettify linenums=1?>
     .o-anotherthing-foo, %o-anotherthing-foo {
         @extend %o-thing-foo !optional;
         margin-top: 1em;
