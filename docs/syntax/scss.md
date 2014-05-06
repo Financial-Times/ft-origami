@@ -70,8 +70,8 @@ SASS does not have proper encapsulation or scope, so strict adherence to namespa
 
 ### Property names
 
-* Where vendor-specific properties are used, [o-useragent](https://github.com/Financial-Times/o-useragent)'s `oUseragentPrefixer()` mixin *should* be used to apply vendor prefixes. This gives products control over which ones are included in their stylesheets.
-* CSS hacks to target particular browsers *must not* be used.  Instead, use the [o-useragent](https://github.com/Financial-Times/o-useragent) module.
+* Where vendor-specific properties are used, [o-useragent](https://github.com/Financial-Times/o-useragent)'s `oUseragentPrefixer()` mixin *should* be used to apply vendor prefixes. This gives product developers control over which ones are included in their stylesheets.
+* CSS hacks to target particular browsers *must not* be used.  Instead, use [o-useragent](https://github.com/Financial-Times/o-useragent)'s `oUseragentTarget()` mixin.
 * Properties *should* be ordered consistently.  [CSS Comb](http://csscomb.com/) *should* be used to automate this, and *should* be used during development so that other developers beneift from cleaner code being available in the source tree.
 
 ### Values
