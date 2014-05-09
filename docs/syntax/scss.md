@@ -173,8 +173,8 @@ Where necessary, components *may* provide style rules targeted at specific user 
 
 ### Property names
 
-* Where vendor-specific properties are used, a mixin *should* be used to apply the various properties. This allows the vendor-specific ones to be removed from just one place as browser support changes.
-* CSS hacks to target particular browsers *must not* be used.  Instead, use the **o-useragent** module.
+* Where vendor-specific properties are used, [o-useragent](https://github.com/Financial-Times/o-useragent)'s `oUseragentPrefixer()` mixin *should* be used to apply vendor prefixes. This gives product developers control over which ones are included in their stylesheets.
+* CSS hacks to target particular browsers *must not* be used.  Instead, use [o-useragent](https://github.com/Financial-Times/o-useragent)'s `oUseragentTarget()` mixin.
 * Properties *should* be ordered consistently.  [CSS Comb](http://csscomb.com/) *should* be used to automate this, and *should* be used during development so that other developers beneift from cleaner code being available in the source tree.
 
 ### Values
