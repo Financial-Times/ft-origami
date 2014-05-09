@@ -211,7 +211,7 @@ Where external resources are not within Origami modules, a [protocol-relative UR
 
 ## "Silent" styles
 
-For every class selector included in a module's SASS, the module *must* also include the same selector as a placeholder, with the same styles.  Eg:
+For every class selector included in a module's SASS, the module *must* also include the same selector as a placeholder or via a mixin, with the same styles.  Eg:
 
 <?prettify linenums=1?>
     .o-thing-foo, %o-thing-foo {
@@ -225,7 +225,7 @@ If the original selector is not a class selector then the placeholder class can 
         width: 30%;
     }
 
-Modules that make use of styles defined in other modules *must* use those styles by `@extend`ing the appropriate placeholder class (the `!optional` flag *should* be used to prevent compilation errors if something (e.g. a product developer changing a setting) causes that  placeholder class to be suppressed):
+Modules that make use of styles defined in other modules *must* use those styles by `@extend`ing the appropriate placeholder class (the `!optional` flag *should* be used to prevent compilation errors if something, e.g. a product developer changing a setting, causes that  placeholder class to be suppressed):
 
 <?prettify linenums=1?>
     .o-anotherthing-foo, %o-anotherthing-foo {
@@ -233,9 +233,23 @@ Modules that make use of styles defined in other modules *must* use those styles
         margin-top: 1em;
     }
 
+Where combinations of styles are used to create more complex elements, it may be sensible to use mixins rather than placeholders, eg:
+
+<?prettify linenums=1?>
+    @mixin oButtonsButton($buttonclass) {
+        .#{$buttonclass} {
+            /* standard button styles */
+           &--standout {
+             /* overrides & additions to make the button brighter */
+           }
+        }
+    }
+
+### Suppressing noisy styles with a 'silent mode'
+
 Modules *should* provide a mechanism for suppressing output of any concrete selectors which may not always be required. If present, this mechanism *must* be activated by means of a sass variable `$o-{modulename}-is-silent` which *must* have a default value of `false`.  In practice, the effect of this *should* be to remove the `.`-prefixed selector, leaving only the placeholder (along with any functions, variables and mixins).
 
-<aside>An example of an implementation satisfying these conditions can be found in the `oFtTypographyClass` mixin of the o-ft-typography module</aside>
+An example of an implementation satisfying these conditions can be found in the `oFtTypographyClass` mixin of the o-ft-typography module.
 
 
 ## Code organisation and formatting
