@@ -8830,11 +8830,88 @@ if ( typeof window === "object" && typeof window.document === "object" ) {
 })( window );
 
 },{}],2:[function(require,module,exports){
+/*global require, exports*/
+'use strict';
+
+var prefixer = require("./../o-useragent/main.js").prefixer,
+    matchesMethod = prefixer.dom(Element.prototype, 'matches') || prefixer.dom(Element.prototype, 'matchesSelector');
+
+function matches (el, selector) {
+    return el[matchesMethod](selector);
+}
+
+function getClosestMatch (el, selector) {
+
+    while (el) {
+        if (matches(el, selector)) {
+            return el;
+        } else {
+            el = el.parentElement;
+        }
+    }
+    return false;
+}
+
+function getIndex (el) {
+
+    var i = 0;
+    if (el && typeof el === 'object' && el.nodeType === 1) {
+        while (el.previousSibling) {
+            el = el.previousSibling;
+            if (el.nodeType === 1) {
+                ++i;
+            }
+        }
+        return i;
+    }
+}
+
+exports.getClosestMatch = getClosestMatch;
+exports.getIndex = getIndex;
+exports.matches = matches;
+},{"./../o-useragent/main.js":9}],3:[function(require,module,exports){
+/*global exports, require*/
+exports.wrap = require('./src/js/wrap').wrap;
+},{"./src/js/wrap":4}],4:[function(require,module,exports){
+/*global require, exports*/
+
+var oDom = require("./../../../o-dom/main.js");
+
+function wrapElement(targetEl, wrapEl) {
+    "use strict";
+    var parentEl = targetEl.parentNode;
+    parentEl.insertBefore(wrapEl, targetEl);
+    wrapEl.appendChild(targetEl);
+}
+
+function wrap(tableSelector, wrapClass) {
+    "use strict";
+    tableSelector = typeof tableSelector === "string" ? tableSelector : ".o-table";
+    wrapClass = typeof wrapClass === "string" ? wrapClass : "o-table-wrapper";
+    var matchingEls = document.querySelectorAll(tableSelector),
+        wrapEl;
+    if (matchingEls.length > 0) {
+        wrapEl = document.createElement('div');
+        wrapEl.setAttribute("class", wrapClass);
+        for (var c = 0, l = matchingEls.length; c < l; c++) {
+            var tableEl = matchingEls[c];
+            if (!oDom.matches(tableEl.parentNode, "." + wrapClass)) {
+                wrapElement(tableEl, wrapEl.cloneNode(false));
+            }
+        }
+    }
+}
+
+exports.wrap = wrap;
+},{"./../../../o-dom/main.js":2}],5:[function(require,module,exports){
 
 require('./src/js/nav');
-require('./src/js/tablewrap');
+require('./src/js/reveals');
+require('./src/js/permalinks');
+require("./../o-table/main.js").wrap('.o-techdocs-content table', 'o-techdocs-table-wrapper');
 
-},{"./src/js/nav":3,"./src/js/tablewrap":4}],3:[function(require,module,exports){
+},{"./../o-table/main.js":3,"./src/js/nav":6,"./src/js/permalinks":7,"./src/js/reveals":8}],6:[function(require,module,exports){
+/*global $,require*/
 /**
  * Add a second navigation menu to quickly navigate to
  * anchors in the page.
@@ -8911,7 +8988,7 @@ $(function() {
 			} else if (docked && (scrolltop+dockmargin) < dockpoint) {
 				list.removeClass('o-techdocs-nav--affix');
 				list.width('auto');
-			};
+			}
 		}, 100);
 	});
 
@@ -8934,16 +9011,207 @@ $(function() {
 	});
 });
 
-},{"./../../../jquery/jquery.js":1}],4:[function(require,module,exports){
+},{"./../../../jquery/jquery.js":1}],7:[function(require,module,exports){
+/*global $,require*/
+/**
+ * Show permalink markers on headings with an ID
+ */
 
 var $ = require("./../../../jquery/jquery.js");
 
 $(function() {
-	$('.o-techdocs-table').removeClass('o-techdocs-table').addClass('o-techdocs-table__table').wrap('<div class="o-techdocs-table"></div>');
+	$('.o-techdocs-content').find('h1, h2, h3, h4, h5, h6').filter('[id]').each(function() {
+		$(this).append('<a href="#'+this.id+'" class="o-techdocs__permalink" title="Link directly to this section of the page">&#x00B6;</a>');
+	});
 });
 
-},{"./../../../jquery/jquery.js":1}],5:[function(require,module,exports){
+},{"./../../../jquery/jquery.js":1}],8:[function(require,module,exports){
+/*global $,require*/
+/**
+ * Support displaying additional content on clicking reveal links
+ */
+
+var $ = require("./../../../jquery/jquery.js");
+
+$(function() {
+	$('.o-techdocs-content').on('click', 'a', function(e) {
+		if ($(this).attr('href').indexOf('#') === 0) {
+			var el = $($(this).attr('href'));
+			if (el.length && el.hasClass('o-techdocs__aside--toggleable')) {
+				el.toggle();
+				e.preventDefault();
+			}
+		}
+	})
+});
+
+},{"./../../../jquery/jquery.js":1}],9:[function(require,module,exports){
+module.exports = {
+	prefixer: require('./src/js/prefixer')
+};
+},{"./src/js/prefixer":10}],10:[function(require,module,exports){
+'use strict';
+
+var el = document.createElement('o'),
+    style = el.style,
+    vendorPrefixes = 'Webkit Moz O ms',
+    stylePrefixes = vendorPrefixes.split(' '),
+    domPrefixes = vendorPrefixes.toLowerCase().split(' '),
+
+    /* 
+     * Simple object type checker
+     */
+    is = function( obj, type ) {
+        return typeof obj === type;
+    },
+
+    /*
+     * Checks if a string contains another string
+     */
+    contains = function( str, substr ) {
+        return ('' + str).indexOf(substr) + 1;
+    },
+
+    /*
+     * Binding of a function to a given context
+     */
+    bind = function (func, obj) {
+        if (Function.prototype.bind) {
+            return func.bind(obj);
+        } else {
+            return function () {
+                return func.apply(obj, arguments);
+            };
+        }
+    },
+
+    /*
+     * Converts a hyphenated string to camel case
+     */
+    camelify = function (str) {
+        return (str.indexOf('-') > -1) ? str.replace(/(?:\-)([a-z])/gi, function ($0, $1) {
+            return $1.toUpperCase();
+        }) : str;
+    },
+
+    /*
+     * Converts a camelcase property to its hyphenated equivalent
+     */
+    hyphenateProp = function (prop) {
+        if (prop) {
+            return prop.replace(/([A-Z])/g, function ($0, $1) {
+                return '-' + $1.toLowerCase();
+            }).replace(/^ms-/,'-ms-');
+        } else {
+            return false;
+        }
+    },
+
+    /*
+     *  Gets a list of prefixed properties derived from a single w3c property name. It always has the unprefixed property as the first item in the list
+     */
+    getPrefixedPropList = function (prop, prefixes) {
+        var capitalisedProp = prop.charAt(0).toUpperCase() + prop.slice(1);
+            
+        return (prop + ' ' + prefixes.join(capitalisedProp + ' ') + capitalisedProp).split(' ');
+    },
+
+    /*
+     * Given a list of property names, returns the first name that is defined on an object. If none are defined returns false
+     */
+    getFirstDefinedProp = function (obj, propNameList) {
+        for (var i in propNameList) {
+            var prop = propNameList[i];
+            if (obj[prop] !== undefined) {
+                return prop;
+            }
+        }
+        return false;
+    },
+
+    /*
+     *  Returns the vendor prefixed version of a style property
+     */
+    stylePrefixer = function (stylePropName) {
+        return getFirstDefinedProp(style, getPrefixedPropList(camelify(stylePropName), stylePrefixes));
+    },
+
+    /*
+     *  Returns the vendor prefixed version of a dom property
+     */
+    domPrefixer = function (obj, domPropName) {
+        return getFirstDefinedProp(obj, getPrefixedPropList(camelify(domPropName), domPrefixes));
+    },
+
+    /*
+     *  Returns the hyphenated vendor prefixed version of a css property
+     */
+    cssPrefixer = function (cssPropName) {
+       return hyphenateProp(stylePrefixer(cssPropName));
+    },
+
+    /*
+     *  Returns the value of a vendor prefixed version of a dom property
+     */
+    getDomProperty = function (obj, domPropName) {
+        var prop = obj[domPrefixer(obj, domPropName)];
+        return is(prop, 'undefined') ? false : prop;
+    },
+
+    /*
+     *  Returns a vendor prefixed DOM method bound to a given object
+     */
+    getDomMethod = function (obj, domPropName, bindTo) {
+        var prop = getDomProperty(obj, domPropName);
+        
+        return is(prop, 'function') ? bind(prop, obj || bindTo) : false;
+    },
+
+    /*
+     *  Returns the value of a vendor prefixed version of a style property
+     *  If a list of properties is requested returns a hash table of the form { requestedPropertyName {prefixedName: 'webkitStyle', value: '10px'}} 
+     */
+    getStyleValue = function (element, stylePropNames) {
+        var computedStyle = getComputedStyle(element, null),
+            result = {},
+            styleEntry,
+            prefixedName;
+        if (stylePropNames.indexOf(' ') === -1) {
+            return computedStyle.getPropertyValue(cssPrefixer(stylePropNames));
+        }
+        
+        stylePropNames = stylePropNames.split(' ');
+
+        for (var i = stylePropNames.length - 1; i >= 0; i--) {
+            prefixedName = cssPrefixer(stylePropNames[i]);
+
+            styleEntry = {
+                prefixedName: cssPrefixer(stylePropNames[i])
+            };
+
+            result[stylePropNames[i]] = {
+                prefixedName: prefixedName,
+                value: computedStyle.getPropertyValue(prefixedName)
+            };
+        }
+
+        return result;
+    };
+
+module.exports = {
+    css: cssPrefixer,
+    style: stylePrefixer,
+    dom: domPrefixer,
+    getStyleValue: getStyleValue,
+    getDomProperty: getDomProperty,
+    getDomMethod: getDomMethod
+};
+
+
+
+
+},{}],11:[function(require,module,exports){
 
 require("./bower_components/o-techdocs/main.js");
 
-},{"./bower_components/o-techdocs/main.js":2}]},{},[5])
+},{"./bower_components/o-techdocs/main.js":5}]},{},[11])
