@@ -56,14 +56,67 @@ SASS does not have proper encapsulation or scope, so strict adherence to namespa
 
 ### State
 
-* BEM modifiers *should* be used to indicate state, except where state is switched automatically by the browser and selectable using pseudoclasses:
-	- `$o-hoverable-if-hover-enabled :hover` - element is currently under the pointer
-	- `:focus` - element is the target for any text input
-	- `--error` - element is in error state, e.g. a form field
-	- `--disabled` - element cannot be interacted with
-	- `--selected` - element is chosen out of a larger group (prefer this instead of 'active')
-* Where hover effects are included, [o-hoverable](https://github.com/Financial-Times/o-hoverable) *must* be used to allow the hover effects to be turned off.
-* By default, a module's style rules *must* render it in a form suitable for use without JavaScript (which may involve hiding it completely). Any modifications to that style which are desired if the JavaScript component of the module is present must be prefixed with `.o-modulename--js`.
+[ARIA roles](http://www.w3.org/TR/wai-aria/states_and_properties) *should* be used to indicate state, except where state is switched automatically by the browser and selectable using pseudoclasses.  The following states *should* be considered:
+
+<table class='o-techdocs-table'>
+    <tr><th>State</th><th>Description</th><th>Define using</th><th>Style guidance</th></tr>
+    <tr>
+        <td>Hovered</td>
+        <td>The user has a <a href='#note-hoverable'>hoverable pointer</a> and it is positioned above the element.  Component developers *must* prefix all <code>:hover</code> pseudo-classes using an <a href='https://github.com/Financial-Times/o-hoverable'>o-hoverable</a> feature flag.</td>
+        <td><code>:hover</code></td>
+        <td>Having a hover effect hints to the user that clicking the element will do something.  Hover effects should be subtle, and if possible, suggestive of the action that will occur on click</td>
+    </tr>
+    <tr>
+        <td>Focused</td>
+        <td>The element is the current target of keyboard input</td>
+        <td><code>:focus</code></td>
+        <td>Any element on the page that is interactive must have a focused style that is distinct from its normal style.  Browsers will  add a default focused style to elements that are normally interactive, and the effect is typically a glow.</td>
+    </tr>
+    <tr>
+        <td>Busy</td>
+        <td>The element is currently being updated.</td>
+        <td><code>[aria-busy]</code></td>
+        <td>Busy states are typically indicated by a spinner or progress indicator being added to, or replacing, the content of the element</td>
+    </tr>
+    <tr>
+        <td>Selected</td>
+        <td>The element is a member of a list and is the currently selected item (or one of several currently selected items).  Not to be confused with <em>Active</em>.</td>
+        <td><code>[aria-selected]</code></td>
+        <td>The selected state should be strong and easily distinguishable from the stadard state.  It often inverts the colors, so things that are light-on-dark become dark-on-light when selected.</td>
+    </tr>
+    <tr>
+        <td>Disabled</td>
+        <td>The element is normally interactive, but interactivity is currently unavailable.</td>
+        <td><code>:disabled</code></td>
+        <td>When disabled, elements are usually displayed with less contrast and colour and with a flatter appearance.</td>
+    </tr>
+    <tr>
+        <td>Active</td>
+        <td>The element is currently being interacted with by the user.   Usually indicates that a mouse button is pressed down on the element.</td>
+        <td><code>:active</code></td>
+        <td>We typically do not style this state.</td>
+    </tr>
+    <tr>
+        <td>Invalid</td>
+        <td>The value entered into the element does not conform to the format expected by the application.</td>
+        <td><code>[aria-invalid]</code></td>
+        <td>Form fields in this state are typically displayed with a red border or background and may be suffixed with an icon and a message indicating the reason why the input was invalid.</td>
+    </tr>
+    <tr>
+        <td>Pressed</td>
+        <td>The element is a toggle (you can interact with it once to activate it, and again to deactivate it) and it is currently activated. Distinct from a checkbox because it activates an effect immediately, while a checkbox typically records data that isn't acted upon until a form is submitted.</td>
+        <td><code>[aria-pressed]</code></td>
+        <td>This can often be similar to the selected state, but also commonly found in a 'toggle switch' style.  In 3D designs, the pressed state is often shown concave instead of convex.</td>
+    </tr>
+    <tr>
+        <td>Expanded</td>
+        <td>The element, or another element that it controls, is currently expanded.  Appropriate to use this for flyout or dropdown navigation menus.</td>
+        <td><code>[aria-expanded]</code></td>
+        <td>When applied to menus, this should sit well with the selected and hover states.  Expanded should be stronger than hover or selected.</td>
+    </tr>
+</table>
+
+By default, a module's style rules *must* render it in a form suitable for use without JavaScript (which may involve hiding it completely). Any modifications to that style which are desired if the JavaScript component of the module is present must be prefixed with `.o-modulename--js`.
 
 
 ### Feature flags and UA targeting
