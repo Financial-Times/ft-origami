@@ -17,10 +17,12 @@ Product developers are encouraged to include Origami JavaScript using a 'cuts th
 
 * Add no objects to the global scope, other than JSONp callback function names.  Variables declared outside of any enclosing function are permitted, provided that the module requires a commonJS interface.  If you don't want to depend on CommonJS, wrap the module in an [IIFE](http://en.wikipedia.org/wiki/Immediately-invoked_function_expression).
 * If the module does not require CommonJS it must include a [Universal Module Definition](https://github.com/umdjs/umd/blob/master/returnExports.js) that includes support for CommonJS.
-* Do not execute any code on parse.  Instead, export an `init` method, or bind to a DOM event such as `DOMContentLoaded` or `load`.
+* Do not modify the DOM on parse.  Instead, where required, export an `init` method, or bind to a DOM event such as `DOMContentLoaded` or `load`.
 * If it's possible for the module to create DOM nodes, timers, or otherwise occupy more than a token amount of memory, export a `destroy` method that reverts the module to a pre-`init` state.
 * Do not leave any non-garbage collectable traces after `destroy` is called
-* Do not modify the DOM outside of areas of [owned DOM]({{site.baseurl}}/docs/syntax/html/#owned_dom)
+* Do not modify the DOM outside of areas of [owned DOM]({{site.baseurl}}/docs/syntax/html/#owned_dom), except:
+	* to add feature flag CSS classes to the `documentElement`; or
+	* to add a new section of owned DOM to an element explictly nominated by the host application (eg by the host application calling a method of the module's API and passing an element to which the module is asked to append its DOM)
 * Do not require global variables to be defined prior to the script loading.  If your module requires configuration, read the config from data attributes attached to parts of DOM that your module will own (see [Data attributes](#data_attributes) for details)
 * Do not assume the existence of globals except those defined as part of ECMAScript 3 and features listed in the `browserFeatures/required` section of `origami.json`.
 
