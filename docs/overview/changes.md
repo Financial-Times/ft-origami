@@ -9,6 +9,26 @@ permalink: /docs/overview/changes/
 
 The following documents the chronology of changes to the Origami spec and significant (ie. breaking) releases of Origami modules since 13th January 2014.  If you want more detailed granularity, please refer to the [commit log](https://github.com/Financial-Times/ft-origami/commits/gh-pages).
 
+###14 May 2014
+
+**Demos**: New syntax for describing demos in the origami.json file ([Issue](https://github.com/Financial-Times/ft-origami/issues/184))
+
+**JS Encapsulation**: Updated rules on JavaScript encapsulation and what can and cannot be run on parse ([Issue](https://github.com/Financial-Times/ft-origami/issues/163))
+
+###9 May 2014
+
+**Interaction states**: Added a list of all the interaction states that components should consider ([Issue](https://github.com/Financial-Times/ft-origami/issues/187))
+
+**Vendor prefixes**: Components must use o-useragent for vendor prefixing ([Issue](https://github.com/Financial-Times/ft-origami/pull/182))
+
+**Silent CSS**: Loosen rules to allow provision of styles as mixins rather than placeholders ([Issue](https://github.com/Financial-Times/ft-origami/issues/188))
+
+###5 May 2014
+
+**Feature flags**: Add rules on use of feature flags ([Issue](https://github.com/Financial-Times/ft-origami/pull/175))
+
+**Lo-dash**: We replaced lo-dash with lo-dash-node in the third party A list ([Issue](https://github.com/Financial-Times/ft-origami/pull/186))
+
 ###25 April 2014
 
 **o-useragent**: [1.0.0 released](http://registry.origami.ft.com/components/o-useragent@1.0.0). Adds vendor prefixing utility to sass. Backwards compatible to 0.5.x
