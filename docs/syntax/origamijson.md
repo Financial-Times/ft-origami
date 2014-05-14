@@ -88,7 +88,7 @@ All origami components, whether modules or web services, should be discoverable 
 	<td>array</td>
 	<td>A list of features, as defined by [Modernizr tests](http://modernizr.com/docs/), which the module will use if they are available in the browser.  The absense of the feature may result in the module offering different or reduced functionality, but it will be handled elegantly.</td>
 </tr><tr>
-	<td><code>&nbsp;&nbsp;},</code></td>
+	<td><code>&nbsp;&nbsp;}</code></td>
 	<td></td>
 	<td></td>
 </tr><tr>
@@ -96,9 +96,37 @@ All origami components, whether modules or web services, should be discoverable 
 	<td>string</td>
 	<td>(optional) For web services only, the URL on which the service is provided.  Required for web services.</td>
 </tr><tr>
-	<td><code>&nbsp;&nbsp;demos</code></td>
+	<td><code>&nbsp;&nbsp;demos:&nbsp;[</code></td>
 	<td>array</td>
 	<td>(optional) For modules only, paths within the repo to HTML pages that demonstrate the functionality of the module.  Array, may refer to more than one demo.</td>
+</tr><tr>
+	<td><code>&nbsp;&nbsp;&nbsp;&nbsp;{</code></td>
+	<td>object</td>
+	<td>An object for each demo (repeatable)</td>
+</tr><tr>
+	<td><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;title</code></td>
+	<td>string</td>
+	<td>(optional) Title of the demo.  If not specified, the path basename will be used.</td>
+</tr><tr>
+	<td><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;path</code></td>
+	<td>string</td>
+	<td>Path from the root of the repo to the HTML file that comprises the demo</td>
+</tr><tr>
+	<td><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;description</code></td>
+	<td>string</td>
+	<td>(optional) Description of the demo</td>
+</tr><tr>
+	<td><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;expanded</code></td>
+	<td>boolean</td>
+	<td>(optional) Whether to show the demo by default.  If false, demo should be accessible but muted or collapsed relative to expanded demos.  Default true.</td>
+</tr><tr>
+	<td><code>&nbsp;&nbsp;&nbsp;&nbsp;}</code></td>
+	<td>object</td>
+	<td>&nbsp;</td>
+</tr><tr>
+	<td><code>&nbsp;&nbsp;]</code></td>
+	<td>object</td>
+	<td>&nbsp;</td>
 </tr><tr>
 	<td><code>&nbsp;&nbsp;assetPaths</code></td>
 	<td>array</td>
