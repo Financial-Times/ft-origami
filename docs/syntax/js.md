@@ -39,9 +39,11 @@ Product developers are encouraged to include Origami JavaScript using a 'cuts th
 
 ## Data attributes
 
-If a module's JavaScript requires configuration, this should be done using data- attributes on the HTML element that is the root element of the DOM owned by the module.  Data attributes should be named `data-{modulename}-{key}`, eg `data-tweet-id`.  The module may also create attributes of this form at runtime.
+If a module's JavaScript requires configuration, this should be done using data- attributes on the HTML element that is the root element of the DOM owned by the module.  Data attributes should be named `data-{modulename}-{key}`, eg `data-o-tweet-id`.  The module may also create attributes of this form at runtime.
 
-In some cases, especially for tracking use cases, a module may act on portions of DOM not exclusively controlled by it.  In this case the same naming conventions apply, but the module *must not* create these attributes itself.  Instead, it may only act on data- attributes outside of its own portions of 'owned DOM' if the element has already had the appropriate data attribute applied.
+In some cases, especially for tracking use cases, a module may act on portions of DOM not exclusively controlled by it.  In this case the same naming conventions apply, but the module *must not* create these attributes itself.  Instead, it may only act on elements outside of its own portions of 'owned DOM' if the element has already has a data attribute in the module's namespace.
+
+Where JavaScript exists to enhance elements, and accompanying CSS depends on knowing whether the JavaScript intends to apply that enhancement, the JavaScript *may* add a data attribute of the form `data-{modulename}-js` with no value to the root element of the component when the JavaScript initalises.  For example, o-tabs markup would not contain a `o--if-js` class, because the tabs content should remain visible even if the tabs JavaScript is not running on the page, but if the JavaScript does run, it should apply an `o-tabs--js` data attribute to allow the tabs CSS to hide all but the selected tab.
 
 ## DOM Selectors
 
