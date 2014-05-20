@@ -125,18 +125,17 @@ Where a dependency is an Origami module it *must* be listed under its original n
 
 ## Tests and demos
 
-Component authors *may* test their component however they like, provided that all test related files *should* be in the `tests` directory, and that test related files *must* not be installable.  The source files of the component *should* be in `src` (except the main JS and/or SASS file).  The project *must* contain a `README.md` formatted in markdown.
+Components *should* include tests which at least verify that the component can be built using [origami-build-tools](https://github.com/Financial-Times/origami-build-tools). Component authors *may* additionally test their component however they like, provided that all test related files *should* be in the `tests` directory, and that test related files *must* not be installable.  The source files of the component *should* be in `src` (except the main JS and/or SASS file).  The project *must* contain a `README.md` formatted in markdown.
 
-Component authors *may* include a `demos` folder to provide examples, but these *must* not be installable.  Demos *must* be created using [origami-build-tools](https://github.com/Financial-Times/origami-build-tools), and *must* be compatible with the demo viewer in the Origami registry.  Demos *must* include the minimum amount of content to show the component, and particularly should not include any headings, backgrounds, margins or other content that are not part of the component itself, unless absolutely essential to the ability to demonstrate the component.
+Component authors *may* include a `demos` folder to provide examples.  Demos *must* be created using [origami-build-tools](https://github.com/Financial-Times/origami-build-tools), and *must* be compatible with the demo viewer in the Origami registry.  Demos *must* include the minimum amount of content to show the component, and particularly should not include any headings, backgrounds, margins or other content that are not part of the component itself, unless absolutely essential to the ability to demonstrate the component.
 
+### Continuous integration
 
-## Continuous integration
-
-Modules *should* implement CI, and if the module is openly hosted on GitHub, *must* use Travis CI to do so, using the [origami-build-tools](https://github.com/Financial-Times/origami-build-tools) utility.  To invoke this in a module simply create a `.travis.yml` file in the root of the repo containing:
+Modules *should* implement CI. If a module does so and is openly hosted on GitHub, it *must* use Travis CI, via the [origami-build-tools](https://github.com/Financial-Times/origami-build-tools) utility.  To invoke this in a module simply create a `.travis.yml` file in the root of the repo containing:
 
 <script src="https://gist.github.com/triblondon/9464190.js"></script>
 
-Then enable Travis for your project from your [Travis profile page](https://travis-ci.org/profile).  The origami build tool will read your `bower.json` file, build your CSS and JavaScript bundles from your main files (the CSS in both silent and non-silent mode), and will verify that the resulting bundles are valid.
+Then enable Travis for the project from your [Travis profile page](https://travis-ci.org/profile).  The origami build tool will read the `bower.json` file, build the CSS and JavaScript bundles from the main files (the CSS in both silent and non-silent mode), and will verify that the resulting bundles are valid.
 
 Modules that are not openly published on GitHub *should* use Jenkins for CI.
 
