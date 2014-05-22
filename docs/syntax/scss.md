@@ -181,6 +181,7 @@ Where necessary, components *may* provide style rules targeted at specific user 
 
 * Component CSS *should* not use `!important`.  Valid use cases for `!important` exist, but usually only at the product level.  If `!important` is used in a component, a comment *must* be left in code to explain why it was necessary.
 * CSS expressions and behaviours *should* not be used, except to polyfill essential features for older browsers (e.g. boxsizing.htc for `box-sizing: border-box`)
+* Lengths *must* use pixel or percentage units, not ems or rems.
 
 
 ## SASS variables
