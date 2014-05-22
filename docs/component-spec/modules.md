@@ -57,6 +57,31 @@ The following requirements apply to creating a Origami-compatible module compone
 * include a bower-compatible `bower.json` file (in the root of the repo) which if present *must* conform to the requirements set out in 'Packaging and build configuration' below.
 * have automated CI, and if they do it *must* include verification that the module can be built using the mechanism described in the build service guide (see also "Continuous integration" below)
 
+## Themes
+
+Modules *may* be **themeable**, meaning that they contain minimal visual style and expect style to be applied to them from outside the module.  Modules *may* also be **theming**, meaning that they contain styles designed to change the appearance of another module.
+
+A themeable module *must*:
+
+* by default, only apply minimal, essential styles; and
+* provide at least one built-in theme, attached to a `o-modulename--theme` modifier class
+
+A theming module *must* define a theme by combining the class name of the themeable module with its own class name.  For example, if module A is providing a theme for module B:
+
+<?prettify linenums=1?>
+	.o-modulea--o-moduleb--theme {
+      /* theme styles */
+	}
+
+Themes that depend on the target module's JavaScript being active *must* use the appropriate JavaScript data attribute selector:
+
+<?prettify linenums=1?>
+	.o-modulea--o-moduleb--theme[data-o-moduleb-js] {
+      /* theme styles */
+	}
+
+Theming classes *must* be applied to the root element of the component to be themed.
+
 
 ## Packaging and build configuration
 
