@@ -140,7 +140,7 @@ Some modules' JavaScript may have use cases outside the browser, most notably in
 
 If the module requires any dependencies which are aimed solely at browsers (e.g. `o-dom`), and consequently are unlikely to define a package.json, the module *must* contain an `index.js` file which requires only those features and dependencies needed in non-browser environments, and set the `main` property of `package.json` to `["index.js"]`.
 
-The module *must not* be added to the NPM registry and the module's documention *should* advise developers to install by using a tagged tarball (links to which are available from the module's github repo's 'releases' tab).
+The module *must not* be added to the NPM registry and the module's documentation *should* advise developers to install by using a tagged tarball (links to which are available from the module's github repo's 'releases' tab).
 
 ## Module subdependencies
 
