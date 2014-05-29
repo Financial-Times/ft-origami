@@ -116,7 +116,7 @@ Optionally, a module *may* include an npm-compatible `package.json` file, to all
 
 * *Must* include a `private` property with the value set to `true`.
 * *Must* include a `devDependencies` object *if* the module has any npm dependencies for dev or testing
-* *Must not* include any of the following: `dependencies`, `files`, `main`, `bugs`, `publishConfig`, `preferGlobal`, `cpu`, `os`, `engineStrict`, `engines`, `config`, `bin`.
+* *Must not* include any of the following: `dependencies`, `files`, `bugs`, `publishConfig`, `preferGlobal`, `cpu`, `os`, `engineStrict`, `engines`, `config`, `bin`. `main` and `version` *should not* be included unless the module has a server side use case (see 'Isomorphic modules' below)
 * *May* include any other standard npm-defined property
 
 The following is an example `package.json` file that meets the above spec:
@@ -129,7 +129,18 @@ The following is an example `package.json` file that meets the above spec:
 	  },
 	  "private": true
 	}
+	
+### Isomorphic modules
 
+Some modules' JavaScript may have use cases outside the browser, most notably in node.js applications e.g. `o-date` can be used to format dates in the browser or on the server. Where there is a definite need for this modules *should* include a `package.json` with the following properties:
+	
+* `name`, which *must* be the same as the module's origami name
+* `version`, which *must* have a value of `0.0.0`
+* `main`, which *should* normally have a value of `["main.js"]`
+
+If the module requires any dependencies which are aimed solely at browsers (e.g. `o-dom`), and consequently are unlikely to define a package.json, the module *must* contain an `index.js` file which requires only those features and dependencies needed in non-browser environments, and set the `main` property of `package.json` to `["index.js"]`.
+
+The module *must not* be added to the NPM registry and the module's documentation *should* advise developers to install by using a tagged tarball (links to which are available from the module's github repo's 'releases' tab).
 
 ## Module subdependencies
 
