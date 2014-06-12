@@ -56,7 +56,7 @@ All origami components, whether modules or web services, should be discoverable 
 			<li>'maintained' (not actively developed but reproducible bugs will be fixed promptly and work done where necessary to maintain compatibility with browsers and other components)</li>
 			<li>'deprecated' (not actively developed, not recommended for new projects, only the most disabling bugs will be addressed and only when time allows, but existing implementations may still work)</li>
 			<li>'dead' (known to be broken, no plans to fix)</li>
-			<li>'not implemented' (the component is either yet to be built or currently a work in progress; developers should star the project for updates)</li>
+			<li>'experimental' (the component is not ready for production use.  This was previously called 'not implemented')</li>
 		</ul>
 	</td>
 </tr><tr>
