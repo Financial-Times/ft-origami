@@ -81,3 +81,21 @@ Here is a sample script that you can use to invoke the Modernizr tests and add t
 	<p>If you choose to do this, you can unwrap <code>noscript</code> tags more selectively by targeting them by their module name class rather than the generic <code>origami</code> class.</p>
 </aside>
 
+
+## Events
+
+Origami components do not perform any initialisation automatically, to avoid appearing to be 'magic' and therefore potentially hard to debug.  However, modules are allowed to bind to custom versions of native browser load events:
+
+* `o.DOMContentLoaded`
+* `o.load`
+
+If you wish to initalise Origami components that have auto-initialise capability, fire these custom events in response to the native ones:
+
+	document.addEventListener("DOMContentLoaded", function(event) {
+      document.dispatchEvent(new CustomEvent('o.DOMContentLoaded', {
+	    detail: {...},
+	    bubbles: true
+	  }));
+    });
+
+Alternatively, all modules that have auto-initialise capability also expose the bound function handler as part of their public API (normally as `init()`), so you can choose to only initialise the modules that you want to, in the order that you want them.
