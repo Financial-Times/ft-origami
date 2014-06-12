@@ -15,6 +15,182 @@ SASS features should be used only where they result in increased clarity and reu
 
 Component developers and Origami build tools *must* use SASS version ~3.3.0, and *should* fix any issues alerted by the compiler as deprecation warnings from 3.2.
 
+## Syntax convention rules
+
+SASS *must* validate using the following [SCSS-lint](https://github.com/causes/scss-lint) rules:
+
+<?prettify linenums=1?>
+    linters:
+
+      # ENABLED:
+
+      # "border: 0" not "border: none"
+      BorderZero:
+        enabled: true
+
+      # No capitals in selectors
+      CapitalizationInSelector:
+        enabled: true
+
+      # "#0f0" not "green"
+      ColorKeyword:
+        enabled: true
+
+      # Disallow "@debug"
+      DebugStatement:
+        enabled: true
+
+      # @extend must come first, then properties, then nested rulesets
+      DeclarationOrder:
+        enabled: true
+
+      # Require a newline at the end of the file
+      FinalNewline:
+        enabled: true
+        present: true
+
+      # #12346 good, #123 bad.
+      HexLength:
+        enabled: true
+        style: long
+
+      # Require hex colors to be lowercase (if they include any of the letters a-f)
+      HexNotation:
+        enabled: true
+        style: lowercase
+
+      # Hex colors must be actual colors (ie not #ab or #00mm00)
+      HexValidation:
+        enabled: true
+
+      # Disallow combining of ID selectors with other selector tokens
+      IdWithExtraneousSelector:
+        enabled: true
+
+      # 0.1 not .1
+      # (differs from Guardian)
+      LeadingZero:
+        enabled: true
+        style: include_zero
+
+      # @extend %placeholders, don't @extend .a-class
+      PlaceholderInExtend:
+        enabled: true
+
+      # Disallow unknown CSS property names
+      PropertySpelling:
+        enabled: true
+        extra_properties: []
+
+      # Limit selector depth
+      SelectorDepth:
+        enabled: true
+        max_depth: 3
+
+      # margin: 1px not margin: 1px 1px 1px 1px;
+      Shorthand:
+        enabled: true
+
+      # rgb(0, 0, 0) not rgb(0,0,0)
+      SpaceAfterComma:
+        enabled: true
+
+      # margin: 0px not margin:0px
+      SpaceAfterPropertyColon:
+        enabled: true
+
+      # margin: 0px not margin : 0px
+      # (AB: clearly this should be called NoSpaceAfterPropertyName)
+      SpaceAfterPropertyName:
+        enabled: true
+
+      # .thing { not .thing{
+      SpaceBeforeBrace:
+        enabled: true
+        allow_single_line_padding: false
+
+      # rgb(0,0,0) not rgb( 0,0,0 )
+      SpaceBetweenParens:
+        enabled: true
+        spaces: 0
+
+      # Every property value must end with a semicolon
+      TrailingSemicolonAfterPropertyValue:
+        enabled: true
+
+      # No unnecessary fractions: 1 not 1.0
+      UnnecessaryMantissa:
+        enabled: true
+
+      # Disallow more than one ruleset with the same selector in the same file
+      MergeableSelector:
+        enabled: true
+
+      # Rulesets with multiple (comma delimited) selectors must have each selector on a separate line
+      SingleLinePerSelector:
+        enabled: true
+
+
+      # DISABLED
+
+      # Disallow use of the same property more than once in the same ruleset
+      # (Sometimes we need to do this for progressively enhanced styles)
+      DuplicateProperty:
+        enabled: false
+
+      # // not /**/
+      # (They are semantically different, and they both get minified out anyway)
+      Comment:
+        enabled: false
+
+      # Use single quotes, not double quotes
+      # (Don't care, too pedantic)
+      StringQuotes:
+        enabled: false
+
+      # URLs must not contain domain names
+      # (We sometimes want to use a web service such as the build service or responsive image proxy)
+      UrlFormat:
+        enabled: false
+
+      # url("example.com") not url(example.com)
+      # (typically we prefer not to quote URLs)
+      UrlQuotes:
+        enabled: false
+
+      # No units on zero values: 0 not 0px
+      # (It can be useful to express what unit you want something to be in if its value is ever adjusted away from zero)
+      ZeroUnit:
+        enabled: false
+
+      # Require an empty line between rulesets
+      # (Don't care, too pedantic)
+      EmptyLineBetweenBlocks:
+        enabled: false
+
+      # Disallow empty rulesets
+      # (Useful to provide placeholder rulesets)
+      EmptyRule:
+        enabled: false
+
+      # Require spaces for indentation
+      # (Absolutely not.  Revelation: tabs are designed to indent stuff)
+      Indentation:
+        enabled: false
+
+      # Disallow camelcase and enforce BEM standards
+      # (We have exceptions: we use camel for mixins and functions)
+      NameFormat:
+        enabled: false
+        convention: BEM
+
+      # Require properties to be in alphabetical order (also possible to specify a specific order)
+      # (Instead, use CSS Comb)
+      PropertySortOrder:
+        enabled: false
+        order: []
+
+
 ##Selectors
 
 ### Naming conventions and encapsulation
