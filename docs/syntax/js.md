@@ -95,6 +95,13 @@ Modules *may* emit events defined by **other modules**, using the other module's
 
 The only currently known use case for foreign events is in analytics, allowing modules to emit tracking events that may be collected by a tracking module.  For the most part use of this technique creates too much 'magic' behaviour that would not be expected by a product developer and should be avoided.
 
+### Use of the z-axis (`o-layers`)
+
+Some modules e.g. modals, overlays and tooltips, may need to display some or all of their owned DOM outside of the normal content flow so that it obscures content outside its owned DOM. Modules that do this *must* use the custom events defined in `o-layers` to 
+
+* broadcast changes in their own state 
+* listen for changes in the state of other modules that make use of the z-axis
+
 ## Data storage
 
 Modules that store data on the client via user-agent APIs *must* encapsulate all the logic required to get and set that data and must remain compatible with the format of data that they store, unless the major version number of the module changes. In that case the module *must not* invalidate any existing data, and *should* provide advice in docs on migrating user data from previous versions.
