@@ -82,7 +82,7 @@ Here is a sample script that you can use to invoke the Modernizr tests and add t
 </aside>
 
 
-## Events
+## Initialising module components
 
 Origami components do not perform any initialisation automatically, to avoid appearing to be 'magic' and therefore potentially hard to debug.  However, modules are allowed to bind to custom versions of native browser load events:
 
