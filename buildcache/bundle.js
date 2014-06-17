@@ -8925,7 +8925,7 @@ $(function() {
 	// Find heading 2s and build a link list.  Only proceed if there would be more than one item in the list
 	$('.o-techdocs-content h2[id]').each(function() {
 		headings.push({id:this.id, pos:$(this).offset().top});
-		lis.push('<li id="o-techdocs-pagenav-'+this.id+'"><a href="#'+this.id+'">'+this.innerText+'</a></li>');
+		lis.push('<li id="o-techdocs-pagenav-'+this.id+'"><a href="#'+this.id+'">'+this.innerHTML+'</a></li>');
 	});
 	if (lis.length < 2) return;
 	list = $('<ul class="o-techdocs-nav o-techdocs-nav--page o-grid-col|12|">'+lis.join('')+'</ul>');
