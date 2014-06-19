@@ -161,3 +161,7 @@ And it would be converted to this by the build process:
 ## Hover events
 
 Where JavaScript includes bindings to `mouse...` hover events (such as `mouseover`, `mouseout`, `mouseenter`, and `mouseleave`), the [o-hoverable](https://github.com/Financial-Times/o-hoverable) module must be used to make those hover capabilities configurable.
+
+## Viewport events
+
+For viewport events that may fire several times in quick succession (`scroll`, `resize` and `orientationchange`) it's good practice to throttle listeners to these. [o-viewport](https://registry.origami.ft.com/components/o-viewport) provides pre-throttled abstractions of these events and *should* be used by modules that need to listen for changes to the viewport.
