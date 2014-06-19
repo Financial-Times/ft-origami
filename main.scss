@@ -1,1 +1,8 @@
+$o-assets-global-path: '';
+$o-ft-header-assets-path: '';
+$o-ft-header-logo-width: 150px;
 @import 'o-techdocs/main';
+
+body {
+  margin: 0;
+}

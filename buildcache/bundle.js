@@ -1,4 +1,453 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);throw new Error("Cannot find module '"+o+"'")}var f=n[o]={exports:{}};t[o][0].call(f.exports,function(e){var n=t[o][1][e];return s(n?n:e)},f,f.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
+/*jshint browser:true, node:true*/
+
+/*HACK:MA:20140428 Event currently not a browser global in JSHint - https://github.com/jshint/jshint/pull/1645 */
+/*global Event*/
+
+'use strict';
+
+module.exports = Delegate;
+
+/**
+ * DOM event delegator
+ *
+ * The delegator will listen
+ * for events that bubble up
+ * to the root node.
+ *
+ * @constructor
+ * @param {Node|string} [root] The root node or a selector string matching the root node
+ */
+function Delegate(root) {
+
+  /**
+   * Maintain a map of listener
+   * lists, keyed by event name.
+   *
+   * @type Object
+   */
+  this.listenerMap = [{}, {}];
+  if (root) {
+    this.root(root);
+  }
+
+  /** @type function() */
+  this.handle = Delegate.prototype.handle.bind(this);
+}
+
+/**
+ * @protected
+ * @type ?boolean
+ */
+Delegate.tagsCaseSensitive = null;
+
+/**
+ * Start listening for events
+ * on the provided DOM element
+ *
+ * @param  {Node|string} [root] The root node or a selector string matching the root node
+ * @returns {Delegate} This method is chainable
+ */
+Delegate.prototype.root = function(root) {
+  var listenerMap = this.listenerMap;
+  var eventType;
+
+  if (typeof root === 'string') {
+    root = document.querySelector(root);
+  }
+
+  // Remove master event listeners
+  if (this.rootElement) {
+    for (eventType in listenerMap[1]) {
+      if (listenerMap[1].hasOwnProperty(eventType)) {
+        this.rootElement.removeEventListener(eventType, this.handle, true);
+      }
+    }
+    for (eventType in listenerMap[0]) {
+      if (listenerMap[0].hasOwnProperty(eventType)) {
+        this.rootElement.removeEventListener(eventType, this.handle, false);
+      }
+    }
+  }
+
+  // If no root or root is not
+  // a dom node, then remove internal
+  // root reference and exit here
+  if (!root || !root.addEventListener) {
+    if (this.rootElement) {
+      delete this.rootElement;
+    }
+    return this;
+  }
+
+  /**
+   * The root node at which
+   * listeners are attached.
+   *
+   * @type Node
+   */
+  this.rootElement = root;
+
+  // Set up master event listeners
+  for (eventType in listenerMap[1]) {
+    if (listenerMap[1].hasOwnProperty(eventType)) {
+      this.rootElement.addEventListener(eventType, this.handle, true);
+    }
+  }
+  for (eventType in listenerMap[0]) {
+    if (listenerMap[0].hasOwnProperty(eventType)) {
+      this.rootElement.addEventListener(eventType, this.handle, false);
+    }
+  }
+
+  return this;
+};
+
+/**
+ * @param {string} eventType
+ * @returns boolean
+ */
+Delegate.prototype.captureForType = function(eventType) {
+  return ['error', 'blur', 'focus', 'scroll', 'resize'].indexOf(eventType) !== -1;
+};
+
+/**
+ * Attach a handler to one
+ * event for all elements
+ * that match the selector,
+ * now or in the future
+ *
+ * The handler function receives
+ * three arguments: the DOM event
+ * object, the node that matched
+ * the selector while the event
+ * was bubbling and a reference
+ * to itself. Within the handler,
+ * 'this' is equal to the second
+ * argument.
+ *
+ * The node that actually received
+ * the event can be accessed via
+ * 'event.target'.
+ *
+ * @param {string} eventType Listen for these events
+ * @param {string|undefined} selector Only handle events on elements matching this selector, if undefined match root element
+ * @param {function()} handler Handler function - event data passed here will be in event.data
+ * @param {Object} [eventData] Data to pass in event.data
+ * @returns {Delegate} This method is chainable
+ */
+Delegate.prototype.on = function(eventType, selector, handler, useCapture) {
+  var root, listenerMap, matcher, matcherParam;
+
+  if (!eventType) {
+    throw new TypeError('Invalid event type: ' + eventType);
+  }
+
+  // handler can be passed as
+  // the second or third argument
+  if (typeof selector === 'function') {
+    useCapture = handler;
+    handler = selector;
+    selector = null;
+  }
+
+  // Fallback to sensible defaults
+  // if useCapture not set
+  if (useCapture === undefined) {
+    useCapture = this.captureForType(eventType);
+  }
+
+  if (typeof handler !== 'function') {
+    throw new TypeError('Handler must be a type of Function');
+  }
+
+  root = this.rootElement;
+  listenerMap = this.listenerMap[useCapture ? 1 : 0];
+
+  // Add master handler for type if not created yet
+  if (!listenerMap[eventType]) {
+    if (root) {
+      root.addEventListener(eventType, this.handle, useCapture);
+    }
+    listenerMap[eventType] = [];
+  }
+
+  if (!selector) {
+    matcherParam = null;
+
+    // COMPLEX - matchesRoot needs to have access to
+    // this.rootElement, so bind the function to this.
+    matcher = this.matchesRoot.bind(this);
+
+  // Compile a matcher for the given selector
+  } else if (/^[a-z]+$/i.test(selector)) {
+
+    // Lazily check whether tag names are case sensitive (as in XML or XHTML documents).
+    if (Delegate.tagsCaseSensitive === null) {
+      Delegate.tagsCaseSensitive = document.createElement('i').tagName === 'i';
+    }
+
+    if (!Delegate.tagsCaseSensitive) {
+      matcherParam = selector.toUpperCase();
+    } else {
+      matcherParam = selector;
+    }
+
+    matcher = this.matchesTag;
+  } else if (/^#[a-z0-9\-_]+$/i.test(selector)) {
+    matcherParam = selector.slice(1);
+    matcher = this.matchesId;
+  } else {
+    matcherParam = selector;
+    matcher = this.matches;
+  }
+
+  // Add to the list of listeners
+  listenerMap[eventType].push({
+    selector: selector,
+    handler: handler,
+    matcher: matcher,
+    matcherParam: matcherParam
+  });
+
+  return this;
+};
+
+/**
+ * Remove an event handler
+ * for elements that match
+ * the selector, forever
+ *
+ * @param {string} [eventType] Remove handlers for events matching this type, considering the other parameters
+ * @param {string} [selector] If this parameter is omitted, only handlers which match the other two will be removed
+ * @param {function()} [handler] If this parameter is omitted, only handlers which match the previous two will be removed
+ * @returns {Delegate} This method is chainable
+ */
+Delegate.prototype.off = function(eventType, selector, handler, useCapture) {
+  var i, listener, listenerMap, listenerList, singleEventType;
+
+  // Handler can be passed as
+  // the second or third argument
+  if (typeof selector === 'function') {
+    useCapture = handler;
+    handler = selector;
+    selector = null;
+  }
+
+  // If useCapture not set, remove
+  // all event listeners
+  if (useCapture === undefined) {
+    this.off(eventType, selector, handler, true);
+    this.off(eventType, selector, handler, false);
+    return this;
+  }
+
+  listenerMap = this.listenerMap[useCapture ? 1 : 0];
+  if (!eventType) {
+    for (singleEventType in listenerMap) {
+      if (listenerMap.hasOwnProperty(singleEventType)) {
+        this.off(singleEventType, selector, handler);
+      }
+    }
+
+    return this;
+  }
+
+  listenerList = listenerMap[eventType];
+  if (!listenerList || !listenerList.length) {
+    return this;
+  }
+
+  // Remove only parameter matches
+  // if specified
+  for (i = listenerList.length - 1; i >= 0; i--) {
+    listener = listenerList[i];
+
+    if ((!selector || selector === listener.selector) && (!handler || handler === listener.handler)) {
+      listenerList.splice(i, 1);
+    }
+  }
+
+  // All listeners removed
+  if (!listenerList.length) {
+    delete listenerMap[eventType];
+
+    // Remove the main handler
+    if (this.rootElement) {
+      this.rootElement.removeEventListener(eventType, this.handle, useCapture);
+    }
+  }
+
+  return this;
+};
+
+
+/**
+ * Handle an arbitrary event.
+ *
+ * @param {Event} event
+ */
+Delegate.prototype.handle = function(event) {
+  var i, l, type = event.type, root, listener, returned, listenerList = [], target, /** @const */ EVENTIGNORE = 'ftLabsDelegateIgnore';
+
+  if (event[EVENTIGNORE] === true) {
+    return;
+  }
+
+  target = event.target;
+  if (target.nodeType === Node.TEXT_NODE) {
+    target = target.parentNode;
+  }
+
+  root = this.rootElement;
+
+  switch (event.eventPhase) {
+    case Event.CAPTURING_PHASE:
+      listenerList = this.listenerMap[1][type];
+    break;
+    case Event.AT_TARGET:
+      if (this.listenerMap[0] && this.listenerMap[0][type]) listenerList = listenerList.concat(this.listenerMap[0][type]);
+      if (this.listenerMap[1] && this.listenerMap[1][type]) listenerList = listenerList.concat(this.listenerMap[1][type]);
+    break;
+    case Event.BUBBLING_PHASE:
+      listenerList = this.listenerMap[0][type];
+    break;
+  }
+
+  // Need to continuously check
+  // that the specific list is
+  // still populated in case one
+  // of the callbacks actually
+  // causes the list to be destroyed.
+  l = listenerList.length;
+  while (target && l) {
+    for (i = 0; i < l; i++) {
+      listener = listenerList[i];
+
+      // Bail from this loop if
+      // the length changed and
+      // no more listeners are
+      // defined between i and l.
+      if (!listener) {
+        break;
+      }
+
+      // Check for match and fire
+      // the event if there's one
+      //
+      // TODO:MCG:20120117: Need a way
+      // to check if event#stopImmediateProgagation
+      // was called. If so, break both loops.
+      if (listener.matcher.call(target, listener.matcherParam, target)) {
+        returned = this.fire(event, target, listener);
+      }
+
+      // Stop propagation to subsequent
+      // callbacks if the callback returned
+      // false
+      if (returned === false) {
+        event[EVENTIGNORE] = true;
+        event.preventDefault();
+        return;
+      }
+    }
+
+    // TODO:MCG:20120117: Need a way to
+    // check if event#stopProgagation
+    // was called. If so, break looping
+    // through the DOM. Stop if the
+    // delegation root has been reached
+    if (target === root) {
+      break;
+    }
+
+    l = listenerList.length;
+    target = target.parentElement;
+  }
+};
+
+/**
+ * Fire a listener on a target.
+ *
+ * @param {Event} event
+ * @param {Node} target
+ * @param {Object} listener
+ * @returns {boolean}
+ */
+Delegate.prototype.fire = function(event, target, listener) {
+  return listener.handler.call(target, event, target);
+};
+
+/**
+ * Check whether an element
+ * matches a generic selector.
+ *
+ * @type function()
+ * @param {string} selector A CSS selector
+ */
+Delegate.prototype.matches = (function(el) {
+  if (!el) return;
+  var p = el.prototype;
+  return (p.matches || p.matchesSelector || p.webkitMatchesSelector || p.mozMatchesSelector || p.msMatchesSelector || p.oMatchesSelector);
+}(Element));
+
+/**
+ * Check whether an element
+ * matches a tag selector.
+ *
+ * Tags are NOT case-sensitive,
+ * except in XML (and XML-based
+ * languages such as XHTML).
+ *
+ * @param {string} tagName The tag name to test against
+ * @param {Element} element The element to test with
+ * @returns boolean
+ */
+Delegate.prototype.matchesTag = function(tagName, element) {
+  return tagName.toLowerCase() === element.tagName.toLowerCase();
+};
+
+/**
+ * Check whether an element
+ * matches the root.
+ *
+ * @param {?String} selector In this case this is always passed through as null and not used
+ * @param {Element} element The element to test with
+ * @returns boolean
+ */
+Delegate.prototype.matchesRoot = function(selector, element) {
+  if (this.rootElement === window) return element === document;
+  return this.rootElement === element;
+};
+
+/**
+ * Check whether the ID of
+ * the element in 'this'
+ * matches the given ID.
+ *
+ * IDs are case-sensitive.
+ *
+ * @param {string} id The ID to test against
+ * @param {Element} element The element to test with
+ * @returns boolean
+ */
+Delegate.prototype.matchesId = function(id, element) {
+  return id === element.id;
+};
+
+/**
+ * Short hand for off()
+ * and root(), ie both
+ * with no parameters
+ *
+ * @return void
+ */
+Delegate.prototype.destroy = function() {
+  this.off();
+  this.root();
+};
+
+},{}],2:[function(require,module,exports){
 /*!
  * jQuery JavaScript Library v2.0.3
  * http://jquery.com/
@@ -8829,7 +9278,396 @@ if ( typeof window === "object" && typeof window.document === "object" ) {
 
 })( window );
 
-},{}],2:[function(require,module,exports){
+},{}],3:[function(require,module,exports){
+/**
+ * Lo-Dash 2.4.1 (Custom Build) <http://lodash.com/>
+ * Build: `lodash modularize modern exports="node" -o ./modern/`
+ * Copyright 2012-2013 The Dojo Foundation <http://dojofoundation.org/>
+ * Based on Underscore.js 1.5.2 <http://underscorejs.org/LICENSE>
+ * Copyright 2009-2013 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
+ * Available under MIT license <http://lodash.com/license>
+ */
+var isFunction = require('../objects/isFunction'),
+    isObject = require('../objects/isObject'),
+    now = require('../utilities/now');
+
+/* Native method shortcuts for methods with the same name as other `lodash` methods */
+var nativeMax = Math.max;
+
+/**
+ * Creates a function that will delay the execution of `func` until after
+ * `wait` milliseconds have elapsed since the last time it was invoked.
+ * Provide an options object to indicate that `func` should be invoked on
+ * the leading and/or trailing edge of the `wait` timeout. Subsequent calls
+ * to the debounced function will return the result of the last `func` call.
+ *
+ * Note: If `leading` and `trailing` options are `true` `func` will be called
+ * on the trailing edge of the timeout only if the the debounced function is
+ * invoked more than once during the `wait` timeout.
+ *
+ * @static
+ * @memberOf _
+ * @category Functions
+ * @param {Function} func The function to debounce.
+ * @param {number} wait The number of milliseconds to delay.
+ * @param {Object} [options] The options object.
+ * @param {boolean} [options.leading=false] Specify execution on the leading edge of the timeout.
+ * @param {number} [options.maxWait] The maximum time `func` is allowed to be delayed before it's called.
+ * @param {boolean} [options.trailing=true] Specify execution on the trailing edge of the timeout.
+ * @returns {Function} Returns the new debounced function.
+ * @example
+ *
+ * // avoid costly calculations while the window size is in flux
+ * var lazyLayout = _.debounce(calculateLayout, 150);
+ * jQuery(window).on('resize', lazyLayout);
+ *
+ * // execute `sendMail` when the click event is fired, debouncing subsequent calls
+ * jQuery('#postbox').on('click', _.debounce(sendMail, 300, {
+ *   'leading': true,
+ *   'trailing': false
+ * });
+ *
+ * // ensure `batchLog` is executed once after 1 second of debounced calls
+ * var source = new EventSource('/stream');
+ * source.addEventListener('message', _.debounce(batchLog, 250, {
+ *   'maxWait': 1000
+ * }, false);
+ */
+function debounce(func, wait, options) {
+  var args,
+      maxTimeoutId,
+      result,
+      stamp,
+      thisArg,
+      timeoutId,
+      trailingCall,
+      lastCalled = 0,
+      maxWait = false,
+      trailing = true;
+
+  if (!isFunction(func)) {
+    throw new TypeError;
+  }
+  wait = nativeMax(0, wait) || 0;
+  if (options === true) {
+    var leading = true;
+    trailing = false;
+  } else if (isObject(options)) {
+    leading = options.leading;
+    maxWait = 'maxWait' in options && (nativeMax(wait, options.maxWait) || 0);
+    trailing = 'trailing' in options ? options.trailing : trailing;
+  }
+  var delayed = function() {
+    var remaining = wait - (now() - stamp);
+    if (remaining <= 0) {
+      if (maxTimeoutId) {
+        clearTimeout(maxTimeoutId);
+      }
+      var isCalled = trailingCall;
+      maxTimeoutId = timeoutId = trailingCall = undefined;
+      if (isCalled) {
+        lastCalled = now();
+        result = func.apply(thisArg, args);
+        if (!timeoutId && !maxTimeoutId) {
+          args = thisArg = null;
+        }
+      }
+    } else {
+      timeoutId = setTimeout(delayed, remaining);
+    }
+  };
+
+  var maxDelayed = function() {
+    if (timeoutId) {
+      clearTimeout(timeoutId);
+    }
+    maxTimeoutId = timeoutId = trailingCall = undefined;
+    if (trailing || (maxWait !== wait)) {
+      lastCalled = now();
+      result = func.apply(thisArg, args);
+      if (!timeoutId && !maxTimeoutId) {
+        args = thisArg = null;
+      }
+    }
+  };
+
+  return function() {
+    args = arguments;
+    stamp = now();
+    thisArg = this;
+    trailingCall = trailing && (timeoutId || !leading);
+
+    if (maxWait === false) {
+      var leadingCall = leading && !timeoutId;
+    } else {
+      if (!maxTimeoutId && !leading) {
+        lastCalled = stamp;
+      }
+      var remaining = maxWait - (stamp - lastCalled),
+          isCalled = remaining <= 0;
+
+      if (isCalled) {
+        if (maxTimeoutId) {
+          maxTimeoutId = clearTimeout(maxTimeoutId);
+        }
+        lastCalled = stamp;
+        result = func.apply(thisArg, args);
+      }
+      else if (!maxTimeoutId) {
+        maxTimeoutId = setTimeout(maxDelayed, remaining);
+      }
+    }
+    if (isCalled && timeoutId) {
+      timeoutId = clearTimeout(timeoutId);
+    }
+    else if (!timeoutId && wait !== maxWait) {
+      timeoutId = setTimeout(delayed, wait);
+    }
+    if (leadingCall) {
+      isCalled = true;
+      result = func.apply(thisArg, args);
+    }
+    if (isCalled && !timeoutId && !maxTimeoutId) {
+      args = thisArg = null;
+    }
+    return result;
+  };
+}
+
+module.exports = debounce;
+
+},{"../objects/isFunction":7,"../objects/isObject":8,"../utilities/now":9}],4:[function(require,module,exports){
+/**
+ * Lo-Dash 2.4.1 (Custom Build) <http://lodash.com/>
+ * Build: `lodash modularize modern exports="node" -o ./modern/`
+ * Copyright 2012-2013 The Dojo Foundation <http://dojofoundation.org/>
+ * Based on Underscore.js 1.5.2 <http://underscorejs.org/LICENSE>
+ * Copyright 2009-2013 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
+ * Available under MIT license <http://lodash.com/license>
+ */
+var debounce = require('./debounce'),
+    isFunction = require('../objects/isFunction'),
+    isObject = require('../objects/isObject');
+
+/** Used as an internal `_.debounce` options object */
+var debounceOptions = {
+  'leading': false,
+  'maxWait': 0,
+  'trailing': false
+};
+
+/**
+ * Creates a function that, when executed, will only call the `func` function
+ * at most once per every `wait` milliseconds. Provide an options object to
+ * indicate that `func` should be invoked on the leading and/or trailing edge
+ * of the `wait` timeout. Subsequent calls to the throttled function will
+ * return the result of the last `func` call.
+ *
+ * Note: If `leading` and `trailing` options are `true` `func` will be called
+ * on the trailing edge of the timeout only if the the throttled function is
+ * invoked more than once during the `wait` timeout.
+ *
+ * @static
+ * @memberOf _
+ * @category Functions
+ * @param {Function} func The function to throttle.
+ * @param {number} wait The number of milliseconds to throttle executions to.
+ * @param {Object} [options] The options object.
+ * @param {boolean} [options.leading=true] Specify execution on the leading edge of the timeout.
+ * @param {boolean} [options.trailing=true] Specify execution on the trailing edge of the timeout.
+ * @returns {Function} Returns the new throttled function.
+ * @example
+ *
+ * // avoid excessively updating the position while scrolling
+ * var throttled = _.throttle(updatePosition, 100);
+ * jQuery(window).on('scroll', throttled);
+ *
+ * // execute `renewToken` when the click event is fired, but not more than once every 5 minutes
+ * jQuery('.interactive').on('click', _.throttle(renewToken, 300000, {
+ *   'trailing': false
+ * }));
+ */
+function throttle(func, wait, options) {
+  var leading = true,
+      trailing = true;
+
+  if (!isFunction(func)) {
+    throw new TypeError;
+  }
+  if (options === false) {
+    leading = false;
+  } else if (isObject(options)) {
+    leading = 'leading' in options ? options.leading : leading;
+    trailing = 'trailing' in options ? options.trailing : trailing;
+  }
+  debounceOptions.leading = leading;
+  debounceOptions.maxWait = wait;
+  debounceOptions.trailing = trailing;
+
+  return debounce(func, wait, debounceOptions);
+}
+
+module.exports = throttle;
+
+},{"../objects/isFunction":7,"../objects/isObject":8,"./debounce":3}],5:[function(require,module,exports){
+/**
+ * Lo-Dash 2.4.1 (Custom Build) <http://lodash.com/>
+ * Build: `lodash modularize modern exports="node" -o ./modern/`
+ * Copyright 2012-2013 The Dojo Foundation <http://dojofoundation.org/>
+ * Based on Underscore.js 1.5.2 <http://underscorejs.org/LICENSE>
+ * Copyright 2009-2013 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
+ * Available under MIT license <http://lodash.com/license>
+ */
+
+/** Used for native method references */
+var objectProto = Object.prototype;
+
+/** Used to resolve the internal [[Class]] of values */
+var toString = objectProto.toString;
+
+/** Used to detect if a method is native */
+var reNative = RegExp('^' +
+  String(toString)
+    .replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+    .replace(/toString| for [^\]]+/g, '.*?') + '$'
+);
+
+/**
+ * Checks if `value` is a native function.
+ *
+ * @private
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if the `value` is a native function, else `false`.
+ */
+function isNative(value) {
+  return typeof value == 'function' && reNative.test(value);
+}
+
+module.exports = isNative;
+
+},{}],6:[function(require,module,exports){
+/**
+ * Lo-Dash 2.4.1 (Custom Build) <http://lodash.com/>
+ * Build: `lodash modularize modern exports="node" -o ./modern/`
+ * Copyright 2012-2013 The Dojo Foundation <http://dojofoundation.org/>
+ * Based on Underscore.js 1.5.2 <http://underscorejs.org/LICENSE>
+ * Copyright 2009-2013 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
+ * Available under MIT license <http://lodash.com/license>
+ */
+
+/** Used to determine if values are of the language type Object */
+var objectTypes = {
+  'boolean': false,
+  'function': true,
+  'object': true,
+  'number': false,
+  'string': false,
+  'undefined': false
+};
+
+module.exports = objectTypes;
+
+},{}],7:[function(require,module,exports){
+/**
+ * Lo-Dash 2.4.1 (Custom Build) <http://lodash.com/>
+ * Build: `lodash modularize modern exports="node" -o ./modern/`
+ * Copyright 2012-2013 The Dojo Foundation <http://dojofoundation.org/>
+ * Based on Underscore.js 1.5.2 <http://underscorejs.org/LICENSE>
+ * Copyright 2009-2013 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
+ * Available under MIT license <http://lodash.com/license>
+ */
+
+/**
+ * Checks if `value` is a function.
+ *
+ * @static
+ * @memberOf _
+ * @category Objects
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if the `value` is a function, else `false`.
+ * @example
+ *
+ * _.isFunction(_);
+ * // => true
+ */
+function isFunction(value) {
+  return typeof value == 'function';
+}
+
+module.exports = isFunction;
+
+},{}],8:[function(require,module,exports){
+/**
+ * Lo-Dash 2.4.1 (Custom Build) <http://lodash.com/>
+ * Build: `lodash modularize modern exports="node" -o ./modern/`
+ * Copyright 2012-2013 The Dojo Foundation <http://dojofoundation.org/>
+ * Based on Underscore.js 1.5.2 <http://underscorejs.org/LICENSE>
+ * Copyright 2009-2013 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
+ * Available under MIT license <http://lodash.com/license>
+ */
+var objectTypes = require('../internals/objectTypes');
+
+/**
+ * Checks if `value` is the language type of Object.
+ * (e.g. arrays, functions, objects, regexes, `new Number(0)`, and `new String('')`)
+ *
+ * @static
+ * @memberOf _
+ * @category Objects
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if the `value` is an object, else `false`.
+ * @example
+ *
+ * _.isObject({});
+ * // => true
+ *
+ * _.isObject([1, 2, 3]);
+ * // => true
+ *
+ * _.isObject(1);
+ * // => false
+ */
+function isObject(value) {
+  // check if the value is the ECMAScript language type of Object
+  // http://es5.github.io/#x8
+  // and avoid a V8 bug
+  // http://code.google.com/p/v8/issues/detail?id=2291
+  return !!(value && objectTypes[typeof value]);
+}
+
+module.exports = isObject;
+
+},{"../internals/objectTypes":6}],9:[function(require,module,exports){
+/**
+ * Lo-Dash 2.4.1 (Custom Build) <http://lodash.com/>
+ * Build: `lodash modularize modern exports="node" -o ./modern/`
+ * Copyright 2012-2013 The Dojo Foundation <http://dojofoundation.org/>
+ * Based on Underscore.js 1.5.2 <http://underscorejs.org/LICENSE>
+ * Copyright 2009-2013 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
+ * Available under MIT license <http://lodash.com/license>
+ */
+var isNative = require('../internals/isNative');
+
+/**
+ * Gets the number of milliseconds that have elapsed since the Unix epoch
+ * (1 January 1970 00:00:00 UTC).
+ *
+ * @static
+ * @memberOf _
+ * @category Utilities
+ * @example
+ *
+ * var stamp = _.now();
+ * _.defer(function() { console.log(_.now() - stamp); });
+ * // => logs the number of milliseconds it took for the deferred function to be called
+ */
+var now = isNative(now = Date.now) && now || function() {
+  return new Date().getTime();
+};
+
+module.exports = now;
+
+},{"../internals/isNative":5}],10:[function(require,module,exports){
 /*global require, exports*/
 'use strict';
 
@@ -8869,10 +9707,594 @@ function getIndex (el) {
 exports.getClosestMatch = getClosestMatch;
 exports.getIndex = getIndex;
 exports.matches = matches;
-},{"./../o-useragent/main.js":9}],3:[function(require,module,exports){
+},{"./../o-useragent/main.js":23}],11:[function(require,module,exports){
+/*global require,module*/
+module.exports = require('./src/js/Header');
+
+
+},{"./src/js/Header":12}],12:[function(require,module,exports){
+/*global require,module*/
+
+var DomDelegate = require("./../../../dom-delegate/lib/delegate.js"),
+    oViewport = require("./../../../o-viewport/main.js"),
+    ResponsiveNav = require('./ResponsiveNav');
+
+function Header(rootEl) {
+    "use strict";
+
+    var bodyDelegate,
+        responsiveNavEls = [
+            rootEl.querySelector('.o-ft-header__nav--primary-theme'),
+            rootEl.querySelector('.o-ft-header__nav--secondary-theme'),
+            rootEl.querySelector('.o-ft-header__nav--tools-theme')
+        ].filter(function(el) {
+            return el && el.nodeType === 1;
+        }),
+        responsiveNavs = [];
+
+    function resize() {
+        for (var c = 0, l = responsiveNavs.length; c < l; c++) {
+            if (responsiveNavs[c]) {
+                responsiveNavs[c].resize();
+            }
+        }
+    }
+
+    function init() {
+        bodyDelegate = new DomDelegate(document.body);
+        responsiveNavs = responsiveNavEls.map(function(el) {
+            return new ResponsiveNav(el);
+        });
+        resize();
+        oViewport.listenTo('resize');
+        bodyDelegate.on('oViewport.resize', resize);
+    }
+
+    function destroy() {
+        bodyDelegate.destroy();
+        for (var c = 0, l = responsiveNavs.length; c < l; c++) {
+            if (responsiveNavs[c]) {
+                responsiveNavs[c].destroy();
+            }
+        }
+    }
+
+    init();
+
+    this.destroy = destroy;
+
+}
+
+
+module.exports = Header;
+},{"./../../../dom-delegate/lib/delegate.js":1,"./../../../o-viewport/main.js":25,"./ResponsiveNav":14}],13:[function(require,module,exports){
+/*global require, module*/
+
+var DomDelegate = require("./../../../dom-delegate/lib/delegate.js"),
+    oDom = require("./../../../o-dom/main.js"),
+    utils = require('./utils');
+
+function Nav(rootEl) {
+    "use strict";
+
+    var bodyDelegate = new DomDelegate(document.body),
+        rootDelegate = new DomDelegate(rootEl);
+
+    function getChildListEl(el) {
+        return el.querySelector('ul');
+    }
+
+    function hasChildList(el) {
+        return !!getChildListEl(el);
+    }
+
+    function getMegaDropdownEl(itemEl) {
+        if (itemEl.hasAttribute('aria-controls')) {
+            return document.getElementById(itemEl.getAttribute('aria-controls'));
+        }
+    }
+
+    function isControlEl(el) {
+        return !!(getChildListEl(el) || getMegaDropdownEl(el));
+    }
+
+    function isExpanded(el) {
+        return el.getAttribute('aria-expanded') === 'true';
+    }
+
+    function isElementInsideNav(el) {
+        var expandedLevel1El = rootEl.querySelector('[data-nav-level="1"] > [aria-expanded="true"]'),
+            expandedMegaDropdownEl,
+            allLevel1Els;
+        if (expandedLevel1El) {
+            expandedMegaDropdownEl = getMegaDropdownEl(expandedLevel1El);
+            if (expandedMegaDropdownEl && expandedMegaDropdownEl.contains(el)) {
+                return true;
+            }
+        }
+        allLevel1Els = rootEl.querySelectorAll('[data-nav-level="1"] > li');
+        for (var c = 0, l = allLevel1Els.length; c < l; c++) {
+            if (allLevel1Els[c].contains(el)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    function getLevel(el) {
+        return parseInt(el.parentNode.getAttribute('data-nav-level'), 10);
+    }
+
+    function level2ListFitsInWindow(l2El) {
+        return l2El.getBoundingClientRect().right < window.innerWidth;
+    }
+
+    function elementFitsToRight(el1, el2) {
+        return el1.getBoundingClientRect().right + el2.offsetWidth < window.innerWidth;
+    }
+
+    function positionChildListEl(parentEl, childEl) {
+        parentEl.classList.remove('nav--align-right');
+        parentEl.classList.remove('nav--outside-right');
+        parentEl.classList.remove('nav--left');
+        if (!childEl) {
+            return;
+        }
+        if (getLevel(parentEl) === 1) {
+            if (!level2ListFitsInWindow(childEl)) {
+                parentEl.classList.add('nav--align-right');
+            }
+        } else {
+            if (elementFitsToRight(parentEl, childEl)) {
+                parentEl.classList.add('nav--outside-right');
+            }
+        }
+    }
+
+    function hideEl(el) {
+        if (el) {
+            el.setAttribute('aria-hidden', 'true');
+        }
+    }
+
+    function showEl(el) {
+        if (el) {
+            el.removeAttribute('aria-hidden');
+        }
+    }
+
+    function collapseAll(nodeList) {
+        if (!nodeList) {
+            nodeList = rootEl.querySelectorAll('[data-nav-level="1"] > li[aria-expanded=true]');
+        }
+
+        utils.nodeListToArray(nodeList).forEach(function(childListItemEl) {
+            if (isExpanded(childListItemEl)) {
+                collapseItem(childListItemEl);
+            }
+        });
+    }
+
+    function collapseItem(itemEl) {
+        itemEl.setAttribute('aria-expanded', 'false');
+        if (hasChildList(itemEl)) {
+            collapseAll(getChildListEl(itemEl).children);
+        }
+        hideEl(getMegaDropdownEl(itemEl));
+        dispatchCloseEvent(itemEl);
+    }
+
+    function collapseSiblingItems(itemEl) {
+        var listLevel = oDom.getClosestMatch(itemEl, 'ul').getAttribute('data-nav-level'),
+            listItemEls = rootEl.querySelectorAll('[data-nav-level="' + listLevel + '"] > li[aria-expanded="true"]');
+        for (var c = 0, l = listItemEls.length; c < l; c++) {
+            collapseItem(listItemEls[c]);
+        }
+    }
+
+    function expandItem(itemEl) {
+        collapseSiblingItems(itemEl);
+        itemEl.setAttribute('aria-expanded', 'true');
+        positionChildListEl(itemEl, getChildListEl(itemEl));
+        showEl(getMegaDropdownEl(itemEl));
+        dispatchCloseAllEvent(itemEl);
+        dispatchExpandEvent(itemEl);
+    }
+
+    function dispatchExpandEvent(itemEl) {
+        utils.dispatchCustomEvent(itemEl, 'oLayers.new', {'zIndex': 10, 'el': itemEl});
+    }
+
+    function dispatchCloseAllEvent(itemEl) {
+        utils.dispatchCustomEvent(itemEl, 'oLayers.closeAll', {'el': itemEl});
+    }
+
+    function dispatchCloseEvent(itemEl) {
+        utils.dispatchCustomEvent(itemEl, 'oLayers.close', {'zIndex': 10, 'el': itemEl});
+    }
+
+    function handleClick(ev) {
+        var itemEl = oDom.getClosestMatch(ev.target, 'li');
+        if (itemEl && isControlEl(itemEl)) {
+            ev.preventDefault();
+            if (!isExpanded(itemEl)) {
+                expandItem(itemEl);
+            } else {
+                collapseItem(itemEl);            
+            }
+        }
+    }
+
+    function positionLevel3s() {
+        var openLevel2El = rootEl.querySelector('[data-nav-level="2"] > [aria-expanded="true"]'),
+            openLevel3El = rootEl.querySelector('[data-nav-level="2"] > [aria-expanded="true"] > ul');
+        if (openLevel2El && openLevel3El) {
+            positionChildListEl(openLevel2El, openLevel3El);
+        }
+    }
+
+    function resize() {
+        positionLevel3s();
+    }
+
+    function setTabIndexes() {
+        var aEls = rootEl.querySelectorAll('li > a:not([href])');
+        for (var c = 0, l = aEls.length; c < l; c++) {
+            if (aEls[c].tabIndex === 0) { // Don't override tabIndex if something else has set it, but otherwise set it to zero to make it focusable.
+                aEls[c].tabIndex = 0;
+            }
+        }
+    }
+
+    function setLayersContext() {
+        // We'll use the body as the default context
+        bodyDelegate.on('oLayers.new', function(e) {
+            if (!isElementInsideNav(e.detail.el)) {
+                collapseAll();
+            }
+        });
+
+        bodyDelegate.on('oLayers.closeAll', function(e) {
+            console.log(e.detail.el);
+            if (!isElementInsideNav(e.detail.el)) {
+                collapseAll();
+            }
+        });
+    }
+
+    function init() {
+        setTabIndexes();
+        setLayersContext();
+        rootDelegate.on('click', handleClick);
+        rootDelegate.on('keyup', function(ev) { // Pressing enter key on anchors without @href won't trigger a click event
+            if (!ev.target.hasAttribute('href') && ev.keyCode === 13 && isElementInsideNav(ev.target)) {
+                handleClick(ev);
+            }
+        });
+        bodyDelegate.on('click', function(ev) {
+            if (!isElementInsideNav(ev.target)) {
+                collapseAll();
+            }
+        });
+    }
+
+    function destroy() {
+        rootDelegate.destroy();
+        bodyDelegate.destroy();
+    }
+
+    init();
+
+    this.resize = resize;
+    this.collapseAll = collapseAll;
+    this.destroy = destroy;
+
+}
+
+module.exports = Nav;
+},{"./../../../dom-delegate/lib/delegate.js":1,"./../../../o-dom/main.js":10,"./utils":15}],14:[function(require,module,exports){
+/*global require,module*/
+
+var SquishyList = require("./../../../o-squishy-list/main.js"),
+    DomDelegate = require("./../../../dom-delegate/lib/delegate.js"),
+    Nav = require('./Nav');
+
+function ResponsiveNav(rootEl) {
+    "use strict";
+
+    var rootDelegate,
+        nav,
+        contentFilterEl,
+        contentFilter,
+        moreEl,
+        moreListEl;
+
+    function isMegaDropdownControl(el) {
+        return el.hasAttribute('aria-controls');
+    }
+
+    function resize() {
+        nav.resize();
+        if (contentFilter) {
+            contentFilter.squish();
+        }
+    }
+
+    function emptyMoreList() {
+        moreListEl.innerHTML = '';
+    }
+
+    function addItemToMoreList(text, href) {
+        var itemEl = document.createElement('li'),
+            aEl = document.createElement('a');
+        aEl.innerText = text;
+        aEl.href = href;
+        itemEl.appendChild(aEl);
+        moreListEl.appendChild(itemEl);
+    }
+
+    function populateMoreList(hiddenEls) {
+        emptyMoreList();
+        for (var c = 0, l = hiddenEls.length; c < l; c++) {
+            var aEl = hiddenEls[c].querySelector('a');
+            addItemToMoreList(aEl.innerText, aEl.href);
+        }
+    }
+
+    function setMoreElClass(remainingItems) {
+        if (remainingItems === 0) {
+            moreEl.classList.add('nav__more--all');
+            moreEl.classList.remove('nav__more--some');
+        } else {
+            moreEl.classList.add('nav__more--some');
+            moreEl.classList.remove('nav__more--all');
+        }
+    }
+
+    function contentFilterChangeHandler(ev) {
+        if (ev.target === contentFilterEl && ev.detail.hiddenItems.length > 0) {
+            nav.collapseAll();
+            setMoreElClass(ev.detail.remainingItems.length);
+        }
+    }
+
+    function navExpandHandler(ev) {
+        if (ev.target === moreEl) {
+            populateMoreList(contentFilter.getHiddenItems());
+        }
+    }
+
+    function init() {
+        nav = new Nav(rootEl);
+        rootDelegate = new DomDelegate(rootEl);
+        contentFilterEl = rootEl.querySelector('ul');
+        moreEl = rootEl.querySelector('[data-more]');
+        if (moreEl && !isMegaDropdownControl(moreEl)) {
+            moreListEl = document.createElement('ul');
+            moreListEl.setAttribute('data-nav-level', '2');
+            moreEl.appendChild(moreListEl);
+            rootDelegate.on('oLayers.new', navExpandHandler);
+        }
+        if (contentFilterEl) {
+            contentFilter = new SquishyList(contentFilterEl, { filterOnResize: false });
+        }
+        rootDelegate.on('oSquishyList.change', contentFilterChangeHandler);
+    }
+
+    function destroy() {
+        rootDelegate.destroy();
+    }
+
+    init();
+
+    this.resize = resize;
+    this.destroy = destroy;
+
+}
+
+module.exports = ResponsiveNav;
+},{"./../../../dom-delegate/lib/delegate.js":1,"./../../../o-squishy-list/main.js":16,"./Nav":13}],15:[function(require,module,exports){
+/*global exports*/
+
+function nodeListToArray(nl) {
+    "use strict";
+    return [].map.call(nl, function(element) {
+        return element;
+    });
+}
+
+function dispatchCustomEvent(el, name, data) {
+    "use strict";
+    if (document.createEvent && el.dispatchEvent) {
+        var event = document.createEvent('Event');
+        event.initEvent(name, true, true);
+        if (data) {
+            event.detail = data;
+        }
+        el.dispatchEvent(event);
+    }
+}
+
+exports.nodeListToArray = nodeListToArray;
+exports.dispatchCustomEvent = dispatchCustomEvent;
+},{}],16:[function(require,module,exports){
+/*global module*/
+
+function SquishyList(rootEl, opts) {
+    "use strict";
+
+    var allItemEls,
+        prioritySortedItemEls,
+        hiddenItemEls,
+        moreEl,
+        moreWidth = 0,
+        debounceTimeout,
+        options = opts || { filterOnResize: true };
+
+    function dispatchCustomEvent(name, data) {
+        if (document.createEvent && rootEl.dispatchEvent) {
+            var event = document.createEvent('Event');
+            event.initEvent(name, true, true);
+            if (data) {
+                event.detail = data;
+            }
+            rootEl.dispatchEvent(event);
+        }
+    }
+
+    function getItemEls() {
+        var itemEls = [],
+            childNodeEl;
+        for (var c = 0, l = rootEl.childNodes.length; c < l; c++) {
+            childNodeEl = rootEl.childNodes[c];
+            if (childNodeEl.nodeType === 1 && !childNodeEl.hasAttribute('data-more')) {
+                itemEls.push(childNodeEl);
+            }
+        }
+        return itemEls;
+    }
+
+    function showEl(el) {
+        if (el) {
+            el.removeAttribute('aria-hidden');
+        }
+    }
+
+    function hideEl(el) {
+        if (el) {
+            el.setAttribute('aria-hidden', 'true');
+        }
+    }
+
+    function getElPriority(el) {
+        return parseInt(el.getAttribute('data-priority'), 10);
+    }
+
+    function getPrioritySortedChildNodeEls() {
+        allItemEls = getItemEls();
+        prioritySortedItemEls = [];
+        var unprioritisedItemEls = [];
+        for (var c = 0, l = allItemEls.length; c < l; c++) {
+            var thisItemEl = allItemEls[c],
+                thisItemPriority = getElPriority(thisItemEl);
+            if (isNaN(thisItemPriority)) {
+                unprioritisedItemEls.push(thisItemEl);
+            } else if (thisItemPriority >= 0) {
+                if (!Array.isArray(prioritySortedItemEls[thisItemPriority])) {
+                    prioritySortedItemEls[thisItemPriority] = [];
+                }
+                prioritySortedItemEls[thisItemPriority].push(thisItemEl);
+            }
+        }
+        if (unprioritisedItemEls.length > 0) {
+            prioritySortedItemEls.push(unprioritisedItemEls);
+        }
+        prioritySortedItemEls = prioritySortedItemEls.filter(function(v) {
+            return v !== undefined;
+        });
+    }
+
+    function showAllItems() {
+        hiddenItemEls = [];
+        for (var c = 0, l = allItemEls.length; c < l; c++) {
+            showEl(allItemEls[c]);
+        }
+    }
+
+    function hideItems(els) {
+        hiddenItemEls = hiddenItemEls.concat(els);
+        for (var c = 0, l = els.length; c < l; c++) {
+            hideEl(els[c]);
+        }
+    }
+
+    function getVisibleContentWidth() {
+        var visibleItemsWidth = 0;
+        for (var c = 0, l = allItemEls.length; c < l; c++) {
+            if (!allItemEls[c].hasAttribute('aria-hidden')) {
+                visibleItemsWidth += allItemEls[c].offsetWidth; // Needs to take into account margins too
+            }
+        }
+        return visibleItemsWidth;
+    }
+
+    function doesContentFit() {
+        return getVisibleContentWidth() <= rootEl.clientWidth;
+    }
+
+    function getHiddenItems() {
+        return hiddenItemEls;
+    }
+
+    function getRemainingItems() {
+        return allItemEls.filter(function(el) {
+            return hiddenItemEls.indexOf(el) === -1;
+        });
+    }
+
+    function squish() {
+        showAllItems();
+        if (doesContentFit()) {
+            hideEl(moreEl);
+        } else {
+            for (var p = prioritySortedItemEls.length - 1; p >= 0; p--) {
+                hideItems(prioritySortedItemEls[p]);
+                if ((getVisibleContentWidth() + moreWidth) <= rootEl.clientWidth) {
+                    showEl(moreEl);
+                    break;
+                }
+            }
+        }
+        dispatchCustomEvent('oSquishyList.change', {
+            hiddenItems: getHiddenItems(),
+            remainingItems: getRemainingItems()
+        });
+    }
+
+    function resizeHandler() {
+        clearTimeout(debounceTimeout);
+        debounceTimeout = setTimeout(squish, 50);
+    }
+
+    function destroy() {
+        for (var c = 0, l = allItemEls.length; c < l; c++) {
+            allItemEls[c].removeAttribute('aria-hidden');
+        }
+        window.removeEventListener('resize', resizeHandler, false);
+        rootEl.removeAttribute('data-o-squishy-list-js');
+    }
+
+    function init() {
+        rootEl.setAttribute('data-o-squishy-list-js', '');
+        getPrioritySortedChildNodeEls();
+        moreEl = rootEl.querySelector('[data-more]');
+        if (moreEl) {
+            showEl(moreEl);
+            moreWidth = moreEl.offsetWidth;
+            hideEl(moreEl);
+        }
+        squish();
+        if (options.filterOnResize) {
+            window.addEventListener('resize', resizeHandler, false);
+        }
+    }
+
+    init();
+
+    this.getHiddenItems = getHiddenItems;
+    this.getRemainingItems = getRemainingItems;
+    this.squish = squish;
+    this.destroy = destroy;
+
+    dispatchCustomEvent('oSquishyList.ready');
+
+}
+
+module.exports = SquishyList;
+},{}],17:[function(require,module,exports){
 /*global exports, require*/
 exports.wrap = require('./src/js/wrap').wrap;
-},{"./src/js/wrap":4}],4:[function(require,module,exports){
+},{"./src/js/wrap":18}],18:[function(require,module,exports){
 /*global require, exports*/
 
 var oDom = require("./../../../o-dom/main.js");
@@ -8903,14 +10325,24 @@ function wrap(tableSelector, wrapClass) {
 }
 
 exports.wrap = wrap;
-},{"./../../../o-dom/main.js":2}],5:[function(require,module,exports){
+},{"./../../../o-dom/main.js":10}],19:[function(require,module,exports){
+/*global require*/
 
 require('./src/js/nav');
 require('./src/js/reveals');
 require('./src/js/permalinks');
 require("./../o-table/main.js").wrap('.o-techdocs-content table', 'o-techdocs-table-wrapper');
 
-},{"./../o-table/main.js":3,"./src/js/nav":6,"./src/js/permalinks":7,"./src/js/reveals":8}],6:[function(require,module,exports){
+(function(){
+    "use strict";
+    var Header = require("./../o-ft-header/main.js"),
+        headerEl = document.querySelector('[data-o-component="o-ft-header"]');
+    if (headerEl) {
+        new Header(headerEl);
+    }
+}());
+
+},{"./../o-ft-header/main.js":11,"./../o-table/main.js":17,"./src/js/nav":20,"./src/js/permalinks":21,"./src/js/reveals":22}],20:[function(require,module,exports){
 /*global $,require*/
 /**
  * Add a second navigation menu to quickly navigate to
@@ -9011,7 +10443,7 @@ $(function() {
 	});
 });
 
-},{"./../../../jquery/jquery.js":1}],7:[function(require,module,exports){
+},{"./../../../jquery/jquery.js":2}],21:[function(require,module,exports){
 /*global $,require*/
 /**
  * Show permalink markers on headings with an ID
@@ -9025,7 +10457,7 @@ $(function() {
 	});
 });
 
-},{"./../../../jquery/jquery.js":1}],8:[function(require,module,exports){
+},{"./../../../jquery/jquery.js":2}],22:[function(require,module,exports){
 /*global $,require*/
 /**
  * Support displaying additional content on clicking reveal links
@@ -9045,11 +10477,11 @@ $(function() {
 	})
 });
 
-},{"./../../../jquery/jquery.js":1}],9:[function(require,module,exports){
+},{"./../../../jquery/jquery.js":2}],23:[function(require,module,exports){
 module.exports = {
 	prefixer: require('./src/js/prefixer')
 };
-},{"./src/js/prefixer":10}],10:[function(require,module,exports){
+},{"./src/js/prefixer":24}],24:[function(require,module,exports){
 'use strict';
 
 var el = document.createElement('o'),
@@ -9210,8 +10642,138 @@ module.exports = {
 
 
 
-},{}],11:[function(require,module,exports){
+},{}],25:[function(require,module,exports){
+'use strict';
+
+var throttle = require("./../lodash-node/modern/functions/throttle");
+var debounce = require("./../lodash-node/modern/functions/debounce");
+var prefixer = require("./../o-useragent/main.js").prefixer;
+var body;
+var debug;
+var delegate;
+var initFlags = {};
+var intervals = {
+    resize: 100,
+    orientation: 100,
+    scroll: 100
+};
+
+function broadcast (eventType, data) {
+    if (debug) {
+        console.log('o-viewport', eventType, data);
+    }
+    body.dispatchEvent(new CustomEvent('oViewport.' + eventType, {
+        detail: data,
+        bubbles: true
+    }));
+}
+
+var getOrientation = (function () {
+    var orientation = prefixer.dom(screen, 'orientation');
+    var matchMedia = prefixer.dom(window, 'matchMedia');
+    
+    if (orientation) {
+        return function () {
+            return screen[orientation].split('-')[0];
+        };
+    } else if (matchMedia) {
+        return function () {
+            return window[matchMedia]('(orientation: portrait)') ? 'portrait' : 'landscape';
+        };
+    } else {
+        return function () {
+            return window.innerHeight >= window.innerWidth ? 'portrait' : 'landscape';
+        };
+    }
+})();
+
+var getSize = function () {
+    return {
+        height: Math.max(document.documentElement.clientHeight, window.innerHeight || 0),
+        width: Math.max(document.documentElement.clientWidth, window.innerWidth || 0)
+    };
+};
+
+function setThrottleInterval (eventType, interval) {
+    if (typeof arguments[0] === 'number') {
+        setThrottleInterval('scroll', arguments[0]);
+        setThrottleInterval('resize', arguments[1]);
+        setThrottleInterval('orientation', arguments[2]);
+    } else if (interval) {
+        intervals[eventType] = interval;
+    }
+}
+
+function init(eventType) {
+    if (initFlags[eventType]) return true;
+
+    initFlags[eventType] = true;
+    
+    body = body || document.body;
+}
+
+function listenToResize () {
+
+    if (init('resize')) return;
+  
+    window.addEventListener('resize', debounce(function (ev) {
+        broadcast('resize', {
+            viewport: getSize(),
+            originalEvent: ev
+        });
+    }, intervals.resize));
+}
+
+function listenToOrientation () {
+
+    if (init('orientation')) return;
+
+    window.addEventListener('orientationchange', debounce(function (ev) {
+        broadcast('orientation', {
+            viewport: getSize(),
+            orientation: getOrientation(),
+            originalEvent: ev
+        });
+    }, intervals.orientation));
+}
+
+function listenToScroll () {
+
+    if (init('scroll')) return;
+
+    window.addEventListener('scroll', throttle(function (ev) {
+        broadcast('scroll', {
+            viewport: getSize(),
+            scrollHeight: body.scrollHeight,
+            scrollLeft: body.scrollLeft,
+            scrollTop: body.scrollTop,
+            scrollWidth: body.scrollWidth,
+            originalEvent: ev
+        });
+    }, intervals.scroll));
+}
+
+function listenTo (eventType) {
+    if (eventType === 'resize') {
+        listenToResize();
+    } else if (eventType === 'scroll') {
+        listenToScroll();
+    } else if (eventType === 'orientation') {
+        listenToOrientation();
+    }
+}
+
+module.exports = {
+    debug: function () {
+        debug = true;
+    },
+    listenTo: listenTo,
+    setThrottleInterval: setThrottleInterval,
+    getOrientation: getOrientation,
+    getSize: getSize
+};
+},{"./../lodash-node/modern/functions/debounce":3,"./../lodash-node/modern/functions/throttle":4,"./../o-useragent/main.js":23}],26:[function(require,module,exports){
 
 require("./bower_components/o-techdocs/main.js");
 
-},{"./bower_components/o-techdocs/main.js":5}]},{},[11])
+},{"./bower_components/o-techdocs/main.js":19}]},{},[26]);
