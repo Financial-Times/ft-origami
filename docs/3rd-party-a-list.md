@@ -64,6 +64,6 @@ jQuery is a commonly requested general purpose library, and may well already be 
 
 There are also specific modules within jQuery that don't operate in an optimal way:
 
-* **Events**: jQuery's event system is great, but it includes a proprietary namespacing strategy which isn't consistent with the way Origami namespacing normally works.  Instead, use [ftdomdelegate](https://github.com/ftlabs/ftdomdelegate), which provides the same familar `on` and `off` methods, with better
+* **Events**: jQuery's event system is great, but it includes a proprietary namespacing strategy which isn't consistent with the way Origami namespacing normally works.  Instead, use [ftdomdelegate](https://github.com/ftlabs/ftdomdelegate), which provides the same familar `on` and `off` methods.
 * **Promises**: jQuery lacks promises but does have Deferred, which can achieve similar ends but is not compatible with the standards-based promise.  Instead, use [native promises](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise), and declare `promises` as a requirement for your module in the `browserFeatures` property of origami.json.
 * **Data**: jQuery provides the ability to store arbitrary data against DOM elements outside of the scope of your JavaScript module, which is a practice we would like to avoid.
