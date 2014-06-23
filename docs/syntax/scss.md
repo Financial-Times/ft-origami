@@ -380,7 +380,7 @@ Modules are responsible for providing responsive behaviours where appropriate, b
 
 ## Subresources
 
-When styles refer to external resources such as fonts and images from an Origami module, the module *must* use `o-assets` to declare paths to these resources in a robust, build-agnostic fashion. Please see [the module's repository](http://git.svc.ft.com/summary/?r=origami/o-assets.git) for documentation and the rationale behind enforcing this approach.
+When styles refer to external resources such as fonts and images from an Origami module, the module *must* use `o-assets` to declare paths to these resources in a robust, build-agnostic fashion. Please see [the module's repository](https://github.com/financial-times/o-assets) for documentation and the rationale behind enforcing this approach.
 
 Where external resources are not within Origami modules, a [protocol-relative URL](http://www.paulirish.com/2010/the-protocol-relative-url/) *must* be used (see [issue 173](https://github.com/Financial-Times/ft-origami/issues/173)).
 
