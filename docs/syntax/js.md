@@ -111,23 +111,7 @@ Modules *must not* animate elements using methods that do not utilise hardware a
 
 JavaScript *must* be linted with [JSHint](http://www.jshint.com/).  If you wish to specify a particular JSHint configuration you may do so at the module level with a `.jshintrc` file, and at the file level with a `/*jshint: ... */` comment.  If you specify neither of these, code *must* pass a JSHint check with the following settings:
 
-<?prettify linenums=1?>
-	{
-	  forin: true,
-	  noarg: true,
-	  noempty: true,
-	  eqeqeq: true,
-	  bitwise: true,
-	  strict: true,
-	  undef: true,
-	  unused: true,
-	  curly: true,
-	  browser: true,
-	  newcap: true,
-	  immed: true,
-	  trailing: true,
-	  smarttabs: true
-	}
+<script src="https://gist-it.appspot.com/github/Financial-Times/origami-build-tools/blob/master/config/jshint.json?footer=minimal"></script>
 
 Developers *should* stick to the above `jshintrc` config, since this represents a common standard across FT teams, but are permitted to make changes if desired.
 
