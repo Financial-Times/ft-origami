@@ -1,6 +1,7 @@
-$o-assets-global-path: '';
-$o-ft-header-assets-path: '';
+$o-assets-global-path: 'http://build.origami.ft.com/files/';
+$o-ft-header-assets-path: 'o-ft-header';
 $o-ft-header-logo-width: 150px;
+$o-ft-icons-assets-path: 'o-ft-icons@1.2.4';
 @import 'o-techdocs/main';
 
 body {

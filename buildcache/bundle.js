@@ -9707,7 +9707,7 @@ function getIndex (el) {
 exports.getClosestMatch = getClosestMatch;
 exports.getIndex = getIndex;
 exports.matches = matches;
-},{"./../o-useragent/main.js":23}],11:[function(require,module,exports){
+},{"./../o-useragent/main.js":24}],11:[function(require,module,exports){
 /*global require,module*/
 module.exports = require('./src/js/Header');
 
@@ -9716,45 +9716,33 @@ module.exports = require('./src/js/Header');
 /*global require,module*/
 
 var DomDelegate = require("./../../../dom-delegate/lib/delegate.js"),
-    oViewport = require("./../../../o-viewport/main.js"),
-    ResponsiveNav = require('./ResponsiveNav');
+    oHierarchicalNav = require("./../../../o-hierarchical-nav/main.js");
 
 function Header(rootEl) {
     "use strict";
 
     var bodyDelegate,
-        responsiveNavEls = [
+        hierarchicalNavEls = [
             rootEl.querySelector('.o-ft-header__nav--primary-theme'),
             rootEl.querySelector('.o-ft-header__nav--secondary-theme'),
             rootEl.querySelector('.o-ft-header__nav--tools-theme')
         ].filter(function(el) {
             return el && el.nodeType === 1;
         }),
-        responsiveNavs = [];
-
-    function resize() {
-        for (var c = 0, l = responsiveNavs.length; c < l; c++) {
-            if (responsiveNavs[c]) {
-                responsiveNavs[c].resize();
-            }
-        }
-    }
+        hierarchicalNavs = [];
 
     function init() {
         bodyDelegate = new DomDelegate(document.body);
-        responsiveNavs = responsiveNavEls.map(function(el) {
-            return new ResponsiveNav(el);
+        hierarchicalNavs = hierarchicalNavEls.map(function(el) {
+            return new oHierarchicalNav(el);
         });
-        resize();
-        oViewport.listenTo('resize');
-        bodyDelegate.on('oViewport.resize', resize);
     }
 
     function destroy() {
         bodyDelegate.destroy();
-        for (var c = 0, l = responsiveNavs.length; c < l; c++) {
-            if (responsiveNavs[c]) {
-                responsiveNavs[c].destroy();
+        for (var c = 0, l = hierarchicalNavs.length; c < l; c++) {
+            if (hierarchicalNavs[c]) {
+                hierarchicalNavs[c].destroy();
             }
         }
     }
@@ -9765,9 +9753,27 @@ function Header(rootEl) {
 
 }
 
-
 module.exports = Header;
-},{"./../../../dom-delegate/lib/delegate.js":1,"./../../../o-viewport/main.js":25,"./ResponsiveNav":14}],13:[function(require,module,exports){
+},{"./../../../dom-delegate/lib/delegate.js":1,"./../../../o-hierarchical-nav/main.js":13}],13:[function(require,module,exports){
+/*global require,module*/
+function HierarchicalNav(rootEl) {
+
+	function init() {
+		if (rootEl.getAttribute('data-o-hierarchical-nav-orientiation') == 'vertical') {
+			var Nav = require('./src/js/Nav');
+			new Nav(rootEl);
+		} else {
+			var ResponsiveNav = require('./src/js/ResponsiveNav');
+			new ResponsiveNav(rootEl);
+		}
+	}
+
+	init();
+}
+
+module.exports = HierarchicalNav;
+
+},{"./src/js/Nav":14,"./src/js/ResponsiveNav":15}],14:[function(require,module,exports){
 /*global require, module*/
 
 var DomDelegate = require("./../../../dom-delegate/lib/delegate.js"),
@@ -9803,7 +9809,7 @@ function Nav(rootEl) {
     }
 
     function isElementInsideNav(el) {
-        var expandedLevel1El = rootEl.querySelector('[data-nav-level="1"] > [aria-expanded="true"]'),
+        var expandedLevel1El = rootEl.querySelector('[data-o-hierarchical-nav-level="1"] > [aria-expanded="true"]'),
             expandedMegaDropdownEl,
             allLevel1Els;
         if (expandedLevel1El) {
@@ -9812,7 +9818,7 @@ function Nav(rootEl) {
                 return true;
             }
         }
-        allLevel1Els = rootEl.querySelectorAll('[data-nav-level="1"] > li');
+        allLevel1Els = rootEl.querySelectorAll('[data-o-hierarchical-nav-level="1"] > li');
         for (var c = 0, l = allLevel1Els.length; c < l; c++) {
             if (allLevel1Els[c].contains(el)) {
                 return true;
@@ -9822,7 +9828,7 @@ function Nav(rootEl) {
     }
 
     function getLevel(el) {
-        return parseInt(el.parentNode.getAttribute('data-nav-level'), 10);
+        return parseInt(el.parentNode.getAttribute('data-o-hierarchical-nav-level'), 10);
     }
 
     function level2ListFitsInWindow(l2El) {
@@ -9834,19 +9840,19 @@ function Nav(rootEl) {
     }
 
     function positionChildListEl(parentEl, childEl) {
-        parentEl.classList.remove('nav--align-right');
-        parentEl.classList.remove('nav--outside-right');
-        parentEl.classList.remove('nav--left');
+        parentEl.classList.remove('o-hierarchical-nav--align-right');
+        parentEl.classList.remove('o-hierarchical-nav__outside-right');
+        parentEl.classList.remove('o-hierarchical-nav--left');
         if (!childEl) {
             return;
         }
         if (getLevel(parentEl) === 1) {
             if (!level2ListFitsInWindow(childEl)) {
-                parentEl.classList.add('nav--align-right');
+                parentEl.classList.add('o-hierarchical-nav--align-right');
             }
         } else {
             if (elementFitsToRight(parentEl, childEl)) {
-                parentEl.classList.add('nav--outside-right');
+                parentEl.classList.add('o-hierarchical-nav__outside-right');
             }
         }
     }
@@ -9865,7 +9871,7 @@ function Nav(rootEl) {
 
     function collapseAll(nodeList) {
         if (!nodeList) {
-            nodeList = rootEl.querySelectorAll('[data-nav-level="1"] > li[aria-expanded=true]');
+            nodeList = rootEl.querySelectorAll('[data-o-hierarchical-nav-level="1"] > li[aria-expanded=true]');
         }
 
         utils.nodeListToArray(nodeList).forEach(function(childListItemEl) {
@@ -9885,8 +9891,8 @@ function Nav(rootEl) {
     }
 
     function collapseSiblingItems(itemEl) {
-        var listLevel = oDom.getClosestMatch(itemEl, 'ul').getAttribute('data-nav-level'),
-            listItemEls = rootEl.querySelectorAll('[data-nav-level="' + listLevel + '"] > li[aria-expanded="true"]');
+        var listLevel = oDom.getClosestMatch(itemEl, 'ul').getAttribute('data-o-hierarchical-nav-level'),
+            listItemEls = rootEl.querySelectorAll('[data-o-hierarchical-nav-level="' + listLevel + '"] > li[aria-expanded="true"]');
         for (var c = 0, l = listItemEls.length; c < l; c++) {
             collapseItem(listItemEls[c]);
         }
@@ -9926,8 +9932,8 @@ function Nav(rootEl) {
     }
 
     function positionLevel3s() {
-        var openLevel2El = rootEl.querySelector('[data-nav-level="2"] > [aria-expanded="true"]'),
-            openLevel3El = rootEl.querySelector('[data-nav-level="2"] > [aria-expanded="true"] > ul');
+        var openLevel2El = rootEl.querySelector('[data-o-hierarchical-nav-level="2"] > [aria-expanded="true"]'),
+            openLevel3El = rootEl.querySelector('[data-o-hierarchical-nav-level="2"] > [aria-expanded="true"] > ul');
         if (openLevel2El && openLevel3El) {
             positionChildListEl(openLevel2El, openLevel3El);
         }
@@ -9955,7 +9961,6 @@ function Nav(rootEl) {
         });
 
         bodyDelegate.on('oLayers.closeAll', function(e) {
-            console.log(e.detail.el);
             if (!isElementInsideNav(e.detail.el)) {
                 collapseAll();
             }
@@ -9992,11 +9997,12 @@ function Nav(rootEl) {
 }
 
 module.exports = Nav;
-},{"./../../../dom-delegate/lib/delegate.js":1,"./../../../o-dom/main.js":10,"./utils":15}],14:[function(require,module,exports){
+},{"./../../../dom-delegate/lib/delegate.js":1,"./../../../o-dom/main.js":10,"./utils":16}],15:[function(require,module,exports){
 /*global require,module*/
 
 var SquishyList = require("./../../../o-squishy-list/main.js"),
     DomDelegate = require("./../../../dom-delegate/lib/delegate.js"),
+    oViewport = require("./../../../o-viewport/main.js"),
     Nav = require('./Nav');
 
 function ResponsiveNav(rootEl) {
@@ -10024,7 +10030,7 @@ function ResponsiveNav(rootEl) {
         moreListEl.innerHTML = '';
     }
 
-    function addItemToMoreList(text, href) {
+    function addItemToMoreList(text, href, ul) {
         var itemEl = document.createElement('li'),
             aEl = document.createElement('a');
         aEl.innerText = text;
@@ -10037,17 +10043,18 @@ function ResponsiveNav(rootEl) {
         emptyMoreList();
         for (var c = 0, l = hiddenEls.length; c < l; c++) {
             var aEl = hiddenEls[c].querySelector('a');
-            addItemToMoreList(aEl.innerText, aEl.href);
+            var ulEl = hiddenEls[c].querySelector('ul');
+            addItemToMoreList(aEl.innerText, aEl.href, ulEl);
         }
     }
 
     function setMoreElClass(remainingItems) {
         if (remainingItems === 0) {
-            moreEl.classList.add('nav__more--all');
-            moreEl.classList.remove('nav__more--some');
+            moreEl.classList.add('o-hierarchical-nav__more--all');
+            moreEl.classList.remove('o-hierarchical-nav__more--some');
         } else {
-            moreEl.classList.add('nav__more--some');
-            moreEl.classList.remove('nav__more--all');
+            moreEl.classList.add('o-hierarchical-nav__more--some');
+            moreEl.classList.remove('o-hierarchical-nav__more--all');
         }
     }
 
@@ -10071,7 +10078,7 @@ function ResponsiveNav(rootEl) {
         moreEl = rootEl.querySelector('[data-more]');
         if (moreEl && !isMegaDropdownControl(moreEl)) {
             moreListEl = document.createElement('ul');
-            moreListEl.setAttribute('data-nav-level', '2');
+            moreListEl.setAttribute('data-o-hierarchical-nav-level', '2');
             moreEl.appendChild(moreListEl);
             rootDelegate.on('oLayers.new', navExpandHandler);
         }
@@ -10079,6 +10086,13 @@ function ResponsiveNav(rootEl) {
             contentFilter = new SquishyList(contentFilterEl, { filterOnResize: false });
         }
         rootDelegate.on('oSquishyList.change', contentFilterChangeHandler);
+
+        var bodyDelegate = new DomDelegate(document.body);
+        // Force a resize when it loads, in case it loads on a smaller screen
+        resize();
+        
+        oViewport.listenTo('resize');
+        bodyDelegate.on('oViewport.resize', resize);
     }
 
     function destroy() {
@@ -10093,7 +10107,7 @@ function ResponsiveNav(rootEl) {
 }
 
 module.exports = ResponsiveNav;
-},{"./../../../dom-delegate/lib/delegate.js":1,"./../../../o-squishy-list/main.js":16,"./Nav":13}],15:[function(require,module,exports){
+},{"./../../../dom-delegate/lib/delegate.js":1,"./../../../o-squishy-list/main.js":17,"./../../../o-viewport/main.js":26,"./Nav":14}],16:[function(require,module,exports){
 /*global exports*/
 
 function nodeListToArray(nl) {
@@ -10117,7 +10131,7 @@ function dispatchCustomEvent(el, name, data) {
 
 exports.nodeListToArray = nodeListToArray;
 exports.dispatchCustomEvent = dispatchCustomEvent;
-},{}],16:[function(require,module,exports){
+},{}],17:[function(require,module,exports){
 /*global module*/
 
 function SquishyList(rootEl, opts) {
@@ -10291,10 +10305,10 @@ function SquishyList(rootEl, opts) {
 }
 
 module.exports = SquishyList;
-},{}],17:[function(require,module,exports){
+},{}],18:[function(require,module,exports){
 /*global exports, require*/
 exports.wrap = require('./src/js/wrap').wrap;
-},{"./src/js/wrap":18}],18:[function(require,module,exports){
+},{"./src/js/wrap":19}],19:[function(require,module,exports){
 /*global require, exports*/
 
 var oDom = require("./../../../o-dom/main.js");
@@ -10325,7 +10339,7 @@ function wrap(tableSelector, wrapClass) {
 }
 
 exports.wrap = wrap;
-},{"./../../../o-dom/main.js":10}],19:[function(require,module,exports){
+},{"./../../../o-dom/main.js":10}],20:[function(require,module,exports){
 /*global require*/
 
 require('./src/js/nav');
@@ -10336,13 +10350,20 @@ require("./../o-table/main.js").wrap('.o-techdocs-content table', 'o-techdocs-ta
 (function(){
     "use strict";
     var Header = require("./../o-ft-header/main.js"),
-        headerEl = document.querySelector('[data-o-component="o-ft-header"]');
+    	OHierarchicalNav = require("./../o-hierarchical-nav/main.js"),
+        headerEl = document.querySelector('[data-o-component="o-ft-header"]'),
+        navEl = document.querySelector('[data-o-component="o-hierarchical-nav"]');
+
     if (headerEl) {
         new Header(headerEl);
     }
+
+    if (navEl) {
+    	new OHierarchicalNav(navEl);
+    }
 }());
 
-},{"./../o-ft-header/main.js":11,"./../o-table/main.js":17,"./src/js/nav":20,"./src/js/permalinks":21,"./src/js/reveals":22}],20:[function(require,module,exports){
+},{"./../o-ft-header/main.js":11,"./../o-hierarchical-nav/main.js":13,"./../o-table/main.js":18,"./src/js/nav":21,"./src/js/permalinks":22,"./src/js/reveals":23}],21:[function(require,module,exports){
 /*global $,require*/
 /**
  * Add a second navigation menu to quickly navigate to
@@ -10405,11 +10426,11 @@ $(function() {
 				}
 			});
 			if (candidate && candidate.id != currentheading) {
-				list.find('li').removeClass('o-techdocs-nav__item--active');
-				$('#o-techdocs-pagenav-'+candidate.id).addClass('o-techdocs-nav__item--active');
+				list.find('li').removeAttr('aria-selected');
+				$('#o-techdocs-pagenav-'+candidate.id).attr('aria-selected', 'true');
 				currentheading = candidate.id;
 			} else if (!candidate) {
-				list.find('li').removeClass('o-techdocs-nav__item--active');
+				list.find('li').removeAttr('aria-selected');
 			}
 
 			// Dock or undock the navigation menu
@@ -10440,10 +10461,13 @@ $(function() {
 		$('.o-techdocs-content h2[id]').each(function() {
 			headings.push({id:this.id, pos:$(this).offset().top});
 		});
+
+		// Open the parent for the selected element
+		$('[aria-selected="true"]').closest('.o-hierarchical-nav__parent').attr('aria-expanded', 'true');
 	});
 });
 
-},{"./../../../jquery/jquery.js":2}],21:[function(require,module,exports){
+},{"./../../../jquery/jquery.js":2}],22:[function(require,module,exports){
 /*global $,require*/
 /**
  * Show permalink markers on headings with an ID
@@ -10457,7 +10481,7 @@ $(function() {
 	});
 });
 
-},{"./../../../jquery/jquery.js":2}],22:[function(require,module,exports){
+},{"./../../../jquery/jquery.js":2}],23:[function(require,module,exports){
 /*global $,require*/
 /**
  * Support displaying additional content on clicking reveal links
@@ -10477,11 +10501,11 @@ $(function() {
 	})
 });
 
-},{"./../../../jquery/jquery.js":2}],23:[function(require,module,exports){
+},{"./../../../jquery/jquery.js":2}],24:[function(require,module,exports){
 module.exports = {
 	prefixer: require('./src/js/prefixer')
 };
-},{"./src/js/prefixer":24}],24:[function(require,module,exports){
+},{"./src/js/prefixer":25}],25:[function(require,module,exports){
 'use strict';
 
 var el = document.createElement('o'),
@@ -10642,7 +10666,7 @@ module.exports = {
 
 
 
-},{}],25:[function(require,module,exports){
+},{}],26:[function(require,module,exports){
 'use strict';
 
 var throttle = require("./../lodash-node/modern/functions/throttle");
@@ -10671,7 +10695,6 @@ function broadcast (eventType, data) {
 var getOrientation = (function () {
     var orientation = prefixer.dom(screen, 'orientation');
     var matchMedia = prefixer.dom(window, 'matchMedia');
-    
     if (orientation) {
         return function () {
             return screen[orientation].split('-')[0];
@@ -10745,8 +10768,8 @@ function listenToScroll () {
         broadcast('scroll', {
             viewport: getSize(),
             scrollHeight: body.scrollHeight,
-            scrollLeft: body.scrollLeft,
-            scrollTop: body.scrollTop,
+            scrollLeft: (document.documentElement && document.documentElement.scrollLeft) || document.body.scrollLeft,
+            scrollTop: (document.documentElement && document.documentElement.scrollTop) || document.body.scrollTop,
             scrollWidth: body.scrollWidth,
             originalEvent: ev
         });
@@ -10772,8 +10795,8 @@ module.exports = {
     getOrientation: getOrientation,
     getSize: getSize
 };
-},{"./../lodash-node/modern/functions/debounce":3,"./../lodash-node/modern/functions/throttle":4,"./../o-useragent/main.js":23}],26:[function(require,module,exports){
+},{"./../lodash-node/modern/functions/debounce":3,"./../lodash-node/modern/functions/throttle":4,"./../o-useragent/main.js":24}],27:[function(require,module,exports){
 
 require("./bower_components/o-techdocs/main.js");
 
-},{"./bower_components/o-techdocs/main.js":19}]},{},[26]);
+},{"./bower_components/o-techdocs/main.js":20}]},{},[27]);
