@@ -44,93 +44,93 @@
         <div class="o-techdocs-layout">
 
           <div class="o-techdocs-sidebar">
-            <ul class="o-techdocs-nav">
-              <li class="{% if page.title == 'Home' %}o-techdocs-nav__item--active{% endif %}">
-                <a href="{{ site.baseurl }}/">Overview</a>
+            <ul class="o-techdocs-nav o-hierarchical-nav o-hierarchical-nav--vertical-theme" data-o-component="o-hierarchical-nav" data-o-hierarchical-nav-orientiation="vertical" data-o-hierarchical-nav-level="1">
+              <li class="o-hierarchical-nav__parent"{% if page.title == 'Home' %} aria-expanded="true" aria-selected="true"{% endif %}>
+                <a href="{{ site.baseurl }}/">Overview <i class="o-hierarchical-nav__parent__down-arrow"></i></a>
                 {% if page.section == 'Overview' %}
-                <ul class="o-techdocs-nav o-techdocs-nav__sub">
-                  <li class="{% if page.title == 'Non-technical explainer' %}o-techdocs-nav__item--active{% endif %}">
+                <ul class="o-techdocs-nav o-techdocs-nav__sub" data-o-hierarchical-nav-level="2">
+                  <li{% if page.title == 'Non-technical explainer' %} aria-selected="true"{% endif %}>
                     <a href="{{ site.baseurl }}/docs/overview/non-technical">Non-technical explainer</a>
                   </li>
-                  <li class="{% if page.title == 'Statement of principles' %}o-techdocs-nav__item--active{% endif %}">
+                  <li{% if page.title == 'Statement of principles' %} aria-selected="true"{% endif %}>
                     <a href="{{ site.baseurl }}/docs/overview/principles">Statement of principles</a>
                   </li>
-                  <li class="{% if page.title == 'Governance and policy' %}o-techdocs-nav__item--active{% endif %}">
+                  <li{% if page.title == 'Governance and policy' %} aria-selected="true"{% endif %}>
                     <a href="{{ site.baseurl }}/docs/overview/governance">Governance and policy</a>
                   </li>
-                  <li class="{% if page.title == 'Roadmap' %}o-techdocs-nav__item--active{% endif %}">
+                  <li{% if page.title == 'Roadmap' %} aria-selected="true"{% endif %}>
                     <a href="{{ site.baseurl }}/docs/overview/roadmap">Roadmap and current activity</a>
                   </li>
-                  <li class="{% if page.title == 'Changes news feed' %}o-techdocs-nav__item--active{% endif %}">
+                  <li{% if page.title == 'Changes news feed' %} aria-selected="true"{% endif %}>
                     <a href="{{ site.baseurl }}/docs/overview/changes">Spec changes newsfeed</a>
                   </li>
                 </ul>
                 {% endif %}
               </li>
-              <li class="{% if page.title == 'Component spec' %}o-techdocs-nav__item--active{% endif %}">
-                <a href="{{ site.baseurl }}/docs/component-spec">Component spec</a>
+              <li class="o-hierarchical-nav__parent"{% if page.title == 'Component spec' %} aria-expanded="true" aria-selected="true"{% endif %}>
+                <a href="{{ site.baseurl }}/docs/component-spec">Component spec <i class="o-hierarchical-nav__parent__down-arrow"></i></a>
                 {% if page.section == 'Component spec' %}
-                <ul class="o-techdocs-nav o-techdocs-nav__sub">
-                  <li class="{% if page.title == 'Modules' %}o-techdocs-nav__item--active{% endif %}">
+                <ul class="o-techdocs-nav o-techdocs-nav__sub" data-o-hierarchical-nav-level="2">
+                  <li{% if page.title == 'Modules' %} aria-selected="true"{% endif %}>
                     <a href="{{ site.baseurl }}/docs/component-spec/modules">Modules</a>
                   </li>
-                  <li class="{% if page.title == 'Web services' %}o-techdocs-nav__item--active{% endif %}">
+                  <li{% if page.title == 'Web services' %} aria-selected="true"{% endif %}>
                     <a href="{{ site.baseurl }}/docs/component-spec/web-services">Web services</a>
                   </li>
                 </ul>
                 {% endif %}
               </li>
-              <li class="{% if page.title == 'Syntax' %}o-techdocs-nav__item--active{% endif %}">
-                <a href="{{ site.baseurl }}/docs/syntax">Syntax standards</a>
+              <li class="o-hierarchical-nav__parent"{% if page.title == 'Syntax' %} aria-expanded="true" aria-selected="true"{% endif %}>
+                <a href="{{ site.baseurl }}/docs/syntax">Syntax standards <i class="o-hierarchical-nav__parent__down-arrow"></i></a>
                 {% if page.section == 'Syntax' %}
-                <ul class="o-techdocs-nav o-techdocs-nav__sub">
-                  <li class="{% if page.title == 'JavaScript' %}o-techdocs-nav__item--active{% endif %}">
+                <ul class="o-techdocs-nav o-techdocs-nav__sub" data-o-hierarchical-nav-level="2">
+                  <li{% if page.title == 'JavaScript' %} aria-selected="true"{% endif %}>
                     <a href="{{ site.baseurl }}/docs/syntax/js">JavaScript</a>
                   </li>
-                  <li class="{% if page.title == 'HTML' %}o-techdocs-nav__item--active{% endif %}">
+                  <li{% if page.title == 'HTML' %} aria-selected="true"{% endif %}>
                     <a href="{{ site.baseurl }}/docs/syntax/html">HTML</a>
                   </li>
-                  <li class="{% if page.title == 'SCSS' %}o-techdocs-nav__item--active{% endif %}">
+                  <li{% if page.title == 'SCSS' %} aria-selected="true"{% endif %}>
                     <a href="{{ site.baseurl }}/docs/syntax/scss">SCSS</a>
                   </li>
-                  <li class="{% if page.title == 'Mustache' %}o-techdocs-nav__item--active{% endif %}">
+                  <li{% if page.title == 'Mustache' %} aria-selected="true"{% endif %}>
                     <a href="{{ site.baseurl }}/docs/syntax/mustache">Mustache</a>
                   </li>
-                  <li class="{% if page.title == 'origami.json' %}o-techdocs-nav__item--active{% endif %}">
+                  <li{% if page.title == 'origami.json' %} aria-selected="true"{% endif %}>
                     <a href="{{ site.baseurl }}/docs/syntax/origamijson">origami.json</a>
                   </li>
-                  <li class="{% if page.title == 'Web service description' %}o-techdocs-nav__item--active{% endif %}">
+                  <li{% if page.title == 'Web service description' %} aria-selected="true"{% endif %}>
                     <a href="{{ site.baseurl }}/docs/syntax/web-service-description">Web service description</a>
                   </li>
-                  <li class="{% if page.title == 'Web service index' %}o-techdocs-nav__item--active{% endif %}">
+                  <li{% if page.title == 'Web service index' %} aria-selected="true"{% endif %}>
                     <a href="{{ site.baseurl }}/docs/syntax/web-service-index">Web service index</a>
                   </li>
-                  <li class="{% if page.title == 'Metrics format' %}o-techdocs-nav__item--active{% endif %}">
+                  <li{% if page.title == 'Metrics format' %} aria-selected="true"{% endif %}>
                     <a href="{{ site.baseurl }}/docs/syntax/metrics">Metrics</a>
                   </li>
                 </ul>
                 {% endif %}
               </li>
-              <li class="{% if page.title == 'Developer guide' %}o-techdocs-nav__item--active{% endif %}">
-                <a href="{{ site.baseurl }}/docs/developer-guide/">Developer guide</a>
+              <li class="o-hierarchical-nav__parent"{% if page.title == 'Developer guide' %} aria-expanded="true" aria-selected="true"{% endif %}>
+                <a href="{{ site.baseurl }}/docs/developer-guide/">Developer guide <i class="o-hierarchical-nav__parent__down-arrow"></i></a>
                 {% if page.section == 'Developer guide' %}
-                <ul class="o-techdocs-nav o-techdocs-nav__sub">
-                  <li class="{% if page.title == 'Using modules' %}o-techdocs-nav__item--active{% endif %}">
+                <ul class="o-techdocs-nav o-techdocs-nav__sub" data-o-hierarchical-nav-level="2">
+                  <li{% if page.title == 'Using modules' %} aria-selected="true"{% endif %}>
                     <a href="{{ site.baseurl }}/docs/developer-guide/building-modules/">Building modules</a>
                   </li>
-                  <li class="{% if page.title == 'Using the build service' %}o-techdocs-nav__item--active{% endif %}">
+                  <li{% if page.title == 'Using the build service' %} aria-selected="true"{% endif %}>
                     <a href="{{ site.baseurl }}/docs/developer-guide/build-service/">Using the build service</a>
                   </li>
-                  <li class="{% if page.title == 'Using web services' %}o-techdocs-nav__item--active{% endif %}">
+                  <li{% if page.title == 'Using web services' %} aria-selected="true"{% endif %}>
                     <a href="{{ site.baseurl }}/docs/developer-guide/web-services/">Using web services</a>
                   </li>
-                  <li class="{% if page.title == 'Example use cases' %}o-techdocs-nav__item--active{% endif %}">
+                  <li{% if page.title == 'Example use cases' %} aria-selected="true"{% endif %}>
                     <a href="{{ site.baseurl }}/docs/developer-guide/use-cases/">Example use cases</a>
                   </li>
                 </ul>
                 {% endif %}
               </li>
-              <li class="{% if page.title == 'Third party component A List' %}o-techdocs-nav__item--active{% endif %}">
+              <li{% if page.title == 'Third party component A List' %} aria-selected="true"{% endif %}>
                 <a href="{{ site.baseurl }}/docs/3rd-party-a-list">Third party component A List</a>
               </li>
             </ul>
@@ -145,8 +145,6 @@
         <div class='o-techdocs-footer'>
           <p><a href='http://github.com/financial-times/ft-origami'>View project on Github</a>&copy; THE FINANCIAL TIMES LTD {{ site.time | date:'%Y' }}. FT and 'Financial Times' are trademarks of The Financial Times Ltd.</p>
         </div>
-
-      </div>
 
       <script src='https://cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.js'></script>
       <script>prettyPrint();</script>

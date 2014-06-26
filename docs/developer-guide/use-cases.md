@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Use cases
+title: Example use cases
 section: Developer guide
 permalink: /docs/developer-guide/use-cases/
 ---
