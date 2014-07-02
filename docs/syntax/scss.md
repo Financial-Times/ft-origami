@@ -199,11 +199,11 @@ Where necessary, components *may* provide style rules targeted at specific user 
 * Variables intended for use externally by consuming products and modules *should* be defined by their purpose, rather than their value: e.g. `$o-colors-skyline-bg` rather than `$o-colors-beige`
 
 
-## Privacy
+## Privacy and imports
 
 Any object (eg. class, mixin, placeholder, function, variable) that is intended for public use (ie may be referenced by code outside of its own module) *must* be documented in the module's README.  All other objects *must* be prefixed with an underscore character, and *must not* be documented in the README (they *may* be documented in code comments).
 
-If a module contains SCSS files other than the main file listed in bower.json, the file names of those files must be prefixed with an underscore.
+If a module contains SCSS files other than the main file listed in bower.json, the file names of those files must be prefixed with an underscore, and all such files *must* be imported before any other SASS code.  All import statements *should* be in the module's main file.
 
 
 ## Responsiveness
