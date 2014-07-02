@@ -91,11 +91,8 @@ Origami components do not perform any initialisation automatically, to avoid app
 
 If you wish to initalise Origami components that have auto-initialise capability, fire these custom events in response to the native ones:
 
-	document.addEventListener("DOMContentLoaded", function(event) {
-      document.dispatchEvent(new CustomEvent('o.DOMContentLoaded', {
-	    detail: {...},
-	    bubbles: true
-	  }));
-    });
+	document.addEventListener("DOMContentLoaded", function() {
+	    document.dispatchEvent(new CustomEvent('o.DOMContentLoaded'));
+	});
 
 Alternatively, all modules that have auto-initialise capability also expose the bound function handler as part of their public API (normally as `init()`), so you can choose to only initialise the modules that you want to, in the order that you want them.
