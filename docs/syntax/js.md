@@ -17,7 +17,7 @@ Product developers are encouraged to include Origami JavaScript using a 'cuts th
 
 * Add no objects to the global scope, other than JSONp callback function names.  Variables declared outside of any enclosing function are permitted, provided that the module requires a commonJS interface.  If you don't want to depend on CommonJS, wrap the module in an [IIFE](http://en.wikipedia.org/wiki/Immediately-invoked_function_expression).
 * If the module does not require CommonJS it must include a [Universal Module Definition](https://github.com/umdjs/umd/blob/master/returnExports.js) that includes support for CommonJS.
-* Do not modify the DOM on parse.  Instead, where required, export an `init` method, or bind to a DOM event such as `DOMContentLoaded` or `load`.
+* Do not modify the DOM on parse.  Instead, where required, export an `init` method (optionally allow it to be auto-invoked by binding to an event such as `o.DOMContentLoaded` or `o.load`).
 * If it's possible for the module to create DOM nodes, timers, or otherwise occupy more than a token amount of memory, export a `destroy` method that reverts the module to a pre-`init` state.
 * Do not leave any non-garbage collectable traces after `destroy` is called
 * Do not modify the DOM outside of areas of [owned DOM]({{site.baseurl}}/docs/syntax/html/#owned_dom), except:
@@ -78,12 +78,19 @@ A valid example of a module emitting a DOM event is shown below:
 	  bubbles: true
 	}));
 
-Modules *may* **bind** to events emitted by themselves, other modules, the host page or the browser.  In doing so, the module:
+Modules *may* **bind** to events emitted by themselves, other modules, the host page or the browser (except `DOMContentLoaded` and `load`).  In doing so, the module:
 
 * *must not* stop the propagation chain except for events created by itself
 * *should* bind only to the BODY element and use [event delegation](http://stackoverflow.com/questions/1687296/what-is-dom-event-delegation) to ensure that handlers do not need to be bound every time elements are created.  If not bound to the body element, handlers *must* be bound to elements within the module's owned DOM.
 
 Modules *should* handle events during the [bubbling phase](http://stackoverflow.com/questions/4616694/what-is-event-bubbling-and-capturing), not the capturing phase (unless the event has no bubbling phase)
+
+If a module wishes to bind to the `DOMContentLoaded` or `load` browser events, it *must* prefix the event name with `o.`, and *must* expose the function that it binds to the event via its external API, eg:
+
+<?prettify linenums=1?>
+	document.addEventListener('o.DOMContentLoaded', init);
+	exports.init = init;
+
 
 ### Foreign events
 
