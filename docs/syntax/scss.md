@@ -193,7 +193,7 @@ Where necessary, components *may* provide style rules targeted at specific user 
 ## SASS variables
 
 * If a variable could potentially be used as a configurable option in products consuming the module, the variable *must* be defined with `!default` and added to the module's documentation
-* Variables that are internal to a module and which should not be used or set outside of it *must* be prefixed with an underscore, *should* be defined without !default, and *should not* be included in the module's documentation.  Since SASS has no private scope, these underscore variables are not protected from overwriting so we use convention to distinguish them from public variables.
+* Variables that are internal to a module and which should not be used or set outside of it *should* be defined without !default.  Since SASS has no private scope, these underscore variables are not protected from overwriting so we use convention to distinguish them from public variables (see 'Privacy' below)
 * Modules *must not* overwrite variables defined by another module.  Instead, a module *may* define a new variable in its own namespace and set it to the value of the dependency's variable.
 * Variables *should* be defined in a dedicated file.
 * Variables intended for use externally by consuming products and modules *should* be defined by their purpose, rather than their value: e.g. `$o-colors-skyline-bg` rather than `$o-colors-beige`
