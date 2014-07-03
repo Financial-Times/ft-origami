@@ -9,6 +9,36 @@ permalink: /docs/overview/changes/
 
 The following documents the chronology of changes to the Origami spec and significant (ie. breaking) releases of Origami modules since 13th January 2014.  If you want more detailed granularity, please refer to the [commit log](https://github.com/Financial-Times/ft-origami/commits/gh-pages).
 
+###2 July 2014
+
+**Privacy hinting**: Use underscores to indicate privacy of SASS objects.  Use underscore prefixes on all filenames except the main file. ([Issue](https://github.com/Financial-Times/ft-origami/issues/208))
+
+**SASS imports**: Multiple SASS files in the same module should all be imported in main ([Issue](https://github.com/Financial-Times/ft-origami/issues/205))
+
+###19 June 2014
+
+**o-viewport**: Recommend using o-viewport for scroll, resize and orientationchange events ([Commit](https://github.com/Financial-Times/ft-origami/commit/bb217eaed631c65b7c3010872882f43afd44d4d2))
+
+###12 June 2014
+
+**Auto-initialisation**: Modules must not use native DOMContentLoaded and load events, instead use namespaced ones ([Issue](https://github.com/Financial-Times/ft-origami/issues/196))
+
+**SASS Linting**: SASS must comply with new standardised lint rules ([Issue](https://github.com/Financial-Times/ft-origami/issues/193))
+
+###22 May 2014
+
+**Isomorphic modules**: Special rules for modules that have a server-side NodeJS use case ([Commit](https://github.com/Financial-Times/ft-origami/commit/3dcc3cc047fa985fcaf76ba5e801b6efd5284e61))
+
+**Unit of length**: Pixels must be used as the unit for any length value in CSS ([Issue](https://github.com/Financial-Times/ft-origami/issues/162))
+
+###20 May 2014
+
+**Demos and testing**: Demos must work in the registry ([Commit](https://github.com/Financial-Times/ft-origami/commit/58dd87d2e4f5fbcbddf087dde1d493130027b4db)).
+
+**Themes**: Modules may contain styles to theme other modules ([Commit](https://github.com/Financial-Times/ft-origami/commit/f2660fd74bc7210bbb8903a3a57969f9ce95cec7))
+
+**Storage**: When storing data in the browser, modules must encapsulate logic and remain compatible with the data format ([Issue](https://github.com/Financial-Times/ft-origami/issues/190))
+
 ###14 May 2014
 
 **Demos**: New syntax for describing demos in the origami.json file ([Issue](https://github.com/Financial-Times/ft-origami/issues/184))
