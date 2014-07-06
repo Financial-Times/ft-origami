@@ -25,9 +25,9 @@ Where Origami components include or output HTML, it should meet the following re
 	- BAD: the `id` attribute (except as below)
 	- BAD: the ARIA `role="main"` attribute
 * The ID attribute *must not* be used, except where:
-	* it identifies a form element that needs to be targeted by a `for` attribute; **and**
+	* it identifies a form element that needs to be targeted by a `for` attribute *or* is an unavoidable requirement of a third party library e.g. google ads; **and**
 	* the value is namespaced with the name of the module, eg `o-signin-username`; **and**
-	* the module only has singleton use cases (ie, it is pointless to include it in a product page more than once).  Any instances of forms within modules that may be used more than once on the same page may not have hard-coded IDs, but *may* use Mustache placeholders instead.
+	* the module only has singleton use cases (ie, it is pointless to include it in a product page more than once).  If the module's markup may be used more than once on the same page it *must not* have hard-coded IDs, but *may* use Mustache placeholders instead.
 * HTML5 elements are allowed as long they can be polyfilled with JavaScript back to IE7, but markup *must not* contain custom elements.
 * The following **elements** must not be used:
 	* `<script>`
