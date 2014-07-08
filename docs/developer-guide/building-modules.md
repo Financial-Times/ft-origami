@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Using modules
+title: Installing modules manually
 section: Developer guide
 permalink: /docs/developer-guide/building-modules/
 ---
@@ -87,7 +87,7 @@ You should set `name` to be the name of your project's repo.  `dependencies` is 
 
 This time we're listing these are *dependencies*, not *devDependencies*, because they are actually required by your project in production.
 
-To ensure that bower can find Origami modules, it needs to be set up to search the Origami registry.  To do this, create a `.bowerrc` file in the root of your project's working tree, with the following contents:
+To ensure that bower can find Origami modules, it needs to be set up to search the Origami registry.  To do this, create a `.bowerrc` file in the root of your project's working tree (or in your home directory, if you want to apply it automatically to all projects), with the following contents:
 
 	{
 	  "registry": {
@@ -118,7 +118,7 @@ As an example, create a `main.scss` file anywhere in your project's working tree
 
 The syntax of the JavaSript require is:
 
-	{handle} require('{modulename}');
+	{handle} = require('{modulename}');
 
 As an example, create a `main.js` file anywhere in your project's working tree, containing:
 

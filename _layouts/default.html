@@ -116,10 +116,13 @@
                 {% if page.section == 'Developer guide' %}
                 <ul class="o-techdocs-nav o-techdocs-nav__sub" data-o-hierarchical-nav-level="2">
                   <li{% if page.title == 'Using modules' %} aria-selected="true"{% endif %}>
-                    <a href="{{ site.baseurl }}/docs/developer-guide/building-modules/">Building modules</a>
+                    <a href="{{ site.baseurl }}/docs/developer-guide/using-modules/">Using modules</a>
                   </li>
-                  <li{% if page.title == 'Using the build service' %} aria-selected="true"{% endif %}>
-                    <a href="{{ site.baseurl }}/docs/developer-guide/build-service/">Using the build service</a>
+                  <li{% if page.title == 'Installing modules manually' %} aria-selected="true"{% endif %}>
+                    <a href="{{ site.baseurl }}/docs/developer-guide/building-modules/">Installing modules manually</a>
+                  </li>
+                  <li{% if page.title == 'Installing modules with the build service' %} aria-selected="true"{% endif %}>
+                    <a href="{{ site.baseurl }}/docs/developer-guide/build-service/">Installing modules with the build service</a>
                   </li>
                   <li{% if page.title == 'Using web services' %} aria-selected="true"{% endif %}>
                     <a href="{{ site.baseurl }}/docs/developer-guide/web-services/">Using web services</a>

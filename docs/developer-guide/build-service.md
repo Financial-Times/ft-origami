@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Using the build service
+title: Installing modules with the build service
 section: Developer guide
 permalink: /docs/developer-guide/build-service/
 ---

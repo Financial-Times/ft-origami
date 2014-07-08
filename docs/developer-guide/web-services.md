@@ -9,7 +9,7 @@ permalink: /docs/developer-guide/web-services/
 
 Origami web services provide a variety of front-end related data services and content that can be used to improve your site and speed up development.
 
-To discover available Origami services, check the Origami registry.  The registry contains links to the service's online documentation, which will describe its API endpoints, arguments and output.  There are however a few hints and technqiues for using web services that are common to most services.
+To discover available Origami services, check the [Origami registry](http://registry.origami.ft.com).  The registry contains links to the service's online documentation, which will describe its API endpoints, arguments and output.  There are however a few hints and technqiues for using web services that are common to most services.
 
 ## Where and how to use web services
 
