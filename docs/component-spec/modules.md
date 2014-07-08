@@ -57,6 +57,16 @@ The following requirements apply to creating a Origami-compatible module compone
 * include a bower-compatible `bower.json` file (in the root of the repo) which if present *must* conform to the requirements set out in 'Packaging and build configuration' below.
 * have automated CI, and if they do it *must* include verification that the module can be built using the mechanism described in the build service guide (see also "Continuous integration" below)
 
+
+## Managing new releases
+
+When new versions of components are released, updates may be needed to components and products that consume the component.  The following notification rules apply:
+
+* If the release is a new **major** version, the component developer *must* notify maintainers of all components and products listed as dependents in the Origami registry, at least 1 day prior to the release being tagged (to enable other breaking changes to be suggested), and again immediately after the release.
+* If the release is a new **minor** version, the component developer *should* notify maintainers of all components and products listed as dependents in the Origami registry, immediately after the release.
+* If the release is a new **patch** version, no notifications need be sent.
+
+
 ## Themes
 
 Modules *may* be **themeable**, meaning that they contain minimal visual style and expect style to be applied to them from outside the module.  Modules *may* also be **theming**, meaning that they contain styles designed to change the appearance of another module.
@@ -129,11 +139,11 @@ The following is an example `package.json` file that meets the above spec:
 	  },
 	  "private": true
 	}
-	
+
 ### Isomorphic modules
 
 Some modules' JavaScript may have use cases outside the browser, most notably in node.js applications e.g. `o-date` can be used to format dates in the browser or on the server. Where there is a definite need for this modules *should* include a `package.json` with the following properties:
-	
+
 * `name`, which *must* be the same as the module's origami name
 * `version`, which *must* have a value of `0.0.0`
 * `main`, which *should* normally have a value of `["main.js"]`
