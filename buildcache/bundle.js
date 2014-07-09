@@ -36,12 +36,6 @@ function Delegate(root) {
 }
 
 /**
- * @protected
- * @type ?boolean
- */
-Delegate.tagsCaseSensitive = null;
-
-/**
  * Start listening for events
  * on the provided DOM element
  *
@@ -177,29 +171,18 @@ Delegate.prototype.on = function(eventType, selector, handler, useCapture) {
 
     // COMPLEX - matchesRoot needs to have access to
     // this.rootElement, so bind the function to this.
-    matcher = this.matchesRoot.bind(this);
+    matcher = matchesRoot.bind(this);
 
   // Compile a matcher for the given selector
   } else if (/^[a-z]+$/i.test(selector)) {
-
-    // Lazily check whether tag names are case sensitive (as in XML or XHTML documents).
-    if (Delegate.tagsCaseSensitive === null) {
-      Delegate.tagsCaseSensitive = document.createElement('i').tagName === 'i';
-    }
-
-    if (!Delegate.tagsCaseSensitive) {
-      matcherParam = selector.toUpperCase();
-    } else {
-      matcherParam = selector;
-    }
-
-    matcher = this.matchesTag;
+    matcherParam = selector;
+    matcher = matchesTag;
   } else if (/^#[a-z0-9\-_]+$/i.test(selector)) {
     matcherParam = selector.slice(1);
-    matcher = this.matchesId;
+    matcher = matchesId;
   } else {
     matcherParam = selector;
-    matcher = this.matches;
+    matcher = matches;
   }
 
   // Add to the list of listeners
@@ -385,7 +368,7 @@ Delegate.prototype.fire = function(event, target, listener) {
  * @type function()
  * @param {string} selector A CSS selector
  */
-Delegate.prototype.matches = (function(el) {
+var matches = (function(el) {
   if (!el) return;
   var p = el.prototype;
   return (p.matches || p.matchesSelector || p.webkitMatchesSelector || p.mozMatchesSelector || p.msMatchesSelector || p.oMatchesSelector);
@@ -403,9 +386,9 @@ Delegate.prototype.matches = (function(el) {
  * @param {Element} element The element to test with
  * @returns boolean
  */
-Delegate.prototype.matchesTag = function(tagName, element) {
+function matchesTag(tagName, element) {
   return tagName.toLowerCase() === element.tagName.toLowerCase();
-};
+}
 
 /**
  * Check whether an element
@@ -415,10 +398,11 @@ Delegate.prototype.matchesTag = function(tagName, element) {
  * @param {Element} element The element to test with
  * @returns boolean
  */
-Delegate.prototype.matchesRoot = function(selector, element) {
+function matchesRoot(selector, element) {
+  /*jshint validthis:true*/
   if (this.rootElement === window) return element === document;
   return this.rootElement === element;
-};
+}
 
 /**
  * Check whether the ID of
@@ -431,9 +415,9 @@ Delegate.prototype.matchesRoot = function(selector, element) {
  * @param {Element} element The element to test with
  * @returns boolean
  */
-Delegate.prototype.matchesId = function(id, element) {
+function matchesId(id, element) {
   return id === element.id;
-};
+}
 
 /**
  * Short hand for off()
@@ -9707,15 +9691,24 @@ function getIndex (el) {
 exports.getClosestMatch = getClosestMatch;
 exports.getIndex = getIndex;
 exports.matches = matches;
-},{"./../o-useragent/main.js":24}],11:[function(require,module,exports){
+},{"./../o-useragent/main.js":25}],11:[function(require,module,exports){
 /*global require,module*/
-module.exports = require('./src/js/Header');
 
+var oHeader = require('./src/js/Header'),
+    constructAll = function() {
+        "use strict";
+        oHeader.prototype.createAllIn(document.body);
+        document.removeEventListener('o.DOMContentLoaded', constructAll);
+    };
+
+document.addEventListener('o.DOMContentLoaded', constructAll);
+
+module.exports = oHeader;
 
 },{"./src/js/Header":12}],12:[function(require,module,exports){
 /*global require,module*/
 
-var DomDelegate = require("./../../../dom-delegate/lib/delegate.js"),
+var DomDelegate = require("./../../../ftdomdelegate/lib/delegate.js"),
     oHierarchicalNav = require("./../../../o-hierarchical-nav/main.js");
 
 function Header(rootEl) {
@@ -9732,6 +9725,7 @@ function Header(rootEl) {
         hierarchicalNavs = [];
 
     function init() {
+        rootEl.setAttribute('data-o-ft-header--js', '');
         bodyDelegate = new DomDelegate(document.body);
         hierarchicalNavs = hierarchicalNavEls.map(function(el) {
             return new oHierarchicalNav(el);
@@ -9745,6 +9739,7 @@ function Header(rootEl) {
                 hierarchicalNavs[c].destroy();
             }
         }
+        rootEl.removeAttribute('data-o-ft-header--js');
     }
 
     init();
@@ -9753,13 +9748,28 @@ function Header(rootEl) {
 
 }
 
+Header.prototype.createAllIn = function(el) {
+    "use strict";
+    if (!el) {
+        el = document.body;
+    }
+    var headerEls = el.querySelectorAll('[data-o-component="o-ft-header"]:not([data-o-ft-header--js]'),
+        headers = [];
+    for (var c = 0, l = headerEls.length; c < l; c++) {
+        headers.push(new Header(headerEls[c]));
+    }
+    return headers;
+};
+
 module.exports = Header;
-},{"./../../../dom-delegate/lib/delegate.js":1,"./../../../o-hierarchical-nav/main.js":13}],13:[function(require,module,exports){
+
+},{"./../../../ftdomdelegate/lib/delegate.js":1,"./../../../o-hierarchical-nav/main.js":13}],13:[function(require,module,exports){
 /*global require,module*/
 function HierarchicalNav(rootEl) {
+	'use strict';
 
 	function init() {
-		if (rootEl.getAttribute('data-o-hierarchical-nav-orientiation') == 'vertical') {
+		if (rootEl.getAttribute('data-o-hierarchical-nav-orientiation') === 'vertical') {
 			var Nav = require('./src/js/Nav');
 			new Nav(rootEl);
 		} else {
@@ -9776,7 +9786,7 @@ module.exports = HierarchicalNav;
 },{"./src/js/Nav":14,"./src/js/ResponsiveNav":15}],14:[function(require,module,exports){
 /*global require, module*/
 
-var DomDelegate = require("./../../../dom-delegate/lib/delegate.js"),
+var DomDelegate = require("./../../../ftdomdelegate/lib/delegate.js"),
     oDom = require("./../../../o-dom/main.js"),
     utils = require('./utils');
 
@@ -9997,11 +10007,11 @@ function Nav(rootEl) {
 }
 
 module.exports = Nav;
-},{"./../../../dom-delegate/lib/delegate.js":1,"./../../../o-dom/main.js":10,"./utils":16}],15:[function(require,module,exports){
+},{"./../../../ftdomdelegate/lib/delegate.js":1,"./../../../o-dom/main.js":10,"./utils":16}],15:[function(require,module,exports){
 /*global require,module*/
 
 var SquishyList = require("./../../../o-squishy-list/main.js"),
-    DomDelegate = require("./../../../dom-delegate/lib/delegate.js"),
+    DomDelegate = require("./../../../ftdomdelegate/lib/delegate.js"),
     oViewport = require("./../../../o-viewport/main.js"),
     Nav = require('./Nav');
 
@@ -10023,6 +10033,7 @@ function ResponsiveNav(rootEl) {
         nav.resize();
         if (contentFilter) {
             contentFilter.squish();
+            populateMoreList(contentFilter.getHiddenItems());
         }
     }
 
@@ -10076,15 +10087,16 @@ function ResponsiveNav(rootEl) {
         rootDelegate = new DomDelegate(rootEl);
         contentFilterEl = rootEl.querySelector('ul');
         moreEl = rootEl.querySelector('[data-more]');
+        if (contentFilterEl) {
+            contentFilter = new SquishyList(contentFilterEl, { filterOnResize: false });
+        }
         if (moreEl && !isMegaDropdownControl(moreEl)) {
             moreListEl = document.createElement('ul');
             moreListEl.setAttribute('data-o-hierarchical-nav-level', '2');
             moreEl.appendChild(moreListEl);
             rootDelegate.on('oLayers.new', navExpandHandler);
         }
-        if (contentFilterEl) {
-            contentFilter = new SquishyList(contentFilterEl, { filterOnResize: false });
-        }
+
         rootDelegate.on('oSquishyList.change', contentFilterChangeHandler);
 
         var bodyDelegate = new DomDelegate(document.body);
@@ -10107,7 +10119,7 @@ function ResponsiveNav(rootEl) {
 }
 
 module.exports = ResponsiveNav;
-},{"./../../../dom-delegate/lib/delegate.js":1,"./../../../o-squishy-list/main.js":17,"./../../../o-viewport/main.js":26,"./Nav":14}],16:[function(require,module,exports){
+},{"./../../../ftdomdelegate/lib/delegate.js":1,"./../../../o-squishy-list/main.js":17,"./../../../o-viewport/main.js":27,"./Nav":14}],16:[function(require,module,exports){
 /*global exports*/
 
 function nodeListToArray(nl) {
@@ -10345,6 +10357,8 @@ exports.wrap = wrap;
 require('./src/js/nav');
 require('./src/js/reveals');
 require('./src/js/permalinks');
+require('./src/js/gist-it');
+
 require("./../o-table/main.js").wrap('.o-techdocs-content table', 'o-techdocs-table-wrapper');
 
 (function(){
@@ -10363,7 +10377,21 @@ require("./../o-table/main.js").wrap('.o-techdocs-content table', 'o-techdocs-ta
     }
 }());
 
-},{"./../o-ft-header/main.js":11,"./../o-hierarchical-nav/main.js":13,"./../o-table/main.js":18,"./src/js/nav":21,"./src/js/permalinks":22,"./src/js/reveals":23}],21:[function(require,module,exports){
+},{"./../o-ft-header/main.js":11,"./../o-hierarchical-nav/main.js":13,"./../o-table/main.js":18,"./src/js/gist-it":21,"./src/js/nav":22,"./src/js/permalinks":23,"./src/js/reveals":24}],21:[function(require,module,exports){
+/*global $,require*/
+/**
+ * Display Gist-it gists
+ *
+ * Gist-it is a JSONp endpoint, so we need to attach a handler to the window object.
+ */
+
+if (typeof window.oTechdocs == 'undefined') window.oTechdocs = {};
+
+window.oTechdocs.renderGistIt = function(content, file) {
+	document.write(content);
+}
+
+},{}],22:[function(require,module,exports){
 /*global $,require*/
 /**
  * Add a second navigation menu to quickly navigate to
@@ -10467,7 +10495,7 @@ $(function() {
 	});
 });
 
-},{"./../../../jquery/jquery.js":2}],22:[function(require,module,exports){
+},{"./../../../jquery/jquery.js":2}],23:[function(require,module,exports){
 /*global $,require*/
 /**
  * Show permalink markers on headings with an ID
@@ -10481,7 +10509,7 @@ $(function() {
 	});
 });
 
-},{"./../../../jquery/jquery.js":2}],23:[function(require,module,exports){
+},{"./../../../jquery/jquery.js":2}],24:[function(require,module,exports){
 /*global $,require*/
 /**
  * Support displaying additional content on clicking reveal links
@@ -10501,11 +10529,11 @@ $(function() {
 	})
 });
 
-},{"./../../../jquery/jquery.js":2}],24:[function(require,module,exports){
+},{"./../../../jquery/jquery.js":2}],25:[function(require,module,exports){
 module.exports = {
 	prefixer: require('./src/js/prefixer')
 };
-},{"./src/js/prefixer":25}],25:[function(require,module,exports){
+},{"./src/js/prefixer":26}],26:[function(require,module,exports){
 'use strict';
 
 var el = document.createElement('o'),
@@ -10666,7 +10694,7 @@ module.exports = {
 
 
 
-},{}],26:[function(require,module,exports){
+},{}],27:[function(require,module,exports){
 'use strict';
 
 var throttle = require("./../lodash-node/modern/functions/throttle");
@@ -10795,8 +10823,8 @@ module.exports = {
     getOrientation: getOrientation,
     getSize: getSize
 };
-},{"./../lodash-node/modern/functions/debounce":3,"./../lodash-node/modern/functions/throttle":4,"./../o-useragent/main.js":24}],27:[function(require,module,exports){
+},{"./../lodash-node/modern/functions/debounce":3,"./../lodash-node/modern/functions/throttle":4,"./../o-useragent/main.js":25}],28:[function(require,module,exports){
 
 require("./bower_components/o-techdocs/main.js");
 
-},{"./bower_components/o-techdocs/main.js":20}]},{},[27]);
+},{"./bower_components/o-techdocs/main.js":20}]},{},[28])

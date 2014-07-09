@@ -19,7 +19,7 @@ Component developers and Origami build tools *must* use SASS version ~3.3.0, and
 
 SASS *must* validate using the following [SCSS-lint](https://github.com/causes/scss-lint) rules:
 
-<script src="https://gist-it.appspot.com/github/Financial-Times/origami-build-tools/blob/master/config/scss-lint.yml?footer=minimal"></script>
+<script src="https://gist-it.appspot.com/github/Financial-Times/origami-build-tools/blob/master/config/scss-lint.yml?footer=minimal&amp;callback=oTechdocs.renderGistIt"></script>
 
 ##Selectors
 
