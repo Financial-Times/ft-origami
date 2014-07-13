@@ -9,6 +9,8 @@ permalink: /docs/developer-guide/general-best-practices/
 
 Origami requires a high standard of developers who make components for use by others, but many of these same rules are just good practices for anyone that builds websites using the web technologies of HTML, CSS and JavaScript.  If you are building an FT site, please use the following checklist for up to date guidance on the best practies you should be following in your web development.
 
+In addition to the rules below, the [Google Web Fundamentals documentation](https://developers.google.com/web/fundamentals) is a good resource for developing best practices.
+
 
 ##HTML
 
@@ -34,6 +36,15 @@ Ensure that your pages are **UTF-8** encoded, using both an HTTP response header
 	<meta charset="UTF-8">
 
 Place this as the first tag within the `<head>` section of the page, before `<title>`, since it's important that the browser knows the right character set to use before it gets to any content.
+
+###Use correct viewport sizing
+
+By default, most mobule devices assume your site won't fit on a small screen so will pretend to be 900px wide and zoom out so that that fits on the screen.  Add the following viewport meta tag to the `<head>` of your page to make sure that the viewport is zoomed to 100% and the width is the same as the width of the device in both portrait and landscape orientation:
+
+<?prettify linenums=1?>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+Do **not** specify a `user-scalable` rule.  The default is yes, so there's no need to include it, and the user should always be allowed to zoom if they want to.
 
 
 ###Use ARIA for state
@@ -98,6 +109,11 @@ If the user is on a touchscreen device and does not have a mouse or similar devi
 Equally, when a user is scrolling, hover effects can be unintentionally triggered by content moving *under* the mouse rather than the mouse moving *over* the content, which can have a [detrimental effect on scroll performance](http://www.html5rocks.com/en/tutorials/speed/unnecessary-paints/).
 
 Consider using [o-hoverable](http://registry.origami.ft.com/components/o-hoverable), which intelligently flags when hover effects are desiriableby toggling a class on the `<html>` element.
+
+
+###Choose breakpoints based on content
+
+Your styles should allow content to fit on screens down to around 300px wide.  In choosing breakpoints for style changes as the screen gets larger, you should not take any interest in the widths of devices in use.  It may be that turning a device from portrait to landscape view activates a different media query and displays the medium width layout.  Don't try to prevent this happening - it's a correct and inevitable result of well chosen breakpoints.
 
 
 ##Images
