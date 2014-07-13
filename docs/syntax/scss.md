@@ -225,10 +225,21 @@ Where external resources are not within Origami modules, a [protocol-relative UR
 
 ## "Silent" styles
 
-For every class selector included in a module's SASS, the module *must* also include the same selector as a placeholder or via a mixin, with the same styles.  Eg:
+Silent styles means SCSS code that compiles to an empty string, but provides mixins, placeholders or variables that can be included, extended or used by a dependent module.  Some modules can support silent styles easily, while others rely on class names to link elements to behaviour defined in JavaScript.
+
+Where a module contains only CSS, it *should* support silent styles.  Where JavaScript is also present and depends on class names, a module *may* choose to support silent styles by providing an API to configure non-default class names.  If it does it *should* be called `setClasses` and accept an object, like so:
 
 <?prettify linenums=1?>
-    .o-thing-foo, %o-thing-foo {
+    oThing.setClasses({
+        wrapper: "custom-wrapper-class",
+        item: "other-custom-class"
+    });
+
+
+Modules that support silent mode *must* include a `$o-{modulename}-is-silent` variable, with a default value (which *may* or be either true or false).  When the variable is true, styles that would normally be output as class selectors *must* instead be defined as placeholders or mixins, with the same styles.  Eg:
+
+<?prettify linenums=1?>
+    %o-thing--foo {
         margin-top: 1em;
     }
 
@@ -239,7 +250,7 @@ If the original selector is not a class selector then the placeholder class can 
         width: 30%;
     }
 
-Modules that make use of styles defined in other modules *must* use those styles by `@extend`ing the appropriate placeholder class (the `!optional` flag *should* be used to prevent compilation errors if something, e.g. a product developer changing a setting, causes that  placeholder class to be suppressed):
+Modules that make use of styles defined in other modules that support silent mode *must* use those styles silently by `@extend`ing the appropriate placeholder class (the `!optional` flag *should* be used to prevent compilation errors if something, e.g. a product developer changing a setting, causes that  placeholder class to be suppressed):
 
 <?prettify linenums=1?>
     .o-anotherthing-foo, %o-anotherthing-foo {
@@ -247,7 +258,7 @@ Modules that make use of styles defined in other modules *must* use those styles
         margin-top: 1em;
     }
 
-Where combinations of styles are used to create more complex elements, it may be sensible to use mixins rather than placeholders, eg:
+Where combinations of styles are used to create more complex elements, it may be sensible to use mixins rather than placeholders to implement silent mode support, eg:
 
 <?prettify linenums=1?>
     @mixin oButtonsButton($buttonclass) {
@@ -258,12 +269,6 @@ Where combinations of styles are used to create more complex elements, it may be
            }
         }
     }
-
-### Suppressing noisy styles with a 'silent mode'
-
-Modules *should* provide a mechanism for suppressing output of any concrete selectors which may not always be required. If present, this mechanism *must* be activated by means of a sass variable `$o-{modulename}-is-silent` which *must* have a default value of `false`.  In practice, the effect of this *should* be to remove the `.`-prefixed selector, leaving only the placeholder (along with any functions, variables and mixins).
-
-An example of an implementation satisfying these conditions can be found in the `oFtTypographyClass` mixin of the o-ft-typography module.
 
 
 ## Code organisation and formatting
