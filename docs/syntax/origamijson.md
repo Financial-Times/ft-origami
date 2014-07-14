@@ -78,7 +78,7 @@ All origami components, whether modules or web services, should be discoverable 
 </tr><tr>
 	<td><code>&nbsp;&nbsp;browserFeatures&nbsp;{</code></td>
 	<td>object</td>
-	<td>A grouping object for browser features required or used by this module</td>
+	<td>(optional) For modules only, a grouping object for browser features required or used by this module</td>
 </tr><tr>
 	<td><code>&nbsp;&nbsp;&nbsp;&nbsp;required</code></td>
 	<td>array</td>
