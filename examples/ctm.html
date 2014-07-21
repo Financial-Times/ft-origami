@@ -1,36 +1,36 @@
 <!DOCTYPE html>
 <html class='core'>
-	<head>
+  <head>
 
-		<!-- Load the stylesheet, to avoid any flashes of unstyled content, and also because stylesheet downloads can be parallelized by the browser -->
-		<link rel='stylesheet' href='//build.origami.ft.com/bundles/css?modules=a,b,c'>
+    <!-- Load the stylesheet, to avoid any flashes of unstyled content, and also because stylesheet downloads can be parallelized by the browser -->
+    <link rel='stylesheet' href='//build.origami.ft.com/bundles/css?modules=a,b,c'>
 
-		<!-- Unconditionally load the polyfill service to provide the best support possible for modern web standards.  Only features missing in this user agent will be filled. If you want, you can provide a list of features to polyfill, otherwise all features that can be polyfilled will be.  See the polyfill service home page for more details. -->
-		<script src='//polyfill.webservices.ft.com/v1/polyfill.min.js'></script>
+    <!-- Unconditionally load the polyfill service to provide the best support possible for modern web standards.  Only features missing in this user agent will be filled. If you want, you can provide a list of features to polyfill, otherwise all features that can be polyfilled will be.  See the polyfill service home page for more details. -->
+    <script src='//polyfill.webservices.ft.com/v1/polyfill.min.js'></script>
 
-		<!-- Perform your cuts the mustard test, set a variable and swap out the class on the HTML element.  In this case the cuts the mustard test is for the presence of document.queryselector.  For information about what features come bundled with other features in all browsers, see http://iwanttouse.com/. -->
-		<script type='text/javascript'>
-			var cuts_the_mustard = (queryselector in document);
-			if (cuts_the_mustard) {
-				document.documentElement.className = document.documentElement.className.replace(/^(.+ )?core( .+)?$\b/, '$1primary$2');
-			}
-		</script>
+    <!-- Perform your cuts the mustard test, set a variable and swap out the class on the HTML element.  In this case the cuts the mustard test is for the presence of document.queryselector.  For information about what features come bundled with other features in all browsers, see http://iwanttouse.com/. -->
+    <script type='text/javascript'>
+      var cuts_the_mustard = (queryselector in document);
+      if (cuts_the_mustard) {
+        document.documentElement.className = document.documentElement.className.replace(/^(.+ )?core( .+)?$\b/, '$1primary$2');
+      }
+    </script>
 
-		<!-- Hide any primary experience content when in core mode, and vice versa -->
-		<style type='text/css'>
-			.core .o--if-js { display: none !important; }
-			.primary .o--if-no-js { display: none !important; }
-		</style>
-	</head>
-	<body>
+    <!-- Hide any primary experience content when in core mode, and vice versa -->
+    <style type='text/css'>
+      .core .o--if-js { display: none !important; }
+      .primary .o--if-no-js { display: none !important; }
+    </style>
+  </head>
+  <body>
 
-		<!-- Body content here -->
+    <!-- Body content here -->
 
-		<!-- Load main JavaScript bundle -->
-		<script type='text/javascript'>
-			if (cuts_the_mustard) {
-				document.write('<'+'script src="//build.origami.ft.com/bundles/js?modules=a,b,c"></'+'script>');
-			}
-		</script>
-	</body>
+    <!-- Load main JavaScript bundle -->
+    <script type='text/javascript'>
+      if (cuts_the_mustard) {
+        document.write('<'+'script src="//build.origami.ft.com/bundles/js?modules=a,b,c"></'+'script>');
+      }
+    </script>
+  </body>
 </html>
