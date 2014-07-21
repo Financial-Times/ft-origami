@@ -41,7 +41,7 @@ Browsers that have all the features that all your modules need (whether natively
 
 Here is an example of how to integrate a cuts-the-mustard test into your page:
 
-<script src="https://gist-it.appspot.com/github/Financial-Times/ft-origami/blob/master/examples/ctm.html?footer=minimal&amp;callback=oTechdocs.renderGistIt"></script>
+<script src="https://gist-it.appspot.com/github/Financial-Times/ft-origami/blob/gh-pages/examples/ctm.html?footer=minimal&amp;callback=oTechdocs.renderGistIt"></script>
 
 
 ### Customising polyfills
