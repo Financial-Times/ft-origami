@@ -7,7 +7,7 @@ permalink: /docs/overview/roadmap/
 
 # Roadmap
 
-A list of Origami components and the current development activity around each one is currently [in a Google Spreadsheet](https://docs.google.com/a/ft.com/spreadsheet/ccc?key=0Ao8hBnxkLX64dE5MS2VsdTdqNWVydkNXYjdOTVhCdWc&usp=drive_web#gid=0)
+A list of Origami components and the current development activity around each one is available [in the Origami registry](http://registry.origami.ft.com)
 
 ## Current activity
 

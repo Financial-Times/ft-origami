@@ -51,6 +51,8 @@ When using selector engines other than native `querySelector`, modules *must not
 
 Modules *may* assume that any HTML markup that relates to their component follows the hierarchical structure specified in their module's Mustache template. However, modules *should not* make assumptions about the order of HTML elements, and should, as far as possible, cope with the presence within the component of elements not specified in the template.
 
+Modules *must* not throw an error if there are no instances of the module's owned DOM in the page.
+
 ## Communicating with host page code and other components
 
 Modules may wish to communicate (or make communication possible) with other components of the same type, other components of different types, or non-component code in the host page.  This should be accomplished with API methods (when invoking known dependencies) and DOM events (in all other cases).
