@@ -35,37 +35,57 @@ Complete instructions for using both are included in this guide:
 
 ## Core vs Primary experience
 
-Whether via the build service or your own build process, your Origami modules will eventually compile to two resources - one JavaScript and one CSS.  You should serve the CSS to *all user agents*, but the JavaScript only to those that meet the minimum standards assumed by Origami module developers.  To ensure that you only run Origami JavaScript in these 'good' browsers, use a '[Cuts the mustard](http://responsivenews.co.uk/post/18948466399/cutting-the-mustard)' script loader.
+Whether via the build service or your own build process, your Origami modules will eventually compile to two resources - one JavaScript and one CSS.  You should serve the CSS to *all user agents*, but the JavaScript only to those that meet the minimum standards assumed by Origami module developers.  To ensure that you only run Origami JavaScript in these 'good' browsers, use a '[Cuts the mustard](http://responsivenews.co.uk/post/18948466399/cutting-the-mustard)' test.
 
-Origami components declare their minimum requirements in terms of [Modernizr](http://modernizr.com/docs/) tests.  To set up a test that verifies the availability of all the features required by the components you're using:
+Browsers that have all the features that all your modules need (whether natively or polyfilled) can run the Origami modules' JavaScript.  Those that don't should still be able to use the module, but without script.
 
-1. Make an aggregated list of the tests from all the `required` sections of your chosen modules' [Origami manifest files]({{site.baseurl}}/docs/syntax/origamijson).
-2. Make a [Modernizr build](http://modernizr.com/download/) that incorporates at least those tests.  Be aware that some of the tests we specify as requirements may not be core Modernizr tests.
-3. Include your Modernizr script in the `<head>` of your page, after your stylesheets (either inline or as an external script, though using an external script will block the loading of your page, so consider inlining it).   This enables it to add test result classes to the `<html>` tag *before* the body is rendered, so users do not see any [FOUC](http://en.wikipedia.org/wiki/Flash_of_unstyled_content)s.
-4. Add a 'cuts the mustard' test that checks that the required Modernizr tests pass, and if so, loads your JS bundle. For those Modernizr tests that fail, you can choose to [polyfill the functionality](http://html5polyfill.com/) and then load the JS anyway, or simply not load the JavaScript.  If you do not add the JavaScript, you **must unwrap** appropriate `<noscript>` tags, so that the browser benefits from content targeted at those without scripting capability.
+Here is an example of how to integrate a cuts-the-mustard test into your page:
+
+<script src="https://gist-it.appspot.com/github/Financial-Times/ft-origami/blob/master/examples/ctm.html?footer=minimal&amp;callback=oTechdocs.renderGistIt"></script>
+
+
+### Customising polyfills
+
+The example above uses the [Origami polyfill service](//polyfill.webservices.ft.com) to upgrade the browser to the latest possible support for web standards.  This can be done without arguments, in which case every possible web API that can be polyfilled will be, or if you want to be more efficient you can list only the polyfills you want to consider.  For more information see the service's own documentation.
+
+The polyfill service works by reading the `User-Agent` HTTP header on the request from the browser, so users of different browsers will get different responses, which may range in size from several hundred KB to an empty file.
+
+
+### Customising your cuts the mustard test
+
+Origami components declare their minimum requirements in terms of [Modernizr](http://modernizr.com/docs/) tests.  Where possible, component developers will currently limit their *required* features to those present or polyfillable in IE9, but they may enhance their component's behaviour using more cutting edge features.  To verify the exact set of browser features required by the set of modules you are using:
+
+1. Make an aggregated list of the entries from all the `browserFeatures.required` sections of your chosen modules' [Origami manifest files]({{site.baseurl}}/docs/syntax/origamijson).
+2. Refer to the Modernizr [feature-detects](https://github.com/Modernizr/Modernizr/tree/master/feature-detects) that match the names given in the Origami configs.
+3. Either generate a custom build of Modernizr that includes those tests, or build an expression yourself that achieves the same result.
+
+Note that although the full Modernizr solution will likely be fairly complex, many sets of features became available as a group in all browsers.  You may therefore be able to make your test more succinct by taking advantage of this.  Refer to [http://iwanttouse.com](http://iwanttouse.com) for information on which features you 'get for free' with every test.
 
 ### Styles for fallbacks and enhancements
 
-Origami contains fallback content to be displayed when required features are not supported by the browser.  To ensure it does not display in up to date browsers, you must add some required style rules to your own stylesheet:
+Origami contains fallback content to be displayed when the cuts the mustard test fails.  To ensure it does not display in up to date browsers, you must add some style rules to your own stylesheet:
 
-	.no-js .o--if-js { display: none !important; }
-	.js .o--if-no-js { display: none !important; }
+	.core .o--if-js { display: none !important; }
+	.primary .o--if-no-js { display: none !important; }
 
-The `js` and `no-js` classes are not defined by Origami, but must simply match the classes you choose to put on your `<html>` element.  Modernizr by default removes a `no-js` class if it exists, and adds a `js` class, so choosing those classes means you can use Modernizr more easily.  Just remember to add a `no-js` class to your HTML tag:
+The `core` and `primary` classes here are not defined by Origami, but must simply match the classes you choose to put on your `<html>` element (so you can change these if you like).  Modernizr by default removes a `no-js` class if it exists, and adds a `js` class, but these are not subject to the cuts the mustard test, so just remember that if you are using Modernizr, don't use those classes.
 
-	<html class='no-js'>
+When you send the HTML source to the browser, remember to pre-populate the HTML tag with the core class (or whatever you choose to call it):
 
-### Example
+	<html class='core'>
 
-Here is a sample script that you can use to invoke the Modernizr tests and add the JS bundle or unwrap the noscript elements based on the result.
+### Multiple cuts the mustards
 
-* [Download /examples/ctm.js]({{site.baseurl}}/examples/ctm.js)
+You might find that your product uses some modules with especially onerous browser feature requirements.  In that case, you may like to consider having two bundles with different levels of requirements, and separate cuts-the-mustard tests.  This is best avoided if you can, but if you do need more granular support, it's an option.
 
-<aside>
-	<h4>Setting the bar</h4>
-	<p>You might find that your bundle includes a minority of modules with especially onerous feature requirements.  In that case, you may like to consider having two bundles with different levels of requirements, and separate CTM tests.  This is best avoided if you can, but if you do need more granular support, it's an option.</p>
-	<p>If you choose to do this, you can unwrap <code>noscript</code> tags more selectively by targeting them by their module name class rather than the generic <code>origami</code> class.</p>
-</aside>
+If you choose to do this, you must target `o--if-no-js` tags more selectively by including the modules' classes in the selector:
+
+	.core1 .-o-modulea .o--if-js { display: none !important; }
+	.primary1 .-o-modulea .o--if-no-js { display: none !important; }
+	.core2 .-o-moduleb .o--if-js { display: none !important; }
+	.primary2 .-o-moduleb .o--if-no-js { display: none !important; }
+
+Messy.  So it's generally preferred to turn all modules on and off at the same time, using the same test.
 
 
 ## Initialising module components
