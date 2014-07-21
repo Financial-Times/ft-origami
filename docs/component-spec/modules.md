@@ -50,6 +50,7 @@ The following requirements apply to creating a Origami-compatible module compone
 * where they contain JavaScript files, conform to the syntax and language standards for [use of JavaScript in Origami components](../syntax/javascript)
 * where they are openly hosted on GitHub and have CI, use [Travis](https://travis-ci.org) to do the CI
 * consider touch, keyboard and mouse interaction where applicable
+* list, in documentation, the minimum versions of each browser family in which the component has been tested using the primary experience and the core experience (see [browser support](#browser-support) below)
 
 
 ### Modules *should*:
@@ -185,6 +186,23 @@ Then enable Travis for the project from your [Travis profile page](https://travi
 
 Modules that are not openly published on GitHub *should* use Jenkins for CI.
 
+## Browser support
+
+All modules *must* include documentation that states a mininum version in which the module has been tested, for each of the browser families shown in the example below.  Where a module includes JavaScript, minimum versions should be given for the primary experience and core experience separately.
+
+Example:
+
+<table>
+	<tr><th>Browser</th><th>Min for primary exp.</th><th>Min for core exp.</th></tr>
+	<tr><td>Internet Explorer</td><td>9</td><td>6</td></tr>
+	<tr><td>Firefox</td><td>25</td><td>3</td></tr>
+	<tr><td>Chrome</td><td>10</td><td>1</td></tr>
+	<tr><td>Safari</td><td>5</td><td>2</td></tr>
+	<tr><td>Mobile Safari</td><td>9</td><td>6</td></tr>
+	<tr><td>Mobile Firefox</td><td>9</td><td>6</td></tr>
+	<tr><td>Android browser</td><td>9</td><td>6</td></tr>
+	<tr><td>Opera</td><td>12</td><td>4</td></tr>
+</table>
 
 ## Where to store modules
 
