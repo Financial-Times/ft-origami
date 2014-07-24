@@ -10,7 +10,7 @@
 
     <!-- Perform your cuts the mustard test, set a variable and swap out the class on the HTML element.  In this case the cuts the mustard test is for the presence of document.queryselector.  For information about what features come bundled with other features in all browsers, see http://iwanttouse.com/. -->
     <script type='text/javascript'>
-      var cuts_the_mustard = (queryselector in document);
+      var cuts_the_mustard = ('querySelector' in document);
       if (cuts_the_mustard) {
         document.documentElement.className = document.documentElement.className.replace(/^(.+ )?core( .+)?$\b/, '$1primary$2');
       }
