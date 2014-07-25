@@ -92,6 +92,11 @@ All origami components, whether modules or web services, should be discoverable 
 	<td></td>
 	<td></td>
 </tr><tr>
+	<td><code>&nbsp;&nbsp;browserSupport&nbsp;</code></td>
+	<td>object</td>
+	<td>(optional) For modules only, an object identifying browsers that the module has been verified to work in (given the presence of all required polyfills). Each property must have one of the [browser codes defined in o-useragent](https://github.com/Financial-Times/o-useragent) as its key and be an object with two properties - `core` and `primary` - each of which has a numerical value indicating the minimum browser version which supports the core/primary experience for the module.</td>
+</tr><tr>
+</tr><tr>
 	<td><code>&nbsp;&nbsp;serviceUrl</code></td>
 	<td>string</td>
 	<td>(optional) For web services only, the URL on which the service is provided.  Required for web services.</td>
