@@ -13,32 +13,58 @@ This tutorial assumes you are starting from a fresh install of a UNIX-like OS wi
 
 ## 1. Install NodeJS, npm, bower and grunt
 
-Node is available from most package manager repositories, so it's best to install from the one that is maintained for your system:
+To use Origami components, you need some Node tools:
 
-* [View NodeJS install guide](https://github.com/joyent/node/wiki/Installing-Node.js-via-package-manager)
+* [NodeJS](http://nodejs.org/) is the JavaScript runtime, which allows you to run server-side JavaScript on your development environment.  We need this to run all the build tools
+* [npm](http://npmjs.org) is the Node Package Manger.  Once you've got Node, you can use npm to install the modules we need for the build process.
+* [bower](http://bower.io) is a package manager similar to npm, but designed for front end packages that are destined to be served to the browser.  We use this to install Origami components
+* [grunt](http://gruntjs.com/) is a task runner, which we use to run the build process
 
-You should install Node along with npm and bower, which are both package managers (npm is used to install packages for running server-side build automation; bower is used to install Origami modules), and grunt, which is a build automation tool.  CentOS and RedHat are the most common Linux variants in use at the FT, so if you're on one of those, you can get Node along with npm from the EPEL YUM repo.  You will need root access to the system, so that you can use use [sudo](http://en.wikipedia.org/wiki/Sudo) to install as the superuser:
+NodeJS can be installed manually or via package management, and often ships preinstalled on many OS distributions.  To find out if you have it installed and which version you have, type this at a terminal:
 
-	sudo yum install npm --enablerepo=epel
+<pre class='cli'>
+<kbd>node -v</kbd>
+<output>v0.10.29</output>
+</pre>
 
-Once you have installed node and npm, you can use npm to install bower and grunt:
+If you get an error, or the number you get does not match the most recent release shown on the [Node website](http://nodejs.org/), you need to install Node.  If you're installing it on a personal development environment, go to the Node website and click the Install button to download the installer suitable for your system:
 
-	sudo npm install -g bower
-	sudo npm install -g grunt-cli
+* [Download the Node installer](http://nodejs.org/)
+
+If you want to install on a server or other maintained environment, you'll most likely prefer to use a package manager.  Node is available in most package management repositories, and instructions are available in the Node install guide:
+
+* [Install Node via package manager](https://github.com/joyent/node/wiki/Installing-Node.js-via-package-manager)
+
+Installing Node will automatically install [npm](http://npmjs.org), the Node Package Manager, which you can then use to install bower and grunt (bower and grunt are Node modules so are available from the NPM registry).  At a terminal, type:
+
+<pre class='cli'>
+<kbd>sudo npm install -g bower</kbd>
+<kbd>sudo npm install -g grunt-cli</kbd>
+</pre>
 
 ## 2. Install Ruby, the Gem installer, and the SASS gem
 
-Ruby is required to run the SASS compiler.  You can install it from source, via pre-built binaries or your preferred package manager.
+Ruby is required to run the SASS compiler.  You may already have it, since Ruby ships preinstalled on many OS distributions.  To find out, type this at a terminal:
 
-* [View Ruby install guide](https://www.ruby-lang.org/en/downloads/)
+<pre class='cli'>
+<kbd>ruby -v</kbd>
+<output>ruby 2.0.0p247 (2013-06-27 revision 41674) [universal.x86_64-darwin13]</output>
+</pre>
 
-On CentOS and RedHat, you can install Ruby from EPEL using YUM:
+If you see an error, or the version does not match the latest version shown on the [Ruby website](https://www.ruby-lang.org/en/downloads/), you need to install it.  You can install from source, via pre-built binaries or your preferred package manager.
 
-	sudo yum install rubygems
+* [View Ruby install guide](https://www.ruby-lang.org/en/installation/)
 
 Once Ruby is installed, you can install the Sass gem using the gem installer:
 
-	sudo gem install sass
+<pre class='cli'>
+<kbd>sudo gem install sass</kbd>
+<output>Fetching: sass-3.3.11.gem (100%)
+Successfully installed sass-3.3.11
+Parsing documentation for sass-3.3.11
+Installing ri documentation for sass-3.3.11
+1 gem installed</output>
+</pre>
 
 You now have all the system-level pre-requisities to build Origami modules in a project sandbox, so the remaining instructions in this tutorial can be performed as an unprivileged user and will only affect files in your project's working tree.
 
@@ -52,7 +78,7 @@ You need some Node packages to run the build process.  We'll assume you have a p
 	    "grunt-contrib-sass": ">=0.6.0 <1",
 	    "grunt-browserify": "^1.3.0",
 	    "grunt-contrib-watch": ">=0.5.3 <1",
-	    "textrequireify": ">=0.1.1 <1",
+	    "textrequireify": "^1.0.0",
 	    "debowerify": ">=0.5.1 <1"
 	  }
 	}
@@ -65,25 +91,25 @@ These modules are listed as *devDependencies* because they are not required to r
 
 <aside>
 	<h4>Specifying versions</h4>
-	You may like to amend your package.json to replace the versions above with more recent ones.  You can find the latest version on the relevant NPM module page linked above.  The versions shown here are known to work by the Origami team, and are expressed using the <a href='http://www.semver.org'>Semver</a> <code>^</code> operator, which accepts updated versions up to but not including the next major version (note that this doesn't work in the same way for versions &lt; 1 so to get the same behaviour, specify the range explicitly)
+	You may like to amend your <code>package.json</code> to replace the versions above with more recent ones.  You can find the latest version on the relevant NPM module page linked above.  The versions shown here are known to work by the Origami team, and are expressed using the <a href='http://www.semver.org'>Semver</a> <code>^</code> operator, which accepts updated versions up to but not including the next major version (note that this doesn't work in the same way for versions &lt; 1 so to get the same behaviour, specify the range explicitly)
 </aside>
 
 ## 4. Set up a bower package manifest
 
-Hopefully you know which Origami modules you want.  If you don't, check out the Origami registry for a list of all our supported components.  You can also add any module from the [bower registry](http://sindresorhus.com/bower-components/) that has a [commonJS interface](http://wiki.commonjs.org/wiki/Modules/1.1).
+Hopefully you know which Origami modules you want.  If you don't, check out the Origami registry for a list of all our supported components.  You can also add any module from the [bower registry](http://bower.io/search/) that has a [commonJS interface](http://wiki.commonjs.org/wiki/Modules/1.1).
 
-Once you know which Origami modules you want, create a `bower.json` file in the root of your project.   This you have to create yourself, and it will be different for each project, but it must conform to the bower [configuration spec](https://docs.google.com/a/ft.com/document/d/1APq7oA9tNao1UYWyOm8dKqlRP2blVkROYLZ2fLIjtWc/edit).  It's not very well documented currently, but is very similar to npm's config.  Here is an example (used by one of the Origami web services):
+Once you know which Origami modules you want, create a `bower.json` file in the root of your project.   This you have to create yourself, and it will be different for each project, but it must conform to the bower [configuration spec](http://bower.io/docs/creating-packages/), which is very similar to npm's config.  Here is an example (used by one of the Origami web services):
 
 	{
 	   "name": "tweet-service",
 	   "dependencies": {
 	      "o-tweet": ">=0.1 <1",
-	      "o-techdocs": ">=0.0.3 <1",
+	      "o-techdocs": "^2.0.0",
 	      "jquery": "^2.0"
 	   }
 	}
 
-You should set `name` to be the name of your project's repo.  `dependencies` is a list of the front-end modules you would like to use in your project.  If the module is in the [origami registry](http://registry.origami.ft.com) or the [bower registry](http://sindresorhus.com/bower-components/), you can simply specify the version number you want (using [semver](http://semver.org) rules), otherwise you must provide the full path to the component's repository followed by a hash and the version you want.
+You should set `name` to be the name of your project's repo.  `dependencies` is a list of the front-end modules you would like to use in your project.  If the module is in the [Origami registry](http://registry.origami.ft.com) or the [bower registry](http://bower.io/search/), you can simply specify the version number you want (using [semver](http://semver.org) rules), otherwise you must provide the full path to the component's repository followed by a hash and the version you want.
 
 This time we're listing these are *dependencies*, not *devDependencies*, because they are actually required by your project in production.
 
@@ -251,10 +277,10 @@ It's advisable to put the `defer` attribute on your `<script>` tags, so that loa
 
 Finally, we need to deal with assets - files from components that may be loaded on demand by the component's CSS or JavaScript.  Origami has a built in asset loader that allows the load path for these assets to be configured, and by default it's set to `/bower_components`.  This means that assets will load 'out of the box' if you:
 
-* Are using a regular web server that maps URL paths directly to filesystem paths
+* Are using a web server that maps URL paths directly to filesystem paths; and
 * Have set your web server's document root to the root of your project's working tree
 
-For very simple projects, this may be true.  But it's generally not a great idea to have your bower_components directory in the public part of your web server, and you may well want to process requests for front-end bundles via a router or [front-controller](http://en.wikipedia.org/wiki/Front_Controller_pattern) of some kind.  In that case, you should set the [o-assets config variables](http://git.svc.ft.com/summary/origami%2Fo-assets.git) in your main SASS file to the values that you want for your project.  Typically this just involves setting one global path prefix.  Here's an example of how you could do this in the main.scss example used earlier:
+For very simple projects, this may be true.  But it's generally not a great idea to have your `bower_components` directory in the public part of your web server, and you may well want to process requests for front-end bundles via a router or [front-controller](http://en.wikipedia.org/wiki/Front_Controller_pattern) of some kind.  In that case, you should set the [o-assets config variables](http://git.svc.ft.com/summary/origami%2Fo-assets.git) in your main SASS file to the values that you want for your project.  Typically this just involves setting one global path prefix.  Here's an example of how you could do this in the main.scss example used earlier:
 
 	/* Set Origami config */
 	$o-assets-global-path: '/resources';
@@ -268,4 +294,4 @@ For very simple projects, this may be true.  But it's generally not a great idea
 		color: red;
 	}
 
-If `o-tweet` wanted to load a background image that was at `/img/separator.gif` in the o-tweet repo, this config would result in the image being requested from `/resources/o-tweet/img/separator.gif`.  It is then up to you to handle this request and deliver the appropriate file from your bower_components directory.
+If `o-tweet` wanted to load a background image that was at `/img/separator.gif` in the `o-tweet` repo, this config would result in the image being requested from `/resources/o-tweet/img/separator.gif`.  It is then up to you to handle this request and deliver the appropriate file from your bower_components directory.
