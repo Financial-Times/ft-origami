@@ -33,7 +33,7 @@ Complete instructions for using both are included in this guide:
 	<p>In the future it's likely that Origami markup will be available as templates in [HTML imports]()</p>
 </aside>
 
-## Core vs Primary experience
+## Core vs Enahanced experience
 
 Whether via the build service or your own build process, your Origami modules will eventually compile to two resources - one JavaScript and one CSS.  You should serve the CSS to *all user agents*, but the JavaScript only to those that meet the minimum standards assumed by Origami module developers.  To ensure that you only run Origami JavaScript in these 'good' browsers, use a '[Cuts the mustard](http://responsivenews.co.uk/post/18948466399/cutting-the-mustard)' test.
 
@@ -66,9 +66,9 @@ Note that although the full Modernizr solution will likely be fairly complex, ma
 Origami contains fallback content to be displayed when the cuts the mustard test fails.  To ensure it does not display in up to date browsers, you must add some style rules to your own stylesheet:
 
 	.core .o--if-js { display: none !important; }
-	.primary .o--if-no-js { display: none !important; }
+	.enhanced .o--if-no-js { display: none !important; }
 
-The `core` and `primary` classes here are not defined by Origami, but must simply match the classes you choose to put on your `<html>` element (so you can change these if you like).  Modernizr by default removes a `no-js` class if it exists, and adds a `js` class, but these are not subject to the cuts the mustard test, so just remember that if you are using Modernizr, don't use those classes.
+The `core` and `enhanced` classes here are not defined by Origami, but must simply match the classes you choose to put on your `<html>` element (so you can change these if you like).  Modernizr by default removes a `no-js` class if it exists, and adds a `js` class, but these are not subject to the cuts the mustard test, so just remember that if you are using Modernizr, don't use those classes.
 
 When you send the HTML source to the browser, remember to pre-populate the HTML tag with the core class (or whatever you choose to call it):
 
@@ -81,9 +81,9 @@ You might find that your product uses some modules with especially onerous brows
 If you choose to do this, you must target `o--if-no-js` tags more selectively by including the modules' classes in the selector:
 
 	.core1 .-o-modulea .o--if-js { display: none !important; }
-	.primary1 .-o-modulea .o--if-no-js { display: none !important; }
+	.enhanced1 .-o-modulea .o--if-no-js { display: none !important; }
 	.core2 .-o-moduleb .o--if-js { display: none !important; }
-	.primary2 .-o-moduleb .o--if-no-js { display: none !important; }
+	.enhanced2 .-o-moduleb .o--if-no-js { display: none !important; }
 
 Messy.  So it's generally preferred to turn all modules on and off at the same time, using the same test.
 
