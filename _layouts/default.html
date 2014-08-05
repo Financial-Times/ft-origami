@@ -18,7 +18,7 @@
     </head>
     <body class='o-techdocs'>
 
-        <header data-o-component="o-ft-header" data-o-version="2.3.2" class="o-ft-header">
+        <header data-o-component="o-ft-header" class="o-ft-header">
             <div class="o-ft-header__container">
                 <div class="o-ft-header__content">
                     <div class="o-ft-header__primary">
@@ -38,11 +38,11 @@
         <div class="o-techdocs-layout">
 
           <div class="o-techdocs-sidebar">
-            <ul class="o-techdocs-nav o-hierarchical-nav" data-o-component="o-hierarchical-nav" data-o-hierarchical-nav-orientiation="vertical" data-o-hierarchical-nav-level="1">
-              <li class="o-hierarchical-nav__parent"{% if page.title == 'Home' %} aria-expanded="true" aria-selected="true"{% endif %}>
-                <a href="{{ site.baseurl }}/">Overview <i class="o-hierarchical-nav__parent__down-arrow"></i></a>
+            <ul class="o-techdocs-nav">
+              <li {% if page.title == 'Home' %} aria-expanded="true" aria-selected="true"{% endif %}>
+                <a href="{{ site.baseurl }}/">Overview</a>
                 {% if page.section == 'Overview' %}
-                <ul class="o-techdocs-nav o-techdocs-nav__sub" data-o-hierarchical-nav-level="2">
+                <ul class="o-techdocs-nav o-techdocs-nav--sub">
                   <li{% if page.title == 'Non-technical explainer' %} aria-selected="true"{% endif %}>
                     <a href="{{ site.baseurl }}/docs/overview/non-technical">Non-technical explainer</a>
                   </li>
@@ -61,10 +61,10 @@
                 </ul>
                 {% endif %}
               </li>
-              <li class="o-hierarchical-nav__parent"{% if page.title == 'Component spec' %} aria-expanded="true" aria-selected="true"{% endif %}>
-                <a href="{{ site.baseurl }}/docs/component-spec">Component spec <i class="o-hierarchical-nav__parent__down-arrow"></i></a>
+              <li {% if page.title == 'Component spec' %} aria-expanded="true" aria-selected="true"{% endif %}>
+                <a href="{{ site.baseurl }}/docs/component-spec">Component spec</a>
                 {% if page.section == 'Component spec' %}
-                <ul class="o-techdocs-nav o-techdocs-nav__sub" data-o-hierarchical-nav-level="2">
+                <ul class="o-techdocs-nav o-techdocs-nav--sub">
                   <li{% if page.title == 'Modules' %} aria-selected="true"{% endif %}>
                     <a href="{{ site.baseurl }}/docs/component-spec/modules">Modules</a>
                   </li>
@@ -74,10 +74,10 @@
                 </ul>
                 {% endif %}
               </li>
-              <li class="o-hierarchical-nav__parent"{% if page.title == 'Syntax' %} aria-expanded="true" aria-selected="true"{% endif %}>
-                <a href="{{ site.baseurl }}/docs/syntax">Syntax standards <i class="o-hierarchical-nav__parent__down-arrow"></i></a>
+              <li {% if page.title == 'Syntax' %} aria-expanded="true" aria-selected="true"{% endif %}>
+                <a href="{{ site.baseurl }}/docs/syntax">Syntax standards</a>
                 {% if page.section == 'Syntax' %}
-                <ul class="o-techdocs-nav o-techdocs-nav__sub" data-o-hierarchical-nav-level="2">
+                <ul class="o-techdocs-nav o-techdocs-nav--sub">
                   <li{% if page.title == 'JavaScript' %} aria-selected="true"{% endif %}>
                     <a href="{{ site.baseurl }}/docs/syntax/js">JavaScript</a>
                   </li>
@@ -105,10 +105,10 @@
                 </ul>
                 {% endif %}
               </li>
-              <li class="o-hierarchical-nav__parent"{% if page.title == 'Developer guide' %} aria-expanded="true" aria-selected="true"{% endif %}>
-                <a href="{{ site.baseurl }}/docs/developer-guide/">Developer guide <i class="o-hierarchical-nav__parent__down-arrow"></i></a>
+              <li {% if page.title == 'Developer guide' %} aria-expanded="true" aria-selected="true"{% endif %}>
+                <a href="{{ site.baseurl }}/docs/developer-guide/">Developer guide</a>
                 {% if page.section == 'Developer guide' %}
-                <ul class="o-techdocs-nav o-techdocs-nav__sub" data-o-hierarchical-nav-level="2">
+                <ul class="o-techdocs-nav o-techdocs-nav--sub">
                   <li{% if page.title == 'Using modules' %} aria-selected="true"{% endif %}>
                     <a href="{{ site.baseurl }}/docs/developer-guide/using-modules/">Using modules</a>
                   </li>
@@ -137,10 +137,10 @@
 
         </div>
 
-        <div class='o-techdocs-footer'>
-          <p>Help or advice for FT staff on any aspect of Origami is available from <a style='float:none' href='mailto:origami.support@ft.com'>origami.support@ft.com</a> (public users please instead <a style='float:none' href='https://github.com/Financial-Times/ft-origami/issues'>raise an issue on the repo</a>)</p>
+        <footer>
+          <p>Help or advice for FT staff on any aspect of Origami is available from <a href='mailto:origami.support@ft.com'>origami.support@ft.com</a> (public users please instead <a href='https://github.com/Financial-Times/ft-origami/issues'>raise an issue on the repo</a>)</p>
           <p>&copy; THE FINANCIAL TIMES LTD {{ site.time | date:'%Y' }}. FT and 'Financial Times' are trademarks of The Financial Times Ltd.</p>
-        </div>
+        </footer>
 
       <script src='https://cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.js'></script>
       <script>prettyPrint();</script>

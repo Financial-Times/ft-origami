@@ -120,7 +120,7 @@ Modules *must not* animate elements using methods that do not utilise hardware a
 
 JavaScript *must* be linted with [JSHint](http://www.jshint.com/).  If you wish to specify a particular JSHint configuration you may do so at the module level with a `.jshintrc` file, and at the file level with a `/*jshint: ... */` comment.  If you specify neither of these, code *must* pass a JSHint check with the following settings:
 
-<script src="https://gist-it.appspot.com/github/Financial-Times/origami-build-tools/blob/master/config/jshint.json?footer=minimal"></script>
+<script src="https://gist-it.appspot.com/github/Financial-Times/origami-build-tools/blob/master/config/jshint.json?footer=minimal&amp;callback=oTechdocs.renderGistIt"></script>
 
 Developers *should* stick to the above `jshintrc` config, since this represents a common standard across FT teams, but are permitted to make changes if desired.
 
@@ -142,12 +142,12 @@ In some cases it may be desirable or necessary to include the content of a stati
 
 You would write this in your JavaScript source:
 
-<?prettify linenums=1?>
+<?prettify?>
 	var template = requireText('main.mustache');
 
 And it would be converted to this by the build process:
 
-<?prettify linenums=1?>
+<?prettify?>
 	var template = "This is the content of main.mustache";
 
 
