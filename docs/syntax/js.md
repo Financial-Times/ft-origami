@@ -17,7 +17,7 @@ Product developers are encouraged to include Origami JavaScript using a 'cuts th
 
 * Add no objects to the global scope, other than JSONp callback function names.  Variables declared outside of any enclosing function are permitted, provided that the module requires a commonJS interface.  If you don't want to depend on CommonJS, wrap the module in an [IIFE](http://en.wikipedia.org/wiki/Immediately-invoked_function_expression).
 * If the module does not require CommonJS it must include a [Universal Module Definition](https://github.com/umdjs/umd/blob/master/returnExports.js) that includes support for CommonJS.
-* Do not modify the DOM on parse.  Instead, where required, export an `init` method (optionally allow it to be auto-invoked by binding to an event such as `o.DOMContentLoaded` or `o.load`).
+* Do not read or modify the DOM on parse
 * If it's possible for the module to create DOM nodes, timers, or otherwise occupy more than a token amount of memory, export a `destroy` method that reverts the module to a pre-`init` state.
 * Do not leave any non-garbage collectable traces after `destroy` is called
 * Do not modify the DOM outside of areas of [owned DOM]({{site.baseurl}}/docs/syntax/html/#owned_dom), except:
@@ -36,6 +36,21 @@ Product developers are encouraged to include Origami JavaScript using a 'cuts th
 	</ul>
 	<p>Where modern browser features might be vendor-prefixed, you can get the correct prefixed version using <a href='https://github.com/Financial-Times/o-useragent'>o-useragent</a>.</p>
 </aside>
+
+## Initialisation
+
+Modules *must* do as little as possible on parse, instead deferring start-up tasks to a publicly exported, static 'init' function that should be either invoked explicitly using the module's API, or automatically by binding to the `o.DOMContentLoaded` or `o.load` events.
+
+Where modules bind to the `o.DOMContentLoaded` or `o.load` events, their `init` method *must* be callable with no arguments (see [issue 228](https://github.com/Financial-Times/ft-origami/pull/228)).
+
+Modules that expose an `init` method or an instance constructor which takes an argument identifying an area of owned DOM *must* allow all of the following types of references:
+
+* An [`HTMLElement`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement) object
+* A string containing a valid querySelector expression, eg ".main-content > [data-o-component~='o-share']"
+* Nothing (or any falsey value), which should be interpreted as `document.body`
+
+Where this reference is passed to an `init` function, the module *may* create multiple instances and return them in an array.  Where passed to a constructor, the module must only create one instance and return it.
+
 
 ## Data attributes
 
