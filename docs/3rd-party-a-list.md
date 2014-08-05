@@ -22,7 +22,7 @@ Origami components may have dependencies (via Bower) on third party components. 
 		<td>AJAX</td>
 		<td><a href='https://github.com/Financial-Times/superagent/tree/bower'>superagent</a></td>
 		<td>jQuery</td>
-		<td>Components should <a href='#why_not_jquery'>not use jQuery</a>, and superagent is better.</td>
+		<td>Components should <a href='#why_not_jquery'>not use jQuery</a>, and superagent is better. For the time being the superagent master branch is incompatible with browserify, so use <a href="https://github.com/Financial-Times/superagent/tree/bower">our temporary clone</a></td>
 	</tr><tr>
 		<td>Event delegation</td>
 		<td><a href='https://github.com/ftlabs/ftdomdelegate'>ftdomdelegate</a></td>
