@@ -20,18 +20,23 @@
 
         <header data-o-component="o-ft-header" class="o-ft-header">
             <div class="o-ft-header__container">
-                <div class="o-ft-header__content">
-                    <div class="o-ft-header__primary">
-                        <div class="o-ft-header__primary__left demo__primary--placeholder">
-                            <div class="o-ft-header__logo o-ft-header__logo--ft">
-                                <a href="http://www.ft.com"><abbr title="Financial Times">FT</abbr></a>
-                                <span class="o-techdocs__logo"></span>
-                            </div>
-                            <h1 class="o-ft-header__title">{{site.name}}</h1>
+                <div class="o-ft-header__primary">
+                    <div class="o-ft-header__primary__left">
+                        <div class="o-ft-header__logo o-ft-header__logo--ft">
+                            <a href="http://www.ft.com"><abbr title="Financial Times">FT</abbr></a>
+                            <span class="o-techdocs__logo"></span>
                         </div>
+                        <h1 class="o-ft-header__title">{{site.name}}</h1>
                     </div>
-                    <div class="o-ft-header__secondary"></div>
+                    <nav class="o-ft-header__primary__center o-hierarchical-nav o-ft-header__nav--primary-theme" data-o-component="o-hierarchical-nav">
+                      <ul data-o-hierarchical-nav-level="1">
+                          <li data-priority="1" aria-selected="true"><a>Spec</a></li>
+                          <li data-priority="1"><a href="//registry.origami.ft.com">Registry</a></li>
+                          <li data-more class="o-hierarchical-nav__parent" aria-hidden="true"><a><span class="o-hierarchical-nav__more--if-some">More <i class="o-hierarchical-nav__parent__down-arrow"></i></span><span class="o-hierarchical-nav__more--if-all">Menu <i class="o-hierarchical-nav__parent__down-arrow"></i></span></a></li>
+                      </ul>
+                  </nav>
                 </div>
+                <div class="o-ft-header__secondary"></div>
             </div>
         </header>
 
