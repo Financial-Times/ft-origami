@@ -41,7 +41,7 @@ Product developers are encouraged to include Origami JavaScript using a 'cuts th
 
 Modules *must* do as little as possible on parse, instead deferring start-up tasks to a publicly exported, static 'init' function that should be either invoked explicitly using the module's API, or automatically by binding to the `o.DOMContentLoaded` or `o.load` events.
 
-Where modules bind to the `o.DOMContentLoaded` or `o.load` events, their `init` method *must* be callable with no arguments (see [issue 228](https://github.com/Financial-Times/ft-origami/pull/228)).
+Where modules bind to the `o.DOMContentLoaded` or `o.load` events, their `init` method *must* be callable with no arguments, that is, they *may* accept arguments, but if they do, all such arguments *must* be optional (see [issue 228](https://github.com/Financial-Times/ft-origami/pull/228)).
 
 Modules that expose an `init` method or an instance constructor which takes an argument identifying an area of owned DOM *must* allow all of the following types of references:
 
