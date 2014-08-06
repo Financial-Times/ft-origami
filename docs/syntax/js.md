@@ -93,16 +93,16 @@ Modules *may* emit events defined by **other modules**, using the other module's
 * there are no callbacks in the event `details` payload; and
 * the foreign module has invited public use of the event in its documentation and has provided a comprehensive spec for the `details` payload
 
-For the most part use of this technique creates too much 'magic' behaviour that would not be expected by a product developer and should be avoided, but in some cases e.g. analytics, may be a reasonable compromise to enable loose coupling.
+For the most part, use of this technique creates too much 'magic' behaviour that would not be expected by a product developer and should be avoided, but in some cases e.g. analytics, may be a reasonable compromise to enable loose coupling.
 
 ### Use of the z-axis (`o-layers`)
 
-A module e.g. modals, overlays and tooltips, may need to display some or all of its owned DOM outside of the normal content flow so that it obscures content outside its owned DOM. The module *must* use the custom events defined in `o-layers` to:
+A module e.g. o-overlays and o-hiearchical-nav, may need to display some or all of its owned DOM outside of the normal content flow so that it obscures content outside its owned DOM. The module *must* bind to and fire `o-layers` events on its closest parent with the class `o-layers__context`, or `body` if no such element exists. The module *must* use the custom events defined in `o-layers` to:
 
 * broadcast changes in its own state 
-* listen for changes in the state of other modules that make use of the z-axis
+* listen for events fired in its `o-layers__context` by other modules that make use of the z-axis
 
-The module *must* bind to and fire `o-layers` events on its closest parent with the class `o-layers__context`, or `body` if no such element exists. Any module *may* use the `o-layers__context` class to define a new region of the DOM that can handle new layers independently of other regions of the DOM (e.g. two graphs handling their own tooltips independently, a date-picker appearing within a modal dialog).
+Any module *may* use the `o-layers__context` class to define a new region of the DOM that can handle new layers independently of other regions of the DOM (e.g. two graphs handling their own tooltips independently, a date-picker appearing within a modal dialog).
 
 ## Data storage
 
