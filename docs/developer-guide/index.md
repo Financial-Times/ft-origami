@@ -32,6 +32,10 @@ Once you know which modules you want to use, consult the using modules guide for
 * [Using modules](using-modules)
 
 
+##General best practices
 
+The information included in this guide will help you use Origami components without the need to really understand their internals.  But since these components follow rigorous standards and implement modern best practices for accessibility, security, maintainability and performance, we also offer a summary checklist of the most important points so you can meet the same standards in your own code.
 
+While use of Origami components doesn't require that you meet any of these requirements, they are all good practices that will deliver a better experience for our readers, and we strongly encourage you to take a look.
 
+* [Front end best practices](general-best-practices)
