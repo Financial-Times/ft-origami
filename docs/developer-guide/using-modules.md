@@ -87,6 +87,12 @@ If you choose to do this, you must target `o--if-no-js` tags more selectively by
 
 Messy.  So it's generally preferred to turn all modules on and off at the same time, using the same test.
 
+### Examples
+
+Here are some examples of pages created using Origami components.  These are all JSBins, so feel free to clone the bin and play around with it.
+
+* [Error aggregator](http://jsbin.com/ficavi/4) (Uses grid, forms, techdocs, date)
+
 
 ## Initialising module components
 
