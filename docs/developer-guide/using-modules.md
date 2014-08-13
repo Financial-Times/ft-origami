@@ -33,7 +33,7 @@ Complete instructions for using both are included in this guide:
 	<p>In the future it's likely that Origami markup will be available as templates in [HTML imports]()</p>
 </aside>
 
-## Core vs Enahanced experience
+## Core vs Enhanced experience
 
 Whether via the build service or your own build process, your Origami modules will eventually compile to two resources - one JavaScript and one CSS.  You should serve the CSS to *all user agents*, but the JavaScript only to those that meet the minimum standards assumed by Origami module developers.  To ensure that you only run Origami JavaScript in these 'good' browsers, use a '[Cuts the mustard](http://responsivenews.co.uk/post/18948466399/cutting-the-mustard)' test.
 
