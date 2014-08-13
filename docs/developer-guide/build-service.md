@@ -118,7 +118,7 @@ Fetch a set of modules and build a JavaScript bundle.
 </tr><tr>
 	<td><code>export</code></td>
 	<td>Querystring</td>
-	<td><em>(Optional)</em> If present, tells browserify to generate a <a href='https://github.com/umdjs/umd'>UMD</a> bundle for the supplied export name. UMD works with other module systems and if no module system is found sets the specified name as a window global (this parameter passes the <code>-s</code> option to browserify).</td>
+	<td><em>(Optional)</em> If present, tells browserify to generate a <a href='https://github.com/umdjs/umd'>UMD</a> bundle for the supplied export name. UMD works with other module systems and if no module system is found sets the specified name as a window global (this parameter passes the <code>-s</code> option to browserify).  If absent, the default export name <code>Origami</code> will be used.  To export nothing, pass an empty string.</td>
 </tr><tr>
 	<td><code>debug</code></td>
 	<td>Querystring</td>
@@ -131,6 +131,10 @@ Fetch a set of modules and build a JavaScript bundle.
 	<td><code>newerthan</code></td>
 	<td>Querystring</td>
 	<td><em>(Optional)</em> If present and set to a valid <a href='http://en.wikipedia.org/wiki/ISO_8601'>ISO 8601</a> date in the past, the build service will not consider any cached copies of the build which are older than the date given, and if necessary will therefore begin a new build as if there were no build cached.</td>
+</tr><tr>
+	<td><code>autoinit</code></td>
+	<td>Querystring</td>
+	<td><em>(Optional)</em> If absent, or present and set to a truthy value, the bundle will include code to dispatch the <code>o.DOMContentLoaded</code> and <code>o.load</code> events when their browser-native counterparts occur.  If set to <code>0</code>, no auto-initialisation code will be included.</td>
 </tr>
 </table>
 
