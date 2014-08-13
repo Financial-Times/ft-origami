@@ -31,6 +31,14 @@ You should most likely request all the JS modules you want in a single bundle re
 	<link rel='stylesheet' href='http://build.origami.ft.com/bundles/css?modules=o-ft-nav@2.3,o-tweet@1,colors' />
 	<script src='http://build.origami.ft.com/bundles/js?modules=o-ft-nav@2.3,o-tweet@1,o-tracking@3.5,o-ads@1.2' />
 
+<aside>
+	<h4>Avoiding problems with Content security policy</h4>
+	<p>Although in most cases, <code>link</code> and <code>script</code> tags referencing the build service will be supported by default, in packaged app containers such as Google Chrome extensions, or in web pages served with <a href='http://www.html5rocks.com/en/tutorials/security/content-security-policy/'>Content Security Policy</a> headers, you may need to explicitly allow <code>build.origami.ft.com</code> as a source origin from which the app can load resources (see also <a href='https://github.com/Financial-Times/ft-origami/issues/237'>issue 237</a>).</p>
+	<ul>
+		<li>Chrome extensions: <a href='https://developer.chrome.com/extensions/contentSecurityPolicy'>Update your manifest.json file</a></li>
+	</ul>
+</aside>
+
 ### Dependency conflicts
 
 Where a resource compiler request results in multiple versions of the same module being included, the build service will generate an error page (if error output is enabled) instead of the requested output.  The error page includes information about which modules caused the dependency conflict, and which versions of the depended-upon module are in contention.  For example (exact format to be determined):
