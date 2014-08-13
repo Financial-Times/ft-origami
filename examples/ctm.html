@@ -12,14 +12,14 @@
     <script type='text/javascript'>
       var cuts_the_mustard = ('querySelector' in document);
       if (cuts_the_mustard) {
-        document.documentElement.className = document.documentElement.className.replace(/^(.+ )?core( .+)?$\b/, '$1primary$2');
+        document.documentElement.className = document.documentElement.className.replace(/^(.+ )?core( .+)?$\b/, '$1enhanced$2');
       }
     </script>
 
-    <!-- Hide any primary experience content when in core mode, and vice versa -->
+    <!-- Hide any enhanced experience content when in core mode, and vice versa -->
     <style type='text/css'>
       .core .o--if-js { display: none !important; }
-      .primary .o--if-no-js { display: none !important; }
+      .enhanced .o--if-no-js { display: none !important; }
     </style>
   </head>
   <body>
