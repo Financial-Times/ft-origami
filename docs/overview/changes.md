@@ -9,6 +9,53 @@ permalink: /docs/overview/changes/
 
 The following documents the chronology of changes to the Origami spec and significant (ie. breaking) releases of Origami modules since 13th January 2014.  If you want more detailed granularity, please refer to the [commit log](https://github.com/Financial-Times/ft-origami/commits/gh-pages).
 
+###13 Aug 2014
+
+**Content security policy**: Packaged apps and sites served with CSP restrictions may need to take additional steps to make the build service work ([Issue](https://github.com/Financial-Times/ft-origami/issues/237))
+
+###7 Aug 2014
+
+**Best practices**: Product developers should follow these best practices to develop sites to the same standard as Origami components ([Issue](https://github.com/Financial-Times/ft-origami/pull/221))
+
+###6 Aug 2014
+
+**Layers**: Where a component needs to use z-axis, o-layers must be used ([Issue](https://github.com/Financial-Times/ft-origami/pull/207))
+
+**Build service auto-init**: Build service now supports auto-initialisation and auto-export by default ([Issue](https://github.com/Financial-Times/ft-origami/pull/235))
+
+###5 Aug 2014
+
+**Initialising modules**: Standardise the way that modules define their init methods ([Issue](https://github.com/Financial-Times/ft-origami/pull/228))
+
+###1 Aug 2014
+
+**Primary is now Enhanced**: Renamed this to combat perception that 'primary' is 'normal'.  Core is normal. ([Issue](https://github.com/Financial-Times/ft-origami/pull/232), [Issue](https://github.com/Financial-Times/ft-origami/pull/234)).
+
+###29 July 2014
+
+**Manual build process**: Guidelines revised extensively following first Origami workshop ([Issue](https://github.com/Financial-Times/ft-origami/commit/fbb661aaaba6b368a72bb830b6407138354110f5))
+
+
+###21 July 2014
+
+**Owned DOM**: Modules *must* not throw an error if there are no instances of the module's owned DOM in the page. ([Issue](https://github.com/Financial-Times/ft-origami/pull/200))
+
+**Browser support declaration**: Components must declare the browsers that they have been tested in ([Commit](https://github.com/Financial-Times/ft-origami/commit/97854ea4fdb08c951278170d4221d32b06604a30))
+
+**Developer guidelines**: Extensively revised developer guide ([Commit](https://github.com/Financial-Times/ft-origami/commit/04131633709c995a64ff8d3b2110cd4219244839))
+
+**Support**: Origami team now available via a mailing list ([Commit](https://github.com/Financial-Times/ft-origami/commit/e10289501aa98010cf00976fc75daa742eb6f251))
+
+###13 July 2014
+
+**Silent styles**: Drop recommendation for silent mode in modules with JavaScript ([Commit](https://github.com/Financial-Times/ft-origami/commit/8cc161ba066c62221e22161334fd12cfd497e0ff))
+
+**Security**: Drop recommendation to implement JSONP endpoints in web services following Rosetta Flash vulnerability ([Commit](https://github.com/Financial-Times/ft-origami/commit/581e9bc08bc8e0bc71a5383927c3c290f2d89ab0))
+
+###8 July 2014
+
+**Notification requirements**: Developers must notify potential consumers when new versions of components are released ([Issue](https://github.com/Financial-Times/ft-origami/issues/220))
+
 ###2 July 2014
 
 **Privacy hinting**: Use underscores to indicate privacy of SASS objects.  Use underscore prefixes on all filenames except the main file. ([Issue](https://github.com/Financial-Times/ft-origami/issues/208))
