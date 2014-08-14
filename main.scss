@@ -4,3 +4,11 @@ $o-assets-global-path: 'http://build.origami.ft.com/files/';
 body {
   margin: 0;
 }
+
+/* Google custom search overrides */
+
+.gsc-control-cse {
+	background-color: transparent !important;
+	border: none !important;
+	padding: 0 !important;
+}
