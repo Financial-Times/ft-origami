@@ -11,6 +11,11 @@ Building Origami modules manually gives you the most flexibility and control, bu
 
 This tutorial assumes you are starting from a fresh install of a UNIX-like OS with a bash shell and have cloned or initalised a git repo for your project somewhere on the filesystem.  If you're a bit further along than that, feel free to skip any steps you've already completed.
 
+<aside>
+	<h4>No support for Windows</h4>
+	<p>Origami's build tools do not support Windows as a development environment and the instructions on this page assume you are using a UNIX-like OS.  Windows <strong>might</strong> work, to some degree, but we don't make any guarantees, either of what works today or what might continue to work tomorrow!</p>
+</aside>
+
 ## 1. Install NodeJS, npm, bower and grunt
 
 To use Origami components, you need some Node tools:
