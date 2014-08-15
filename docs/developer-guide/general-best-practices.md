@@ -11,6 +11,14 @@ Origami requires a high standard of developers who make components for use by ot
 
 In addition to the rules below, the [Google Web Fundamentals documentation](https://developers.google.com/web/fundamentals) is a good resource for developing best practices.
 
+##Browser support
+
+Conform to the [FT Browser support standard](https://docs.google.com/a/ft.com/document/d/1dX92MPm9ZNY2jqFidWf_E6V4S6pLkydjcPmk5F989YI/edit).  In principle this means that your site will:
+
+* Choose a sensible boundary level between core and enhanced experience
+* Not load JavaScript when in core experience
+* Present a consistent, functional and high quality experience to users in both core and enhanced experience
+
 
 ##HTML
 
@@ -151,4 +159,15 @@ Do not interfere with common browser affordances, for example, CMD+click or CTRL
 
 Use Google's [PageSpeed Insights](http://developers.google.com/speed/pagespeed/insights) service to analyse your page and try to score at least 80 on both the mobile and desktop categories.  This will cover off a wide variety of performance related best practices.
 
-<!--##Use polyfill service-->
+##Use the polyfill service
+
+The [Origami polyfill service](http://polyfill.webservices.ft.com) creates custom bundles of polyfills based on the exact requirements of the user's browser, so we can avoid serving unnecessary code to browsers that already support a feature natively, but we can automatically upgrade browsers that don't support the feature.
+
+This means you can assume modern web standards, you don't have to bundle any polyfills with your code, and performance on modern browsers is great - they get an empty file.
+
+
+##Security
+
+###Don't collect data on insecure pages
+
+It's often considered OK to serve forms on insecure pages as long as the form posts to a secure destination.  This is not acceptable, because an attacker can modify the page that serves the form, to simply change the form post destination.  For more information, see [Steal my login](http://www.stealmylogin.com/).
