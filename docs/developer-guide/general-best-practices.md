@@ -159,7 +159,7 @@ Do not interfere with common browser affordances, for example, CMD+click or CTRL
 
 Use Google's [PageSpeed Insights](http://developers.google.com/speed/pagespeed/insights) service to analyse your page and try to score at least 80 on both the mobile and desktop categories.  This will cover off a wide variety of performance related best practices.
 
-##Use the polyfill service
+###Use the polyfill service
 
 The [Origami polyfill service](http://polyfill.webservices.ft.com) creates custom bundles of polyfills based on the exact requirements of the user's browser, so we can avoid serving unnecessary code to browsers that already support a feature natively, but we can automatically upgrade browsers that don't support the feature.
 
