@@ -123,7 +123,7 @@ Once you know which Origami modules you want, create a `bower.json` file in the 
 
 You should set `name` to be the name of your project's repo.  `dependencies` is a list of the front-end modules you would like to use in your project.  If the module is in the [Origami registry](http://registry.origami.ft.com) or the [bower registry](http://bower.io/search/), you can simply specify the version number you want (using [semver](http://semver.org) rules), otherwise you must provide the full path to the component's repository followed by a hash and the version you want.
 
-This time we're listing these are *dependencies*, not *devDependencies*, because they are actually required by your project in production.
+This time we're listing these as *dependencies*, not *devDependencies*, because they are actually required by your project in production.
 
 To ensure that bower can find Origami modules, it needs to be set up to search the Origami registry.  To do this, create a `.bowerrc` file in the root of your project's working tree (or in your home directory, if you want to apply it automatically to all projects), with the following contents:
 
@@ -136,6 +136,9 @@ To ensure that bower can find Origami modules, it needs to be set up to search t
 	  }
 	}
 
+<aside>
+	Sometimes when you create files starting with a dot, they will immediately vanish, because starting a file with a dot marks it as a <em>hidden file</em>.  You can normally choose an option to 'show hidden files' or similar, and on the command line you can always see hidden files with the `ls -al` command.
+</aside>
 
 ## 5. Create your master SASS and JavaScript files
 
@@ -143,7 +146,7 @@ Now you need to create a SASS and/or JavaScript file that requires the Origami c
 
 	@import '{modulename}/main';
 
-As an example, create a `main.scss` file anywhere in your project's working tree, containing:
+As an example, create a `main.scss` file at `/client/scss/main.scss`, containing:
 
 	/* Import Origami components */
 	@import 'o-tweet/main';
@@ -158,7 +161,7 @@ The syntax of the JavaSript require is:
 
 	{handle} = require('{modulename}');
 
-As an example, create a `main.js` file anywhere in your project's working tree, containing:
+As an example, create a `main.js` file at `/client/js/main.js`, containing:
 
 	// Require module with no API, so no need to handle the return value
 	require('o-techdocs');
