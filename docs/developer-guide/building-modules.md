@@ -80,9 +80,11 @@ Installing ri documentation for sass-3.3.11
 
 You now have all the system-level pre-requisities to build Origami modules in a project sandbox, so the remaining instructions in this tutorial can be performed as an unprivileged user and will only affect files in your project's working tree.
 
-## 3. Set up an NPM package manifest for your project
+## 3. Set up an NPM package manifest to install build tools
 
-You need some Node packages to run the build process.  We'll assume you have a project working tree and are committing to a git repo.  In the root of your working tree, create a file called `package.json`, with the following contents:
+You now need some Node packages to run the Origami build process.  Choose where you want to start building your project (normally this is also the root of a git repository, but it can be any folder on your computer).  A common pattern is to create a folder called `sandboxes` in your home directory, and then create a subdirectory with the name of your project, eg `/sandboxes/origami-demo`.  We'll refer to this as the 'root of the working tree', because you'll create files and folders within the project folder which descend from the root of the project.
+
+In the root of your working tree, create a file called `package.json`, with the following contents:
 
 	{
 	  "private": true,
@@ -95,25 +97,30 @@ You need some Node packages to run the build process.  We'll assume you have a p
 	  }
 	}
 
+<aside>
+	<h4>What are build tools for?</h4>
+	<p>If you compare building a website with making a cake, where your website is the finished cake and all the Origami components you plan to use are the ingredients, these build tools are the mixer and the oven - the tools you need to use to convert the ingredients into the cake.</p>
+</aside>
+
 You're installing three grunt plugins: [contrib-sass](https://npmjs.org/package/grunt-contrib-sass) to compile SASS (which uses the Ruby SASS gem you installed in step 2), [browserify](https://npmjs.org/package/grunt-browserify) to compile JavaScript using [browserify](http://browserify.org/), and [contrib-watch](https://npmjs.org/package/grunt-contrib-watch) to allow you to trigger the build process to re-run automatically when you change any of your source files.
 
 You're also installing two browserify transforms: [debowerify](https://npmjs.org/package/debowerify) which allows browserify to compile JavaScript modules that have been installed using bower, and [textrequireify](http://git.svc.ft.com:8080/projects/OT/repos/textrequireify) which allows inlining of static assets like templates into JavaScript files.
 
-These modules are listed as *devDependencies* because they are not required to run your application, only to build it.  Marking your project as *private* means that it cannot accidentally be published to the [npm registry](http://npmjs.org) as a component.
+These modules are listed as *devDependencies* because they are not required to run your application, only to build it.  Marking your project as *private* means that it cannot accidentally be published to the [npm registry](http://npmjs.org) as a public component.
 
 <aside>
 	<h4>Specifying versions</h4>
 	You may like to amend your <code>package.json</code> to replace the versions above with more recent ones.  You can find the latest version on the relevant NPM module page linked above.  The versions shown here are known to work by the Origami team, and are expressed using the <a href='http://www.semver.org'>Semver</a> <code>^</code> operator, which accepts updated versions up to but not including the next major version (note that this doesn't work in the same way for versions &lt; 1 so to get the same behaviour, specify the range explicitly)
 </aside>
 
-## 4. Set up a bower package manifest
+## 4. Set up a bower package manifest to load Origami components
 
-Hopefully you know which Origami modules you want.  If you don't, check out the Origami registry for a list of all our supported components.  You can also add any module from the [bower registry](http://bower.io/search/) that has a [commonJS interface](http://wiki.commonjs.org/wiki/Modules/1.1).
+Hopefully you know which Origami modules you want.  If you don't, check out the [Origami registry](http://registry.origami.ft.com) for a list of all our supported components.  You can also add any module from the [bower registry](http://bower.io/search/) that has a [commonJS interface](http://wiki.commonjs.org/wiki/Modules/1.1).
 
-Once you know which Origami modules you want, create a `bower.json` file in the root of your project.   This you have to create yourself, and it will be different for each project, but it must conform to the bower [configuration spec](http://bower.io/docs/creating-packages/), which is very similar to npm's config.  Here is an example (used by one of the Origami web services):
+Once you know which Origami modules you want, create a `bower.json` file in the root of your working tree.   This you have to create yourself, and it will be different for each project, but it must conform to the bower [configuration spec](http://bower.io/docs/creating-packages/), which is very similar to npm's config.  Here is an example:
 
 	{
-	   "name": "tweet-service",
+	   "name": "origami-demo",
 	   "dependencies": {
 	      "o-tweet": ">=0.1 <1",
 	      "o-techdocs": "^2.0.0",
@@ -121,7 +128,7 @@ Once you know which Origami modules you want, create a `bower.json` file in the 
 	   }
 	}
 
-You should set `name` to be the name of your project's repo.  `dependencies` is a list of the front-end modules you would like to use in your project.  If the module is in the [Origami registry](http://registry.origami.ft.com) or the [bower registry](http://bower.io/search/), you can simply specify the version number you want (using [semver](http://semver.org) rules), otherwise you must provide the full path to the component's repository followed by a hash and the version you want.
+`dependencies` is a list of the front-end modules you would like to use in your project.  If the module is in the [Origami registry](http://registry.origami.ft.com) or the [bower registry](http://bower.io/search/), you can simply specify the version number you want (using [semver](http://semver.org) rules), otherwise you must provide the full URL of the component's repository followed by a hash and the version you want.
 
 This time we're listing these as *dependencies*, not *devDependencies*, because they are actually required by your project in production.
 
@@ -137,7 +144,7 @@ To ensure that bower can find Origami modules, it needs to be set up to search t
 	}
 
 <aside>
-	Sometimes when you create files starting with a dot, they will immediately vanish, because starting a file with a dot marks it as a <em>hidden file</em>.  You can normally choose an option to 'show hidden files' or similar, and on the command line you can always see hidden files with the `ls -al` command.
+	Sometimes when you create files starting with a dot, they won't show up in the directory listing, because starting a file with a dot marks it as a <em>hidden file</em>.  You can normally choose an option to 'show hidden files' or similar, and on the command line you can always see hidden files with the `ls -al` command.
 </aside>
 
 ## 5. Create your master SASS and JavaScript files
@@ -146,7 +153,7 @@ Now you need to create a SASS and/or JavaScript file that requires the Origami c
 
 	@import '{modulename}/main';
 
-As an example, create a `main.scss` file at `/client/scss/main.scss`, containing:
+As an example, create a `main.scss` file at `/client/scss/main.scss` (relative to the root of your working tree), containing:
 
 	/* Import Origami components */
 	@import 'o-tweet/main';
@@ -180,7 +187,7 @@ Now you need to set up the tasks to stitch everything together.  To do this, you
 * Where you have put your master SASS file and master JavaScript file
 * Where you want the finished bundles to be saved (usually a publicly accessible web server directory unless you are routing the request for the bundle through a front-controller)
 
-We'll assume for the purposes of this example that your CSS and JS are in `/client/[sass|js]` and you want to save the finshed bundles in `/public` (make sure that directory exists and is writable).  Create a file called `Gruntfile.js` in the root of your project's working tree, with the following contents:
+We'll assume for the purposes of this example that your CSS and JS are in `/client/sass` and `/client/js` and you want to save the finshed bundles in `/public` (make sure that directory exists).  Create a file called `Gruntfile.js` in the root of your project's working tree, with the following contents:
 
 	module.exports = function(grunt) {
 	  "use strict";
@@ -193,7 +200,7 @@ We'll assume for the purposes of this example that your CSS and JS are in `/clie
 	          loadPath: './bower_components'
 	        },
 	        files: {
-	          './public/bundle.css': './client/sass/main.scss'
+	          './public/bundle.css': './client/scss/main.scss'
 	        }
 	      }
 	    },
@@ -209,7 +216,7 @@ We'll assume for the purposes of this example that your CSS and JS are in `/clie
 	    },
 	    watch: {
 	      sass: {
-	        files: ['./client/sass/**'],
+	        files: ['./client/scss/**'],
 	        tasks: ['sass']
 	      },
 	      js: {
@@ -250,32 +257,53 @@ Please don't commit dependencies into your project.  To avoid this, you probably
 	node_modules/
 	public/
 
-You may need to change `public/` if you are writing your finished bundles elsewhere.
+This list of ignored files includes your two dependency directories (node_modules for your build tools, and bower_components for your Origami components), a couple of annoying directories often created by your computer automatically (.DS_Store and .sass-cache), and finally the `public` directory because the files in there will be generated by the build process and are not part of our application's source code.
+
+Remember that because `.gitignore` starts with a dot, it may not show up in your directory listing, and you may need to toggle an option to make hidden files visible in order to see it.
 
 ## 8. Run the build
 
 Run npm to install the build tool dependencies:
 
-	npm install
+<pre class='cli'>
+<kbd>npm install</kbd>
+<output>...lots of output...</output>
+</pre>
 
 This will create a `node_modules` directory in the root of your working tree, containing all the node packages you need to run the build process.
 
 Now run bower to install the front-end components:
 
-	bower install
+<pre class='cli'>
+<kbd>bower install</kbd>
+<output>bower o-tweet#>=0.1 <1      not-cached https://github.com/Financial-Times/o-tweet.git#>=0.1 <1
+bower o-tweet#>=0.1 <1         resolve https://github.com/Financial-Times/o-tweet.git#>=0.1 <1
+...lots more output...</output>
+</pre>
 
 This will create a `bower_components` directory in the root of your working tree, containing all the front end modules you want to use in your project.
 
 
 Now bundle it all together with grunt:
 
-	grunt
+<pre class='cli'>
+<kbd>grunt</kbd>
+<output>Running "sass:docs" (sass) task
+Running "browserify:dist" (browserify) task
+>> Bundled ./public/bundle.js
+
+Done, without errors.</output>
+</pre>
 
 This will use the tools you installed with npm, to read your project's JS and CSS master files, fully explore all their required dependencies, and pull everything together into two bundles, one for JS, and one for CSS.
 
 If you want to continue working on your CSS and JS code (edit your own code but not anything in the bower_components directory), you'll also want to use grunt to watch your files and automatically retrigger the build when you save a change.
 
-	grunt watch
+<pre class='cli'>
+<kbd>grunt watch</kbd>
+<output>Running "watch" task
+Waiting...</output>
+</pre>
 
 
 ## 9. Use the bundles
@@ -286,6 +314,36 @@ Now, you can simply load the bundles in your web page.  If you saved your bundle
 	<script defer src="bundle.js"></script>
 
 It's advisable to put the `defer` attribute on your `<script>` tags, so that loading of the script does not block page load.  Origami components will never require you to load script prior to the DOM being rendered.  See Nicholas Zakas's post [The truth about non blocking JavaScript](http://calendar.perfplanet.com/2010/the-truth-about-non-blocking-javascript/) for more details.  You should also place the script tag at the very end of your document, not next to the link tag.
+
+Here's an example of a web page that includes the script and link tags in the right place, and also adds some content that we can style using the Origami components.  You can create this in your public directory as `/public/index.html`:
+
+	<!DOCTYPE html>
+	<html>
+	  <head>
+	    <link rel='stylesheet' href='bundle.css'>
+	  </head>
+	  <body>
+
+	    <div class="o-tweet">
+	      <div class="o-tweet__h-card">
+	        <a class="o-tweet__url-profile" target="_blank" title="Go to twitter profile for @Barack_Obama" href="http://twitter.com/Barack_Obama"><img class="o-tweet__avatar" src="https://pbs.twimg.com/profile_images/451007105391022080/iu1f7brY_bigger.png"></a>
+	        <span class="o-tweet__user-name">Barack Obama</span> tweets:
+	      </div>
+	      <blockquote>Four more years. <a href="http://t.co/bAJE6Vom">pic.twitter.com/bAJE6Vom</a></blockquote>
+	      <div class="o-tweet__media o-tweet__photo">
+	        <img src="https://pbs.twimg.com/media/A7EiDWcCYAAZT1D.jpg" alt="Embedded photo">
+	      </div>
+	      <ul class="o-tweet__metadata">
+	        <li class="o-tweet__stats"><strong>778,085</strong> retweets</li>
+	        <li class="o-tweet__stats"><strong>293,535</strong> favorites</li>
+	        <li class="o-tweet__creation-date"><a class="o-tweet__permalink" title="Permalink to tweet" href="http://twitter.com/Barack_Obama/statuses/266031293945503744"><time>10:20am, 1st Mar 2014</time></a></li>
+	      </ul>
+	    </div>
+
+	    <script defer src="bundle.js"></script>
+
+	  </body>
+	</html>
 
 
 ## 10. Deal with assets
