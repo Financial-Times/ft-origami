@@ -25,14 +25,19 @@ To use Origami components, you need some Node tools:
 * [bower](http://bower.io) is a package manager similar to npm, but designed for front end packages that are destined to be served to the browser.  We use this to install Origami components
 * [grunt](http://gruntjs.com/) is a task runner, which we use to run the build process
 
-NodeJS can be installed manually or via package management, and often ships preinstalled on many OS distributions.  To find out if you have it installed and which version you have, type this at a terminal:
+NodeJS can be installed manually or via package management, and often ships preinstalled on many OS distributions.  To find out if you have it installed and which version you have, type this at a terminal ([Reveal additonal help](#note-terminal)):
+
+<aside class="o-techdocs__aside--toggleable" id='note-terminal'>
+	<h4>What's a "terminal"?!</h4>
+	<p>The terminal is an application that enables you to run commands on your computer by typing them in on your keyboard.  It's like having a text-message chat with your computer.  On Mac OS, the terminal is an application you can find in your Applications folder.  On most Linux systems, it's available from the applications or programs menu if you're not using it by default.  On Windows, 'Command prompt' (which is the same thing by a different name) is available in the Apps menu, or prior to Windows 8, press Windows+R, type <code>cmd</code> in the dialog that appears, and press enter.</p>
+</aside>
 
 <pre class='cli'>
 <kbd>node -v</kbd>
 <output>v0.10.29</output>
 </pre>
 
-If you get an error, or the number you get does not match the most recent release shown on the [Node website](http://nodejs.org/), you need to install Node.  If you're installing it on a personal development environment, go to the Node website and click the Install button to download the installer suitable for your system:
+If you get an error, or the number you get does not match the most recent release shown on the [Node website](http://nodejs.org/), you need to install/upgrade Node.  If you're installing it on a personal machine, go to the Node website and click the Install button to download the installer suitable for your system:
 
 * [Download the Node installer](http://nodejs.org/)
 
@@ -40,27 +45,29 @@ If you want to install on a server or other maintained environment, you'll most 
 
 * [Install Node via package manager](https://github.com/joyent/node/wiki/Installing-Node.js-via-package-manager)
 
-Installing Node will automatically install [npm](http://npmjs.org), the Node Package Manager, which you can then use to install bower and grunt (bower and grunt are Node modules so are available from the NPM registry).  At a terminal, type:
+Installing Node will automatically install [npm](http://npmjs.org), the Node Package Manager, which you can then use to install bower and grunt (bower and grunt are Node modules so are available from the NPM registry).  Once you have installed Node, type this at a terminal:
 
 <pre class='cli'>
 <kbd>sudo npm install -g bower</kbd>
 <kbd>sudo npm install -g grunt-cli</kbd>
 </pre>
 
+These commands may prompt you for your password.  You will need root access to your machine to complete this step.  On FT-managed machines the root password is typically the same as the password you use to log into the corporate network.
+
 ## 2. Install Ruby, the Gem installer, and the SASS gem
 
-Ruby is required to run the SASS compiler.  You may already have it, since Ruby ships preinstalled on many OS distributions.  To find out, type this at a terminal:
+Ruby is required to run the SASS compiler, which converts Origami's complex [SASS](http://sass-lang.com/) code into simple CSS that defines what our components look like on the web page.  You may already have Ruby, since it ships preinstalled on many computers.  To find out, type this at a terminal:
 
 <pre class='cli'>
 <kbd>ruby -v</kbd>
 <output>ruby 2.0.0p247 (2013-06-27 revision 41674) [universal.x86_64-darwin13]</output>
 </pre>
 
-If you see an error, or the version does not match the latest version shown on the [Ruby website](https://www.ruby-lang.org/en/downloads/), you need to install it.  You can install from source, via pre-built binaries or your preferred package manager.
+If you see an error, or the version does not match the latest version shown on the [Ruby website](https://www.ruby-lang.org/en/downloads/), you need to install/upgrade it.  You can install from source, via pre-built binaries or your preferred package manager.
 
 * [View Ruby install guide](https://www.ruby-lang.org/en/installation/)
 
-Once Ruby is installed, you can install the Sass gem using the gem installer:
+Installing Ruby also installs Gem, Ruby's package manager (Gem is to Ruby as NPM is to Node).  Once Ruby is installed, you can install the Sass gem using the gem installer:
 
 <pre class='cli'>
 <kbd>sudo gem install sass</kbd>
