@@ -68,15 +68,23 @@ SASS does not have proper encapsulation or scope, so strict adherence to namespa
     <tr><th>State</th><th>Description</th><th>Define using</th><th>Style guidance</th></tr>
     <tr>
         <td>Hovered</td>
-        <td>The user has a <a href='#note-hoverable'>hoverable pointer</a> and it is positioned above the element.  Component developers *must* prefix all <code>:hover</code> pseudo-classes using an <a href='https://github.com/Financial-Times/o-hoverable'>o-hoverable</a> feature flag.</td>
+        <td>
+            <p>The user has a <a href='#note-hoverable'>hoverable pointer</a> and it is positioned above the element.  Component developers *must* prefix all <code>:hover</code> pseudo-classes using an <a href='https://github.com/Financial-Times/o-hoverable'>o-hoverable</a> feature flag.</p>
+
+            <aside class="o-techdocs__aside--toggleable" id='note-hoverable'>
+                <h4>Hoverable pointer does not mean mouse</h4>
+                <p>We say <strong>hoverable pointer</strong> and not 'mouse' because the mouse is a physical hardware device.  It's possible to control the pointer on the screen in lots of ways: trackpad, trackball, joystick, eye tracker etc.  The thing all of these devices share is that their movement is tracked - they <strong>hover</strong>.  Touch and pen are generally different, because although they are another way of creating a pointer, the pointer doesn't hover, we can only see it when it activates a point on the screen.</p>
+            </aside>
+
+        </td>
         <td><code>:hover</code></td>
         <td>Having a hover effect hints to the user that clicking the element will do something.  Hover effects should be subtle, and if possible, suggestive of the action that will occur on click</td>
     </tr>
     <tr>
         <td>Focused</td>
-        <td>The element is the current target of keyboard input</td>
+        <td>The element is the current target of keyboard input. If the user types something, it will affect this element.  </td>
         <td><code>:focus</code></td>
-        <td>Any element on the page that is interactive must have a focused style that is distinct from its normal style.  Browsers will  add a default focused style to elements that are normally interactive, and the effect is typically a glow.</td>
+        <td>Any element on the page that is interactive (not just text fields!) must have a focused style that is distinct from its normal style.  Browsers will add a default focused style to elements that are normally interactive, and the effect is typically a glow.  Simple text links need a focus state too.</td>
     </tr>
     <tr>
         <td>Busy</td>
@@ -86,7 +94,7 @@ SASS does not have proper encapsulation or scope, so strict adherence to namespa
     </tr>
     <tr>
         <td>Selected</td>
-        <td>The element is a member of a list and is the currently selected item (or one of several currently selected items).  Not to be confused with <em>Active</em>.</td>
+        <td>The element is a member of a list and is the currently selected item (or one of several currently selected items).  If it can be deselected at all, usually this can only be done by choosing another option in the list.  Not to be confused with <em>Active</em> (which indicates interaction is <em>in progress</em>) or <em>pressed</em> (which is toggleable).</td>
         <td><code>[aria-selected]</code></td>
         <td>The selected state should be strong and easily distinguishable from the stadard state.  It often inverts the colors, so things that are light-on-dark become dark-on-light when selected.</td>
     </tr>
@@ -98,19 +106,19 @@ SASS does not have proper encapsulation or scope, so strict adherence to namespa
     </tr>
     <tr>
         <td>Active</td>
-        <td>The element is currently being interacted with by the user.   Usually indicates that a mouse button is pressed down on the element.</td>
+        <td>The element is currently being interacted with by the user.   Usually indicates that a mouse button or finger is pressed down on the element.</td>
         <td><code>:active</code></td>
         <td>We typically do not style this state.</td>
     </tr>
     <tr>
         <td>Invalid</td>
-        <td>The value entered into the element does not conform to the format expected by the application.</td>
+        <td>Applies to elements that accept and store a value entered by the user (eg text fields).  The value entered into the element does not conform to the format expected by the application.</td>
         <td><code>[aria-invalid]</code></td>
         <td>Form fields in this state are typically displayed with a red border or background and may be suffixed with an icon and a message indicating the reason why the input was invalid.</td>
     </tr>
     <tr>
         <td>Pressed</td>
-        <td>The element is a toggle (you can interact with it once to activate it, and again to deactivate it) and it is currently activated. Distinct from a checkbox because it activates an effect immediately, while a checkbox typically records data that isn't acted upon until a form is submitted.</td>
+        <td>The element is a toggle (you can interact with it once to activate it, and again to deactivate it) and it is currently activated. Distinct from a checkbox because it activates an effect immediately, while a checkbox typically records data that isn't acted upon until a form is submitted.  It is also possible to distinguish elements that are <em>pressable</em> but are not currently pressed.</td>
         <td><code>[aria-pressed]</code></td>
         <td>This can often be similar to the selected state, but also commonly found in a 'toggle switch' style.  In 3D designs, the pressed state is often shown concave instead of convex.</td>
     </tr>
