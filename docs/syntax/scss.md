@@ -278,6 +278,8 @@ Where combinations of styles are used to create more complex elements, it may be
         }
     }
 
+Finally, in documentation, modules *must* provide information about both silent and non-silent methods, where supported, and must put the default first (ie if silent mode is by default **on**, the module must document the silent mode integration first).
+
 
 ## Code organisation and formatting
 
