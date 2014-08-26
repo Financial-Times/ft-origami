@@ -13,7 +13,7 @@ This tutorial assumes you are starting from a fresh install of a UNIX-like OS wi
 
 <aside>
 	<h4>No support for Windows</h4>
-	<p>Origami's build tools do not support Windows as a development environment and the instructions on this page assume you are using a UNIX-like OS.  Windows <strong>might</strong> work, to some degree, but we don't make any guarantees, either of what works today or what might continue to work tomorrow!</p>
+	<p>Origami's build tools do not support Windows as a development environment and the instructions on this page assume you are using a UNIX-like OS.  Windows <strong>might</strong> work, to some degree, but we don't make any guarantees, either of what works today or what might continue to work tomorrow!  If you're a windows user, consider running a Linux VM, or signing up for a free <a href='http://c9.io'>Cloud9</a> account, and use their online Ubuntu VMs (but don't put any passwords or other secret data into C9 VMs)</p>
 </aside>
 
 ## 1. Install NodeJS, npm, bower and grunt
