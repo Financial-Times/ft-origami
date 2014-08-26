@@ -20,12 +20,12 @@ This tutorial assumes you are starting from a fresh install of a UNIX-like OS wi
 
 To use Origami components, you need some Node tools:
 
-* [NodeJS](http://nodejs.org/) is the JavaScript runtime, which allows you to run server-side JavaScript on your development environment.  We need this to run all the build tools
-* [npm](http://npmjs.org) is the Node Package Manger.  Once you've got Node, you can use npm to install the modules we need for the build process.
-* [bower](http://bower.io) is a package manager similar to npm, but designed for front end packages that are destined to be served to the browser.  We use this to install Origami components
+* [NodeJS](http://nodejs.org/) is the JavaScript runtime, which we need to run npm, bower and grunt.
+* [npm](http://npmjs.org) is the package manager for the back end (loads Origami build tools)
+* [bower](http://bower.io) is the package manager for the front end (loads Origami components)
 * [grunt](http://gruntjs.com/) is a task runner, which we use to run the build process
 
-NodeJS can be installed manually or via package management, and often ships preinstalled on many OS distributions.  To find out if you have it installed and which version you have, type this at a terminal ([Reveal additonal help](#note-terminal)):
+NodeJS can be installed manually or via package management, and often ships preinstalled on many OS distributions.  To find out if you have it installed and which version you have, type this at a terminal ([What's a terminal?](#note-terminal)):
 
 <aside class="o-techdocs__aside--toggleable" id='note-terminal'>
 	<h4>What's a "terminal"?!</h4>
