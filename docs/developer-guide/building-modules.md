@@ -78,7 +78,7 @@ Installing ri documentation for sass-3.3.11
 1 gem installed</output>
 </pre>
 
-You now have all the system-level pre-requisities to build Origami modules in a project sandbox, so the remaining instructions in this tutorial can be performed as an unprivileged user and will only affect files in your project's working tree.
+It should show that it's installed at least SASS v3.3.  You now have all the system-level pre-requisities to build Origami modules in a project sandbox, so the remaining instructions in this tutorial can be performed as an unprivileged user and will only affect files in your project's working tree.
 
 ## 3. Set up an NPM package manifest to install build tools
 
@@ -117,14 +117,15 @@ These modules are listed as *devDependencies* because they are not required to r
 
 Hopefully you know which Origami modules you want.  If you don't, check out the [Origami registry](http://registry.origami.ft.com) for a list of all our supported components.  You can also add any module from the [bower registry](http://bower.io/search/) that has a [commonJS interface](http://wiki.commonjs.org/wiki/Modules/1.1).
 
-Once you know which Origami modules you want, create a `bower.json` file in the root of your working tree.   This you have to create yourself, and it will be different for each project, but it must conform to the bower [configuration spec](http://bower.io/docs/creating-packages/), which is very similar to npm's config.  Here is an example:
+Once you know which Origami modules you want, create a `bower.json` file in the root of your working tree.   This you have to create yourself, and it will be different for each project, but it must conform to the bower [configuration spec](http://bower.io/docs/creating-packages/), which is very similar to npm's config.  Here is an example that includes the o-colors, o-date, o-ft-header and o-ft-footer components:
 
 	{
 	   "name": "origami-demo",
 	   "dependencies": {
-	      "o-tweet": ">=0.1 <1",
-	      "o-techdocs": "^2.0.0",
-	      "jquery": "^2.0"
+	      "o-ft-header": "^2.5.5",
+	      "o-ft-footer": "^2.0.1",
+	      "o-colors": "^2.3.20",
+	      "o-date": ">=0.4.2 <1"
 	   }
 	}
 
@@ -153,15 +154,16 @@ Now you need to create a SASS and/or JavaScript file that requires the Origami c
 
 	@import '{modulename}/main';
 
-As an example, create a `main.scss` file at `/client/scss/main.scss` (relative to the root of your working tree), containing:
+As an example (assuming you loaded the header, footer and colours module in your `bowser.json`), create a `main.scss` file at `/client/scss/main.scss` (relative to the root of your working tree), containing:
 
 	/* Import Origami components */
-	@import 'o-tweet/main';
-	@import 'o-techdocs/main';
+	@import 'o-ft-header/main';
+	@import 'o-ft-footer/main';
 
-	/* Add our own SASS */
-	.mything {
-		color: red;
+	/* Add our own SASS, using the o-colors module to style the body */
+	body {
+		margin: 0;
+		@include oColorsFor(body, background);
 	}
 
 The syntax of the JavaSript require is:
@@ -170,13 +172,14 @@ The syntax of the JavaSript require is:
 
 As an example, create a `main.js` file at `/client/js/main.js`, containing:
 
-	// Require module with no API, so no need to handle the return value
-	require('o-techdocs');
+	// Require module
+	var date = require('o-date');
 
-	// Require a module with an API, so assign the return value to a var to use as a handle to that module
-	var $ = require('jquery');
-	$(function() {
-		// Do something on DOMReady
+	// Wait until the page has loaded
+	document.addEventListener('DOMContentReady', function() {
+
+		// Find all the <time data-o-component='o-date'> elements and update them so that they show *relative* time
+		date.init();
 	});
 
 
@@ -315,36 +318,44 @@ Now, you can simply load the bundles in your web page.  If you saved your bundle
 
 It's advisable to put the `defer` attribute on your `<script>` tags, so that loading of the script does not block page load.  Origami components will never require you to load script prior to the DOM being rendered.  See Nicholas Zakas's post [The truth about non blocking JavaScript](http://calendar.perfplanet.com/2010/the-truth-about-non-blocking-javascript/) for more details.  You should also place the script tag at the very end of your document, not next to the link tag.
 
-Here's an example of a web page that includes the script and link tags in the right place, and also adds some content that we can style using the Origami components.  You can create this in your public directory as `/public/index.html`:
+The Origami spec includes instructions for how to structure your HTML page, so go and grab the boilerplate HTML from here:
+
+* Learn more about [Core vs enhanced experience]({{site.baseurl}}/docs/developer-guide/using-modules/#core-vs-enhanced-experience)
+
+Here's an example of a web page created from the boilerplate that includes the script and link tags in the right place, and also adds some content that we can style using the Origami components.  You can create this in your public directory as `/public/index.html`:
 
 	<!DOCTYPE html>
-	<html>
+	<html class='core'>
 	  <head>
+
+	  	<!-- This is where your CSS bundle is loaded: -->
 	    <link rel='stylesheet' href='bundle.css'>
+
+	    <script src='//polyfill.webservices.ft.com/v1/polyfill.min.js'></script>
+	    <script type='text/javascript'>
+	      var cuts_the_mustard = ('querySelector' in document);
+	      if (cuts_the_mustard) {
+	        document.documentElement.className = document.documentElement.className.replace(/^(.+ )?core( .+)?$\b/, '$1primary$2');
+	      }
+	    </script>
+	    <style type='text/css'>
+	      .core .o--if-js { display: none !important; }
+	      .primary .o--if-no-js { display: none !important; }
+	    </style>
 	  </head>
 	  <body>
 
-	    <div class="o-tweet">
-	      <div class="o-tweet__h-card">
-	        <a class="o-tweet__url-profile" target="_blank" title="Go to twitter profile for @Barack_Obama" href="http://twitter.com/Barack_Obama"><img class="o-tweet__avatar" src="https://pbs.twimg.com/profile_images/451007105391022080/iu1f7brY_bigger.png"></a>
-	        <span class="o-tweet__user-name">Barack Obama</span> tweets:
-	      </div>
-	      <blockquote>Four more years. <a href="http://t.co/bAJE6Vom">pic.twitter.com/bAJE6Vom</a></blockquote>
-	      <div class="o-tweet__media o-tweet__photo">
-	        <img src="https://pbs.twimg.com/media/A7EiDWcCYAAZT1D.jpg" alt="Embedded photo">
-	      </div>
-	      <ul class="o-tweet__metadata">
-	        <li class="o-tweet__stats"><strong>778,085</strong> retweets</li>
-	        <li class="o-tweet__stats"><strong>293,535</strong> favorites</li>
-	        <li class="o-tweet__creation-date"><a class="o-tweet__permalink" title="Permalink to tweet" href="http://twitter.com/Barack_Obama/statuses/266031293945503744"><time>10:20am, 1st Mar 2014</time></a></li>
-	      </ul>
-	    </div>
+	    <!-- Body content -->
+	    [FIND HEADER AND FOOTER COMPONENTS FROM registry.origami.ft.com TO PUT HERE]
 
-	    <script defer src="bundle.js"></script>
-
+	    <!-- Load your main JavaScript bundle if the browser cuts the mustard -->
+	    <script type='text/javascript'>
+	      if (cuts_the_mustard) {
+	        document.write('<'+'script src="bundle.js"></'+'script>');
+	      }
+	    </script>
 	  </body>
 	</html>
-
 
 ## 10. Deal with assets
 

@@ -7,15 +7,92 @@ permalink: /docs/developer-guide/build-service/
 
 # Using the build service
 
-If building modules sounds like a lot of work, you can let someone else do it for you and use our **build service**, which performs all the build steps listed above on a central build server and then serves your requested bundles directly to your user's browser.
+If building modules sounds like a lot of work, you can let someone else do it for you and use our **build service**, which performs all the build steps in the [Installing modules manually]({{site.baseurl}}/docs/developer-guide/building-modules) on a central build server and then serves your requested bundles directly to your user's browser.
 
-This is especially useful for bootstrapping early stage prototypes as well as building hacks, experiments, and adding components to legacy applications.  The service offers high availability, reliability, HTTPS with the same hostname and path, and its own cache layer, so can be used for client-side requests.  It offers the following endpoints:
+This is especially useful for bootstrapping early stage prototypes as well as building hacks, experiments, and adding components to existing sites that weren't built with Origami in mind.  The service offers high availability, reliability, HTTPS with the same hostname and path, and its own CDN cache layer, so can be used for client-side requests.
 
-	http://build.origami.ft.com/bundles/[css|js]
-	http://build.origami.ft.com/files
-	http://build.origami.ft.com/modules
+## How to build a page
 
-## Resource compiler (/bundles)
+The following steps are a brief tutorial to get you to the point of having a working page made of Origami components working in your browser.  Intentionally this tutorial takes every possible shortcut to allow you to acheive this with no software other than a web browser, but it should arm you with everything you need to add components to a site or build one from scratch.
+
+### Find the boilerplate and start a JS Bin
+
+First, you need something to start from.  Origami provides a recommended skeleton of an HTML page to get you started, so first, find that and copy it to your clipboard:
+
+* Learn more about [Core vs enhanced experience]({{site.baseurl}}/docs/developer-guide/using-modules/#core-vs-enhanced-experience)
+
+Once you have the recommended boilerplate, you can begin to build your page.  You need an editor that allows you to edit HTML and view the result.  To do this we recommend using **JS Bin**.  Since you'll want to keep this tutorial around, open the link below in a separate tab:
+
+* [Start a new JS Bin](http://jsbin.com)
+
+You'll see something like this:
+
+TODO:image
+
+If the panels you see are not 'HTML' and 'Output', click the buttons at the top of the page until you see only HTML and Output panels displayed.  Click anywhere in the 'HTML' view, press CTRL+A (CMD+A on MacOS) to select all the existing HTML, and then paste the HTML you copied earlier.
+
+The right hand side of the screen should be blank, which is fine.
+
+
+### Add some components
+
+Now you need to find some components to add to your page.  As an example, we'll add the standard FT header and footer.  All Origami components are listed in a directory called the Origami registry, so go there now and find the header component:
+
+* [Go to Origami Registry](http://registry.oreigami.ft.com)
+
+To find the header:
+
+1. Type 'head' in the filter bar on the registry homepage
+2. The list below should start to filter to show only components with 'head' in their name.  At time of writing this tutorial, `o-ft-header` was the only one that matches 'head'.
+3. Either click on the o-ft-header component or, if it's the top one in the list, just press enter.
+
+Now, you'll be looking at a demo of the header that you want.  Find the demo you like best ('Branded' is often a good choice) by ticking and unticking the demo names on the right of the registry page.  When you have it, look below the demo to find the HTML.
+
+Copy all the HTML to your clipboard.  In the case of the header there's a bit of extra HTML we've added just to show something below the header for the purposes of the demo, so you need to copy just `<header>` to `</header>`.
+
+Switch to your JS Bin window and find the bit that says `<!-- Body content here -->`.  Paste your header HTML just below that.
+
+Now on the right of your JS Bin window, you'll see the content for your header, but it will be unstyled.  You need to add the CSS and JavaScript to style it and activate its behaviours, like dropdown menus.  Go back to the registry, and on the o-ft-header page, scroll down to the secton called 'Quick start'.
+
+In quick start, you'll see two HTML tags, a `<link...>` and a `<script...>`.  Copy the link tag to your clipboard, and switch back to JS Bin to paste it in under where you see `<!-- Load the stylesheet ... -->`.  Your header should now look styled.
+
+Back in the registry page, copy the bit of the JavaScript tag after `modules=`, which looks like this (but will have a different number):
+
+```
+o-ft-header@1.2.3
+```
+
+Now paste that into the placeholder in the boilerplate after `<!-- Load main JavaScript bundle -->`, replacing the `a,b,c` bit with the  module name and version on your clipboard.
+
+Repeat this process for the footer:
+
+* Find the component page in the registry
+* Copy the HTML of the demo you want
+* Paste it in the `<body>` section of your JS Bin page
+* Back on the component registry page, find the module name and version from the quick start section, eg `o-ft-footer@^1.2.3`
+* Add this to the link and script tags
+
+That last bit differs slightly from the first component, because you already have LINK and SCRIPT tags on your page that are loading from the build service.  The build service is capable of bundling more than one component into the same bundle, so you can simply add multiple modules into the same URL.  Here's an example:
+
+```
+<link rel='stylesheet' href='//build.origami.ft.com/bundles/css?modules=o-ft-header@^1.2.3,o-ft-footer@^1.2.3'>
+```
+
+### Add custom CSS
+
+Once you have your components, you can add you own custom CSS.  Just before `</head>`, type:
+
+```
+<style>
+body {
+	margin: 0;
+}
+</style>
+```
+
+
+
+## Build service reference
 
 The resource compiler operates on the endpoints starting with `/bundles`. It packages the specified modules (including all their dependencies), bundles and minifies the result and returns it as an HTTP response.  Individual sub-endpoints serve JS and CSS.
 
