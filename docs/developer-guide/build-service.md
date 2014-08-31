@@ -11,7 +11,7 @@ If building modules sounds like a lot of work, you can let someone else do it fo
 
 This is especially useful for bootstrapping early stage prototypes as well as building hacks, experiments, and adding components to existing sites that weren't built with Origami in mind.  The service offers high availability, reliability, HTTPS with the same hostname and path, and its own CDN cache layer, so can be used for client-side requests.
 
-## How to build a page
+## Building a page
 
 The following steps are a brief tutorial to get you to the point of having a working page made of Origami components working in your browser.  Intentionally this tutorial takes every possible shortcut to allow you to acheive this with no software other than a web browser, but it should arm you with everything you need to add components to a site or build one from scratch.
 
@@ -27,7 +27,7 @@ Once you have the recommended boilerplate, you can begin to build your page.  Yo
 
 You'll see something like this:
 
-TODO:image
+![JS Bin start screen](/img/jsbin.png)
 
 If the panels you see are not 'HTML' and 'Output', click the buttons at the top of the page until you see only HTML and Output panels displayed.  Click anywhere in the 'HTML' view, press CTRL+A (CMD+A on MacOS) to select all the existing HTML, and then paste the HTML you copied earlier.
 
@@ -43,58 +43,64 @@ Now you need to find some components to add to your page.  As an example, we'll 
 To find the header:
 
 1. Type 'head' in the filter bar on the registry homepage
-2. The list below should start to filter to show only components with 'head' in their name.  At time of writing this tutorial, `o-ft-header` was the only one that matches 'head'.
+2. The list below the filter bar should start to change to show only components with 'head' in their name.  At time of writing this tutorial, `o-ft-header` was the only one that matched 'head'.
 3. Either click on the o-ft-header component or, if it's the top one in the list, just press enter.
 
 Now, you'll be looking at a demo of the header that you want.  Find the demo you like best ('Branded' is often a good choice) by ticking and unticking the demo names on the right of the registry page.  When you have it, look below the demo to find the HTML.
 
-Copy all the HTML to your clipboard.  In the case of the header there's a bit of extra HTML we've added just to show something below the header for the purposes of the demo, so you need to copy just `<header>` to `</header>`.
+![HTML source of a demo in the Origami registry](/img/registry-demo-html.png)
+
+Copy all the HTML to your clipboard.
 
 Switch to your JS Bin window and find the bit that says `<!-- Body content here -->`.  Paste your header HTML just below that.
 
+![After pasting the source of a component into a JS Bin](/img/jsbin-unstyled-component.png)
+
 Now on the right of your JS Bin window, you'll see the content for your header, but it will be unstyled.  You need to add the CSS and JavaScript to style it and activate its behaviours, like dropdown menus.  Go back to the registry, and on the o-ft-header page, scroll down to the secton called 'Quick start'.
 
-In quick start, you'll see two HTML tags, a `<link...>` and a `<script...>`.  Copy the link tag to your clipboard, and switch back to JS Bin to paste it in under where you see `<!-- Load the stylesheet ... -->`.  Your header should now look styled.
+In quick start, you'll see two HTML tags, a `<link...>` and a `<script...>`.  Copy the link tag to your clipboard, and switch back to JS Bin to paste it in under where you see `<!-- Load the stylesheet ... -->` (replacing the example).  Your header should now look styled.
 
-Back in the registry page, copy the bit of the JavaScript tag after `modules=`, which looks like this (but will have a different number):
+Back in the registry page, copy the bit of the JavaScript tag after `modules=`, which looks like this:
 
-```
-o-ft-header@1.2.3
-```
+	o-ft-header@x.y.z
 
 Now paste that into the placeholder in the boilerplate after `<!-- Load main JavaScript bundle -->`, replacing the `a,b,c` bit with the  module name and version on your clipboard.
 
+![Adding a JavaScript module to a page](/img/jsbin-add-js.png)
+
+This has now added the behaviour to your page, enabling drop-down menus to work.
+
 Repeat this process for the footer:
 
-* Find the component page in the registry
-* Copy the HTML of the demo you want
-* Paste it in the `<body>` section of your JS Bin page
-* Back on the component registry page, find the module name and version from the quick start section, eg `o-ft-footer@^1.2.3`
-* Add this to the link and script tags
+1. Find the component page in the registry
+1. Copy the HTML of the demo you want
+1. Paste it in the `<body>` section of your JS Bin page
+1. Back on the component registry page, find the module name and version from the quick start section, eg `o-ft-footer@^1.2.3`
+1. Add this to the link and script tags
 
-That last bit differs slightly from the first component, because you already have LINK and SCRIPT tags on your page that are loading from the build service.  The build service is capable of bundling more than one component into the same bundle, so you can simply add multiple modules into the same URL.  Here's an example:
+That last bit differs slightly from the first component, because you now already have `<link>` and `<script>` tags on your page that are loading from the build service.  The build service is capable of including more than one component in the same bundle, so you can simply add multiple modules into the same URL.  Here's an example:
 
-```
-<link rel='stylesheet' href='//build.origami.ft.com/bundles/css?modules=o-ft-header@^1.2.3,o-ft-footer@^1.2.3'>
-```
+	<link rel='stylesheet' href='//build.origami.ft.com/bundles/css?modules=o-ft-header@^1.2.3,o-ft-footer@^1.2.3'>
+
+It's important that you do this, so that any CSS that is shared between the header and footer (there's quite a bit) isn't downloaded twice.
+
 
 ### Add custom CSS
 
 Once you have your components, you can add you own custom CSS.  Just before `</head>`, type:
 
-```
-<style>
-body {
-	margin: 0;
-}
-</style>
-```
+	<style>
+	body {
+	  margin: 0;
+	}
+	</style>
+
+This will remove the margin on the body element.
 
 
+## How the build service works
 
-## Build service reference
-
-The resource compiler operates on the endpoints starting with `/bundles`. It packages the specified modules (including all their dependencies), bundles and minifies the result and returns it as an HTTP response.  Individual sub-endpoints serve JS and CSS.
+The resource compiler operates on the endpoints starting with `/bundles`. It packages the requested modules (including all their dependencies) using the standard [Origami build process]({{site.baseurl}}/docs/developer-guide/building-modules), bundles and minifies the result and returns it as an HTTP response.  Individual sub-endpoints serve JS and CSS.
 
 Examples of valid resource compilation requests:
 
@@ -105,8 +111,8 @@ Examples of valid resource compilation requests:
 You should most likely request all the JS modules you want in a single bundle request, and likewise for CSS, and then write them into the `<head>` or end of the `<body>` of your HTML document:
 
 <?prettify linenums=1?>
-	<link rel='stylesheet' href='http://build.origami.ft.com/bundles/css?modules=o-ft-nav@2.3,o-tweet@1,colors' />
-	<script src='http://build.origami.ft.com/bundles/js?modules=o-ft-nav@2.3,o-tweet@1,o-tracking@3.5,o-ads@1.2' />
+	<link rel='stylesheet' href='//build.origami.ft.com/bundles/css?modules=o-ft-nav@2.3,o-tweet@1,colors' />
+	<script src='//build.origami.ft.com/bundles/js?modules=o-ft-nav@2.3,o-tweet@1,o-tracking@3.5,o-ads@1.2' />
 
 <aside>
 	<h4>Avoiding problems with Content security policy</h4>
@@ -135,29 +141,13 @@ Note that some dependencies are required by the explicit module list sent to the
 
 Dependency conflicts must be resolved by either the product developer requesting a different version of the modules that contain the conflicting dependencies, or by the component developer updating the components to allow a broader range of versions of the dependency.
 
-### Build process
+### File proxy (/files)
 
-The build service performs the build process by executing these steps in order:
+The build service also offers the ability to request, over HTTP or HTTPS, any single file from any known module component.  This is useful to make use of modules that provide static resources such as images, fonts, audio, video or other media, without having to install them.
 
-1. Sort the requested modules in alphabetical order and produce a hash of the result to use as a key for this build request
-1. Create a new module directory, local to the build service platform
-1. If a JS bundle, run `npm install debowerify` in the module root, since debowerify cannot be installed globally)
-1. Create a bower.json file, listing all the requested modules as dependencies
-1. Run `bower install --json` to install the dependencies and get parseable output.  Stop if there are conflicting dependencies.
-1. Create a module_source file in the root of the module, containing a `require()` (for JS) or `@import` (for CSS) statement for each requested module.
-1. Run `browserify -t debowerify module_source module_bundle` (for JS) or `node-sass --include-path './bower_components' module_source module_bundle` (for CSS).  Wait for the build to finish.
-1. Run the requested minification process, if appropriate
-1. Cache the module_bundle file against this build request and discard the temporary module.
+The file proxy is also used by the resource compiler when creating bundles of JS or CSS that load external resources on demand.  This allows CSS loaded through the build service `/bundles` endpoint to still load any included backgrounds, and JavaScript modules may make AJAX requests to load static resources from their repos.
 
-
-## File proxy (/files)
-
-This API offers the ability to request, over HTTP, any single file from any known module component.  This is useful to make use of modules that provide static resources such as images, fonts, audio, video or other media, without having to install them.
-
-The file proxy is also used by the resource compiler when creating bundles of JS or CSS that load external resources on demand.  This allows CSS loaded through the resource compiler to still load any included backgrounds, and JavaScript modules may make AJAX requests to load static resources from their repos.
-
-
-## Caching and rebuilding
+### Caching and rebuilding
 
 Requested bundles and files are generated on demand and then cached indefinitely.  Where it's a bundle that includes Semver versions of modules, the build service checks periodically to see if the matching version has changed (the matching version may differ from the version actually used in the current bundle due to multiple modules requesting the same dependency at different semver ranges).  If so, it will re-run the build and swap out the existing cached version for the new one.
 
@@ -165,17 +155,11 @@ If bundles receive no requests at all for a period of two weeks, they'll be dele
 
 If you are loading build service URLs from the server side, you *must* fully respect [cache control](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.9) directives emitted by the build service.
 
-## Availability strategy
+### Reliability
 
-The build service is highly available, and shared-nothing, so each node is responsible individually for caching its own copy of the built bundles.  A load balancing strategy is implemented in front of build service nodes which follows this workflow:
+The build service is highly available, and shared-nothing, so each node is responsible individually for caching its own copy of the built bundles.
 
-1. Send request to a random node that has not yet been tried for this request.
-2. If response has a `200`, `3xx` or `4xx` status, send the response back to the client and stop.
-3. If there are any other nodes available that have not been tried yet, go back to step 1.
-4. If the request contains a `sync=1` parameter, send the latest response back to the client and stop.
-5. Add a sync=1 parameter to the request and go back to step 1.
-
-## Concurrency
+### Concurrency
 
 The build service is capable of running more than one build at the same time, but will not concurrently run more than one identical build.  The second and subsequent requests for the same resource received while the first is building will not cause a second build to be started, but will simply receive a `202` response (if async) or block waiting for the original build to finish (if sync).
 
