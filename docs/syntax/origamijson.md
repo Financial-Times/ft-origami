@@ -128,10 +128,6 @@ All origami components, whether modules or web services, should be discoverable 
 	<td>object</td>
 	<td>&nbsp;</td>
 </tr><tr>
-	<td><code>&nbsp;&nbsp;assetPaths</code></td>
-	<td>array</td>
-	<td>(optional) For modules only, an array of glob patterns that specify the locations of public assets within the repository.  Modules *should* provide a list of asset paths if the module uses the `o-assets` asset loader.  If no asset paths are specified, product developers *must* assume that all files in the module may need to be publicly loaded.</td>
-</tr><tr>
 	<td><code>}</code></td>
 	<td></td>
 	<td></td>
