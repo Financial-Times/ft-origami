@@ -180,6 +180,50 @@ Component authors *may* include a `demos` folder to provide examples.  Demos *mu
 
 When choosing content for a demo, and deciding on the composition of a demo, component developers *must* craft realistic examples using real use cases.  If it's necessary to make demos contrived in order to demonstrate the full range of features of the component, multiple demos *should* be created, so that at least one demo (which *should* be the default-expanded demo) shows a realistic use case.
 
+### Demo config file
+
+The demo config file tells the Build Service and the [origami-build-tools](https://github.com/Financial-Times/origami-build-tools) what demo files to build. It has two main properties:
+
+* `options`: configuration to apply to all demos (unless overridden for a specific demo)
+* `demos`: list of demos to build
+
+Options, and individual demos, can have the following properties:
+
+* `name`: Demo name which will also be used as the name of the outputted html file.
+* `template`: The mustache template to render.
+* `sass`: The SASS file to compile.
+* `js`: The JS file to build with Browserify.
+* `data`: Data to pass to the mustache template.
+* `bodyClasses`: String. CSS classes to set on the body.
+* `expanded`: (default: `true`) Whether the demo should be shown in expanded form in the [Registry](registry.origami.ft.com).
+* `description`: Optional explanation of the purpose of the demo.
+
+Example:
+
+```json
+{
+    "options": {
+        "sass": "demos/src/demo.scss",
+        "data": "demos/src/data.json",
+        "bodyClasses": "o-hoverable-on"
+    },
+    "demos": [
+        {
+            "name": "demo1",
+            "template": "demos/src/demo1.mustache",
+            "js": "demos/src/demo1.js"
+        },
+        {
+            "name": "demo2",
+            "template": "demos/src/demo2.mustache",
+            "js": "demos/src/demo2.js",
+            "expanded": false,
+            "description": "Demo of obscure but realistic scenario."
+        }
+    ]
+}
+```
+
 ### Continuous integration
 
 Modules *should* implement CI. If a module does so and is openly hosted on GitHub, it *must* use Travis CI, via the [origami-build-tools](https://github.com/Financial-Times/origami-build-tools) utility.  To invoke this in a module simply create a `.travis.yml` file in the root of the repo containing:
