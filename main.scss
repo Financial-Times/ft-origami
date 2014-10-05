@@ -12,3 +12,23 @@ body {
 	border: none !important;
 	padding: 0 !important;
 }
+
+.footer-logo {
+	float:right;
+	font-size: 20px;
+	.origami-logo {
+		width: 40px;
+	}
+}
+
+.origami-logo {
+	display: inline-block;
+	width: 50px;
+	height: 50px;
+	background-repeat: no-repeat;
+	background-position: 50% 50%;
+	background-size: contain;
+	background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 63.3 63.3'><g><g><polygon fill='#D7D1C6' points='31.7,51.3 19.9,63.2 0.1,43.4 0.1,19.7'/><polyline fill='#B7B5AB' points='43.6,0 19.9,0 0.1,19.7 12,31.6 43.6,0'/><polyline fill='#878680' points='63.3,43.4 63.3,19.7 43.6,0 31.7,11.8 63.3,43.4'/><polygon fill='#646464' points='19.9,63.2 43.6,63.2 63.3,43.4 51.5,31.6'/><path fill='#D7D1C6' d='m0.098068 19.7'/></g></g></svg>");
+	vertical-align: middle;
+	margin-right: 7px;
+}
