@@ -176,6 +176,13 @@ Components *should* include tests which at least verify that the component can b
 
 Component authors *may* include a `demos` folder to provide examples.  Demos *must* be created using [origami-build-tools](https://github.com/Financial-Times/origami-build-tools), and *must* be compatible with the demo viewer in the Origami registry.  Demos *must* include only the minimum amount of content to show the component, and particularly should not include any headings, backgrounds, margins or other content that are not part of the component itself, unless absolutely essential to the ability to demonstrate the component.
 
+Where styles need to be added specifically for a demo (eg to make the content of [o-grid](https://github.com/financial-times/o-grid) containers visible), they *must* be attached to classes with a `demo-` prefix, for example:
+
+<?prettify linenums=1?>
+	.demo-cell {
+	  background-color: red;
+	}
+
 ### Choosing demo content
 
 When choosing content for a demo, and deciding on the composition of a demo, component developers *must* craft realistic examples using real use cases.  If it's necessary to make demos contrived in order to demonstrate the full range of features of the component, multiple demos *should* be created, so that at least one demo (which *should* be the default-expanded demo) shows a realistic use case.
