@@ -10404,23 +10404,43 @@ require("./../o-ft-header/main.js");
 },{"./../o-ft-header/main.js":11,"./src/js/gist-it":19,"./src/js/nav":20,"./src/js/permalinks":21,"./src/js/reveals":22,"./src/js/tables":23}],19:[function(require,module,exports){
 /**
  * Display Gist-it gists
- *
- * Gist-it is a JSONp endpoint, so we need to attach a handler to the window object.
  */
 'use strict';
 
-if (typeof window.oTechdocs === 'undefined') window.oTechdocs = {};
+var $ = require("./../../../jquery/jquery.js");
 
-window.oTechdocs.renderGistIt = function(content, file) {
+$(function() {
 
-	// Extract just the prettyprint bit, which can then use techdocs standard styling
-	content = content.replace(/^[\s\S]*(<pre [^>]*>)([\s\S]*?<\/pre>)[\s\S]*$/, "<pre class='prettyprint linenums'>$2");
-	console.log(content);
+	[].slice.call(document.querySelectorAll('.o-techdocs-gist')).forEach(function(el) {
 
-	document.write(content);
-};
+		var repo = el.getAttribute('data-repo');
+		var branch = el.getAttribute('data-branch') || 'master';
+		var path = el.getAttribute('data-path');
+		var callbackName = "oTechdocsGistIt"+Math.floor(Math.random()*10000000)+(new Date()).getTime();
 
-},{}],20:[function(require,module,exports){
+		var url = "//gist-it.appspot.com/github/" + repo + "/blob/" + branch + path +"?footer=0&callback=" + callbackName;
+
+		window[callbackName] = function(content) {
+
+			// Extract just the prettyprint bit, which can then use techdocs standard styling
+			content = content.replace(/^[\s\S]*(<pre [^>]*>)([\s\S]*?<\/pre>)[\s\S]*$/, "<pre class='prettyprint linenums'>$2");
+
+			// Replace tabs with 4 spaces since by default tabs in <pre> render at 8-spaces wide
+			content = content.replace(/\t/g, '    ');
+
+			el.innerHTML = content;
+			window[callbackName] = undefined;
+
+			// If available, re-run prettify so that the new content is highlighted
+			if ("prettyPrint" in window) window.prettyPrint();
+		};
+
+		var sc = document.createElement('script'); sc.type = 'text/javascript'; sc.async = true; sc.src = url;
+		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(sc, s);
+	});
+});
+
+},{"./../../../jquery/jquery.js":2}],20:[function(require,module,exports){
 /*global require*/
 /**
  * Add a second navigation menu to quickly navigate to
