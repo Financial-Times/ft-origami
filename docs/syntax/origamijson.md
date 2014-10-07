@@ -134,6 +134,8 @@ All origami components, whether modules or web services, should be discoverable 
 </tr>
 </table>
 
+\* Required property
+
 ## Example
 
 <?prettify linenums=1?>
