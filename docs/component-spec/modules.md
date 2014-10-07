@@ -182,21 +182,24 @@ When choosing content for a demo, and deciding on the composition of a demo, com
 
 ### Demo config file
 
-The demo config file tells the Build Service and the [origami-build-tools](https://github.com/Financial-Times/origami-build-tools) what demo files to build. It has two main properties:
+The demo config file tells the Build Service and the [origami-build-tools](https://github.com/Financial-Times/origami-build-tools) what demo files to build. It has two properties:
 
-* `options`: configuration to apply to all demos (unless overridden for a specific demo)
-* `demos`: list of demos to build
+* `options`: __Object__ configuration to apply to all demos (unless overridden for a specific demo)
+* `demos`: __Array__ list of demos to build
 
 Options, and individual demos, can have the following properties:
 
-* `name`: Demo name which will also be used as the name of the outputted html file.
-* `template`: The mustache template to render.
-* `sass`: The SASS file to compile.
-* `js`: The JS file to build with Browserify.
-* `data`: Data to pass to the mustache template.
-* `bodyClasses`: String. CSS classes to set on the body.
-* `expanded`: (default: `true`) Whether the demo should be shown in expanded form in the [Registry](registry.origami.ft.com).
-* `description`: Optional explanation of the purpose of the demo.
+* `template`: __String__ The mustache template to render. (_Required_)
+* `sass`: __String__ The SASS file to compile. (_Optional_)
+* `js`: __String__ The JS file to build with Browserify. (_Optional_)
+* `data`: __String__ Data to pass to the mustache template. (_Optional_)
+* `bodyClasses`: __String__ CSS classes to set on the body. (_Optional_)
+* `expanded`: __Boolean__ (default: `true`) Whether the demo should be shown in expanded form in the [Registry](registry.origami.ft.com). (_Optional_)
+* `description`: __String__ Explanation of the purpose of the demo. (_Optional_)
+
+Individual demos also has another property:
+
+* `name`: __String__ Demo name which will also be used as the name of the outputted html file. (_Required_)
 
 Example:
 
