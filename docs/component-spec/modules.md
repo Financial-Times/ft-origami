@@ -197,7 +197,7 @@ Options, and individual demos, can have the following properties:
 * `expanded`: __Boolean__ (default: `true`) Whether the demo should be shown in expanded form in the [Registry](registry.origami.ft.com). (_Optional_)
 * `description`: __String__ Explanation of the purpose of the demo. (_Optional_)
 
-Individual demos also has another property:
+Individual demos also have another property:
 
 * `name`: __String__ Demo name which will also be used as the name of the outputted html file. (_Required_)
 
