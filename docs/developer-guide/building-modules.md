@@ -81,9 +81,19 @@ You now need a Node package to run the Origami build process.  How you install t
 	<p>If you compare building a website with making a cake, where your website is the finished cake and all the Origami components you plan to use are the ingredients, these build tools are the mixer and the oven - the tools you need to use to convert the ingredients into the cake.</p>
 </aside>
 
-###If you are using Gulp
-
 Choose where you want to start building your project (normally this is also the root of a git repository, but it can be any folder on your computer).  A common pattern is to create a folder called `sandboxes` in your home directory, and then create a subdirectory with the name of your project, eg `~/sandboxes/origami-demo`.  We'll refer to this as the 'root of the working tree', because you'll create files and folders within the project folder which descend from the root of the project.
+
+Install the build tools as a command line utility:
+
+<pre class='cli'>
+<kbd>sudo npm install -g https://github.com/Financial-Times/origami-build-tools/tarball/master</kbd>
+<output>/home/ubuntu/.nvm/v0.10.30/bin/origami-build-tools -> /home/ubuntu/.nvm/v0.10.30/lib/node_modules/origami-build-tools/lib/origami-build-tools-cli.js
+origami-build-tools@2.0.0 /home/ubuntu/.nvm/v0.10.30/lib/node_modules/origami-build-tools
+├── which@1.0.5
+...</output>
+</pre>
+
+###If you are using Gulp
 
 In the root of your working tree, create a file called `package.json`, with the following contents:
 
@@ -91,29 +101,11 @@ In the root of your working tree, create a file called `package.json`, with the 
 	  "private": true,
 	  "devDependencies": {
 	    "origami-build-tools": "https://github.com/Financial-Times/origami-build-tools/tarball/master",
-	    "gulp": ""^3.8.8"
+	    "gulp": "^3.8.8"
 	  }
 	}
 
 The packages are listed in *devDependencies* because they are not required to run your application, only to build it.  Marking your project as *private* means that it cannot accidentally be published to the [npm registry](http://npmjs.org) as a public component.
-
-Run npm to install the build tools:
-
-<pre class='cli'>
-<kbd>npm install</kbd>
-<output>...lots of output...</output>
-</pre>
-
-This will create a `node_modules` directory in the root of your working tree, containing [origami-build-tools](https://github.com/Financial-Times/origami-build-tools) and [gulp](http://gulpjs.com), which is all you need to run the build process.
-
-###If you are not using Gulp
-
-Install the build tools as a command line utility:
-
-<pre class='cli'>
-<kbd>sudo npm install -g https://github.com/Financial-Times/origami-build-tools/tarball/master</kbd>
-<output>TODO</output>
-</pre>
 
 ## 4. Set up a package manifest to load Origami components
 
@@ -174,6 +166,7 @@ The syntax of the JavaSript require is:
 
 As an example, create a `main.js` file at `/client/js/main.js`, containing:
 
+	'use strict';
 	// Require module
 	var date = require('o-date');
 
@@ -193,7 +186,7 @@ Now you need to set up the tasks to stitch everything together.  To do this, you
 * Where you have put your master SASS file and master JavaScript file
 * Where you want the finished bundles to be saved (usually a publicly accessible web server directory unless you are routing the request for the bundle through a front-controller)
 
-We'll assume for the purposes of this example that your CSS and JS are in `/client/sass` and `/client/js` and you want to save the finshed bundles in `/public`.  Create a file called `gulpfile.js` in the root of your project's working tree, with the following contents:
+We'll assume for the purposes of this example that your CSS and JS are in `/client/scss` and `/client/js` and you want to save the finshed bundles in `/public`.  Create a file called `gulpfile.js` in the root of your project's working tree, with the following contents:
 
 	'use strict';
 	var gulp = require('gulp');
@@ -202,7 +195,7 @@ We'll assume for the purposes of this example that your CSS and JS are in `/clie
 	gulp.task('build', function() {
 	    obt.build(gulp, {
 	    	js: './client/js/main.js',
-	    	sass: './client/sass/main.scss',
+	    	sass: './client/scss/main.scss',
 	    	buildJs: 'bundle.js',
 	    	buildCss: 'bundle.css',
 	    	buildFolder: 'public',
@@ -225,7 +218,7 @@ We'll assume for the purposes of this example that your CSS and JS are in `/clie
 Taking it step by step:
 
 * We configure three gulp tasks: build, verify and watch
-* Build runs SASS to compile the file `/client/sass/main.scss` into `/public/bundle.css` using compressed (minified) CSS syntax, and Browserify to compile the file `/client/js/main.js` into `/public/bundle.js`
+* Build runs SASS to compile the file `/client/scss/main.scss` into `/public/bundle.css` using compressed (minified) CSS syntax, and Browserify to compile the file `/client/js/main.js` into `/public/bundle.js`
 * Verify runs SCSSLint on `/client/sass/main.scss` and JSHint on `/client/js/main.js` to make sure your code is readable and hasn't got potential errors.  We enforce coding standards defined by Origami ([SCSS]({{site.baseurl}}/docs/syntax/scss/#syntax-convention-rules) and [JavaScript]({{site.baseurl}}/docs/syntax/js/#syntax-convention-rules))
 * Watch is set up to run the verify and build tasks automatically if any files in your client-side SASS or JS directories change
 
@@ -241,7 +234,7 @@ Please don't commit dependencies into your project.  To avoid this, you should a
 	node_modules/
 	public/
 
-This list of ignored files includes your two dependency directories (`node_modules` for your build tools, and `bower_components` for your Origami components), a couple of annoying directories often created by your computer automatically (`.DS_Store` and `.sass-cache`), and finally the `public` directory because the files in there will be generated by the build process and are not part of our application's source code.
+This list of ignored files includes your two dependency directories (`node_modules` for your build tools, and `bower_components` for your Origami components), a couple of annoying directories often created by your computer automatically (`.DS_Store` and `.sass-cache`), and finally the `public` directory because the files in there will be generated by the build process and are not part of our application's source code. `node_modules` is only necessary if you're using Node.JS, like for example, if you went with the Gulp build process.
 
 Remember that because `.gitignore` starts with a dot, it may not show up in your directory listing, and you may need to toggle an option to make hidden files visible in order to see it.
 
@@ -254,7 +247,9 @@ You're ready to run your build.  First, use origami-build-tools to install every
 <output>...output telling us which tools are being installed...</output>
 </pre>
 
-This will install a number of additional tools, and create a `bower_components` directory in the root of your working tree, containing all the Origami modules you've listed in your `bower.json` file.
+This will install a number of additional tools, and create a `bower_components`directory in the root of your working tree, containing all the Origami modules you've listed in your `bower.json` file.
+
+It will also create a `node_modules` directory in the root of your working tree, containing [origami-build-tools](https://github.com/Financial-Times/origami-build-tools) and [gulp](http://gulpjs.com), which is all you need to run the build process.
 
 Now bundle it all together.  This is done in one of two ways depending on whether you are using Gulp or not.
 
@@ -265,7 +260,7 @@ Just type `gulp`:
 <pre class='cli'>
 <kbd>gulp</kbd>
 <output>Browserifying ./client/js/main.js
-Compiling ./client/sass/main.scss</output>
+Compiling ./client/scss/main.scss</output>
 </pre>
 
 If you want to continue working on your CSS and JS code (edit your own code but not anything in the bower_components directory), you can also tell grunt to watch your files and automatically retrigger the build when you save a change.
@@ -282,7 +277,7 @@ If you want to continue working on your CSS and JS code (edit your own code but 
 Since you have not saved any configuration specific to your project, you need to tell the build tools where to find the files in your project by passing arguments on the command line:
 
 <pre class='cli'>
-<kbd>origami-build-tools build --js=client/js/main.js --sass=client/sass/main.scss --buildJs=bundle.js --buildCss=bundle.css --buildFolder=public</kbd>
+<kbd>origami-build-tools build --js=./client/js/main.js --sass=./client/scss/main.scss --buildJs=bundle.js --buildCss=bundle.css --buildFolder=public</kbd>
 <output>Browserifying ./client/js/main.js
 Compiling ./client/sass/main.scss</output>
 </pre>
