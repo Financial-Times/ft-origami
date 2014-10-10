@@ -187,6 +187,53 @@ Where styles need to be added specifically for a demo (eg to make the content of
 
 When choosing content for a demo, and deciding on the composition of a demo, component developers *must* craft realistic examples using real use cases.  If it's necessary to make demos contrived in order to demonstrate the full range of features of the component, multiple demos *should* be created, so that at least one demo (which *should* be the default-expanded demo) shows a realistic use case.
 
+### Demo config file
+
+The demo config file tells the Build Service and the [origami-build-tools](https://github.com/Financial-Times/origami-build-tools) what demo files to build. It has two properties:
+
+* `options`: __Object__ configuration to apply to all demos (unless overridden for a specific demo)
+* `demos`: __Array__ list of demos to build
+
+Options, and individual demos, can have the following properties:
+
+* `template`: __String__ The mustache template to render. (_Required_)
+* `sass`: __String__ The SASS file to compile. (_Optional_)
+* `js`: __String__ The JS file to build with Browserify. (_Optional_)
+* `data`: __String__ Data to pass to the mustache template. (_Optional_)
+* `bodyClasses`: __String__ CSS classes to set on the body. (_Optional_)
+* `expanded`: __Boolean__ (default: `true`) Whether the demo should be shown in expanded form in the [Registry](registry.origami.ft.com). (_Optional_)
+* `description`: __String__ Explanation of the purpose of the demo. (_Optional_)
+
+Individual demos also have another property:
+
+* `name`: __String__ Demo name which will also be used as the name of the outputted html file. (_Required_)
+
+Example:
+
+```json
+{
+    "options": {
+        "sass": "demos/src/demo.scss",
+        "data": "demos/src/data.json",
+        "bodyClasses": "o-hoverable-on"
+    },
+    "demos": [
+        {
+            "name": "demo1",
+            "template": "demos/src/demo1.mustache",
+            "js": "demos/src/demo1.js"
+        },
+        {
+            "name": "demo2",
+            "template": "demos/src/demo2.mustache",
+            "js": "demos/src/demo2.js",
+            "expanded": false,
+            "description": "Demo of obscure but realistic scenario."
+        }
+    ]
+}
+```
+
 ### Continuous integration
 
 Modules *should* implement CI. If a module does so and is openly hosted on GitHub, it *must* use Travis CI, via the [origami-build-tools](https://github.com/Financial-Times/origami-build-tools) utility.  To invoke this in a module simply create a `.travis.yml` file in the root of the repo containing:

@@ -16,14 +16,13 @@ This tutorial assumes you are starting from a fresh install of a UNIX-like OS wi
 	<p>Origami's build tools do not support Windows as a development environment and the instructions on this page assume you are using a UNIX-like OS.  Windows <strong>might</strong> work, to some degree, but we don't make any guarantees, either of what works today or what might continue to work tomorrow!  If you're a windows user, consider running a Linux VM, or signing up for a free <a href='http://c9.io'>Cloud9</a> account, and use their online Ubuntu VMs (but don't put any passwords or other secret data into C9 VMs)</p>
 </aside>
 
-## 1. Install NodeJS, npm, bower and grunt
+## 1. Install NodeJS, npm and gulp
 
 To use Origami components, you need some Node tools:
 
-* [NodeJS](http://nodejs.org/) is the JavaScript runtime, which we need to run npm, bower and grunt.
+* [NodeJS](http://nodejs.org/) is the JavaScript runtime, which we need to run npm, bower and gulp.
 * [npm](http://npmjs.org) is the package manager for the back end (loads Origami build tools)
-* [bower](http://bower.io) is the package manager for the front end (loads Origami components)
-* [grunt](http://gruntjs.com/) is a task runner, which we use to run the build process
+* [gulp](http://gulpjs.com/) is a task runner, which we use to run the build process
 
 NodeJS can be installed manually or via package management, and often ships preinstalled on many OS distributions.  To find out if you have it installed and which version you have, type this at a terminal ([What's a terminal?](#note-terminal)):
 
@@ -45,18 +44,17 @@ If you want to install on a server or other maintained environment, you'll most 
 
 * [Install Node via package manager](https://github.com/joyent/node/wiki/Installing-Node.js-via-package-manager)
 
-Installing Node will automatically install [npm](http://npmjs.org), the Node Package Manager, which you can then use to install bower and grunt (bower and grunt are Node modules so are available from the NPM registry).  Once you have installed Node, type this at a terminal:
+Installing Node will automatically install [npm](http://npmjs.org), the Node Package Manager, which you can then use to install gulp (it's a Node module so it's available from the NPM registry).  Once you have installed Node, type this at a terminal:
 
 <pre class='cli'>
-<kbd>sudo npm install -g bower</kbd>
-<kbd>sudo npm install -g grunt-cli</kbd>
+<kbd>sudo npm install -g gulp</kbd>
 </pre>
 
-These commands may prompt you for your password.  You will need root access to your machine to complete this step.  On FT-managed machines the root password is typically the same as the password you use to log into the corporate network.
+This command may prompt you for your password.  You will need root access to your machine to complete this step.  On FT-managed machines the root password is typically the same as the password you use to log into the corporate network.
 
-## 2. Install Ruby, the Gem installer, and the SASS gem
+## 2. Install Ruby
 
-Ruby is required to run the SASS compiler, which converts Origami's complex [SASS](http://sass-lang.com/) code into simple CSS that defines what our components look like on the web page.  You may already have Ruby, since it ships preinstalled on many computers.  To find out, type this at a terminal:
+Ruby is required to run the [SASS](http://sass-lang.com/) compiler and [SCSS-Lint](https://github.com/causes/scss-lint). You may already have Ruby, since it ships preinstalled on many computers.  To find out, type this at a terminal:
 
 <pre class='cli'>
 <kbd>ruby -v</kbd>
@@ -67,33 +65,19 @@ If you see an error, or the version does not match the latest version shown on t
 
 * [View Ruby install guide](https://www.ruby-lang.org/en/installation/)
 
-Installing Ruby also installs Gem, Ruby's package manager (Gem is to Ruby as NPM is to Node).  Once Ruby is installed, you can install the Sass gem using the gem installer:
+Installing Ruby also installs Gem, Ruby's package manager (Gem is to Ruby as NPM is to Node).
 
-<pre class='cli'>
-<kbd>sudo gem install sass</kbd>
-<output>Fetching: sass-3.3.11.gem (100%)
-Successfully installed sass-3.3.11
-Parsing documentation for sass-3.3.11
-Installing ri documentation for sass-3.3.11
-1 gem installed</output>
-</pre>
+## 3. Set up an npm package manifest to install origami build tools
 
-It should show that it's installed at least SASS v3.3.  You now have all the system-level pre-requisities to build Origami modules in a project sandbox, so the remaining instructions in this tutorial can be performed as an unprivileged user and will only affect files in your project's working tree.
-
-## 3. Set up an NPM package manifest to install build tools
-
-You now need some Node packages to run the Origami build process.  Choose where you want to start building your project (normally this is also the root of a git repository, but it can be any folder on your computer).  A common pattern is to create a folder called `sandboxes` in your home directory, and then create a subdirectory with the name of your project, eg `/sandboxes/origami-demo`.  We'll refer to this as the 'root of the working tree', because you'll create files and folders within the project folder which descend from the root of the project.
+You now need a Node package to run the Origami build process.  Choose where you want to start building your project (normally this is also the root of a git repository, but it can be any folder on your computer).  A common pattern is to create a folder called `sandboxes` in your home directory, and then create a subdirectory with the name of your project, eg `/sandboxes/origami-demo`.  We'll refer to this as the 'root of the working tree', because you'll create files and folders within the project folder which descend from the root of the project.
 
 In the root of your working tree, create a file called `package.json`, with the following contents:
 
 	{
 	  "private": true,
 	  "devDependencies": {
-	    "grunt-contrib-sass": ">=0.6.0 <1",
-	    "grunt-browserify": "^1.3.0",
-	    "grunt-contrib-watch": ">=0.5.3 <1",
-	    "textrequireify": "^1.0.0",
-	    "debowerify": ">=0.5.1 <1"
+	    "origami-build-tools": "https://github.com/Financial-Times/origami-build-tools/tarball/gulp",
+	    "gulp": ""^3.8.8"
 	  }
 	}
 
@@ -102,16 +86,30 @@ In the root of your working tree, create a file called `package.json`, with the 
 	<p>If you compare building a website with making a cake, where your website is the finished cake and all the Origami components you plan to use are the ingredients, these build tools are the mixer and the oven - the tools you need to use to convert the ingredients into the cake.</p>
 </aside>
 
-You're installing three grunt plugins: [contrib-sass](https://npmjs.org/package/grunt-contrib-sass) to compile SASS (which uses the Ruby SASS gem you installed in step 2), [browserify](https://npmjs.org/package/grunt-browserify) to compile JavaScript using [browserify](http://browserify.org/), and [contrib-watch](https://npmjs.org/package/grunt-contrib-watch) to allow you to trigger the build process to re-run automatically when you change any of your source files.
+Run npm to install the build tool dependencies:
 
-You're also installing two browserify transforms: [debowerify](https://npmjs.org/package/debowerify) which allows browserify to compile JavaScript modules that have been installed using bower, and [textrequireify](http://git.svc.ft.com:8080/projects/OT/repos/textrequireify) which allows inlining of static assets like templates into JavaScript files.
+<pre class='cli'>
+<kbd>npm install</kbd>
+<output>...lots of output...</output>
+</pre>
 
-These modules are listed as *devDependencies* because they are not required to run your application, only to build it.  Marking your project as *private* means that it cannot accidentally be published to the [npm registry](http://npmjs.org) as a public component.
+This will create a `node_modules` directory in the root of your working tree, containing [origami-build-tools](https://github.com/Financial-Times/origami-build-tools) and [gulp](http://gulpjs.com), which is all you need to run the build process.
 
-<aside>
-	<h4>Specifying versions</h4>
-	You may like to amend your <code>package.json</code> to replace the versions above with more recent ones.  You can find the latest version on the relevant NPM module page linked above.  The versions shown here are known to work by the Origami team, and are expressed using the <a href='http://www.semver.org'>Semver</a> <code>^</code> operator, which accepts updated versions up to but not including the next major version (note that this doesn't work in the same way for versions &lt; 1 so to get the same behaviour, specify the range explicitly)
-</aside>
+Now you can run `origami-build-tools` on the command line too. You can use it to install some remaining tools:
+
+* [bower](http://bower.io) is the package manager for the front end (loads Origami components)
+* [SASS](http://sass-lang.com/) converts Origami's SASS code into simple CSS that defines what our components look like on the web page
+* [SCSS-Lint](https://github.com/causes/scss-lint) makes sure our SASS code is clean and readable
+* [JSHint](http://jshint.com) detects errors and potential problems in our JS code
+
+To do this, just run:
+
+<pre class='cli'>
+<kbd>origami-build-tools install</kbd>
+<output>...output telling us which tools are being installed...</output>
+</pre>
+
+This module is listed in *devDependencies* because it is not required to run your application, only to build it.  Marking your project as *private* means that it cannot accidentally be published to the [npm registry](http://npmjs.org) as a public component.
 
 ## 4. Set up a bower package manifest to load Origami components
 
@@ -122,10 +120,10 @@ Once you know which Origami modules you want, create a `bower.json` file in the 
 	{
 	   "name": "origami-demo",
 	   "dependencies": {
-	      "o-ft-header": "^2.5.5",
+	      "o-ft-header": "^2.5.9",
 	      "o-ft-footer": "^2.0.1",
-	      "o-colors": "^2.3.20",
-	      "o-date": ">=0.4.2 <1"
+	      "o-colors": "^2.4.3",
+	      "o-date": "^1.0.0"
 	   }
 	}
 
@@ -177,78 +175,53 @@ As an example, create a `main.js` file at `/client/js/main.js`, containing:
 
 	// Wait until the page has loaded
 	document.addEventListener('DOMContentReady', function() {
-
 		// Find all the <time data-o-component='o-date'> elements and update them so that they show *relative* time
 		date.init();
 	});
 
 
-## 6. Set up a grunt automation script
+## 6. Set up a gulp automation script
 
 Now you need to set up the tasks to stitch everything together.  To do this, you need to know:
 
 * Where you have put your master SASS file and master JavaScript file
 * Where you want the finished bundles to be saved (usually a publicly accessible web server directory unless you are routing the request for the bundle through a front-controller)
 
-We'll assume for the purposes of this example that your CSS and JS are in `/client/sass` and `/client/js` and you want to save the finshed bundles in `/public` (make sure that directory exists).  Create a file called `Gruntfile.js` in the root of your project's working tree, with the following contents:
+We'll assume for the purposes of this example that your CSS and JS are in `/client/sass` and `/client/js` and you want to save the finshed bundles in `/public`.  Create a file called `gulpfile.js` in the root of your project's working tree, with the following contents:
 
-	module.exports = function(grunt) {
-	  "use strict";
+	'use strict';
+	var gulp = require('gulp');
+	var obt = require('origami-build-tools');
 
-	  grunt.initConfig({
-	    sass: {
-	      docs: {
-	        options: {
-	          style: 'compressed',
-	          loadPath: './bower_components'
-	        },
-	        files: {
-	          './public/bundle.css': './client/scss/main.scss'
-	        }
-	      }
-	    },
-	    browserify: {
-	      dist: {
-	        files: {
-	          './public/bundle.js': ['./client/js/main.js'],
-	        },
-	        options: {
-	          transform: ['debowerify', 'textrequireify']
-	        }
-	      }
-	    },
-	    watch: {
-	      sass: {
-	        files: ['./client/scss/**'],
-	        tasks: ['sass']
-	      },
-	      js: {
-	        files: ['./client/js/**'],
-	        tasks: ['browserify']
-	      }
-	    }
-	  });
+	gulp.task('build', function() {
+	    obt.build(gulp, {
+	    	js: './client/js/main.js',
+	    	sass: './client/sass/main.scss',
+	    	buildJs: 'bundle.js',
+	    	buildCss: 'bundle.css',
+	    	buildFolder: 'public',
+	    });
+	});
 
+	gulp.task('verify', function() {
+	    obt.verify(gulp, {
+	    	js: './client/js/main.js',
+	    	sass: './client/sass/main.scss'
+	    });
+	});
 
-	  grunt.loadNpmTasks('grunt-contrib-sass');
-	  grunt.loadNpmTasks('grunt-contrib-watch');
-	  grunt.loadNpmTasks('grunt-browserify');
+	gulp.task('watch', function() {
+		gulp.watch('./client/**/*', ['verify', 'build']);
+	});
 
-	  // Default task(s).
-	  grunt.registerTask('default', ['sass', 'browserify']);
-	  grunt.registerTask('js', ['browserify']);
-	  grunt.registerTask('css', ['sass']);
-	};
+	gulp.task('default', ['verify', 'build', 'watch']);
 
+Taking it step by step:
 
-This is a little long, but taking it step by step:
-
-* We create config for three grunt tasks: sass, browserify and watch.
-* Sass is configured to compile the file /client/sass/main.scss into /public/bundle.css using compressed (minified) CSS syntax, and loading modules from ./bower_components (where the Origami components will have been installed by bower)
-* Browserify is configued to compile the file /client/js/main.js into /public/bundle.js, via the debowerify transform, which adds support for finding the modules in bower_components (similar to setting the loadPath in the Sass task)
-* Watch is set up to run both the browserify and sass tasks automatically if any files in your client-side SASS or JS directories change
-* We load the three task runners that are needed
-* We register three command-line commands that are linked to running tasks.  This enables you to type `grunt js` on the command line and have it run browserify.  Some are already supported by default, so we don't need to configure `grunt watch`, but it will still work and run the watch task.  `grunt` with no argument will run the default task, which we've configured to be both browserify and sass.
+* We configure three gulp tasks: build, verify and watch
+* Build runs SASS to compile the file /client/sass/main.scss into /public/bundle.css using compressed (minified) CSS syntax, and Browserify to compile the file /client/js/main.js into /public/bundle.js
+* Verify runs SCSSLint on /client/sass/main.scss and JSHint on /client/js/main.js to make sure your code is readable and hasn't got potential errors
+* Watch is set up to run both the build and verify tasks automatically if any files in your client-side SASS or JS directories change
 
 ## 7. Prevent git from committing dependencies
 
@@ -266,15 +239,6 @@ Remember that because `.gitignore` starts with a dot, it may not show up in your
 
 ## 8. Run the build
 
-Run npm to install the build tool dependencies:
-
-<pre class='cli'>
-<kbd>npm install</kbd>
-<output>...lots of output...</output>
-</pre>
-
-This will create a `node_modules` directory in the root of your working tree, containing all the node packages you need to run the build process.
-
 Now run bower to install the front-end components:
 
 <pre class='cli'>
@@ -287,15 +251,12 @@ bower o-tweet#>=0.1 <1         resolve https://github.com/Financial-Times/o-twee
 This will create a `bower_components` directory in the root of your working tree, containing all the front end modules you want to use in your project.
 
 
-Now bundle it all together with grunt:
+Now bundle it all together with gulp:
 
 <pre class='cli'>
-<kbd>grunt</kbd>
-<output>Running "sass:docs" (sass) task
-Running "browserify:dist" (browserify) task
->> Bundled ./public/bundle.js
-
-Done, without errors.</output>
+<kbd>gulp</kbd>
+<output>Browserifying ./client/js/main.js
+Compiling ./client/sass/main.scss</output>
 </pre>
 
 This will use the tools you installed with npm, to read your project's JS and CSS master files, fully explore all their required dependencies, and pull everything together into two bundles, one for JS, and one for CSS.
@@ -303,9 +264,10 @@ This will use the tools you installed with npm, to read your project's JS and CS
 If you want to continue working on your CSS and JS code (edit your own code but not anything in the bower_components directory), you'll also want to use grunt to watch your files and automatically retrigger the build when you save a change.
 
 <pre class='cli'>
-<kbd>grunt watch</kbd>
-<output>Running "watch" task
-Waiting...</output>
+<kbd>gulp watch</kbd>
+<output>[13:38:37] Using gulpfile ~/origami/obt-test/gulpfile.js
+[13:38:37] Starting 'watch'...
+[13:38:37] Finished 'watch' after 9.1 ms</output>
 </pre>
 
 
