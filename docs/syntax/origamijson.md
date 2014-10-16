@@ -44,7 +44,7 @@ All origami components, whether modules or web services, should be discoverable 
 			<li>review code prior to a release</li>
 			<li>sign off deployments</li>
 			<li>publish and keep up to date release notes and documentation</li>
-			<li>move to decommision the component when appropriate</li>
+			<li>move to decommission the component when appropriate</li>
 		</ul>
 	</td>
 </tr><tr>
