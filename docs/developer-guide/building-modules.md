@@ -198,7 +198,7 @@ We'll assume for the purposes of this example that your CSS and JS are in `/clie
 	    	sass: './client/scss/main.scss',
 	    	buildJs: 'bundle.js',
 	    	buildCss: 'bundle.css',
-	    	buildFolder: 'public',
+	    	buildFolder: 'public'
 	    });
 	});
 
