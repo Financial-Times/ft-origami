@@ -153,6 +153,7 @@ As an example (assuming you loaded the header, footer and colours module in your
 	/* Import Origami components */
 	@import 'o-ft-header/main';
 	@import 'o-ft-footer/main';
+	@import 'o-colors/main';
 
 	/* Add our own SASS, using the o-colors module to style the body */
 	body {
