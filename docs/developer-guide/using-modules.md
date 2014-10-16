@@ -22,18 +22,18 @@ If you are not sure which strategy to use to build your CSS and JS, consult the 
 <tr><td>Can develop without being online</td><td>Yes</td><td>No, you need to be online if your pages pull resources from the build service.</td></tr>
 </table>
 
-Complete instructions for using both are included in this guide:
+Complete tutorials for using both are included in this guide:
 
 * [Building manually]({{site.baseurl}}/docs/developer-guide/building-modules)
 * [Using the build service]({{site.baseurl}}/docs/developer-guide/build-service)
+
+## Core vs Enhanced experience
 
 <aside>
 	<h4>Mustache as a spec</h4>
 	<p>Origami modules don't include markup in their build process.  Any templates inlcluded in a module component are simply specifications for the markup you need to write to activate the CSS and JavaScript, which use the Mustache template syntax.  Don't feel the need to consume the templates in your app and run Mustache, though you can if you want to, and Mustache implementations are available for most platforms.</p>
 	<p>In the future it's likely that Origami markup will be available as templates in [HTML imports]()</p>
 </aside>
-
-## Core vs Enhanced experience
 
 Whether via the build service or your own build process, your Origami modules will eventually compile to two resources - one JavaScript and one CSS.  You should serve the CSS to *all user agents*, but the JavaScript only to those that meet the minimum standards assumed by Origami module developers.  To ensure that you only run Origami JavaScript in these 'good' browsers, use a '[Cuts the mustard](http://responsivenews.co.uk/post/18948466399/cutting-the-mustard)' test.
 
