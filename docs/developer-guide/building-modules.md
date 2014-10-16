@@ -66,7 +66,7 @@ If you see an error, or the version does not match the latest version shown on t
 [Gulp](http://gulpjs.com/) is a task runner, which we use to run the build process tasks.  Once you have installed Node, type this at a terminal:
 
 <pre class='cli'>
-<kbd>sudo npm install -g gulp</kbd>
+<kbd>npm install -g gulp</kbd>
 </pre>
 
 This command may prompt you for your password.  You will need administrative access to your machine to complete this step.  On FT-managed machines the password is typically the same as the password you use to log into the corporate network.
@@ -86,7 +86,7 @@ Choose where you want to start building your project (normally this is also the 
 Install the build tools as a command line utility:
 
 <pre class='cli'>
-<kbd>sudo npm install -g https://github.com/Financial-Times/origami-build-tools/tarball/master</kbd>
+<kbd>npm install -g https://github.com/Financial-Times/origami-build-tools/tarball/master</kbd>
 <output>/home/ubuntu/.nvm/v0.10.30/bin/origami-build-tools -> /home/ubuntu/.nvm/v0.10.30/lib/node_modules/origami-build-tools/lib/origami-build-tools-cli.js
 origami-build-tools@2.0.0 /home/ubuntu/.nvm/v0.10.30/lib/node_modules/origami-build-tools
 ├── which@1.0.5
