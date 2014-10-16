@@ -38,7 +38,7 @@ All origami components, whether modules or web services, should be discoverable 
 	<td><code>&nbsp;&nbsp;support</code></td>
 	<td>string*</td>
 	<td>
-		<p>Where a product developer can go for support on this component.  Either an email address (which should be a group or role based address, nota named individual), or the URL of the component's bug or issue tracker (eg a GitHub issues URL, or other issue tracker such as Redmine).</p>
+		<p>Where a product developer can go for support on this component.  Either an email address (which should be a group or role based address, not a named individual), or the URL of the component's bug or issue tracker (eg a GitHub issues URL, or other issue tracker such as Redmine).</p>
 		<p>The owner identified here by email address or URL commits to the following obligations:</p>
 		<ul>
 			<li>review code prior to a release</li>
