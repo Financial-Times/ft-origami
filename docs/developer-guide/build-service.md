@@ -141,6 +141,26 @@ Note that some dependencies are required by the explicit module list sent to the
 
 Dependency conflicts must be resolved by either the product developer requesting a different version of the modules that contain the conflicting dependencies, or by the component developer updating the components to allow a broader range of versions of the dependency.
 
+### Shinkwrapping
+
+Bundle endpoints (beginning `/bundles/`) support shrinkwrapping their output.  If your bundle request omits a version number, uses semver ranges, or does not include all the modules involved in the bundle (including all dependencies), then it's expected that the content of the bundle URL *will change over time*, because new versions of modules may be released that satisfy your request criteria.
+
+If you are risk-averse and want to ensure that the content of the bundle URL is always the same, you can obtain a 'shrinkwrapped' version by ensuring your initial request is unminified.  Eg:
+
+	http://build.origami.ft.com/bundles/css?modules=o-grid&minify=none
+
+At time of writing this produces content prefixed with:
+
+<?prettify linenums=1?>
+	/** Shrinkwrap URL:
+	 *    /bundles/css?modules=o-grid@2.2.0,o-useragent@2.0.1
+	 */
+
+This locks down the precise versions of each constituent in the bundle to the version that currently best matches your request.  You can then swap your original URL for the shrinkwrapped one to ensure that the returned content always remains unchanged:
+
+	http://build.origami.ft.com/bundles/css?modules=o-grid@2.2.0,o-useragent@2.0.1
+
+
 ### File proxy (/files)
 
 The build service also offers the ability to request, over HTTP or HTTPS, any single file from any known module component.  This is useful to make use of modules that provide static resources such as images, fonts, audio, video or other media, without having to install them.
