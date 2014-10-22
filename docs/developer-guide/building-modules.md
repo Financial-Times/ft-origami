@@ -168,7 +168,6 @@ As an example, create a `main.js` file at `/client/js/main.js`, containing:
 
 	'use strict';
 	// Require module
-	var date = require('o-date');
 	var header = require('o-ft-header');
 
 	// Wait until the page has loaded
