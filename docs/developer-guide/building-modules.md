@@ -118,8 +118,7 @@ Once you know which Origami modules you want, create a `bower.json` file in the 
 	   "dependencies": {
 	      "o-ft-header": "^2.5.9",
 	      "o-ft-footer": "^2.0.1",
-	      "o-colors": "^2.4.3",
-	      "o-date": "^1.0.0"
+	      "o-colors": "^2.4.3"
 	   }
 	}
 
@@ -158,7 +157,7 @@ As an example (assuming you loaded the header, footer and colours module in your
 	/* Add our own SASS, using the o-colors module to style the body */
 	body {
 		margin: 0;
-		@include oColorsFor(body, background);
+		@include oColorsFor(page, background);
 	}
 
 The syntax of the JavaSript require is:
@@ -170,11 +169,12 @@ As an example, create a `main.js` file at `/client/js/main.js`, containing:
 	'use strict';
 	// Require module
 	var date = require('o-date');
+	var header = require('o-ft-header');
 
 	// Wait until the page has loaded
 	document.addEventListener('DOMContentReady', function() {
-		// Find all the <time data-o-component='o-date'> elements and update them so that they show *relative* time
-		date.init();
+		// Dispatch a custom event that will tell all required modules to initialise
+		document.dispatchEvent(new CustomEvent('o.DOMContentLoaded'));
 	});
 
 
