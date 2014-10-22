@@ -171,6 +171,9 @@ As an example, create a `main.js` file at `/client/js/main.js`, containing:
 	var header = require('o-ft-header');
 
 	// Wait until the page has loaded
+	if (document.readyState === 'interactive' || document.readyState === 'complete') {
+	    document.dispatchEvent(new CustomEvent('o.DOMContentLoaded'));
+	}
 	document.addEventListener('DOMContentReady', function() {
 		// Dispatch a custom event that will tell all required modules to initialise
 		document.dispatchEvent(new CustomEvent('o.DOMContentLoaded'));
