@@ -103,6 +103,9 @@ Origami components do not perform any initialisation automatically, to avoid app
 
 If you wish to initalise Origami components that have auto-initialise capability, fire these custom events in response to the native ones:
 
+	if (document.readyState === 'interactive' || document.readyState === 'complete') {
+	    document.dispatchEvent(new CustomEvent('o.DOMContentLoaded'));
+	}
 	document.addEventListener("DOMContentLoaded", function() {
 	    document.dispatchEvent(new CustomEvent('o.DOMContentLoaded'));
 	});
