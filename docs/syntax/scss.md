@@ -36,7 +36,8 @@ SASS does not have proper encapsulation or scope, so strict adherence to namespa
 * Tag selectors (unprefixed, eg `h1`) *must not* be used alone, but may be used if prefixed with a correctly namespaced selector
     - GOOD: `.o-thing__content > h1`
     - BAD: `h1`
-* ID and palceholder selectors (`#` and `%`) *must not* be used at all (Placeholders have been used historically, see [Issue #254](https://github.com/Financial-Times/ft-origami/issues/254), but modules which still have them must drop them in any major release)
+* Placeholder selectors (`%`) *must not* be used to reference other modules, but *may* be used within a module (Foreign placeholders have been used historically, see [Issue #254](https://github.com/Financial-Times/ft-origami/issues/254), but modules which still have them must drop them in any major release)
+* ID selectors (`#`) *must not* be used at all
 * Modules *must not* set or modify any CSS or SASS element in another module's namespace.
 * Styles *must not* affect any element except those which:
     * are in a portion of [owned DOM]({{site.baseurl}}/docs/syntax/html/#owned_dom); or
@@ -184,9 +185,11 @@ Where necessary, components *may* provide style rules targeted at specific user 
 * CSS expressions and behaviours *should* not be used, except to polyfill essential features for older browsers (e.g. boxsizing.htc for `box-sizing: border-box`)
 * Lengths *must* use pixel or percentage units, not ems or rems.
 
-### No use of @extends
+### No @extends for foreign selectors
 
-The `@extends` command creates unpredictable cascades and unreliable results.  It *must not* be used unless a dependent module can only be consumed via `@extends` for historical reasons.
+The `@extends` command creates unpredictable cascades and unreliable results when used to extend placeholders defined in other modules, because the load order is unpredictable.  It *must not* be used in that way unless a dependent module can only be consumed via `@extends` for historical reasons.
+
+Extending a placeholder defined within the same module is permitted.
 
 
 ## SASS variables
@@ -238,14 +241,14 @@ Where a module contains only CSS, it *should* support silent styles.  Where Java
 Modules that support silent mode *must* include a `$o-{modulename}-is-silent` variable, with a default value (which *may* or be either true or false).  When the variable is true, styles that would normally be output as class selectors *must* instead be defined as mixins, with the same styles.  Eg:
 
 <?prettify linenums=1?>
-    @mixin oThingFoo() {
+    @mixin oThingFoo {
         margin-top: 1em;
     }
 
 If the original selector is not a class selector then the mixin can use a syntax suggestive of the original selector, which *must* be documented. Eg:
 
 <?prettify linenums=1?>
-    @mixin oGridSizingS3() {
+    @mixin oGridSizingS3 {
         width: 30%;
     }
     [data-o-grid-sizing~='S3'] {
