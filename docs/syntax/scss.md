@@ -27,7 +27,7 @@ SASS *must* validate using the following [SCSS-lint](https://github.com/causes/s
 
 SASS does not have proper encapsulation or scope, so strict adherence to namespacing rules is essential.
 
-* Class and placeholder selectors (`.` and `%`) and SASS variables (`$`) *must* be prefixed with the module name, and written as hypen separated lowercase strings
+* Class selectors (`.`) and SASS variables (`$`) *must* be prefixed with the module name, and written as hypen separated lowercase strings
     - GOOD: `.o-thing--large`, `$o-grid-mq-type: width;`
     - BAD: `.largething`, '$GridIsResponsive: true;'
 * Mixins and functions *must* be prefixed with the module name, and written in camel case
@@ -36,6 +36,7 @@ SASS does not have proper encapsulation or scope, so strict adherence to namespa
 * Tag selectors (unprefixed, eg `h1`) *must not* be used alone, but may be used if prefixed with a correctly namespaced selector
     - GOOD: `.o-thing__content > h1`
     - BAD: `h1`
+* Placeholder selectors (`%`) *must not* be used to reference other modules, but *may* be used within a module (Foreign placeholders have been used historically, see [Issue #254](https://github.com/Financial-Times/ft-origami/issues/254), but modules which still have them must drop them in any major release)
 * ID selectors (`#`) *must not* be used at all
 * Modules *must not* set or modify any CSS or SASS element in another module's namespace.
 * Styles *must not* affect any element except those which:
@@ -164,19 +165,6 @@ The following are acceptable types of feature flag, in order of preference:
 
 Component developers *must not* use feature flags that would need to be set manually by a product developer (ie those that do not have feature detect code within Modernizr or feature-detection modules in Origami).  Component developers *must* assume that feature flag classes will be set on the `documentElement`, ie. the HTML tag.
 
-Where a block of styles is feature-flagged, it *must not* extend any other component's placeholders or classes (see [issue 159](https://github.com/Financial-Times/ft-origami/issues/159)).
-
-<?prettify linenums=1?>
-    .o-mymodule-selector {
-      color: red;
-      @extend %o-yourmodule-placeholder;  // Extending allowed because .o-mymodule-selector is not a feature flag
-    }
-
-    $o-hoverable-if-hover-enabled .o-mymodule-selector {
-      color: red;
-      // No extending allowed here because the selector for this block includes a feature flag
-    }
-
 
 #### UA targeting
 
@@ -197,6 +185,12 @@ Where necessary, components *may* provide style rules targeted at specific user 
 * CSS expressions and behaviours *should* not be used, except to polyfill essential features for older browsers (e.g. boxsizing.htc for `box-sizing: border-box`)
 * Lengths *must* use pixel or percentage units, not ems or rems.
 
+### No @extends for foreign selectors
+
+The `@extends` command creates unpredictable cascades and unreliable results when used to extend placeholders defined in other modules, because the load order is unpredictable.  It *must not* be used in that way unless a dependent module can only be consumed via `@extends` for historical reasons.
+
+Extending a placeholder defined within the same module is permitted.
+
 
 ## SASS variables
 
@@ -209,7 +203,7 @@ Where necessary, components *may* provide style rules targeted at specific user 
 
 ## Privacy and imports
 
-Any object (eg. class, mixin, placeholder, function, variable) that is intended for public use (ie may be referenced by code outside of its own module) *must* be documented in the module's README.  All other objects *must* be prefixed with an underscore character, and *must not* be documented in the README (they *may* be documented in code comments).
+Any object (eg. class, mixin, function, variable) that is intended for public use (ie may be referenced by code outside of its own module) *must* be documented in the module's README.  All other objects *must* be prefixed with an underscore character, and *must not* be documented in the README (they *may* be documented in code comments).
 
 If a module contains SCSS files other than the main file listed in bower.json, the file names of those files must be prefixed with an underscore, and all such files *must* be imported before any other SASS code.  All import statements *should* be in the module's main file.
 
@@ -218,9 +212,9 @@ If a module contains SCSS files other than the main file listed in bower.json, t
 
 Modules are responsible for providing responsive behaviours where appropriate, but take care not to build in responsive behaviour that may not be desired by the product.
 
-* Modules that in most or all use cases will span the full width of a page (eg o-ft-header, o-ft-footer, o-grid) *may* contain media queries, or mix in placeholder classes from other modules that contain media queries.  If so, the breakpoints in the media queries *must* be configurable as SASS variables.
-* All other modules *must* provide placeholder (and concrete if not in silent mode) classes to modify their appearance to suit different sizes of container, eg `o-tweet--large`, `o-tweet--medium` etc.  Product developers may then use these placeholders to mix in module responsiveness into their own media query breakpoints.
-* When there is no media query support in the user agent (in the case of modules that use media queries) or the module's responsive placeholders have not been used, the module *must* render in its most compact visual form.
+* Modules that in most or all use cases will span the full width of a page (eg o-ft-header, o-ft-footer, o-grid) *may* contain media queries, or include mixins from other modules that contain media queries.  If so, the breakpoints in the media queries *must* be configurable as SASS variables.
+* All other modules *must* provide mixins (and concrete classes if not in silent mode) to modify their appearance to suit different sizes of container, eg `.o-tweet--large` (class), `oTweetMedium` (mixin) etc.  Product developers may then use these mixins to trigger module responsiveness in their own media query breakpoints.
+* When there is no media query support in the user agent (in the case of modules that use media queries) or the module's responsive mixins have not been used, the module *must* render in its most **compact** visual form.
 
 
 ## Subresources
@@ -233,7 +227,7 @@ Where external resources are not within Origami modules, a [protocol-relative UR
 
 ## "Silent" styles
 
-Silent styles means SCSS code that compiles to an empty string, but provides mixins, placeholders or variables that can be included, extended or used by a dependent module.  Some modules can support silent styles easily, while others rely on class names to link elements to behaviour defined in JavaScript.
+Silent styles means SCSS code that compiles to an empty string, but provides mixins or variables that can be included or used by a dependent module.  Some modules can support silent styles easily, while others rely on class names to link elements to behaviour defined in JavaScript.
 
 Where a module contains only CSS, it *should* support silent styles.  Where JavaScript is also present and depends on class names, a module *may* choose to support silent styles by providing an API to configure non-default class names.  If it does it *should* be called `setClasses` and accept an object, like so:
 
@@ -244,39 +238,34 @@ Where a module contains only CSS, it *should* support silent styles.  Where Java
     });
 
 
-Modules that support silent mode *must* include a `$o-{modulename}-is-silent` variable, with a default value (which *may* or be either true or false).  When the variable is true, styles that would normally be output as class selectors *must* instead be defined as placeholders or mixins, with the same styles.  Eg:
+Modules that support silent mode *must* include a `$o-{modulename}-is-silent` variable, with a default value (which *may* or be either true or false).  When the variable is true, styles that would normally be output as class selectors *must* instead be defined as mixins, with the same styles.  Eg:
 
 <?prettify linenums=1?>
-    %o-thing--foo {
+    @mixin oThingFoo {
         margin-top: 1em;
     }
 
-If the original selector is not a class selector then the placeholder class can use a syntax suggestive of the original selector, which *must* be documented. Eg:
+If the original selector is not a class selector then the mixin can use a syntax suggestive of the original selector, which *must* be documented. Eg:
 
 <?prettify linenums=1?>
-    [data-o-grid-sizing~='S3'], %o-grid-sizing-S3 {
+    @mixin oGridSizingS3 {
         width: 30%;
     }
+    [data-o-grid-sizing~='S3'] {
+        @include oGridSizingS3();
+    }
 
-Modules that make use of styles defined in other modules that support silent mode *must* use those styles silently by `@extend`ing the appropriate placeholder class (the `!optional` flag *should* be used to prevent compilation errors if something, e.g. a product developer changing a setting, causes that  placeholder class to be suppressed):
+Modules that make use of styles defined in other modules that support silent mode *must* use those styles silently by `@include`ing the appropriate mixin:
 
 <?prettify linenums=1?>
-    .o-anotherthing-foo, %o-anotherthing-foo {
-        @extend %o-thing-foo !optional;
+    @mixin oAnotherThingFoo {
+        @include oThingFoo();
         margin-top: 1em;
     }
-
-Where combinations of styles are used to create more complex elements, it may be sensible to use mixins rather than placeholders to implement silent mode support, eg:
-
-<?prettify linenums=1?>
-    @mixin oButtonsButton($buttonclass) {
-        .#{$buttonclass} {
-            /* standard button styles */
-           &--standout {
-             /* overrides & additions to make the button brighter */
-           }
-        }
+    .o-anotherthing-foo {
+        @include oAnotherThingFoo();
     }
+}
 
 Finally, in documentation, modules *must* provide information about both silent and non-silent methods, where supported, and must put the default first (ie if silent mode is by default **on**, the module must document the silent mode integration first).
 
