@@ -56,8 +56,7 @@
   <script>
     if (cutsTheMustard) {
       var s = document.createElement('script');
-      s.async = "async";
-      s.defer = "defer";
+      s.async = s.defer = true;
       s.src = "//build.origami.ft.com/bundles/js?modules=a,b,c";
       document.getElementsByTagName('head')[0].appendChild(s);
     }
