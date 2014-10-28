@@ -54,15 +54,15 @@
     - async (modern browsers) and defer (IE 5.5-9) so it is not blocking
   -->
   <script>
-    (function(d) {
+    (function(src) {
       if (cutsTheMustard) {
-        var o = d.createElement('script');
+        var o = document.createElement('script');
         o.async = o.defer = true;
-        o.src = '//build.origami.ft.com/bundles/js?modules=a,b,c';
-        var s = d.getElementsByTagName('script')[0];
+        o.src = src;
+        var s = document.getElementsByTagName('script')[0];
         s.parentNode.insertBefore(o, s);
       }
-    }(document));
+    }('//build.origami.ft.com/bundles/js?modules=a,b,c'));
   </script>
 </head>
 <body>
