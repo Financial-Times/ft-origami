@@ -7,17 +7,17 @@ permalink: /docs/syntax/scss/
 
 # SCSS standards
 
-Origami has adopted [SASS](http://sass-lang.com/) and specifically the most common SCSS variant, as the preferred way of declaring style information.  The following rules apply to creating styles for **components**, but could also be adopted in large part for product developers.
+Origami has adopted [Sass](http://sass-lang.com/) and specifically the most common SCSS variant, as the preferred way of declaring style information.  The following rules apply to creating styles for **components**, but could also be adopted in large part for product developers.
 
-SASS features should be used only where they result in increased clarity and reuse. Care should be taken that the resulting CSS is not compromised by unnecessary SASS nesting.
+Sass features should be used only where they result in increased clarity and reuse. Care should be taken that the resulting CSS is not compromised by unnecessary Sass nesting.
 
-## SASS version
+## Sass version
 
-Component developers and Origami build tools *must* use SASS version ~3.3.0, and *should* fix any issues alerted by the compiler as deprecation warnings from 3.2.
+Component developers and Origami build tools *must* use Sass version ~3.3.0, and *should* fix any issues alerted by the compiler as deprecation warnings from 3.2.
 
 ## Syntax convention rules
 
-SASS *must* validate using the following [SCSS-lint](https://github.com/causes/scss-lint) rules:
+Sass *must* validate using the following [SCSS-lint](https://github.com/causes/scss-lint) rules:
 
 <div class='o-techdocs-gist' data-repo="Financial-Times/origami-build-tools" data-path="/config/scss-lint.yml"></div>
 
@@ -25,9 +25,9 @@ SASS *must* validate using the following [SCSS-lint](https://github.com/causes/s
 
 ### Naming conventions and encapsulation
 
-SASS does not have proper encapsulation or scope, so strict adherence to namespacing rules is essential.
+Sass does not have proper encapsulation or scope, so strict adherence to namespacing rules is essential.
 
-* Class selectors (`.`) and SASS variables (`$`) *must* be prefixed with the module name, and written as hypen separated lowercase strings
+* Class selectors (`.`) and Sass variables (`$`) *must* be prefixed with the module name, and written as hypen separated lowercase strings
     - GOOD: `.o-thing--large`, `$o-grid-mq-type: width;`
     - BAD: `.largething`, '$GridIsResponsive: true;'
 * Mixins and functions *must* be prefixed with the module name, and written in camel case
@@ -38,7 +38,7 @@ SASS does not have proper encapsulation or scope, so strict adherence to namespa
     - BAD: `h1`
 * Placeholder selectors (`%`) *must not* be used to reference other modules, but *may* be used within a module (Foreign placeholders have been used historically, see [Issue #254](https://github.com/Financial-Times/ft-origami/issues/254), but modules which still have them must drop them in any major release)
 * ID selectors (`#`) *must not* be used at all
-* Modules *must not* set or modify any CSS or SASS element in another module's namespace.
+* Modules *must not* set or modify any CSS or Sass element in another module's namespace.
 * Styles *must not* affect any element except those which:
     * are in a portion of [owned DOM]({{site.baseurl}}/docs/syntax/html/#owned_dom); or
     * have an existing class in the module's namespace.
@@ -142,7 +142,7 @@ Style rules that are intended to apply to only a subset of user agents *should* 
 
 The following are acceptable types of feature flag, in order of preference:
 
-1. A SASS variable in the current module's namespace, set by default to the name of an appropriate Modernizr feature-detect, eg.
+1. A Sass variable in the current module's namespace, set by default to the name of an appropriate Modernizr feature-detect, eg.
 
         $oModuleIfInlineSVG: 'inlinesvg' !default;
         $oModuleIfInlineSVG .oModuleThing {
@@ -156,7 +156,7 @@ The following are acceptable types of feature flag, in order of preference:
             text-decoration: underline;
         }
 
-3. A SASS variable imported from another module's namespace, where the purpose of the module is to provide a feature detect:
+3. A Sass variable imported from another module's namespace, where the purpose of the module is to provide a feature detect:
 
         @import 'o-hoverable/main';
         $o-hoverable-if-hover-enabled .oModuleThing:hover {
@@ -192,10 +192,10 @@ The `@extends` command creates unpredictable cascades and unreliable results whe
 Extending a placeholder defined within the same module is permitted.
 
 
-## SASS variables
+## Sass variables
 
 * If a variable could potentially be used as a configurable option in products consuming the module, the variable *must* be defined with `!default` and added to the module's documentation
-* Variables that are internal to a module and which should not be used or set outside of it *should* be defined without !default.  Since SASS has no private scope, these underscore variables are not protected from overwriting so we use convention to distinguish them from public variables (see 'Privacy' below)
+* Variables that are internal to a module and which should not be used or set outside of it *should* be defined without !default.  Since Sass has no private scope, these underscore variables are not protected from overwriting so we use convention to distinguish them from public variables (see 'Privacy' below)
 * Modules *must not* overwrite variables defined by another module.  Instead, a module *may* define a new variable in its own namespace and set it to the value of the dependency's variable.
 * Variables *should* be defined in a dedicated file.
 * Variables intended for use externally by consuming products and modules *should* be defined by their purpose, rather than their value: e.g. `$o-colors-skyline-bg` rather than `$o-colors-beige`
@@ -205,14 +205,14 @@ Extending a placeholder defined within the same module is permitted.
 
 Any object (eg. class, mixin, function, variable) that is intended for public use (ie may be referenced by code outside of its own module) *must* be documented in the module's README.  All other objects *must* be prefixed with an underscore character, and *must not* be documented in the README (they *may* be documented in code comments).
 
-If a module contains SCSS files other than the main file listed in bower.json, the file names of those files must be prefixed with an underscore, and all such files *must* be imported before any other SASS code.  All import statements *should* be in the module's main file.
+If a module contains SCSS files other than the main file listed in bower.json, the file names of those files must be prefixed with an underscore, and all such files *must* be imported before any other Sass code.  All import statements *should* be in the module's main file.
 
 
 ## Responsiveness
 
 Modules are responsible for providing responsive behaviours where appropriate, but take care not to build in responsive behaviour that may not be desired by the product.
 
-* Modules that in most or all use cases will span the full width of a page (eg o-ft-header, o-ft-footer, o-grid) *may* contain media queries, or include mixins from other modules that contain media queries.  If so, the breakpoints in the media queries *must* be configurable as SASS variables.
+* Modules that in most or all use cases will span the full width of a page (eg o-ft-header, o-ft-footer, o-grid) *may* contain media queries, or include mixins from other modules that contain media queries.  If so, the breakpoints in the media queries *must* be configurable as Sass variables.
 * All other modules *must* provide mixins (and concrete classes if not in silent mode) to modify their appearance to suit different sizes of container, eg `.o-tweet--large` (class), `oTweetMedium` (mixin) etc.  Product developers may then use these mixins to trigger module responsiveness in their own media query breakpoints.
 * When there is no media query support in the user agent (in the case of modules that use media queries) or the module's responsive mixins have not been used, the module *must* render in its most **compact** visual form.
 
@@ -286,7 +286,7 @@ When listing multiple comma-separated selectors, each one *must* be placed on a 
 
 ### Files and folders
 
-* SASS variables, mixins and functions should be in their own files, separate from the code that uses them
+* Sass variables, mixins and functions should be in their own files, separate from the code that uses them
 
 
 ### Comments

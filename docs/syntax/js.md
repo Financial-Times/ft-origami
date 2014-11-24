@@ -155,7 +155,7 @@ JavaScript modules in Origami components may want to load additional files (font
 <?prettify linenums=1?>
 	someiframe.src = require('o-assets').resolve('/img/logo.png', 'tracking');
 
-Without any explicit configuration, `o-assets` will assume, as we do for subresources in SASS, that the modules are installed publicly at a URL path of `/bower_components` on the current host, and will form URLs on that basis.  Product developers are advised to reconfigure o-assets to accomodate their own server-side URL routing architecture.
+Without any explicit configuration, `o-assets` will assume, as we do for subresources in Sass, that the modules are installed publicly at a URL path of `/bower_components` on the current host, and will form URLs on that basis.  Product developers are advised to reconfigure o-assets to accomodate their own server-side URL routing architecture.
 
 Where external resources are not within Origami modules, a [protocol-relative URL](http://www.paulirish.com/2010/the-protocol-relative-url/) *must* be used (see [issue 173](https://github.com/Financial-Times/ft-origami/issues/173)).
 
