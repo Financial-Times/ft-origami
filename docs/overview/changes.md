@@ -9,6 +9,12 @@ permalink: /docs/overview/changes/
 
 The following documents the chronology of changes to the Origami spec and significant (ie. breaking) releases of Origami modules since 13th January 2014.  If you want more detailed granularity, please refer to the [commit log](https://github.com/Financial-Times/ft-origami/commits/gh-pages).
 
+### 24 Nov 2014
+
+**Vendor prefixes**: Components **must not** use o-useragent for vendor prefixing anymore ([Issue](https://github.com/Financial-Times/o-useragent/issues/25)). Prefer using a CSS [autoprefixer](https://github.com/postcss/autoprefixer) instead.
+
+**User agent targeting**: Component developers *may* use browser hacks instead of o-useragent to [target styles at specific user agents](http://origami.ft.com/docs/syntax/scss/#ua-targeting) ([Issue](https://github.com/Financial-Times/ft-origami/issues/273))
+
 ###13 Aug 2014
 
 **Content security policy**: Packaged apps and sites served with CSP restrictions may need to take additional steps to make the build service work ([Issue](https://github.com/Financial-Times/ft-origami/issues/237))
@@ -108,7 +114,7 @@ The following documents the chronology of changes to the Origami spec and signif
 
 ###25 April 2014
 
-**o-useragent**: [1.0.0 released](http://registry.origami.ft.com/components/o-useragent@1.0.0). Adds vendor prefixing utility to sass. Backwards compatible to 0.5.x
+**o-useragent**: [1.0.0 released](http://registry.origami.ft.com/components/o-useragent@1.0.0). Adds vendor prefixing utility to Sass. Backwards compatible to 0.5.x
 
 ###15 April 2014
 
@@ -222,7 +228,7 @@ The following documents the chronology of changes to the Origami spec and signif
 
 ###24 Feb 2014
 
-**o-assets**: [0.4.0 released](http://registry.origami.ft.com/components/o-assets@0.4.0): Parameters in sass mixin now compulsory. Otherwise backwards compatible with 0.3.x
+**o-assets**: [0.4.0 released](http://registry.origami.ft.com/components/o-assets@0.4.0): Parameters in Sass mixin now compulsory. Otherwise backwards compatible with 0.3.x
 
 ###21 Feb 2014
 

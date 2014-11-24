@@ -166,6 +166,30 @@ The following are acceptable types of feature flag, in order of preference:
 Component developers *must not* use feature flags that would need to be set manually by a product developer (ie those that do not have feature detect code within Modernizr or feature-detection modules in Origami).  Component developers *must* assume that feature flag classes will be set on the `documentElement`, ie. the HTML tag.
 
 
+#### UA targeting
+
+Where necessary, components *may* provide style rules targeted at specific user agents.
+
+In order of preference, when targeting styles at a specific user agent:
+
+1. Component developers should ask themselves:
+	1. *is the proportion of impacted users worth the fix?*
+	1. *can the design be tweaked to accommodate all browsers instead?*
+1. Favour [browser hacks](http://browserhacks.com/) to avoid any external dependencies — make sure to document each why a hack was used:
+	```scss
+	.el {
+		background: url('data:image/png;base64,/* data */') bottom right no-repeat;
+
+		// IE < 8 don't support data-uri, fallback to border bottom instead:
+		*border-bottom: 1px solid #eeeeee;
+		*background-image: none;
+	}
+	```
+1. In some rare edge cases, component developers *may* be required to rely on JavaScript user-agent sniffing
+
+Component developers *must not* use [IE conditional comments](http://www.quirksmode.org/css/condcom.html) to target user agents (use [browser hacks](http://browserhacks.com/) instead).
+
+
 ## Properties and values
 
 ### Property names
