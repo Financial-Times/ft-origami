@@ -166,17 +166,10 @@ The following are acceptable types of feature flag, in order of preference:
 Component developers *must not* use feature flags that would need to be set manually by a product developer (ie those that do not have feature detect code within Modernizr or feature-detection modules in Origami).  Component developers *must* assume that feature flag classes will be set on the `documentElement`, ie. the HTML tag.
 
 
-#### UA targeting
-
-Where necessary, components *may* provide style rules targeted at specific user agents.  The [o-useragent](https://github.com/Financial-Times/o-useragent) module must be used to do this.
-
-
 ## Properties and values
 
 ### Property names
 
-* Where vendor-specific properties are used, [o-useragent](https://github.com/Financial-Times/o-useragent)'s `oUseragentPrefixer()` mixin *should* be used to apply vendor prefixes. This gives product developers control over which ones are included in their stylesheets.
-* CSS hacks to target particular browsers *must not* be used.  Instead, use [o-useragent](https://github.com/Financial-Times/o-useragent)'s `oUseragentTarget()` mixin.
 * Properties *should* be ordered consistently.  [CSS Comb](http://csscomb.com/) *should* be used to automate this, and *should* be used during development so that other developers beneift from cleaner code being available in the source tree.
 
 ### Values
