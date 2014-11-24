@@ -362,11 +362,11 @@ Returns information in JSON format describing the module.
 </tr><tr>
 	<td><code>build.css.valid</code></td>
 	<td>Boolean</td>
-	<td><code>true</code> if CSS and SASS files in the package compiled successfully.</td>
+	<td><code>true</code> if CSS and Sass files in the package compiled successfully.</td>
 </tr><tr>
 	<td><code>build.css.error</code></td>
 	<td>String</td>
-	<td>SASS compilation error message, if any.</td>
+	<td>Sass compilation error message, if any.</td>
 </tr><tr>
 	<td><code>build.js.valid</code></td>
 	<td>Boolean</td>
