@@ -58,9 +58,9 @@ The following documents the chronology of changes to the Origami spec and signif
 
 ###2 July 2014
 
-**Privacy hinting**: Use underscores to indicate privacy of SASS objects.  Use underscore prefixes on all filenames except the main file. ([Issue](https://github.com/Financial-Times/ft-origami/issues/208))
+**Privacy hinting**: Use underscores to indicate privacy of Sass objects.  Use underscore prefixes on all filenames except the main file. ([Issue](https://github.com/Financial-Times/ft-origami/issues/208))
 
-**SASS imports**: Multiple SASS files in the same module should all be imported in main ([Issue](https://github.com/Financial-Times/ft-origami/issues/205))
+**Sass imports**: Multiple Sass files in the same module should all be imported in main ([Issue](https://github.com/Financial-Times/ft-origami/issues/205))
 
 ###19 June 2014
 
@@ -70,7 +70,7 @@ The following documents the chronology of changes to the Origami spec and signif
 
 **Auto-initialisation**: Modules must not use native DOMContentLoaded and load events, instead use namespaced ones ([Issue](https://github.com/Financial-Times/ft-origami/issues/196))
 
-**SASS Linting**: SASS must comply with new standardised lint rules ([Issue](https://github.com/Financial-Times/ft-origami/issues/193))
+**Sass Linting**: Sass must comply with new standardised lint rules ([Issue](https://github.com/Financial-Times/ft-origami/issues/193))
 
 ###22 May 2014
 
@@ -160,7 +160,7 @@ The following documents the chronology of changes to the Origami spec and signif
 
 ###21 March 2014
 
-**o-fonts**: [1.0.0 released](http://registry.origami.ft.com/components/o-fonts@1.0.0): Now requires SASS 3.3. API Backwards compatible with 0.x
+**o-fonts**: [1.0.0 released](http://registry.origami.ft.com/components/o-fonts@1.0.0): Now requires Sass 3.3. API Backwards compatible with 0.x
 
 ###20 March 2014
 
@@ -262,7 +262,7 @@ The following documents the chronology of changes to the Origami spec and signif
 
 ###31 Jan 2014
 
-**SASS Syntax**: Require `!optional` to be used when extending placeholder classes
+**Sass Syntax**: Require `!optional` to be used when extending placeholder classes
 
 **o-ft-typography**: [1.0.0 released](http://registry.origami.ft.com/components/o-ft-typography@1.0.0): Now includes general and article-specific typographic styles. Incompatible with 0.x
 
@@ -274,7 +274,7 @@ The following documents the chronology of changes to the Origami spec and signif
 
 **Cuts the mustard**: Add process for performing Cuts the mustard test ([Issue](https://github.com/Financial-Times/ft-origami/issues/86))
 
-**Responsiveness in SASS**: Modules must not include media queries unless full width. Placeholder classes should be used to provide alternative visual styling which product developer can mix in to media queries at product level. ([Issue](https://github.com/Financial-Times/ft-origami/issues/68))
+**Responsiveness in Sass**: Modules must not include media queries unless full width. Placeholder classes should be used to provide alternative visual styling which product developer can mix in to media queries at product level. ([Issue](https://github.com/Financial-Times/ft-origami/issues/68))
 
 ###29 Jan 2014
 

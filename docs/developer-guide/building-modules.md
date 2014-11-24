@@ -21,7 +21,7 @@ This tutorial assumes you are starting from a fresh install of a UNIX-like OS wi
 To use Origami components, you need two language runtimes (it doesn't matter if you are not writing your application in Node or Ruby, you still need to install them) and the <code>git(1)</code> version control system:
 
 * [NodeJS](http://nodejs.org/) is the JavaScript runtime, which we need to run all the build tools, which are written in JavaScript.
-* [Ruby](https://www.ruby-lang.org) is required to run the [SASS](http://sass-lang.com/) compiler and [SCSS-Lint](https://github.com/causes/scss-lint)
+* [Ruby](https://www.ruby-lang.org) is required to run the [Sass](http://sass-lang.com/) compiler and [SCSS-Lint](https://github.com/causes/scss-lint)
 * [Git](https://www.git-scm.com) is required to install packages from Git repositories using [Bower](http://bower.io/), a package manager.
 
 ###NodeJS
@@ -154,9 +154,9 @@ To ensure that the Origami modules can be found, it needs to be set up to search
 	Sometimes when you create files starting with a dot, they won't show up in the directory listing, because starting a file with a dot marks it as a <em>hidden file</em>.  You can normally choose an option to 'show hidden files' or similar, and on the command line you can always see hidden files with the `ls -al` command.
 </aside>
 
-## 5. Create your master SASS and JavaScript files
+## 5. Create your master Sass and JavaScript files
 
-Now you need to create a SASS and/or JavaScript file that requires the Origami components as dependencies.  In SASS, you can do this with the `@import` statement, and in JavaScript, using `require`.  The syntax of the SASS import is:
+Now you need to create a Sass and/or JavaScript file that requires the Origami components as dependencies.  In Sass, you can do this with the `@import` statement, and in JavaScript, using `require`.  The syntax of the Sass import is:
 
 	@import '{modulename}/main';
 
@@ -167,7 +167,7 @@ As an example (assuming you loaded the header, footer and colours module in your
 	@import 'o-ft-footer/main';
 	@import 'o-colors/main';
 
-	/* Add our own SASS, using the o-colors module to style the body */
+	/* Add our own Sass, using the o-colors module to style the body */
 	body {
 		margin: 0;
 		@include oColorsFor(page, background);
@@ -199,7 +199,7 @@ As an example, create a `main.js` file at `/client/js/main.js`, containing:
 
 Now you need to set up the tasks to stitch everything together.  To do this, you need to know:
 
-* Where you have put your master SASS file and master JavaScript file
+* Where you have put your master Sass file and master JavaScript file
 * Where you want the finished bundles to be saved (usually a publicly accessible web server directory unless you are routing the request for the bundle through a front-controller)
 
 We'll assume for the purposes of this example that your CSS and JS are in `/client/scss` and `/client/js` and you want to save the finshed bundles in `/public`.  Create a file called `gulpfile.js` in the root of your project's working tree, with the following contents:
@@ -234,9 +234,9 @@ We'll assume for the purposes of this example that your CSS and JS are in `/clie
 Taking it step by step:
 
 * We configure three gulp tasks: build, verify and watch
-* Build runs SASS to compile the file `/client/scss/main.scss` into `/public/bundle.css` using compressed (minified) CSS syntax, and Browserify to compile the file `/client/js/main.js` into `/public/bundle.js`
+* Build runs Sass to compile the file `/client/scss/main.scss` into `/public/bundle.css` using compressed (minified) CSS syntax, and Browserify to compile the file `/client/js/main.js` into `/public/bundle.js`
 * Verify runs SCSSLint on `/client/sass/main.scss` and JSHint on `/client/js/main.js` to make sure your code is readable and hasn't got potential errors.  We enforce coding standards defined by Origami ([SCSS]({{site.baseurl}}/docs/syntax/scss/#syntax-convention-rules) and [JavaScript]({{site.baseurl}}/docs/syntax/js/#syntax-convention-rules))
-* Watch is set up to run the verify and build tasks automatically if any files in your client-side SASS or JS directories change
+* Watch is set up to run the verify and build tasks automatically if any files in your client-side Sass or JS directories change
 
 The benefit of using gulp is that you can add your own build steps in addition to the standard Origami ones, so at this point, feel free to add your own code to the build and verify tasks.
 
@@ -361,7 +361,7 @@ Finally, we need to deal with assets - files from components that may be loaded 
 * Are using a web server that maps URL paths directly to filesystem paths; and
 * Have set your web server's document root to the root of your project's working tree
 
-For very simple projects, this may be true.  But it's generally not a great idea to have your `bower_components` directory in the public part of your web server, and you may well want to process requests for front-end bundles via a router or [front-controller](http://en.wikipedia.org/wiki/Front_Controller_pattern) of some kind.  In that case, you should set the [o-assets config variables](http://git.svc.ft.com/summary/origami%2Fo-assets.git) in your main SASS file to the values that you want for your project.  Typically this just involves setting one global path prefix.  Here's an example of how you could do this in the main.scss example used earlier:
+For very simple projects, this may be true.  But it's generally not a great idea to have your `bower_components` directory in the public part of your web server, and you may well want to process requests for front-end bundles via a router or [front-controller](http://en.wikipedia.org/wiki/Front_Controller_pattern) of some kind.  In that case, you should set the [o-assets config variables](http://git.svc.ft.com/summary/origami%2Fo-assets.git) in your main Sass file to the values that you want for your project.  Typically this just involves setting one global path prefix.  Here's an example of how you could do this in the main.scss example used earlier:
 
 	/* Set Origami config */
 	$o-assets-global-path: '/resources';
@@ -370,7 +370,7 @@ For very simple projects, this may be true.  But it's generally not a great idea
 	@import 'o-tweet/main';
 	@import 'o-techdocs/main';
 
-	/* Add our own SASS */
+	/* Add our own Sass */
 	.mything {
 		color: red;
 	}
