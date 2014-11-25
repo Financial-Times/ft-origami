@@ -176,7 +176,6 @@ In order of preference, when targeting styles at a specific user agent, componen
 2. Tweak designs to accommodate most browsers instead
 3. Favour [browser hacks](http://browserhacks.com/) to avoid any external dependencies — make sure to document each time why a hack was used:
 
-	<?prettify linenums=1?>
 		.el {
 			background: url('data:image/png;base64,/* data */') bottom right no-repeat;
 
