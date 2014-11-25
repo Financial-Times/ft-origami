@@ -168,15 +168,32 @@ Component developers *must not* use feature flags that would need to be set manu
 
 #### UA targeting
 
-Where necessary, components *may* provide style rules targeted at specific user agents.  The [o-useragent](https://github.com/Financial-Times/o-useragent) module must be used to do this.
+Where necessary, components *may* provide style rules targeted at specific user agents.
+
+In order of preference, when targeting styles at a specific user agent, component developers *should*:
+
+1. Assess if the proportion of impacted users worth the fix
+2. Tweak designs to accommodate most browsers instead
+3. Favour [browser hacks](http://browserhacks.com/) to avoid any external dependencies — make sure to document each time why a hack was used:
+
+	<?prettify linenums=1?>
+		.el {
+			background: url('data:image/png;base64,/* data */') bottom right no-repeat;
+
+			// IE < 8 don't support data-uri, fallback to border bottom instead:
+			*border-bottom: 1px solid #eeeeee;
+			*background-image: none;
+		}
+
+4. Rely on JavaScript user-agent sniffing (as a last resort in some rare edge cases)
+
+Component developers *must not* use [IE conditional comments](http://www.quirksmode.org/css/condcom.html) to target user agents (use [browser hacks](http://browserhacks.com/) instead).
 
 
 ## Properties and values
 
 ### Property names
 
-* Where vendor-specific properties are used, [o-useragent](https://github.com/Financial-Times/o-useragent)'s `oUseragentPrefixer()` mixin *should* be used to apply vendor prefixes. This gives product developers control over which ones are included in their stylesheets.
-* CSS hacks to target particular browsers *must not* be used.  Instead, use [o-useragent](https://github.com/Financial-Times/o-useragent)'s `oUseragentTarget()` mixin.
 * Properties *should* be ordered consistently.  [CSS Comb](http://csscomb.com/) *should* be used to automate this, and *should* be used during development so that other developers beneift from cleaner code being available in the source tree.
 
 ### Values

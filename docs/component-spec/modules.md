@@ -81,14 +81,14 @@ A theming module *must* define a theme by combining the class name of the themea
 
 <?prettify linenums=1?>
 	.o-modulea--o-moduleb--theme {
-      /* theme styles */
+		/* theme styles */
 	}
 
 Themes that depend on the target module's JavaScript being active *must* use the appropriate JavaScript data attribute selector:
 
 <?prettify linenums=1?>
 	.o-modulea--o-moduleb--theme[data-o-moduleb-js] {
-      /* theme styles */
+		/* theme styles */
 	}
 
 Theming classes *must* be applied to the root element of the component to be themed.
@@ -112,15 +112,15 @@ The following is an example `bower.json` file that meets the above spec:
 
 <?prettify linenums=1?>
 	{
-	  "name": "o-grid",
-	  "dependencies": {
-	    "o-colors": ">=1.2.0 <2"
-	  },
-	  "ignore": [
-	    "examples",
-	    "tests",
-	    ".gitignore"
-	  ]
+		"name": "o-grid",
+		"dependencies": {
+			"o-colors": ">=1.2.0 <2"
+		},
+		"ignore": [
+			"examples",
+			"tests",
+			".gitignore"
+		]
 	}
 
 Optionally, a module *may* include an npm-compatible `package.json` file, to allow it to install dependencies for development and testing (in fact, a module *may* install dependencies for development and testing using any package management system).  These package configs *must not* specify any `dependencies`, `files` or `main` properties, to avoid any implication that the npm config is designed to allow the module to be installed as a package using npm.  Instead, `devDependencies` should be used.
@@ -134,11 +134,11 @@ The following is an example `package.json` file that meets the above spec:
 
 <?prettify linenums=1?>
 	{
-	  "devDependencies": {
-	    "grunt": "*",
-	    "node-sass": "*"
-	  },
-	  "private": true
+		"devDependencies": {
+			"grunt": "*",
+			"node-sass": "*"
+		},
+		"private": true
 	}
 
 ### Isomorphic modules
@@ -210,28 +210,28 @@ Individual demos also have another property:
 
 Example:
 
-```json
-{
-    "options": {
-        "sass": "demos/src/demo.scss",
-        "data": "demos/src/data.json",
-        "bodyClasses": "o-hoverable-on"
-    },
-    "demos": [
-        {
-            "name": "demo1",
-            "template": "demos/src/demo1.mustache",
-            "js": "demos/src/demo1.js"
-        },
-        {
-            "name": "demo2",
-            "template": "demos/src/demo2.mustache",
-            "js": "demos/src/demo2.js",
-            "expanded": false,
-            "description": "Demo of obscure but realistic scenario."
-        }
-    ]
-}
+<?prettify linenums=1?>
+	{
+		"options": {
+			"sass": "demos/src/demo.scss",
+			"data": "demos/src/data.json",
+			"bodyClasses": "o-hoverable-on"
+		},
+		"demos": [
+			{
+				"name": "demo1",
+				"template": "demos/src/demo1.mustache",
+				"js": "demos/src/demo1.js"
+			},
+			{
+				"name": "demo2",
+				"template": "demos/src/demo2.mustache",
+				"js": "demos/src/demo2.js",
+				"expanded": false,
+				"description": "Demo of obscure but realistic scenario."
+			}
+		]
+	}
 ```
 
 ### Continuous integration
