@@ -170,22 +170,22 @@ Component developers *must not* use feature flags that would need to be set manu
 
 Where necessary, components *may* provide style rules targeted at specific user agents.
 
-In order of preference, when targeting styles at a specific user agent:
+In order of preference, when targeting styles at a specific user agent, component developers *should*:
 
-1. Component developers should ask themselves:
-	1. *is the proportion of impacted users worth the fix?*
-	1. *can the design be tweaked to accommodate all browsers instead?*
-1. Favour [browser hacks](http://browserhacks.com/) to avoid any external dependencies — make sure to document each why a hack was used:
-	```scss
-	.el {
-		background: url('data:image/png;base64,/* data */') bottom right no-repeat;
+1. Assess if the proportion of impacted users worth the fix
+2. Tweak designs to accommodate most browsers instead
+3. Favour [browser hacks](http://browserhacks.com/) to avoid any external dependencies — make sure to document each time why a hack was used:
 
-		// IE < 8 don't support data-uri, fallback to border bottom instead:
-		*border-bottom: 1px solid #eeeeee;
-		*background-image: none;
-	}
-	```
-1. In some rare edge cases, component developers *may* be required to rely on JavaScript user-agent sniffing
+	<?prettify linenums=1?>
+		.el {
+			background: url('data:image/png;base64,/* data */') bottom right no-repeat;
+
+			// IE < 8 don't support data-uri, fallback to border bottom instead:
+			*border-bottom: 1px solid #eeeeee;
+			*background-image: none;
+		}
+
+4. Rely on JavaScript user-agent sniffing (as a last resort in some rare edge cases)
 
 Component developers *must not* use [IE conditional comments](http://www.quirksmode.org/css/condcom.html) to target user agents (use [browser hacks](http://browserhacks.com/) instead).
 
