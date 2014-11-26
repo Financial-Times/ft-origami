@@ -80,9 +80,9 @@ Run your fully assembled page through the [W3C validator](http://validator.w3.or
 
 ###Lint your code
 
-Consider running [SASSlint](https://github.com/causes/scss-lint) or CSSlint on your CSS.  The syntax standards used by Origami are a good set of rules to use:
+Consider running [Sasslint](https://github.com/causes/scss-lint) or CSSlint on your CSS.  The syntax standards used by Origami are a good set of rules to use:
 
-* [Origami SASS syntax standard]({{site.baseurl}}/docs/syntax/scss/#syntax-convention-rules)
+* [Origami Sass syntax standard]({{site.baseurl}}/docs/syntax/scss/#syntax-convention-rules)
 
 
 ###Minimise CSS specificity
@@ -103,7 +103,7 @@ All Origami components use pixels for length measures.  To avoid incompatibiliti
 
 ###Use standard colour palette
 
-The FT standard colour palette is available as an Origami component, [o-colors](http://registry.origami.ft.com/components/o-colors).  Use use cases rather than palette colours, adding your own use cases where needed.  If you are using SASS, avoid including any raw colour values in your SASS, except as part of defining new colour use cases.
+The FT standard colour palette is available as an Origami component, [o-colors](http://registry.origami.ft.com/components/o-colors).  Use use cases rather than palette colours, adding your own use cases where needed.  If you are using Sass, avoid including any raw colour values in your Sass, except as part of defining new colour use cases.
 
 Information about how to use o-colors is available in the docs:
 

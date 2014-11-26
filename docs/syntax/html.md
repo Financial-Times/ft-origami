@@ -65,6 +65,8 @@ Markup may contain elements that do not work without accompanying JavaScript.  T
 
 To avoid unnecessary HTTP requests, elements with the class `o--if-no-js` *must not* be (or contain) `<img>` tags, and *must not* have a background image URL set with CSS.  Descendent elements of the `o--if-no-js` element *may* have CSS image backgrounds ([Learn more](http://timkadlec.com/2012/04/media-query-asset-downloading-results/))
 
+* Learn more about [Core vs enhanced experience]({{site.baseurl}}/docs/developer-guide/using-modules/#core-vs-enhanced-experience)
+
 ## WAI-ARIA
 
 Component authors are encouraged to provide assistive accessibility information in their component's markup.

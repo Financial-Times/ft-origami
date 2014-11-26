@@ -51,7 +51,7 @@ In the project / build service (assuming you already have node, npm and browseri
 * Run browserify, with the debowerify transform, pointing at your main JS file
 * Serve the resulting file in a `<script>` tag.
 
-## SASS
+## Sass
 
 Install fonzie globally.  Also has to install win-fork which is a dependency but not listed in fonzie's package config:
 

@@ -126,4 +126,4 @@ This could be tidied up with `npm dedupe` which would remove the nested node_mod
 
 ## Component
 
-- Requires CSS rather than SASS, so rejecting
+- Requires CSS rather than Sass, so rejecting

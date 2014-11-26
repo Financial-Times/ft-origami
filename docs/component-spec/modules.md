@@ -29,7 +29,7 @@ Modules *must* be named using a short descriptive term (hyphenated if necessary)
 
 The following requirements apply to creating a Origami-compatible module component:
 
-* *May* contain any resource that is a CommonJS JavaScript module, any declarative language that is agnostic of server-side technology stack (HTML, Mustache, CSS, SASS, JSON etc), or binary data (may also contain build tasks, tests etc but these must be marked as not installable in package config)
+* *May* contain any resource that is a CommonJS JavaScript module, any declarative language that is agnostic of server-side technology stack (HTML, Mustache, CSS, Sass, JSON etc), or binary data (may also contain build tasks, tests etc but these must be marked as not installable in package config)
 
 ### Modules *must*:
 
@@ -46,7 +46,7 @@ The following requirements apply to creating a Origami-compatible module compone
 	* Links to repos of web services that exist to provide markup or data that is used by the module.
 * be stored in a Git repo accessible to any FT network (see [recommendations for module locations](#where-to-store-modules) below)
 * not include package management config for any package manager other than Bower, except for package config whose only purpose is to load dependencies for development or testing of the component and which does not render the repo installable by that packaging system
-* where they contain SASS files, conform to the syntax and language standards for [use of SASS in Origami components]({{site.baseurl}}/docs/syntax/scss)
+* where they contain Sass files, conform to the syntax and language standards for [use of Sass in Origami components]({{site.baseurl}}/docs/syntax/scss)
 * where they contain JavaScript files, conform to the syntax and language standards for [use of JavaScript in Origami components]({{site.baseurl}}/docs/syntax/javascript)
 * where they are openly hosted on GitHub and have CI, use [Travis](https://travis-ci.org) to do the CI
 * consider touch, keyboard and mouse interaction where applicable
@@ -81,14 +81,14 @@ A theming module *must* define a theme by combining the class name of the themea
 
 <?prettify linenums=1?>
 	.o-modulea--o-moduleb--theme {
-      /* theme styles */
+		/* theme styles */
 	}
 
 Themes that depend on the target module's JavaScript being active *must* use the appropriate JavaScript data attribute selector:
 
 <?prettify linenums=1?>
 	.o-modulea--o-moduleb--theme[data-o-moduleb-js] {
-      /* theme styles */
+		/* theme styles */
 	}
 
 Theming classes *must* be applied to the root element of the component to be themed.
@@ -112,15 +112,15 @@ The following is an example `bower.json` file that meets the above spec:
 
 <?prettify linenums=1?>
 	{
-	  "name": "o-grid",
-	  "dependencies": {
-	    "o-colors": ">=1.2.0 <2"
-	  },
-	  "ignore": [
-	    "examples",
-	    "tests",
-	    ".gitignore"
-	  ]
+		"name": "o-grid",
+		"dependencies": {
+			"o-colors": ">=1.2.0 <2"
+		},
+		"ignore": [
+			"examples",
+			"tests",
+			".gitignore"
+		]
 	}
 
 Optionally, a module *may* include an npm-compatible `package.json` file, to allow it to install dependencies for development and testing (in fact, a module *may* install dependencies for development and testing using any package management system).  These package configs *must not* specify any `dependencies`, `files` or `main` properties, to avoid any implication that the npm config is designed to allow the module to be installed as a package using npm.  Instead, `devDependencies` should be used.
@@ -134,11 +134,11 @@ The following is an example `package.json` file that meets the above spec:
 
 <?prettify linenums=1?>
 	{
-	  "devDependencies": {
-	    "grunt": "*",
-	    "node-sass": "*"
-	  },
-	  "private": true
+		"devDependencies": {
+			"grunt": "*",
+			"node-sass": "*"
+		},
+		"private": true
 	}
 
 ### Isomorphic modules
@@ -172,7 +172,7 @@ Where a dependency is an Origami module it *must* be listed under its original n
 
 ## Tests and demos
 
-Components *should* include tests which at least verify that the component can be built using [origami-build-tools](https://github.com/Financial-Times/origami-build-tools). Component authors *may* additionally test their component however they like, provided that all test related files *should* be in the `tests` directory, and that test related files *must* not be installable.  The source files of the component *should* be in `src` (except the main JS and/or SASS file).  The project *must* contain a `README.md` formatted in markdown.
+Components *should* include tests which at least verify that the component can be built using [origami-build-tools](https://github.com/Financial-Times/origami-build-tools). Component authors *may* additionally test their component however they like, provided that all test related files *should* be in the `tests` directory, and that test related files *must* not be installable.  The source files of the component *should* be in `src` (except the main JS and/or Sass file).  The project *must* contain a `README.md` formatted in markdown.
 
 Component authors *may* include a `demos` folder to provide examples.  Demos *must* be created using [origami-build-tools](https://github.com/Financial-Times/origami-build-tools), and *must* be compatible with the demo viewer in the Origami registry.  Demos *must* include only the minimum amount of content to show the component, and particularly should not include any headings, backgrounds, margins or other content that are not part of the component itself, unless absolutely essential to the ability to demonstrate the component.
 
@@ -197,7 +197,7 @@ The demo config file tells the Build Service and the [origami-build-tools](https
 Options, and individual demos, can have the following properties:
 
 * `template`: __String__ The mustache template to render. (_Required_)
-* `sass`: __String__ The SASS file to compile. (_Optional_)
+* `sass`: __String__ The Sass file to compile. (_Optional_)
 * `js`: __String__ The JS file to build with Browserify. (_Optional_)
 * `data`: __String__ Data to pass to the mustache template. (_Optional_)
 * `bodyClasses`: __String__ CSS classes to set on the body. (_Optional_)
@@ -211,30 +211,30 @@ Individual demos also have another property:
 
 Example:
 
-```json
-{
-    "options": {
-        "sass": "demos/src/demo.scss",
-        "data": "demos/src/data.json",
-        "bodyClasses": "o-hoverable-on",
-        "dependencies": ["o-custom-module@^1.0.0"] 
-    },
-    "demos": [
-        {
-            "name": "demo1",
-            "template": "demos/src/demo1.mustache",
-            "js": "demos/src/demo1.js"
-        },
-        {
-            "name": "demo2",
-            "template": "demos/src/demo2.mustache",
-            "js": "demos/src/demo2.js",
-            "expanded": false,
-            "description": "Demo of obscure but realistic scenario."
-        }
-    ]
-}
-```
+<?prettify linenums=1?>
+	{
+		"options": {
+			"sass": "demos/src/demo.scss",
+			"data": "demos/src/data.json",
+			"bodyClasses": "o-hoverable-on",
+       		"dependencies": ["o-custom-module@^1.0.0"] 
+		},
+		"demos": [
+			{
+				"name": "demo1",
+				"template": "demos/src/demo1.mustache",
+				"js": "demos/src/demo1.js"
+			},
+			{
+				"name": "demo2",
+				"template": "demos/src/demo2.mustache",
+				"js": "demos/src/demo2.js",
+				"expanded": false,
+				"description": "Demo of obscure but realistic scenario."
+			}
+		]
+	}
+
 
 ### Continuous integration
 
