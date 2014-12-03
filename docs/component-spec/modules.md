@@ -232,7 +232,6 @@ Example:
 			}
 		]
 	}
-```
 
 ### Continuous integration
 
