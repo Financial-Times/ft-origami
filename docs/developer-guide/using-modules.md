@@ -13,12 +13,12 @@ Origami modules are packages of JavaScript and CSS which can be imported into yo
 
 If you are not sure which strategy to use to build your CSS and JS, consult the following table of pros and cons to help you decide:
 
-<table class='o-techdocs-table'>
+<table class="o-techdocs-table">
 <tr><th>Feature</th><th>Building manually</th><th>Using the build service</th></tr>
-<tr><td>Unopinionated about your server-side technology stack</td><td>No.  You will need NodeJS (for package management and build automation) and Ruby (for Sass compilation)</td><td>Yes, there is no requirement for any server-side code</td></tr>
-<tr><td>Can get set up quickly</td><td>No.  If you're not familar with node and don't have any pre-requisites installed, getting set up could take you a couple of hours</td><td>Yes, a few minutes at most</td></tr>
+<tr><td>Unopinionated about your server-side technology stack</td><td>No.  You will need Node.js (for package management and build automation) and Ruby (for Sass compilation)</td><td>Yes, there is no requirement for any server-side code</td></tr>
+<tr><td>Can get set up quickly</td><td>No.  If you're not familiar with Node.js and don't have any pre-requisites installed, getting set up could take you a couple of hours</td><td>Yes, a few minutes at most</td></tr>
 <tr><td>Can add your own front-end code to the Origami bundle</td><td>Yes, trivially</td><td>Not easily.  You'd have to publish that code as a standalone repo</td></tr>
-<tr><td>Can use public open source JavaScript modules like jQuery</td><td>Yes</td><td>Yes, provided that they have a commonJS interface</td></tr>
+<tr><td>Can use public open source JavaScript modules like jQuery</td><td>Yes</td><td>Yes, provided that they have a CommonJS interface</td></tr>
 <tr><td>Can develop without being online</td><td>Yes</td><td>No, you need to be online if your pages pull resources from the build service.</td></tr>
 </table>
 
@@ -31,7 +31,7 @@ Complete tutorials for using both are included in this guide:
 
 <aside>
 	<h4>Mustache as a spec</h4>
-	<p>Origami modules don't include markup in their build process.  Any templates inlcluded in a module component are simply specifications for the markup you need to write to activate the CSS and JavaScript, which use the Mustache template syntax.  Don't feel the need to consume the templates in your app and run Mustache, though you can if you want to, and Mustache implementations are available for most platforms.</p>
+	<p>Origami modules don't include markup in their build process.  Any templates included in a module component are simply specifications for the markup you need to write to activate the CSS and JavaScript, which use the Mustache template syntax.  Don't feel the need to consume the templates in your app and run Mustache, though you can if you want to, and Mustache implementations are available for most platforms.</p>
 	<p>In the future it's likely that Origami markup will be available as templates in [HTML imports]()</p>
 </aside>
 
@@ -41,7 +41,7 @@ Browsers that have all the features that all your modules need (whether natively
 
 Here is an example of how to integrate a cuts-the-mustard test into your page:
 
-<div class='o-techdocs-gist' data-repo="Financial-Times/ft-origami" data-branch="gh-pages" data-path="/examples/ctm.html"></div>
+<div class="o-techdocs-gist" data-repo="Financial-Times/ft-origami" data-branch="gh-pages" data-path="/examples/ctm.html"></div>
 
 
 ### Customising polyfills
@@ -65,7 +65,7 @@ Note that although the full Modernizr solution will likely be fairly complex, ma
 
 Origami contains fallback content to be displayed when the cuts the mustard test fails.  To ensure it does not display in up to date browsers, you must add some style rules to your own stylesheet:
 
-	.core .o--if-js { display: none !important; }
+	.core .o--if-js,
 	.enhanced .o--if-no-js { display: none !important; }
 
 The `core` and `enhanced` classes here are not defined by Origami, but must simply match the classes you choose to put on your `<html>` element (so you can change these if you like).  Modernizr by default removes a `no-js` class if it exists, and adds a `js` class, but these are not subject to the cuts the mustard test, so just remember that if you are using Modernizr, don't use those classes.
@@ -80,9 +80,9 @@ You might find that your product uses some modules with especially onerous brows
 
 If you choose to do this, you must target `o--if-no-js` tags more selectively by including the modules' classes in the selector:
 
-	.core1 .-o-modulea .o--if-js { display: none !important; }
-	.enhanced1 .-o-modulea .o--if-no-js { display: none !important; }
-	.core2 .-o-moduleb .o--if-js { display: none !important; }
+	.core1 .-o-modulea .o--if-js,
+	.enhanced1 .-o-modulea .o--if-no-js,
+	.core2 .-o-moduleb .o--if-js,
 	.enhanced2 .-o-moduleb .o--if-no-js { display: none !important; }
 
 Messy.  So it's generally preferred to turn all modules on and off at the same time, using the same test.
@@ -104,10 +104,10 @@ Origami components do not perform any initialisation automatically, to avoid app
 If you wish to initalise Origami components that have auto-initialise capability, fire these custom events in response to the native ones:
 
 	if (document.readyState === 'interactive' || document.readyState === 'complete') {
-	    document.dispatchEvent(new CustomEvent('o.DOMContentLoaded'));
+		document.dispatchEvent(new CustomEvent('o.DOMContentLoaded'));
 	}
 	document.addEventListener("DOMContentLoaded", function() {
-	    document.dispatchEvent(new CustomEvent('o.DOMContentLoaded'));
+		document.dispatchEvent(new CustomEvent('o.DOMContentLoaded'));
 	});
 
 Alternatively, all modules that have auto-initialise capability also expose the bound function handler as part of their public API (normally as `init()`), so you can choose to only initialise the modules that you want to, in the order that you want them.
