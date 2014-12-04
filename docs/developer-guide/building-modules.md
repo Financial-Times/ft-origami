@@ -382,7 +382,7 @@ Here's an example of a web page created from the boilerplate that includes the s
 					var s = document.getElementsByTagName('script')[0];
 					s.parentNode.insertBefore(o, s);
 				}
-			}('//build.origami.ft.com/bundles/js?modules=a,b,c'));
+			}('bundle.js'));
 		</script>
 	</head>
 	<body>
