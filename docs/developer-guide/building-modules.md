@@ -323,29 +323,76 @@ Here's an example of a web page created from the boilerplate that includes the s
 	<!DOCTYPE html>
 	<html class="core">
 	<head>
-
-	<!-- This is where your CSS bundle is loaded, and we add any inline CSS -->
-	<link rel="stylesheet" href="bundle.css">
-	<style>
-		.core .o--if-js { display: none !important; }
-		.enhanced .o--if-no-js { display: none !important; }
-	</style>
-
-	<script src="//cdn.polyfill.io/v1/polyfill.min.js"></script>
-	<script>
-		if ('querySelector' in document) {
-			document.documentElement.className = document.documentElement.className.replace(/^(.+ )?core( .+)?$\b/, '$1enhanced$2');
-			document.write('<'+'script async defer src="bundle.js"></'+'script>');
-		}
-	</script>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<title>Origami template</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	
+		<!--
+				Perform your cuts the mustard test.
+				In this case it test for the presence of document.querySelector.
+		-->
+		<script>
+			var cutsTheMustard = 'querySelector' in document;
+	
+			if (cutsTheMustard) {
+				// Swap the `core` class on the HTML element for an `enhanced` one
+				// We're doing it early in the head to avoid a flash of unstyled content
+				document.documentElement.className = document.documentElement.className.replace(/\bcore\b/g, 'enhanced');
+			}
+		</script>
+	
+		<!--
+			Hide any enhanced experience content when in core mode, and vice versa.
+			Add any other inlined CSS here
+		-->
+		<style>
+			.core .o--if-js,
+			.enhanced .o--if-no-js { display: none !important; }
+		</style>
+	
+		<!--
+			This is where your CSS bundle is loaded, and we add any inline CSS
+		-->
+		<link rel="stylesheet" href="bundle.css" />
+		<style>
+			/* Add any inline CSS here */
+		</style>
+	
+		<!--
+			Unconditionally load the polyfill service to provide the best support
+			possible for modern web standards.
+			Only features missing in this user agent will be filled.
+			If you want, you can provide a list of features to polyfill, otherwise
+			all features that can be polyfilled will be.
+			See the polyfill service home page for more details:
+			https://cdn.polyfill.io/
+		-->
+		<script src="//cdn.polyfill.io/v1/polyfill.min.js"></script>
+	
+		<!--
+			Load the main JavaScript bundle asynchronously
+		-->
+		<script>
+			(function(src) {
+				if (cutsTheMustard) {
+					var o = document.createElement('script');
+					o.async = o.defer = true;
+					o.src = src;
+					var s = document.getElementsByTagName('script')[0];
+					s.parentNode.insertBefore(o, s);
+				}
+			}('//build.origami.ft.com/bundles/js?modules=a,b,c'));
+		</script>
 	</head>
 	<body>
-
-		<!-- Body content -->
+	
+		<!-- Body content here -->
 		[Find header and footer components from registry.origami.ft.com and put them here]
-
+	
 	</body>
 	</html>
+
 
 Now, you should be able to start a static web server in the `/public` directory, and load your page.  If you are using a Mac, this command in Terminal will start a server:
 
