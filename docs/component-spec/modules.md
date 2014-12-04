@@ -203,7 +203,7 @@ Options, and individual demos, can have the following properties:
 * `bodyClasses`: __String__ CSS classes to set on the body. (_Optional_)
 * `expanded`: __Boolean__ (default: `true`) Whether the demo should be shown in expanded form in the [Registry](registry.origami.ft.com). (_Optional_)
 * `description`: __String__ Explanation of the purpose of the demo. (_Optional_)
-* `dependencies`: __Array__ List of strings of other modules that are only needed for one or more demos and will be loaded via the build service. They follow the same structure as how the build service works. (Eg: "o-ft-icons@^2.3.1" or "o-ft-icons") (_Optional_)
+* `dependencies`: __Array__ List of strings of other modules that are only needed for one or more demos and will be loaded via the build service. They follow the same structure as how the build service works. (e.g.: "o-ft-icons@^2.3.1" or "o-ft-icons") (_Optional_)
 
 Individual demos also have another property:
 
@@ -217,7 +217,7 @@ Example:
 			"sass": "demos/src/demo.scss",
 			"data": "demos/src/data.json",
 			"bodyClasses": "o-hoverable-on",
-       		"dependencies": ["o-custom-module@^1.0.0"] 
+			"dependencies": ["o-custom-module@^1.0.0"] 
 		},
 		"demos": [
 			{
