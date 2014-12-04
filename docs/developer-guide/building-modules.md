@@ -99,7 +99,7 @@ Choose where you want to start building your project (normally this is also the 
 Install the build tools as a command line utility:
 
 <pre class="cli">
-<kbd>npm install -g Financial-Times/origami-build-tools</kbd>
+<kbd>npm install -g origami-build-tools</kbd>
 <output>/home/ubuntu/.nvm/v0.10.30/bin/origami-build-tools -> /home/ubuntu/.nvm/v0.10.30/lib/node_modules/origami-build-tools/lib/origami-build-tools-cli.js
 origami-build-tools@2.0.0 /home/ubuntu/.nvm/v0.10.30/lib/node_modules/origami-build-tools
 ├── which@1.0.5
@@ -113,7 +113,7 @@ In the root of your working tree, create a file called `package.json`, with the 
 	{
 	  "private": true,
 	  "devDependencies": {
-	    "origami-build-tools": "https://github.com/Financial-Times/origami-build-tools/tarball/master",
+	    "origami-build-tools": "^2.x.x",
 	    "gulp": "^3.8.8"
 	  }
 	}
