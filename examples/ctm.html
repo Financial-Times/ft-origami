@@ -1,73 +1,73 @@
 <!DOCTYPE html>
-<html class='core'>
+<html class="core">
 <head>
-  <meta charset='utf-8'>
-  <title>Origami template</title>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+	<title>Origami template</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!--
-      Perform your cuts the mustard test.
-      In this case it test for the presence of document.queryselector.
-      For information about what features come bundled with other
-      features in all browsers, see http://iwanttouse.com/
-  -->
-  <script>
-    var cutsTheMustard = 'querySelector' in document;
+	<!--
+			Perform your cuts the mustard test.
+			In this case it test for the presence of document.querySelector.
+			For information about what features come bundled with other
+			features in all browsers, see http://iwanttouse.com/
+	-->
+	<script>
+		var cutsTheMustard = 'querySelector' in document;
 
-    if (cutsTheMustard) {
-      // Swap the `core` class on the HTML element for an `enhanced` one
-      // We're doing it early in the head to avoid a flash of unstyled content
-      document.documentElement.className = document.documentElement.className.replace(/\bcore\b/g, 'enhanced');
-    }
-  </script>
+		if (cutsTheMustard) {
+			// Swap the `core` class on the HTML element for an `enhanced` one
+			// We're doing it early in the head to avoid a flash of unstyled content
+			document.documentElement.className = document.documentElement.className.replace(/\bcore\b/g, 'enhanced');
+		}
+	</script>
 
-  <!--
-    Hide any enhanced experience content when in core mode, and vice versa.
-    Add any other inlined CSS here
-  -->
-  <style>
-    .core .o--if-js { display: none !important; }
-    .enhanced .o--if-no-js { display: none !important; }
-  </style>
+	<!--
+		Hide any enhanced experience content when in core mode, and vice versa.
+		Add any other inlined CSS here
+	-->
+	<style>
+		.core .o--if-js,
+		.enhanced .o--if-no-js { display: none !important; }
+	</style>
 
-  <!--
-    Load the origami stylesheet, to avoid any flashes of unstyled content,
-    and also because stylesheet downloads can be parallelized by the browser.
-    If you have extracted the critical CSS into the inline CSS block above,
-    this could move to the end of the document.
-  -->
-  <link rel='stylesheet' href='//build.origami.ft.com/bundles/css?modules=a,b,c'>
+	<!--
+		Load the origami stylesheet, to avoid any flashes of unstyled content,
+		and also because stylesheet downloads can be parallelised by the browser.
+		If you have extracted the critical CSS into the inline CSS block above,
+		this could move to the end of the document.
+	-->
+	<link rel="stylesheet" href="//build.origami.ft.com/bundles/css?modules=a,b,c" />
 
-  <!--
-    Unconditionally load the polyfill service to provide the best support
-    possible for modern web standards.
-    Only features missing in this user agent will be filled.
-    If you want, you can provide a list of features to polyfill, otherwise
-    all features that can be polyfilled will be.
-    See the polyfill service home page for more details:
-    https://cdn.polyfill.io/
-  -->
-  <script src='//polyfill.webservices.ft.com/v1/polyfill.min.js'></script>
+	<!--
+		Unconditionally load the polyfill service to provide the best support
+		possible for modern web standards.
+		Only features missing in this user agent will be filled.
+		If you want, you can provide a list of features to polyfill, otherwise
+		all features that can be polyfilled will be.
+		See the polyfill service home page for more details:
+		https://cdn.polyfill.io/
+	-->
+	<script src="//cdn.polyfill.io/v1/polyfill.min.js"></script>
 
-  <!--
-    Load main JavaScript bundle:
-    - in the <head> to allow preloader to see it early
-    - async (modern browsers) and defer (IE 5.5-9) so it is not blocking
-  -->
-  <script>
-    (function(src) {
-      if (cutsTheMustard) {
-        var o = document.createElement('script');
-        o.async = o.defer = true;
-        o.src = src;
-        var s = document.getElementsByTagName('script')[0];
-        s.parentNode.insertBefore(o, s);
-      }
-    }('//build.origami.ft.com/bundles/js?modules=a,b,c'));
-  </script>
+	<!--
+		Load main JavaScript bundle (asynchronously, to make sure it's non-blocking)
+	-->
+	<script>
+		(function(src) {
+			if (cutsTheMustard) {
+				var o = document.createElement('script');
+				o.async = o.defer = true;
+				o.src = src;
+				var s = document.getElementsByTagName('script')[0];
+				s.parentNode.insertBefore(o, s);
+			}
+		}('//build.origami.ft.com/bundles/js?modules=a,b,c'));
+	</script>
 </head>
 <body>
 
-  <!-- Body content here -->
+	<!-- Body content here -->
 
 </body>
 </html>
