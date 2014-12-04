@@ -6,7 +6,9 @@ section: Overview
 
 <img src="{{ site.baseurl }}/img/devices.png" alt="FT on a variety of devices" class="transparent" />
 
-<p class="alert-big">Origami is about empowering developers <b>of all levels</b> to build <b>robust</b>, <b>on-brand</b> products ranging from simple static sites through to rich, dynamic web applications, to do it <b>faster</b>, to do it <b>cheaper</b>, and leave them more <b>supportable</b> and more <b>maintainable</b>.</p>
+<p class="alert-big">Origami is a set of standards, conventions and tools for building websites at the FT.</p>
+
+<p class="alert-big">Origami aspires to create a <strong>unified style and experience for FT websites</strong>, and <strong>make web development at the FT faster</strong>.
 
 This standard is equally for component developers and those who want to build websites using existing components.  These two roles will be distinguished in this standard as **component developer** and **product developer**.
 

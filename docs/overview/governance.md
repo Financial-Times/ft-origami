@@ -9,11 +9,33 @@ permalink: /docs/overview/governance/
 
 The Origami team maintains this site and specification, components and component tools.  It is currently led by Andrew Betts.
 
-## Responsibilities
+## Strategic vision
 
-The Origami group is responsible for the following
+Everything Origami does is in line with our vision which is twofold: create a unified style for FT websites, and make building websites faster.
 
-* Liaise with other front end developers across all technology projects, to maintain a comprehensive awareness of all front end development activity that is taking place (by following programme updates, attending other projects' standups or scheduling brief meetings to get briefed on new front end work that's being proposed or done)
+### Create a unified style and experience for FT websites
+
+Users find it easier to use our websites if they share a consistent brand identity.  This doesn't mean they all have to stick rigidly to a template or even that there is even on single element that they all have to share.  It's more about establishing a strong consistency of design ethos across sites, so that it's easier to make things match, and when there's no good reason for things to differ, they do match.
+
+More consistent presentation of our brand also helps to support the values and principles that the brand stands for, such as quality and accuracy.
+
+### Make development of websites faster
+
+It's often tempting when building websites to start from a blank canvas, but doing that often leads to solving problems that have already been solved.  And if you have more problems to solve you can't spend as much time on each one.  We should be working with reusable, always-improving solutions that can be shared by everyone, whether that be tools, conventions, components or anything else.
+
+## Objectives
+
+In pursuit of the vision above, we aim to ensure that:
+
+* Updates can be made in one place, but take effect everywhere that they apply
+* There is a single source of truth for each element of visual style
+* All front end developers have access to a set of good, shared conventions for naming and structuring solutions
+* There is a single build pattern for shared UI components
+* Tools exist to allow developers to use shared components easily
+
+
+## Activities
+
 * Identify and prioritise use cases for reusable components (by proactively predicting a need, by discovering requirements in active projects, or by taking explicit requests from product developers)
 * Maintain a standard specification for the creation of modules and services, and documentation on how to use them
 * Build reusable components, in the form of code modules and web services
@@ -22,6 +44,9 @@ The Origami group is responsible for the following
 * Audit components created by other teams to ensure conformance with the Origami spec
 * Provide training to help people outside of Origami (e.g. the design team) to maintain their own Origami components
 * Provide tools and services to ensure Origami components can be used with the absolute minimum of training and admin.
+* Liaise with other front end developers across all technology projects, to maintain a comprehensive awareness of all front end development activity that is taking place (by following programme updates, attending other projects' standups or scheduling brief meetings to get briefed on new front end work that's being proposed or done)
+* Develop tools to make it as easy as possible to adhere to the conventions (without compulsion to use those tools)
+
 
 ## Spec standards
 
@@ -52,6 +77,7 @@ Current members:
 * Rhys Evans (ft.com)
 * Luke Kavanagh (Interactive graphics)
 * Stuart Turner (Advertising)
-* Matt Andrews (Web app)
+* Matt Andrews (Next FT)
 * James Nicholls (Membership)
 * TBC (Specialist titles)
+* TBC (Web app)
