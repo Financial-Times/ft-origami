@@ -13,22 +13,22 @@ This tutorial assumes you are starting from a fresh install of a UNIX-like OS wi
 
 <aside>
 	<h4>No support for Windows</h4>
-	<p>Origami's build tools do not support Windows as a development environment and the instructions on this page assume you are using a UNIX-like OS.  Windows <strong>might</strong> work, to some degree, but we don't make any guarantees, either of what works today or what might continue to work in the future.  If you're a windows user, consider running a Linux VM, or signing up for a free <a href='http://c9.io'>Cloud9</a> account, and use their online Ubuntu VMs (but don't put any passwords or other secret data into C9 VMs)</p>
+	<p>Origami's build tools do not support Windows as a development environment and the instructions on this page assume you are using a UNIX-like OS.  Windows <strong>might</strong> work, to some degree, but we don't make any guarantees, either of what works today or what might continue to work in the future.  If you're a Windows user, consider running a Linux VM, or signing up for a free <a href="http://c9.io">Cloud9</a> account, and use their online Ubuntu VMs (but don't put any passwords or other secret data into C9 VMs)</p>
 </aside>
 
-##1. Install NodeJS, Ruby and Git
+## 1. Install Node.js, Ruby and Git
 
 To use Origami components, you need two language runtimes (it doesn't matter if you are not writing your application in Node or Ruby, you still need to install them) and the <code>git(1)</code> version control system:
 
-* [NodeJS](http://nodejs.org/) is the JavaScript runtime, which we need to run all the build tools, which are written in JavaScript.
-* [Ruby](https://www.ruby-lang.org) is required to run the [Sass](http://sass-lang.com/) compiler and [SCSS-Lint](https://github.com/causes/scss-lint)
+* [Node.js](http://nodejs.org/) is the JavaScript runtime, which we need to run all the build tools, which are written in JavaScript.
+* [Ruby](https://www.ruby-lang.org) is required to run the [Sass](http://sass-lang.com/) compiler and [scss-Lint](https://github.com/causes/scss-lint)
 * [Git](https://www.git-scm.com) is required to install packages from Git repositories using [Bower](http://bower.io/), a package manager.
 
-###NodeJS
+### Node.js
 
-NodeJS can be installed manually or via package management, and often ships preinstalled on many OS distributions.  To find out if you have it installed and which version you have, type this at a terminal ([What's a terminal?](#note-terminal)):
+Node.js can be installed manually or via package management, and often ships preinstalled on many OS distributions.  To find out if you have it installed and which version you have, type this at a terminal ([What's a terminal?](#note-terminal)):
 
-<aside class="o-techdocs__aside--toggleable" id='note-terminal'>
+<aside class="o-techdocs__aside--toggleable" id="note-terminal">
 	<h4>What's a "terminal"?!</h4>
 	<p>The terminal is an application that enables you to run commands on your computer by typing them in on your keyboard.  It's like having a text-message chat with your computer.  On Mac OS, the terminal is an application you can find in your Applications folder.  On most Linux systems, it's available from the applications or programs menu if you're not using it by default.  On Windows, 'Command prompt' (which is the same thing by a different name) is available in the Apps menu, or prior to Windows 8, press Windows+R, type <code>cmd</code> in the dialog that appears, and press enter.</p>
 </aside>
@@ -46,7 +46,7 @@ If you want to install on a server or other maintained environment, you'll most 
 
 * [Install Node via package manager](https://github.com/joyent/node/wiki/Installing-Node.js-via-package-manager)
 
-###Ruby
+### Ruby
 
 You may already have Ruby, since it ships preinstalled on many computers.  To find out, type this at a terminal:
 
@@ -59,7 +59,7 @@ If you see an error, or the version does not match the latest version shown on t
 
 * [View Ruby install guide](https://www.ruby-lang.org/en/installation/)
 
-###Git
+### Git
 
 To determine whether you have <code>git(1)</code> installed type this at a terminal:
 
@@ -72,7 +72,7 @@ If you see an error, or the version does not match the latest version shown on t
 
 * [View Git install guide](http://git-scm.com/book/en/Getting-Started-Installing-Git)
 
-##2. Install gulp
+## 2. Install gulp
 
 *This step only applies if you want to make the origami build process run as part of your own Gulp-powered build process. As an alternative you can use Origami build tools as a command line client.  If you prefer to do this (or you are not building your application in Node), skip this and move on to step 3.*
 
@@ -85,7 +85,7 @@ If you see an error, or the version does not match the latest version shown on t
 This command may prompt you for your password.  You will need administrative access to your machine to complete this step.  On FT-managed machines the password is typically the same as the password you use to log into the corporate network.
 
 
-##3. Install origami build tools
+## 3. Install origami build tools
 
 You now need a Node package to run the Origami build process.  How you install this depends on whether you are intending to use it as a command line tool or as part of a Gulp-powered build process.
 
@@ -94,26 +94,26 @@ You now need a Node package to run the Origami build process.  How you install t
 	<p>If you compare building a website with making a cake, where your website is the finished cake and all the Origami components you plan to use are the ingredients, these build tools are the mixer and the oven - the tools you need to use to convert the ingredients into the cake.</p>
 </aside>
 
-Choose where you want to start building your project (normally this is also the root of a git repository, but it can be any folder on your computer).  A common pattern is to create a folder called `sandboxes` in your home directory, and then create a subdirectory with the name of your project, e.g. `~/sandboxes/origami-demo`.  We'll refer to this as the 'root of the working tree', because you'll create files and folders within the project folder which descend from the root of the project.
+Choose where you want to start building your project (normally this is also the root of a git repository, but it can be any folder on your computer).  A common pattern is to create a folder called `sandboxes` in your home directory, and then create a subdirectory with the name of your project, eg `~/sandboxes/origami-demo`.  We'll refer to this as the 'root of the working tree', because you'll create files and folders within the project folder which descend from the root of the project.
 
 Install the build tools as a command line utility:
 
 <pre class="cli">
-<kbd>npm install -g https://github.com/Financial-Times/origami-build-tools/tarball/master</kbd>
+<kbd>npm install -g origami-build-tools</kbd>
 <output>/home/ubuntu/.nvm/v0.10.30/bin/origami-build-tools -> /home/ubuntu/.nvm/v0.10.30/lib/node_modules/origami-build-tools/lib/origami-build-tools-cli.js
 origami-build-tools@2.0.0 /home/ubuntu/.nvm/v0.10.30/lib/node_modules/origami-build-tools
 ├── which@1.0.5
 ...</output>
 </pre>
 
-###If you are using Gulp
+### If you are using Gulp
 
 In the root of your working tree, create a file called `package.json`, with the following contents:
 
 	{
 	  "private": true,
 	  "devDependencies": {
-	    "origami-build-tools": "https://github.com/Financial-Times/origami-build-tools/tarball/master",
+	    "origami-build-tools": "latest",
 	    "gulp": "^3.8.8"
 	  }
 	}
@@ -127,12 +127,12 @@ Hopefully you know which Origami modules you want.  If you don't, check out the 
 Once you know which Origami modules you want, create a `bower.json` file in the root of your working tree.   This you have to create yourself, and it will be different for each project, but it must conform to the bower [configuration spec](http://bower.io/docs/creating-packages/), which is very similar to npm's config.  Here is an example that includes the o-colors, o-date, o-ft-header and o-ft-footer components:
 
 	{
-	   "name": "origami-demo",
-	   "dependencies": {
-	      "o-ft-header": "^2.5.9",
-	      "o-ft-footer": "^2.0.1",
-	      "o-colors": "^2.4.3"
-	   }
+		"name": "origami-demo",
+		"dependencies": {
+			"o-ft-header": "^2.5.9",
+			"o-ft-footer": "^2.0.1",
+			"o-colors": "^2.4.3"
+		}
 	}
 
 `dependencies` is a list of the front-end modules you would like to use in your project.  If the module is in the [Origami registry](http://registry.origami.ft.com) or the [bower registry](http://bower.io/search/), you can simply specify the version number you want (using [semver](http://semver.org) rules), otherwise you must provide the full URL of the component's repository followed by a hash and the version you want.
@@ -142,12 +142,12 @@ This time we're listing these as *dependencies*, not *devDependencies*, because 
 To ensure that the Origami modules can be found, it needs to be set up to search the Origami registry.  To do this, create a `.bowerrc` file in the root of your project's working tree (or in your home directory, if you want to apply it automatically to all projects), with the following contents:
 
 	{
-	  "registry": {
-	    "search": [
-	      "http://registry.origami.ft.com",
-	      "https://bower.herokuapp.com"
-	    ]
-	  }
+		"registry": {
+			"search": [
+				"http://registry.origami.ft.com",
+				"https://bower.herokuapp.com"
+			]
+		}
 	}
 
 <aside>
@@ -185,7 +185,7 @@ As an example, create a `main.js` file at `/client/js/main.js`, containing:
 
 	// Wait until the page has loaded
 	if (document.readyState === 'interactive' || document.readyState === 'complete') {
-	    document.dispatchEvent(new CustomEvent('o.DOMContentLoaded'));
+		document.dispatchEvent(new CustomEvent('o.DOMContentLoaded'));
 	}
 	document.addEventListener('DOMContentReady', function() {
 		// Dispatch a custom event that will tell all required modules to initialise
@@ -209,20 +209,20 @@ We'll assume for the purposes of this example that your CSS and JS are in `/clie
 	var obt = require('origami-build-tools');
 
 	gulp.task('build', function() {
-	    obt.build(gulp, {
-	    	js: './client/js/main.js',
-	    	sass: './client/scss/main.scss',
-	    	buildJs: 'bundle.js',
-	    	buildCss: 'bundle.css',
-	    	buildFolder: 'public'
-	    });
+		obt.build(gulp, {
+			js: './client/js/main.js',
+			sass: './client/scss/main.scss',
+			buildJs: 'bundle.js',
+			buildCss: 'bundle.css',
+			buildFolder: 'public'
+		});
 	});
 
 	gulp.task('verify', function() {
-	    obt.verify(gulp, {
-	    	js: './client/js/main.js',
-	    	sass: './client/sass/main.scss'
-	    });
+		obt.verify(gulp, {
+			js: './client/js/main.js',
+			sass: './client/sass/main.scss'
+		});
 	});
 
 	gulp.task('watch', function() {
@@ -271,7 +271,7 @@ It will also create a `node_modules` directory in the root of your working tree,
 
 Now bundle it all together.  This is done in one of two ways depending on whether you are using Gulp or not.
 
-###With Gulp:
+### With Gulp:
 
 Just type `gulp`:
 
@@ -290,7 +290,7 @@ If you want to continue working on your CSS and JS code (edit your own code but 
 [13:38:37] Finished 'watch' after 9.1 ms</output>
 </pre>
 
-###With command line interface:
+### With command line interface:
 
 Since you have not saved any configuration specific to your project, you need to tell the build tools where to find the files in your project by passing arguments on the command line:
 
@@ -322,30 +322,77 @@ Here's an example of a web page created from the boilerplate that includes the s
 
 	<!DOCTYPE html>
 	<html class="core">
-	  <head>
-
-	  	<!-- This is where your CSS bundle is loaded, and we add any inline CSS -->
-	    <link rel='stylesheet' href='bundle.css'>
-	    <style type='text/css'>
-	      .core .o--if-js { display: none !important; }
-	      .enhanced .o--if-no-js { display: none !important; }
-	    </style>
-
-	    <script src='//polyfill.webservices.ft.com/v1/polyfill.min.js'></script>
-	    <script type='text/javascript'>
-	      if ('querySelector' in document) {
-	        document.documentElement.className = document.documentElement.className.replace(/^(.+ )?core( .+)?$\b/, '$1enhanced$2');
-	        document.write('<'+'script async defer src="bundle.js"></'+'script>');
-	      }
-	    </script>
-	  </head>
-	  <body>
-
-	    <!-- Body content -->
-	    [FIND HEADER AND FOOTER COMPONENTS FROM registry.origami.ft.com TO PUT HERE]
-
-	  </body>
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<title>Origami template</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	
+		<!--
+				Perform your cuts the mustard test.
+				In this case it test for the presence of document.querySelector.
+		-->
+		<script>
+			var cutsTheMustard = 'querySelector' in document;
+	
+			if (cutsTheMustard) {
+				// Swap the `core` class on the HTML element for an `enhanced` one
+				// We're doing it early in the head to avoid a flash of unstyled content
+				document.documentElement.className = document.documentElement.className.replace(/\bcore\b/g, 'enhanced');
+			}
+		</script>
+	
+		<!--
+			Hide any enhanced experience content when in core mode, and vice versa.
+			Add any other inlined CSS here
+		-->
+		<style>
+			.core .o--if-js,
+			.enhanced .o--if-no-js { display: none !important; }
+		</style>
+	
+		<!--
+			This is where your CSS bundle is loaded, and we add any inline CSS
+		-->
+		<link rel="stylesheet" href="bundle.css" />
+		<style>
+			/* Add any inline CSS here */
+		</style>
+	
+		<!--
+			Unconditionally load the polyfill service to provide the best support
+			possible for modern web standards.
+			Only features missing in this user agent will be filled.
+			If you want, you can provide a list of features to polyfill, otherwise
+			all features that can be polyfilled will be.
+			See the polyfill service home page for more details:
+			https://cdn.polyfill.io/
+		-->
+		<script src="//cdn.polyfill.io/v1/polyfill.min.js"></script>
+	
+		<!--
+			Load the main JavaScript bundle asynchronously
+		-->
+		<script>
+			(function(src) {
+				if (cutsTheMustard) {
+					var o = document.createElement('script');
+					o.async = o.defer = true;
+					o.src = src;
+					var s = document.getElementsByTagName('script')[0];
+					s.parentNode.insertBefore(o, s);
+				}
+			}('bundle.js'));
+		</script>
+	</head>
+	<body>
+	
+		<!-- Body content here -->
+		[Find header and footer components from registry.origami.ft.com and put them here]
+	
+	</body>
 	</html>
+
 
 Now, you should be able to start a static web server in the `/public` directory, and load your page.  If you are using a Mac, this command in Terminal will start a server:
 
@@ -377,4 +424,4 @@ For very simple projects, this may be true.  But it's generally not a great idea
 		color: red;
 	}
 
-If `o-tweet` wanted to load a background image that was at `/img/separator.gif` in the `o-tweet` repo, this config would result in the image being requested from `/resources/o-tweet/img/separator.gif`.  It is then up to you to handle this request and deliver the appropriate file from your bower_components directory.
+If `o-tweet` wanted to load a background image that was at `/img/separator.gif` in the `o-tweet` repo, this config would result in the image being requested from `/resources/o-tweet/img/separator.gif`.  It is then up to you to handle this request and deliver the appropriate file from your `bower_components` directory.
