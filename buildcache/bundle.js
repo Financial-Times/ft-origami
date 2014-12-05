@@ -1,4 +1,4 @@
-(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);throw new Error("Cannot find module '"+o+"'")}var f=n[o]={exports:{}};t[o][0].call(f.exports,function(e){var n=t[o][1][e];return s(n?n:e)},f,f.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
+(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 /*jshint browser:true, node:true*/
 
 'use strict';
@@ -10604,7 +10604,7 @@ var el = document.createElement('o'),
     stylePrefixes = vendorPrefixes.split(' '),
     domPrefixes = vendorPrefixes.toLowerCase().split(' '),
 
-    /*
+    /* 
      * Simple object type checker
      */
     is = function( obj, type ) {
@@ -10658,7 +10658,7 @@ var el = document.createElement('o'),
      */
     getPrefixedPropList = function (prop, prefixes) {
         var capitalisedProp = prop.charAt(0).toUpperCase() + prop.slice(1);
-
+            
         return (prop + ' ' + prefixes.join(capitalisedProp + ' ') + capitalisedProp).split(' ');
     },
 
@@ -10709,13 +10709,13 @@ var el = document.createElement('o'),
      */
     getDomMethod = function (obj, domPropName, bindTo) {
         var prop = getDomProperty(obj, domPropName);
-
+        
         return is(prop, 'function') ? bind(prop, obj || bindTo) : false;
     },
 
     /*
      *  Returns the value of a vendor prefixed version of a style property
-     *  If a list of properties is requested returns a hash table of the form { requestedPropertyName {prefixedName: 'webkitStyle', value: '10px'}}
+     *  If a list of properties is requested returns a hash table of the form { requestedPropertyName {prefixedName: 'webkitStyle', value: '10px'}} 
      */
     getStyleValue = function (element, stylePropNames) {
         var computedStyle = getComputedStyle(element, null),
@@ -10725,7 +10725,7 @@ var el = document.createElement('o'),
         if (stylePropNames.indexOf(' ') === -1) {
             return computedStyle.getPropertyValue(cssPrefixer(stylePropNames));
         }
-
+        
         stylePropNames = stylePropNames.split(' ');
 
         for (var i = stylePropNames.length - 1; i >= 0; i--) {
@@ -10752,6 +10752,9 @@ module.exports = {
     getDomProperty: getDomProperty,
     getDomMethod: getDomMethod
 };
+
+
+
 
 },{}],26:[function(require,module,exports){
 'use strict';
@@ -10884,4 +10887,4 @@ module.exports = {
 };
 },{"./../lodash-node/modern/functions/debounce":3,"./../lodash-node/modern/functions/throttle":4,"./../o-useragent/main.js":24}],27:[function(require,module,exports){
 require("./bower_components/o-techdocs/main.js");
-},{"./bower_components/o-techdocs/main.js":18}]},{},[27])
+},{"./bower_components/o-techdocs/main.js":18}]},{},[27]);
