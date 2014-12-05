@@ -12,7 +12,7 @@ These rules apply to any code written as part of an Origami component, and provi
 ## Language standards
 
 * [JavaScript](js)
-* [SCSS](scss)
+* [Sass (SCSS)](scss)
 * [HTML](html)
 * [Mustache](mustache)
 

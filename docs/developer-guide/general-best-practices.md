@@ -63,7 +63,7 @@ ARIA is a set of accessibility standards that allow users of assistive technolog
 	<li aria-selected="true">I'm selected</li>
 	<li aria-selected="false">I'm not selected, but am selectable</li>
 
-Some states are automatically recognised by the browser and you don't need to do anything to enable them, such as **hovered** and **focused**, but it is possible to break the browser's behaviour (eg by setting a CSS `outline: none` property).  In the particular case of focus, please allow the browser to apply it's default focus style if possible.
+Some states are automatically recognised by the browser and you don't need to do anything to enable them, such as **hovered** and **focused**, but it is possible to break the browser's behaviour (e.g. by setting a CSS `outline: none` property).  In the particular case of focus, please allow the browser to apply it's default focus style if possible.
 
 Some Origami components may not display correctly unless you apply the right state attributes.
 

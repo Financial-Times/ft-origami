@@ -20,7 +20,7 @@ The Origami group is responsible for the following
 * Support and maintain components (both modules and services)
 * Encourage other teams to create components where appropriate
 * Audit components created by other teams to ensure conformance with the Origami spec
-* Provide training to help people outside of Origami (eg the design team) to maintain their own Origami components
+* Provide training to help people outside of Origami (e.g. the design team) to maintain their own Origami components
 * Provide tools and services to ensure Origami components can be used with the absolute minimum of training and admin.
 
 ## Spec standards

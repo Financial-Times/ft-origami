@@ -9,7 +9,7 @@ permalink: /docs/developer-guide/web-services/
 
 Origami web services provide a variety of front-end related data services and content that can be used to improve your site and speed up development.
 
-To discover available Origami services, check the [Origami registry](http://registry.origami.ft.com).  The registry contains links to the service's online documentation, which will describe its API endpoints, arguments and output.  There are however a few hints and technqiues for using web services that are common to most services.
+To discover available Origami services, check the [Origami registry](http://registry.origami.ft.com).  The registry contains links to the service's online documentation, which will describe its API endpoints, arguments and output.  There are however a few hints and techniques for using web services that are common to most services.
 
 ## Where and how to use web services
 
@@ -27,17 +27,17 @@ This is an oversimplified example - in practice you should use an HTTP client th
 
 ### Real time interaction from your application
 
-Equally, you could interact with the service from your application's backend in real time, and this might be the best option if you need to tailor your API request to the needs of each individual user, the cache time is too short for pregeneration, or the API requests you're making are writes rather than reads (eg submitting analytics).
+Equally, you could interact with the service from your application's backend in real time, and this might be the best option if you need to tailor your API request to the needs of each individual user, the cache time is too short for pre-generation, or the API requests you're making are writes rather than reads (e.g. submitting analytics).
 
 ### Use dynamic content assembly at the edge
 
-Akamai and Varnish both support an Edge assembly language called [Edge side includes](http://en.wikipedia.org/wiki/Edge_Side_Includes) which can be used to easily incoporate a fragment of content from another source into your web page:
+Akamai and Varnish both support an Edge assembly language called [Edge side includes](http://en.wikipedia.org/wiki/Edge_Side_Includes) which can be used to easily incorporate a fragment of content from another source into your web page:
 
 	<body>
-	  <esi:include src="http://ft-nav.webservices.ft.com/v1/nav?depth=2" alt="/failsafe/nav.html" onerror="continue"/>
-	  <div class='content'>
-	  ...
-	  </div>
+		<esi:include src="http://ft-nav.webservices.ft.com/v1/nav?depth=2" alt="/failsafe/nav.html" onerror="continue"/>
+		<div class="content">
+		...
+		</div>
 	</body>
 
 
@@ -48,7 +48,7 @@ If the content you want to load from an Origami web service is not required on p
 	var xhr = new XMLHttpRequest();
 	xhr.open("get", "http://tweet.webservices.ft.com/v1/statuses/show.html?id=266031293945503744&source=rankings.ft.com");
 	xhr.onload = function() {
-	  document.getElementById('tweet_detail').innerHTML = this.responseText;
+		document.getElementById('tweet_detail').innerHTML = this.responseText;
 	}
 	xhr.send();
 
@@ -69,10 +69,10 @@ In any request to an Origami service, you should always check the response for t
 
 If your app integrates with a lot of external services, it's easy to increase the risk of an outage in your app by inadvertently making your app critically dependent on those services.  Although many (though by no means all) Origami services offer very high availability and robust architectures to support that, chaining together lots of very low probabilities still results in an unacceptably high one.
 
-To mitigate this, whereever possible ensure your application is not dependent on the servie.  If it's a piece of content, allow that part of the page to go blank, or simply continue using a stale copy until the service comes back online.   If it's a data service, store your request until you're able to send it.  There are lots of possible ways of adding mitigating logic to your application, so try to ensure that you have fully mitigated the effect of service outages whereever practical.
+To mitigate this, wherever possible ensure your application is not dependent on the service.  If it's a piece of content, allow that part of the page to go blank, or simply continue using a stale copy until the service comes back online.   If it's a data service, store your request until you're able to send it.  There are lots of possible ways of adding mitigating logic to your application, so try to ensure that you have fully mitigated the effect of service outages wherever practical.
 
 ## Source identification
 
 All Origami web services require you to submit a `source` parameter on every API request.  This can be sent as a GET or POST parameter, or as an `X-FT-Source` HTTP request header.  The reason for this is to allow operations staff to easily see which applications are responsible for traffic to web services, and more easily alert you if your traffic seems unusual.
 
-You can set `source` to anything you like, but a good practice is to use your application's public hostname, eg `source=rankings.ft.com`.
+You can set `source` to anything you like, but a good practice is to use your application's public hostname, e.g. `source=rankings.ft.com`.

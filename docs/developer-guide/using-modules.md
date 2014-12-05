@@ -13,7 +13,7 @@ Origami modules are packages of JavaScript and CSS which can be imported into yo
 
 If you are not sure which strategy to use to build your CSS and JS, consult the following table of pros and cons to help you decide:
 
-<table class='o-techdocs-table'>
+<table class="o-techdocs-table">
 <tr><th>Feature</th><th>Building manually</th><th>Using the build service</th></tr>
 <tr><td>Unopinionated about your server-side technology stack</td><td>No.  You will need NodeJS (for package management and build automation) and Ruby (for Sass compilation)</td><td>Yes, there is no requirement for any server-side code</td></tr>
 <tr><td>Can get set up quickly</td><td>No.  If you're not familar with node and don't have any pre-requisites installed, getting set up could take you a couple of hours</td><td>Yes, a few minutes at most</td></tr>
@@ -31,7 +31,7 @@ Complete tutorials for using both are included in this guide:
 
 <aside>
 	<h4>Mustache as a spec</h4>
-	<p>Origami modules don't include markup in their build process.  Any templates inlcluded in a module component are simply specifications for the markup you need to write to activate the CSS and JavaScript, which use the Mustache template syntax.  Don't feel the need to consume the templates in your app and run Mustache, though you can if you want to, and Mustache implementations are available for most platforms.</p>
+	<p>Origami modules don't include markup in their build process.  Any templates included in a module component are simply specifications for the markup you need to write to activate the CSS and JavaScript, which use the Mustache template syntax.  Don't feel the need to consume the templates in your app and run Mustache, though you can if you want to, and Mustache implementations are available for most platforms.</p>
 	<p>In the future it's likely that Origami markup will be available as templates in [HTML imports]()</p>
 </aside>
 
@@ -41,7 +41,7 @@ Browsers that have all the features that all your modules need (whether natively
 
 Here is an example of how to integrate a cuts-the-mustard test into your page:
 
-<div class='o-techdocs-gist' data-repo="Financial-Times/ft-origami" data-branch="gh-pages" data-path="/examples/ctm.html"></div>
+<div class="o-techdocs-gist" data-repo="Financial-Times/ft-origami" data-branch="gh-pages" data-path="/examples/ctm.html"></div>
 
 
 ### Customising polyfills
@@ -72,7 +72,7 @@ The `core` and `enhanced` classes here are not defined by Origami, but must simp
 
 When you send the HTML source to the browser, remember to pre-populate the HTML tag with the core class (or whatever you choose to call it):
 
-	<html class='core'>
+	<html class="core">
 
 ### Multiple cuts the mustards
 
@@ -101,13 +101,13 @@ Origami components do not perform any initialisation automatically, to avoid app
 * `o.DOMContentLoaded`
 * `o.load`
 
-If you wish to initalise Origami components that have auto-initialise capability, fire these custom events in response to the native ones:
+If you wish to initialise Origami components that have auto-initialise capability, fire these custom events in response to the native ones:
 
 	if (document.readyState === 'interactive' || document.readyState === 'complete') {
-	    document.dispatchEvent(new CustomEvent('o.DOMContentLoaded'));
+		document.dispatchEvent(new CustomEvent('o.DOMContentLoaded'));
 	}
 	document.addEventListener("DOMContentLoaded", function() {
-	    document.dispatchEvent(new CustomEvent('o.DOMContentLoaded'));
+		document.dispatchEvent(new CustomEvent('o.DOMContentLoaded'));
 	});
 
 Alternatively, all modules that have auto-initialise capability also expose the bound function handler as part of their public API (normally as `init()`), so you can choose to only initialise the modules that you want to, in the order that you want them.

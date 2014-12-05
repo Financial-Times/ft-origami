@@ -4,7 +4,7 @@ title: Home
 section: Overview
 ---
 
-<img src='{{ site.baseurl }}/img/devices.png' alt='FT on a variety of devices' class='transparent' />
+<img src="{{ site.baseurl }}/img/devices.png" alt="FT on a variety of devices" class="transparent" />
 
 <p class="alert-big">Origami is about empowering developers <b>of all levels</b> to build <b>robust</b>, <b>on-brand</b> products ranging from simple static sites through to rich, dynamic web applications, to do it <b>faster</b>, to do it <b>cheaper</b>, and leave them more <b>supportable</b> and more <b>maintainable</b>.</p>
 

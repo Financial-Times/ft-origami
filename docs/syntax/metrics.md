@@ -11,7 +11,7 @@ All Origami web services are required to expose multiple `/__metrics` endpoints 
 
 ## Format
 
-<table class='o-techdocs-table'>
+<table class="o-techdocs-table">
 <tr>
 	<th>Property</th>
 	<th>Type</th>
@@ -38,9 +38,9 @@ All Origami web services are required to expose multiple `/__metrics` endpoints 
 	<td>
 		The type of value.  One of:
 		<ul>
-		<li><code>counter</code>: The value is a number representing a count, eg number of running processes, items in a queue, bytes of disk space remaining, seconds since last new content, etc.</li>
-		<li><code>boolean</code>: The value is a simple boolean true/false, eg whether the service can connect to its database.</li>
-		<li><code>movingaverage</code>: The value is an average of a set of multiple values over a period of time, eg the response time of a depended-upon service.</li>
+		<li><code>counter</code>: The value is a number representing a count, e.g. number of running processes, items in a queue, bytes of disk space remaining, seconds since last new content, etc.</li>
+		<li><code>boolean</code>: The value is a simple boolean true/false, e.g. whether the service can connect to its database.</li>
+		<li><code>movingaverage</code>: The value is an average of a set of multiple values over a period of time, e.g. the response time of a depended-upon service.</li>
 		</ul>
 	</td>
 </tr><tr>

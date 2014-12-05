@@ -33,7 +33,7 @@ NodeJS can be installed manually or via package management, and often ships prei
 	<p>The terminal is an application that enables you to run commands on your computer by typing them in on your keyboard.  It's like having a text-message chat with your computer.  On Mac OS, the terminal is an application you can find in your Applications folder.  On most Linux systems, it's available from the applications or programs menu if you're not using it by default.  On Windows, 'Command prompt' (which is the same thing by a different name) is available in the Apps menu, or prior to Windows 8, press Windows+R, type <code>cmd</code> in the dialog that appears, and press enter.</p>
 </aside>
 
-<pre class='cli'>
+<pre class="cli">
 <kbd>node -v</kbd>
 <output>v0.10.29</output>
 </pre>
@@ -50,7 +50,7 @@ If you want to install on a server or other maintained environment, you'll most 
 
 You may already have Ruby, since it ships preinstalled on many computers.  To find out, type this at a terminal:
 
-<pre class='cli'>
+<pre class="cli">
 <kbd>ruby -v</kbd>
 <output>ruby 2.0.0p247 (2013-06-27 revision 41674) [universal.x86_64-darwin13]</output>
 </pre>
@@ -78,7 +78,7 @@ If you see an error, or the version does not match the latest version shown on t
 
 [Gulp](http://gulpjs.com/) is a task runner, which we use to run the build process tasks.  Once you have installed Node, type this at a terminal:
 
-<pre class='cli'>
+<pre class="cli">
 <kbd>npm install -g gulp</kbd>
 </pre>
 
@@ -94,11 +94,11 @@ You now need a Node package to run the Origami build process.  How you install t
 	<p>If you compare building a website with making a cake, where your website is the finished cake and all the Origami components you plan to use are the ingredients, these build tools are the mixer and the oven - the tools you need to use to convert the ingredients into the cake.</p>
 </aside>
 
-Choose where you want to start building your project (normally this is also the root of a git repository, but it can be any folder on your computer).  A common pattern is to create a folder called `sandboxes` in your home directory, and then create a subdirectory with the name of your project, eg `~/sandboxes/origami-demo`.  We'll refer to this as the 'root of the working tree', because you'll create files and folders within the project folder which descend from the root of the project.
+Choose where you want to start building your project (normally this is also the root of a git repository, but it can be any folder on your computer).  A common pattern is to create a folder called `sandboxes` in your home directory, and then create a subdirectory with the name of your project, e.g. `~/sandboxes/origami-demo`.  We'll refer to this as the 'root of the working tree', because you'll create files and folders within the project folder which descend from the root of the project.
 
 Install the build tools as a command line utility:
 
-<pre class='cli'>
+<pre class="cli">
 <kbd>npm install -g https://github.com/Financial-Times/origami-build-tools/tarball/master</kbd>
 <output>/home/ubuntu/.nvm/v0.10.30/bin/origami-build-tools -> /home/ubuntu/.nvm/v0.10.30/lib/node_modules/origami-build-tools/lib/origami-build-tools-cli.js
 origami-build-tools@2.0.0 /home/ubuntu/.nvm/v0.10.30/lib/node_modules/origami-build-tools
@@ -260,7 +260,7 @@ Remember that because `.gitignore` starts with a dot, it may not show up in your
 
 You're ready to run your build.  First, use origami-build-tools to install everything else that you need, including the Origami components that you want:
 
-<pre class='cli'>
+<pre class="cli">
 <kbd>origami-build-tools install</kbd>
 <output>...output telling us which tools are being installed...</output>
 </pre>
@@ -275,7 +275,7 @@ Now bundle it all together.  This is done in one of two ways depending on whethe
 
 Just type `gulp`:
 
-<pre class='cli'>
+<pre class="cli">
 <kbd>gulp</kbd>
 <output>Browserifying ./client/js/main.js
 Compiling ./client/scss/main.scss</output>
@@ -283,7 +283,7 @@ Compiling ./client/scss/main.scss</output>
 
 If you want to continue working on your CSS and JS code (edit your own code but not anything in the bower_components directory), you can also tell grunt to watch your files and automatically retrigger the build when you save a change.
 
-<pre class='cli'>
+<pre class="cli">
 <kbd>gulp watch</kbd>
 <output>[13:38:37] Using gulpfile ~/origami/obt-test/gulpfile.js
 [13:38:37] Starting 'watch'...
@@ -294,7 +294,7 @@ If you want to continue working on your CSS and JS code (edit your own code but 
 
 Since you have not saved any configuration specific to your project, you need to tell the build tools where to find the files in your project by passing arguments on the command line:
 
-<pre class='cli'>
+<pre class="cli">
 <kbd>origami-build-tools build --js=./client/js/main.js --sass=./client/scss/main.scss --buildJs=bundle.js --buildCss=bundle.css --buildFolder=public</kbd>
 <output>Browserifying ./client/js/main.js
 Compiling ./client/sass/main.scss</output>
@@ -321,7 +321,7 @@ The Origami spec includes instructions for how to structure your HTML page, so g
 Here's an example of a web page created from the boilerplate that includes the script and link tags in the right place, and also adds some content that we can style using the Origami components.  You can create this in your public directory as `/public/index.html`:
 
 	<!DOCTYPE html>
-	<html class='core'>
+	<html class="core">
 	  <head>
 
 	  	<!-- This is where your CSS bundle is loaded, and we add any inline CSS -->
@@ -349,7 +349,7 @@ Here's an example of a web page created from the boilerplate that includes the s
 
 Now, you should be able to start a static web server in the `/public` directory, and load your page.  If you are using a Mac, this command in Terminal will start a server:
 
-<pre class='cli'>
+<pre class="cli">
 <kbd>python -m SimpleHTTPServer 8001</kbd>
 <output>Serving HTTP on 0.0.0.0 port 8001 ...</output>
 </pre>
