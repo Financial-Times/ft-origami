@@ -1,6 +1,6 @@
 {
     "name": "ft-origami",
     "dependencies": {
-        "o-techdocs": "^3.1.0"
+        "o-techdocs": "^3.2.1"
     }
 }
