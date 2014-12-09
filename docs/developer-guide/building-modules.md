@@ -368,7 +368,7 @@ Here's an example of a web page created from the boilerplate that includes the s
 			See the polyfill service home page for more details:
 			https://cdn.polyfill.io/
 		-->
-		<script src="//cdn.polyfill.io/v1/polyfill.min.js"></script>
+		<script src="//polyfill.webservices.ft.com/v1/polyfill.min.js"></script>
 	
 		<!--
 			Load the main JavaScript bundle asynchronously
