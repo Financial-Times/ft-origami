@@ -114,7 +114,7 @@ In the root of your working tree, create a file called `package.json`, with the 
 	  "private": true,
 	  "devDependencies": {
 	    "origami-build-tools": "latest",
-	    "gulp": "^3.8.8"
+	    "gulp": "latest"
 	  }
 	}
 
