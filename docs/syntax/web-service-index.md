@@ -11,7 +11,7 @@ All Origami web services are required to expose an `/__about` endpoint to list t
 
 ## Format
 
-<table class='o-techdocs-table'>
+<table class="o-techdocs-table">
 <tr>
 	<th>Property</th>
 	<th>Type</th>

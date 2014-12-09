@@ -224,7 +224,7 @@ The following documents the chronology of changes to the Origami spec and signif
 
 ###25 Feb 2014
 
-**CI**: CI should use NodeJS as test runner ([Issue](https://github.com/Financial-Times/ft-origami/issues/125))
+**CI**: CI should use Node.js as test runner ([Issue](https://github.com/Financial-Times/ft-origami/issues/125))
 
 ###24 Feb 2014
 

@@ -113,8 +113,8 @@ In the root of your working tree, create a file called `package.json`, with the 
 	{
 	  "private": true,
 	  "devDependencies": {
-	    "origami-build-tools": "^2.x.x",
-	    "gulp": "^3.8.8"
+	    "origami-build-tools": "latest",
+	    "gulp": "latest"
 	  }
 	}
 
@@ -368,7 +368,7 @@ Here's an example of a web page created from the boilerplate that includes the s
 			See the polyfill service home page for more details:
 			https://cdn.polyfill.io/
 		-->
-		<script src="//cdn.polyfill.io/v1/polyfill.min.js"></script>
+		<script src="//polyfill.webservices.ft.com/v1/polyfill.min.js"></script>
 	
 		<!--
 			Load the main JavaScript bundle asynchronously

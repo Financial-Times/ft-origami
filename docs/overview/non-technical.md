@@ -36,7 +36,7 @@ For FT to thrive as a digital organisation, we need to solve some serious techno
 
 ### Repeating work.. again, again, again
 
-<p class='lead'>Over the years, FT has evolved from having digital represent a tiny fraction of a huge print operation to having it in the centre of the business.  Along the way we've created or acquired over <acronym title='Measured by number of domain names owned by the FT'><b>six hundred websites</b></acronym> and <b>eight hundred <code><em>something</em>.ft.com</code> sites</b>.  Every time we build a new website, we repeat work done before, and we waste time and money.</p>
+<p class="lead">Over the years, FT has evolved from having digital represent a tiny fraction of a huge print operation to having it in the centre of the business.  Along the way we've created or acquired over <acronym title="Measured by number of domain names owned by the FT"><b>six hundred websites</b></acronym> and <b>eight hundred <code><em>something</em>.ft.com</code> sites</b>.  Every time we build a new website, we repeat work done before, and we waste time and money.</p>
 
 There are lots of examples of this kind of thing.  While www.ft.com has always been the 'core product' and generally received changes in design first, other sites that are 'FT style' take time to convert over.  The full cost of redesigning anything on the site is often vastly underestimated, because it ultimately includes the cost of bringing all websites that share that style into line with the new standard (a process that often takes *years* to complete).
 
@@ -50,15 +50,15 @@ With **Fast FT**, we wanted to avoid building two versions of the same thing, so
 
 ### Impenetrable systems create huge barriers to new developers
 
-At the moment a 'new' developer, whether 3rd party or internal, looking to create a branded FT.com product has a lot of work to do. They will need to deconstruct a current page and/or wade through large amounts of code just to find out how to layout a page and style some consitent UI components. It is also likely to consume the time, potentially large amounts of it, of developers who are familiar with the codebase. This prevents them getting on with their own new product development.
+At the moment a 'new' developer, whether 3rd party or internal, looking to create a branded FT.com product has a lot of work to do. They will need to deconstruct a current page and/or wade through large amounts of code just to find out how to layout a page and style some consistent UI components. It is also likely to consume the time, potentially large amounts of it, of developers who are familiar with the codebase. This prevents them getting on with their own new product development.
 
-<aside><h4>How to solve it</h4>Anything we build should be consitently documented with esoteric terminology defined in a glossary. Our brand guidelines and how they relate to Origami should form a part of the overall documentation effort. There should be little or no reason for a 'new' developer to communicate directly with the maintainers of the Origami components or the design team.</aside>
+<aside><h4>How to solve it</h4>Anything we build should be consistently documented with esoteric terminology defined in a glossary. Our brand guidelines and how they relate to Origami should form a part of the overall documentation effort. There should be little or no reason for a 'new' developer to communicate directly with the maintainers of the Origami components or the design team.</aside>
 
 ### Unable to let go and move on
 
-Right now, given the way in which products have historically been (and to some extent still are) built in isolation by separated teams (and often by outside agencies), it's actually hard to know where a particular style or feature has been copied and might still exist.  Equally, low level foundations need to be kept around for years even though they've been superceded, simply because we don't know what might be using them.
+Right now, given the way in which products have historically been (and to some extent still are) built in isolation by separated teams (and often by outside agencies), it's actually hard to know where a particular style or feature has been copied and might still exist.  Equally, low level foundations need to be kept around for years even though they've been superseded, simply because we don't know what might be using them.
 
-<p class='lead'>In 2006, when Assanka started working with the FT, their team was told to ignore an old cookie called <code>FT_User</code>, which would soon be removed.  <em>Seven years later</em>, that cookie <b>is still being served today</b>, even as plans are being made to retire its successor.</p>
+<p class="lead">In 2006, when Assanka started working with the FT, their team was told to ignore an old cookie called <code>FT_User</code>, which would soon be removed.  <em>Seven years later</em>, that cookie <b>is still being served today</b>, even as plans are being made to retire its successor.</p>
 
 Having to keep old stuff running is (like a ship dragging an anchor) a major handicap on the ability of the FT to adopt new, modern practices.
 
@@ -76,7 +76,7 @@ Imagine if everyone had to build their own car.  By yourself you might manage a 
 
 We often need one service to integrate with another, but too often we don't recognise this in advance and plan for it.  This means that when the integration is done it's a patch job that attempts to fit a square peg into a round hole.
 
-<p class='lead'>The paywall works perfectly for what it as designed for, but it was only designed to protect pages on www.ft.com.  Putting an article not on ft.com behind the pay wall requires a process of multiple redirects, loading of 'fake' pages, hidden frames, and use of ancient, long obsolete templates.</p>
+<p class="lead">The paywall works perfectly for what it as designed for, but it was only designed to protect pages on www.ft.com.  Putting an article not on ft.com behind the pay wall requires a process of multiple redirects, loading of 'fake' pages, hidden frames, and use of ancient, long obsolete templates.</p>
 
 ![Paywall on blogs.ft.com]({{site.baseurl}}/img/barrier.png)
 
@@ -90,7 +90,7 @@ The most catastrophic consequence of this happens when the wrapper template is u
 
 ## The Origami way
 
-<p class='lead'>It's time for a completely new approach, using modern tools.</p>
+<p class="lead">It's time for a completely new approach, using modern tools.</p>
 
 The web has grown up, and discovered concepts that have been around in all other kinds of software engineering for years.  By using those long-established principles we can bring robustness and scale to our web engineering.
 
@@ -104,7 +104,7 @@ You can see from this illustration just how much work we can shift away from pro
 
 Some components are completely static content (yellow above), like the search box.  It might do some snazzy things like autosuggest, but it doesn't need to be populated with any dynamic content by the developer.  For these, all the HTML (content), CSS (style) and JavaScript (behaviour) can be downloaded from a module component and incorporated into the developer's page.
 
-Others are JavaScript modules (green), which add some additional content or behaviour to the page once it's done loading, like ads, tracking or the cookie notice.  These might require the developer to point out where to put stuff in the page by dropping in a marker, but that should be as simple as possible so the developer doesn't have to learn much about how it works - something like `<div data-ft-module='ad' data-ad-section='alphaville'></div>`.  This empty container would spring to life when the module kicked in to do its thing.  Keeping the page clear of secondary component content like ads also makes the pages easier for search engines like Google to consume and index.
+Others are JavaScript modules (green), which add some additional content or behaviour to the page once it's done loading, like ads, tracking or the cookie notice.  These might require the developer to point out where to put stuff in the page by dropping in a marker, but that should be as simple as possible so the developer doesn't have to learn much about how it works - something like `<div data-ft-module="ad" data-ad-section="alphaville"></div>`.  This empty container would spring to life when the module kicked in to do its thing.  Keeping the page clear of secondary component content like ads also makes the pages easier for search engines like Google to consume and index.
 
 Some parts of the page are dynamic (purple), and change all the time, like the skyline or nav bar, and which still aren't part of the product we're trying to build.  So to incorporate these quickly into our product, the developer can load the content from a web service that will be provided to supply always-up-to-date data, and can also load the styles and behaviours from an accompanying module.  Again the amount of work the developer needs to do to incorporate these should be absolutely minimal.
 

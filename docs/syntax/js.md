@@ -22,7 +22,7 @@ Product developers are encouraged to include Origami JavaScript using a 'cuts th
 * Do not leave any non-garbage collectable traces after `destroy` is called
 * Do not modify the DOM outside of areas of [owned DOM]({{site.baseurl}}/docs/syntax/html/#owned_dom), except:
 	* to add feature flag CSS classes to the `documentElement`; or
-	* to add a new section of owned DOM to an element explictly nominated by the host application (eg by the host application calling a method of the module's API and passing an element to which the module is asked to append its DOM)
+	* to add a new section of owned DOM to an element explicitly nominated by the host application (e.g. by the host application calling a method of the module's API and passing an element to which the module is asked to append its DOM)
 * Do not require global variables to be defined prior to the script loading.  If your module requires configuration, read the config from data attributes attached to parts of DOM that your module will own (see [Data attributes](#data_attributes) for details)
 * Do not assume the existence of globals except those defined as part of ECMAScript 3 and features listed in the `browserFeatures/required` section of `origami.json`.
 
@@ -34,7 +34,7 @@ Product developers are encouraged to include Origami JavaScript using a 'cuts th
 		<li>declare it as optional, test for it, and if not present, skip that functionality; or</li>
 		<li>include code (either your own or a dependency that provides the feature <em>without adding it outside of your module scope</em>.</li>
 	</ul>
-	<p>Where modern browser features might be vendor-prefixed, you can get the correct prefixed version using <a href='https://github.com/Financial-Times/o-useragent'>o-useragent</a>.</p>
+	<p>Where modern browser features might be vendor-prefixed, you can get the correct prefixed version using <a href="https://github.com/Financial-Times/o-useragent">o-useragent</a>.</p>
 </aside>
 
 ## Initialisation
@@ -46,7 +46,7 @@ Where modules bind to the `o.DOMContentLoaded` or `o.load` events, their `init` 
 Modules that expose an `init` method or an instance constructor which takes an argument identifying an area of owned DOM *must* allow all of the following types of references:
 
 * An [`HTMLElement`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement) object
-* A string containing a valid querySelector expression, eg ".main-content > [data-o-component~='o-share']"
+* A string containing a valid querySelector expression, e.g. ".main-content > [data-o-component~='o-share']"
 * Nothing (or any falsey value), which should be interpreted as `document.body`
 
 Where this reference is passed to an `init` function, the module *may* create multiple instances and return them in an array.  Where passed to a constructor, the module must only create one instance and return it.
@@ -54,11 +54,11 @@ Where this reference is passed to an `init` function, the module *may* create mu
 
 ## Data attributes
 
-If a module's JavaScript requires configuration, this should be done using data- attributes on the HTML element that is the root element of the DOM owned by the module.  Data attributes should be named `data-{modulename}-{key}`, eg `data-o-tweet-id`.  The module may also create attributes of this form at runtime.
+If a module's JavaScript requires configuration, this should be done using data- attributes on the HTML element that is the root element of the DOM owned by the module.  Data attributes should be named `data-{modulename}-{key}`, e.g. `data-o-tweet-id`.  The module may also create attributes of this form at runtime.
 
 In some cases, especially for tracking use cases, a module may act on portions of DOM not exclusively controlled by it.  In this case the same naming conventions apply, but the module *must not* create these attributes itself.  Instead, it may only act on elements outside of its own portions of 'owned DOM' if the element has already has a data attribute in the module's namespace.
 
-Where JavaScript exists to enhance elements, and accompanying CSS depends on knowing whether the JavaScript intends to apply that enhancement, the JavaScript *may* add a data attribute of the form `data-{modulename}-js` with no value to the root element of the component when the JavaScript initalises.  For example, o-tabs markup would not contain a `o--if-js` class, because the tabs content should remain visible even if the tabs JavaScript is not running on the page, but if the JavaScript does run, it should apply an `o-tabs--js` data attribute to allow the tabs CSS to hide all but the selected tab.
+Where JavaScript exists to enhance elements, and accompanying CSS depends on knowing whether the JavaScript intends to apply that enhancement, the JavaScript *may* add a data attribute of the form `data-{modulename}-js` with no value to the root element of the component when the JavaScript initialises.  For example, o-tabs markup would not contain a `o--if-js` class, because the tabs content should remain visible even if the tabs JavaScript is not running on the page, but if the JavaScript does run, it should apply an `o-tabs--js` data attribute to allow the tabs CSS to hide all but the selected tab.
 
 ## DOM Selectors
 
@@ -84,8 +84,8 @@ Modules *may* **emit** events to allow loose coupling with other components and 
 * specify `createevent` as a required browser feature in the `browserFeatures` section of origami.json
 * where the module wishes to attach custom data payloads to events, specify `customevents` as a required browser feature in addition to 'createevent', use the [CustomEvent](https://developer.mozilla.org/en/docs/Web/API/CustomEvent) API, and pass an object in the `details` property.
 * trigger events only on elements within the component's owned DOM, or otherwise only on the body element
-* namespace event names with the name of the module in camelcase, separated from the event name with a dot, eg `oModuleName.eventName`
-* name the event using the present tense, eg `dialogClose`, not `dialogClosed`, and using camel-case.
+* namespace event names with the name of the module in camelCase, separated from the event name with a dot, e.g. `oModuleName.eventName`
+* name the event using the present tense, e.g. `dialogClose`, not `dialogClosed`, and using camel-case.
 
 A valid example of a module emitting a DOM event is shown below:
 
@@ -144,18 +144,18 @@ Modules *must not* animate elements using methods that do not utilise hardware a
 
 JavaScript *must* be linted with [JSHint](http://www.jshint.com/).  If you wish to specify a particular JSHint configuration you may do so at the module level with a `.jshintrc` file, and at the file level with a `/*jshint: ... */` comment.  If you specify neither of these, code *must* pass a JSHint check with the following settings:
 
-<div class='o-techdocs-gist' data-repo="Financial-Times/origami-build-tools" data-path="/config/jshint.json"></div>
+<div class="o-techdocs-gist" data-repo="Financial-Times/origami-build-tools" data-path="/config/jshint.json"></div>
 
 Developers *should* stick to the above `jshintrc` config, since this represents a common standard across FT teams, but are permitted to make changes if desired.
 
 ## Subresources
 
-JavaScript modules in Origami components may want to load additional files (fonts, JSON data, images etc) that are also part of the component's file tree.  To resolve these paths safely, JS modules wishing to load subresources from their own component *must* resolve the file path using the [Origami assets module](https://github.com/Financial-Times/o-assets):
+JavaScript modules in Origami components may want to load additional files (fonts, JSON data, images etc) that are also part of the component's file tree.  To resolve these paths safely, JS modules wishing to load sub-resources from their own component *must* resolve the file path using the [Origami assets module](https://github.com/Financial-Times/o-assets):
 
 <?prettify linenums=1?>
 	someiframe.src = require('o-assets').resolve('/img/logo.png', 'tracking');
 
-Without any explicit configuration, `o-assets` will assume, as we do for subresources in Sass, that the modules are installed publicly at a URL path of `/bower_components` on the current host, and will form URLs on that basis.  Product developers are advised to reconfigure o-assets to accomodate their own server-side URL routing architecture.
+Without any explicit configuration, `o-assets` will assume, as we do for sub-resources in Sass, that the modules are installed publicly at a URL path of `/bower_components` on the current host, and will form URLs on that basis.  Product developers are advised to reconfigure o-assets to accommodate their own server-side URL routing architecture.
 
 Where external resources are not within Origami modules, a [protocol-relative URL](http://www.paulirish.com/2010/the-protocol-relative-url/) *must* be used (see [issue 173](https://github.com/Financial-Times/ft-origami/issues/173)).
 
@@ -172,7 +172,7 @@ You would write this in your JavaScript source:
 And it would be converted to this by the build process:
 
 <?prettify?>
-	var template = "This is the content of main.mustache";
+	var template = 'This is the content of main.mustache';
 
 
 ## Hover events

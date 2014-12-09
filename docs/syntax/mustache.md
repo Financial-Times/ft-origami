@@ -33,13 +33,13 @@ Other Origami modules *must* be referenced using the name of the module, enclose
 
 Static assets such as images included from the same repository *must* be referenced using a relative path and included in the appropriate HTML markup
 
-	<img src='../images/logo.png' />
+	<img src="../images/logo.png" alt="" />
 
 ### Links
 
 Links to real URLs must be [protocol-relative](http://www.paulirish.com/2010/the-protocol-relative-url/):
 
-	<a href='//www.google.com'>Google</a>
+	<a href="//www.google.com">Google</a>
 
 ### Data
 
@@ -54,7 +54,7 @@ Double braces *must* be used for content that should have HTML entities escaped 
 
 Some Mustache variable names are common across modules.  Where the following use cases arise they *must* use the supplied name:
 
-<table class='o-techdocs-table'>
+<table class="o-techdocs-table">
 <tr><th>Var name</th><th>Description</th></tr>
 <tr>
 	<td><code>module-version</code></td>

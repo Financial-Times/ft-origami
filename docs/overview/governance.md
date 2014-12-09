@@ -42,7 +42,7 @@ In pursuit of the vision above, we aim to ensure that:
 * Support and maintain components (both modules and services)
 * Encourage other teams to create components where appropriate
 * Audit components created by other teams to ensure conformance with the Origami spec
-* Provide training to help people outside of Origami (eg the design team) to maintain their own Origami components
+* Provide training to help people outside of Origami (e.g. the design team) to maintain their own Origami components
 * Provide tools and services to ensure Origami components can be used with the absolute minimum of training and admin.
 * Liaise with other front end developers across all technology projects, to maintain a comprehensive awareness of all front end development activity that is taking place (by following programme updates, attending other projects' standups or scheduling brief meetings to get briefed on new front end work that's being proposed or done)
 * Develop tools to make it as easy as possible to adhere to the conventions (without compulsion to use those tools)

@@ -19,7 +19,7 @@ A **web service** component is offered as a URL endpoint that delivers content o
 
 Web services source code repositories *must* be named using a short descriptive term (hypenated when appropriate), suffixed with `-service`.  The service hostname should drop the suffix.  Examples:
 
-<table class='o-techdocs-table'>
+<table class="o-techdocs-table">
 <tr><th>Repo name</th><th>Host name</th></tr>
 <tr><td>tweet-service</td><td>tweet.webservices.ft.com</td></tr>
 <tr><td>nav-service</td><td>nav.webservices.ft.com</td></tr>
@@ -43,7 +43,7 @@ Web services *must* expose an HTTP endpoint on the hostname `{componentname}.web
 	* if the expected response is HTML, *must* have an empty content body unless error information has been requested via a query string parameter.  The web service *should* implement such a parameter.  If it does, the parameter *must* be called `showerrors`, and the presence of this parameter *must* always turn on visible errors unless it has a value which is set to 0;
 	* if the expected response is not HTML, *must* return error information in the content body.
 * Include an explicit `Cache-Control` header in all HTTP responses that have a 2xx or 3xx response status
-* Serve content on the bare versioned endpoints (eg `/v1/`) that documents the API methods available.  Documentation content thus served *should* use the `o-techdocs` module for formatting and layout.
+* Serve content on the bare versioned endpoints (e.g. `/v1/`) that documents the API methods available.  Documentation content thus served *should* use the `o-techdocs` module for formatting and layout.
 * Redirect the root path `/` to the documentation endpoint for the latest API version
 * Provide a mechanism for developers to subscribe to email notifications of version deprecation (which *should* be a github watcher list, if available).
 * When a [non-backwards compatible change](#changes-and-versioning) is made to any output of the service:
@@ -67,7 +67,7 @@ Web services *must* expose an HTTP endpoint on the hostname `{componentname}.web
 
 ### Output formats
 
-Some web services provide data to include in a website (eg a tweet service), while others may output little more than an acknowledgement (eg an analytics collector).  Where a web service's output is intended to be content for inclusion in a web page, it *should* be offered as both HTML and JSON.
+Some web services provide data to include in a website (e.g. a tweet service), while others may output little more than an acknowledgement (e.g. an analytics collector).  Where a web service's output is intended to be content for inclusion in a web page, it *should* be offered as both HTML and JSON.
 
 ### Changes and versioning
 
@@ -75,7 +75,7 @@ A "backwards compatible change" is defined as one that, in the case of JSON outp
 
 In the case of breaking changes, a service *must* maintain the existing functionality and release a new version.
 
-When a new version of a web service is released, the service developer *may* choose to implement this by running multiple versions of the service behind a routing layer, such that `/v1/someendpoint` and `/v2/someendpoint` ultimately result in the same `/someendpoint` request being made to one or other of two separate instances of the web service.  This is acknowledged as a valid approach, but other web service developers *may* simply wish to run one instance of the web service that can handle all versioned endpoints.  This spec does not care about the internal architecture choices that the web service developer makes provided that the external interface satisifes the requirements set out above.
+When a new version of a web service is released, the service developer *may* choose to implement this by running multiple versions of the service behind a routing layer, such that `/v1/someendpoint` and `/v2/someendpoint` ultimately result in the same `/someendpoint` request being made to one or other of two separate instances of the web service.  This is acknowledged as a valid approach, but other web service developers *may* simply wish to run one instance of the web service that can handle all versioned endpoints.  This spec does not care about the internal architecture choices that the web service developer makes provided that the external interface satisfies the requirements set out above.
 
 ### Environments
 
@@ -85,13 +85,13 @@ If the web service uses a data source or other depended-upon service for which m
 
 The product developer *must* use the current live version of the component for testing integration with their product, not an upcoming release or a test or dev environment of the service.  The service component developer is not required to (and is encouraged not to) maintain and make available any running instance of the service other than the live one.
 
-Instructing a service to use a different (eg. test) data source *must not* be coupled in any way to using a different version of the service itself.
+Instructing a service to use a different (e.g. test) data source *must not* be coupled in any way to using a different version of the service itself.
 
 ### Required endpoints
 
 Web services *must* implement the following endpoints, for each version of the application, as well as at the root of the service host (except for `/__about` - see below). The root variant *may* redirect to the latest version variant, or *may* simply produce the same output as the latest version variant.  It is also OK to output the same data for all version variants if the data has not changed between versions.
 
-<table class='o-techdocs-table'>
+<table class="o-techdocs-table">
 <tr><td><code>/</code></td><td>Description of the service and instructions for use, designed for human consumption.  This <em>should</em> be HTML, and <em>may</em> choose to use the standard Origami documentation stylesheet.</td></tr>
 <tr><td><code>/__health</code></td><td>Health status JSON data conforming to the <a href="https://docs.google.com/a/ft.com/document/d/18hefJjImF5IFp9WvPAm9Iq5_GmWzI9ahlKSzShpQl1s/edit">FT Health check standard</a>.  Note that the health check standard currently requires the alerts to be output in a 'human readable' form, and that may require implementing additional endpoints (or reformatting at the edge)</td></tr>
 <tr><td><code>/__metrics</code></td><td>A JSON document listing current metrics to allow automated monitoring, in the <a href='{{site.baseurl}}/docs/syntax/metrics'>metrics</a> format</td></tr>

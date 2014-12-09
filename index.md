@@ -4,7 +4,7 @@ title: Home
 section: Overview
 ---
 
-<img src='{{ site.baseurl }}/img/devices.png' alt='FT on a variety of devices' class='transparent' />
+<img src="{{ site.baseurl }}/img/devices.png" alt="FT on a variety of devices" class="transparent" />
 
 <p class="alert-big">Origami is a set of standards, conventions and tools for building websites at the FT.</p>
 

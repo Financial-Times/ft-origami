@@ -13,7 +13,7 @@ All origami components, whether modules or web services, should be discoverable 
 
 `origami.json` is a JSON format file, with the following properties:
 
-<table class='o-techdocs-table'>
+<table class="o-techdocs-table">
 <tr>
 	<th>Property</th>
 	<th>Type</th>
@@ -29,7 +29,7 @@ All origami components, whether modules or web services, should be discoverable 
 </tr><tr>
 	<td><code>&nbsp;&nbsp;origamiType</code></td>
 	<td>string*</td>
-	<td>The value 'module' where the component conforms to the <a href='{{site.baseurl}}/docs/component-spec/modules/'>module</a> spec, or 'service' where it conforms to the <a href='{{site.baseurl}}/docs/component-spec/web-services/'>web service</a> spec.</td>
+	<td>The value 'module' where the component conforms to the <a href="{{site.baseurl}}/docs/component-spec/modules/">module</a> spec, or "service" where it conforms to the <a href="{{site.baseurl}}/docs/component-spec/web-services/">web service</a> spec.</td>
 </tr><tr>
 	<td><code>&nbsp;&nbsp;origamiVersion</code></td>
 	<td>integer*</td>
@@ -38,7 +38,7 @@ All origami components, whether modules or web services, should be discoverable 
 	<td><code>&nbsp;&nbsp;support</code></td>
 	<td>string*</td>
 	<td>
-		<p>Where a product developer can go for support on this component.  Either an email address (which should be a group or role based address, not a named individual), or the URL of the component's bug or issue tracker (eg a GitHub issues URL, or other issue tracker such as Redmine).</p>
+		<p>Where a product developer can go for support on this component.  Either an email address (which should be a group or role based address, not a named individual), or the URL of the component's bug or issue tracker (e.g. a GitHub issues URL, or other issue tracker such as Redmine).</p>
 		<p>The owner identified here by email address or URL commits to the following obligations:</p>
 		<ul>
 			<li>review code prior to a release</li>
@@ -66,11 +66,11 @@ All origami components, whether modules or web services, should be discoverable 
 </tr><tr>
 	<td><code>&nbsp;&nbsp;&nbsp;&nbsp;travis</code></td>
 	<td>string</td>
-	<td>A <a href='https://travis-ci.org/'>Travis CI</a> build status URL (normally <code>https://api.travis-ci.org/repos/<em>owner</em>/<em>repo</em>/builds.json</code>)</td>
+	<td>A <a href="https://travis-ci.org/">Travis CI</a> build status URL (normally <code>https://api.travis-ci.org/repos/<em>owner</em>/<em>repo</em>/builds.json</code>)</td>
 </tr><tr>
 	<td><code>&nbsp;&nbsp;&nbsp;&nbsp;jenkins</code></td>
 	<td>string</td>
-	<td>A <a href='http://jenkins-ci.org/'>Jenkins</a> build status URL</td>
+	<td>A <a href="http://jenkins-ci.org/">Jenkins</a> build status URL</td>
 </tr><tr>
 	<td><code>&nbsp;&nbsp;},</code></td>
 	<td></td>

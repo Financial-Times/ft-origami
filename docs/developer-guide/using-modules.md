@@ -72,7 +72,7 @@ The `core` and `enhanced` classes here are not defined by Origami, but must simp
 
 When you send the HTML source to the browser, remember to pre-populate the HTML tag with the core class (or whatever you choose to call it):
 
-	<html class='core'>
+	<html class="core">
 
 ### Multiple cuts the mustards
 
@@ -101,7 +101,7 @@ Origami components do not perform any initialisation automatically, to avoid app
 * `o.DOMContentLoaded`
 * `o.load`
 
-If you wish to initalise Origami components that have auto-initialise capability, fire these custom events in response to the native ones:
+If you wish to initialise Origami components that have auto-initialise capability, fire these custom events in response to the native ones:
 
 	if (document.readyState === 'interactive' || document.readyState === 'complete') {
 		document.dispatchEvent(new CustomEvent('o.DOMContentLoaded'));
