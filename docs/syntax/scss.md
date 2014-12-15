@@ -273,7 +273,6 @@ Modules that make use of styles defined in other modules that support silent mod
 	.o-anotherthing-foo {
 		@include oAnotherThingFoo();
 	}
-}
 
 Finally, in documentation, modules *must* provide information about both silent and non-silent methods, where supported, and must put the default first (i.e. if silent mode is by default **on**, the module must document the silent mode integration first).
 
