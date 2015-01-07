@@ -20,10 +20,10 @@ Product developers are encouraged to include Origami JavaScript using a 'cuts th
 * Do not read or modify the DOM on parse
 * If it's possible for the module to create DOM nodes, timers, or otherwise occupy more than a token amount of memory, export a `destroy` method that reverts the module to a pre-`init` state.
 * Do not leave any non-garbage collectable traces after `destroy` is called
-* Do not modify the DOM outside of areas of [owned DOM]({{site.baseurl}}/docs/syntax/html/#owned_dom), except:
+* Do not modify the DOM outside of areas of [owned DOM]({{site.baseurl}}/docs/syntax/html/#owned-dom), except:
 	* to add feature flag CSS classes to the `documentElement`; or
 	* to add a new section of owned DOM to an element explicitly nominated by the host application (e.g. by the host application calling a method of the module's API and passing an element to which the module is asked to append its DOM)
-* Do not require global variables to be defined prior to the script loading.  If your module requires configuration, read the config from data attributes attached to parts of DOM that your module will own (see [Data attributes](#data_attributes) for details)
+* Do not require global variables to be defined prior to the script loading.  If your module requires configuration, read the config from data attributes attached to parts of DOM that your module will own (see [Data attributes](#data-attributes) for details)
 * Do not assume the existence of globals except those defined as part of ECMAScript 3 and features listed in the `browserFeatures/required` section of `origami.json`.
 
 <aside>
