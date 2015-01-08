@@ -31,7 +31,7 @@ Use an HTML5 DOCTYPE, and add the `X-UA-Compatible` meta tag to force Internet E
 	<html>
 	<head>
 	   ...
-	   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
 
 ###Use UTF-8
@@ -41,7 +41,7 @@ Character encoding can cause problems, especially on sites that are predominentl
 Ensure that your pages are **UTF-8** encoded, using both an HTTP response header **and** an HTML meta tag:
 
 <?prettify linenums=1?>
-	<meta charset="UTF-8">
+	<meta charset="UTF-8" />
 
 Place this as the first tag within the `<head>` section of the page, before `<title>`, since it's important that the browser knows the right character set to use before it gets to any content.
 
@@ -50,7 +50,7 @@ Place this as the first tag within the `<head>` section of the page, before `<ti
 By default, most mobule devices assume your site won't fit on a small screen so will pretend to be 900px wide and zoom out so that that fits on the screen.  Add the following viewport meta tag to the `<head>` of your page to make sure that the viewport is zoomed to 100% and the width is the same as the width of the device in both portrait and landscape orientation:
 
 <?prettify linenums=1?>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
 Do **not** specify a `user-scalable` rule.  The default is yes, so there's no need to include it, and the user should always be allowed to zoom if they want to.
 
