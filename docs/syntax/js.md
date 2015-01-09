@@ -181,7 +181,23 @@ JavaScript *must* be linted with [JSHint](http://www.jshint.com/).  If you wish 
 
 <div class="o-techdocs-gist" data-repo="Financial-Times/origami-build-tools" data-path="/config/jshint.json"></div>
 
-Developers *should* stick to the above `jshintrc` config, since this represents a common standard across FT teams, but are permitted to make changes if desired.
+Developers *should* stick to the above `jshintrc` config, since this represents a common standard across FT teams, but are permitted to make changes if desired.  In addition to the jshint rules:
+
+###One var per line
+
+The `var` statement *must* declare only one variable.  Use additional `var` statements for subsequent declarations:
+
+<?prettify linenums=1?>
+	var foo = "hello";
+	var bar = "goodbye";
+	var novalue;
+
+This makes diffs easier to read, and reduces the chance of errors associated with missing semicolons or commas.
+
+###Comments
+
+Single line comments *should* be placeed on a newline above the subject of the comment.  An empty line *should* be inserted before the comment.
+
 
 ## Subresources
 
