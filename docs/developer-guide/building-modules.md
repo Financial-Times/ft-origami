@@ -244,7 +244,6 @@ The benefit of using gulp is that you can add your own build steps in addition t
 
 Please don't commit dependencies into your project.  To avoid this, you should add the following lines to a `.gitignore` file in the root of your project:
 
-	# .gitignore
 	.DS_Store
 	.sass-cache/
 	bower_components/
