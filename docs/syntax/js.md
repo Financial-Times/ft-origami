@@ -37,6 +37,32 @@ Product developers are encouraged to include Origami JavaScript using a 'cuts th
 	<p>Where modern browser features might be vendor-prefixed, you can get the correct prefixed version using <a href="https://github.com/Financial-Times/o-useragent">o-useragent</a>.</p>
 </aside>
 
+###Scoping and binding `this`
+
+The value of `this` *should not* be copied into non-semantic variables such as `that`, `self` or `_this` in order to embed a child funtion context.  Instead, either use a semantic name, or bind the correct value of `this`.  Some object methods accept the intended value of `this` as an argument, such as [Array.prototype.filter](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Array/filter), and this method *should* be considered most preferred:
+
+<?prettify linenums=1?>
+	arr.filter(function(item) {
+	   this.blah();
+	}, this);
+
+As an alternative, use `bind`:
+
+<?prettify linenums=1?>
+	fetch('http://blah.com/blah.json')
+	  .then(function(response) {
+	    return response.json();
+	  }.bind(this));
+
+If you do copy a reference to `this` into a separate variable, make it semantic:
+
+<?prettify?>
+	var post = this;
+
+<aside>ES6 offers lexical <code>this</code> binding as part of arrow functions, which provides a much more elegant solution to this problem, but currently we require Origami code to be written in ES5</aside>
+
+
+
 ## Initialisation
 
 Modules *must* do as little as possible on parse, instead deferring start-up tasks to a publicly exported, static 'init' function that should be either invoked explicitly using the module's API, or automatically by binding to the `o.DOMContentLoaded` or `o.load` events.
