@@ -58,7 +58,12 @@ If a module's JavaScript requires configuration, this should be done using data-
 
 In some cases, especially for tracking use cases, a module may act on portions of DOM not exclusively controlled by it.  In this case the same naming conventions apply, but the module *must not* create these attributes itself.  Instead, it may only act on elements outside of its own portions of 'owned DOM' if the element has already has a data attribute in the module's namespace.
 
-Where JavaScript exists to enhance elements, and accompanying CSS depends on knowing whether the JavaScript intends to apply that enhancement, the JavaScript *may* add a data attribute of the form `data-{modulename}-js` with no value to the root element of the component when the JavaScript initialises.  For example, o-tabs markup would not contain a `o--if-js` class, because the tabs content should remain visible even if the tabs JavaScript is not running on the page, but if the JavaScript does run, it should apply an `o-tabs--js` data attribute to allow the tabs CSS to hide all but the selected tab.
+Where JavaScript exists to enhance elements, and accompanying CSS depends on knowing whether the JavaScript intends to apply that enhancement, the JavaScript *may* add a data attribute of the form `data-{modulename}-js` with no value to the root element of the component when the JavaScript initialises.  For example, o-tabs markup would not contain a `o--if-js` class, because the tabs content should remain visible even if the tabs JavaScript is not running on the page, but if the JavaScript does run, it could apply an `data-o-tabs-js` data attribute to allow the tabs CSS to hide all but the selected tab.
+
+<aside>
+	Developers should avoid the temptation to name data attributes based on the same naming conventions as BEM in CSS.  Data attributes are not subject to the same semantics as classes so BEM is not a great fit.
+</aside>
+
 
 ## DOM Selectors
 
