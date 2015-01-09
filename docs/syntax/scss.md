@@ -293,10 +293,22 @@ When listing multiple comma-separated selectors, each one *must* be placed on a 
 
 ### Files and folders
 
-* Sass variables, mixins and functions should be in their own files, separate from the code that uses them
+Sass variables, mixins and functions *should* be in their own files, separate from the code that uses them.
 
 
-### Comments
+### Comments and documentation using SassDoc
+
+#### SassDoc
+
+[SassDoc](http://sassdoc.com/) is a documentation generator produce browsable documentation from parsing comments in `*.scss` files.
+
+[View an example of generated documentation](http://sass-mq.github.io/sass-mq/)
+
+* Modules *should* be documented using SassDoc comments
+* Inspiration for SassDoc documentation: [o-fonts module's src/scss folder](https://github.com/Financial-Times/o-fonts/tree/master/src/scss)
+
+
+#### Comments
 
 Before adding comments, consider whether the code can be made more expressive in order to remove the need for a comment. If the code is as expressive as it can reasonably be, but the intent is still not clear, then comments should be used to supplement the code.
 
