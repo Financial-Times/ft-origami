@@ -167,6 +167,10 @@ Modules that store data on the client via user-agent APIs *must* encapsulate all
 
 Modules *should* avoid containing functions with more than 3 arguments.  Where more parameters are required, consider passing an object (and if so, consider using [lo-dash's defaults function](http://lodash.com/docs#defaults)).
 
+##Objects
+
+Object properties *must not* be named after reserved words in the JavaScript language.  This causes problems in earlier versions of IE.
+
 ## Animation
 
 Modules *must not* animate elements using methods that do not utilise hardware acceleration if hardware accelerated alternatives are available.  For example, repositioning an element repeatedly using its `left` or `top` CSS properties is not allowed.  Instead, use [CSS transitions](https://developer.mozilla.org/en-US/docs/Web/Guide/CSS/Using_CSS_transitions) and [`will-change`](http://tabatkins.github.io/specs/css-will-change/).  On user agents that do not support accelerated animation, animation *should* not be used.
