@@ -169,7 +169,27 @@ Modules *should* avoid containing functions with more than 3 arguments.  Where m
 
 ##Objects
 
-Object properties *must not* be named after reserved words in the JavaScript language.  This causes problems in earlier versions of IE.
+Object properties *must not* be named after reserved words in the JavaScript language.  ([Learn more](https://github.com/airbnb/javascript/issues/61))
+
+Object prototypes *must not* be overwritten. Instead, assign additonal properties to the prototype individually:
+
+<?prettify linenums=1?>
+	Jedi.prototype.fight = function fight() {
+	  console.log('fighting');
+	};
+
+Overwriting the prototype wipes out the `constructor` property and makes inheritance difficult.  An exception to this is when creating subclasses, in which case there is no alternative, but the constructor property *should* be reinstated ([read more](http://www.2ality.com/2011/06/constructor-property.html)):
+
+<?prettify linenums=1?>
+	function Super(x) { ... }
+	Super.prototype.foo = ...
+
+	function Sub(x, y) {
+	    Sub.superclass.constructor.call(this, x);
+	}
+	Sub.superclass = Super.prototype;
+	Sub.prototype = Object.create(Sub.superclass);
+	Sub.prototype.constructor = Sub;
 
 ## Animation
 
