@@ -49,18 +49,3 @@ Placeholders for the module's data model *must* be referenced using a descriptiv
 </code></pre>
 
 Double braces *must* be used for content that should have HTML entities escaped for display.  Triple braces *must* be used for content which should be inserted without modification.
-
-## Standard variable names
-
-Some Mustache variable names are common across modules.  Where the following use cases arise they *must* use the supplied name:
-
-<table class="o-techdocs-table">
-<tr><th>Var name</th><th>Description</th></tr>
-<tr>
-	<td><code>module-version</code></td>
-	<td>
-		The current version of the module component.  Must be added to the outer element of a block of markup that comprises the component, as the value of the <code>data-o-version</code> attribute.
-		<pre><code>&lt;div data-o-version="&#123;{o-ft-header.module-version}&#125;"&gt;...&lt;/div&gt;</code></pre>
-	</td>
-</tr>
-</table>

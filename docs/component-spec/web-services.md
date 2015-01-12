@@ -125,7 +125,7 @@ The following HTTP request-response is compliant with the above requirements and
 	Access-Control-Allow-Credentials: true
 	Access-Control-Allow-Origin: *
 
-	<nav class="o-ft-nav" data-o-component="o-ft-nav" data-o-version="0.0.1">
+	<nav class="o-ft-nav" data-o-component="o-ft-nav">
 	<ol>
 	<li data-o-track-pos="0"><a href="http://www.ft.com">Home</a></li>
 	<li data-o-track-pos="1"><a href="http://www.ft.com/world/uk">UK</a></li>
