@@ -7,7 +7,11 @@ permalink: /docs/overview/changes/
 
 # Spec changes newsfeed
 
-The following documents the chronology of changes to the Origami spec and significant (ie. breaking) releases of Origami modules since 13th January 2014.  If you want more detailed granularity, please refer to the [commit log](https://github.com/Financial-Times/ft-origami/commits/gh-pages).
+The following documents the chronology of changes to the Origami spec and significant (i.e. breaking) releases of Origami modules since 13th January 2014.  If you want more detailed granularity, please refer to the [commit log](https://github.com/Financial-Times/ft-origami/commits/gh-pages).
+
+### 12 Jan 2015
+
+- Removed requirement for a `data-o-versions` attribute in the markup
 
 ### 24 Nov 2014
 
