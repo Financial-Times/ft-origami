@@ -30,6 +30,9 @@ Sass does not have proper encapsulation or scope, so strict adherence to namespa
 * Class selectors (`.`) and Sass variables (`$`) *must* be prefixed with the module name, and written as hyphen separated lowercase strings
 	- GOOD: `.o-thing--large`, `$o-grid-mq-type: width;`
 	- BAD: `.largething`, '$GridIsResponsive: true;'
+* Pseudo class `:not` *should not* be used to avoid high specificity issues. Prefer classes and duplicated properties over specificity.
+	- GOOD: `.o-forms-input {} .o-forms-radio {}`
+	- BAD: `.o-forms-input {} .o-forms-input:not([type=radio]) {} .o-forms-input[type=radio] {}`
 * Mixins and functions *must* be prefixed with the module name, and written in camel case
 	- GOOD: `@mixin oGalleryCalculatePadding()`
 	- BAD: `@mixin calculate-padding()`
@@ -246,14 +249,14 @@ Where a module contains only CSS, it *should* support silent styles.  Where Java
 	});
 
 
-Modules that support silent mode *must* include a `$o-{modulename}-is-silent` variable, with a default value (which *may* or be either true or false).  When the variable is true, styles that would normally be output as class selectors *must* instead be defined as mixins, with the same styles.  Eg:
+Modules that support silent mode *must* include a `$o-{modulename}-is-silent` variable, with a default value (which *may* or be either true or false).  When the variable is true, styles that would normally be output as class selectors *must* instead be defined as mixins, with the same styles.  E.g.:
 
 <?prettify linenums=1?>
 	@mixin oThingFoo {
 		margin-top: 1em;
 	}
 
-If the original selector is not a class selector then the mixin can use a syntax suggestive of the original selector, which *must* be documented. Eg:
+If the original selector is not a class selector then the mixin can use a syntax suggestive of the original selector, which *must* be documented. E.g.:
 
 <?prettify linenums=1?>
 	@mixin oGridSizingS3 {

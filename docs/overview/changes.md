@@ -12,6 +12,7 @@ The following documents the chronology of changes to the Origami spec and signif
 ### 12 Jan 2015
 
 - Removed requirement for a `data-o-versions` attribute in the markup
+- [`:not()` pseudo classes *should not* be used to avoid high specificity issues](http://origami.ft.com/docs/syntax/scss/#naming-conventions-and-encapsulation). Prefer additional classes and duplicated properties over specificity.
 
 ### 24 Nov 2014
 
