@@ -55,7 +55,7 @@ Origami components may have dependencies (via Bower) on third party components. 
 
 ## Why not Modernizr?
 
-Components are required to not do anything in global scope, which rules out invoking Modernizr directly.  Components wishing to use a new browser feature should simply declare it as a requirement in the browserFeatures section of `origami.json`.  A product developer can then choose to either load the module only if the required feature is present, or polyfill it to ensure that it is.
+Components are required to not do anything in global scope, which rules out invoking Modernizr directly.  Components wishing to use a new browser feature should simply declare it as a requirement in the browserFeatures section of `origami.json`.  A product developer can then choose to either load the module only if the required feature is present, or polyfill it to ensure that it is. Using a more modular version like the browserify friendly [browsernizr](https://github.com/jnordberg/browsernizr) may be more acceptable. 
 
 
 ## Why not jQuery?
