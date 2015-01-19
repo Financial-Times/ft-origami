@@ -51,9 +51,31 @@ The example above uses the [Origami polyfill service](//polyfill.webservices.ft.
 The polyfill service works by reading the `User-Agent` HTTP header on the request from the browser, so users of different browsers will get different responses, which may range in size from several hundred KB to an empty file.
 
 
+### Recommended cuts the mustard test
+
+The current recommended boundary between core and enhanced experience is defined by the following expression:
+
+	'querySelector' in document && 'localStorage' in window && 'addEventListener' in window
+
+This matches the expression published by the BBC in their [original post about CTM](http://responsivenews.co.uk/post/18948466399/cutting-the-mustard), but coverage is now broad enough that we can use it too.  The following browsers (including later versions) pass this test and qualify for enhanced experience:
+
+* IE 9
+* Firefox 3.5
+* Opera 10.5
+* Safari 4
+* iPhone and iPad iOS 1
+* Android phone and tablets 2.1
+* Blackberry OS 6
+* Opera Mobile 11.5
+* Chrome (all)
+* Mobile Firefox (all)
+
+This is a close match for the recommended minimum support in the [FT browser support policy](https://docs.google.com/a/ft.com/document/d/1dX92MPm9ZNY2jqFidWf_E6V4S6pLkydjcPmk5F989YI/edit#heading=h.wcrwnubj26sk).
+
+
 ### Customising your cuts the mustard test
 
-Origami components declare their minimum requirements in terms of [Modernizr](http://modernizr.com/docs/) tests.  Where possible, component developers will currently limit their *required* features to those present or polyfillable in IE9, but they may enhance their component's behaviour using more cutting edge features.  To verify the exact set of browser features required by the set of modules you are using:
+Origami components declare their minimum requirements in terms of [Modernizr](http://modernizr.com/docs/) tests.  Component developers are required to ensure that any JavaScript bundled with their module will run without error in all the browsers that pass the recommended CTM test above, but they may enhance their component's behaviour using more cutting edge features.  To verify the exact set of browser features required by the set of modules you are using:
 
 1. Make an aggregated list of the entries from all the `browserFeatures.required` sections of your chosen modules' [Origami manifest files]({{site.baseurl}}/docs/syntax/origamijson).
 2. Refer to the Modernizr [feature-detects](https://github.com/Modernizr/Modernizr/tree/master/feature-detects) that match the names given in the Origami configs.

@@ -8,12 +8,11 @@
 
 	<!--
 			Perform your cuts the mustard test.
-			In this case it test for the presence of document.querySelector.
 			For information about what features come bundled with other
-			features in all browsers, see http://iwanttouse.com/
+			features in all browsers, see caniuse.com
 	-->
 	<script>
-		var cutsTheMustard = 'querySelector' in document;
+		var cutsTheMustard = ('querySelector' in document && 'localStorage' in window && 'addEventListener' in window);
 
 		if (cutsTheMustard) {
 			// Swap the `core` class on the HTML element for an `enhanced` one
