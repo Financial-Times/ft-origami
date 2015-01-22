@@ -48,7 +48,7 @@ When building a new module, you may create the directory structure and add all n
 
 	mkdir o-my-module
 	cd o-my-module
-	mkdir -p src/scss src/js demos/src/scss test && touch .travis.yml .gitignore main.scss main.js README.md origami.json bower.json demos/src/config.js src/scss/_variables.scss src/scss/_mixins.scss && git init .
+	mkdir -p src/scss src/js demos/src/scss demos/src/js test && touch .travis.yml .gitignore main.scss main.js README.md origami.json bower.json demos/src/config.js src/scss/_variables.scss src/scss/_mixins.scss && git init .
 
 ## Naming conventions
 
