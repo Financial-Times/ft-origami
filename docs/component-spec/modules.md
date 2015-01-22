@@ -18,6 +18,38 @@ permalink: /docs/component-spec/modules/
 * Footer
 * FT Main navigation (styles and behaviours only, not content)
 
+## File structure
+
+This section is non-normative.  A module component *may* be organised as follows, but this does not imply any requirements aside from those listed above.  The following can be considered an opinion on a good file structure for a module.
+
+	.
+	├─ demos
+	├─ test
+	├─ src
+	|   ├─ js
+	|   |   ├─ script1.js
+	|   |   └─ script2.js
+	|   ├─ scss
+	|   |   ├─ _mixins.scss
+	|   |   └─ _variables.scss
+	|   ├─ images
+	|   |   └─ logo.png
+	|   └─ svg
+	|       └─ icon1.svg
+	├─ .gitignore
+	├─ .travis.yml
+	├─ bower.json
+	├─ main.js
+	├─ main.scss
+	├─ origami.json
+	└─ README.md
+
+When building a new module, you may create the directory structure and add all needed files using this command in the module's directory (here: o-my-module) via this terminal command:
+
+	mkdir o-my-module
+	cd o-my-module
+	mkdir -p src/scss src/js demos/src/scss test && touch .travis.yml .gitignore main.scss main.js README.md origami.json bower.json demos/src/config.js src/scss/_variables.scss src/scss/_mixins.scss && git init .
+
 ## Naming conventions
 
 Modules *must* be named using a short descriptive term (hyphenated if necessary) prefixed with `o-` (for Origami) as the name for the repository and CSS classes.
@@ -263,35 +295,8 @@ Example:
 
 ## Where to store modules
 
-Modules *must* be stored in git repos with the same name as the module itself.  The host server *must* be one of the following, listed in order of preference (from most preferred to least):
+Modules *must* be stored in git repositories with the same name as the module itself.  The host server *must* be one of the following, listed in order of preference (from most preferred to least):
 
-1. Public GitHub (<https://github.com/Financial-Times>)
+1. Public repository on GitHub (<https://github.com/Financial-Times>)
 2. Stash (git.svc.ft.com:8080)
-3. Private repo on public GitHub (<https://github.com/Financial-Times>)
-
-
-## File structure
-
-This section is non-normative.  A module component *may* be organised as follows, but this does not imply any requirements aside from those listed above.  The following can be considered an opinion on a good file structure for a module.
-
-	.
-	├─ demos
-	├─ test
-	├─ src
-	|   ├─ javascript
-	|   |   ├─ module1.js
-	|   |   └─ module2.js
-	|   ├─ scss
-	|   |   ├─ module1.scss
-	|   |   └─ module2.scss
-	|   ├─ images
-	|   |   └─ logo.png
-	|   └─ svg
-	|       └─ icon1.svg
-	├─ .gitignore
-	├─ .travis.yml
-	├─ bower.json
-	├─ main.js
-	├─ main.scss
-	├─ origami.json
-	└─ README.md
+3. Private repository on public GitHub (<https://github.com/Financial-Times>)
