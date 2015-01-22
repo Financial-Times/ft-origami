@@ -14,6 +14,15 @@ The following documents the chronology of changes to the Origami spec and signif
 - Removed requirement for a `data-o-versions` attribute in the markup
 - [`:not()` pseudo classes *should not* be used to avoid high specificity issues](http://origami.ft.com/docs/syntax/scss/#naming-conventions-and-encapsulation). Prefer additional classes and duplicated properties over specificity.
 
+### 9 Jan 2015
+
+**[JavaScript standards](http://origami.ft.com/docs/syntax/js/) update** ([Issue](https://github.com/Financial-Times/o-useragent/issues/294)):
+
+- [Object prototypes must not be overwritten](http://origami.ft.com/docs/syntax/js/#objects)
+- The value of `this` should not be copied into non-semantic variables such as `that`, `self` or `_this`… [Read more](http://origami.ft.com/docs/syntax/js/#scoping-and-binding-this)
+- Object properties *must not* be named after reserved words in the JavaScript language. This causes problems in earlier versions of IE.
+- [One `var` per line](http://origami.ft.com/docs/syntax/js/#one-var-per-line): The `var` statement *must* declare only one variable.
+
 ### 24 Nov 2014
 
 **Vendor prefixes**: Components **must not** use o-useragent for vendor prefixing anymore ([Issue](https://github.com/Financial-Times/o-useragent/issues/25)). Prefer using a CSS [autoprefixer](https://github.com/postcss/autoprefixer) instead.
