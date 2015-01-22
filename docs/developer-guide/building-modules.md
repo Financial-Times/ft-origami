@@ -221,7 +221,7 @@ We'll assume for the purposes of this example that your CSS and JS are in `/clie
 	gulp.task('verify', function() {
 		obt.verify(gulp, {
 			js: './client/js/main.js',
-			sass: './client/sass/main.scss'
+			sass: './client/scss/main.scss'
 		});
 	});
 
@@ -235,7 +235,7 @@ Taking it step by step:
 
 * We configure three gulp tasks: build, verify and watch
 * Build runs Sass to compile the file `/client/scss/main.scss` into `/public/bundle.css` using compressed (minified) CSS syntax, and Browserify to compile the file `/client/js/main.js` into `/public/bundle.js`
-* Verify runs SCSSLint on `/client/sass/main.scss` and JSHint on `/client/js/main.js` to make sure your code is readable and hasn't got potential errors.  We enforce coding standards defined by Origami ([SCSS]({{site.baseurl}}/docs/syntax/scss/#syntax-convention-rules) and [JavaScript]({{site.baseurl}}/docs/syntax/js/#syntax-convention-rules))
+* Verify runs SCSSLint on `/client/scss/main.scss` and JSHint on `/client/js/main.js` to make sure your code is readable and hasn't got potential errors.  We enforce coding standards defined by Origami ([SCSS]({{site.baseurl}}/docs/syntax/scss/#syntax-convention-rules) and [JavaScript]({{site.baseurl}}/docs/syntax/js/#syntax-convention-rules))
 * Watch is set up to run the verify and build tasks automatically if any files in your client-side Sass or JS directories change
 
 The benefit of using gulp is that you can add your own build steps in addition to the standard Origami ones, so at this point, feel free to add your own code to the build and verify tasks.
@@ -298,7 +298,7 @@ Since you have not saved any configuration specific to your project, you need to
 <pre class="cli">
 <kbd>origami-build-tools build --js=./client/js/main.js --sass=./client/scss/main.scss --buildJs=bundle.js --buildCss=bundle.css --buildFolder=public</kbd>
 <output>Browserifying ./client/js/main.js
-Compiling ./client/sass/main.scss</output>
+Compiling ./client/scss/main.scss</output>
 </pre>
 
 You can also watch for changes using the CLI tool, by adding a `--watch` to your command line.
