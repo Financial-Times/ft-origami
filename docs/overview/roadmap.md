@@ -11,6 +11,8 @@ A list of Origami components and the current development activity around each on
 
 ##Currently on our radar
 
+* Crosses and circles. Crosses *in* circles. Circles.
+
 ###Modules
 
 * Footer
