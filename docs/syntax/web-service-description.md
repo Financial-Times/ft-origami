@@ -11,7 +11,7 @@ All Origami web services are required to expose `/{version}/__about` endpoints t
 
 ## Format
 
-<table class='o-techdocs-table'>
+<table class="o-techdocs-table">
 <tr>
 	<th>Property</th>
 	<th>Type</th>
@@ -39,11 +39,11 @@ All Origami web services are required to expose `/{version}/__about` endpoints t
 </tr><tr>
 	<td>&nbsp;&nbsp;<code>support</code></td>
 	<td>string*</td>
-	<td>Copied from the matching property in the component's <a href='{{site.baseurl}}/docs/syntax/origamijson'>origami.json</a> file.  For services that support all API versions in a single code version, it may be necessary to consult prior versions' origami.json files in order to find the appropriate value.</td>
+	<td>Copied from the matching property in the component's <a href="{{site.baseurl}}/docs/syntax/origamijson">origami.json</a> file.  For services that support all API versions in a single code version, it may be necessary to consult prior versions' origami.json files in order to find the appropriate value.</td>
 </tr><tr>
 	<td>&nbsp;&nbsp;<code>supportStatus</code></td>
 	<td>string*</td>
-	<td>Copied from the matching property in the component's <a href='{{site.baseurl}}/docs/syntax/origamijson'>origami.json</a> file.  For services that support all API versions in a single code version, it may be necessary to consult prior versions' origami.json files in order to find the appropriate value.</td>
+	<td>Copied from the matching property in the component's <a href="{{site.baseurl}}/docs/syntax/origamijson">origami.json</a> file.  For services that support all API versions in a single code version, it may be necessary to consult prior versions' origami.json files in order to find the appropriate value.</td>
 </tr><tr>
 	<td><code>}</code></td>
 	<td></td>

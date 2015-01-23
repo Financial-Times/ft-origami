@@ -2,7 +2,7 @@ $o-assets-global-path: 'http://build.origami.ft.com/files/';
 @import 'o-techdocs/main';
 
 body {
-  margin: 0;
+	margin: 0;
 }
 
 /* Google custom search overrides */
@@ -14,7 +14,7 @@ body {
 }
 
 .footer-logo {
-	float:right;
+	float: right;
 	font-size: 20px;
 	.origami-logo {
 		width: 40px;

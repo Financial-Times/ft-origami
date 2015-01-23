@@ -8,7 +8,7 @@ permalink: /docs/research/dep-man/
 
 ## NPM
 
-* \+ Already likely to be in use in any node.js project
+* \+ Already likely to be in use in any Node.js project
 * \- Default behaviour is to load dependencies recursively and have multiple different versions of the same module
 * \- Can't require a git dependency at a semver version unless we run [our own NPM registry](https://github.com/isaacs/npmjs.org) (also available as a $50/month service: )
 * \- Even if we do run our own NPM registry, we can't load packages from it and the public registry in the same package.json because NPM doesn't support multiple registries even though it's been [discussed for over three years](https://github.com/isaacs/npm/issues/100) (there are workarounds like [npm-proxy](https://github.com/g-k/npm-proxy) or having your registry mirror the entire content of the global one)
@@ -18,7 +18,7 @@ permalink: /docs/research/dep-man/
 
 #### Depend on A and B, each depends on different specific C using `dependencies`
 
-*BAD*. Creates sub-node_modules dirs inside A and B, and loads two different versions of C
+*BAD*. Creates sub-node_modules directories inside A and B, and loads two different versions of C
 
 	Andrews-MacBook-Air:test-main andrew$ npm install
 	test-b@1.0.0 node_modules/test-b
@@ -31,7 +31,7 @@ We'd have to write a new tool to flag this as a conflict.
 
 #### Depend on A and B, each depends on same specific C using `dependencies`
 
-*BAD*. Creates sub-node_modules dirs inside A and B, and loads the same version of C twice, once inside A, once inside B.
+*BAD*. Creates sub-node_modules directories inside A and B, and loads the same version of C twice, once inside A, once inside B.
 
 	Andrews-MacBook-Air:test-main andrew$ npm install
 	test-b@1.0.0 node_modules/test-b
@@ -52,7 +52,7 @@ This could be tidied up with `npm dedupe` which would remove the nested node_mod
 	npm ERR! peerinvalid Peer test-b@1.0.0 wants test-c@git://github.com/triblondon/test-c.git#v1.0.0
 
 
-#### Depend on A and B, each depends different but comaptible semver range of C using `dependencies`
+#### Depend on A and B, each depends different but compatible semver range of C using `dependencies`
 
 **BAD**: Fails because NPM does not support semver ranges on git dependency references:
 
@@ -98,7 +98,7 @@ This could be tidied up with `npm dedupe` which would remove the nested node_mod
 
 	Choice:
 
-#### Depend on A and B, each depends on different but comaptible semver range of C
+#### Depend on A and B, each depends on different but compatible semver range of C
 
 *GOOD*. Installs the most recent version that meets all the required ranges
 

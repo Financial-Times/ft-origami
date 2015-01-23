@@ -58,7 +58,7 @@ Switch to your JS Bin window and find the bit that says `<!-- Body content here 
 
 ![After pasting the source of a component into a JS Bin](/img/jsbin-unstyled-component.png)
 
-Now on the right of your JS Bin window, you'll see the content for your header, but it will be unstyled.  You need to add the CSS and JavaScript to style it and activate its behaviours, like dropdown menus.  Go back to the registry, and on the o-ft-header page, scroll down to the secton called 'Quick start'.
+Now on the right of your JS Bin window, you'll see the content for your header, but it will be unstyled.  You need to add the CSS and JavaScript to style it and activate its behaviours, like dropdown menus.  Go back to the registry, and on the o-ft-header page, scroll down to the section called 'Quick start'.
 
 In quick start, you'll see two HTML tags, a `<link...>` and a `<script...>`.  Copy the link tag to your clipboard, and switch back to JS Bin to paste it in under where you see `<!-- Load the stylesheet ... -->` (replacing the example).  Your header should now look styled.
 
@@ -77,12 +77,12 @@ Repeat this process for the footer:
 1. Find the component page in the registry
 1. Copy the HTML of the demo you want
 1. Paste it in the `<body>` section of your JS Bin page
-1. Back on the component registry page, find the module name and version from the quick start section, eg `o-ft-footer@^1.2.3`
+1. Back on the component registry page, find the module name and version from the quick start section, e.g. `o-ft-footer@^1.2.3`
 1. Add this to the link and script tags
 
 That last bit differs slightly from the first component, because you now already have `<link>` and `<script>` tags on your page that are loading from the build service.  The build service is capable of including more than one component in the same bundle, so you can simply add multiple modules into the same URL.  Here's an example:
 
-	<link rel='stylesheet' href='//build.origami.ft.com/bundles/css?modules=o-ft-header@^1.2.3,o-ft-footer@^1.2.3'>
+	<link rel="stylesheet" href="//build.origami.ft.com/bundles/css?modules=o-ft-header@^1.2.3,o-ft-footer@^1.2.3" />
 
 It's important that you do this, so that any CSS that is shared between the header and footer (there's quite a bit) isn't downloaded twice.
 
@@ -92,9 +92,9 @@ It's important that you do this, so that any CSS that is shared between the head
 Once you have your components, you can add you own custom CSS.  Just before `</head>`, type:
 
 	<style>
-	body {
-	  margin: 0;
-	}
+		body {
+			margin: 0;
+		}
 	</style>
 
 This will remove the margin on the body element.

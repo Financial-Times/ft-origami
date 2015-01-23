@@ -7,7 +7,7 @@ permalink: /docs/component-spec/modules/
 
 # Module components
 
-**Modules** are [git](http://git-scm.com/) repos containing static resources or [CommonJS](https://github.com/commonjs/commonjs/blob/master/docs/specs/modules/1.0.html.markdown) JavaScript modules with configuration enabling exportable portions of the codebase to be pulled into other projects using [Bower](http://bower.io/) or other tools compatible with the Bower package standard.  Examples of good use cases for modules are:
+**Modules** are [git](http://git-scm.com/) repositories containing static resources or [CommonJS](https://github.com/commonjs/commonjs/blob/master/docs/specs/modules/1.0.html.markdown) JavaScript modules with configuration enabling exportable portions of the codebase to be pulled into other projects using [Bower](http://bower.io/) or other tools compatible with the Bower package standard.  Examples of good use cases for modules are:
 
 * Ads
 * Tracking
@@ -17,6 +17,38 @@ permalink: /docs/component-spec/modules/
 * Cookie notice
 * Footer
 * FT Main navigation (styles and behaviours only, not content)
+
+## File structure
+
+This section is non-normative.  A module component *may* be organised as follows, but this does not imply any requirements aside from those listed above.  The following can be considered an opinion on a good file structure for a module.
+
+	.
+	├─ demos
+	├─ test
+	├─ src
+	|   ├─ js
+	|   |   ├─ script1.js
+	|   |   └─ script2.js
+	|   ├─ scss
+	|   |   ├─ _mixins.scss
+	|   |   └─ _variables.scss
+	|   ├─ images
+	|   |   └─ logo.png
+	|   └─ svg
+	|       └─ icon1.svg
+	├─ .gitignore
+	├─ .travis.yml
+	├─ bower.json
+	├─ main.js
+	├─ main.scss
+	├─ origami.json
+	└─ README.md
+
+When building a new module, you may create the directory structure and add all needed files using this command in the module's directory (here: o-my-module) via this terminal command:
+
+	mkdir o-my-module
+	cd o-my-module
+	mkdir -p src/scss src/js demos/src/scss demos/src/js test && touch .travis.yml .gitignore main.scss main.js README.md origami.json bower.json demos/src/config.js src/scss/_variables.scss src/scss/_mixins.scss && git init .
 
 ## Naming conventions
 
@@ -38,8 +70,8 @@ The following requirements apply to creating a Origami-compatible module compone
 * not be used for imperative code except JavaScript (and JavaScript must have a client-side use case to be considered a front end component)
 * not contain build scripts except as required for development and testing.
 * be buildable using the standard build process described by the [build service]({{site.baseurl}}/docs/developer-guide/build-service/)
-* list all build, development and testing scripts as ignores in the module's bowser configuration.
-* where there is a dependency on a web service component (eg because the module is a JavaScript library that makes AJAX requests to a service), be compatible with the version of the web service API that carries the same major version number asthe module.  For example, version 2.4.5, 2.4.6, and 2.7 of a module *must* all be compatible with API version 2 of the web service.
+* list all build, development and testing scripts as ignored in the module's bowser configuration.
+* where there is a dependency on a web service component (e.g. because the module is a JavaScript library that makes AJAX requests to a service), be compatible with the version of the web service API that carries the same major version number as the module.  For example, version 2.4.5, 2.4.6, and 2.7 of a module *must* all be compatible with API version 2 of the web service.
 * contain a single 'main' file for each included language from which all other files of the same language are ultimate dependencies (using `require` for JS, `@import` for CSS or `{>}` for mustache as appropriate).  These main files *must* be called `main.js`, `main.scss` and `main.mustache` respectively and *must* be in the module root.
 * include a README.md file in the root of the repo, which must contain, where applicable:
 	* Any markup structure on which the module depends (if that markup is not provided by a web service).  For example, a module providing CSS to style postal addresses, should include a guide to writing the correct markup.  A JavaScript module that requires configuration via `data-` attributes should document those attributes.
@@ -96,13 +128,13 @@ Theming classes *must* be applied to the root element of the component to be the
 
 ## Packaging and build configuration
 
-<aside>When a developer goes to use a module, and finds that it has config for a particular package management system, they should be able to assume that the same package manager can be used to install <em>any</em> Origami module.  So it's important that all Origami modules share the same package config and do not include any 'special' config for package managaement systems that aren't compatible with all modules.</aside>
+<aside>When a developer goes to use a module, and finds that it has config for a particular package management system, they should be able to assume that the same package manager can be used to install <em>any</em> Origami module.  So it's important that all Origami modules share the same package config and do not include any 'special' config for package management systems that aren't compatible with all modules.</aside>
 
-[Bower](http://bower.io/) is the package manager used by Origami.  If a module has no dependencies, Bower does not require any package configuration, though the module *must* be tagged in git with [Semver](http://semver.org)-compatible version numbers (eg `v0.0.4`).  Component authors *should* provide a `bower.json` file anyway, *must* do so if the module has dependencies, and if they do it *must* conform to the following requirements:
+[Bower](http://bower.io/) is the package manager used by Origami.  If a module has no dependencies, Bower does not require any package configuration, though the module *must* be tagged in git with [Semver](http://semver.org)-compatible version numbers (e.g. `v0.0.4`).  Component authors *should* provide a `bower.json` file anyway, *must* do so if the module has dependencies, and if they do it *must* conform to the following requirements:
 
-* *Must* include a `name` property set to the repo name, eg 'o-grid'
+* *Must* include a `name` property set to the repo name, e.g. 'o-grid'
 * *Must* include a `main` property *if* the module contains any JavaScript, and if present, *must* be set to the value `main.js`.
-* *Must* include a `dependencies` object *if* the module has any Origami dependencies, specify dependencies without URLs, and accept as wide a range of versions of dependencies as possible (also see 'Module subdependencies' below)
+* *Must* include a `dependencies` object *if* the module has any Origami dependencies, specify dependencies without URLs, and accept as wide a range of versions of dependencies as possible (also see 'Module sub-dependencies' below)
 * *Must* include an `ignore` property listing all files and directories in the module that are not required by product developers, which *must* include anything that is not declarative code or front end JavaScript.  The `origami.json` and `README.md` files *should not* be ignored, since they may be needed by Origami-aware tools that install and catalogue Origami modules.
 * *May* include `devDependencies` if appropriate
 * *Must not* include a `version` property.  The version property is not needed and risks being out of sync with the repo tag
@@ -143,7 +175,7 @@ The following is an example `package.json` file that meets the above spec:
 
 ### Isomorphic modules
 
-Some modules' JavaScript may have use cases outside the browser, most notably in node.js applications e.g. `o-date` can be used to format dates in the browser or on the server. Where there is a definite need for this modules *should* include a `package.json` with the following properties:
+Some modules' JavaScript may have use cases outside the browser, most notably in Node.js applications e.g. `o-date` can be used to format dates in the browser or on the server. Where there is a definite need for this modules *should* include a `package.json` with the following properties:
 
 * `name`, which *must* be the same as the module's origami name
 * `version`, which *must* have a value of `0.0.0`
@@ -151,17 +183,17 @@ Some modules' JavaScript may have use cases outside the browser, most notably in
 
 If the module requires any dependencies which are aimed solely at browsers (e.g. `o-dom`), and consequently are unlikely to define a package.json, the module *must* contain an `index.js` file which requires only those features and dependencies needed in non-browser environments, and set the `main` property of `package.json` to `["index.js"]`.
 
-The module *must not* be added to the NPM registry and the module's documentation *should* advise developers to install by using a tagged tarball (links to which are available from the module's github repo's 'releases' tab).
+The module *must not* be added to the NPM registry and the module's documentation *should* advise developers to install by using a tagged tarball (links to which are available from the module's GitHub repo's 'releases' tab).
 
 ## Module subdependencies
 
-Modules *should* have as few subdependencies as possible.  Where the dependency is required to test the module or view the examples, but not to use it, it should be listed in `devDependencies` not in `dependencies`.
+Modules *should* have as few sub-dependencies as possible.  Where the dependency is required to test the module or view the examples, but not to use it, it should be listed in `devDependencies` not in `dependencies`.
 
-If any feature of a dependency's subdepencies are used directly then that subdependency *must* also be added as a direct dependency e.g. if your module has `o-ft-typography` as a dependency but makes use of `oFontsInclude()` in its stylesheets then `o-fonts` must also be added as a dependency.
+If any feature of a dependency's sub-dependencies are used directly then that sub-dependency *must* also be added as a direct dependency e.g. if your module has `o-ft-typography` as a dependency but makes use of `oFontsInclude()` in its stylesheets then `o-fonts` must also be added as a dependency.
 
-If a module requires that any feature of its dependencies be used directly by products/components consuming the module then it *should* alias that functionality within its own namespace to avoid them having to include the subdependency as a direct dependency e.g o-ft-typography aliases `oFontsInclude` to `oFtTypographyIncludeFont`.
+If a module requires that any feature of its dependencies be used directly by products/components consuming the module then it *should* alias that functionality within its own namespace to avoid them having to include the sub-dependency as a direct dependency e.g o-ft-typography aliases `oFontsInclude` to `oFtTypographyIncludeFont`.
 
-When listing dependencies in the `dependencies` section of the `bower.json` package configuration, the version requried *must* be specified using the semver `^` operator, allowing for updates up to the next major version, unless a version within that range is known to break the module (note that this doesn't work in the same way for packages that are not yet at version 1, for which, specify an explicit range.  See [#148](https://github.com/Financial-Times/ft-origami/issues/148))
+When listing dependencies in the `dependencies` section of the `bower.json` package configuration, the version required *must* be specified using the semver `^` operator, allowing for updates up to the next major version, unless a version within that range is known to break the module (note that this doesn't work in the same way for packages that are not yet at version 1, for which, specify an explicit range.  See [#148](https://github.com/Financial-Times/ft-origami/issues/148))
 
 Where the dependency is an Origami module that is *also a dependency of many other Origami modules*, it *must* verify and assert the widest version compatibility possible, including maintaining compatibility with earlier versions unless to do so would be impractical.
 
@@ -176,7 +208,7 @@ Components *should* include tests which at least verify that the component can b
 
 Component authors *may* include a `demos` folder to provide examples.  Demos *must* be created using [origami-build-tools](https://github.com/Financial-Times/origami-build-tools), and *must* be compatible with the demo viewer in the Origami registry.  Demos *must* include only the minimum amount of content to show the component, and particularly should not include any headings, backgrounds, margins or other content that are not part of the component itself, unless absolutely essential to the ability to demonstrate the component.
 
-Where styles need to be added specifically for a demo (eg to make the content of [o-grid](https://github.com/financial-times/o-grid) containers visible), they *must* be attached to classes with a `demo-` prefix, for example:
+Where styles need to be added specifically for a demo (e.g. to make the content of [o-grid](https://github.com/financial-times/o-grid) containers visible), they *must* be attached to classes with a `demo-` prefix, for example:
 
 <?prettify linenums=1?>
 	.demo-cell {
@@ -217,7 +249,7 @@ Example:
 			"sass": "demos/src/demo.scss",
 			"data": "demos/src/data.json",
 			"bodyClasses": "o-hoverable-on",
-			"dependencies": ["o-custom-module@^1.0.0"] 
+			"dependencies": ["o-custom-module@^1.0.0"]
 		},
 		"demos": [
 			{
@@ -248,7 +280,7 @@ Modules that are not openly published on GitHub *should* use Jenkins for CI.
 
 ## Browser support
 
-All modules *must* include documentation that states a mininum version in which the module has been tested, for each of the browser families shown in the example below.  Where a module includes JavaScript, minimum versions should be given for the enhanced experience and core experience separately.
+All modules *must* include documentation that states a minimum version in which the module has been tested, for each of the browser families shown in the example below.  Where a module includes JavaScript, minimum versions should be given for the enhanced experience and core experience separately.
 
 Example:
 
@@ -266,35 +298,8 @@ Example:
 
 ## Where to store modules
 
-Modules *must* be stored in git repos with the same name as the module itself.  The host server *must* be one of the following, listed in order of preference (from most preferred to least):
+Modules *must* be stored in git repositories with the same name as the module itself.  The host server *must* be one of the following, listed in order of preference (from most preferred to least):
 
-1. Public GitHub (github.com/Financial-Times)
+1. Public repository on GitHub (<https://github.com/Financial-Times>)
 2. Stash (git.svc.ft.com:8080)
-3. Private repo on public GitHub (github.com/Financial-Times)
-
-
-## File structure
-
-This section is non-normative.  A module component *may* be organised as follows, but this does not imply any requirements aside from those listed above.  The following can be considered an opinion on a good file structure for a module.
-
-	.
-	├─ demos
-	├─ test
-	├─ src
-	|   ├─ javascript
-	|   |   ├─ module1.js
-	|   |   └─ module2.js
-	|   ├─ scss
-	|   |   ├─ module1.scss
-	|   |   └─ module2.scss
-	|   ├─ images
-	|   |   └─ logo.png
-	|   └─ svg
-	|       └─ icon1.svg
-	├─ .gitignore
-	├─ .travis.yml
-	├─ bower.json
-	├─ main.js
-	├─ main.scss
-	├─ origami.json
-	└─ README.md
+3. Private repository on public GitHub (<https://github.com/Financial-Times>)
