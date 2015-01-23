@@ -5,25 +5,25 @@ section: Syntax
 permalink: /docs/syntax/scss/
 ---
 
-# SCSS standards
+#SCSS standards
 
 Origami has adopted [Sass](http://sass-lang.com/) and specifically the most common SCSS variant, as the preferred way of declaring style information.  The following rules apply to creating styles for **components**, but could also be adopted in large part for product developers.
 
 Sass features should be used only where they result in increased clarity and reuse. Care should be taken that the resulting CSS is not compromised by unnecessary Sass nesting.
 
-## Sass version
+##Sass version
 
 Component developers and Origami build tools *must* use Sass version ~3.3.0, and *should* fix any issues alerted by the compiler as deprecation warnings from 3.2.
 
-## Syntax convention rules
+##Syntax convention rules
 
 Sass *must* validate using the following [SCSS-lint](https://github.com/causes/scss-lint) rules:
 
 <div class="o-techdocs-gist" data-repo="Financial-Times/origami-build-tools" data-path="/config/scss-lint.yml"></div>
 
-## Selectors
+##Selectors
 
-### Naming conventions and encapsulation
+###Naming conventions and encapsulation
 
 Sass does not have proper encapsulation or scope, so strict adherence to namespacing rules is essential.
 
@@ -44,7 +44,7 @@ Sass does not have proper encapsulation or scope, so strict adherence to namespa
 	* have an existing class in the module's namespace.
 
 
-### Specificity
+###Specificity
 
 * Specificity *must* be minimised. Use [BEM](http://csswizardry.com/2013/01/mindbemding-getting-your-head-round-bem-syntax/), especially if the component might contain other components (e.g. in the case of a 'grid' component), to avoid one component's styles affecting the appearance of a component within it.  Where a component can never contain any child components (e.g. a 'tweet' component or a 'gallery' component), they may instead choose to use simple class names and increase specificity with the module root selector as a parent.
 * Selectors *should* contain a single operand, with the following exceptions:
@@ -61,7 +61,7 @@ Sass does not have proper encapsulation or scope, so strict adherence to namespa
 * Increased specificity *must not* be used to overcome an existing overly-specific selector - make the existing one less specific, or use new class names.
 
 
-### State
+###State
 
 [ARIA roles](http://www.w3.org/TR/wai-aria/states_and_properties) *should* be used to indicate state, except where state is switched automatically by the browser and selectable using pseudo-classes.  The following states *should* be considered:
 
@@ -134,11 +134,11 @@ Sass does not have proper encapsulation or scope, so strict adherence to namespa
 By default, a module's style rules *must* render it in a form suitable for use without JavaScript (which may involve hiding it completely). Any modifications to that style which are desired if the JavaScript component of the module is present must be prefixed with `.o-modulename--js`.
 
 
-### Feature flags and UA targeting
+###Feature flags and UA targeting
 
 Style rules that are intended to apply to only a subset of user agents *should* use feature flags to apply the rules (which is a progressive enhancement technique).  Where feature flagging is not possible, developers *may* choose to target specific user agents (a graceful degradation technique).
 
-#### Feature flags
+####Feature flags
 
 The following are acceptable types of feature flag, in order of preference:
 
@@ -166,7 +166,7 @@ The following are acceptable types of feature flag, in order of preference:
 Component developers *must not* use feature flags that would need to be set manually by a product developer (ie those that do not have feature detect code within Modernizr or feature-detection modules in Origami).  Component developers *must* assume that feature flag classes will be set on the `documentElement`, ie. the HTML tag.
 
 
-#### UA targeting
+####UA targeting
 
 Where necessary, components *may* provide style rules targeted at specific user agents.
 
@@ -188,19 +188,19 @@ In order of preference, when targeting styles at a specific user agent, componen
 
 Component developers *must not* use [IE conditional comments](http://www.quirksmode.org/css/condcom.html) to target user agents (use [browser hacks](http://browserhacks.com/) instead).
 
-## Values
+##Values
 
 * Component CSS *should* not use `!important`.  Valid use cases for `!important` exist, but usually only at the product level.  If `!important` is used in a component, a comment *must* be left in code to explain why it was necessary.
 * CSS expressions and behaviours *should* not be used, except to polyfill essential features for older browsers (e.g. boxsizing.htc for `box-sizing: border-box`)
 * Lengths *should* be expressed in pixel or percentage units, not ems or rems, with the exception of `line-height` which also accepts unitless values. A comment *should* be left in code when modern (`vh`, `vw`…) or relative units (`em`…) are used to document their purpose.
 
-## No @extends for foreign selectors
+##No @extends for foreign selectors
 
 The `@extends` command creates unpredictable cascades and unreliable results when used to extend placeholders defined in other modules, because the load order is unpredictable.  It *must not* be used in that way unless a dependent module can only be consumed via `@extends` for historical reasons.
 
 Extending a placeholder defined within the same module is permitted.
 
-## Sass variables
+##Sass variables
 
 * If a variable could potentially be used as a configurable option in products consuming the module, the variable *must* be defined with `!default` and added to the module's documentation
 * Variables that are internal to a module and which should not be used or set outside of it *should* be defined without !default.  Since Sass has no private scope, these underscore variables are not protected from overwriting so we use convention to distinguish them from public variables (see 'Privacy' below)
@@ -209,14 +209,14 @@ Extending a placeholder defined within the same module is permitted.
 * Variables intended for use externally by consuming products and modules *should* be defined by their purpose, rather than their value: e.g. `$o-colors-skyline-bg` rather than `$o-colors-beige`
 
 
-## Privacy and imports
+##Privacy and imports
 
 Any object (e.g. class, mixin, function, variable) that is intended for public use (i.e. may be referenced by code outside of its own module) *must* be documented in the module's README.  All other objects *must* be prefixed with an underscore character, and *must not* be documented in the README (they *may* be documented in code comments).
 
 If a module contains SCSS files other than the main file listed in bower.json, the file names of those files must be prefixed with an underscore, and all such files *must* be imported before any other Sass code.  All import statements *should* be in the module's main file.
 
 
-## Responsiveness
+##Responsiveness
 
 Modules are responsible for providing responsive behaviours where appropriate, but take care not to build in responsive behaviour that may not be desired by the product.
 
@@ -225,7 +225,7 @@ Modules are responsible for providing responsive behaviours where appropriate, b
 * When there is no media query support in the user agent (in the case of modules that use media queries) or the module's responsive mixins have not been used, the module *must* render in its most **compact** visual form.
 
 
-## Subresources
+##Subresources
 
 When styles refer to external resources such as fonts and images from an Origami module, the module *must* use `o-assets` to declare paths to these resources in a robust, build-agnostic fashion. Please see [the module's repository](https://github.com/financial-times/o-assets) for documentation and the rationale behind enforcing this approach.
 
@@ -233,7 +233,7 @@ Where external resources are not within Origami modules, a [protocol-relative UR
 
 
 
-## "Silent" styles
+##"Silent" styles
 
 Silent styles means SCSS code that compiles to an empty string, but provides mixins or variables that can be included or used by a dependent module.  Some modules can support silent styles easily, while others rely on class names to link elements to behaviour defined in JavaScript.
 
@@ -277,9 +277,9 @@ Modules that make use of styles defined in other modules that support silent mod
 Finally, in documentation, modules *must* provide information about both silent and non-silent methods, where supported, and must put the default first (i.e. if silent mode is by default **on**, the module must document the silent mode integration first).
 
 
-## Code organisation and formatting
+##Code organisation and formatting
 
-### Layout
+###Layout
 
 When listing multiple comma-separated selectors, each one *must* be placed on a new line.  Each property *must* be on a new line and indented (type of indent, tabs or spaces, is not standardised: developers *must* respect whatever indent type is already in use when editing existing modules)
 
@@ -291,24 +291,26 @@ When listing multiple comma-separated selectors, each one *must* be placed on a 
 	}
 
 
-### Files and folders
+###Files and folders
 
 Sass variables, mixins and functions *should* be in their own files, separate from the code that uses them.
 
 
-### Comments and documentation using SassDoc
+###Comments and documentation using SassDoc
 
-#### SassDoc
+####SassDoc
 
-[SassDoc](http://sassdoc.com/) is a documentation generator produce browsable documentation from parsing comments in `*.scss` files.
-
-[View an example of generated documentation](http://sass-mq.github.io/sass-mq/)
+<aside>
+<h4>What is SassDoc?</h4>
+<p><a href="http://sassdoc.com/">SassDoc</a> is a documentation generator produce browsable documentation from parsing comments in <code>*.scss</code> files.</p>
+<p><a href="http://sass-mq.github.io/sass-mq/">View an example of generated documentation</a></p>
+</aside>
 
 * Modules *should* be documented using SassDoc comments
 * Inspiration for SassDoc documentation: [o-fonts module's src/scss folder](https://github.com/Financial-Times/o-fonts/tree/master/src/scss)
 
 
-#### Comments
+####Comments
 
 Before adding comments, consider whether the code can be made more expressive in order to remove the need for a comment. If the code is as expressive as it can reasonably be, but the intent is still not clear, then comments should be used to supplement the code.
 
