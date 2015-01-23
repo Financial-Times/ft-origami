@@ -5,25 +5,30 @@ section: Overview
 permalink: /docs/overview/changes/
 ---
 
-# Spec changes newsfeed
+#Spec changes newsfeed
 
 The following documents the chronology of changes to the Origami spec and significant (i.e. breaking) releases of Origami modules since 13th January 2014.  If you want more detailed granularity, please refer to the [commit log](https://github.com/Financial-Times/ft-origami/commits/gh-pages).
 
-### 12 Jan 2015
+###12 Jan 2015
 
-- Removed requirement for a `data-o-versions` attribute in the markup
-- [`:not()` pseudo classes *should not* be used to avoid high specificity issues](http://origami.ft.com/docs/syntax/scss/#naming-conventions-and-encapsulation). Prefer additional classes and duplicated properties over specificity.
+**Component markup usage**: Removed requirement for a `data-o-versions` attribute in the markup
 
-### 9 Jan 2015
+**CSS Syntax**: [`:not()` pseudo classes *should not* be used to avoid high specificity issues](http://origami.ft.com/docs/syntax/scss/#naming-conventions-and-encapsulation). Prefer additional classes and duplicated properties over specificity.
 
-**[JavaScript standards](http://origami.ft.com/docs/syntax/js/) update** ([Issue](https://github.com/Financial-Times/o-useragent/issues/294)):
+###9 Jan 2015
 
-- [Object prototypes must not be overwritten](http://origami.ft.com/docs/syntax/js/#objects)
+**[JavaScript standards](http://origami.ft.com/docs/syntax/js/)** ([Issue](https://github.com/Financial-Times/o-useragent/issues/294)):
+
+- [Object prototypes **must not** be overwritten](http://origami.ft.com/docs/syntax/js/#objects)
 - The value of `this` should not be copied into non-semantic variables such as `that`, `self` or `_this`… [Read more](http://origami.ft.com/docs/syntax/js/#scoping-and-binding-this)
-- Object properties *must not* be named after reserved words in the JavaScript language. This causes problems in earlier versions of IE.
-- [One `var` per line](http://origami.ft.com/docs/syntax/js/#one-var-per-line): The `var` statement *must* declare only one variable.
+- Object properties **must not** be named after reserved words in the JavaScript language. This causes problems in earlier versions of IE.
+- [One `var` per line](http://origami.ft.com/docs/syntax/js/#one-var-per-line): The `var` statement **must** declare only one variable.
 
-### 24 Nov 2014
+###4 Dec 2014
+
+**Cut the mustart (CTM) test**: improvements to the script loading method for more browser compatibility ([Issue](https://github.com/Financial-Times/ft-origami/pull/268))
+
+###24 Nov 2014
 
 **Vendor prefixes**: Components **must not** use o-useragent for vendor prefixing anymore ([Issue](https://github.com/Financial-Times/o-useragent/issues/25)). Prefer using a CSS [autoprefixer](https://github.com/postcss/autoprefixer) instead.
 
