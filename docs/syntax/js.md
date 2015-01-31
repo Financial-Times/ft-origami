@@ -59,7 +59,7 @@ If you do copy a reference to `this` into a separate variable, make it semantic:
 <?prettify?>
 	var post = this;
 
-<aside>ES6 offers lexical <code>this</code> binding as part of arrow functions, which provides a much more elegant solution to this problem, but currently we require Origami code to be written in ES5</aside>
+<aside>ES6 offers lexical <code>this</code> binding as part of arrow functions, which provides a much more elegant solution to this problem, but currently we require Origami code to be written in ES5 syntax.  ES6 methods that can be polyfilled by the [polyfill service](https://cdn.polyfill.io) down to IE9 **may** be used (e.g. Promises), provided the component [declares each feature in the `browserFeatures` section of its `origami.json` file](http://origami.ft.com/docs/syntax/origamijson/#format).</aside>
 
 
 
