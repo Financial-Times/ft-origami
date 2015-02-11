@@ -219,10 +219,7 @@ We'll assume for the purposes of this example that your CSS and JS are in `/clie
 	});
 
 	gulp.task('verify', function() {
-		obt.verify(gulp, {
-			js: './client/js/main.js',
-			sass: './client/scss/main.scss'
-		});
+		obt.verify(gulp);
 	});
 
 	gulp.task('watch', function() {
