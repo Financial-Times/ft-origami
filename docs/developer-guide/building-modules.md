@@ -325,21 +325,20 @@ Here's an example of a web page created from the boilerplate that includes the s
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 		<title>Origami template</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	
+
 		<!--
 				Perform your cuts the mustard test.
-				In this case it test for the presence of document.querySelector.
 		-->
 		<script>
-			var cutsTheMustard = 'querySelector' in document;
-	
+			var cutsTheMustard = ('querySelector' in document && 'localStorage' in window && 'addEventListener' in window);
+
 			if (cutsTheMustard) {
 				// Swap the `core` class on the HTML element for an `enhanced` one
 				// We're doing it early in the head to avoid a flash of unstyled content
 				document.documentElement.className = document.documentElement.className.replace(/\bcore\b/g, 'enhanced');
 			}
 		</script>
-	
+
 		<!--
 			Hide any enhanced experience content when in core mode, and vice versa.
 			Add any other inlined CSS here
@@ -348,7 +347,7 @@ Here's an example of a web page created from the boilerplate that includes the s
 			.core .o--if-js,
 			.enhanced .o--if-no-js { display: none !important; }
 		</style>
-	
+
 		<!--
 			This is where your CSS bundle is loaded, and we add any inline CSS
 		-->
@@ -356,7 +355,7 @@ Here's an example of a web page created from the boilerplate that includes the s
 		<style>
 			/* Add any inline CSS here */
 		</style>
-	
+
 		<!--
 			Unconditionally load the polyfill service to provide the best support
 			possible for modern web standards.
@@ -367,7 +366,7 @@ Here's an example of a web page created from the boilerplate that includes the s
 			https://cdn.polyfill.io/
 		-->
 		<script src="//polyfill.webservices.ft.com/v1/polyfill.min.js"></script>
-	
+
 		<!--
 			Load the main JavaScript bundle asynchronously
 		-->
@@ -384,10 +383,10 @@ Here's an example of a web page created from the boilerplate that includes the s
 		</script>
 	</head>
 	<body>
-	
+
 		<!-- Body content here -->
 		[Find header and footer components from registry.origami.ft.com and put them here]
-	
+
 	</body>
 	</html>
 

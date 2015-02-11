@@ -280,21 +280,9 @@ Modules that are not openly published on GitHub *should* use Jenkins for CI.
 
 ## Browser support
 
-All modules *must* include documentation that states a minimum version in which the module has been tested, for each of the browser families shown in the example below.  Where a module includes JavaScript, minimum versions should be given for the enhanced experience and core experience separately.
+All modules *must* be tested with all the browsers [listed in the FT browser support policy](https://docs.google.com/a/ft.com/document/d/1dX92MPm9ZNY2jqFidWf_E6V4S6pLkydjcPmk5F989YI/edit#heading=h.wcrwnubj26sk), and if a module includes JavaScript, it must be error free in all the browsers that fall above the recommended minimum boundary for enhanced experience in that policy.
 
-Example:
-
-<table>
-	<tr><th>Browser</th><th>Min for enhanced exp.</th><th>Min for core exp.</th></tr>
-	<tr><td>Internet Explorer</td><td>9</td><td>6</td></tr>
-	<tr><td>Firefox</td><td>25</td><td>3</td></tr>
-	<tr><td>Chrome</td><td>10</td><td>1</td></tr>
-	<tr><td>Safari</td><td>5</td><td>2</td></tr>
-	<tr><td>Mobile Safari</td><td>9</td><td>6</td></tr>
-	<tr><td>Mobile Firefox</td><td>9</td><td>6</td></tr>
-	<tr><td>Android browser</td><td>9</td><td>6</td></tr>
-	<tr><td>Opera</td><td>12</td><td>4</td></tr>
-</table>
+The versions tested *should* be listed in the module's documentation, so that when boundary recommendations are changed, it is still possible to determine the support that was designed into an older module.
 
 ## Where to store modules
 
