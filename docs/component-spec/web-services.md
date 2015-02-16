@@ -37,7 +37,7 @@ Web services *must* expose an HTTP endpoint on the hostname `{componentname}.web
 * Include a mandatory version number element to the API path for all API endpoints
 * *not* expose minor version changes in the web service application on the version number included in the API endpoint URL
 * Meet the [standard for HTML]({{site.baseurl}}/docs/syntax/html) when relevant
-* Require requests to API endpoints to contain an identification string set by the requesting application, either in a `source` query string parameter or an `X-FT-Source` HTTP header.  *Must* support the query string parameter, and *should* support the header (if header is supported the the service supports CORS, it *must* also support a pre-flight check to allow the header to be sent from foreign origins).  If neither the header nor the query param is present, *must* return a `400 Bad Request` response status code.  Requests to non-API endpoints such as the root path, /__about or /__metrics *should not* require the source parameter.
+* Require requests to API endpoints to contain an identification string set by the requesting application, either in a `source` query string parameter or an `X-FT-Source` HTTP header.  *Must* support the query string parameter, and *should* support the header (if header is supported the the service supports CORS, it *must* also support a pre-flight check to allow the header to be sent from foreign origins).  If neither the header nor the query param is present, *must* return a `400 Bad Request` response status code.  Requests to non-API endpoints such as the root path or /__about *should not* require the source parameter.
 * Provide monitoring endpoints and data conforming to the [FT Health page standard](https://docs.google.com/a/ft.com/document/d/18hefJjImF5IFp9WvPAm9Iq5_GmWzI9ahlKSzShpQl1s/edit)
 * When an error occurs that prevents the service returning the output requested, the HTTP response code *must* be in the 5xx or 4xx range, and:
 	* if the expected response is HTML, *must* have an empty content body unless error information has been requested via a query string parameter.  The web service *should* implement such a parameter.  If it does, the parameter *must* be called `showerrors`, and the presence of this parameter *must* always turn on visible errors unless it has a value which is set to 0;
@@ -64,6 +64,7 @@ Web services *must* expose an HTTP endpoint on the hostname `{componentname}.web
 * Draw templates from a module component where practical (to allow product developers to consume them and do the templating themselves), and if it does, those templates *must* be Mustache format.  Conversely, templates built into the web service may be of any format.
 * Accept any querystring parameters, POST data, URL parameters or other input as desired to allow for service specific features (this may include accepting input and then simply reformatting it and including it in the output, but component developers *should* avoid doing this in services whose output also draws from other content sources).
 * *not* output any executable code (use module components for that)
+* emit metrics to the FT graphite service.  See [Metrics](#metrics).
 
 ### Output formats
 
@@ -94,16 +95,42 @@ Web services *must* implement the following endpoints, for each version of the a
 <table class="o-techdocs-table">
 <tr><td><code>/</code></td><td>Description of the service and instructions for use, designed for human consumption.  This <em>should</em> be HTML, and <em>may</em> choose to use the standard Origami documentation stylesheet.</td></tr>
 <tr><td><code>/__health</code></td><td>Health status JSON data conforming to the <a href="https://docs.google.com/a/ft.com/document/d/18hefJjImF5IFp9WvPAm9Iq5_GmWzI9ahlKSzShpQl1s/edit">FT Health check standard</a>.  Note that the health check standard currently requires the alerts to be output in a 'human readable' form, and that may require implementing additional endpoints (or reformatting at the edge)</td></tr>
-<tr><td><code>/__metrics</code></td><td>A JSON document listing current metrics to allow automated monitoring, in the <a href='{{site.baseurl}}/docs/syntax/metrics'>metrics</a> format</td></tr>
 <tr><td><code>/__about</code></td><td><em>(root only)</em> A JSON document linking to all available versions of the service, in the <a href='{{site.baseurl}}/docs/syntax/web-service-index'>web service index format</a><br/><em>(version endpoints only)</em> A JSON document in the <a href='{{site.baseurl}}/docs/syntax/web-service-description'>web service description format</a></td></tr>
 </table>
 
 If a web service has two versions, `v1` and `v2`, there *must* be three of each of the above.  Using the `/health` endpoint as an example, the complete paths `/__health`, `/v1/__health` and `/v2/__health` *must* be recognised and served by the web service, and *may* return the same content.  The `__about` data *must* also be available from three URLs, but will follow the [web service description format]({{site.baseurl}}/docs/syntax/web-service-description) format for those that are version prefixed, and the [web service index]({{site.baseurl}}/docs/syntax/web-service-index) format for the one that isn't.
 
-
 ### De-duplication of output
 
 Web service components *should* not offer any de-duplication of content.  If a product developer wants to draw from multiple Origami sources, and de-dupe where the same individual content item may appear from more than one of those sources, that's not a problem that Origami will solve for them, but could be solved at the product level by consuming data rather than markup.
+
+## Metrics
+
+Web service components *should* emit metrics over TCP or UDP using [any protocol supported by Carbon](http://graphite.readthedocs.org/en/latest/feeding-carbon.html), to the FT Graphite service.  All metrics *must* conform to the [metrics naming conventions]({{site.baseurl}}/docs/syntax/metrics).
+
+Web services *should* send metrics no more frequently than every 5 seconds, and should consult the monitoring team before sending more than 100,000 data points per hour.
+
+### Client libraries
+
+The following client libraries make submitting metrics easier:
+
+<table class="o-techdocs-table">
+<thead><tr><th>Language</th><th>Tools</th><th>Example uses</th></tr></thead>
+<tbody>
+	<tr>
+		<td>NodeJS / IOJS</td>
+		<td>
+			<a href='https://github.com/felixge/node-graphite'>node-graphite</a>,
+			<a href='https://github.com/felixge/node-measured'>node-measured</a>
+		</td>
+		<td>
+			<a href='https://github.com/Financial-Times/polyfill-service/blob/master/service/metrics.js'>polyfill-service</a>
+		</td>
+	</tr>
+</tbody>
+</table>
+
+
 
 ## Example
 
