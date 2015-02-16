@@ -37,7 +37,7 @@ Web services *must* expose an HTTP endpoint on the hostname `{componentname}.web
 * Include a mandatory version number element to the API path for all API endpoints
 * *not* expose minor version changes in the web service application on the version number included in the API endpoint URL
 * Meet the [standard for HTML]({{site.baseurl}}/docs/syntax/html) when relevant
-* Require requests to API endpoints to contain an identification string set by the requesting application, either in a `source` query string parameter or an `X-FT-Source` HTTP header.  *Must* support the query string parameter, and *should* support the header (if header is supported the the service supports CORS, it *must* also support a pre-flight check to allow the header to be sent from foreign origins).  If neither the header nor the query param is present, *must* return a `400 Bad Request` response status code.  Requests to non-API endpoints such as the root path or /__about *should not* require the source parameter.
+* Require requests to API endpoints to contain an identification string set by the requesting application, either in a `source` query string parameter or an `X-FT-Source` HTTP header.  *Must* support the query string parameter, and *should* support the header (if header is supported and the service supports CORS, it *must* also support a pre-flight check to allow the header to be sent from foreign origins).  If neither the header nor the query param is present, *must* return a `400 Bad Request` response status code.  Requests to non-API endpoints such as the root path or /__about *should not* require the source parameter.
 * Provide monitoring endpoints and data conforming to the [FT Health page standard](https://docs.google.com/a/ft.com/document/d/18hefJjImF5IFp9WvPAm9Iq5_GmWzI9ahlKSzShpQl1s/edit)
 * When an error occurs that prevents the service returning the output requested, the HTTP response code *must* be in the 5xx or 4xx range, and:
 	* if the expected response is HTML, *must* have an empty content body unless error information has been requested via a query string parameter.  The web service *should* implement such a parameter.  If it does, the parameter *must* be called `showerrors`, and the presence of this parameter *must* always turn on visible errors unless it has a value which is set to 0;
@@ -64,7 +64,7 @@ Web services *must* expose an HTTP endpoint on the hostname `{componentname}.web
 * Draw templates from a module component where practical (to allow product developers to consume them and do the templating themselves), and if it does, those templates *must* be Mustache format.  Conversely, templates built into the web service may be of any format.
 * Accept any querystring parameters, POST data, URL parameters or other input as desired to allow for service specific features (this may include accepting input and then simply reformatting it and including it in the output, but component developers *should* avoid doing this in services whose output also draws from other content sources).
 * *not* output any executable code (use module components for that)
-* emit metrics to the FT graphite service.  See [Metrics](#metrics).
+* Emit metrics to the FT graphite service.  See [Metrics](#metrics).
 
 ### Output formats
 
