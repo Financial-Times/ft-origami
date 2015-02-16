@@ -9,6 +9,11 @@ permalink: /docs/overview/changes/
 
 The following documents the chronology of changes to the Origami spec and significant (i.e. breaking) releases of Origami modules since 13th January 2014.  If you want more detailed granularity, please refer to the [commit log](https://github.com/Financial-Times/ft-origami/commits/gh-pages).
 
+###11 Feb 2015
+
+- Sass version: developers *must* upgrade from ~3.3.0 to ~3.4.0
+- Cut The Mustard Test: the baseline of the enhanced experience for modules is set to user agents that support `querySelector`, `localStorage` and `addEventListener` ([see example](https://github.com/Financial-Times/ft-origami/blob/gh-pages/examples/ctm.html#L15))
+
 ###12 Jan 2015
 
 **Component markup usage**: Removed requirement for a `data-o-versions` attribute in the markup
