@@ -157,9 +157,6 @@ All origami components, whether modules or web services, should be discoverable 
 	  "demos": [
 	  	"/demos/demo1.html"
 	  ],
-	  "assetPaths": [
-	    "/images/logos/*"
-	  ],
 	  "ci": {
 	    "travis": "https://api.travis-ci.org/repos/Financial-Times/o-tweet/builds.json"
 	  }
