@@ -15,4 +15,4 @@ Since this is a GitHub pages site, built CSS bundle must be committed to the rep
 ## Viewing locally
 
 1. Install Jekyll `gem install jekyll`
-2. Run `npm start` (or `jekyll serve --watch --baseurl=''`) and view on http://localhost:4000/ 
+2. Run `npm start` (or `jekyll serve --watch --baseurl=''` and `grunt watch`) and view on http://localhost:4000/
