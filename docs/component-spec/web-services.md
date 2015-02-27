@@ -106,7 +106,7 @@ Web service components *should* not offer any de-duplication of content.  If a p
 
 ## Metrics
 
-Web service components *should* emit metrics over TCP or UDP using [any protocol supported by Carbon](http://graphite.readthedocs.org/en/latest/feeding-carbon.html), to the FT Graphite service.  All metrics *must* conform to the [metrics naming conventions]({{site.baseurl}}/docs/syntax/metrics).
+Web service components *should* emit metrics over TCP using the [Carbon plaintext protocol](http://graphite.readthedocs.org/en/latest/feeding-carbon.html), to the FT Graphite service.  All metrics *must* conform to the [metrics naming conventions]({{site.baseurl}}/docs/syntax/metrics).
 
 Web services *should* send metrics no more frequently than every 5 seconds, and should consult the monitoring team before sending more than 100,000 data points per hour.
 
