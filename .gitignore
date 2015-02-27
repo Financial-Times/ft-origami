@@ -2,5 +2,4 @@ _site
 .DS_Store
 .idea/
 .sass-cache/
-bower_components/
 node_modules/

@@ -1,8 +1,6 @@
-$o-assets-global-path: 'http://build.origami.ft.com/files/';
-@import 'o-techdocs/main';
-
 body {
 	margin: 0;
+	font-family: BentonSans, sans-serif;
 }
 
 /* Google custom search overrides */
@@ -16,6 +14,7 @@ body {
 .footer-logo {
 	float: right;
 	font-size: 20px;
+
 	.origami-logo {
 		width: 40px;
 	}
@@ -28,7 +27,18 @@ body {
 	background-repeat: no-repeat;
 	background-position: 50% 50%;
 	background-size: contain;
-	background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 63.3 63.3'><g><g><polygon fill='#D7D1C6' points='31.7,51.3 19.9,63.2 0.1,43.4 0.1,19.7'/><polyline fill='#B7B5AB' points='43.6,0 19.9,0 0.1,19.7 12,31.6 43.6,0'/><polyline fill='#878680' points='63.3,43.4 63.3,19.7 43.6,0 31.7,11.8 63.3,43.4'/><polygon fill='#646464' points='19.9,63.2 43.6,63.2 63.3,43.4 51.5,31.6'/><path fill='#D7D1C6' d='m0.098068 19.7'/></g></g></svg>");
+	background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHZpZXdCb3g9JzAgMCA2My4zIDYzLjMnPjxnPjxnPjxwb2x5Z29uIGZpbGw9JyNEN0QxQzYnIHBvaW50cz0nMzEuNyw1MS4zIDE5LjksNjMuMiAwLjEsNDMuNCAwLjEsMTkuNycvPjxwb2x5bGluZSBmaWxsPScjQjdCNUFCJyBwb2ludHM9JzQzLjYsMCAxOS45LDAgMC4xLDE5LjcgMTIsMzEuNiA0My42LDAnLz48cG9seWxpbmUgZmlsbD0nIzg3ODY4MCcgcG9pbnRzPSc2My4zLDQzLjQgNjMuMywxOS43IDQzLjYsMCAzMS43LDExLjggNjMuMyw0My40Jy8+PHBvbHlnb24gZmlsbD0nIzY0NjQ2NCcgcG9pbnRzPScxOS45LDYzLjIgNDMuNiw2My4yIDYzLjMsNDMuNCA1MS41LDMxLjYnLz48cGF0aCBmaWxsPScjRDdEMUM2JyBkPSdtMC4wOTgwNjggMTkuNycvPjwvZz48L2c+PC9zdmc+");
 	vertical-align: middle;
 	margin-right: 7px;
+}
+
+.c-search {
+	@media (max-width: 45.625em) {
+		position: absolute;
+		top: 100%;
+		width: 100%;
+		left: 0;
+		padding: 10px 5px;
+		box-sizing: border-box;
+	}
 }

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html class="core">
 <head>
 	<meta charset="utf-8" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
@@ -8,45 +8,72 @@
 	<link rel="icon" href="/img/origami-logo.png" type="image/x-icon" />
 
 	<script>
+		var cutsTheMustard = ('querySelector' in document && 'localStorage' in window && 'addEventListener' in window);
+
+		if (cutsTheMustard) {
+			// Swap the `core` class on the HTML element for an `enhanced` one
+			// We're doing it early in the head to avoid a flash of unstyled content
+			document.documentElement.className = document.documentElement.className.replace(/\bcore\b/g, 'enhanced');
+		}
+	</script>
+
+	<link rel="stylesheet" href="//build.origami.ft.com/bundles/css?modules=o-fonts@^1.6.4,o-techdocs@^4.0.0,o-ft-icons@^2.3.4" />
+	<link href="{{ site.baseurl }}/buildcache/bundle.css" rel="stylesheet" />
+
+	<script src="//polyfill.webservices.ft.com/v1/polyfill.min.js"></script>
+
+	<script>
+		(function(src) {
+			if (cutsTheMustard) {
+				var o = document.createElement('script');
+				o.async = o.defer = true;
+				o.src = src;
+				var s = document.getElementsByTagName('script')[0];
+				s.parentNode.insertBefore(o, s);
+			}
+		}('//build.origami.ft.com/bundles/js?modules=o-fonts@^1.6.4,o-techdocs@^4.0.0'));
+	</script>
+
+	<script>
 		// Redirect the GH pages hostname to the custom one
 		if (location.hostname.indexOf('.github.io') !== -1) {
 			location.replace(location.href.replace(/[-\w]+\.github\.io\/ft\-origami/, 'origami.ft.com'));
 		}
 	</script>
-	<link href="{{ site.baseurl }}/buildcache/bundle.css" rel="stylesheet" />
-	<script src="{{ site.baseurl }}/buildcache/bundle.js"></script>
 </head>
 <body class="o-techdocs">
 
-	<header data-o-component="o-ft-header" class="o-ft-header">
-		<div class="o-ft-header__container">
-			<div class="o-ft-header__primary">
-				<div class="o-ft-header__primary__left">
-					<span class="origami-logo"></span>
-					<h1 class="o-ft-header__title">{{site.name}}</h1>
+	<header data-o-component="o-header" class="o-header">
+		<div class="o-header__container">
+			<div class="o-header__inner">
+				<div class="o-header__primary">
+					<a class="o-header__primary__left" href="/">
+						<span class="origami-logo"></span>
+						<h1 class="o-header__title">{{site.name}}</h1>
+					</a>
+					<div class="o-header__primary__center c-search">
+						<script>
+						(function() {
+							var cx = '013700166063307641389:hr156qdcx6w';
+							var gcse = document.createElement('script');
+							gcse.async = true;
+							gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//www.google.com/cse/cse.js?cx=' + cx;
+							var s = document.getElementsByTagName('script')[0];
+							s.parentNode.insertBefore(gcse, s);
+						})();
+						</script>
+						<gcse:search></gcse:search>
+					</div>
+					<nav class="o-header__primary__right o-hierarchical-nav o-header__nav--primary-theme" data-o-component="o-hierarchical-nav">
+						<ul data-o-hierarchical-nav-level="1">
+							<li data-priority="1" aria-selected="true"><a href="/">Spec</a></li>
+							<li data-priority="1"><a href="//registry.origami.ft.com">Registry</a></li>
+							<li data-more class="o-hierarchical-nav__parent" aria-hidden="true"><a><span class="o-hierarchical-nav__more--if-some">More <i class="o-hierarchical-nav__parent__down-arrow"></i></span><span class="o-hierarchical-nav__more--if-all">Menu <i class="o-hierarchical-nav__parent__down-arrow"></i></span></a></li>
+						</ul>
+					</nav>
 				</div>
-				<div class="o-ft-header__primary__center">
-					<script>
-					(function() {
-						var cx = '013700166063307641389:hr156qdcx6w';
-						var gcse = document.createElement('script');
-						gcse.async = true;
-						gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//www.google.com/cse/cse.js?cx=' + cx;
-						var s = document.getElementsByTagName('script')[0];
-						s.parentNode.insertBefore(gcse, s);
-					})();
-					</script>
-					<gcse:search></gcse:search>
-				</div>
-				<nav class="o-ft-header__primary__right o-hierarchical-nav o-ft-header__nav--primary-theme" data-o-component="o-hierarchical-nav">
-					<ul data-o-hierarchical-nav-level="1">
-						<li data-priority="1" aria-selected="true"><a href="http://origami.ft.com/">Spec</a></li>
-						<li data-priority="1"><a href="//registry.origami.ft.com">Registry</a></li>
-						<li data-more class="o-hierarchical-nav__parent" aria-hidden="true"><a><span class="o-hierarchical-nav__more--if-some">More <i class="o-hierarchical-nav__parent__down-arrow"></i></span><span class="o-hierarchical-nav__more--if-all">Menu <i class="o-hierarchical-nav__parent__down-arrow"></i></span></a></li>
-					</ul>
-				</nav>
+				<div class="o-header__secondary"></div>
 			</div>
-			<div class="o-ft-header__secondary"></div>
 		</div>
 	</header>
 
@@ -154,15 +181,18 @@
 
 	</div>
 
-	<footer>
-		<div class="footer-logo">
-			<span class="origami-logo"></span>Origami
+	<footer class="o-techdocs-footer">
+		<div class="o-techdocs-footer__inner">
+			<div class="footer-logo">
+				<span class="origami-logo"></span>Origami
+			</div>
+			<p>Help or advice for FT staff on any aspect of Origami is available from <a href="mailto:origami.support@ft.com">origami.support@ft.com</a> (public users please instead <a href="https://github.com/Financial-Times/ft-origami/issues">raise an issue on the repo</a>)</p>
+			<p>&copy; THE FINANCIAL TIMES LTD {{ site.time | date:'%Y' }}. FT and 'Financial Times' are trademarks of The Financial Times Ltd.</p>
 		</div>
-		<p>Help or advice for FT staff on any aspect of Origami is available from <a href="mailto:origami.support@ft.com">origami.support@ft.com</a> (public users please instead <a href="https://github.com/Financial-Times/ft-origami/issues">raise an issue on the repo</a>)</p>
-		<p>&copy; THE FINANCIAL TIMES LTD {{ site.time | date:'%Y' }}. FT and 'Financial Times' are trademarks of The Financial Times Ltd.</p>
 	</footer>
 
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.js"></script>
-	<script>prettyPrint();</script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.js"></script>
+	<script>addEventListener('load', function(event) { prettyPrint(); }, false);</script>
+
 </body>
 </html>
