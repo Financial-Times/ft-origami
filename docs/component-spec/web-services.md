@@ -45,13 +45,14 @@ Web services *must* expose an HTTP endpoint on the hostname `{componentname}.web
 * Include an explicit `Cache-Control` header in all HTTP responses that have a 2xx or 3xx response status
 * Serve content on the bare versioned endpoints (e.g. `/v1/`) that documents the API methods available.  Documentation content thus served *should* use the `o-techdocs` module for formatting and layout.
 * Redirect the root path `/` to the documentation endpoint for the latest API version
-* Provide a mechanism for developers to subscribe to email notifications of version deprecation (which *should* be a github watcher list, if available).
+* Provide a mechanism for developers to subscribe to email notifications of version deprecation (which *may* be GitHub stargazers, if available).
 * When a [non-backwards compatible change](#changes-and-versioning) is made to any output of the service:
 	* provide a new set of API endpoints with updated version number; and
 	* continue to support previous versions for a minimum of 3 months; and
 	* the developer *must* begin work to agree a termination date for the previous version with its consumers and the wider business.
 * When a prior version is to be terminated,
 	* the developer *must* give at least 3 months notice via an email notification to the notification list; and
+	* the developer *must* review the top referring applications identified by the `source` argument or header and proactively notify their owners via the consuming application's runbook; and
 	* the service *must* include an `X-Service-Termination-Date:` header in all HTTP responses on that version's API endpoints, using an RFC1123 format date; and
 	* following the expiry of the termination date, and for ever more, the service *should* return either a `410 Gone` or a static copy of the last content to be generated.
 
