@@ -137,6 +137,11 @@ Once you know which Origami modules you want, create a `bower.json` file in the 
 
 `dependencies` is a list of the front-end modules you would like to use in your project.  If the module is in the [Origami registry](http://registry.origami.ft.com) or the [bower registry](http://bower.io/search/), you can simply specify the version number you want (using [semver](http://semver.org) rules), otherwise you must provide the full URL of the component's repository followed by a hash and the version you want.
 
+<aside>
+	<h4>Beware versions less than 1</h4>
+	<p>Versions lower than 1 (eg <code>0.3.2</code>) are considered experimental builds, and are treated differently by bower.  Origami forbids the creation of components with a version lower than 1, so if you see one, it is probably not ready for use.</p>
+</aside>
+
 This time we're listing these as *dependencies*, not *devDependencies*, because they are actually required by your project in production.
 
 To ensure that the Origami modules can be found, it needs to be set up to search the Origami registry.  To do this, create a `.bowerrc` file in the root of your project's working tree (or in your home directory, if you want to apply it automatically to all projects), with the following contents:

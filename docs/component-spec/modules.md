@@ -99,6 +99,8 @@ When new versions of components are released, updates may be needed to component
 * If the release is a new **minor** version, the component developer *should* notify maintainers of all components and products listed as dependents in the Origami registry, immediately after the release.
 * If the release is a new **patch** version, no notifications need be sent.
 
+The first released version of a module *must* be `v1.0.0`.  Versions lower than 1 are subject to different semver parsing logic, which is a nuance best avoided.
+
 
 ## Themes
 
@@ -130,7 +132,7 @@ Theming classes *must* be applied to the root element of the component to be the
 
 <aside>When a developer goes to use a module, and finds that it has config for a particular package management system, they should be able to assume that the same package manager can be used to install <em>any</em> Origami module.  So it's important that all Origami modules share the same package config and do not include any 'special' config for package management systems that aren't compatible with all modules.</aside>
 
-[Bower](http://bower.io/) is the package manager used by Origami.  If a module has no dependencies, Bower does not require any package configuration, though the module *must* be tagged in git with [Semver](http://semver.org)-compatible version numbers (e.g. `v0.0.4`).  Component authors *should* provide a `bower.json` file anyway, *must* do so if the module has dependencies, and if they do it *must* conform to the following requirements:
+[Bower](http://bower.io/) is the package manager used by Origami.  If a module has no dependencies, Bower does not require any package configuration, though the module *must* be tagged in git with [Semver](http://semver.org)-compatible version numbers (e.g. `v1.0.4`).  Component authors *should* provide a `bower.json` file anyway, *must* do so if the module has dependencies, and if they do it *must* conform to the following requirements:
 
 * *Must* include a `name` property set to the repo name, e.g. 'o-grid'
 * *Must* include a `main` property *if* the module contains any JavaScript, and if present, *must* be set to the value `main.js`.
@@ -193,7 +195,11 @@ If any feature of a dependency's sub-dependencies are used directly then that su
 
 If a module requires that any feature of its dependencies be used directly by products/components consuming the module then it *should* alias that functionality within its own namespace to avoid them having to include the sub-dependency as a direct dependency e.g o-ft-typography aliases `oFontsInclude` to `oFtTypographyIncludeFont`.
 
-When listing dependencies in the `dependencies` section of the `bower.json` package configuration, the version required *must* be specified using the semver `^` operator, allowing for updates up to the next major version, unless a version within that range is known to break the module (note that this doesn't work in the same way for packages that are not yet at version 1, for which, specify an explicit range.  See [#148](https://github.com/Financial-Times/ft-origami/issues/148))
+When listing dependencies in the `dependencies` section of the `bower.json` package configuration, the version required:
+
+* *must be* specified using the semver `^` operator, allowing for updates up to the next major version, unless a version within that range is known to break the module; and
+* *must be* greater than or equal to 1.0.0 (modules with version numbers less than one *must not* be used as dependencies of any other module - see [#148](https://github.com/Financial-Times/ft-origami/issues/148) and [#314](https://github.com/Financial-Times/ft-origami/issues/314)); and
+* *must not* include `-beta` or other semver suffixes.
 
 Where the dependency is an Origami module that is *also a dependency of many other Origami modules*, it *must* verify and assert the widest version compatibility possible, including maintaining compatibility with earlier versions unless to do so would be impractical.
 
