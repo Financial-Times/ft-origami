@@ -407,7 +407,7 @@ Finally, we need to deal with assets - files from components that may be loaded 
 * Are using a web server that maps URL paths directly to filesystem paths; and
 * Have set your web server's document root to the root of your project's working tree
 
-For very simple projects, this may be true.  But it's generally not a great idea to have your `bower_components` directory in the public part of your web server, and you may well want to process requests for front-end bundles via a router or [front-controller](http://en.wikipedia.org/wiki/Front_Controller_pattern) of some kind.  In that case, you should set the [o-assets config variables](http://git.svc.ft.com/summary/origami%2Fo-assets.git) in your main Sass file to the values that you want for your project.  Typically this just involves setting one global path prefix.  Here's an example of how you could do this in the main.scss example used earlier:
+For very simple projects, this may be true.  But it's generally not a great idea to have your `bower_components` directory in the public part of your web server, and you may well want to process requests for front-end bundles via a router or [front-controller](http://en.wikipedia.org/wiki/Front_Controller_pattern) of some kind.  In that case, you should set the [o-assets config variables](http://github.com/Financial-Times/o-assets) in your main Sass file to the values that you want for your project.  Typically this just involves setting one global path prefix.  Here's an example of how you could do this in the main.scss example used earlier:
 
 	/* Set Origami config */
 	$o-assets-global-path: '/resources';
