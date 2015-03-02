@@ -139,7 +139,7 @@ Once you know which Origami modules you want, create a `bower.json` file in the 
 
 <aside>
 	<h4>v0.x.x: Beware!</h4>
-	<p>Versions lower than 1 (eg <code>0.3.2</code>) are considered experimental builds, and are treated differently by bower.  Origami forbids the creation of components with a version lower than 1, so if you see one, it is probably not ready for use.</p>
+	<p>Versions lower than 1 (eg. <code>v0.3.2</code>) are considered experimental builds, and are treated differently by Bower.  Origami forbids the creation of components with a version lower than 1, so if you see one, it is probably not ready for use.</p>
 </aside>
 
 This time we're listing these as *dependencies*, not *devDependencies*, because they are actually required by your project in production.
