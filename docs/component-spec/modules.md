@@ -201,6 +201,14 @@ When listing dependencies in the `dependencies` section of the `bower.json` pack
 * *must be* greater than or equal to 1.0.0 (modules with version numbers less than one *must not* be used as dependencies of any other module - see [#148](https://github.com/Financial-Times/ft-origami/issues/148) and [#314](https://github.com/Financial-Times/ft-origami/issues/314)); and
 * *must not* include `-beta` or other semver suffixes.
 
+Here are some examples to help interpret the rules above:
+
+* GOOD: `^1.0.0`, `<3`
+* BAD: `^0.1.0` (because the major version is less than 1)
+* BAD: `1.0.0` (because it will accept only a precise version match, so will likely cause dependency conflicts)
+* BAD: `~1.0.0` (because the prefix allows only patch updates - may cause dependency conflicts)
+* BAD: `^2.0.0-beta.4` (because it includes a suffix)
+
 Where the dependency is an Origami module that is *also a dependency of many other Origami modules*, it *must* verify and assert the widest version compatibility possible, including maintaining compatibility with earlier versions unless to do so would be impractical.
 
 Where a dependency is an Origami module it *must* be listed under its original name (in order to avoid causing conflicts in the Build service resource compiler.
