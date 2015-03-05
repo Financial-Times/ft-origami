@@ -20,9 +20,9 @@ Origami components may have dependencies (via Bower) on third party components. 
 		<td>A general purpose DOM manipulation library is invariably a common request, but large DOM libraries should be avoided since they contain numerous other features beyond simple DOM manipulation.  See also <a href="#why_not_jquery">Why not jQuery</a></td>
 	</tr><tr>
 		<td>AJAX</td>
-		<td><a href="https://github.com/Financial-Times/superagent/tree/bower">superagent</a></td>
+		<td><a href="https://github.com/whatwg/fetch">fetch</a></td>
 		<td>jQuery</td>
-		<td>Components should <a href="#why_not_jquery">not use jQuery</a>, and superagent is better. For the time being the superagent master branch is incompatible with browserify, so use <a href="https://github.com/Financial-Times/superagent/tree/bower">our temporary clone</a></td>
+		<td>Components should <a href="#why_not_jquery">not use jQuery</a>, fetch is better and available natively in a number of browsers.  A [polyfill exists](https://github.com/github/fetch) and is [available through the Polyfill Service](https://cdn.polyfill.io/).</td>
 	</tr><tr>
 		<td>Event delegation</td>
 		<td><a href="https://github.com/ftlabs/ftdomdelegate">ftdomdelegate</a></td>
