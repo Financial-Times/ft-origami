@@ -65,6 +65,8 @@ Web services will inevitably be improved and changed, and in some cases changes 
 
 In any request to an Origami service, you should always check the response for the presence of an `X-Service-Termination-Date` header and make sure you are alerted if one appears.  This will ensure you always get the maximum amount of time possible to effect your upgrade before the service is turned off.
 
+Web services are also required to proactively notify interested parties when a service termination is planned.  To avoid being taken by surprise, join the service's notification mailing list, or if it doesn't have one, star the repo on GitHub.
+
 ## Risk multiplier effect
 
 If your app integrates with a lot of external services, it's easy to increase the risk of an outage in your app by inadvertently making your app critically dependent on those services.  Although many (though by no means all) Origami services offer very high availability and robust architectures to support that, chaining together lots of very low probabilities still results in an unacceptably high one.
