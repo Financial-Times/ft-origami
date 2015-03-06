@@ -138,7 +138,7 @@ All origami components, whether modules or web services, should be discoverable 
 
 ## Example
 
-<?prettify linenums=1?>
+
 	{
 	  "description": "Tweet module",
 	  "origamiType": "module",

@@ -45,8 +45,8 @@ Now you need to find some components to add to your page.  As an example, we'll 
 To find the header:
 
 1. Type 'head' in the filter bar on the registry homepage
-2. The list below the filter bar should start to change to show only components with 'head' in their name.  At time of writing this tutorial, `o-ft-header` was the only one that matched 'head'.
-3. Either click on the o-ft-header component or, if it's the top one in the list, just press enter.
+2. The list below the filter bar should start to change to show only components with 'head' in their name.  At time of writing this tutorial, `o-header` was the only one that matched 'head'.
+3. Either click on the o-header component or, if it's the top one in the list, just press enter.
 
 Now, you'll be looking at a demo of the header that you want.  Find the demo you like best ('Branded' is often a good choice) by ticking and unticking the demo names on the right of the registry page.  When you have it, look below the demo to find the HTML.
 
@@ -58,13 +58,13 @@ Switch to your JS Bin window and find the bit that says `<!-- Body content here 
 
 ![After pasting the source of a component into a JS Bin](/img/jsbin-unstyled-component.png)
 
-Now on the right of your JS Bin window, you'll see the content for your header, but it will be unstyled.  You need to add the CSS and JavaScript to style it and activate its behaviours, like dropdown menus.  Go back to the registry, and on the o-ft-header page, scroll down to the section called 'Quick start'.
+Now on the right of your JS Bin window, you'll see the content for your header, but it will be unstyled.  You need to add the CSS and JavaScript to style it and activate its behaviours, like dropdown menus.  Go back to the registry, and on the o-header page, scroll down to the section called 'Quick start'.
 
 In quick start, you'll see two HTML tags, a `<link...>` and a `<script...>`.  Copy the link tag to your clipboard, and switch back to JS Bin to paste it in under where you see `<!-- Load the stylesheet ... -->` (replacing the example).  Your header should now look styled.
 
 Back in the registry page, copy the bit of the JavaScript tag after `modules=`, which looks like this:
 
-	o-ft-header@x.y.z
+	o-header@x.y.z
 
 Now paste that into the placeholder in the boilerplate after `<!-- Load main JavaScript bundle -->`, replacing the `a,b,c` bit with the  module name and version on your clipboard.
 
@@ -77,24 +77,57 @@ Repeat this process for the footer:
 1. Find the component page in the registry
 1. Copy the HTML of the demo you want
 1. Paste it in the `<body>` section of your JS Bin page
-1. Back on the component registry page, find the module name and version from the quick start section, e.g. `o-ft-footer@^1.2.3`
+1. Back on the component registry page, find the module name and version from the quick start section, e.g. `o-footer@^1.2.3`
 1. Add this to the link and script tags
 
 That last bit differs slightly from the first component, because you now already have `<link>` and `<script>` tags on your page that are loading from the build service.  The build service is capable of including more than one component in the same bundle, so you can simply add multiple modules into the same URL.  Here's an example:
 
-	<link rel="stylesheet" href="//build.origami.ft.com/bundles/css?modules=o-ft-header@^1.2.3,o-ft-footer@^1.2.3" />
+	<link rel="stylesheet" href="//build.origami.ft.com/bundles/css?modules=o-header@^3.0.0,o-footer@^3.0.0" />
 
 It's important that you do this, so that any CSS that is shared between the header and footer (there's quite a bit) isn't downloaded twice.
 
 
-### Add custom CSS
+### Loading fonts and icons
 
-Once you have your components, you can add you own custom CSS.  Just before `</head>`, type:
+First, let's edit the `<link>` tag to load styles for these modules:
 
-	<style>
-		body {
-			margin: 0;
-		}
-	</style>
+* `o-ft-icons`
+* `o-fonts`
+
+You should have something like this:
+
+	<link rel="stylesheet"
+	      href="//build.origami.ft.com/bundles/css?modules=o-header@^3.0.0,o-footer@^3.0.0,o-fonts@^1.4.0,o-ft-icons@^2.1.1" />
+
+Icons should now display. We now need to show the font.
+
+#### JSBin's CSS tab
+
+
+![JSBin's CSS tab](/img/jsbin-css-tab.png)
+
+In the "CSS" JSBin tab, type:
+
+	body {
+		margin: 0;
+	}
 
 This will remove the margin on the body element.
+
+At the moment, we have a page that lacks font styles:
+
+![No fonts yet](/img/jsbin-before.png)
+
+We need to define a few default styles to display the correct font and align icons properly.
+
+**Set language from CSS to SCSS** to enable Sass syntax in JSBin.
+
+![Setting JSBin from CSS to SCSS](/img/jsbin-set-to-scss.gif)
+
+Go to [the Header's SCSS demo code](https://github.com/Financial-Times/o-header/blob/master/demos/src/scss/demo.scss) and copy the rules for `html` and `.demo__icon`. Add them to the SCSS tab:
+
+![Setting JSBin from CSS to SCSS](/img/jsbin-html-demo-icon.png)
+
+Hurray, you now have a header and a footer displayed using the correct font!
+
+![The header, showing with web fonts](/img/jsbin-after.png)

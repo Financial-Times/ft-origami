@@ -124,13 +124,13 @@ The packages are listed in *devDependencies* because they are not required to ru
 
 Hopefully you know which Origami modules you want.  If you don't, check out the [Origami registry](http://registry.origami.ft.com) for a list of all our supported components.  You can also add any module from the [bower registry](http://bower.io/search/) that has a [commonJS interface](http://wiki.commonjs.org/wiki/Modules/1.1).
 
-Once you know which Origami modules you want, create a `bower.json` file in the root of your working tree.   This you have to create yourself, and it will be different for each project, but it must conform to the bower [configuration spec](http://bower.io/docs/creating-packages/), which is very similar to npm's config.  Here is an example that includes the o-colors, o-date, o-ft-header and o-ft-footer components:
+Once you know which Origami modules you want, create a `bower.json` file in the root of your working tree.   This you have to create yourself, and it will be different for each project, but it must conform to the bower [configuration spec](http://bower.io/docs/creating-packages/), which is very similar to npm's config.  Here is an example that includes the o-colors, o-date, o-header and o-footer components:
 
 	{
 		"name": "origami-demo",
 		"dependencies": {
-			"o-ft-header": "^2.5.9",
-			"o-ft-footer": "^2.0.1",
+			"o-header": "^2.5.9",
+			"o-footer": "^2.0.1",
 			"o-colors": "^2.4.3"
 		}
 	}
@@ -168,8 +168,8 @@ Now you need to create a Sass and/or JavaScript file that requires the Origami c
 As an example (assuming you loaded the header, footer and colours module in your `bowser.json`), create a `main.scss` file at `/client/scss/main.scss` (relative to the root of your working tree), containing:
 
 	/* Import Origami components */
-	@import 'o-ft-header/main';
-	@import 'o-ft-footer/main';
+	@import 'o-header/main';
+	@import 'o-footer/main';
 	@import 'o-colors/main';
 
 	/* Add our own Sass, using the o-colors module to style the body */
@@ -186,7 +186,7 @@ As an example, create a `main.js` file at `/client/js/main.js`, containing:
 
 	'use strict';
 	// Require module
-	var header = require('o-ft-header');
+	var header = require('o-header');
 
 	// Wait until the page has loaded
 	if (document.readyState === 'interactive' || document.readyState === 'complete') {
