@@ -45,8 +45,8 @@ Now you need to find some components to add to your page.  As an example, we'll 
 To find the header:
 
 1. Type 'head' in the filter bar on the registry homepage
-2. The list below the filter bar should start to change to show only components with 'head' in their name.  At time of writing this tutorial, `o-ft-header` was the only one that matched 'head'.
-3. Either click on the o-ft-header component or, if it's the top one in the list, just press enter.
+2. The list below the filter bar should start to change to show only components with 'head' in their name.  At time of writing this tutorial, `o-header` was the only one that matched 'head'.
+3. Either click on the o-header component or, if it's the top one in the list, just press enter.
 
 Now, you'll be looking at a demo of the header that you want.  Find the demo you like best ('Branded' is often a good choice) by ticking and unticking the demo names on the right of the registry page.  When you have it, look below the demo to find the HTML.
 
@@ -58,43 +58,43 @@ Switch to your JS Bin window and find the bit that says `<!-- Body content here 
 
 ![After pasting the source of a component into a JS Bin](/img/jsbin-unstyled-component.png)
 
-Now on the right of your JS Bin window, you'll see the content for your header, but it will be unstyled.  You need to add the CSS and JavaScript to style it and activate its behaviours, like dropdown menus.  Go back to the registry, and on the o-ft-header page, scroll down to the section called 'Quick start'.
+Now on the right of your JS Bin window, you'll see the content for your header, but it will be unstyled.  You need to add the CSS and JavaScript to style it and activate its behaviours, like dropdown menus.  Go back to the registry, and on the o-header page, scroll down to the section called 'Quick start'.
 
-In quick start, you'll see two HTML tags, a `<link...>` and a `<script...>`.  Copy the link tag to your clipboard, and switch back to JS Bin to paste it in under where you see `<!-- Load the stylesheet ... -->` (replacing the example).  Your header should now look styled.
+In quick start, you'll see a token you can add to your build service `<link...>` and `<script...>` tags.  Copy the token, which will look something like `o-header@^2.5.16` to your clipboard, and switch back to JS Bin.  Find the two references to `build.origami.ft.com` in the header of the HTML document, and insert the token in place of the example `a,b,c` in both places.
 
-Back in the registry page, copy the bit of the JavaScript tag after `modules=`, which looks like this:
+This is the CSS bit you need to update:
 
-	o-ft-header@x.y.z
+![Updating the boilerplate HTML to load your modules' CSS](/img/build-service-link-example.png)
 
-Now paste that into the placeholder in the boilerplate after `<!-- Load main JavaScript bundle -->`, replacing the `a,b,c` bit with the  module name and version on your clipboard.
+And this is the JavaScript bit:
 
-![Adding a JavaScript module to a page](/img/jsbin-add-js.png)
+![Updating the boilerplate HTML to load your modules' JavaScript](/img/build-service-script-example.png)
 
 This has now added the behaviour to your page, enabling drop-down menus to work.
+
+<aside>Sometimes you may have to wait a few minutes after updating these tags before the styles and script are applied successfully.  To reload the output, click 'Run with JS' in the top right of the JSBin Output window.</aside>
 
 Repeat this process for the footer:
 
 1. Find the component page in the registry
 1. Copy the HTML of the demo you want
 1. Paste it in the `<body>` section of your JS Bin page
-1. Back on the component registry page, find the module name and version from the quick start section, e.g. `o-ft-footer@^1.2.3`
-1. Add this to the link and script tags
+1. Back on the component registry page, find the token from the quick start section, e.g. `o-footer@^1.2.3`
+1. Add this to the build service loader tags alongside the one for the header.  You can separate the two with a comma.
 
-That last bit differs slightly from the first component, because you now already have `<link>` and `<script>` tags on your page that are loading from the build service.  The build service is capable of including more than one component in the same bundle, so you can simply add multiple modules into the same URL.  Here's an example:
+The build service is capable of including more than one component in the same bundle, so you can simply add multiple modules into the same URL.  Here's an example:
 
 	<link rel="stylesheet" href="//build.origami.ft.com/bundles/css?modules=o-ft-header@^1.2.3,o-ft-footer@^1.2.3" />
 
 It's important that you do this, so that any CSS that is shared between the header and footer (there's quite a bit) isn't downloaded twice.
 
+<aside>Remember that when you change the modules you are requesting in your build service tags, it may take a few minutes to build the resulting bundle of code.  Be patient and hit 'Run with JS' a few times until the styling appears.</aside>
+
 
 ### Add custom CSS
 
-Once you have your components, you can add you own custom CSS.  Just before `</head>`, type:
+Once you have your components, you can add you own custom CSS.  In the section marked "Add any other inlined CSS here", paste this CSS code:
 
-	<style>
-		body {
-			margin: 0;
-		}
-	</style>
+	body { margin: 0; }
 
-This will remove the margin on the body element.
+This will remove the margin on the body element, eliminating the ugly gap around the outside of the header and footer.
