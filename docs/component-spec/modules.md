@@ -54,7 +54,7 @@ When building a new module, you may create the directory structure and add all n
 
 Modules *must* be named using a short descriptive term (hyphenated if necessary) prefixed with `o-` (for Origami) as the name for the repository and CSS classes.
 
-<aside>Examples of good module names include <code>o-tweet</code>, <code>o-colors</code>, <code>o-grid</code>, <code>o-tabs</code>, <code>o-tabs-style1</code>, <code>o-cookiewarn</code>, <code>o-ft-nav</code>.  There is no standard or requirement for the use of <code>-ft-</code> in the name, and for the purposes of this spec it is semantically meaningless.</aside>
+<aside>Examples of good module names include <code>o-tweet</code>, <code>o-colors</code>, <code>o-grid</code>, <code>o-tabs</code>, <code>o-tabs-style1</code>, <code>o-cookiewarn</code>, <code>o-nav</code>.  There is no standard or requirement for the use of <code>-ft-</code> in the name, and for the purposes of this spec it is semantically meaningless.</aside>
 
 
 ## Requirements
@@ -113,14 +113,14 @@ A themeable module *must*:
 
 A theming module *must* define a theme by combining the class name of the themeable module with its own class name.  For example, if module A is providing a theme for module B:
 
-<?prettify linenums=1?>
+
 	.o-modulea--o-moduleb--theme {
 		/* theme styles */
 	}
 
 Themes that depend on the target module's JavaScript being active *must* use the appropriate JavaScript data attribute selector:
 
-<?prettify linenums=1?>
+
 	.o-modulea--o-moduleb--theme[data-o-moduleb-js] {
 		/* theme styles */
 	}
@@ -144,7 +144,7 @@ Theming classes *must* be applied to the root element of the component to be the
 
 The following is an example `bower.json` file that meets the above spec:
 
-<?prettify linenums=1?>
+
 	{
 		"name": "o-grid",
 		"dependencies": {
@@ -166,7 +166,7 @@ Optionally, a module *may* include an npm-compatible `package.json` file, to all
 
 The following is an example `package.json` file that meets the above spec:
 
-<?prettify linenums=1?>
+
 	{
 		"devDependencies": {
 			"grunt": "*",
@@ -191,9 +191,9 @@ The module *must not* be added to the NPM registry and the module's documentatio
 
 Modules *should* have as few sub-dependencies as possible.  Where the dependency is required to test the module or view the examples, but not to use it, it should be listed in `devDependencies` not in `dependencies`.
 
-If any feature of a dependency's sub-dependencies are used directly then that sub-dependency *must* also be added as a direct dependency e.g. if your module has `o-ft-typography` as a dependency but makes use of `oFontsInclude()` in its stylesheets then `o-fonts` must also be added as a dependency.
+If any feature of a dependency's sub-dependencies are used directly then that sub-dependency *must* also be added as a direct dependency e.g. if your module has `o-typography` as a dependency but makes use of `oFontsInclude()` in its stylesheets then `o-fonts` must also be added as a dependency.
 
-If a module requires that any feature of its dependencies be used directly by products/components consuming the module then it *should* alias that functionality within its own namespace to avoid them having to include the sub-dependency as a direct dependency e.g o-ft-typography aliases `oFontsInclude` to `oFtTypographyIncludeFont`.
+If a module requires that any feature of its dependencies be used directly by products/components consuming the module then it *should* alias that functionality within its own namespace to avoid them having to include the sub-dependency as a direct dependency e.g o-typography aliases `oFontsInclude` to `oFtTypographyIncludeFont`.
 
 When listing dependencies in the `dependencies` section of the `bower.json` package configuration, the version required:
 
@@ -224,7 +224,7 @@ Component authors *may* include a `demos` folder to provide examples.  Demos *mu
 
 Where styles need to be added specifically for a demo (e.g. to make the content of [o-grid](https://github.com/financial-times/o-grid) containers visible), they *must* be attached to classes with a `demo-` prefix, for example:
 
-<?prettify linenums=1?>
+
 	.demo-cell {
 	  background-color: red;
 	}
@@ -257,7 +257,7 @@ Individual demos also have another property:
 
 Example:
 
-<?prettify linenums=1?>
+
 	{
 		"options": {
 			"sass": "demos/src/demo.scss",

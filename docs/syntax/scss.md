@@ -223,7 +223,7 @@ If a module contains SCSS files other than the main file listed in bower.json, t
 
 Modules are responsible for providing responsive behaviours where appropriate, but take care not to build in responsive behaviour that may not be desired by the product.
 
-* Modules that in most or all use cases will span the full width of a page (e.g. o-ft-header, o-ft-footer, o-grid) *may* contain media queries, or include mixins from other modules that contain media queries.  If so, the breakpoints in the media queries *must* be configurable as Sass variables.
+* Modules that in most or all use cases will span the full width of a page (e.g. o-header, o-footer, o-grid) *may* contain media queries, or include mixins from other modules that contain media queries.  If so, the breakpoints in the media queries *must* be configurable as Sass variables.
 * All other modules *must* provide mixins (and concrete classes if not in silent mode) to modify their appearance to suit different sizes of container, e.g. `.o-tweet--large` (class), `oTweetMedium` (mixin) etc.  Product developers may then use these mixins to trigger module responsiveness in their own media query breakpoints.
 * When there is no media query support in the user agent (in the case of modules that use media queries) or the module's responsive mixins have not been used, the module *must* render in its most **compact** visual form.
 
@@ -242,7 +242,7 @@ Silent styles means SCSS code that compiles to an empty string, but provides mix
 
 Where a module contains only CSS, it *should* support silent styles.  Where JavaScript is also present and depends on class names, a module *may* choose to support silent styles by providing an API to configure non-default class names.  If it does it *should* be called `setClasses` and accept an object, like so:
 
-<?prettify linenums=1?>
+
 	oThing.setClasses({
 		wrapper: "custom-wrapper-class",
 		item: "other-custom-class"
@@ -251,14 +251,14 @@ Where a module contains only CSS, it *should* support silent styles.  Where Java
 
 Modules that support silent mode *must* include a `$o-{modulename}-is-silent` variable, with a default value (which *may* or be either true or false).  When the variable is true, styles that would normally be output as class selectors *must* instead be defined as mixins, with the same styles.  E.g.:
 
-<?prettify linenums=1?>
+
 	@mixin oThingFoo {
 		margin-top: 1em;
 	}
 
 If the original selector is not a class selector then the mixin can use a syntax suggestive of the original selector, which *must* be documented. E.g.:
 
-<?prettify linenums=1?>
+
 	@mixin oGridSizingS3 {
 		width: 30%;
 	}
@@ -268,7 +268,7 @@ If the original selector is not a class selector then the mixin can use a syntax
 
 Modules that make use of styles defined in other modules that support silent mode *must* use those styles silently by `@include`ing the appropriate mixin:
 
-<?prettify linenums=1?>
+
 	@mixin oAnotherThingFoo {
 		@include oThingFoo();
 		margin-top: 1em;
@@ -286,7 +286,7 @@ Finally, in documentation, modules *must* provide information about both silent 
 
 When listing multiple comma-separated selectors, each one *must* be placed on a new line.  Each property *must* be on a new line and indented (type of indent, tabs or spaces, is not standardised: developers *must* respect whatever indent type is already in use when editing existing modules)
 
-<?prettify linenums=1?>
+
 	.o-footer__link:hover,
 	.o-footer__link:focus {
 		font-size: 12px;

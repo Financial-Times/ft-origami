@@ -102,10 +102,10 @@ You might find that your product uses some modules with especially onerous brows
 
 If you choose to do this, you must target `o--if-no-js` tags more selectively by including the modules' classes in the selector:
 
-	.core1 .-o-modulea .o--if-js,
-	.enhanced1 .-o-modulea .o--if-no-js,
-	.core2 .-o-moduleb .o--if-js,
-	.enhanced2 .-o-moduleb .o--if-no-js { display: none !important; }
+	.core1 .o-module-a .o--if-js,
+	.enhanced1 .o-module-a .o--if-no-js,
+	.core2 .o-module-b .o--if-js,
+	.enhanced2 .o-module-b .o--if-no-js { display: none !important; }
 
 Messy.  So it's generally preferred to turn all modules on and off at the same time, using the same test.
 

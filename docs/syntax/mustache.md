@@ -45,7 +45,7 @@ Links to real URLs must be [protocol-relative](http://www.paulirish.com/2010/the
 
 Placeholders for the module's data model *must* be referenced using a descriptive (lowercased and hyphened) keyword prefixed with the name of the module and a dot, enclosed in double or triple braces as appropriate:
 
-<pre><code>&#123;{ o-ft-header.main-title }&#125;
+<pre><code>&#123;{ o-header.main-title }&#125;
 </code></pre>
 
 Double braces *must* be used for content that should have HTML entities escaped for display.  Triple braces *must* be used for content which should be inserted without modification.

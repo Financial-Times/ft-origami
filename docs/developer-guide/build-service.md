@@ -84,17 +84,34 @@ Repeat this process for the footer:
 
 The build service is capable of including more than one component in the same bundle, so you can simply add multiple modules into the same URL.  Here's an example:
 
-	<link rel="stylesheet" href="//build.origami.ft.com/bundles/css?modules=o-ft-header@^1.2.3,o-ft-footer@^1.2.3" />
+	<link rel="stylesheet" href="//build.origami.ft.com/bundles/css?modules=o-header@^3.0.0,o-footer@^3.0.0" />
 
 It's important that you do this, so that any CSS that is shared between the header and footer (there's quite a bit) isn't downloaded twice.
 
 <aside>Remember that when you change the modules you are requesting in your build service tags, it may take a few minutes to build the resulting bundle of code.  Be patient and hit 'Run with JS' a few times until the styling appears.</aside>
 
 
-### Add custom CSS
+### Loading icons
 
-Once you have your components, you can add you own custom CSS.  In the section marked "Add any other inlined CSS here", paste this CSS code:
+Edit the `<link>` tag to load styles for the following module (you'll need to look it up in the registry as you did for header and footer):
 
-	body { margin: 0; }
+* `o-ft-icons`
+
+You should have something like this:
+
+	<link rel="stylesheet"
+	      href="//build.origami.ft.com/bundles/css?modules=o-header@^3.0.0,o-footer@^3.0.0,o-ft-icons@^2.1.1" />
+
+Icons should now display:
+
+![No fonts yet](/img/jsbin-before.png)
+
+### Adding custom CSS
+
+Find the section of the HTML page that is marked "Add any other inlined CSS here".  You can now add whatever additional style you want on your page.  For example, in the "CSS" JSBin tab, you could type:
+
+	body {
+		margin: 0;
+	}
 
 This will remove the margin on the body element, eliminating the ugly gap around the outside of the header and footer.

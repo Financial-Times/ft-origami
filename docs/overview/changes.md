@@ -172,13 +172,13 @@ The following documents the chronology of changes to the Origami spec and signif
 
 **origami-build-tools**: [1.0.0 released](https://github.com/Financial-Times/origami-build-tools@1.0.0): First release
 
-**o-ft-header**: [1.0.0 released](http://registry.origami.ft.com/components/o-ft-header@1.0.0) backwards compatible to 0.6.x
+**o-header**: [1.0.0 released](http://registry.origami.ft.com/components/o-header@1.0.0) backwards compatible to 0.6.x
 
-**o-ft-footer**: [1.0.0 released](http://registry.origami.ft.com/components/o-ft-footer@1.0.0) backwards compatible to 0.7.x
+**o-footer**: [1.0.0 released](http://registry.origami.ft.com/components/o-footer@1.0.0) backwards compatible to 0.7.x
 
 ###25 March 2014
 
-**o-ft-forms**: [0.6.0 released](http://registry.origami.ft.com/components/o-ft-forms@0.6.0): Updates dependencies. Backwards compatible with 0.5.x
+**o-forms**: [0.6.0 released](http://registry.origami.ft.com/components/o-forms@0.6.0): Updates dependencies. Backwards compatible with 0.5.x
 
 ###24 March 2014
 
@@ -200,11 +200,11 @@ The following documents the chronology of changes to the Origami spec and signif
 
 **o-fonts-assets**: [0.1.0 released](http://registry.origami.ft.com/components/o-fonts-assets@0.1.0): Creates repository for FT fonts
 
-**o-ft-buttons**: [1.0.0 released](http://registry.origami.ft.com/components/o-ft-buttons@1.0.0): Origami buttons - unified design
+**o-buttons**: [1.0.0 released](http://registry.origami.ft.com/components/o-buttons@1.0.0): Origami buttons - unified design
 
 ###19 March 2014
 
-**o-ft-forms**: [0.5.0 released](http://registry.origami.ft.com/components/o-ft-forms@0.5.0): Adds radio and checkbox styles. Backwards compatible with 0.4.x
+**o-forms**: [0.5.0 released](http://registry.origami.ft.com/components/o-forms@0.5.0): Adds radio and checkbox styles. Backwards compatible with 0.4.x
 
 ###14 March 2014
 
@@ -214,9 +214,9 @@ The following documents the chronology of changes to the Origami spec and signif
 
 ###12 March 2014
 
-**o-ft-header**: [0.6.0 released](http://registry.origami.ft.com/components/o-ft-header@0.6.0): Html and css incompatible with 0.5.x
+**o-header**: [0.6.0 released](http://registry.origami.ft.com/components/o-header@0.6.0): Html and css incompatible with 0.5.x
 
-**o-ft-footer**: [0.7.0 released](http://registry.origami.ft.com/components/o-ft-footer@0.7.0): Html and css incompatible with 0.6.x
+**o-footer**: [0.7.0 released](http://registry.origami.ft.com/components/o-footer@0.7.0): Html and css incompatible with 0.6.x
 
 ###11 March 2014
 
@@ -238,7 +238,7 @@ The following documents the chronology of changes to the Origami spec and signif
 
 **XML validity**: Markup need not be valid XML, actually we just require a subset of XML rules
 
-**o-ft-forms**: [0.4.0 released](http://registry.origami.ft.com/components/o-ft-forms@0.4.0): Adds validation styles. Backwards compatible with 0.3.x
+**o-forms**: [0.4.0 released](http://registry.origami.ft.com/components/o-forms@0.4.0): Adds validation styles. Backwards compatible with 0.3.x
 
 ###27 Feb 2014
 
@@ -294,11 +294,11 @@ The following documents the chronology of changes to the Origami spec and signif
 
 **Sass Syntax**: Require `!optional` to be used when extending placeholder classes
 
-**o-ft-typography**: [1.0.0 released](http://registry.origami.ft.com/components/o-ft-typography@1.0.0): Now includes general and article-specific typographic styles. Incompatible with 0.x
+**o-typography**: [1.0.0 released](http://registry.origami.ft.com/components/o-typography@1.0.0): Now includes general and article-specific typographic styles. Incompatible with 0.x
 
 ###29 Jan 2014
 
-**o-ft-header** [0.5.0 released](http://registry.origami.ft.com/components/o-ft-header@0.5.0): Adds support for injecting content into the header. Backwards compatible with 0.4.x
+**o-header** [0.5.0 released](http://registry.origami.ft.com/components/o-header@0.5.0): Adds support for injecting content into the header. Backwards compatible with 0.4.x
 
 ###24 Jan 2014
 

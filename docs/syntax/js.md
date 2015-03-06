@@ -41,14 +41,14 @@ Product developers are encouraged to include Origami JavaScript using a 'cuts th
 
 The value of `this` *should not* be copied into non-semantic variables such as `that`, `self` or `_this` in order to embed a child funtion context.  Instead, either use a semantic name, or bind the correct value of `this`.  Some object methods accept the intended value of `this` as an argument, such as [Array.prototype.filter](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Array/filter), and this method *should* be considered most preferred:
 
-<?prettify linenums=1?>
+
 	arr.filter(function(item) {
 	   this.blah();
 	}, this);
 
 As an alternative, use `bind`:
 
-<?prettify linenums=1?>
+
 	fetch('http://blah.com/blah.json')
 	  .then(function(response) {
 	    return response.json();
@@ -120,7 +120,7 @@ Modules *may* **emit** events to allow loose coupling with other components and 
 
 A valid example of a module emitting a DOM event is shown below:
 
-<?prettify linenums=1?>
+
 	this.dispatchEvent(new CustomEvent('oTestModule.oTestClick', {
 	  detail: {...},
 	  bubbles: true
@@ -135,7 +135,7 @@ Modules *should* handle events during the [bubbling phase](http://stackoverflow.
 
 If a module wishes to bind to the `DOMContentLoaded` or `load` browser events, it *must* prefix the event name with `o.`, and *must* expose the function that it binds to the event via its external API, eg:
 
-<?prettify linenums=1?>
+
 	document.addEventListener('o.DOMContentLoaded', init);
 	exports.init = init;
 
@@ -173,14 +173,14 @@ Object properties *must not* be named after reserved words in the JavaScript lan
 
 Object prototypes *must not* be overwritten. Instead, assign additonal properties to the prototype individually:
 
-<?prettify linenums=1?>
+
 	Jedi.prototype.fight = function fight() {
 	  console.log('fighting');
 	};
 
 Overwriting the prototype wipes out the `constructor` property and makes inheritance difficult.  An exception to this is when creating subclasses, in which case there is no alternative, but the constructor property *should* be reinstated ([read more](http://www.2ality.com/2011/06/constructor-property.html)):
 
-<?prettify linenums=1?>
+
 	function Super(x) { ... }
 	Super.prototype.foo = ...
 
@@ -207,7 +207,7 @@ Developers *should* stick to the above `jshintrc` config, since this represents 
 
 The `var` statement *must* declare only one variable.  Use additional `var` statements for subsequent declarations:
 
-<?prettify linenums=1?>
+
 	var foo = "hello";
 	var bar = "goodbye";
 	var novalue;
@@ -223,7 +223,7 @@ Single line comments *should* be placeed on a newline above the subject of the c
 
 JavaScript modules in Origami components may want to load additional files (fonts, JSON data, images etc) that are also part of the component's file tree.  To resolve these paths safely, JS modules wishing to load sub-resources from their own component *must* resolve the file path using the [Origami assets module](https://github.com/Financial-Times/o-assets):
 
-<?prettify linenums=1?>
+
 	someiframe.src = require('o-assets').resolve('/img/logo.png', 'tracking');
 
 Without any explicit configuration, `o-assets` will assume, as we do for sub-resources in Sass, that the modules are installed publicly at a URL path of `/bower_components` on the current host, and will form URLs on that basis.  Product developers are advised to reconfigure o-assets to accommodate their own server-side URL routing architecture.

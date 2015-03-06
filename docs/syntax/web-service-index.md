@@ -45,7 +45,7 @@ All Origami web services are required to expose an `/__about` endpoint to list t
 
 ## Example
 
-<?prettify linenums=1?>
+
 	{
 	  "name": "tweet-service",
 	  "versions": [

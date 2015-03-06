@@ -26,7 +26,7 @@ Conform to the [FT Browser support standard](https://docs.google.com/a/ft.com/do
 
 Use an HTML5 DOCTYPE, and add the `X-UA-Compatible` meta tag to force Internet Explorer not to use compatibility mode.
 
-<?prettify linenums=1?>
+
 	<!DOCTYPE html>
 	<html>
 	<head>
@@ -40,7 +40,7 @@ Character encoding can cause problems, especially on sites that are predominentl
 
 Ensure that your pages are **UTF-8** encoded, using both an HTTP response header **and** an HTML meta tag:
 
-<?prettify linenums=1?>
+
 	<meta charset="UTF-8" />
 
 Place this as the first tag within the `<head>` section of the page, before `<title>`, since it's important that the browser knows the right character set to use before it gets to any content.
@@ -49,7 +49,7 @@ Place this as the first tag within the `<head>` section of the page, before `<ti
 
 By default, most mobule devices assume your site won't fit on a small screen so will pretend to be 900px wide and zoom out so that that fits on the screen.  Add the following viewport meta tag to the `<head>` of your page to make sure that the viewport is zoomed to 100% and the width is the same as the width of the device in both portrait and landscape orientation:
 
-<?prettify linenums=1?>
+
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
 Do **not** specify a `user-scalable` rule.  The default is yes, so there's no need to include it, and the user should always be allowed to zoom if they want to.
@@ -59,7 +59,7 @@ Do **not** specify a `user-scalable` rule.  The default is yes, so there's no ne
 
 ARIA is a set of accessibility standards that allow users of assistive technologies to get a better experience of the web.  It is important not only that you correctly flag when a state exists on an object, but that you choose the right state label, and you apply it using the right ARIA attribute.  Examples of states that you need to flag manually in your markup are **busy**, **selected** and **invalid**.
 
-<?prettify linenums=1?>
+
 	<li aria-selected="true">I'm selected</li>
 	<li aria-selected="false">I'm not selected, but am selectable</li>
 

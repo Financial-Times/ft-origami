@@ -53,7 +53,7 @@ All Origami web services are required to expose `/{version}/__about` endpoints t
 
 ## Example
 
-<?prettify linenums=1?>
+
 	{
 	  "name": "tweet-service",
 	  "apiVersion": 1,
