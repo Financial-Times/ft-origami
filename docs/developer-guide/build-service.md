@@ -103,32 +103,30 @@ You should have something like this:
 	<link rel="stylesheet"
 	      href="//build.origami.ft.com/bundles/css?modules=o-header@^3.0.0,o-footer@^3.0.0,o-fonts@^1.4.0,o-ft-icons@^2.1.1" />
 
-Icons should now display, but at the moment, we have a page that lacks font styles:
+Icons should now display, but at the moment, we still have a page that lacks the FT typography styles and shows the default browser font instead:
 
 ![No fonts yet](/img/jsbin-before.png)
 
 We need to define a few default styles to display the correct font and align icons properly.
 
-Click the 'CSS' tab in JSBin to open a panel where you can write your own CSS:
+Paste the following code in the HTML:
 
-![JSBin's CSS tab](/img/jsbin-css-tab.png)
-
-**Set language from CSS to SCSS** to enable Sass syntax in JSBin.
-
-![Setting JSBin from CSS to SCSS](/img/jsbin-set-to-scss.gif)
-
-Go to [the Header's SCSS demo code](https://github.com/Financial-Times/o-header/blob/master/demos/src/scss/demo.scss) and copy the rules for `html` and `.demo__icon`. Add them to the SCSS tab:
-
-![Copying custom CSS into JSBin](/img/jsbin-html-demo-icon.png)
+    <style>
+        html {
+            /* Set a font family on the whole document */
+            font-family: BentonSans, sans-serif;
+    
+            /* Prevent navigation menus from creating
+               extra space on sides of the page */
+            overflow-x: hidden;
+        }
+    
+        body {
+            /* Remove space around the document */
+            margin: 0;
+        }
+    </style>
 
 You now have a header and a footer displayed using the correct font.
 
 ![The header, showing with web fonts](/img/jsbin-after.png)
-
-Finally, you can add whatever additional style you want on your page.  For example, in the "CSS" JSBin tab, you could type:
-
-	body {
-		margin: 0;
-	}
-
-This will remove the margin on the body element, eliminating the ugly gap around the outside of the header and footer.
