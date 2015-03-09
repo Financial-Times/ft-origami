@@ -130,3 +130,9 @@ Paste the following code in the HTML:
 You now have a header and a footer displayed using the correct font.
 
 ![The header, showing with web fonts](/img/jsbin-after.png)
+
+----
+
+Well done, you have built a responsive, FT branded web document with Origami.
+
+Using the techniques you just learned, you can now bring your content to life very easily by adding add various components between the header and the footer.
