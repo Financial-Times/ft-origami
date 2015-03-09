@@ -91,24 +91,41 @@ It's important that you do this, so that any CSS that is shared between the head
 <aside>Remember that when you change the modules you are requesting in your build service tags, it may take a few minutes to build the resulting bundle of code.  Be patient and hit 'Run with JS' a few times until the styling appears.</aside>
 
 
-### Loading icons
+### Loading fonts and icons
 
-Edit the `<link>` tag to load styles for the following module (you'll need to look it up in the registry as you did for header and footer):
+Edit the `<link>` tag to load styles for these modules (you'll need to look them up in the registry as you did for header and footer):
 
 * `o-ft-icons`
+* `o-fonts`
 
 You should have something like this:
 
 	<link rel="stylesheet"
-	      href="//build.origami.ft.com/bundles/css?modules=o-header@^3.0.0,o-footer@^3.0.0,o-ft-icons@^2.1.1" />
+	      href="//build.origami.ft.com/bundles/css?modules=o-header@^3.0.0,o-footer@^3.0.0,o-fonts@^1.4.0,o-ft-icons@^2.1.1" />
 
-Icons should now display:
+Icons should now display, but at the moment, we have a page that lacks font styles:
 
 ![No fonts yet](/img/jsbin-before.png)
 
-### Adding custom CSS
+We need to define a few default styles to display the correct font and align icons properly.
 
-Find the section of the HTML page that is marked "Add any other inlined CSS here".  You can now add whatever additional style you want on your page.  For example, in the "CSS" JSBin tab, you could type:
+Click the 'CSS' tab in JSBin to open a panel where you can write your own CSS:
+
+![JSBin's CSS tab](/img/jsbin-css-tab.png)
+
+**Set language from CSS to SCSS** to enable Sass syntax in JSBin.
+
+![Setting JSBin from CSS to SCSS](/img/jsbin-set-to-scss.gif)
+
+Go to [the Header's SCSS demo code](https://github.com/Financial-Times/o-header/blob/master/demos/src/scss/demo.scss) and copy the rules for `html` and `.demo__icon`. Add them to the SCSS tab:
+
+![Copying custom CSS into JSBin](/img/jsbin-html-demo-icon.png)
+
+You now have a header and a footer displayed using the correct font.
+
+![The header, showing with web fonts](/img/jsbin-after.png)
+
+Finally, you can add whatever additional style you want on your page.  For example, in the "CSS" JSBin tab, you could type:
 
 	body {
 		margin: 0;
