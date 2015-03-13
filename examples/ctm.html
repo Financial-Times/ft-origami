@@ -22,12 +22,17 @@
 	</script>
 
 	<!--
-		Hide any enhanced experience content when in core mode, and vice versa.
+		- Hide any enhanced experience content when in core mode, and vice versa.
+		- Set the default font family of the document
 		Add any other inlined CSS here
 	-->
 	<style>
 		.core .o--if-js,
 		.enhanced .o--if-no-js { display: none !important; }
+
+		html {
+			font-family: BentonSans, sans-serif;
+    		}
 	</style>
 
 	<!--
