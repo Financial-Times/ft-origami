@@ -91,27 +91,48 @@ It's important that you do this, so that any CSS that is shared between the head
 <aside>Remember that when you change the modules you are requesting in your build service tags, it may take a few minutes to build the resulting bundle of code.  Be patient and hit 'Run with JS' a few times until the styling appears.</aside>
 
 
-### Loading icons
+### Loading fonts and icons
 
-Edit the `<link>` tag to load styles for the following module (you'll need to look it up in the registry as you did for header and footer):
+Edit the `<link>` tag to load styles for these modules (you'll need to look them up in the registry as you did for header and footer):
 
 * `o-ft-icons`
+* `o-fonts`
 
 You should have something like this:
 
 	<link rel="stylesheet"
-	      href="//build.origami.ft.com/bundles/css?modules=o-header@^3.0.0,o-footer@^3.0.0,o-ft-icons@^2.1.1" />
+	      href="//build.origami.ft.com/bundles/css?modules=o-header@^3.0.0,o-footer@^3.0.0,o-fonts@^1.4.0,o-ft-icons@^2.1.1" />
 
-Icons should now display:
+Icons should now display, but at the moment, we still have a page that lacks the FT typography styles and shows the default browser font instead:
 
 ![No fonts yet](/img/jsbin-before.png)
 
-### Adding custom CSS
+We need to define a few default styles to display the correct font and align icons properly.
 
-Find the section of the HTML page that is marked "Add any other inlined CSS here".  You can now add whatever additional style you want on your page.  For example, in the "CSS" JSBin tab, you could type:
+Paste the following code in the HTML:
 
-	body {
-		margin: 0;
-	}
+    <style>
+        html {
+            /* Set a font family on the whole document */
+            font-family: BentonSans, sans-serif;
+    
+            /* Prevent navigation menus from creating
+               extra space on sides of the page */
+            overflow-x: hidden;
+        }
+    
+        body {
+            /* Remove space around the document */
+            margin: 0;
+        }
+    </style>
 
-This will remove the margin on the body element, eliminating the ugly gap around the outside of the header and footer.
+You now have a header and a footer displayed using the correct font.
+
+![The header, showing with web fonts](/img/jsbin-after.png)
+
+----
+
+Well done, you have built a responsive, FT branded web document with Origami.
+
+Using the techniques you just learned, you can now bring your content to life very easily by adding various components between the header and the footer.
