@@ -337,8 +337,8 @@ In both cases, (gulp and CLI) this will use origami-build-tools to read your pro
 
 Now, you can simply load the bundles in your web page.  If you saved your bundles to `/public` and that's also the root of your web server, you would write the following HTML:
 
-	<link rel="stylesheet" href="bundle.css" />
-	<script defer async src="bundle.js"></script>
+	<link rel="stylesheet" href="public/bundle.css" />
+	<script defer async src="public/bundle.css"></script>
 
 It's advisable to put the `defer` and `async` attribute on your `<script>` tags, so that loading of the script does not block page load.  Origami components will never require you to load script prior to the DOM being rendered.  See Nicholas Zakas's post [The truth about non blocking JavaScript](http://calendar.perfplanet.com/2010/the-truth-about-non-blocking-javascript/) for more details.
 
@@ -381,7 +381,7 @@ Here's an example of a web page created from the boilerplate that includes the s
 		<!--
 			This is where your CSS bundle is loaded, and we add any inline CSS
 		-->
-		<link rel="stylesheet" href="bundle.css" />
+		<link rel="stylesheet" href="public/bundle.css" />
 		<style>
 			/* Add any inline CSS here */
 		</style>
@@ -409,7 +409,7 @@ Here's an example of a web page created from the boilerplate that includes the s
 					var s = document.getElementsByTagName('script')[0];
 					s.parentNode.insertBefore(o, s);
 				}
-			}('bundle.js'));
+			}('public/bundle.js'));
 		</script>
 	</head>
 	<body>
