@@ -22,12 +22,17 @@
 	</script>
 
 	<!--
-		Hide any enhanced experience content when in core mode, and vice versa.
+		- Hide any enhanced experience content when in core mode, and vice versa.
+		- Set the default font family of the document
 		Add any other inlined CSS here
 	-->
 	<style>
 		.core .o--if-js,
 		.enhanced .o--if-no-js { display: none !important; }
+
+		html {
+			font-family: BentonSans, sans-serif;
+    		}
 	</style>
 
 	<!--
@@ -36,7 +41,7 @@
 		If you have extracted the critical CSS into the inline CSS block above,
 		this could move to the end of the document.
 	-->
-	<link rel="stylesheet" href="//build.origami.ft.com/bundles/css?modules=a,b,c" />
+	<link rel="stylesheet" href="//build.origami.ft.com/bundles/css?modules=o-fonts@^1,o-ft-icons@^2,a,b,c" />
 
 	<!--
 		Unconditionally load the polyfill service to provide the best support
