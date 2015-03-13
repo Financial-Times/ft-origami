@@ -124,14 +124,17 @@ The packages are listed in *devDependencies* because they are not required to ru
 
 Hopefully you know which Origami modules you want.  If you don't, check out the [Origami registry](http://registry.origami.ft.com) for a list of all our supported components.  You can also add any module from the [bower registry](http://bower.io/search/) that has a [commonJS interface](http://wiki.commonjs.org/wiki/Modules/1.1).
 
-Once you know which Origami modules you want, create a `bower.json` file in the root of your working tree.   This you have to create yourself, and it will be different for each project, but it must conform to the bower [configuration spec](http://bower.io/docs/creating-packages/), which is very similar to npm's config.  Here is an example that includes the o-colors, o-date, o-header and o-footer components:
+Once you know which Origami modules you want, create a `bower.json` file in the root of your working tree.   This you have to create yourself, and it will be different for each project, but it must conform to the bower [configuration spec](http://bower.io/docs/creating-packages/), which is very similar to npm's config.  Here is an example that includes a few key components:
 
 	{
 		"name": "origami-demo",
 		"dependencies": {
-			"o-header": "^2.5.9",
-			"o-footer": "^2.0.1",
-			"o-colors": "^2.4.3"
+			"o-grid": "^3.0.3",
+			"o-header": "^3.0.0",
+			"o-footer": "^3.0.0",
+			"o-colors": "^2.4.7",
+			"o-fonts": "^1.6.7",
+			"o-ft-icons": "^2.3.4"
 		}
 	}
 
@@ -165,18 +168,40 @@ Now you need to create a Sass and/or JavaScript file that requires the Origami c
 
 	@import '{modulename}/main';
 
-As an example (assuming you loaded the header, footer and colours module in your `bowser.json`), create a `main.scss` file at `/client/scss/main.scss` (relative to the root of your working tree), containing:
+As an example (assuming you loaded these modules in your `bowser.json`), create a `main.scss` file at `/client/scss/main.scss` (relative to the root of your working tree), containing:
 
-	/* Import Origami components */
+	// Output grid helper classes and data-attributes
+	$o-grid-is-silent: false;
+	
+	// Output @font-face declarations
+	$o-fonts-is-silent: false;
+	
+	// Output icon helper classes
+	$o-ft-icons-is-silent: false;
+	
+	// Import Origami components
+	@import 'o-grid/main';
+	@import 'o-fonts/main';
+	@import 'o-ft-icons/main';
 	@import 'o-header/main';
 	@import 'o-footer/main';
 	@import 'o-colors/main';
-
-	/* Add our own Sass, using the o-colors module to style the body */
+	
+	// Store the default FT sans-serif font stack in a variable
+	$sans-serif: oFontsGetFontFamilyWithFallbacks(BentonSans);
+	
+	// Set default branding styles
+	html {
+		font-family: $sans-serif;
+		@include oColorsFor(page, background); // The iconic pink background
+	}
+	
+	// Reset the body margins
 	body {
 		margin: 0;
-		@include oColorsFor(page, background);
 	}
+	
+	// Add your own styles here…
 
 The syntax of the JavaSript require is:
 
@@ -332,7 +357,7 @@ Here's an example of a web page created from the boilerplate that includes the s
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
 		<!--
-				Perform your cuts the mustard test.
+			Perform your cuts the mustard test.
 		-->
 		<script>
 			var cutsTheMustard = ('querySelector' in document && 'localStorage' in window && 'addEventListener' in window);
