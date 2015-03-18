@@ -191,6 +191,9 @@ As an example (assuming you loaded these modules in your `bowser.json`), create 
 	$sans-serif: oFontsGetFontFamilyWithFallbacks(BentonSans);
 	
 	html {
+		// The iconic pink background
+		@include oColorsFor(page, background);
+	
 		// Set a font family on the whole document
 		font-family: $sans-serif;
 	
