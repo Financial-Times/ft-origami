@@ -38,7 +38,9 @@ The right hand side of the screen should be blank, which is fine.
 
 ### Add some components
 
-Now you need to find some components to add to your page.  As an example, we'll add the standard FT header and footer.  All Origami components are listed in a directory called the Origami registry, so go there now and find the header component:
+Prepare your jsbin by pasting in the Origami boilerplate code explained above; now you're ready to add some components to your page.
+
+As an example, we'll add the standard FT header and footer.  All Origami components are listed in a directory called the Origami registry, so go there now and find the header component:
 
 * [Go to Origami Registry](http://registry.origami.ft.com)
 
