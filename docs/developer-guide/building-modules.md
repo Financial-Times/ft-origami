@@ -190,16 +190,20 @@ As an example (assuming you loaded these modules in your `bowser.json`), create 
 	// Store the default FT sans-serif font stack in a variable
 	$sans-serif: oFontsGetFontFamilyWithFallbacks(BentonSans);
 	
-	// Set default branding styles
 	html {
+		// Set a font family on the whole document
 		font-family: $sans-serif;
-		@include oColorsFor(page, background); // The iconic pink background
+	
+		// Prevent navigation menus from creating
+		// extra space on sides of the page
+		overflow-x: hidden;
 	}
 	
-	// Reset the body margins
 	body {
+		// Remove space around the document
 		margin: 0;
 	}
+	
 	
 	// Add your own styles here…
 
