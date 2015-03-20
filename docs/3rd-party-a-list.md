@@ -34,14 +34,6 @@ Origami components may have dependencies (via Bower) on third party components. 
 		<td>Underscore, Lodash</td>
 		<td>Lodash is roughly functionally equivalent to Underscore, but generally delivers faster performance, and includes some useful things not available in Underscore. Lodash-node has the additional benefit of making each method individually requireable (the 'modern' version of its methods are preferred) e.g. `require('lodash-node/modern/functions/throttle')`</td>
 	</tr><tr>
-		<td>Template engine</td>
-		<td><a href="https://github.com/twitter/hogan.js">Hogan</a></td>
-		<td>Mustache<br/>Handlebars</td>
-		<td>
-			<p>It's compatible with Mustache templates, but offers additional features on top of Mustache's syntax. Origami has no opinion on how product developers should build applications, so when a component's purpose is to offer a raw template to the developer, it must use only fully Mustache-compatible syntax (but these components would also not actually require the template engine themselves).</p>
-			<p>Components that contain templates but only use them internally in order to render a UI element, may use the more advanced template syntax offered by Hogan, and prefer Hogan as the template engine.</p>
-		</td>
-	</tr><tr>
 		<td>Touch interactions</td>
 		<td><a href="http://hammerjs.github.io/">Hammer.JS</a></td>
 		<td></td>
