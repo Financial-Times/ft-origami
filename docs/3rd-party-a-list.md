@@ -29,11 +29,11 @@ Origami components may have dependencies (via Bower) on third party components. 
 		<td>jQuery</td>
 		<td>Components should <a href="#why_not_jquery">not use jQuery</a>.</td>
 	</tr><tr>
-		<td>JavaScript utils</td>
-		<td><a href="https://github.com/lodash/lodash-node">Lodash-node</a></td>
-		<td>Underscore, Lodash</td>
-		<td>Lodash is roughly functionally equivalent to Underscore, but generally delivers faster performance, and includes some useful things not available in Underscore. Lodash-node has the additional benefit of making each method individually requireable (the 'modern' version of its methods are preferred) e.g. `require('lodash-node/modern/functions/throttle')`</td>
-	</tr><tr>
+ 		<td>JavaScript utils</td>
+ 		<td><a href="https://github.com/lodash/lodash">Lodash</a></td>
+ 		<td>Underscore, lodash-node</td>
+ 		<td>Lodash V3 allows each method to be individually requireable e.g. <code>require('lodash/function/throttle')</code>, which is more preferable than requiring the whole library. Lodash is roughly functionally equivalent to Underscore, but generally delivers faster performance, and includes some useful things not available in Underscore. Lodash-node was deprecated with the release of Lodash V3.</td>
+ 	</tr><tr>
 		<td>Template engine</td>
 		<td><a href="https://github.com/twitter/hogan.js">Hogan</a></td>
 		<td>Mustache<br/>Handlebars</td>
