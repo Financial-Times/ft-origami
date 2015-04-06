@@ -40,9 +40,9 @@ The right hand side of the screen should be blank, which is fine.
 
 Prepare your jsbin by pasting in the Origami boilerplate code explained above; now you're ready to add some components to your page.
 
-As an example, we'll add the standard FT header and footer.  All Origami components are listed in a directory called the Origami registry, so go there now and find the header component:
+As an example, we'll add the standard FT header and footer.  All Origami components are listed in a directory called the Origami Registry, so go there now and find the header component:
 
-* [Go to Origami Registry](http://registry.origami.ft.com)
+* [Go to the Origami Registry](http://registry.origami.ft.com)
 
 To find the header:
 
@@ -62,7 +62,7 @@ Switch to your JS Bin window and find the bit that says `<!-- Body content here 
 
 Now on the right of your JS Bin window, you'll see the content for your header, but it will be unstyled.  You need to add the CSS and JavaScript to style it and activate its behaviours, like dropdown menus.  Go back to the registry, and on the o-header page, scroll down to the section called 'Quick start'.
 
-In quick start, you'll see a token you can add to your build service `<link...>` and `<script...>` tags.  Copy the token, which will look something like `o-header@^2.5.16` to your clipboard, and switch back to JS Bin.  Find the two references to `build.origami.ft.com` in the header of the HTML document, and insert the token in place of the example `a,b,c` in both places.
+In quick start, you'll see a token you can add to your build service `<link...>` and `<script...>` tags.  Copy the token, which will look something like `o-header@^3.0.3` to your clipboard, and switch back to JS Bin.  Find the two references to `build.origami.ft.com` in the header of the HTML document, and insert the token in place of the example `a,b,c` in both places.
 
 This is the CSS bit you need to update:
 
@@ -81,12 +81,12 @@ Repeat this process for the footer:
 1. Find the component page in the registry
 1. Copy the HTML of the demo you want
 1. Paste it in the `<body>` section of your JS Bin page
-1. Back on the component registry page, find the token from the quick start section, e.g. `o-footer@^1.2.3`
+1. Back on the component registry page, find the token from the quick start section, e.g. `o-footer@^3.0.1`
 1. Add this to the build service loader tags alongside the one for the header.  You can separate the two with a comma.
 
 The build service is capable of including more than one component in the same bundle, so you can simply add multiple modules into the same URL.  Here's an example:
 
-	<link rel="stylesheet" href="//build.origami.ft.com/bundles/css?modules=o-fonts@^1,o-ft-icons@^2,o-header@^3.0.0,o-footer@^3.0.0" />
+	<link rel="stylesheet" href="//build.origami.ft.com/bundles/css?modules=o-fonts@^1,o-ft-icons@^2,o-header@^3.0.3,o-footer@^3.0.1" />
 
 It's important that you do this, so that any CSS that is shared between the header and footer (there's quite a bit) isn't downloaded twice.
 
