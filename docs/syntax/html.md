@@ -55,6 +55,10 @@ Any CSS or JavaScript that is included in a module *must* only act on elements a
 * A module *may* act on an element using JavaScript (eg to attach event handlers, change the element's properties or content) if it or any ancestor has a data attribute `data-o-component` containing the module's name (note that an element may list multiple modules).
 * A module *may* act on an element using CSS (to style it) if it or any ancestor has a class which starts with the name of the module.
 
+As an example, the `o-date` component is permitted to style and apply JavaScript behaviour to the following element:
+
+	<time data-o-component="o-date" class="o-date" datetime="2000-06-14T23:00:00.000Z">June 15, 2000</time>
+
 
 ## Anticipating lack of script
 
