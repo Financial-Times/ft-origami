@@ -50,10 +50,11 @@ Where Origami components include or output HTML, it should meet the following re
 
 ## Owned DOM
 
-If a module has a single root element, that element (with the appropriate class and data attributes defined above) is the root of that module's "owned DOM".  Any CSS or JavaScript that is included in the module *must* only act on elements within the owned DOM.  A module may choose not to mark a portion of DOM as owned if it:
+Any CSS or JavaScript that is included in a module *must* only act on elements already in the DOM if that have opted into control by that module.
 
-* has no specific markup (though it may provide styles to apply to existing markup in the page, e.g. `o-grid` and `o-typography`); and
-* has no JavaScript that intends to manipulate the DOM
+* A module *may* act on an element using JavaScript (eg to attach event handlers, change the element's properties or content) if it or any ancestor has a data attribute `data-o-component` containing the module's name (note that an element may list multiple modules).
+* A module *may* act on an element using CSS (to style it) if it or any ancestor has a class which starts with the name of the module.
+
 
 ## Anticipating lack of script
 
