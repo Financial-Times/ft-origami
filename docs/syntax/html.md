@@ -52,7 +52,7 @@ Where Origami components include or output HTML, it should meet the following re
 
 Any CSS or JavaScript that is included in a module *must* only act on elements already in the DOM if those elements have opted into control by that module.
 
-* A module *may* act on an element using JavaScript (eg to attach event handlers, change the element's properties or content) if it or any ancestor has a data attribute `data-o-component` containing the module's name (note that an element may list multiple modules).
+* A module *may* act on an element using JavaScript (e.g. to attach event handlers, change the element's properties or content) if it or any ancestor has a data attribute `data-o-component` containing the module's name (note that an element may list multiple modules).
 * A module *may* act on an element using CSS (to style it) if it or any ancestor has a class which starts with the name of the module.
 
 As an example, the `o-date` component is permitted to style and apply JavaScript behaviour to the following element:
