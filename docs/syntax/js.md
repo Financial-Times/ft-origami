@@ -63,7 +63,7 @@ If you do copy a reference to `this` into a separate variable, make it semantic:
 
 
 
-## Initialisation
+## Initialisation
 
 Modules *must* do as little as possible on parse, instead deferring start-up tasks to a publicly exported, static 'init' function that should be either invoked explicitly using the module's API, or automatically by binding to the `o.DOMContentLoaded` or `o.load` events.
 
@@ -77,18 +77,39 @@ Modules that expose an `init` method or an instance constructor which takes an a
 
 Where this reference is passed to an `init` function, the module *may* create multiple instances and return them in an array.  Where passed to a constructor, the module must only create one instance and return it.
 
+Where the reference is to an element that is not itself owned DOM, the init function *may* traverse the subtree looking for elements that are.
 
-## Data attributes
+Where JavaScript exists to enhance elements, and accompanying CSS depends on knowing whether the JavaScript intends to apply (or has applied) that enhancement, the JavaScript *may* add a data attribute of the form `data-{modulename}-js` with no value to the root element of the component when the JavaScript initialises.  For example, o-tabs markup would not contain a `o--if-js` class, because the tabs content should remain visible even if the tabs JavaScript is not running on the page, but if the JavaScript does run, it could apply an `data-o-tabs-js` data attribute to allow the tabs CSS to hide all but the selected tab panel.
 
-If a module's JavaScript requires configuration, this should be done using data- attributes on the HTML element that is the root element of the DOM owned by the module.  Data attributes should be named `data-{modulename}-{key}`, e.g. `data-o-tweet-id`.  The module may also create attributes of this form at runtime.
 
-In some cases, especially for tracking use cases, a module may act on portions of DOM not exclusively controlled by it.  In this case the same naming conventions apply, but the module *must not* create these attributes itself.  Instead, it may only act on elements outside of its own portions of 'owned DOM' if the element has already has a data attribute in the module's namespace.
 
-Where JavaScript exists to enhance elements, and accompanying CSS depends on knowing whether the JavaScript intends to apply that enhancement, the JavaScript *may* add a data attribute of the form `data-{modulename}-js` with no value to the root element of the component when the JavaScript initialises.  For example, o-tabs markup would not contain a `o--if-js` class, because the tabs content should remain visible even if the tabs JavaScript is not running on the page, but if the JavaScript does run, it could apply an `data-o-tabs-js` data attribute to allow the tabs CSS to hide all but the selected tab.
+## Configuration
+
+If a module's JavaScript requires configuration, the following methods of passing that configuration *must be* supported.
+
+### Data attributes on owned DOM
+
+If a module acts to enhance markup, the module *must* be configurable using data- attributes on the HTML element that is the root element of the DOM owned by the module.  Data attributes *must* be named `data-{modulename}-{key}`, e.g. `data-o-tweet-id`.  The module *may* also create attributes of this form at runtime, provided that the element is already within owned DOM for that module.
 
 <aside>
 	Developers should avoid the temptation to name data attributes based on the same naming conventions as BEM in CSS.  Data attributes are not subject to the same semantics as classes so BEM is not a great fit.
 </aside>
+
+### Global declarative config block
+
+Where it is possible for multiple instances of a module to exist on a page and for the same configuration to apply to all of them, or where a module has no markup (e.g. o-tracking or o-errors), the module *must* support declarative configuration via JSON data placed within a `<script>` block with a `type='application/json` and a data attribute in the module's namespace with the key 'config' and no value, ie. `data-{modulename}-config`.  For example:
+
+	<script data-o-errors-config type='application/json'>
+	    {
+	        "sentryEndpoint": "https://....",
+	        "application": {
+	            "version": "1.2.3",
+	            "name": "Foo Application"
+	        }
+	    }
+	</script>
+
+Components *must* parse any such configuration using `JSON.parse` and only after `o.DOMContentLoaded` has fired.
 
 
 ## DOM Selectors
