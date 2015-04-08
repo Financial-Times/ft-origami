@@ -97,7 +97,7 @@ If a module acts to enhance markup, the module *must* be configurable using data
 
 ### Global declarative config block
 
-Where it is possible for multiple instances of a module to exist on a page and for the same configuration to apply to all of them, or where a module has no markup (e.g. o-tracking or o-errors), the module *must* support declarative configuration via JSON data placed within a `<script>` block with a `type='application/json` and a data attribute in the module's namespace with the key 'config' and no value, ie. `data-{modulename}-config`.  For example:
+Where it is possible for multiple instances of a module to exist on a page and for the same configuration to apply to all of them, or where a module has no markup (e.g. o-tracking or o-errors), the module *must* support declarative configuration via JSON data placed within a `<script>` block with a `type='application/json'` and a data attribute in the module's namespace with the key 'config' and no value, ie. `data-{modulename}-config`.  For example:
 
 	<script data-o-errors-config type='application/json'>
 	    {
