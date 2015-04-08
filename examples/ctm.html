@@ -7,9 +7,9 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
 	<!--
-			Perform your cuts the mustard test.
-			For information about what features come bundled with other
-			features in all browsers, see caniuse.com
+		Perform your cuts the mustard test.
+		For information about what features come bundled with other
+		features in all browsers, see caniuse.com
 	-->
 	<script>
 		var cutsTheMustard = ('querySelector' in document && 'localStorage' in window && 'addEventListener' in window);
@@ -25,7 +25,7 @@
 		/* Hide any enhanced experience content when in core mode, and vice versa. */
 		.core .o--if-js,
 		.enhanced .o--if-no-js { display: none !important; }
-		
+
 		html {
 			/* Set a font family on the whole document */
 			font-family: BentonSans, sans-serif;
@@ -34,22 +34,20 @@
 			   extra space on sides of the page */
 			overflow-x: hidden;
 		}
-		
+
 		body {
 			/* Remove space around the document */
 			margin: 0;
 		}
-		
+
 		/* Add any other inline styles here */
 	</style>
 
 	<!--
-		Load the origami stylesheet, to avoid any flashes of unstyled content,
-		and also because stylesheet downloads can be parallelised by the browser.
-		If you have extracted the critical CSS into the inline CSS block above,
-		this could move to the end of the document.
+		Load the Origami stylesheet, including fonts and icons by default.
+		Replace a,b,c with the names of the additional modules you want to load.
 	-->
-	<link rel="stylesheet" href="//build.origami.ft.com/bundles/css?modules=o-fonts@^1,o-ft-icons@^2,a,b,c" />
+	<link rel="stylesheet" href="//build.origami.ft.com/bundles/css?modules=o-fonts@^1.6.7,o-ft-icons@^2.3.6,a,b,c" />
 
 	<!--
 		Unconditionally load the polyfill service to provide the best support
@@ -63,7 +61,7 @@
 	<script src="//polyfill.webservices.ft.com/v1/polyfill.min.js"></script>
 
 	<!--
-		Load main JavaScript bundle (asynchronously, to make sure it's non-blocking)
+		Load main JavaScript bundle (asynchronously, to make sure it's non-blocking).
 	-->
 	<script>
 		(function(src) {
