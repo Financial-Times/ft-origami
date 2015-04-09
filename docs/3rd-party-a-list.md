@@ -21,8 +21,8 @@ Origami components may have dependencies (via Bower) on third party components. 
 	</tr><tr>
 		<td>AJAX</td>
 		<td><a href="https://github.com/whatwg/fetch">fetch</a></td>
-		<td>jQuery</td>
-		<td>Components should <a href="#why_not_jquery">not use jQuery</a>, fetch is better and available natively in a number of browsers.  A [polyfill exists](https://github.com/github/fetch) and is [available through the Polyfill Service](https://cdn.polyfill.io/).</td>
+		<td>jQuery, superagent</td>
+		<td>Components should <a href="#why_not_jquery">not use jQuery</a>, fetch is better and will be supported natively by browsers.  In the meantime a [polyfill exists](https://github.com/github/fetch) and is [available through the Polyfill Service](https://cdn.polyfill.io/).</td>
 	</tr><tr>
 		<td>Event delegation</td>
 		<td><a href="https://github.com/ftlabs/ftdomdelegate">ftdomdelegate</a></td>
