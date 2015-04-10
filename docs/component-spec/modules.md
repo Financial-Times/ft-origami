@@ -69,6 +69,7 @@ The following requirements apply to creating a Origami-compatible module compone
 * store CSS as SCSS, to enable products and other modules to make use of variables and mixins
 * not be used for imperative code except JavaScript (and JavaScript must have a client-side use case to be considered a front end component)
 * not contain build scripts except as required for development and testing.
+* not contain configuration files that create exceptions to rules advised by this spec (such as `editorconfig`, `bowerrc` or `jshintrc`) unless absolutely necessary.
 * be buildable using the standard build process described by the [build service]({{site.baseurl}}/docs/developer-guide/build-service/)
 * list all build, development and testing scripts as ignored in the module's bowser configuration.
 * where there is a dependency on a web service component (e.g. because the module is a JavaScript library that makes AJAX requests to a service), be compatible with the version of the web service API that carries the same major version number as the module.  For example, version 2.4.5, 2.4.6, and 2.7 of a module *must* all be compatible with API version 2 of the web service.
