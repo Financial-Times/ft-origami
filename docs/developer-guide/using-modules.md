@@ -75,7 +75,7 @@ This is a close match for the recommended minimum support in the [FT browser sup
 
 ### Customising your cuts the mustard test
 
-Origami components declare their minimum requirements in terms of [Modernizr](http://modernizr.com/docs/) tests.  Component developers are required to ensure that any JavaScript bundled with their module will run without error in all the browsers that pass the recommended CTM test above, but they may enhance their component's behaviour using more cutting edge features.  To verify the exact set of browser features required by the set of modules you are using:
+Origami components declare their minimum requirements in terms of [Polyfill Service](http://cdn.polyfill.io/v1/docs/) features.  Component developers are required to ensure that any JavaScript bundled with their module will run without error in all the browsers that pass the recommended CTM test above, but they may enhance their component's behaviour using more cutting edge features.  To verify the exact set of browser features required by the set of modules you are using:
 
 1. Make an aggregated list of the entries from all the `browserFeatures.required` sections of your chosen modules' [Origami manifest files]({{site.baseurl}}/docs/syntax/origamijson).
 2. Refer to the Modernizr [feature-detects](https://github.com/Modernizr/Modernizr/tree/master/feature-detects) that match the names given in the Origami configs.
