@@ -82,11 +82,11 @@ All origami components, whether modules or web services, should be discoverable 
 </tr><tr>
 	<td><code>&nbsp;&nbsp;&nbsp;&nbsp;required</code></td>
 	<td>array</td>
-	<td>A list of features, as defined by <a href="http://cdn.polyfill.io/v1/docs/features/">Polyfill Service features</a>, which the module will assume to exist, and may choose to rely on in its JavaScript code.  If these features do not exist, the module <strong>may</strong> error.</td>
+	<td>A list of features, as defined by <a href="http://cdn.polyfill.io/v1/docs/features/">Polyfill Service features</a> (or, if it doesn't exist, as <a href="http://modernizr.com/docs/">Modernizr tests</a>), which the module will assume to exist, and may choose to rely on in its JavaScript code.  If these features do not exist, the module <strong>may</strong> error.</td>
 </tr><tr>
 	<td><code>&nbsp;&nbsp;&nbsp;&nbsp;optional</code></td>
 	<td>array</td>
-	<td>A list of features, as defined by <a href="http://cdn.polyfill.io/v1/docs/features/">Polyfill Service features</a>, which the module will use if they are available in the browser.  The absense of the feature may result in the module offering different or reduced functionality, but it will be handled elegantly.</td>
+	<td>A list of features, as defined by <a href="http://cdn.polyfill.io/v1/docs/features/">Polyfill Service features</a> (or, if it doesn't exist, as <a href="http://modernizr.com/docs/">Modernizr tests</a>), which the module will use if they are available in the browser.  The absense of the feature may result in the module offering different or reduced functionality, but it will be handled elegantly.</td>
 </tr><tr>
 	<td><code>&nbsp;&nbsp;}</code></td>
 	<td></td>
