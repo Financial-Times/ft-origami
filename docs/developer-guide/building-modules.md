@@ -145,6 +145,11 @@ Once you know which Origami modules you want, create a `bower.json` file in the 
 	<p>Versions lower than 1 (eg. <code>v0.3.2</code>) are considered experimental builds, and are treated differently by Bower.  Origami forbids the creation of components with a version lower than 1, so if you see one, it is probably not ready for use.</p>
 </aside>
 
+<aside>
+	<h4>Semver calculator</h4>
+	<p>If you want to understand more about how a <em>semver expression</em> matches specific versions, try npm's <a href='http://semver.npmjs.com'>semver calculator tool</a>.</p>
+</aside>
+
 This time we're listing these as *dependencies*, not *devDependencies*, because they are actually required by your project in production.
 
 To ensure that the Origami modules can be found, it needs to be set up to search the Origami registry.  To do this, create a `.bowerrc` file in the root of your project's working tree (or in your home directory, if you want to apply it automatically to all projects), with the following contents:
@@ -172,13 +177,13 @@ As an example (assuming you loaded these modules in your `bowser.json`), create 
 
 	// Output grid helper classes and data-attributes
 	$o-grid-is-silent: false;
-	
+
 	// Output @font-face declarations
 	$o-fonts-is-silent: false;
-	
+
 	// Output icon helper classes
 	$o-ft-icons-is-silent: false;
-	
+
 	// Import Origami components
 	@import 'o-grid/main';
 	@import 'o-fonts/main';
@@ -186,28 +191,28 @@ As an example (assuming you loaded these modules in your `bowser.json`), create 
 	@import 'o-header/main';
 	@import 'o-footer/main';
 	@import 'o-colors/main';
-	
+
 	// Store the default FT sans-serif font stack in a variable
 	$sans-serif: oFontsGetFontFamilyWithFallbacks(BentonSans);
-	
+
 	html {
 		// The iconic pink background
 		@include oColorsFor(page, background);
-	
+
 		// Set a font family on the whole document
 		font-family: $sans-serif;
-	
+
 		// Prevent navigation menus from creating
 		// extra space on sides of the page
 		overflow-x: hidden;
 	}
-	
+
 	body {
 		// Remove space around the document
 		margin: 0;
 	}
-	
-	
+
+
 	// Add your own styles here…
 
 The syntax of the JavaSript require is:

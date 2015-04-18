@@ -188,9 +188,9 @@ If the module requires any dependencies which are aimed solely at browsers (e.g.
 
 The module *must not* be added to the NPM registry and the module's documentation *should* advise developers to install by using a tagged tarball (links to which are available from the module's GitHub repo's 'releases' tab).
 
-## Module subdependencies
+## Module dependencies
 
-Modules *should* have as few sub-dependencies as possible.  Where the dependency is required to test the module or view the examples, but not to use it, it should be listed in `devDependencies` not in `dependencies`.
+Modules *should* have as few dependencies as possible.  Where the dependency is required to test the module or view the examples, but not to use it, it should be listed in `devDependencies` not in `dependencies`.
 
 If any feature of a dependency's sub-dependencies are used directly then that sub-dependency *must* also be added as a direct dependency e.g. if your module has `o-typography` as a dependency but makes use of `oFontsInclude()` in its stylesheets then `o-fonts` must also be added as a dependency.
 
@@ -216,6 +216,11 @@ Where a dependency is an Origami module it *must* be listed under its original n
 
 * Good: `"o-colors": "^1.2.0"`
 * Bad: `"colors-legacy": "1.1.0"`
+
+<aside>
+	<h4>Semver calculator</h4>
+	<p>If you want to understand more about how a <em>semver expression</em> matches specific versions, try npm's <a href='http://semver.npmjs.com'>semver calculator tool</a>.</p>
+</aside>
 
 ## Tests and demos
 
