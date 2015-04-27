@@ -109,7 +109,7 @@ Where it is possible for multiple instances of a module to exist on a page and f
 	    }
 	</script>
 
-Components *must* parse any such configuration using `JSON.parse` and only after `o.DOMContentLoaded` has fired.
+Components *must* parse any such configuration using `JSON.parse` and only in response to an event (such as `o.DOMContentLoaded`) or function call.
 
 
 ## DOM Selectors
