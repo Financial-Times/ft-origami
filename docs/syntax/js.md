@@ -109,7 +109,9 @@ Where it is possible for multiple instances of a module to exist on a page and f
 	    }
 	</script>
 
-Components *must* parse any such configuration using `JSON.parse` and only in response to an event (such as `o.DOMContentLoaded`) or function call.
+Components *must* parse any such configuration using `JSON.parse` and only in response to an event (such as `o.DOMContentLoaded`) or function call.  Components *must not* expect more than one global declarative config block in their namespace to be present on the page.
+
+<aside>Global declarative config is not useful in situations where a developer chooses to call a component's static <code>init()</code> function directly, since the config could simply be passed into the function.  Components should support that, and consider throwing an error if declarative config exists when init is called.</aside>
 
 
 ## DOM Selectors
