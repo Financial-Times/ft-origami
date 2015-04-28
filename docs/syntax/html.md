@@ -91,7 +91,7 @@ In accordance with the [JavaScript standards]({{site.baseurl}}/docs/syntax/js), 
 
 Headlines fragment:
 
-	<nav class="o-headlines" data-o-component="o-headlines" data-o-version="0.0.1">
+	<nav class="o-headlines" data-o-component="o-headlines">
 		<ul>
 			<li data-track-pos="0"><a href="http://www.ft.com">Home</a></li>
 			<li data-track-pos="1"><a href="http://www.ft.com/uk">UK</a></li>
