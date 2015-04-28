@@ -16,8 +16,64 @@ In addition to the rules below, the [Google Web Fundamentals documentation](http
 Conform to the [FT Browser support standard](https://docs.google.com/a/ft.com/document/d/1dX92MPm9ZNY2jqFidWf_E6V4S6pLkydjcPmk5F989YI/edit).  In principle this means that your site will:
 
 * Choose a sensible boundary level between core and enhanced experience
-* Not load JavaScript when in core experience
+* Not load JavaScript when in core experience (we advocate using a [cuts the mustard]({{site.baseurl}}/docs/developer-guide/using-modules#core-vs-enhanced-experience) technique)
 * Present a consistent, functional and high quality experience to users in both core and enhanced experience
+
+
+##Design
+
+Although you may spend most of your time on your own product, remember that our readers move from one FT product to another all the time, and we need to make their life as easy as possible by offering a <strong>consistent brand experience</strong>.  Consider the following points when you are making your product:
+
+* Are there elements of your site for which there is a standard FT design expressed in an Origami component?  Search the [Origami registry](http://registry.origami.ft.com) to find out.  If so, you should be matching that style exactly, ideally by using the Origami component.  This includes things like [fonts](http://registry.origami.ft.com/components/o-fonts), [typography](http://registry.origami.ft.com/components/o-typography), [forms](http://registry.origami.ft.com/components/o-forms), [sharing buttons](http://registry.origami.ft.com/components/o-share), [galleries](http://registry.origami.ft.com/components/o-gallery) etc.
+* Are you using standard brand assets like the FT logo, social media network icons, headshots of FT journalists or font files?  You must use the correct versions of these, available from the [data sets](http://git.svc.ft.com/projects/DATA) collection of repos in Stash.  In many cases it's a lot easier to retrieve these files though the [build service](http://build.origami.ft.com) or [image service](http://image.webservices.ft.com), rather than hosting them within your product.  That way, you can be sure you're using the right one.
+
+
+##Images
+
+###Format and scale images correctly
+
+There are a number of best practices to observe on the use of images:
+
+* Make sure you use an appropriate format (typically JPEG for photographs, PNG for illustrations)
+* Support screens with a high pixel density by creating images at a pixel density of 2, and trade off higher compression to achieve the same file size.  For example, if you want to display a 400x400 image, consider creating an 800x800 image and turning up the compression until the file size is acceptable.  Studies suggest the sharper but more compressed image works equally well on high and low density screens.
+* Use an optimisation tool such as [ImageOptim](https://imageoptim.com/) to remove unnecessary metadata and colour profiles
+* Scale image containers with viewport size so that images do not cause pages to scroll horizontally on small screens
+* Use the Origami [image service](http://image.webservices.ft.com) to rescale your images dynamically based on the size of the container.
+
+
+##Performance
+
+###Audit with PageSpeed
+
+Use Google's [PageSpeed Insights](http://developers.google.com/speed/pagespeed/insights) service to analyse your page and try to score at least 80 on both the mobile and desktop categories.  This will cover off a wide variety of performance related best practices, including minification and concatenation of assets, image sizing and avoiding subresource requests that block rendering.
+
+###Use the polyfill service
+
+The [Origami polyfill service](http://polyfill.webservices.ft.com) creates custom bundles of polyfills based on the exact requirements of the user's browser, so we can avoid serving unnecessary code to browsers that already support a feature natively, but we can automatically upgrade browsers that don't support the feature.
+
+This means you can assume modern web standards, you don't have to bundle any polyfills with your code, and performance on modern browsers is great - they get an empty file.
+
+###Use responsive images
+
+Don't download large images and then display them at a tiny size.  See [Images](#images).
+
+
+##Security
+
+###Don't collect data on insecure pages
+
+When prompting the user for personal data such as email address, username, password or payment information, always serve the page with the form on it using HTTPS, and send the form submission to an HTTPS URL.
+
+It's often considered OK to serve forms on insecure pages as long as the form posts to a secure destination.  This is not acceptable, because an attacker can modify the page that serves the form, to simply change the form post destination.  For more information, see [Steal my login](http://www.stealmylogin.com/).
+
+
+##Accessibility
+
+Not only is it a legal requirment to make reasonable adjustments to accomodate the needs of disabled readers, it also provides SEO benefits, and generally makes life easier for everyone.  Consider the following points:
+
+* Don't disable zoom.  It should be possible for users to zoom the page using pinch gestures on touch screen devices
+* Use ARIA to describe all labels, roles and states
+* Always provide text alternatives to images or an empty `alt` if the image is not content
 
 
 ##HTML
@@ -124,19 +180,6 @@ Consider using [o-hoverable](http://registry.origami.ft.com/components/o-hoverab
 Your styles should allow content to fit on screens down to around 300px wide.  In choosing breakpoints for style changes as the screen gets larger, you should not take any interest in the widths of devices in use.  It may be that turning a device from portrait to landscape view activates a different media query and displays the medium width layout.  Don't try to prevent this happening - it's a correct and inevitable result of well chosen breakpoints.
 
 
-##Images
-
-###Format and scale images correctly
-
-There are a number of best practices to observe on the use of images:
-
-* Make sure you use an appropriate format (typically JPEG for photographs, PNG for illustrations)
-* Support screens with a high pixel density by creating images at a pixel density of 2, and trade off higher compression to achieve the same file size.  For example, if you want to display a 400x400 image, consider creating an 800x800 image and turning up the compression until the file size is acceptable.  Studies suggest the sharper but more compressed image works equally well on high and low density screens.
-* Use an optimisation tool such as [ImageOptim](https://imageoptim.com/) to remove unnecessary metadata and colour profiles
-* Scale image containers with viewport size so that images do not cause pages to scroll horizontally on small screens
-* Use the Origami [image service](http://image.webservices.ft.com) to rescale your images dynamically based on the size of the container.
-
-
 ##JavaScript
 
 ###Lint your code
@@ -151,23 +194,3 @@ Consider running [JSHint](http://www.jshint.com/) over your JavaScript.  The syn
 Don't create links with `javascript:` prefixes in the href unless those links are not relevant to navigating the site.  Any UI element that appears to be navigation should have a real href.
 
 Do not interfere with common browser affordances, for example, CMD+click or CTRL+click on a link usually opens the link in a new window, but capturing the click in JavaScript can break that feature, which will quite reasonably irritate users.
-
-
-##Performance
-
-###Audit with PageSpeed
-
-Use Google's [PageSpeed Insights](http://developers.google.com/speed/pagespeed/insights) service to analyse your page and try to score at least 80 on both the mobile and desktop categories.  This will cover off a wide variety of performance related best practices.
-
-###Use the polyfill service
-
-The [Origami polyfill service](http://polyfill.webservices.ft.com) creates custom bundles of polyfills based on the exact requirements of the user's browser, so we can avoid serving unnecessary code to browsers that already support a feature natively, but we can automatically upgrade browsers that don't support the feature.
-
-This means you can assume modern web standards, you don't have to bundle any polyfills with your code, and performance on modern browsers is great - they get an empty file.
-
-
-##Security
-
-###Don't collect data on insecure pages
-
-It's often considered OK to serve forms on insecure pages as long as the form posts to a secure destination.  This is not acceptable, because an attacker can modify the page that serves the form, to simply change the form post destination.  For more information, see [Steal my login](http://www.stealmylogin.com/).
