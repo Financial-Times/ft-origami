@@ -8,6 +8,8 @@ permalink: /docs/3rd-party-a-list/
 
 Origami components may have dependencies (via Bower) on third party components.  This page documents which third party libraries are preferred where there may be multiple libraries that achieve the same goal.
 
+<aside>Like the rest of the Origami spec (except for the developer guide) these guidelines do not apply to products, only to components.</aside>
+
 <table class="o-techdocs-table">
 <thead>
 	<tr><th>For this</th><th>Use this</th><th>Not these</th><th>Because</th></tr>
