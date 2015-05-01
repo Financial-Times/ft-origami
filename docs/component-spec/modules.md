@@ -222,6 +222,15 @@ Where a dependency is an Origami module it *must* be listed under its original n
 	<p>If you want to understand more about how a <em>semver expression</em> matches specific versions, try npm's <a href='http://semver.npmjs.com'>semver calculator tool</a>.</p>
 </aside>
 
+### Soft dependencies
+
+Where a module has a JavaScript dependency that is only required under some use cases, for simplicity it *should* be treated the same as a required dependency.  However, if the dependency is:
+
+* large; and
+* either a single file that does not require build or a built bundle that shares no dependencies with the component
+
+then it *may* be omitted from the dependency list and not imported at build time, instead loaded at runtime using the build service and the `fetch` API.
+
 ## Tests and demos
 
 Components *should* include tests which at least verify that the component can be built using [origami-build-tools](https://github.com/Financial-Times/origami-build-tools). Component authors *may* additionally test their component however they like, provided that all test related files *should* be in the `tests` directory, and that test related files *must* not be installable.  The source files of the component *should* be in `src` (except the main JS and/or Sass file).  The project *must* contain a `README.md` formatted in markdown.
