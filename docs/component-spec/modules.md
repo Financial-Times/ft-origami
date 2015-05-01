@@ -224,12 +224,13 @@ Where a dependency is an Origami module it *must* be listed under its original n
 
 ### Soft dependencies
 
-Where a module has a JavaScript dependency that is only required under some use cases, for simplicity it *should* be treated the same as a required dependency.  However, if the dependency is:
+Where a module has a JavaScript dependency or submodule that is only required under some use cases, for simplicity it *should* be treated the same as a required dependency.  However, if the dependency is:
 
 * large; and
 * either a single file that does not require build or a built bundle that shares no dependencies with the component
 
-then it *may* be omitted from the dependency list and not imported at build time, instead loaded at runtime using the build service and the `fetch` API.
+then it *may* be omitted from the dependency list and not imported at build time, instead loaded at runtime using [o-assets](http://registry.origami.ft.com/components/o-assets) to resolve the path, and the `fetch` API to perform the request.
+
 
 ## Tests and demos
 
