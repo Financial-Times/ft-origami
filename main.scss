@@ -8,12 +8,24 @@ body {
 	-moz-osx-font-smoothing: grayscale;
 }
 
+@media (min-width: 45.625em) {
+	.o-header__primary__left {
+		min-width: 303px;
+		width: 33%;
+	}
+}
 /* Google custom search overrides */
 
 .gsc-control-cse {
 	background-color: transparent !important;
 	border: none !important;
 	padding: 0 !important;
+}
+.gsc-input {
+	padding-right: 0 !important;
+}
+.gsc-search-button {
+	display: none;
 }
 
 .footer-logo {
@@ -110,8 +122,8 @@ body {
 .hero__summary {
 	font-size: 1.5em;
 	line-height: 1.4;
-	margin-bottom: .5em;
-	margin-top: 15px;
+	margin-bottom: 0.25em;
+	margin-top: 0;
 	text-shadow: 0 0 20px #000000;
 }
 .hero__actions {
