@@ -70,9 +70,8 @@ body {
 	-moz-osx-font-smoothing: grayscale;
 	margin-top: -100px;
 	padding-top: 100px;
-	padding-bottom: 30px;
 	margin-bottom: 40px;
-	text-shadow: 0 0 25px rgba(#000000, 0.5);
+	text-shadow: 0 0 25px rgba(#000000, 0.4);
 	text-align: center;
 	color: #ffffff;
 	background: #131313;
@@ -90,8 +89,8 @@ body {
 	a {
 		text-decoration: none;
 		color: #ffffff;
-		opacity: 0.75;
-		transition: all 0.15s ease-in;
+		opacity: 0.8;
+		transition: opacity 0.15s ease-in;
 		text-shadow: 0 0 15px #000000;
 
 		&:hover,
@@ -130,11 +129,10 @@ body {
 	line-height: 1.4;
 	margin-bottom: 0.25em;
 	margin-top: 0;
-	text-shadow: 0 0 20px #000000;
 }
 .hero__actions {
 	margin-top: 30px;
-	margin-bottom: 30px;
+	margin-bottom: 20px;
 
 	a {
 		font-size: 24px;
@@ -149,10 +147,19 @@ body {
 		background-color: rgba(#000000, 0.15);
 	}
 }
-.hero__secondary {
+.hero__secondary,
+.hero__tertiary {
+	background: rgba(#fff, .2);
+
 	a {
 		display: block;
 	}
+}
+.hero__secondary {
+	padding-top: 5px;
+}
+.hero__tertiary {
+	padding-bottom: 30px;
 }
 .tools {
 	list-style-type: none;
