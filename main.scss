@@ -24,6 +24,12 @@ body {
 .gsc-input {
 	padding-right: 0 !important;
 }
+.gsc-input-box {
+	opacity: 0.7;
+}
+.gsc-input-box-focus {
+	opacity: 1;
+}
 .gsc-search-button {
 	display: none;
 }
@@ -66,7 +72,7 @@ body {
 	padding-top: 100px;
 	padding-bottom: 30px;
 	margin-bottom: 40px;
-	text-shadow: 0 0 25px rgba(#000000, .5);
+	text-shadow: 0 0 25px rgba(#000000, 0.5);
 	text-align: center;
 	color: #ffffff;
 	background: #131313;
@@ -136,11 +142,11 @@ body {
 		padding-top: 12px;
 		padding-bottom: 12px;
 		border-width: 2px;
-		margin-left: .5em;
-		margin-right: .5em;
-		margin-bottom: .5em;
+		margin-left: 0.5em;
+		margin-right: 0.5em;
+		margin-bottom: 0.5em;
 		text-shadow: none;
-		background-color: rgba(#000000, .15);
+		background-color: rgba(#000000, 0.15);
 	}
 }
 .hero__secondary {
@@ -168,7 +174,7 @@ body {
 
 	h2 {
 		display: inline-block;
-		margin: 0 .5em .5em;
+		margin: 0 0.5em 0.5em;
 		font-size: 1em;
 	}
 }
@@ -185,8 +191,8 @@ body {
 	}
 	> li {
 		display: inline-block;
-		margin-right: .5em;
-		margin-bottom: .5em;
+		margin-right: 0.5em;
+		margin-bottom: 0.5em;
 	}
 	a {
 		font-weight: bold;
