@@ -4,8 +4,6 @@ title: Home
 section: Overview
 ---
 
-<img src="{{ site.baseurl }}/img/devices.png" alt="FT on a variety of devices" class="transparent" />
-
 <p class="alert-big">Origami is a set of standards, conventions and tools for building websites at the FT.</p>
 
 <p class="alert-big">Origami aspires to create a <strong>unified style and experience for FT websites</strong>, and <strong>make web development at the FT faster</strong>.</p>
