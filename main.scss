@@ -220,10 +220,9 @@ body {
 	font-weight: 200;
 	color: #777777;
 
-	i {
-		color: #999999;
-		font-size: 32px;
+	svg {
+		fill: #999999;
 		display: block;
-		margin-bottom: 8px;
+		margin: 0 auto;
 	}
 }
