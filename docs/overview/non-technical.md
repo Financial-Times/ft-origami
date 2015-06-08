@@ -11,14 +11,14 @@ Origami is the new way of building websites at the FT.  It's time for something 
 
 Contents:
 
-1. [Problems we're solving](#the_problems_were_solving)
-	* [Repeating work](#repeating_work_again_again_again)
-	* [Impenetrable systems](#impenetrable_systems_create_huge_barriers_to_new_developers)
-	* [Unable to let go and move on](#unable_to_let_go_and_move_on)
-	* [Experts needed everywhere](#experts_needed_everywhere)
-	* [Square pegs and round holes](#square_pegs_and_round_holes)
+1. [Problems we're solving](#the-problems-were-solving)
+	* [Repeating work](#repeating-work-again-again-again)
+	* [Impenetrable systems](#impenetrable-systems-create-huge-barriers-to-new-developers)
+	* [Unable to let go and move on](#unable-to-let-go-and-move-on)
+	* [Experts needed everywhere](#experts-needed-everywhere)
+	* [Square pegs and round holes](#square-pegs-and-round-holes)
 
-2. [The Origami way](#the_origami_way)
+2. [The Origami way](#the-origami-way)
 
 ## The problems we're solving
 
@@ -34,7 +34,7 @@ For FT to thrive as a digital organisation, we need to solve some serious techno
 ![The Business blog lacking core styles]({{site.baseurl}}/img/brokenblog.png)
 
 
-### Repeating work.. again, again, again
+### Repeating work... again, again, again
 
 <p class="lead">Over the years, FT has evolved from having digital represent a tiny fraction of a huge print operation to having it in the centre of the business.  Along the way we've created or acquired over <acronym title="Measured by number of domain names owned by the FT"><b>six hundred websites</b></acronym> and <b>eight hundred <code><em>something</em>.ft.com</code> sites</b>.  Every time we build a new website, we repeat work done before, and we waste time and money.</p>
 
