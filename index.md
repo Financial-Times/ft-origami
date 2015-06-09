@@ -17,3 +17,36 @@ The things being built by component developers are **components**, while the sit
 * If you're a non-technical stakeholder wondering what all the fuss is about and how Origami will affect you, read the [overview]({{site.baseurl}}/docs/overview/non-technical), which explains what problems we are solving and how Origami will help
 * If you're a product developer, read the [developer guide]({{site.baseurl}}/docs/developer-guide) to understand how to use Origami components in your product.
 * If you're a component developer, read the [component spec]({{site.baseurl}}/docs/component-spec) which sets out the rules that your components must conform to in order to be Origami components.
+
+## Who is using Origami?
+
+Origami usage is widely spread at the Financial Times, as most of our teams are reporting to be using it:
+
+<div class="o-grid-row">
+	<div data-o-grid-colspan="6">
+		<ul>
+			<li>FT.com</li>
+			<li>Next FT</li>
+			<li>The Web App</li>
+			<li>Interactive Graphics</li>
+			<li>Membership (barriers, registration…)</li>
+		</ul>
+	</div>
+	<div data-o-grid-colspan="6">
+		<ul>
+			<li>Specialist Titles (e.g. <a href="https://live.ft.com">live.ft.com</a></li>
+			<li>FT Salesforce developers</li>
+			<li>Business Metrics Intelligence (tracking and analytics)</li>
+			<li>Ads</li>
+			<li>Comments</li>
+		</ul>
+	</div>
+</div>
+
+Origami is also used by a range of third parties and even other entities such as Pearson Higher Education:
+
+- [Bluetel Solutions](http://www.bluetel.co.uk/)
+- [iQuest Group](http://www.iquestgroup.com/en/)
+- [Pearson Higher Education](http://home.pearsonhighered.com/) ([GitHub fork](https://github.com/PearsonEducation/he-origami))
+
+If your team is using Origami, [let us know](mailto:origami.support@ft.com): we're here to help.
