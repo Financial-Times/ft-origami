@@ -20,7 +20,7 @@ The things being built by component developers are **components**, while the sit
 
 ## Who is using Origami?
 
-Origami usage is widely spread at the Financial Times, as most of our teams are reporting to be using it:
+Origami usage is widely spread across the business, as most of the teams at the FT are reporting to be using at least part of it:
 
 <div class="o-grid-row">
 	<div data-o-grid-colspan="6">
