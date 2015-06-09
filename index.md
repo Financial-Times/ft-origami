@@ -34,7 +34,7 @@ Origami usage is widely spread across the business, as most of the teams at the 
 	</div>
 	<div data-o-grid-colspan="6">
 		<ul>
-			<li>Specialist Titles (e.g. <a href="https://live.ft.com">live.ft.com</a></li>
+			<li>Specialist Titles (e.g. <a href="https://live.ft.com">live.ft.com</a>)</li>
 			<li>FT Salesforce developers</li>
 			<li>Business Metrics Intelligence (tracking and analytics)</li>
 			<li>Ads</li>
