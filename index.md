@@ -50,4 +50,4 @@ Origami is also used by a range of third parties and even other entities such as
 - [iQuest Group](http://www.iquestgroup.com/en/)
 - [Pearson Higher Education](http://home.pearsonhighered.com/) ([GitHub fork](https://github.com/PearsonEducation/he-origami))
 
-If your team is using Origami, [let us know](mailto:origami.support@ft.com): we're here to help.
+If your team is using or plans to use Origami, [let us know](mailto:origami.support@ft.com): we're here to help.
