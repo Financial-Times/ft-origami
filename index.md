@@ -46,6 +46,7 @@ Origami usage is widely spread across the business, as most of the teams at the 
 Origami is also used by a range of third parties and even other entities such as Pearson Higher Education:
 
 - [Bluetel Solutions](http://www.bluetel.co.uk/)
+- [Markit On Demand](http://www.markit.com/)
 - [iQuest Group](http://www.iquestgroup.com/en/)
 - [Pearson Higher Education](http://home.pearsonhighered.com/) ([GitHub fork](https://github.com/PearsonEducation/he-origami))
 
