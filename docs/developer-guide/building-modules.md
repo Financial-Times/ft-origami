@@ -167,6 +167,10 @@ To ensure that the Origami modules can be found, it needs to be set up to search
 	Sometimes when you create files starting with a dot, they won't show up in the directory listing, because starting a file with a dot marks it as a <em>hidden file</em>.  You can normally choose an option to 'show hidden files' or similar, and on the command line you can always see hidden files with the `ls -al` command.
 </aside>
 
+<aside>
+	Windows users: .bowerrc's encoding should usually be ANSI or Western (Windows 1252). Bower is unable to decode some UTF8-encoded configuration files, as explained in <a href="http://stackoverflow.com/questions/24534974/emalformed-failed-to-read-bower-json-unexpected-token">this Stackoverflow thread</a>.
+</aside>
+
 ## 5. Create your master Sass and JavaScript files
 
 Now you need to create a Sass and/or JavaScript file that requires the Origami components as dependencies.  In Sass, you can do this with the `@import` statement, and in JavaScript, using `require`.  The syntax of the Sass import is:
