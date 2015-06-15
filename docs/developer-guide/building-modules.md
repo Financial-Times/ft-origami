@@ -227,7 +227,7 @@ As an example, create a `main.js` file at `/client/js/main.js`, containing:
 
 	'use strict';
 	// Require module
-	var header = require('o-header');
+	require('o-header');
 
 	// Wait until the page has loaded
 	if (document.readyState === 'interactive' || document.readyState === 'complete') {
