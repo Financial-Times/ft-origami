@@ -437,14 +437,23 @@ Here's an example of a web page created from the boilerplate that includes the s
 	</html>
 
 
-Now, you should be able to start a static web server in the `/public` directory, and load your page.  If you are using a Mac, this command in Terminal will start a server:
+Now, you should be able to start a static web server in the `/public` directory, and load your page.
+
+If you are using a Mac, this command in Terminal will start a server:
 
 <pre class="cli">
 <kbd>python -m SimpleHTTPServer 8001</kbd>
 <output>Serving HTTP on 0.0.0.0 port 8001 ...</output>
 </pre>
 
-Now you can simply go to [http://localhost:8001/](http://localhost:8001) to view your page.
+On Windows, [install Python](https://www.python.org/downloads/windows/) and run:
+
+<pre class="cli">
+<kbd>python -m http.server 8001</kbd>
+<output>Serving HTTP on 0.0.0.0 port 8001 ...</output>
+</pre>
+
+Open [http://localhost:8001/](http://localhost:8001) to view your page.
 
 ## 10. Deal with assets
 
