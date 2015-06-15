@@ -431,7 +431,7 @@ Here's an example of a web page created from the boilerplate that includes the s
 	<body>
 
 		<!-- Body content here -->
-		[Find header and footer components from registry.origami.ft.com and put them here]
+		[Find code of the header and footer components from <a href="http://registry.origami.ft.com">registry.origami.ft.com</a> and paste it here]
 
 	</body>
 	</html>
