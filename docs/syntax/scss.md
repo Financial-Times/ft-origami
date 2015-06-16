@@ -13,7 +13,7 @@ Sass features should be used only where they result in increased clarity and reu
 
 ##Sass version
 
-Component developers and Origami build tools *must* use Sass version ~3.4.0, and *should* fix any issues alerted by the compiler as deprecation warnings from 3.3.
+Component developers and Origami build tools *must* use LibSass version ~3.2.0.
 
 ##Syntax convention rules
 
