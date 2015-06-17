@@ -21,7 +21,7 @@ This tutorial assumes you are starting from a fresh install of a UNIX-like OS wi
 To use Origami components, you need two language runtimes (it doesn't matter if you are not writing your application in Node or Ruby, you still need to install them) and the <code>git(1)</code> version control system:
 
 * [Node.js](http://nodejs.org/) is the JavaScript runtime, which we need to run all the build tools, which are written in JavaScript.
-* [Ruby](https://www.ruby-lang.org) is required to run [scss-Lint](https://github.com/causes/scss-lint)
+* [Ruby](https://www.ruby-lang.org) is required to run [SCSS-Lint](https://github.com/causes/scss-lint)
 * [Git](https://www.git-scm.com) is required to install packages from Git repositories using [Bower](http://bower.io/), a package manager.
 
 ### Node.js
