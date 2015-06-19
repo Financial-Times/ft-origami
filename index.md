@@ -28,7 +28,7 @@ Origami usage is widely spread across the business, as most of the teams at the 
 			<li>FT.com</li>
 			<li>Next FT</li>
 			<li>The Web App</li>
-			<li>Interactive Graphics</li>
+			<li>Interactive</li>
 			<li>Membership (barriers, registration…)</li>
 		</ul>
 	</div>
