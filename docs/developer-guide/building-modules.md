@@ -367,7 +367,7 @@ Here's an example of a web page created from the boilerplate that includes the s
 	<html class="core">
 	<head>
 		<meta charset="utf-8" />
-		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<title>Origami template</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
