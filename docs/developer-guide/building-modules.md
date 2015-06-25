@@ -255,7 +255,7 @@ We'll assume for the purposes of this example that your CSS and JS are in `/clie
 	var obt = require('origami-build-tools');
 
 	gulp.task('build', function() {
-		obt.build(gulp, {
+		return obt.build(gulp, {
 			js: './client/js/main.js',
 			sass: './client/scss/main.scss',
 			buildJs: 'bundle.js',
@@ -265,7 +265,7 @@ We'll assume for the purposes of this example that your CSS and JS are in `/clie
 	});
 
 	gulp.task('verify', function() {
-		obt.verify(gulp);
+		return obt.verify(gulp);
 	});
 
 	gulp.task('watch', function() {
