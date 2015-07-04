@@ -59,7 +59,7 @@ If you do copy a reference to `this` into a separate variable, make it semantic:
 <?prettify?>
 	var post = this;
 
-<aside>ES6 offers lexical <code>this</code> binding as part of arrow functions, which provides a much more elegant solution to this problem, but currently we require Origami code to be written in ES5 syntax.  ES6 methods that can be polyfilled by the [polyfill service](https://cdn.polyfill.io) down to IE9 **may** be used (e.g. Promises), provided the component [declares each feature in the `browserFeatures` section of its `origami.json` file](http://origami.ft.com/docs/syntax/origamijson/#format).</aside>
+<aside>ES6 offers lexical <code>this</code> binding as part of arrow functions, which provides a much more elegant solution to this problem, but currently we require Origami code to be written in ES5 syntax.  ES6 methods that can be polyfilled by the <a href="https://cdn.polyfill.io">polyfill service</a> down to IE9 <em>may</em> be used (e.g. Promises), provided the component <a href="http://origami.ft.com/docs/syntax/origamijson/#format">declares each feature in the <code>browserFeatures</code> section of its <code>origami.json</code> file</a>.</aside>
 
 
 
@@ -239,7 +239,7 @@ This makes diffs easier to read, and reduces the chance of errors associated wit
 
 ###Comments
 
-Single line comments *should* be placeed on a newline above the subject of the comment.  An empty line *should* be inserted before the comment.
+Single line comments *should* be placed on a newline above the subject of the comment.  An empty line *should* be inserted before the comment.
 
 
 ## Subresources

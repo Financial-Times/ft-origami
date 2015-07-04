@@ -29,7 +29,7 @@ Sass does not have proper encapsulation or scope, so strict adherence to namespa
 
 * Class selectors (`.`) and Sass variables (`$`) *must* be prefixed with the module name, and written as hyphen separated lowercase strings
 	- GOOD: `.o-thing--large`, `$o-grid-mq-type: width;`
-	- BAD: `.largething`, '$GridIsResponsive: true;'
+	- BAD: `.largething`, `$GridIsResponsive: true;`
 * Pseudo class `:not` *should not* be used to avoid high specificity issues. Prefer classes and duplicated properties over specificity.
 	- GOOD: `.o-forms-input {} .o-forms-radio {}`
 	- BAD: `.o-forms-input {} .o-forms-input:not([type=radio]) {} .o-forms-input[type=radio] {}`
