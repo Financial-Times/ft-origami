@@ -7,7 +7,7 @@ permalink: /docs/syntax/web-service-description/
 
 # Web service description format
 
-All Origami web services are required to expose `/{version}/__about` endpoints to describe each version of the service.  The response give at this URL must be a JSON document conforming to the following format.
+All Origami web services are required to expose `/{version}/__about` endpoints to describe each version of the service.  The response given at this URL must be a JSON document conforming to the following format.
 
 ## Format
 

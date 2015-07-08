@@ -24,7 +24,7 @@ Origami components may have dependencies (via Bower) on third party components. 
 		<td>AJAX</td>
 		<td><a href="https://github.com/whatwg/fetch">fetch</a></td>
 		<td>jQuery, superagent</td>
-		<td>Components should <a href="#why_not_jquery">not use jQuery</a>, fetch is better and will be supported natively by browsers.  In the meantime a [polyfill exists](https://github.com/github/fetch) and is [available through the Polyfill Service](https://cdn.polyfill.io/).</td>
+		<td>Components should <a href="#why_not_jquery">not use jQuery</a>, fetch is better and will be supported natively by browsers.  In the meantime a <a href="https://github.com/github/fetch">polyfill exists</a> and is <a href="https://cdn.polyfill.io/">available through the Polyfill Service</a>.</td>
 	</tr><tr>
 		<td>Event delegation</td>
 		<td><a href="https://github.com/ftlabs/ftdomdelegate">ftdomdelegate</a></td>
@@ -34,7 +34,7 @@ Origami components may have dependencies (via Bower) on third party components. 
 		<td>JavaScript utils</td>
 		<td><a href="https://github.com/lodash/lodash-node">Lodash-node</a></td>
 		<td>Underscore, Lodash</td>
-		<td>Lodash is roughly functionally equivalent to Underscore, but generally delivers faster performance, and includes some useful things not available in Underscore. Lodash-node has the additional benefit of making each method individually requireable (the 'modern' version of its methods are preferred) e.g. `require('lodash-node/modern/functions/throttle')`</td>
+		<td>Lodash is roughly functionally equivalent to Underscore, but generally delivers faster performance, and includes some useful things not available in Underscore. Lodash-node has the additional benefit of making each method individually requireable (the 'modern' version of its methods are preferred) e.g. <code>require('lodash-node/modern/functions/throttle')</code></td>
 	</tr><tr>
 		<td>Template engine</td>
 		<td><a href="https://github.com/twitter/hogan.js">Hogan</a></td>
