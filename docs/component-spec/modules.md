@@ -308,7 +308,20 @@ Then enable Travis for the project from your [Travis profile page](https://travi
 
 Modules that are not openly published on GitHub *should* use Jenkins for CI.
 
-## Browser support
+## Documentation
+
+Module developers *should* apply the following checklist when creating documentation for the component:
+
+* Document code comprehensively using SASSDoc and JSDoc, and test that it is rendered correctly by the [code docs service](http://codedocs.webservices.ft.com/v1/docs/)
+* Write a README, comprising:
+	* A single-line description of what the module does
+	* A usage example targeted at the most common use case
+	* The licence, which should conform to the [Open source release policy](https://docs.google.com/document/d/1pI-qI3BrO5edFYdHcoDCH9wVbfbFvroclxSEtkXwpCw/edit)
+* If repo is in Github, set its home page URL to the module's page on the registry
+* Do not include standard info in the README which would apply equally to any other spec-compliant module
+* Do not include a full method or function reference in the README unless it's not possible to cover that using JSDoc/SASSdoc. Instead, if needed point the reader to the registry.
+
+### Browser support
 
 All modules *must* be tested with all the browsers [listed in the FT browser support policy](https://docs.google.com/a/ft.com/document/d/1dX92MPm9ZNY2jqFidWf_E6V4S6pLkydjcPmk5F989YI/edit#heading=h.wcrwnubj26sk), and if a module includes JavaScript, it must be error free in all the browsers that fall above the recommended minimum boundary for enhanced experience in that policy.
 
