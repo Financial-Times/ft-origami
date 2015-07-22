@@ -218,6 +218,17 @@ Overwriting the prototype wipes out the `constructor` property and makes inherit
 
 Modules *must not* animate elements using methods that do not utilise hardware acceleration if hardware accelerated alternatives are available.  For example, repositioning an element repeatedly using its `left` or `top` CSS properties is not allowed.  Instead, use [CSS transitions](https://developer.mozilla.org/en-US/docs/Web/Guide/CSS/Using_CSS_transitions) and [`will-change`](http://tabatkins.github.io/specs/css-will-change/).  On user agents that do not support accelerated animation, animation *should* not be used.
 
+## Feature stability
+
+JavaScript code in module components *must* use only those features defined as part of the ECMAScript 6 specification, including both syntax and API features.  Modules *must not* use JavaScript features that are proposed as part of any future version of the language, or which are not yet part of a finalised standard, or which are proprietary, even if polyfills for them are available.
+
+Product developers are expected to transpile ES6 syntax to be ES5 compatible if required.  Currently [Origami build tools](https://github.com/Financial-Times/origami-build-tools) does this automatically in all cases using BabelJS, with the assumption that no browser supports the ES6 syntax natively.
+
+<aside>
+  <h4>Polyfilling ES6 features</h4>
+  <p>Not all ES6 features are available in the <a href='https://cdn.polyfill.io'>polyfill service</a>.  It's OK to use these features anyway and bundle a polyfill in all browsers as part of the Babel transpilation, but it's a good idea to get the polyfill into the service as soon as possible so that sites can benefit from selective polyfilling.
+</aside>
+
 ## Syntax convention rules
 
 JavaScript *must* be linted with [JSHint](http://www.jshint.com/).  If you wish to specify a particular JSHint configuration you may do so at the module level with a `.jshintrc` file, and at the file level with a `/*jshint: ... */` comment.  If you specify neither of these, code *must* pass a JSHint check with the following settings:
