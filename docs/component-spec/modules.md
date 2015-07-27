@@ -308,7 +308,20 @@ Then enable Travis for the project from your [Travis profile page](https://travi
 
 Modules that are not openly published on GitHub *should* use Jenkins for CI.
 
-## Browser support
+## Documentation
+
+Module developers *should* apply the following checklist when creating documentation for the component:
+
+* Document code inline using [SassDoc](http://sassdoc.com/) and [JSDoc](http://usejsdoc.org/) — Test rendering using the [code docs service](http://codedocs.webservices.ft.com/v1/docs/)
+* Write a README, comprising:
+	* A single-line description of what the module does
+	* Examples detailing the most common use cases
+	* The licence, which should conform to the [Open source release policy](https://docs.google.com/document/d/1pI-qI3BrO5edFYdHcoDCH9wVbfbFvroclxSEtkXwpCw/edit)
+* Only document methods and functions in the README if they couldn't be to covered using JSDoc/SassDoc.
+* Avoid generic information in the README (e.g. installation steps that apply equally to all spec-compliant modules in general)
+* If the repository is hosted on GitHub, set its "Website" URL to point to the registry (e.g. `http://registry.origami.ft.com/components/o-grid`)
+
+### Browser support
 
 All modules *must* be tested with all the browsers [listed in the FT browser support policy](https://docs.google.com/a/ft.com/document/d/1dX92MPm9ZNY2jqFidWf_E6V4S6pLkydjcPmk5F989YI/edit#heading=h.wcrwnubj26sk), and if a module includes JavaScript, it must be error free in all the browsers that fall above the recommended minimum boundary for enhanced experience in that policy.
 
