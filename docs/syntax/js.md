@@ -81,7 +81,12 @@ Where the reference is to an element that is not itself owned DOM, the init func
 
 Where JavaScript exists to enhance elements, and accompanying CSS depends on knowing whether the JavaScript intends to apply (or has applied) that enhancement, the JavaScript *may* add a data attribute of the form `data-{modulename}-js` with no value to the root element of the component when the JavaScript initialises.  For example, o-tabs markup would not contain a `o--if-js` class, because the tabs content should remain visible even if the tabs JavaScript is not running on the page, but if the JavaScript does run, it could apply an `data-o-tabs-js` data attribute to allow the tabs CSS to hide all but the selected tab panel.
 
+## Error handling
 
+Modules *should* use [o-errors](http://registry.origami.ft.com/components/o-errors) to report runtime JavaScript errors and exceptions, as well as log notices and other significant events, using the `oErrors.log` custom event.
+
+<aside>
+Where modules do not explicitly convert exceptions into o-errors events, any unhandled exceptions will still be caught and reported if o-errors has been initalised on the page.  However, the report will lack critical information about the DOM elements to which the error relates.</aside>
 
 ## Configuration
 
