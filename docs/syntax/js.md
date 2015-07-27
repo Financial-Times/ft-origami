@@ -226,7 +226,7 @@ Product developers are expected to transpile ES6 syntax to be ES5 compatible if 
 
 <aside>
   <h4>Polyfilling ES6 features</h4>
-  <p>Not all ES6 features are available in the <a href='https://cdn.polyfill.io'>polyfill service</a>.  It's OK to use these features anyway and bundle a polyfill in all browsers as part of the Babel transpilation, but it's a good idea to get the polyfill into the service as soon as possible so that sites can benefit from selective polyfilling.
+  <p>Not all ES6 features are available in the <a href='https://cdn.polyfill.io'>polyfill service</a>.  It's OK to use these features anyway and bundle a polyfill in all browsers as part of the Babel transpilation, but it's a good idea to get the polyfill into the service as soon as possible so that sites can benefit from selective polyfilling.</p>
 </aside>
 
 ## Syntax convention rules
