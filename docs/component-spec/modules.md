@@ -317,7 +317,7 @@ Module developers *should* apply the following checklist when creating documenta
 	* A single-line description of what the module does
 	* Examples detailing the most common use cases
 	* The licence, which should conform to the [Open source release policy](https://docs.google.com/document/d/1pI-qI3BrO5edFYdHcoDCH9wVbfbFvroclxSEtkXwpCw/edit)
-* Only document methods and functions in the README if they couldn't be to covered using JSDoc/SassDoc.
+* Only document methods and functions in the README if they couldn't be covered using JSDoc/SassDoc.
 * Avoid generic information in the README (e.g. installation steps that apply equally to all spec-compliant modules in general)
 * If the repository is hosted on GitHub, set its "Website" URL to point to the registry (e.g. `http://registry.origami.ft.com/components/o-grid`)
 
