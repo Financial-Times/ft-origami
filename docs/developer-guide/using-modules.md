@@ -75,13 +75,12 @@ This is a close match for the recommended minimum support in the [FT browser sup
 
 ### Customising your cuts the mustard test
 
-Origami components declare their minimum requirements in terms of [Polyfill Service](http://cdn.polyfill.io/v1/docs/) features. In case it doesn't exist, like with CSS features, they can be declared as [Modernizr](http://modernizr.com/docs/) tests. Component developers are required to ensure that any JavaScript bundled with their module will run without error in all the browsers that pass the recommended CTM test above, but they may enhance their component's behaviour using more cutting edge features.  To verify the exact set of browser features required by the set of modules you are using:
+Origami components declare their minimum requirements in terms of [Polyfill Service](http://cdn.polyfill.io/v1/docs/) features. If the feature required is not in the polyfill service library, which is most often the case for CSS features, they can be declared as [Modernizr](http://modernizr.com/docs/) tests. Component developers are required to ensure that any JavaScript bundled with their module will run without error in all the browsers that pass the recommended CTM test above, but they may enhance their component's behaviour using more cutting edge features.  To verify the exact set of browser features required by the set of modules you are using:
 
 1. Make an aggregated list of the entries from all the `browserFeatures.required` sections of your chosen modules' [Origami manifest files]({{site.baseurl}}/docs/syntax/origamijson).
-2. Refer to the Modernizr [feature-detects](https://github.com/Modernizr/Modernizr/tree/master/feature-detects) that match the names given in the Origami configs.
-3. Either generate a custom build of Modernizr that includes those tests, or build an expression yourself that achieves the same result.
-
-Note that although the full Modernizr solution will likely be fairly complex, many sets of features became available as a group in all browsers.  You may therefore be able to make your test more succinct by taking advantage of this.  Refer to [http://iwanttouse.com](http://iwanttouse.com) for information on which features you 'get for free' with every test.
+2. Refer to the Polyfill Service `detect.js` in each [polyfill directory](https://github.com/Financial-Times/polyfill-service/tree/master/polyfills) that match the names given in the Origami configs.
+3. Refer to the Modernizr [feature-detects](https://github.com/Modernizr/Modernizr/tree/master/feature-detects), for those that aren't in the [Polyfill Service](http://cdn.polyfill.io/v1/docs/), that match the names given in the Origami configs.
+4. Build an expression that achieves that includes those tests.
 
 ### Styles for fallbacks and enhancements
 
