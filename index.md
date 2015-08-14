@@ -25,11 +25,11 @@ Origami usage is widely spread across the business, as most of the teams at the 
 <div class="o-grid-row">
 	<div data-o-grid-colspan="6">
 		<ul>
-			<li>FT.com</li>
+			<li><a href="http://www.ft.com">FT.com</a></li>
 			<li>Next FT</li>
-			<li>The Web App</li>
-			<li>Interactive</li>
-			<li>Membership (barriers, registration…)</li>
+			<li><a href="http://app.ft.com">FT Web App</a></li>
+			<li><a href="http://ig.ft.com">Interactive Graphics</a></li>
+			<li>The membership team (barriers, registration…)</li>
 		</ul>
 	</div>
 	<div data-o-grid-colspan="6">
