@@ -87,7 +87,7 @@ Use an HTML5 DOCTYPE, and add the `X-UA-Compatible` meta tag to force Internet E
 	<html>
 	<head>
 	   ...
-	   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+	   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
 
 ###Use UTF-8
