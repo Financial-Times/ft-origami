@@ -98,20 +98,20 @@
 			<div class="o-techdocs-sidebar">
 				<ul class="o-techdocs-nav">
 					<li {% if page.title == 'Home' %} aria-expanded="true" aria-selected="true"{% endif %}>
-					<a href="{{ site.baseurl }}/">Overview</a>
-					{% if page.section == 'Overview' %}
-					<ul class="o-techdocs-nav o-techdocs-nav--sub">
-						<li{% if page.title == 'Non-technical explainer' %} aria-selected="true"{% endif %}>
-							<a href="{{ site.baseurl }}/docs/overview/non-technical">Non-technical explainer</a>
-						</li>
-						<li{% if page.title == 'Statement of principles' %} aria-selected="true"{% endif %}>
-							<a href="{{ site.baseurl }}/docs/overview/principles">Statement of principles</a>
-						</li>
-						<li{% if page.title == 'Governance and policy' %} aria-selected="true"{% endif %}>
-							<a href="{{ site.baseurl }}/docs/overview/governance">Governance and policy</a>
-						</li>
-					</ul>
-					{% endif %}
+						<a href="{{ site.baseurl }}/">Overview</a>
+						{% if page.section == 'Overview' %}
+						<ul class="o-techdocs-nav o-techdocs-nav--sub">
+							<li{% if page.title == 'Non-technical explainer' %} aria-selected="true"{% endif %}>
+								<a href="{{ site.baseurl }}/docs/overview/non-technical">Non-technical explainer</a>
+							</li>
+							<li{% if page.title == 'Statement of principles' %} aria-selected="true"{% endif %}>
+								<a href="{{ site.baseurl }}/docs/overview/principles">Statement of principles</a>
+							</li>
+							<li{% if page.title == 'Governance and policy' %} aria-selected="true"{% endif %}>
+								<a href="{{ site.baseurl }}/docs/overview/governance">Governance and policy</a>
+							</li>
+						</ul>
+						{% endif %}
 					</li>
 					<li {% if page.title == 'Component spec' %} aria-expanded="true" aria-selected="true"{% endif %}>
 						<a href="{{ site.baseurl }}/docs/component-spec">Component spec</a>
