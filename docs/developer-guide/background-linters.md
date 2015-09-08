@@ -13,7 +13,7 @@ ESLint *must* be used when developing Origami components. It's useful to have li
 
 If you already have Origami Build Tools (OBT) and ESLint configured, skip to the [Installing background linter plugins](#Installing-background-linter-plugins) section.
 
-Ensure you have installed [Origami Build Tools](https://www.npmjs.com/package/origami-build-tools). This will provide you with Sass, SCSS-lint and provide instructions on how to set up Node.js and Ruby. 
+Ensure you have installed [Origami Build Tools](https://www.npmjs.com/package/origami-build-tools). This will provide you with Sass, scss-lint and provide instructions on how to set up Node.js and Ruby. 
 
 ### Install ESLint
 
@@ -71,6 +71,7 @@ You can have an `.eslintrc` configuration file per folder. It is recommended to 
 ## Installing background linter plugins
 
 ### SublimeLinter
+
 1. [Install the sublime text package manager](https://packagecontrol.io/installation), for more information on the package manager and how to use it, visit the [Package Control Usage page](https://packagecontrol.io/docs/usage).
 2. Install package  `SublimeLinter`
 3. Install package `SublimeLinter-eslint`
@@ -78,9 +79,8 @@ You can have an `.eslintrc` configuration file per folder. It is recommended to 
 
 ### JetBrains
 
- 1. Go to preferences and select plugins in the navigation
- 2. Click the 'Browse repositories...' button and search for 'ESLint'
- 3. Install the plugin
- 4. Restart your IDE
- 5. Enable the ESLint plugin in preferences > JavaScript > Code Quality Tools > ESLint
-
+1. Go to preferences and select plugins in the navigation
+2. Click the 'Browse repositories...' button and search for 'ESLint'
+3. Install the plugin
+4. Restart your IDE
+5. Enable the ESLint plugin in preferences > JavaScript > Code Quality Tools > ESLint
