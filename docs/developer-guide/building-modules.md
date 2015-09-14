@@ -57,7 +57,7 @@ You may already have Ruby, since it ships preinstalled on many computers.  To fi
 
 If you see an error, or the version does not match the latest version shown on the [Ruby website](https://www.ruby-lang.org/en/downloads/), you need to install/upgrade it.  You can install from source, via pre-built binaries or your preferred package manager.
 
-* [View Ruby install guide](https://www.ruby-lang.org/en/installation/)
+* [View Ruby install guide](https://github.com/Financial-Times/origami-build-tools/blob/master/TROUBLESHOOT.md#installing-ruby)
 
 ### Git
 
@@ -319,13 +319,15 @@ Remember that because `.gitignore` starts with a dot, it may not show up in your
 You're ready to run your build.  First, use origami-build-tools to install everything else that you need, including the Origami components that you want:
 
 <pre class="cli">
-<kbd>origami-build-tools install</kbd>
+<kbd>obt install</kbd>
 <output>...output telling us which tools are being installed...</output>
 </pre>
 
 This will install a number of additional tools, and create a `bower_components`directory in the root of your working tree, containing all the Origami modules you've listed in your `bower.json` file.
 
 It will also create a `node_modules` directory in the root of your working tree, containing [origami-build-tools](https://github.com/Financial-Times/origami-build-tools) and [gulp](http://gulpjs.com), which is all you need to run the build process.
+
+If a permissions error comes up, please refer to our [Troubleshooting guide](http://bit.ly/obt-troubleshoot) to fix it.
 
 Now bundle it all together.  This is done in one of two ways depending on whether you are using Gulp or not.
 
