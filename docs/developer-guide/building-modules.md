@@ -175,7 +175,9 @@ To ensure that the Origami modules can be found, it needs to be set up to search
 
 Now you need to create a Sass and/or JavaScript file that requires the Origami components as dependencies.  In Sass, you can do this with the `@import` statement, and in JavaScript, using `require`.  The syntax of the Sass import is:
 
+```scss
 	@import '{modulename}/main';
+```
 
 As an example (assuming you loaded these modules in your `bowser.json`), create a `main.scss` file at `/client/scss/main.scss` (relative to the root of your working tree), containing:
 
@@ -363,8 +365,10 @@ In both cases, (gulp and CLI) this will use origami-build-tools to read your pro
 
 Now, you can simply load the bundles in your web page.  If you saved your bundles to `/public` and that's also the root of your web server, you would write the following HTML:
 
+```html
 	<link rel="stylesheet" href="public/bundle.css" />
 	<script defer async src="public/bundle.css"></script>
+```
 
 It's advisable to put the `defer` and `async` attribute on your `<script>` tags, so that loading of the script does not block page load.  Origami components will never require you to load script prior to the DOM being rendered.  See Nicholas Zakas's post [The truth about non blocking JavaScript](http://calendar.perfplanet.com/2010/the-truth-about-non-blocking-javascript/) for more details.
 
@@ -374,78 +378,79 @@ The Origami spec includes instructions for how to structure your HTML page, so g
 
 Here's an example of a web page created from the boilerplate that includes the script and link tags in the right place, and also adds some content that we can style using the Origami components.  You can create this in your public directory as `/public/index.html`:
 
-	<!DOCTYPE html>
-	<html class="core">
-	<head>
-		<meta charset="utf-8" />
-		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-		<title>Origami template</title>
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+```html
+<!DOCTYPE html>
+<html class="core">
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<title>Origami template</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-		<!--
-			Perform your cuts the mustard test.
-		-->
-		<script>
-			var cutsTheMustard = ('querySelector' in document && 'localStorage' in window && 'addEventListener' in window);
+	<!--
+		Perform your cuts the mustard test.
+	-->
+	<script>
+		var cutsTheMustard = ('querySelector' in document && 'localStorage' in window && 'addEventListener' in window);
 
+		if (cutsTheMustard) {
+			// Swap the `core` class on the HTML element for an `enhanced` one
+			// We're doing it early in the head to avoid a flash of unstyled content
+			document.documentElement.className = document.documentElement.className.replace(/\bcore\b/g, 'enhanced');
+		}
+	</script>
+
+	<!--
+		Hide any enhanced experience content when in core mode, and vice versa.
+		Add any other inlined CSS here
+	-->
+	<style>
+		.core .o--if-js,
+		.enhanced .o--if-no-js { display: none !important; }
+	</style>
+
+	<!--
+		This is where your CSS bundle is loaded, and we add any inline CSS
+	-->
+	<link rel="stylesheet" href="public/bundle.css" />
+	<style>
+		/* Add any inline CSS here */
+	</style>
+
+	<!--
+		Unconditionally load the polyfill service to provide the best support
+		possible for modern web standards.
+		Only features missing in this user agent will be filled.
+		If you want, you can provide a list of features to polyfill, otherwise
+		all features that can be polyfilled will be.
+		See the polyfill service home page for more details:
+		https://cdn.polyfill.io/
+	-->
+	<script src="//polyfill.webservices.ft.com/v1/polyfill.min.js"></script>
+
+	<!--
+		Load the main JavaScript bundle asynchronously
+	-->
+	<script>
+		(function(src) {
 			if (cutsTheMustard) {
-				// Swap the `core` class on the HTML element for an `enhanced` one
-				// We're doing it early in the head to avoid a flash of unstyled content
-				document.documentElement.className = document.documentElement.className.replace(/\bcore\b/g, 'enhanced');
+				var o = document.createElement('script');
+				o.async = o.defer = true;
+				o.src = src;
+				var s = document.getElementsByTagName('script')[0];
+				s.parentNode.insertBefore(o, s);
 			}
-		</script>
+		}('public/bundle.js'));
+	</script>
+</head>
+<body>
 
-		<!--
-			Hide any enhanced experience content when in core mode, and vice versa.
-			Add any other inlined CSS here
-		-->
-		<style>
-			.core .o--if-js,
-			.enhanced .o--if-no-js { display: none !important; }
-		</style>
+	<!-- Body content here -->
+	[Find code of the header and footer components from <a href="http://registry.origami.ft.com">registry.origami.ft.com</a> and paste it here]
 
-		<!--
-			This is where your CSS bundle is loaded, and we add any inline CSS
-		-->
-		<link rel="stylesheet" href="public/bundle.css" />
-		<style>
-			/* Add any inline CSS here */
-		</style>
-
-		<!--
-			Unconditionally load the polyfill service to provide the best support
-			possible for modern web standards.
-			Only features missing in this user agent will be filled.
-			If you want, you can provide a list of features to polyfill, otherwise
-			all features that can be polyfilled will be.
-			See the polyfill service home page for more details:
-			https://cdn.polyfill.io/
-		-->
-		<script src="//polyfill.webservices.ft.com/v1/polyfill.min.js"></script>
-
-		<!--
-			Load the main JavaScript bundle asynchronously
-		-->
-		<script>
-			(function(src) {
-				if (cutsTheMustard) {
-					var o = document.createElement('script');
-					o.async = o.defer = true;
-					o.src = src;
-					var s = document.getElementsByTagName('script')[0];
-					s.parentNode.insertBefore(o, s);
-				}
-			}('public/bundle.js'));
-		</script>
-	</head>
-	<body>
-
-		<!-- Body content here -->
-		[Find code of the header and footer components from <a href="http://registry.origami.ft.com">registry.origami.ft.com</a> and paste it here]
-
-	</body>
-	</html>
-
+</body>
+</html>
+```
 
 Now, you should be able to start a static web server in the `/public` directory, and load your page.
 
@@ -474,16 +479,20 @@ Finally, we need to deal with assets - files from components that may be loaded 
 
 For very simple projects, this may be true.  But it's generally not a great idea to have your `bower_components` directory in the public part of your web server, and you may well want to process requests for front-end bundles via a router or [front-controller](http://en.wikipedia.org/wiki/Front_Controller_pattern) of some kind.  In that case, you should set the [o-assets config variables](http://github.com/Financial-Times/o-assets) in your main Sass file to the values that you want for your project.  Typically this just involves setting one global path prefix.  Here's an example of how you could do this in the main.scss example used earlier:
 
-	/* Set Origami config */
-	$o-assets-global-path: '/resources';
+```scss
+/* Set Origami config */
+$o-assets-global-path: '/resources';
 
-	/* Import Origami components */
-	@import 'o-tweet/main';
-	@import 'o-techdocs/main';
+/* Import Origami components */
+@import 'o-tweet/main';
+@import 'o-techdocs/main';
 
-	/* Add our own Sass */
-	.mything {
-		color: red;
-	}
+/* Add our own Sass */
+.mything {
+	color: red;
+}
+
+
+```
 
 If `o-tweet` wanted to load a background image that was at `/img/separator.gif` in the `o-tweet` repo, this config would result in the image being requested from `/resources/o-tweet/img/separator.gif`.  It is then up to you to handle this request and deliver the appropriate file from your `bower_components` directory.
