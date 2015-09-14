@@ -312,7 +312,7 @@ This will install a number of additional tools, and create a `bower_components`d
 
 It will also create a `node_modules` directory in the root of your working tree, containing [origami-build-tools](https://github.com/Financial-Times/origami-build-tools) and [gulp](http://gulpjs.com), which is all you need to run the build process.
 
-If  a permissions error comes up, please refer to our [Troubleshoot guide](http://bit.ly/obt-troubleshoot) to fix them.
+If a permissions error comes up, please refer to our [Troubleshooting guide](http://bit.ly/obt-troubleshoot) to fix it.
 
 Now bundle it all together.  This is done in one of two ways depending on whether you are using Gulp or not.
 
