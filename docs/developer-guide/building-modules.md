@@ -109,14 +109,15 @@ origami-build-tools@3.0.0 /home/ubuntu/.nvm/v0.12.30/lib/node_modules/origami-bu
 ### If you are using Gulp
 
 In the root of your working tree, create a file called `package.json`, with the following contents:
-
-	{
-	  "private": true,
-	  "devDependencies": {
-	    "origami-build-tools": "latest",
-	    "gulp": "latest"
-	  }
-	}
+```json
+{
+  "private": true,
+  "devDependencies": {
+    "origami-build-tools": "latest",
+    "gulp": "latest"
+  }
+}
+```
 
 The packages are listed in *devDependencies* because they are not required to run your application, only to build it.  Marking your project as *private* means that it cannot accidentally be published to the [npm registry](http://npmjs.org) as a public component.
 
@@ -126,17 +127,19 @@ Hopefully you know which Origami modules you want.  If you don't, check out the 
 
 Once you know which Origami modules you want, create a `bower.json` file in the root of your working tree.   This you have to create yourself, and it will be different for each project, but it must conform to the bower [configuration spec](http://bower.io/docs/creating-packages/), which is very similar to npm's config.  Here is an example that includes a few key components:
 
-	{
-		"name": "origami-demo",
-		"dependencies": {
-			"o-grid": "^3.0.3",
-			"o-header": "^3.0.0",
-			"o-footer": "^3.0.0",
-			"o-colors": "^2.4.7",
-			"o-fonts": "^1.6.7",
-			"o-ft-icons": "^2.3.4"
-		}
+```json
+{
+	"name": "origami-demo",
+	"dependencies": {
+		"o-grid": "^3.0.3",
+		"o-header": "^3.0.0",
+		"o-footer": "^3.0.0",
+		"o-colors": "^2.4.7",
+		"o-fonts": "^1.6.7",
+		"o-ft-icons": "^2.3.4"
 	}
+}
+```
 
 `dependencies` is a list of the front-end modules you would like to use in your project.  If the module is in the [Origami registry](http://registry.origami.ft.com) or the [bower registry](http://bower.io/search/), you can simply specify the version number you want (using [semver](http://semver.org) rules), otherwise you must provide the full URL of the component's repository followed by a hash and the version you want.
 
@@ -154,14 +157,16 @@ This time we're listing these as *dependencies*, not *devDependencies*, because 
 
 To ensure that the Origami modules can be found, it needs to be set up to search the Origami registry.  To do this, create a `.bowerrc` file in the root of your project's working tree (or in your home directory, if you want to apply it automatically to all projects), with the following contents:
 
-	{
-		"registry": {
-			"search": [
-				"http://registry.origami.ft.com",
-				"https://bower.herokuapp.com"
-			]
-		}
+```json
+{
+	"registry": {
+		"search": [
+			"http://registry.origami.ft.com",
+			"https://bower.herokuapp.com"
+		]
 	}
+}
+```
 
 <aside>
 	Sometimes when you create files starting with a dot, they won't show up in the directory listing, because starting a file with a dot marks it as a <em>hidden file</em>.  You can normally choose an option to 'show hidden files' or similar, and on the command line you can always see hidden files with the `ls -al` command.
@@ -176,7 +181,7 @@ To ensure that the Origami modules can be found, it needs to be set up to search
 Now you need to create a Sass and/or JavaScript file that requires the Origami components as dependencies.  In Sass, you can do this with the `@import` statement, and in JavaScript, using `require`.  The syntax of the Sass import is:
 
 ```scss
-	@import '{modulename}/main';
+@import '{modulename}/main';
 ```
 
 As an example (assuming you loaded these modules in your `bowser.json`), create a `main.scss` file at `/client/scss/main.scss` (relative to the root of your working tree), containing:
@@ -366,8 +371,8 @@ In both cases, (gulp and CLI) this will use origami-build-tools to read your pro
 Now, you can simply load the bundles in your web page.  If you saved your bundles to `/public` and that's also the root of your web server, you would write the following HTML:
 
 ```html
-	<link rel="stylesheet" href="public/bundle.css" />
-	<script defer async src="public/bundle.css"></script>
+<link rel="stylesheet" href="public/bundle.css" />
+<script defer async src="public/bundle.css"></script>
 ```
 
 It's advisable to put the `defer` and `async` attribute on your `<script>` tags, so that loading of the script does not block page load.  Origami components will never require you to load script prior to the DOM being rendered.  See Nicholas Zakas's post [The truth about non blocking JavaScript](http://calendar.perfplanet.com/2010/the-truth-about-non-blocking-javascript/) for more details.
