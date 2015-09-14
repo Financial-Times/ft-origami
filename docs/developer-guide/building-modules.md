@@ -57,7 +57,7 @@ You may already have Ruby, since it ships preinstalled on many computers.  To fi
 
 If you see an error, or the version does not match the latest version shown on the [Ruby website](https://www.ruby-lang.org/en/downloads/), you need to install/upgrade it.  You can install from source, via pre-built binaries or your preferred package manager.
 
-* [View Ruby install guide](https://github.com/Financial-Times/origami-build-tools/blob/master/TROUBLESHOOT.md#installing-ruby)
+* [View Ruby install guide](https://www.ruby-lang.org/en/installation/)
 
 ### Git
 
@@ -109,15 +109,14 @@ origami-build-tools@3.0.0 /home/ubuntu/.nvm/v0.12.30/lib/node_modules/origami-bu
 ### If you are using Gulp
 
 In the root of your working tree, create a file called `package.json`, with the following contents:
-```json
-{
-  "private": true,
-  "devDependencies": {
-    "origami-build-tools": "latest",
-    "gulp": "latest"
-  }
-}
-```
+
+	{
+	  "private": true,
+	  "devDependencies": {
+	    "origami-build-tools": "latest",
+	    "gulp": "latest"
+	  }
+	}
 
 The packages are listed in *devDependencies* because they are not required to run your application, only to build it.  Marking your project as *private* means that it cannot accidentally be published to the [npm registry](http://npmjs.org) as a public component.
 
@@ -127,19 +126,17 @@ Hopefully you know which Origami modules you want.  If you don't, check out the 
 
 Once you know which Origami modules you want, create a `bower.json` file in the root of your working tree.   This you have to create yourself, and it will be different for each project, but it must conform to the bower [configuration spec](http://bower.io/docs/creating-packages/), which is very similar to npm's config.  Here is an example that includes a few key components:
 
-```json
-{
-	"name": "origami-demo",
-	"dependencies": {
-		"o-grid": "^3.0.3",
-		"o-header": "^3.0.0",
-		"o-footer": "^3.0.0",
-		"o-colors": "^2.4.7",
-		"o-fonts": "^1.6.7",
-		"o-ft-icons": "^2.3.4"
+	{
+		"name": "origami-demo",
+		"dependencies": {
+			"o-grid": "^3.0.3",
+			"o-header": "^3.0.0",
+			"o-footer": "^3.0.0",
+			"o-colors": "^2.4.7",
+			"o-fonts": "^1.6.7",
+			"o-ft-icons": "^2.3.4"
+		}
 	}
-}
-```
 
 `dependencies` is a list of the front-end modules you would like to use in your project.  If the module is in the [Origami registry](http://registry.origami.ft.com) or the [bower registry](http://bower.io/search/), you can simply specify the version number you want (using [semver](http://semver.org) rules), otherwise you must provide the full URL of the component's repository followed by a hash and the version you want.
 
@@ -157,16 +154,14 @@ This time we're listing these as *dependencies*, not *devDependencies*, because 
 
 To ensure that the Origami modules can be found, it needs to be set up to search the Origami registry.  To do this, create a `.bowerrc` file in the root of your project's working tree (or in your home directory, if you want to apply it automatically to all projects), with the following contents:
 
-```json
-{
-	"registry": {
-		"search": [
-			"http://registry.origami.ft.com",
-			"https://bower.herokuapp.com"
-		]
+	{
+		"registry": {
+			"search": [
+				"http://registry.origami.ft.com",
+				"https://bower.herokuapp.com"
+			]
+		}
 	}
-}
-```
 
 <aside>
 	Sometimes when you create files starting with a dot, they won't show up in the directory listing, because starting a file with a dot marks it as a <em>hidden file</em>.  You can normally choose an option to 'show hidden files' or similar, and on the command line you can always see hidden files with the `ls -al` command.
@@ -180,54 +175,50 @@ To ensure that the Origami modules can be found, it needs to be set up to search
 
 Now you need to create a Sass and/or JavaScript file that requires the Origami components as dependencies.  In Sass, you can do this with the `@import` statement, and in JavaScript, using `require`.  The syntax of the Sass import is:
 
-```scss
-@import '{modulename}/main';
-```
+	@import '{modulename}/main';
 
 As an example (assuming you loaded these modules in your `bowser.json`), create a `main.scss` file at `/client/scss/main.scss` (relative to the root of your working tree), containing:
 
-```scss
-// Output grid helper classes and data-attributes
-$o-grid-is-silent: false;
+	// Output grid helper classes and data-attributes
+	$o-grid-is-silent: false;
 
-// Output @font-face declarations
-$o-fonts-is-silent: false;
+	// Output @font-face declarations
+	$o-fonts-is-silent: false;
 
-// Output icon helper classes
-$o-ft-icons-is-silent: false;
+	// Output icon helper classes
+	$o-ft-icons-is-silent: false;
 
-// Import Origami components
-@import 'o-grid/main';
-@import 'o-fonts/main';
-@import 'o-ft-icons/main';
-@import 'o-header/main';
-@import 'o-footer/main';
-@import 'o-colors/main';
+	// Import Origami components
+	@import 'o-grid/main';
+	@import 'o-fonts/main';
+	@import 'o-ft-icons/main';
+	@import 'o-header/main';
+	@import 'o-footer/main';
+	@import 'o-colors/main';
 
-// Store the default FT sans-serif font stack in a variable
-$sans-serif: oFontsGetFontFamilyWithFallbacks(BentonSans);
+	// Store the default FT sans-serif font stack in a variable
+	$sans-serif: oFontsGetFontFamilyWithFallbacks(BentonSans);
 
-html {
-	// The iconic pink background
-	@include oColorsFor(page, background);
+	html {
+		// The iconic pink background
+		@include oColorsFor(page, background);
 
-	// Set a font family on the whole document
-	font-family: $sans-serif;
+		// Set a font family on the whole document
+		font-family: $sans-serif;
 
-	// Prevent navigation menus from creating
-	// extra space on sides of the page
-	overflow-x: hidden;
-}
+		// Prevent navigation menus from creating
+		// extra space on sides of the page
+		overflow-x: hidden;
+	}
 
-body {
-	// Remove space around the document
-	margin: 0;
-}
+	body {
+		// Remove space around the document
+		margin: 0;
+	}
 
 
-// Add your own styles here…
-
-```
+	// Add your own styles here…
+	
 
 The syntax of the JavaSript require is:
 
@@ -235,21 +226,19 @@ The syntax of the JavaSript require is:
 
 As an example, create a `main.js` file at `/client/js/main.js`, containing:
 
-```javascript
-'use strict';
-// Require module
-require('o-header');
+	'use strict';
+	// Require module
+	require('o-header');
 
-// Wait until the page has loaded
-if (document.readyState === 'interactive' || document.readyState === 'complete') {
-	document.dispatchEvent(new CustomEvent('o.DOMContentLoaded'));
-}
-document.addEventListener('DOMContentLoaded', function() {
-	// Dispatch a custom event that will tell all required modules to initialise
-	document.dispatchEvent(new CustomEvent('o.DOMContentLoaded'));
-});
-
-```
+	// Wait until the page has loaded
+	if (document.readyState === 'interactive' || document.readyState === 'complete') {
+		document.dispatchEvent(new CustomEvent('o.DOMContentLoaded'));
+	}
+	document.addEventListener('DOMContentLoaded', function() {
+		// Dispatch a custom event that will tell all required modules to initialise
+		document.dispatchEvent(new CustomEvent('o.DOMContentLoaded'));
+	});
+	
 
 ## 6. Set up a gulp automation script
 
@@ -262,32 +251,30 @@ Now you need to set up the tasks to stitch everything together.  To do this, you
 
 We'll assume for the purposes of this example that your CSS and JS are in `/client/scss` and `/client/js` and you want to save the finshed bundles in `/public`.  Create a file called `gulpfile.js` in the root of your project's working tree, with the following contents:
 
-```javascript
-'use strict';
-var gulp = require('gulp');
-var obt = require('origami-build-tools');
+	'use strict';
+	var gulp = require('gulp');
+	var obt = require('origami-build-tools');
 
-gulp.task('build', function() {
-	return obt.build(gulp, {
-		js: './client/js/main.js',
-		sass: './client/scss/main.scss',
-		buildJs: 'bundle.js',
-		buildCss: 'bundle.css',
-		buildFolder: 'public'
+	gulp.task('build', function() {
+		return obt.build(gulp, {
+			js: './client/js/main.js',
+			sass: './client/scss/main.scss',
+			buildJs: 'bundle.js',
+			buildCss: 'bundle.css',
+			buildFolder: 'public'
+		});
 	});
-});
 
-gulp.task('verify', function() {
-	return obt.verify(gulp);
-});
+	gulp.task('verify', function() {
+		return obt.verify(gulp);
+	});
 
-gulp.task('watch', function() {
-	gulp.watch('./client/**/*', ['build']);
-});
+	gulp.task('watch', function() {
+		gulp.watch('./client/**/*', ['build']);
+	});
 
-gulp.task('default', ['verify', 'build', 'watch']);
-
-```
+	gulp.task('default', ['verify', 'build', 'watch']);
+	
 
 Taking it step by step:
 
@@ -319,15 +306,13 @@ Remember that because `.gitignore` starts with a dot, it may not show up in your
 You're ready to run your build.  First, use origami-build-tools to install everything else that you need, including the Origami components that you want:
 
 <pre class="cli">
-<kbd>obt install</kbd>
+<kbd>origami-build-tools install</kbd>
 <output>...output telling us which tools are being installed...</output>
 </pre>
 
 This will install a number of additional tools, and create a `bower_components`directory in the root of your working tree, containing all the Origami modules you've listed in your `bower.json` file.
 
 It will also create a `node_modules` directory in the root of your working tree, containing [origami-build-tools](https://github.com/Financial-Times/origami-build-tools) and [gulp](http://gulpjs.com), which is all you need to run the build process.
-
-If a permissions error comes up, please refer to our [Troubleshooting guide](http://bit.ly/obt-troubleshoot) to fix it.
 
 Now bundle it all together.  This is done in one of two ways depending on whether you are using Gulp or not.
 
@@ -369,10 +354,8 @@ In both cases, (gulp and CLI) this will use origami-build-tools to read your pro
 
 Now, you can simply load the bundles in your web page.  If you saved your bundles to `/public` and that's also the root of your web server, you would write the following HTML:
 
-```html
-<link rel="stylesheet" href="public/bundle.css" />
-<script defer async src="public/bundle.css"></script>
-```
+	<link rel="stylesheet" href="public/bundle.css" />
+	<script defer async src="public/bundle.css"></script>
 
 It's advisable to put the `defer` and `async` attribute on your `<script>` tags, so that loading of the script does not block page load.  Origami components will never require you to load script prior to the DOM being rendered.  See Nicholas Zakas's post [The truth about non blocking JavaScript](http://calendar.perfplanet.com/2010/the-truth-about-non-blocking-javascript/) for more details.
 
@@ -382,79 +365,78 @@ The Origami spec includes instructions for how to structure your HTML page, so g
 
 Here's an example of a web page created from the boilerplate that includes the script and link tags in the right place, and also adds some content that we can style using the Origami components.  You can create this in your public directory as `/public/index.html`:
 
-```html
-<!DOCTYPE html>
-<html class="core">
-<head>
-	<meta charset="utf-8" />
-	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-	<title>Origami template</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<!DOCTYPE html>
+	<html class="core">
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<title>Origami template</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-	<!--
-		Perform your cuts the mustard test.
-	-->
-	<script>
-		var cutsTheMustard = ('querySelector' in document && 'localStorage' in window && 'addEventListener' in window);
+		<!--
+			Perform your cuts the mustard test.
+		-->
+		<script>
+			var cutsTheMustard = ('querySelector' in document && 'localStorage' in window && 'addEventListener' in window);
 
-		if (cutsTheMustard) {
-			// Swap the `core` class on the HTML element for an `enhanced` one
-			// We're doing it early in the head to avoid a flash of unstyled content
-			document.documentElement.className = document.documentElement.className.replace(/\bcore\b/g, 'enhanced');
-		}
-	</script>
-
-	<!--
-		Hide any enhanced experience content when in core mode, and vice versa.
-		Add any other inlined CSS here
-	-->
-	<style>
-		.core .o--if-js,
-		.enhanced .o--if-no-js { display: none !important; }
-	</style>
-
-	<!--
-		This is where your CSS bundle is loaded, and we add any inline CSS
-	-->
-	<link rel="stylesheet" href="public/bundle.css" />
-	<style>
-		/* Add any inline CSS here */
-	</style>
-
-	<!--
-		Unconditionally load the polyfill service to provide the best support
-		possible for modern web standards.
-		Only features missing in this user agent will be filled.
-		If you want, you can provide a list of features to polyfill, otherwise
-		all features that can be polyfilled will be.
-		See the polyfill service home page for more details:
-		https://cdn.polyfill.io/
-	-->
-	<script src="//polyfill.webservices.ft.com/v1/polyfill.min.js"></script>
-
-	<!--
-		Load the main JavaScript bundle asynchronously
-	-->
-	<script>
-		(function(src) {
 			if (cutsTheMustard) {
-				var o = document.createElement('script');
-				o.async = o.defer = true;
-				o.src = src;
-				var s = document.getElementsByTagName('script')[0];
-				s.parentNode.insertBefore(o, s);
+				// Swap the `core` class on the HTML element for an `enhanced` one
+				// We're doing it early in the head to avoid a flash of unstyled content
+				document.documentElement.className = document.documentElement.className.replace(/\bcore\b/g, 'enhanced');
 			}
-		}('public/bundle.js'));
-	</script>
-</head>
-<body>
+		</script>
 
-	<!-- Body content here -->
-	[Find code of the header and footer components from <a href="http://registry.origami.ft.com">registry.origami.ft.com</a> and paste it here]
+		<!--
+			Hide any enhanced experience content when in core mode, and vice versa.
+			Add any other inlined CSS here
+		-->
+		<style>
+			.core .o--if-js,
+			.enhanced .o--if-no-js { display: none !important; }
+		</style>
 
-</body>
-</html>
-```
+		<!--
+			This is where your CSS bundle is loaded, and we add any inline CSS
+		-->
+		<link rel="stylesheet" href="public/bundle.css" />
+		<style>
+			/* Add any inline CSS here */
+		</style>
+
+		<!--
+			Unconditionally load the polyfill service to provide the best support
+			possible for modern web standards.
+			Only features missing in this user agent will be filled.
+			If you want, you can provide a list of features to polyfill, otherwise
+			all features that can be polyfilled will be.
+			See the polyfill service home page for more details:
+			https://cdn.polyfill.io/
+		-->
+		<script src="//polyfill.webservices.ft.com/v1/polyfill.min.js"></script>
+
+		<!--
+			Load the main JavaScript bundle asynchronously
+		-->
+		<script>
+			(function(src) {
+				if (cutsTheMustard) {
+					var o = document.createElement('script');
+					o.async = o.defer = true;
+					o.src = src;
+					var s = document.getElementsByTagName('script')[0];
+					s.parentNode.insertBefore(o, s);
+				}
+			}('public/bundle.js'));
+		</script>
+	</head>
+	<body>
+
+		<!-- Body content here -->
+		[Find code of the header and footer components from <a href="http://registry.origami.ft.com">registry.origami.ft.com</a> and paste it here]
+
+	</body>
+	</html>
+
 
 Now, you should be able to start a static web server in the `/public` directory, and load your page.
 
@@ -483,19 +465,17 @@ Finally, we need to deal with assets - files from components that may be loaded 
 
 For very simple projects, this may be true.  But it's generally not a great idea to have your `bower_components` directory in the public part of your web server, and you may well want to process requests for front-end bundles via a router or [front-controller](http://en.wikipedia.org/wiki/Front_Controller_pattern) of some kind.  In that case, you should set the [o-assets config variables](http://github.com/Financial-Times/o-assets) in your main Sass file to the values that you want for your project.  Typically this just involves setting one global path prefix.  Here's an example of how you could do this in the main.scss example used earlier:
 
-```scss
-/* Set Origami config */
-$o-assets-global-path: '/resources';
+	/* Set Origami config */
+	$o-assets-global-path: '/resources';
 
-/* Import Origami components */
-@import 'o-tweet/main';
-@import 'o-techdocs/main';
+	/* Import Origami components */
+	@import 'o-tweet/main';
+	@import 'o-techdocs/main';
 
-/* Add our own Sass */
-.mything {
-	color: red;
-}
-
-```
+	/* Add our own Sass */
+	.mything {
+		color: red;
+	}
+	
 
 If `o-tweet` wanted to load a background image that was at `/img/separator.gif` in the `o-tweet` repo, this config would result in the image being requested from `/resources/o-tweet/img/separator.gif`.  It is then up to you to handle this request and deliver the appropriate file from your `bower_components` directory.
