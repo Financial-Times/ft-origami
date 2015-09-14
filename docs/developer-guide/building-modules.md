@@ -227,7 +227,6 @@ body {
 
 // Add your own styles here…
 
-
 ```
 
 The syntax of the JavaSript require is:
@@ -249,7 +248,6 @@ document.addEventListener('DOMContentLoaded', function() {
 	// Dispatch a custom event that will tell all required modules to initialise
 	document.dispatchEvent(new CustomEvent('o.DOMContentLoaded'));
 });
-
 
 ```
 
@@ -288,7 +286,6 @@ gulp.task('watch', function() {
 });
 
 gulp.task('default', ['verify', 'build', 'watch']);
-
 
 ```
 
@@ -496,7 +493,6 @@ $o-assets-global-path: '/resources';
 .mything {
 	color: red;
 }
-
 
 ```
 
