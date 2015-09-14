@@ -66,7 +66,8 @@ The spec editor may choose to skip advisory group approval at their discretion, 
 
 The Origami advisory group comprises senior front end developers from across FT technology.  Advisory group members are responsible for:
 
-* subscribing to the `front-end-web` mailing list
+* subscribing to the [front-end-web](https://groups.google.com/a/ft.com/forum/#!forum/front-end-web) mailing list
+* subscribing to the [origami.announce](https://groups.google.com/a/ft.com/forum/#!forum/origami.announce) mailing list
 * subscribing to Origami spec changes via GitHub
 * passing comment on proposed spec changes on behalf of their project or programme group
 * passing on their team's feedback and requests to the Origami group
