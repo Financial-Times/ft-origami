@@ -1,3 +1,4 @@
+
 ---
 layout: default
 title: Installing modules manually
@@ -179,45 +180,49 @@ Now you need to create a Sass and/or JavaScript file that requires the Origami c
 
 As an example (assuming you loaded these modules in your `bowser.json`), create a `main.scss` file at `/client/scss/main.scss` (relative to the root of your working tree), containing:
 
-	// Output grid helper classes and data-attributes
-	$o-grid-is-silent: false;
+```scss
+// Output grid helper classes and data-attributes
+$o-grid-is-silent: false;
 
-	// Output @font-face declarations
-	$o-fonts-is-silent: false;
+// Output @font-face declarations
+$o-fonts-is-silent: false;
 
-	// Output icon helper classes
-	$o-ft-icons-is-silent: false;
+// Output icon helper classes
+$o-ft-icons-is-silent: false;
 
-	// Import Origami components
-	@import 'o-grid/main';
-	@import 'o-fonts/main';
-	@import 'o-ft-icons/main';
-	@import 'o-header/main';
-	@import 'o-footer/main';
-	@import 'o-colors/main';
+// Import Origami components
+@import 'o-grid/main';
+@import 'o-fonts/main';
+@import 'o-ft-icons/main';
+@import 'o-header/main';
+@import 'o-footer/main';
+@import 'o-colors/main';
 
-	// Store the default FT sans-serif font stack in a variable
-	$sans-serif: oFontsGetFontFamilyWithFallbacks(BentonSans);
+// Store the default FT sans-serif font stack in a variable
+$sans-serif: oFontsGetFontFamilyWithFallbacks(BentonSans);
 
-	html {
-		// The iconic pink background
-		@include oColorsFor(page, background);
+html {
+	// The iconic pink background
+	@include oColorsFor(page, background);
 
-		// Set a font family on the whole document
-		font-family: $sans-serif;
+	// Set a font family on the whole document
+	font-family: $sans-serif;
 
-		// Prevent navigation menus from creating
-		// extra space on sides of the page
-		overflow-x: hidden;
-	}
+	// Prevent navigation menus from creating
+	// extra space on sides of the page
+	overflow-x: hidden;
+}
 
-	body {
-		// Remove space around the document
-		margin: 0;
-	}
+body {
+	// Remove space around the document
+	margin: 0;
+}
 
 
-	// Add your own styles here…
+// Add your own styles here…
+
+
+```
 
 The syntax of the JavaSript require is:
 
@@ -225,19 +230,22 @@ The syntax of the JavaSript require is:
 
 As an example, create a `main.js` file at `/client/js/main.js`, containing:
 
-	'use strict';
-	// Require module
-	require('o-header');
+```javascript
+'use strict';
+// Require module
+require('o-header');
 
-	// Wait until the page has loaded
-	if (document.readyState === 'interactive' || document.readyState === 'complete') {
-		document.dispatchEvent(new CustomEvent('o.DOMContentLoaded'));
-	}
-	document.addEventListener('DOMContentLoaded', function() {
-		// Dispatch a custom event that will tell all required modules to initialise
-		document.dispatchEvent(new CustomEvent('o.DOMContentLoaded'));
-	});
+// Wait until the page has loaded
+if (document.readyState === 'interactive' || document.readyState === 'complete') {
+	document.dispatchEvent(new CustomEvent('o.DOMContentLoaded'));
+}
+document.addEventListener('DOMContentLoaded', function() {
+	// Dispatch a custom event that will tell all required modules to initialise
+	document.dispatchEvent(new CustomEvent('o.DOMContentLoaded'));
+});
 
+
+```
 
 ## 6. Set up a gulp automation script
 
@@ -250,29 +258,33 @@ Now you need to set up the tasks to stitch everything together.  To do this, you
 
 We'll assume for the purposes of this example that your CSS and JS are in `/client/scss` and `/client/js` and you want to save the finshed bundles in `/public`.  Create a file called `gulpfile.js` in the root of your project's working tree, with the following contents:
 
-	'use strict';
-	var gulp = require('gulp');
-	var obt = require('origami-build-tools');
+```javascript
+'use strict';
+var gulp = require('gulp');
+var obt = require('origami-build-tools');
 
-	gulp.task('build', function() {
-		return obt.build(gulp, {
-			js: './client/js/main.js',
-			sass: './client/scss/main.scss',
-			buildJs: 'bundle.js',
-			buildCss: 'bundle.css',
-			buildFolder: 'public'
-		});
+gulp.task('build', function() {
+	return obt.build(gulp, {
+		js: './client/js/main.js',
+		sass: './client/scss/main.scss',
+		buildJs: 'bundle.js',
+		buildCss: 'bundle.css',
+		buildFolder: 'public'
 	});
+});
 
-	gulp.task('verify', function() {
-		return obt.verify(gulp);
-	});
+gulp.task('verify', function() {
+	return obt.verify(gulp);
+});
 
-	gulp.task('watch', function() {
-		gulp.watch('./client/**/*', ['build']);
-	});
+gulp.task('watch', function() {
+	gulp.watch('./client/**/*', ['build']);
+});
 
-	gulp.task('default', ['verify', 'build', 'watch']);
+gulp.task('default', ['verify', 'build', 'watch']);
+
+
+```
 
 Taking it step by step:
 
