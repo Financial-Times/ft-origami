@@ -218,6 +218,7 @@ As an example (assuming you loaded these modules in your `bowser.json`), create 
 
 
 	// Add your own styles here…
+	
 
 The syntax of the JavaSript require is:
 
@@ -237,7 +238,7 @@ As an example, create a `main.js` file at `/client/js/main.js`, containing:
 		// Dispatch a custom event that will tell all required modules to initialise
 		document.dispatchEvent(new CustomEvent('o.DOMContentLoaded'));
 	});
-
+	
 
 ## 6. Set up a gulp automation script
 
@@ -273,6 +274,7 @@ We'll assume for the purposes of this example that your CSS and JS are in `/clie
 	});
 
 	gulp.task('default', ['verify', 'build', 'watch']);
+	
 
 Taking it step by step:
 
@@ -474,5 +476,6 @@ For very simple projects, this may be true.  But it's generally not a great idea
 	.mything {
 		color: red;
 	}
+	
 
 If `o-tweet` wanted to load a background image that was at `/img/separator.gif` in the `o-tweet` repo, this config would result in the image being requested from `/resources/o-tweet/img/separator.gif`.  It is then up to you to handle this request and deliver the appropriate file from your `bower_components` directory.
