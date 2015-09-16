@@ -331,6 +331,13 @@ Just type `gulp`:
 Compiling ./client/scss/main.scss</output>
 </pre>
 
+If the verify task fails try to remove your npm_modules and bower_components folder and run obt install again:
+
+<pre class="cli">
+<kbd>rm -rf ./npm_modules ./bower_components</kbd>
+<kbd>obt install</kbd>
+</pre>
+
 If you want to continue working on your CSS and JS code (edit your own code but not anything in the bower_components directory), you can also tell grunt to watch your files and automatically retrigger the build when you save a change.
 
 <pre class="cli">
