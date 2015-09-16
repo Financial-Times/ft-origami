@@ -24,6 +24,12 @@ To use Origami components, you need two language runtimes (it doesn't matter if 
 * [Ruby](https://www.ruby-lang.org) is required to run [SCSS-Lint](https://github.com/causes/scss-lint)
 * [Git](https://www.git-scm.com) is required to install packages from Git repositories using [Bower](http://bower.io/), a package manager.
 
+<aside>
+	<h4>Installing packages should not require root</h4>
+	<p>Node.js and Ruby come with the npm and RubyGems package managers respectively. You will need to ensure the package managers can install packages without requiring root access. If you get an `EACCES` error or `Gem::FilePermissionError` when installing a package you'll need to set up npm or RubyGems to 
+	<a href="https://github.com/Financial-Times/origami-build-tools/blob/master/TROUBLESHOOT.md#install">fix npm and Ruby permissions</a></p>
+</aside>
+
 ### Node.js
 
 Node.js can be installed manually or via package management, and often ships preinstalled on many OS distributions.  To find out if you have it installed and which version you have, type this at a terminal ([What's a terminal?](#note-terminal)):
@@ -38,11 +44,9 @@ Node.js can be installed manually or via package management, and often ships pre
 <output>v0.12.2</output>
 </pre>
 
-If you get an error, or the number you get does not match the most recent release shown on the [Node website](http://nodejs.org/), you need to install/upgrade Node.  If you're installing it on a personal machine, go to the Node website and click the Install button to download the installer suitable for your system:
+If you get an error, or the number you get does not match the most recent release shown on the [Node website](http://nodejs.org/), you need to install/upgrade Node.  
 
-* [Download the Node installer](http://nodejs.org/)
-
-If you want to install on a server or other maintained environment, you'll most likely prefer to use a package manager.  Node is available in most package management repositories, and instructions are available in the Node install guide:
+Node is available in most package management repositories, and instructions are available in the Node install guide:
 
 * [Install Node via package manager](https://github.com/joyent/node/wiki/Installing-Node.js-via-package-manager)
 
@@ -55,7 +59,7 @@ You may already have Ruby, since it ships preinstalled on many computers.  To fi
 <output>ruby 2.0.0p247 (2013-06-27 revision 41674) [universal.x86_64-darwin13]</output>
 </pre>
 
-If you see an error, or the version does not match the latest version shown on the [Ruby website](https://www.ruby-lang.org/en/downloads/), you need to install/upgrade it.  You can install from source, via pre-built binaries or your preferred package manager.
+If you see an error, or the version does not match the latest version shown on the [Ruby website](https://www.ruby-lang.org/en/downloads/), you need to install/upgrade it. You can install it from the rbenv version manager.
 
 * [View Ruby install guide](https://github.com/Financial-Times/origami-build-tools/blob/master/TROUBLESHOOT.md#installing-ruby)
 
