@@ -26,7 +26,7 @@ To use Origami components, you need two language runtimes (it doesn't matter if 
 
 <aside>
 	<h4>Installing packages should not require root</h4>
-	<p>Node.js and Ruby come with the npm and RubyGems package managers respectively. You will need to ensure the package managers can install packages without requiring root access. If you get an `EACCES` error or `Gem::FilePermissionError` when installing a package you'll need to set up npm or RubyGems to 
+	<p>Node.js and Ruby come with the npm and RubyGems package managers respectively. You will need to ensure the package managers can install packages without requiring root access. If you get an <code>EACCES</code> error or <code>Gem::FilePermissionError</code> when installing a package you'll need to set up npm or RubyGems to 
 	<a href="https://github.com/Financial-Times/origami-build-tools/blob/master/TROUBLESHOOT.md#install">fix npm and Ruby permissions</a></p>
 </aside>
 
@@ -335,7 +335,7 @@ Just type `gulp`:
 Compiling ./client/scss/main.scss</output>
 </pre>
 
-If the verify task fails try to remove your npm_modules and bower_components folder and run obt install again:
+If the `verify` task fails try to remove your npm_modules and bower_components folder and run obt install again:
 
 <pre class="cli">
 <kbd>rm -rf ./npm_modules ./bower_components</kbd>
@@ -379,7 +379,7 @@ The Origami spec includes instructions for how to structure your HTML page, so g
 
 * Learn more about [Core vs enhanced experience]({{site.baseurl}}/docs/developer-guide/using-modules/#core-vs-enhanced-experience)
 
-Here's an example of a web page created from the boilerplate that includes the script and link tags in the right place, and also adds some content that we can style using the Origami components.  You can create this in your public directory as `index.html`:
+Here's an example of a web page created from the boilerplate that includes the script and link tags in the right place, and also adds some content that we can style using the Origami components.  You can create this in your project root as `index.html`:
 
 	<!DOCTYPE html>
 	<html class="core">
@@ -453,7 +453,7 @@ Here's an example of a web page created from the boilerplate that includes the s
 	</body>
 	</html>
 
-Now, you should be able to start a static web server in the `/public` directory, and load your page.
+Now, you should be able to start a static web server in your project root directory, and load your page.
 
 If you are using a Mac, this command in Terminal will start a server:
 
