@@ -366,7 +366,7 @@ The Origami spec includes instructions for how to structure your HTML page, so g
 
 * Learn more about [Core vs enhanced experience]({{site.baseurl}}/docs/developer-guide/using-modules/#core-vs-enhanced-experience)
 
-Here's an example of a web page created from the boilerplate that includes the script and link tags in the right place, and also adds some content that we can style using the Origami components.  You can create this in your public directory as `/public/index.html`:
+Here's an example of a web page created from the boilerplate that includes the script and link tags in the right place, and also adds some content that we can style using the Origami components.  You can create this in your public directory as `index.html`:
 
 	<!DOCTYPE html>
 	<html class="core">
