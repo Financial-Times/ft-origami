@@ -274,7 +274,7 @@ We'll assume for the purposes of this example that your CSS and JS are in `/clie
 		gulp.watch('./client/**/*', ['build']);
 	});
 
-	gulp.task('default', ['verify', 'build', 'watch']);
+	gulp.task('default', ['verify', 'build']);
 	
 
 Taking it step by step:
