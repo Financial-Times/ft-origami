@@ -20,7 +20,7 @@
 		}
 	</script>
 
-	<link rel="stylesheet" href="//build.origami.ft.com/bundles/css?modules=o-fonts@^1.6.7,o-techdocs@^4.0.1,o-ft-icons@^2.3.6,o-grid@^3.2.5,o-buttons@^2.0.3" />
+	<link rel="stylesheet" href="//build.origami.ft.com/bundles/css?modules=o-fonts@^1.6.7,o-techdocs@^5.0.0,o-ft-icons@^2.3.6,o-grid@^4.0.0,o-buttons@^2.0.3" />
 	<link href="{{ site.baseurl }}/buildcache/bundle.css" rel="stylesheet" />
 	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" />
 
@@ -35,7 +35,7 @@
 				var s = document.getElementsByTagName('script')[0];
 				s.parentNode.insertBefore(o, s);
 			}
-		}('//build.origami.ft.com/bundles/js?modules=o-fonts@^1.6.7,o-techdocs@^4.0.1,o-ft-icons@^2.3.6,o-grid@^3.2.5,o-buttons@^2.0.3'));
+		}('//build.origami.ft.com/bundles/js?modules=o-fonts@^1.6.7,o-techdocs@^5.0.0,o-ft-icons@^2.3.6,o-grid@^4.0.0,o-buttons@^2.0.3'));
 
 		// Redirect the GH pages hostname to the custom one
 		if (location.hostname.indexOf('.github.io') !== -1) {
@@ -53,7 +53,6 @@
 	</script>
 </head>
 <body class="o-techdocs">
-
 	<header data-o-component="o-header" class="o-header {% if page.title == 'Home' %}o-header--pull-up o-header--transparent{% endif %}">
 		<div class="o-header__container">
 			<div class="o-header__inner">
@@ -77,7 +76,7 @@
 					</div>
 					<nav class="o-header__primary__right o-hierarchical-nav o-header__nav--primary-theme" data-o-component="o-hierarchical-nav">
 						<ul data-o-hierarchical-nav-level="1"><!--
-							--><li data-priority="1" aria-selected="true"><a href="/">Spec</a></li><!--
+							--><li data-priority="1" aria-selected="true"><a href="http://origami.ft.com">Spec</a></li><!--
 							--><li data-priority="1"><a href="http://registry.origami.ft.com">Registry</a></li><!--
 							--><li data-priority="1"><a href="http://styleguide.ft.com">Style Guide</a></li><!--
 							--><li data-more class="o-hierarchical-nav__parent" aria-hidden="true"><a><span class="o-hierarchical-nav__more--if-some">More <i class="o-hierarchical-nav__parent__down-arrow"></i></span><span class="o-hierarchical-nav__more--if-all">Menu <i class="o-hierarchical-nav__parent__down-arrow"></i></span></a></li><!--
@@ -93,116 +92,116 @@
 		{% include home-banner.html %}
 	{% endif %}
 
-	<div class="o-techdocs-layout">
+	<div class="o-techdocs-container">
+		<div class="o-techdocs-layout">
 
-		<div class="o-techdocs-sidebar">
-			<ul class="o-techdocs-nav">
-				<li {% if page.title == 'Home' %} aria-expanded="true" aria-selected="true"{% endif %}>
-				<a href="{{ site.baseurl }}/">Overview</a>
-				{% if page.section == 'Overview' %}
-				<ul class="o-techdocs-nav o-techdocs-nav--sub">
-					<li{% if page.title == 'Non-technical explainer' %} aria-selected="true"{% endif %}>
-						<a href="{{ site.baseurl }}/docs/overview/non-technical">Non-technical explainer</a>
+			<div class="o-techdocs-sidebar">
+				<ul class="o-techdocs-nav">
+					<li {% if page.title == 'Home' %} aria-expanded="true" aria-selected="true"{% endif %}>
+						<a href="{{ site.baseurl }}/">Overview</a>
+						{% if page.section == 'Overview' %}
+						<ul class="o-techdocs-nav o-techdocs-nav--sub">
+							<li{% if page.title == 'Non-technical explainer' %} aria-selected="true"{% endif %}>
+								<a href="{{ site.baseurl }}/docs/overview/non-technical">Non-technical explainer</a>
+							</li>
+							<li{% if page.title == 'Statement of principles' %} aria-selected="true"{% endif %}>
+								<a href="{{ site.baseurl }}/docs/overview/principles">Statement of principles</a>
+							</li>
+							<li{% if page.title == 'Governance and policy' %} aria-selected="true"{% endif %}>
+								<a href="{{ site.baseurl }}/docs/overview/governance">Governance and policy</a>
+							</li>
+						</ul>
+						{% endif %}
 					</li>
-					<li{% if page.title == 'Statement of principles' %} aria-selected="true"{% endif %}>
-						<a href="{{ site.baseurl }}/docs/overview/principles">Statement of principles</a>
+					<li {% if page.title == 'Component spec' %} aria-expanded="true" aria-selected="true"{% endif %}>
+						<a href="{{ site.baseurl }}/docs/component-spec">Component spec</a>
+						{% if page.section == 'Component spec' %}
+						<ul class="o-techdocs-nav o-techdocs-nav--sub">
+							<li{% if page.title == 'Modules' %} aria-selected="true"{% endif %}>
+								<a href="{{ site.baseurl }}/docs/component-spec/modules">Modules</a>
+							</li>
+							<li{% if page.title == 'Web services' %} aria-selected="true"{% endif %}>
+								<a href="{{ site.baseurl }}/docs/component-spec/web-services">Web services</a>
+							</li>
+						</ul>
+						{% endif %}
 					</li>
-					<li{% if page.title == 'Governance and policy' %} aria-selected="true"{% endif %}>
-						<a href="{{ site.baseurl }}/docs/overview/governance">Governance and policy</a>
+					<li {% if page.title == 'Syntax' %} aria-expanded="true" aria-selected="true"{% endif %}>
+						<a href="{{ site.baseurl }}/docs/syntax">Syntax standards</a>
+						{% if page.section == 'Syntax' %}
+						<ul class="o-techdocs-nav o-techdocs-nav--sub">
+							<li{% if page.title == 'JavaScript' %} aria-selected="true"{% endif %}>
+								<a href="{{ site.baseurl }}/docs/syntax/js">JavaScript</a>
+							</li>
+							<li{% if page.title == 'HTML' %} aria-selected="true"{% endif %}>
+								<a href="{{ site.baseurl }}/docs/syntax/html">HTML</a>
+							</li>
+							<li{% if page.title == 'SCSS' %} aria-selected="true"{% endif %}>
+								<a href="{{ site.baseurl }}/docs/syntax/scss">SCSS</a>
+							</li>
+							<li{% if page.title == 'Mustache' %} aria-selected="true"{% endif %}>
+								<a href="{{ site.baseurl }}/docs/syntax/mustache">Mustache</a>
+							</li>
+							<li{% if page.title == 'origami.json' %} aria-selected="true"{% endif %}>
+								<a href="{{ site.baseurl }}/docs/syntax/origamijson">origami.json</a>
+							</li>
+							<li{% if page.title == 'Web service description' %} aria-selected="true"{% endif %}>
+								<a href="{{ site.baseurl }}/docs/syntax/web-service-description">Web service description</a>
+							</li>
+							<li{% if page.title == 'Web service index' %} aria-selected="true"{% endif %}>
+								<a href="{{ site.baseurl }}/docs/syntax/web-service-index">Web service index</a>
+							</li>
+							<li{% if page.title == 'Metrics format' %} aria-selected="true"{% endif %}>
+								<a href="{{ site.baseurl }}/docs/syntax/metrics">Metrics</a>
+							</li>
+						</ul>
+						{% endif %}
+					</li>
+					<li {% if page.title == 'Developer guide' %} aria-expanded="true" aria-selected="true"{% endif %}>
+						<a href="{{ site.baseurl }}/docs/developer-guide/">Developer guide</a>
+						{% if page.section == 'Developer guide' %}
+						<ul class="o-techdocs-nav o-techdocs-nav--sub">
+							<li{% if page.title == 'Using modules' %} aria-selected="true"{% endif %}>
+								<a href="{{ site.baseurl }}/docs/developer-guide/using-modules/">Using modules</a>
+							</li>
+							<li{% if page.title == 'Installing modules manually' %} aria-selected="true"{% endif %}>
+								<a href="{{ site.baseurl }}/docs/developer-guide/building-modules/">Installing modules manually</a>
+							</li>
+							<li{% if page.title == 'Installing modules with the build service' %} aria-selected="true"{% endif %}>
+								<a href="{{ site.baseurl }}/docs/developer-guide/build-service/">Installing modules with the build service</a>
+							</li>
+							<li{% if page.title == 'Using web services' %} aria-selected="true"{% endif %}>
+								<a href="{{ site.baseurl }}/docs/developer-guide/web-services/">Using web services</a>
+							</li>
+							<li{% if page.title == 'General best practices' %} aria-selected="true"{% endif %}>
+								<a href="{{ site.baseurl }}/docs/developer-guide/general-best-practices/">General best practices</a>
+							</li>
+						</ul>
+						{% endif %}
+					</li>
+					<li{% if page.title == 'Third party component A List' %} aria-selected="true"{% endif %}>
+						<a href="{{ site.baseurl }}/docs/3rd-party-a-list">Third party component A List</a>
+					</li>
+					<li{% if page.title == 'Setting up background linters' %} aria-selected="true"{% endif %}>
+						<a href="{{ site.baseurl }}/docs/developer-guide/background-linters/">Setting up background linters</a>
 					</li>
 				</ul>
-				{% endif %}
-				</li>
-				<li {% if page.title == 'Component spec' %} aria-expanded="true" aria-selected="true"{% endif %}>
-					<a href="{{ site.baseurl }}/docs/component-spec">Component spec</a>
-					{% if page.section == 'Component spec' %}
-					<ul class="o-techdocs-nav o-techdocs-nav--sub">
-						<li{% if page.title == 'Modules' %} aria-selected="true"{% endif %}>
-							<a href="{{ site.baseurl }}/docs/component-spec/modules">Modules</a>
-						</li>
-						<li{% if page.title == 'Web services' %} aria-selected="true"{% endif %}>
-							<a href="{{ site.baseurl }}/docs/component-spec/web-services">Web services</a>
-						</li>
-					</ul>
-					{% endif %}
-				</li>
-				<li {% if page.title == 'Syntax' %} aria-expanded="true" aria-selected="true"{% endif %}>
-					<a href="{{ site.baseurl }}/docs/syntax">Syntax standards</a>
-					{% if page.section == 'Syntax' %}
-					<ul class="o-techdocs-nav o-techdocs-nav--sub">
-						<li{% if page.title == 'JavaScript' %} aria-selected="true"{% endif %}>
-							<a href="{{ site.baseurl }}/docs/syntax/js">JavaScript</a>
-						</li>
-						<li{% if page.title == 'HTML' %} aria-selected="true"{% endif %}>
-							<a href="{{ site.baseurl }}/docs/syntax/html">HTML</a>
-						</li>
-						<li{% if page.title == 'SCSS' %} aria-selected="true"{% endif %}>
-							<a href="{{ site.baseurl }}/docs/syntax/scss">SCSS</a>
-						</li>
-						<li{% if page.title == 'Mustache' %} aria-selected="true"{% endif %}>
-							<a href="{{ site.baseurl }}/docs/syntax/mustache">Mustache</a>
-						</li>
-						<li{% if page.title == 'origami.json' %} aria-selected="true"{% endif %}>
-							<a href="{{ site.baseurl }}/docs/syntax/origamijson">origami.json</a>
-						</li>
-						<li{% if page.title == 'Web service description' %} aria-selected="true"{% endif %}>
-							<a href="{{ site.baseurl }}/docs/syntax/web-service-description">Web service description</a>
-						</li>
-						<li{% if page.title == 'Web service index' %} aria-selected="true"{% endif %}>
-							<a href="{{ site.baseurl }}/docs/syntax/web-service-index">Web service index</a>
-						</li>
-						<li{% if page.title == 'Metrics format' %} aria-selected="true"{% endif %}>
-							<a href="{{ site.baseurl }}/docs/syntax/metrics">Metrics</a>
-						</li>
-					</ul>
-					{% endif %}
-				</li>
-				<li {% if page.title == 'Developer guide' %} aria-expanded="true" aria-selected="true"{% endif %}>
-					<a href="{{ site.baseurl }}/docs/developer-guide/">Developer guide</a>
-					{% if page.section == 'Developer guide' %}
-					<ul class="o-techdocs-nav o-techdocs-nav--sub">
-						<li{% if page.title == 'Using modules' %} aria-selected="true"{% endif %}>
-							<a href="{{ site.baseurl }}/docs/developer-guide/using-modules/">Using modules</a>
-						</li>
-						<li{% if page.title == 'Installing modules manually' %} aria-selected="true"{% endif %}>
-							<a href="{{ site.baseurl }}/docs/developer-guide/building-modules/">Installing modules manually</a>
-						</li>
-						<li{% if page.title == 'Installing modules with the build service' %} aria-selected="true"{% endif %}>
-							<a href="{{ site.baseurl }}/docs/developer-guide/build-service/">Installing modules with the build service</a>
-						</li>
-						<li{% if page.title == 'Using web services' %} aria-selected="true"{% endif %}>
-							<a href="{{ site.baseurl }}/docs/developer-guide/web-services/">Using web services</a>
-						</li>
-						<li{% if page.title == 'General best practices' %} aria-selected="true"{% endif %}>
-							<a href="{{ site.baseurl }}/docs/developer-guide/general-best-practices/">General best practices</a>
-						</li>
-						<li{% if page.title == 'Setting up background linters' %} aria-selected="true"{% endif %}>
-							<a href="{{ site.baseurl }}/docs/developer-guide/background-linters/">Setting up background linters</a>
-						</li>
-					</ul>
-					{% endif %}
-				</li>
-				<li{% if page.title == 'Third party component A List' %} aria-selected="true"{% endif %}>
-					<a href="{{ site.baseurl }}/docs/3rd-party-a-list">Third party component A List</a>
-				</li>
-			</ul>
-		</div>
+			</div>
 
-		<div class="o-techdocs-main o-techdocs-content">
-			{{ content }}
-		</div>
+			<div class="o-techdocs-main o-techdocs-content">
+				{{ content }}
+			</div>
 
+		</div>
 	</div>
 
 	<footer class="o-techdocs-footer">
-		<div class="o-techdocs-footer__inner">
-			<div class="footer-logo">
-				<span class="origami-logo"></span>Origami
-			</div>
-			<p>Help or advice for FT staff on any aspect of Origami is available from <a href="mailto:origami.support@ft.com">origami.support@ft.com</a> (public users please instead <a href="https://github.com/Financial-Times/ft-origami/issues">raise an issue on the repo</a>)</p>
-			<p>The Origami team uses <a href="https://www.browserstack.com/">BrowserStack</a> to test user interface components in most commonly used browsers.</p>
-			<p>&copy; THE FINANCIAL TIMES LTD {{ site.time | date:'%Y' }}. FT and 'Financial Times' are trademarks of The Financial Times Ltd.</p>
+		<div class="footer-logo">
+			<span class="origami-logo"></span>Origami
 		</div>
+		<p>Help or advice for FT staff on any aspect of Origami is available from <a href="mailto:origami.support@ft.com">origami.support@ft.com</a> (public users please instead <a href="https://github.com/Financial-Times/ft-origami/issues">raise an issue on the repo</a>)</p>
+		<p>The Origami team uses <a href="https://www.browserstack.com/">BrowserStack</a> to test user interface components in most commonly used browsers.</p>
+		<p>&copy; THE FINANCIAL TIMES LTD {{ site.time | date:'%Y' }}. FT and 'Financial Times' are trademarks of The Financial Times Ltd.</p>
 	</footer>
 
 	<div class="shipit">
