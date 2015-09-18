@@ -20,12 +20,17 @@ Ensure you have installed [Origami Build Tools](https://www.npmjs.com/package/or
 ESLint isn't installed automatically installed as part of OBT, so install it with the following command:
 
 #### Enter the following to your shell
-`npm install -g eslint`
+
+<pre class="cli">
+	<kbd>npm install -g eslint</kbd>
+</pre>
 
 You can have an `.eslintrc` configuration file per folder. It is recommended to use the Origami global configuration when developing Origami components.
 
 #### Create  a global configuration file
-`touch ~/.eslintrc`
+<pre class="cli">
+	<kbd>touch ~/.eslintrc</kbd>
+</pre>
 
 #### And add in the following options
 	{
