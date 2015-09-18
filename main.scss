@@ -7,15 +7,18 @@ body {
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 }
+.o-header__primary__left {
+	width: 180px;
+}
 
-@media (min-width: 45.625em) {
+@media (min-width: 46.25em) {
 	.o-header__primary__left {
 		min-width: 303px;
 		width: 33%;
 	}
 }
-/* Google custom search overrides */
 
+/* Google custom search overrides */
 .gsc-control-cse {
 	background-color: transparent !important;
 	border: none !important;
@@ -55,7 +58,7 @@ body {
 .c-search {
 	padding-top: 4px;
 
-	@media (max-width: 45.625em) {
+	@media (max-width: 46.25em) {
 		position: absolute;
 		top: 100%;
 		width: 100%;
@@ -105,11 +108,11 @@ body {
 .hero__primary {
 	padding-top: 120px;
 	margin-top: -55px;
-	margin-bottom: 15px;
+	// margin-bottom: 15px;
 	background: #131313 url(/img/hero.png) no-repeat center top;
 	background-size: cover;
 }
-@media (min-width: 45.625em) {
+@media (min-width: 46.25em) {
 	.hero__primary {
 		background: none;
 		padding-top: 40px;
@@ -163,20 +166,21 @@ body {
 }
 .tools {
 	list-style-type: none;
-	margin: 0;
+	margin-top: 0;
+	margin-bottom: 0;
 	padding: 0;
 	text-align: center;
 }
 .tools__action {
 	margin-bottom: 3em;
 
-	@media (min-width: 45.625em) {
+	@media (min-width: 46.25em) {
 		margin-bottom: 1em;
 	}
 }
 
 .also {
-	margin-top: 15px;
+	padding-top: 15px;
 	font-size: 1em;
 
 	h2 {
