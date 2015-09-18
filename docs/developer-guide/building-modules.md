@@ -317,7 +317,7 @@ You're ready to run your build.  First, use origami-build-tools to install every
 
 This will install a number of additional tools, and create a `bower_components`directory in the root of your working tree, containing all the Origami modules you've listed in your `bower.json` file.
 
-If bower fails it might be because your network is blocking the git protocol, Fix it with the [snippet provided](https://github.com/Financial-Times/origami-build-tools/blob/master/TROUBLESHOOT.md#error-fatal-unable-to-connect-to-githubcom).
+If bower fails it might be because your network is blocking the git protocol, fix it with the [snippet provided](https://github.com/Financial-Times/origami-build-tools/blob/master/TROUBLESHOOT.md#error-fatal-unable-to-connect-to-githubcom).
 
 It will also create a `node_modules` directory in the root of your working tree, containing [origami-build-tools](https://github.com/Financial-Times/origami-build-tools) and [gulp](http://gulpjs.com), which is all you need to run the build process.
 
@@ -335,7 +335,7 @@ Just type `gulp`:
 Compiling ./client/scss/main.scss</output>
 </pre>
 
-If the `verify` task fails try to remove your npm_modules and bower_components folder and run obt install again:
+If the `verify` task fails try to remove the project's local npm_modules and bower_components folder and run obt install again:
 
 <pre class="cli">
 <kbd>rm -rf ./npm_modules ./bower_components</kbd>
