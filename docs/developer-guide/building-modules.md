@@ -13,7 +13,7 @@ This tutorial assumes you are starting from a fresh install of a UNIX-like OS wi
 
 <aside>
 	<h4>No support for Windows</h4>
-	<p>Origami's build tools do not support Windows as a development environment and the instructions on this page assume you are using a UNIX-like OS.  Windows <strong>might</strong> work, to some degree, but we don't make any guarantees, either of what works today or what might continue to work in the future.  If you're a Windows user, consider running a Linux VM, or signing up for a free <a href="http://c9.io">Cloud9</a> account, and use their online Ubuntu VMs (but don't put any passwords or other secret data into C9 VMs)</p>
+	<p>Origami's build tools do not support Windows as a development environment and the instructions on this page assume you are using a UNIX-like OS.  Windows <strong>might</strong> work, to some degree, but we don't make any guarantees, either of what works today or what might continue to work in the future.  If you're a Windows user, consider running a Linux VM.</p>
 </aside>
 
 ## 1. Install Node.js, Ruby and Git
@@ -23,6 +23,12 @@ To use Origami components, you need two language runtimes (it doesn't matter if 
 * [Node.js](http://nodejs.org/) is the JavaScript runtime, which we need to run all the build tools, which are written in JavaScript.
 * [Ruby](https://www.ruby-lang.org) is required to run [SCSS-Lint](https://github.com/causes/scss-lint)
 * [Git](https://www.git-scm.com) is required to install packages from Git repositories using [Bower](http://bower.io/), a package manager.
+
+<aside>
+	<h4>Installing packages should not require root</h4>
+	<p>Node.js and Ruby come with the npm and RubyGems package managers respectively. You will need to ensure the package managers can install packages without requiring root access. If you get an <code>EACCES</code> error or <code>Gem::FilePermissionError</code> when installing a package you'll need to set up npm or RubyGems to 
+	<a href="https://github.com/Financial-Times/origami-build-tools/blob/master/TROUBLESHOOT.md#install">fix npm and Ruby permissions</a></p>
+</aside>
 
 ### Node.js
 
@@ -38,11 +44,9 @@ Node.js can be installed manually or via package management, and often ships pre
 <output>v0.12.2</output>
 </pre>
 
-If you get an error, or the number you get does not match the most recent release shown on the [Node website](http://nodejs.org/), you need to install/upgrade Node.  If you're installing it on a personal machine, go to the Node website and click the Install button to download the installer suitable for your system:
+If you get an error, or the number you get does not match the most recent release shown on the [Node website](http://nodejs.org/), you need to install/upgrade Node.  
 
-* [Download the Node installer](http://nodejs.org/)
-
-If you want to install on a server or other maintained environment, you'll most likely prefer to use a package manager.  Node is available in most package management repositories, and instructions are available in the Node install guide:
+Node is available in most package management repositories, and instructions are available in the Node install guide:
 
 * [Install Node via package manager](https://github.com/joyent/node/wiki/Installing-Node.js-via-package-manager)
 
@@ -55,7 +59,7 @@ You may already have Ruby, since it ships preinstalled on many computers.  To fi
 <output>ruby 2.0.0p247 (2013-06-27 revision 41674) [universal.x86_64-darwin13]</output>
 </pre>
 
-If you see an error, or the version does not match the latest version shown on the [Ruby website](https://www.ruby-lang.org/en/downloads/), you need to install/upgrade it.  You can install from source, via pre-built binaries or your preferred package manager.
+If you see an error, or the version does not match the latest version shown on the [Ruby website](https://www.ruby-lang.org/en/downloads/), you need to install/upgrade it. You can install it from the rbenv version manager.
 
 * [View Ruby install guide](https://github.com/Financial-Times/origami-build-tools/blob/master/TROUBLESHOOT.md#installing-ruby)
 
@@ -274,7 +278,7 @@ We'll assume for the purposes of this example that your CSS and JS are in `/clie
 		gulp.watch('./client/**/*', ['build']);
 	});
 
-	gulp.task('default', ['verify', 'build', 'watch']);
+	gulp.task('default', ['verify', 'build']);
 	
 
 Taking it step by step:
@@ -315,7 +319,13 @@ This will install a number of additional tools, and create a `bower_components`d
 
 It will also create a `node_modules` directory in the root of your working tree, containing [origami-build-tools](https://github.com/Financial-Times/origami-build-tools) and [gulp](http://gulpjs.com), which is all you need to run the build process.
 
-If a permissions error comes up, please refer to our [Troubleshooting guide](http://bit.ly/obt-troubleshoot) to fix it.
+<aside>
+<h4>Problems running obt install</h4>
+<ul>
+	<li>If bower fails it might be because your network is blocking the git protocol, fix it with the <a href="https://github.com/Financial-Times/origami-build-tools/blob/master/TROUBLESHOOT.md#error-fatal-unable-to-connect-to-githubcom">snippet provided</a>.</li>
+	<li>If a permissions error comes up, please refer to our <a href="http://bit.ly/obt-troubleshoot">Troubleshooting guide</a> to fix it.</li>
+</ul>
+</aside>
 
 Now bundle it all together.  This is done in one of two ways depending on whether you are using Gulp or not.
 
@@ -327,6 +337,13 @@ Just type `gulp`:
 <kbd>gulp</kbd>
 <output>Browserifying ./client/js/main.js
 Compiling ./client/scss/main.scss</output>
+</pre>
+
+If the `verify` task fails try to remove the project's local npm_modules and bower_components folder and run obt install again:
+
+<pre class="cli">
+<kbd>rm -rf ./npm_modules ./bower_components</kbd>
+<kbd>obt install</kbd>
 </pre>
 
 If you want to continue working on your CSS and JS code (edit your own code but not anything in the bower_components directory), you can also tell grunt to watch your files and automatically retrigger the build when you save a change.
@@ -366,7 +383,7 @@ The Origami spec includes instructions for how to structure your HTML page, so g
 
 * Learn more about [Core vs enhanced experience]({{site.baseurl}}/docs/developer-guide/using-modules/#core-vs-enhanced-experience)
 
-Here's an example of a web page created from the boilerplate that includes the script and link tags in the right place, and also adds some content that we can style using the Origami components.  You can create this in your public directory as `/public/index.html`:
+Here's an example of a web page created from the boilerplate that includes the script and link tags in the right place, and also adds some content that we can style using the Origami components.  You can create this in your project root as `index.html`:
 
 	<!DOCTYPE html>
 	<html class="core">
@@ -440,7 +457,7 @@ Here's an example of a web page created from the boilerplate that includes the s
 	</body>
 	</html>
 
-Now, you should be able to start a static web server in the `/public` directory, and load your page.
+Now, you should be able to start a static web server in your project root directory, and load your page.
 
 If you are using a Mac, this command in Terminal will start a server:
 
