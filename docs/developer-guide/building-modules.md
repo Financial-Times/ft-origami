@@ -317,11 +317,15 @@ You're ready to run your build.  First, use origami-build-tools to install every
 
 This will install a number of additional tools, and create a `bower_components`directory in the root of your working tree, containing all the Origami modules you've listed in your `bower.json` file.
 
-If bower fails it might be because your network is blocking the git protocol, fix it with the [snippet provided](https://github.com/Financial-Times/origami-build-tools/blob/master/TROUBLESHOOT.md#error-fatal-unable-to-connect-to-githubcom).
-
 It will also create a `node_modules` directory in the root of your working tree, containing [origami-build-tools](https://github.com/Financial-Times/origami-build-tools) and [gulp](http://gulpjs.com), which is all you need to run the build process.
 
-If a permissions error comes up, please refer to our [Troubleshooting guide](http://bit.ly/obt-troubleshoot) to fix it.
+<aside>
+<h4>Problems running obt install</h4>
+<ul>
+	<li>If bower fails it might be because your network is blocking the git protocol, fix it with the <a href="https://github.com/Financial-Times/origami-build-tools/blob/master/TROUBLESHOOT.md#error-fatal-unable-to-connect-to-githubcom">snippet provided</a>.</li>
+	<li>If a permissions error comes up, please refer to our <a href="http://bit.ly/obt-troubleshoot">Troubleshooting guide</a> to fix it.</li>
+</ul>
+</aside>
 
 Now bundle it all together.  This is done in one of two ways depending on whether you are using Gulp or not.
 
