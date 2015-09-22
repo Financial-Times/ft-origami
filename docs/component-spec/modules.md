@@ -302,7 +302,7 @@ Example:
 
 Modules *should* implement CI. If a module does so and is openly hosted on GitHub, it *must* use Travis CI, via the [origami-build-tools](https://github.com/Financial-Times/origami-build-tools) utility.  To invoke this in a module simply create a `.travis.yml` file in the root of the repo containing:
 
-<script src="https://gist.github.com/samgiles/a518205002ce9de60a39.js"></script>
+<script src="https://gist.github.com/AlbertoElias/8ad9ffc10c0d5521f85c.js"></script>
 
 Then enable Travis for the project from your [Travis profile page](https://travis-ci.org/profile).  The origami build tool will read the `bower.json` file, build the CSS and JavaScript bundles from the main files (the CSS in both silent and non-silent mode), and will verify that the resulting bundles are valid.
 

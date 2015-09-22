@@ -239,22 +239,11 @@ Product developers are expected to transpile ES6 syntax to be ES5 compatible if 
 
 ## Syntax convention rules
 
-JavaScript *must* be linted with [JSHint](http://www.jshint.com/).  If you wish to specify a particular JSHint configuration you may do so at the module level with a `.jshintrc` file, and at the file level with a `/*jshint: ... */` comment.  If you specify neither of these, code *must* pass a JSHint check with the following settings:
+JavaScript *must* be linted with [ESLint](http://www.eslint.org/).  If you wish to specify a particular ESLint configuration you may do so at the module level with a `.eslintrc` file, and at the file level with a `/*eslint ... */` comment.  If you specify neither of these, code *must* pass a ESLint check with the following settings:
 
-<div class="o-techdocs-gist" data-repo="Financial-Times/origami-build-tools" data-path="/config/jshint.json"></div>
+<div class="o-techdocs-gist" data-repo="Financial-Times/origami-build-tools" data-path="/config/.eslintrc"></div>
 
-Developers *should* stick to the above `jshintrc` config, since this represents a common standard across FT teams, but are permitted to make changes if desired.  In addition to the jshint rules:
-
-###One var per line
-
-The `var` statement *must* declare only one variable.  Use additional `var` statements for subsequent declarations:
-
-
-	var foo = "hello";
-	var bar = "goodbye";
-	var novalue;
-
-This makes diffs easier to read, and reduces the chance of errors associated with missing semicolons or commas.
+Developers *should* stick to the above `.eslintrc` config, since this represents a common standard across FT teams, but are permitted to make changes if desired.  In addition to the ESLint rules:
 
 ###Comments
 
