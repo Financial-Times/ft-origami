@@ -264,7 +264,7 @@ Where external resources are not within Origami modules, a [protocol-relative UR
 
 ### Inlining subresources
 
-In some cases it may be desirable or necessary to include the content of a static asset in a JavaScript source bundle (typically to include templates).  To do this, use the [textrequireify](http://git.svc.ft.com:8080/projects/OT/repos/textrequireify) transform for browserify, which provides a `requireText` method.  The [standard Origami build process]({{site.baseurl}}/docs/developer-guide/building-modules) includes this, so it is available through the build service ([learn more](https://github.com/Financial-Times/ft-origami/issues/110)).
+In some cases it may be desirable or necessary to include the content of a static asset in a JavaScript source bundle (typically to include templates).  To do this, use the [textrequireify](https://github.com/Financial-Times/origami-build-tools/blob/master/lib/plugins/textrequireify-loader.js) loader for webpack, which provides a `requireText` method.  The [standard Origami build process]({{site.baseurl}}/docs/developer-guide/building-modules) includes this, so it is available through the build service ([learn more](https://github.com/Financial-Times/ft-origami/issues/110)).
 
 You would write this in your JavaScript source:
 
