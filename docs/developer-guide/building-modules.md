@@ -285,7 +285,7 @@ Taking it step by step:
 
 * We configure three gulp tasks: `build`, `verify` and `watch`
 * `build` runs Sass to compile and minify `/client/scss/main.scss` to `/public/bundle.css`, and Browserify to compile `/client/js/main.js` to `/public/bundle.js`
-* `verify` runs [SCSS-Lint](https://github.com/brigade/scss-lint) on `/client/scss/main.scss` and [JSHint](http://jshint.com/) on `/client/js/main.js` to make sure the code is readable and free of syntax errors.  It enforces the coding standards defined by Origami for ([SCSS]({{site.baseurl}}/docs/syntax/scss/#syntax-convention-rules) and [JavaScript]({{site.baseurl}}/docs/syntax/js/#syntax-convention-rules))
+* `verify` runs [SCSS-Lint](https://github.com/brigade/scss-lint) on `/client/scss/main.scss` and [ESLint](http://eslint.org/) on `/client/js/main.js` to make sure the code is readable and free of syntax errors.  It enforces the coding standards defined by Origami for ([SCSS]({{site.baseurl}}/docs/syntax/scss/#syntax-convention-rules) and [JavaScript]({{site.baseurl}}/docs/syntax/js/#syntax-convention-rules))
 * `watch` runs the `build` tasks automatically when files in your client-side Sass or JS directories are updated
 
 The benefit of using gulp is that you can add your own build steps in addition to the standard Origami ones, so at this point, feel free to add your own code to the build and verify tasks.

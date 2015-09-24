@@ -184,7 +184,7 @@ Your styles should allow content to fit on screens down to around 300px wide.  I
 
 ###Lint your code
 
-Consider running [JSHint](http://www.jshint.com/) over your JavaScript.  The syntax standards used by Origami are a good set of rules to use:
+Consider running [ESLint](http://www.eslint.org/) over your JavaScript.  The syntax standards used by Origami are a good set of rules to use:
 
 * [Origami JavaScript syntax standard]({{site.baseurl}}/docs/syntax/js/#syntax-convention-rules)
 
