@@ -8,3 +8,7 @@ before_install:
 script:
   - obt test
   - obt verify
+cache:
+  directories:
+  - node_modules
+  
