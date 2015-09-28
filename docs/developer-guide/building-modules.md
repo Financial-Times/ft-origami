@@ -231,7 +231,6 @@ The syntax of the JavaSript require is:
 
 As an example, create a `main.js` file at `/client/js/main.js`, containing:
 
-	'use strict';
 	// Require module
 	require('o-header');
 
@@ -256,9 +255,8 @@ Now you need to set up the tasks to stitch everything together.  To do this, you
 
 We'll assume for the purposes of this example that your CSS and JS are in `/client/scss` and `/client/js` and you want to save the finshed bundles in `/public`.  Create a file called `gulpfile.js` in the root of your project's working tree, with the following contents:
 
-	'use strict';
-	var gulp = require('gulp');
-	var obt = require('origami-build-tools');
+	const gulp = require('gulp');
+	const obt = require('origami-build-tools');
 
 	gulp.task('build', function() {
 		return obt.build(gulp, {
