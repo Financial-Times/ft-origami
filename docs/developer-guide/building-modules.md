@@ -100,6 +100,15 @@ You now need a Node package to run the Origami build process.  How you install t
 
 Choose where you want to start building your project (normally this is also the root of a git repository, but it can be any folder on your computer).  A common pattern is to create a folder called `sandboxes` in your home directory, and then create a subdirectory with the name of your project, eg `~/sandboxes/origami-demo`.  We'll refer to this as the 'root of the working tree', because you'll create files and folders within the project folder which descend from the root of the project.
 
+<aside>
+<h4>Clone the boilerplate</h4>
+<p>All the files required to get started are in a repository. In the project root, type this at a terminal:</p>
+<pre class="cli">
+<kbd>git clone https://github.com/Financial-Times/origami-manual-build-boilerplate .</kbd>
+</pre>
+</aside>
+
+
 Install the build tools as a command line utility:
 
 <pre class="cli">
