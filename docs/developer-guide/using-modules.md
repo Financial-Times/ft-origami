@@ -15,7 +15,7 @@ If you are not sure which strategy to use to build your CSS and JS, consult the 
 
 <table class="o-techdocs-table">
 <tr><th>Feature</th><th>Building manually</th><th>Using the build service</th></tr>
-<tr><td>Unopinionated about your server-side technology stack</td><td>No.  You will need Node.js (for package management and build automation) and Ruby (for Sass compilation)</td><td>Yes, there is no requirement for any server-side code</td></tr>
+<tr><td>Unopinionated about your server-side technology stack</td><td>No.  You will need Node.js (for package management and build automation) and Ruby (for Sass linting)</td><td>Yes, there is no requirement for any server-side code</td></tr>
 <tr><td>Can get set up quickly</td><td>No.  If you're not familiar with Node.js and don't have any pre-requisites installed, getting set up could take you a couple of hours</td><td>Yes, a few minutes at most</td></tr>
 <tr><td>Can add your own front-end code to the Origami bundle</td><td>Yes, trivially</td><td>Not easily.  You'd have to publish that code as a standalone repo</td></tr>
 <tr><td>Can use public open source JavaScript modules like jQuery</td><td>Yes</td><td>Yes, provided that they have a CommonJS interface</td></tr>
