@@ -79,7 +79,6 @@
 							--><li data-priority="1" aria-selected="true"><a href="http://origami.ft.com">Spec</a></li><!--
 							--><li data-priority="1"><a href="http://registry.origami.ft.com">Registry</a></li><!--
 							--><li data-priority="1"><a href="http://styleguide.ft.com">Style Guide</a></li><!--
-							--><li data-priority="1"><a href="http://financial-times.github.io/origami-contributor-stats">Stats</a></li><!--
 							--><li data-more class="o-hierarchical-nav__parent" aria-hidden="true"><a><span class="o-hierarchical-nav__more--if-some">More <i class="o-hierarchical-nav__parent__down-arrow"></i></span><span class="o-hierarchical-nav__more--if-all">Menu <i class="o-hierarchical-nav__parent__down-arrow"></i></span></a></li><!--
 						--></ul>
 					</nav>
@@ -110,6 +109,9 @@
 							</li>
 							<li{% if page.title == 'Governance and policy' %} aria-selected="true"{% endif %}>
 								<a href="{{ site.baseurl }}/docs/overview/governance">Governance and policy</a>
+							</li>
+							<li{% if page.title == 'Origami contributor stats' %} aria-selected="true"{% endif %}>
+								<a href="https://financial-times.github.io/origami-contributor-stats">Origami contributor stats</a>
 							</li>
 						</ul>
 						{% endif %}
