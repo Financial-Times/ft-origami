@@ -249,33 +249,34 @@ Where styles need to be added specifically for a demo (e.g. to make the content 
 
 When choosing content for a demo, and deciding on the composition of a demo, component developers *must* craft realistic examples using real use cases.  If it's necessary to make demos contrived in order to demonstrate the full range of features of the component, multiple demos *should* be created, so that at least one demo (which *should* be the default-expanded demo) shows a realistic use case.
 
-### Demo config file
+### Demo config
 
-The demo config file tells the Build Service and the [origami-build-tools](https://github.com/Financial-Times/origami-build-tools) what demo files to build. It has two properties:
+The demo config properties in your `origami.json` tells the Build Service and the [origami-build-tools](https://github.com/Financial-Times/origami-build-tools) what demo files to build. It has two properties:
 
-* `options`: __Object__ configuration to apply to all demos (unless overridden for a specific demo)
+* `demosDefaults`: __Object__ configuration to apply to all demos (unless overridden for a specific demo)
 * `demos`: __Array__ list of demos to build
 
-Options, and individual demos, can have the following properties:
+`demosDefaults`, and individual demos, can have the following properties:
 
 * `template`: __String__ The mustache template to render. (_Required_)
 * `sass`: __String__ The Sass file to compile. (_Optional_)
 * `js`: __String__ The JS file to build with Browserify. (_Optional_)
 * `data`: __String__ Data to pass to the mustache template. (_Optional_)
 * `documentClasses`: __String__ CSS classes to set on the `<html>` tag. (_Optional_)
-* `expanded`: __Boolean__ (default: `true`) Whether the demo should be shown in expanded form in the [Registry](registry.origami.ft.com). (_Optional_)
-* `description`: __String__ Explanation of the purpose of the demo. (_Optional_)
+* `expanded`: __Boolean__ Whether the demo should be shown in expanded form in the [Registry](registry.origami.ft.com). (_Required_)
 * `dependencies`: __Array__ List of strings of other modules that are only needed for one or more demos and will be loaded via the build service. They follow the same structure as how the build service works. (e.g.: "o-ft-icons@^2.3.1" or "o-ft-icons") (_Optional_)
 
 Individual demos also have another property:
 
 * `name`: __String__ Demo name which will also be used as the name of the outputted html file. (_Required_)
+* `description`: __String__ Explanation of the purpose of the demo. (_Required_)
 
 Example:
 
 
 	{
-		"options": {
+		....
+		"demosDefaults": {
 			"sass": "demos/src/demo.scss",
 			"data": "demos/src/data.json",
 			"documentClasses": "o-hoverable-on",
@@ -295,6 +296,7 @@ Example:
 				"description": "Demo of obscure but realistic scenario."
 			}
 		]
+		....
 	}
 
 
