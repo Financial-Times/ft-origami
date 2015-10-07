@@ -98,7 +98,7 @@ All origami components, whether modules or web services, should be discoverable 
 </tr><tr>
 	<td><code>&nbsp;&nbsp;demosDefaults:&nbsp;{</code></td>
 	<td>object</td>
-	<td>(optional) Default options to be applied to all demos. Please check out the different options in the [modules component spec](http://origami.ft.com/docs/component-spec/modules/#demo-config)</td>
+	<td>(optional) Default options to be applied to all demos. Please check out the options in the [modules component spec](http://origami.ft.com/docs/component-spec/modules/#demo-config)</td>
 </tr><tr>
 	<td><code>&nbsp;&nbsp;}</code></td>
 	<td></td>
@@ -110,7 +110,7 @@ All origami components, whether modules or web services, should be discoverable 
 </tr><tr>
 	<td><code>&nbsp;&nbsp;&nbsp;&nbsp;{</code></td>
 	<td>object</td>
-	<td>A config object to be applied for each demo (repeatable). Please check out the different options in the [modules component spec](http://origami.ft.com/docs/component-spec/modules/#demo-config)</td>
+	<td>A config object to be applied for each demo (repeatable). Please check out the options in the [modules component spec](http://origami.ft.com/docs/component-spec/modules/#demo-config)</td>
 </tr><tr>
 	<td><code>&nbsp;&nbsp;&nbsp;&nbsp;}</code></td>
 	<td></td>
