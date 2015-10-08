@@ -98,7 +98,35 @@ All origami components, whether modules or web services, should be discoverable 
 </tr><tr>
 	<td><code>&nbsp;&nbsp;demosDefaults:&nbsp;{</code></td>
 	<td>object</td>
-	<td>(optional) Default options to be applied to all demos. Please check out the options in the [modules component spec](http://origami.ft.com/docs/component-spec/modules/#demo-config)</td>
+	<td>(optional) Default options to be applied to all demos.</td>
+</tr><tr>
+	<td><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;template</code></td>
+	<td>string*</td>
+	<td>The mustache template to render.</td>
+</tr><tr>
+	<td><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sass</code></td>
+	<td>string</td>
+	<td>(optional) The Sass file to compile.</td>
+</tr><tr>
+	<td><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;js</code></td>
+	<td>string</td>
+	<td>(optional) The JS file to build with Browserify.</td>
+</tr><tr>
+	<td><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;data</code></td>
+	<td>string</td>
+	<td>(optional) Data to pass to the mustache template.</td>
+</tr><tr>
+	<td><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;documentClasses</code></td>
+	<td>string</td>
+	<td>(optional) CSS classes to set on the `<html>` tag.</td>
+</tr><tr>
+	<td><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;dependencies</code></td>
+	<td>array</td>
+	<td>(optional) List of strings of other modules that are only needed for one or more demos and will be loaded via the build service. They follow the same structure as how the build service works. (e.g.: "o-ft-icons@^2.3.1" or "o-ft-icons").</td>
+</tr><tr>
+	<td><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;expanded</code></td>
+	<td>boolean</td>
+	<td>(optional) Whether the demo should be shown in expanded form in the [Registry](registry.origami.ft.com).</td>
 </tr><tr>
 	<td><code>&nbsp;&nbsp;}</code></td>
 	<td></td>
@@ -106,11 +134,19 @@ All origami components, whether modules or web services, should be discoverable 
 </tr><tr>
 	<td><code>&nbsp;&nbsp;demos:&nbsp;[</code></td>
 	<td>array</td>
-	<td>(optional) For modules only, paths within the repo to HTML pages that demonstrate the functionality of the module.  Array, may refer to more than one demo.</td>
+	<td>(optional) Array of individual demos. You can also apply the same properties as `demosDefaults` to specific demos. </td>
 </tr><tr>
 	<td><code>&nbsp;&nbsp;&nbsp;&nbsp;{</code></td>
 	<td>object</td>
 	<td>A config object to be applied for each demo (repeatable). Please check out the options in the [modules component spec](http://origami.ft.com/docs/component-spec/modules/#demo-config)</td>
+</tr><tr>
+	<td><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;name</code></td>
+	<td>string*</td>
+	<td>Demo name which will also be used as the name of the outputted html file.</td>
+</tr><tr>
+	<td><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;description</code></td>
+	<td>string*</td>
+	<td>Explanation of the purpose of the demo.</td>
 </tr><tr>
 	<td><code>&nbsp;&nbsp;&nbsp;&nbsp;}</code></td>
 	<td></td>

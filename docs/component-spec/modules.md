@@ -256,20 +256,7 @@ The demo config properties in your `origami.json` tells the Build Service and th
 * `demosDefaults`: __Object__ configuration to apply to all demos (unless overridden for a specific demo)
 * `demos`: __Array__ list of demos to build
 
-`demosDefaults`, and individual demos, can have the following properties:
-
-* `template`: __String__ The mustache template to render. (_Required_)
-* `sass`: __String__ The Sass file to compile. (_Optional_)
-* `js`: __String__ The JS file to build with Browserify. (_Optional_)
-* `data`: __String__ Data to pass to the mustache template. (_Optional_)
-* `documentClasses`: __String__ CSS classes to set on the `<html>` tag. (_Optional_)
-* `expanded`: __Boolean__ Whether the demo should be shown in expanded form in the [Registry](registry.origami.ft.com).
-* `dependencies`: __Array__ List of strings of other modules that are only needed for one or more demos and will be loaded via the build service. They follow the same structure as how the build service works. (e.g.: "o-ft-icons@^2.3.1" or "o-ft-icons") (_Optional_)
-
-Individual demos also have specific properties:
-
-* `name`: __String__ Demo name which will also be used as the name of the outputted html file. (_Required_)
-* `description`: __String__ Explanation of the purpose of the demo. (_Required_)
+You can check out an in depth guide of all the properties in the [origami.json syntax page](http://origami.ft.com/docs/syntax/origamijson/#format).
 
 Example:
 
