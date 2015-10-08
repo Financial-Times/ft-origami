@@ -7,7 +7,7 @@ permalink: /docs/overview/contributor-stats/
 
 <link rel="stylesheet" href="//build.origami.ft.com/bundles/css?modules=o-forms@1.0.3,o-buttons@^3.0.0" />
 
-# Origami Contributor stats
+# Contributor stats
 
 <div id="token-message" class="o-forms-message o-forms-message--error">
 </div>
