@@ -71,7 +71,7 @@ The following requirements apply to creating a Origami-compatible module compone
 * not contain build scripts except as required for development and testing.
 * not contain configuration files that create exceptions to rules advised by this spec (such as `editorconfig`, `bowerrc` or `jshintrc`) unless absolutely necessary.
 * be buildable using the standard build process described by the [build service]({{site.baseurl}}/docs/developer-guide/build-service/)
-* list all build, development and testing scripts as ignored in the module's bowser configuration.
+* list all build, development and testing scripts as ignored in the module's bower configuration.
 * where there is a dependency on a web service component (e.g. because the module is a JavaScript library that makes AJAX requests to a service), be compatible with the version of the web service API that carries the same major version number as the module.  For example, version 2.4.5, 2.4.6, and 2.7 of a module *must* all be compatible with API version 2 of the web service.
 * contain a single 'main' file for each included language from which all other files of the same language are ultimate dependencies (using `require` for JS, `@import` for CSS or `{>}` for mustache as appropriate).  These main files *must* be called `main.js`, `main.scss` and `main.mustache` respectively and *must* be in the module root.
 * include a README.md file in the root of the repo, which must contain, where applicable:
