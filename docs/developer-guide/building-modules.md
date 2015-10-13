@@ -48,7 +48,7 @@ If you get an error, or the number you get does not match the most recent releas
 
 Node is available in most package management repositories, and instructions are available in the Node install guide:
 
-* [Install Node via package manager](https://github.com/joyent/node/wiki/Installing-Node.js-via-package-manager)
+* [Install Node via package manager](https://nodejs.org/en/download/package-manager)
 
 ### Ruby
 
