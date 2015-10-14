@@ -26,7 +26,7 @@ To use Origami components, you need two language runtimes (it doesn't matter if 
 
 <aside>
 	<h4>Installing packages should not require root</h4>
-	<p>Node.js and Ruby come with the npm and RubyGems package managers respectively. You will need to ensure the package managers can install packages without requiring root access. If you get an <code>EACCES</code> error or <code>Gem::FilePermissionError</code> when installing a package you'll need to set up npm or RubyGems to 
+	<p>Node.js and Ruby come with the npm and RubyGems package managers respectively. You will need to ensure the package managers can install packages without requiring root access. If you get an <code>EACCES</code> error or <code>Gem::FilePermissionError</code> when installing a package you'll need to set up npm or RubyGems to
 	<a href="https://github.com/Financial-Times/origami-build-tools/blob/master/TROUBLESHOOT.md#install">fix npm and Ruby permissions</a></p>
 </aside>
 
@@ -191,7 +191,7 @@ Now you need to create a Sass and/or JavaScript file that requires the Origami c
 
 	@import '{modulename}/main';
 
-As an example (assuming you loaded these modules in your `bowser.json`), create a `main.scss` file at `/client/scss/main.scss` (relative to the root of your working tree), containing:
+As an example (assuming you loaded these modules in your `bower.json`), create a `main.scss` file at `/client/scss/main.scss` (relative to the root of your working tree), containing:
 
 	// Output grid helper classes and data-attributes
 	$o-grid-is-silent: false;
@@ -232,7 +232,7 @@ As an example (assuming you loaded these modules in your `bowser.json`), create 
 
 
 	// Add your own styles here…
-	
+
 
 The syntax of the JavaSript require is:
 
@@ -286,7 +286,7 @@ We'll assume for the purposes of this example that your CSS and JS are in `/clie
 	});
 
 	gulp.task('default', ['verify', 'build']);
-	
+
 
 Taking it step by step:
 
@@ -502,6 +502,6 @@ For very simple projects, this may be true.  But it's generally not a great idea
 	.mything {
 		color: red;
 	}
-	
+
 
 If `o-tweet` wanted to load a background image that was at `/img/separator.gif` in the `o-tweet` repo, this config would result in the image being requested from `/resources/o-tweet/img/separator.gif`.  It is then up to you to handle this request and deliver the appropriate file from your `bower_components` directory.
