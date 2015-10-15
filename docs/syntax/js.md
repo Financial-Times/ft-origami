@@ -128,7 +128,7 @@ When using selector engines other than native `querySelector`, modules *must not
 
 Modules *may* assume that any HTML markup that relates to their component follows the hierarchical structure specified in their module's Mustache template. However, modules *should not* make assumptions about the order of HTML elements, and should, as far as possible, cope with the presence within the component of elements not specified in the template.
 
-Modules *must* not throw an error if there are no instances of the module's owned DOM in the page.
+Modules *must not* throw an error if there are no instances of the module's owned DOM in the page.
 
 ## Communicating with host page code and other components
 
@@ -224,7 +224,7 @@ Overwriting the prototype wipes out the `constructor` property and makes inherit
 
 ## Animation
 
-Modules *must not* animate elements using methods that do not utilise hardware acceleration if hardware accelerated alternatives are available.  For example, repositioning an element repeatedly using its `left` or `top` CSS properties is not allowed.  Instead, use [CSS transitions](https://developer.mozilla.org/en-US/docs/Web/Guide/CSS/Using_CSS_transitions) and [`will-change`](http://tabatkins.github.io/specs/css-will-change/).  On user agents that do not support accelerated animation, animation *should* not be used.
+Modules *must not* animate elements using methods that do not utilise hardware acceleration if hardware accelerated alternatives are available.  For example, repositioning an element repeatedly using its `left` or `top` CSS properties is not allowed.  Instead, use [CSS transitions](https://developer.mozilla.org/en-US/docs/Web/Guide/CSS/Using_CSS_transitions) and [`will-change`](http://tabatkins.github.io/specs/css-will-change/).  On user agents that do not support accelerated animation, animation *should not* be used.
 
 ## Feature stability
 
