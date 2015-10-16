@@ -35,9 +35,9 @@ Where Origami components include or output HTML, it should meet the following re
 	* `<base>`
 	* `<link>`
 	* `<noscript>`
-* Those elements and attributes which are deprecated in the HTML5 spec *should* not be used:
+* Those elements and attributes which are deprecated in the HTML5 spec *should not* be used:
 	- BAD: `<applet>`, `<frameset>`, `<font>`, `<link rev="">`, `<td align="right">`
-* `<iframe>` *must* not be used in markup. Iframes may be created by JavaScript.
+* `<iframe>` *must not* be used in markup. Iframes may be created by JavaScript.
 * Conditional comments *must not* be used in components or recommended to product developers. Components should instead rely on classes on the `html` element that indicate feature support. Component authors may require the product application to set any feature support classes supported by [Modernizr](http://modernizr.com/docs/). Product developers may of course choose to apply those classes using conditional comments.
 * HREFs in markup *must not* use the `javascript:` protocol.
 * The following **attributes** must not be present on any element:

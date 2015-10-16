@@ -193,8 +193,8 @@ Component developers *must not* use [IE conditional comments](http://www.quirksm
 
 ##Values
 
-* Component CSS *should* not use `!important`.  Valid use cases for `!important` exist, but usually only at the product level.  If `!important` is used in a component, a comment *must* be left in code to explain why it was necessary.
-* CSS expressions and behaviours *should* not be used, except to polyfill essential features for older browsers (e.g. boxsizing.htc for `box-sizing: border-box`)
+* Component CSS *should not* use `!important`.  Valid use cases for `!important` exist, but usually only at the product level.  If `!important` is used in a component, a comment *must* be left in code to explain why it was necessary.
+* CSS expressions and behaviours *should not* be used, except to polyfill essential features for older browsers (e.g. boxsizing.htc for `box-sizing: border-box`)
 * Lengths *should* be expressed in pixel or percentage units, not ems or rems, with the exception of `line-height` which also accepts unitless values. A comment *should* be left in code when modern (`vh`, `vw`…) or relative units (`em`…) are used to document their purpose.
 
 ##No @extends for foreign selectors
