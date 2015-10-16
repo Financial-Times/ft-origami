@@ -103,7 +103,7 @@ Place this as the first tag within the `<head>` section of the page, before `<ti
 
 ###Use correct viewport sizing
 
-By default, most mobule devices assume your site won't fit on a small screen so will pretend to be 900px wide and zoom out so that that fits on the screen.  Add the following viewport meta tag to the `<head>` of your page to make sure that the viewport is zoomed to 100% and the width is the same as the width of the device in both portrait and landscape orientation:
+By default, most mobile devices assume your site won't fit on a small screen so will pretend to be 900px wide and zoom out so that that fits on the screen.  Add the following viewport meta tag to the `<head>` of your page to make sure that the viewport is zoomed to 100% and the width is the same as the width of the device in both portrait and landscape orientation:
 
 
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
