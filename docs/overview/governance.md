@@ -48,7 +48,7 @@ In pursuit of the vision above, we aim to ensure that:
 * Develop tools to make it as easy as possible to adhere to the conventions (without compulsion to use those tools)
 
 
-## Spec standards
+## Spec standards
 
 In Origami specification documents, the words **MUST**, **MUST NOT**, **SHOULD**, **SHOULD NOT**, and **MAY** have the meaning given to them in [RFC 2119](http://www.ietf.org/rfc/rfc2119.txt).
 
