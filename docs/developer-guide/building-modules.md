@@ -143,12 +143,12 @@ Once you know which Origami modules you want, create a `bower.json` file in the 
 	{
 		"name": "origami-demo",
 		"dependencies": {
-			"o-grid": "^3.0.3",
-			"o-header": "^3.0.0",
-			"o-footer": "^3.0.0",
-			"o-colors": "^2.4.7",
-			"o-fonts": "^1.6.7",
-			"o-ft-icons": "^2.3.4"
+			"o-grid": "^4.0.0",
+			"o-header": "^4.0.0",
+			"o-footer": "^4.0.0",
+			"o-colors": "^3.3.0",
+			"o-fonts": "^2.0.0",
+			"o-ft-icons": "^2.4.0"
 		}
 	}
 
