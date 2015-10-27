@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html class="core">
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<title>
+		{% if page.title != 'Home' %}{{ page.title }} - {{ site.name }}{% endif %}
+		{% if page.title == 'Home' %}Origami: unifying our brand, making development faster{% endif %}
+	</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<link rel="icon" href="/img/origami-logo.png" type="image/x-icon" />
+
+	<script>
+		var cutsTheMustard = ('querySelector' in document && 'localStorage' in window && 'addEventListener' in window);
+
+		if (cutsTheMustard) {
+			// Swap the `core` class on the HTML element for an `enhanced` one
+			// We're doing it early in the head to avoid a flash of unstyled content
+			document.documentElement.className = document.documentElement.className.replace(/\bcore\b/g, 'enhanced');
+		}
+	</script>
+
+	<link rel="stylesheet" href="//build.origami.ft.com/bundles/css?modules=o-fonts@^1.6.7,o-techdocs@^5.0.0,o-ft-icons@^2.3.6,o-grid@^4.0.0,o-buttons@^2.0.3" />
+	<link href="{{ site.baseurl }}/buildcache/bundle.css" rel="stylesheet" />
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" />
+
+	<script src="//polyfill.webservices.ft.com/v1/polyfill.min.js"></script>
+
+	<script>
+		(function(src) {
+			if (cutsTheMustard) {
+				var o = document.createElement('script');
+				o.async = o.defer = true;
+				o.src = src;
+				var s = document.getElementsByTagName('script')[0];
+				s.parentNode.insertBefore(o, s);
+			}
+		}('//build.origami.ft.com/bundles/js?modules=o-fonts@^1.6.7,o-techdocs@^5.0.0,o-ft-icons@^2.3.6,o-grid@^4.0.0,o-buttons@^2.0.3'));
+
+		// Redirect the GH pages hostname to the custom one
+		if (location.hostname.indexOf('.github.io') !== -1) {
+			location.replace(location.href.replace(/[-\w]+\.github\.io\/ft\-origami/, 'origami.ft.com'));
+		}
+
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+		ga('create', 'UA-39387659-5', 'auto');
+		ga('require', 'linkid', 'linkid.js');
+		ga('send', 'pageview');
+	</script>
+</head>
+<body class="o-techdocs homepage">
+	<header data-o-component="o-header" class="o-header {% if page.title == 'Home' %}o-header--pull-up o-header--transparent{% endif %}">
+		<div class="o-header__container">
+			<div class="o-header__inner">
+				<div class="o-header__primary">
+					<a class="o-header__primary__left" href="/">
+						<span class="origami-logo"></span>
+						<h1 class="o-header__title">{{site.name}}</h1>
+					</a>
+					<div class="o-header__primary__center c-search">
+						<script>
+						(function() {
+							var cx = '013700166063307641389:hr156qdcx6w';
+							var gcse = document.createElement('script');
+							gcse.async = true;
+							gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//www.google.com/cse/cse.js?cx=' + cx;
+							var s = document.getElementsByTagName('script')[0];
+							s.parentNode.insertBefore(gcse, s);
+						})();
+						</script>
+						<gcse:search></gcse:search>
+					</div>
+					<nav class="o-header__primary__right o-hierarchical-nav o-header__nav--primary-theme" data-o-component="o-hierarchical-nav">
+						<ul data-o-hierarchical-nav-level="1"><!--
+							--><li data-priority="1" aria-selected="true"><a href="http://origami.ft.com">Spec</a></li><!--
+							--><li data-priority="1"><a href="http://registry.origami.ft.com">Registry</a></li><!--
+							--><li data-priority="1"><a href="http://styleguide.ft.com">Style Guide</a></li><!--
+							--><li data-more class="o-hierarchical-nav__parent" aria-hidden="true"><a><span class="o-hierarchical-nav__more--if-some">More <i class="o-hierarchical-nav__parent__down-arrow"></i></span><span class="o-hierarchical-nav__more--if-all">Menu <i class="o-hierarchical-nav__parent__down-arrow"></i></span></a></li><!--
+						--></ul>
+					</nav>
+				</div>
+				<div class="o-header__secondary"></div>
+			</div>
+		</div>
+	</header>
+
+	{% if page.title == 'Home' %}
+		{% include home-banner.html %}
+	{% endif %}
+
+	<div class="o-techdocs-container">
+		<div class="o-techdocs-layout">
+			<div class="o-techdocs-main o-techdocs-content o-techdocs-main--nonav">
+				{{ content }}
+			</div>
+
+		</div>
+	</div>
+
+	<footer class="o-techdocs-footer">
+		<div class="footer-logo">
+			<span class="origami-logo"></span>Origami
+		</div>
+		<p>Help or advice for FT staff on any aspect of Origami is available from <a href="mailto:origami.support@ft.com">origami.support@ft.com</a> (public users please instead <a href="https://github.com/Financial-Times/ft-origami/issues">raise an issue on the repo</a>)</p>
+		<p>The Origami team uses <a href="https://www.browserstack.com/">BrowserStack</a> to test user interface components in most commonly used browsers.</p>
+		<p>&copy; THE FINANCIAL TIMES LTD {{ site.time | date:'%Y' }}. FT and 'Financial Times' are trademarks of The Financial Times Ltd.</p>
+	</footer>
+
+	<div class="shipit">
+		<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="100px" height="50px" viewBox="0 0 100.0 100.0" xml:space="preserve" title="Created by Marco Galtarossa"><path d="M50.891,71.361c-7.989,0.001-15.978-0.048-23.966,0.046c-1.451,0.017-2.299-0.441-3.18-1.524  c-7.041-8.658-14.15-17.261-21.206-25.907c-0.284-0.348-0.467-1.034-0.316-1.409c0.15-0.371,0.761-0.727,1.207-0.781  c8.421-1.02,16.847-1.995,25.272-2.976c4.179-0.487,8.361-0.951,12.536-1.473c0.429-0.054,0.951-0.337,1.204-0.68  c1.744-2.366,3.433-4.771,5.128-7.173c0.855-1.211,1.741-1.188,2.541,0.068c1.526,2.393,3.043,4.793,4.626,7.148  c0.252,0.374,0.805,0.712,1.253,0.763c4.679,0.534,9.365,1.004,14.049,1.497c6.609,0.695,13.218,1.395,19.827,2.093  c2.225,0.235,4.455,0.439,6.672,0.737c0.455,0.061,1.076,0.387,1.233,0.756c0.159,0.375-0.018,1.059-0.291,1.427  c-6.595,8.877-13.216,17.735-19.868,26.569c-0.314,0.417-0.96,0.825-1.454,0.828c-7.587,0.037-15.174,0.006-22.761-0.009  C52.562,71.358,51.726,71.36,50.891,71.361z M94.116,44.375C79.561,47.992,65.26,51.546,50.67,55.172  c8.536,4.688,16.777,9.214,25.078,13.772C81.853,60.778,87.906,52.682,94.116,44.375z M26.16,68.886  c6.913-4.544,13.76-9.046,20.814-13.683c-13.681-3.592-27.127-7.121-40.861-10.727C12.917,52.762,19.523,60.805,26.16,68.886z   M28.901,68.811c14.618,0,28.975,0,43.471,0c-0.212-0.167-0.282-0.24-0.367-0.287c-7.549-4.149-15.095-8.303-22.663-12.417  c-0.308-0.167-0.909-0.1-1.222,0.098c-2.399,1.518-4.762,3.094-7.134,4.654C37.026,63.463,33.068,66.069,28.901,68.811z   M55.502,39.892c0.232,0.445,0.355,0.709,0.502,0.959c1.809,3.08,3.643,6.145,5.418,9.245c0.37,0.646,0.725,0.766,1.429,0.589  c8.995-2.258,17.998-4.484,26.998-6.72c0.258-0.064,0.508-0.16,0.761-0.241c-0.012-0.047-0.024-0.095-0.035-0.142  C78.94,42.358,67.307,41.134,55.502,39.892z M8.794,43.596c0.393,0.165,0.56,0.26,0.741,0.307c8.289,2.174,16.581,4.336,24.864,6.53  c0.57,0.151,0.758-0.082,1.008-0.487c1.766-2.87,3.551-5.728,5.329-8.592c0.294-0.473,0.579-0.951,0.957-1.573  C30.68,41.058,19.856,42.314,8.794,43.596z M47.935,33.522c-0.112-0.046-0.224-0.093-0.336-0.139  c-3.713,5.816-7.426,11.632-11.214,17.563c3.949,1.035,7.716,2.022,11.549,3.026C47.935,47.103,47.935,40.313,47.935,33.522z   M49.716,33.301c-0.083,0.039-0.166,0.079-0.249,0.118c0,6.821,0,13.643,0,20.579c3.665-0.913,7.289-1.816,11.052-2.753  C56.851,45.154,53.283,39.227,49.716,33.301z"/></svg>
+		“Ship it”
+	</div>
+
+</body>
+</html>
