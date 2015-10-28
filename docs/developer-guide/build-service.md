@@ -15,7 +15,7 @@ The build service hosts its own API and technical documentation at [build.origam
 
 ## Building a page
 
-The following steps are a brief tutorial to get you to the point of having a working page made of Origami components working in your browser.  Intentionally this tutorial takes every possible shortcut to allow you to acheive this with no software other than a web browser, but it should arm you with everything you need to add components to a site or build one from scratch.
+The following steps are a brief tutorial to get you to the point of having a working page made of Origami components working in your browser.  Intentionally this tutorial takes every possible shortcut to allow you to achieve this with no software other than a web browser, but it should arm you with everything you need to add components to a site or build one from scratch.
 
 ### Find the boilerplate and start a JS Bin
 
