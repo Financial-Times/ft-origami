@@ -7,7 +7,7 @@ permalink: /docs/developer-guide/build-service/
 
 # Using the build service
 
-If building modules sounds like a lot of work, you can let someone else do it for you and use our **build service**, which performs all the build steps in the [Installing modules manually]({{site.baseurl}}/docs/developer-guide/building-modules) on a central build server and then serves your requested bundles directly to your user's browser.
+If building modules sounds like a lot of work, you can let someone else do it for you and use our **build service**, which performs all the build steps in [Installing modules manually]({{site.baseurl}}/docs/developer-guide/building-modules) on a central build server and then serves your requested bundles directly to your user's browser.
 
 This is especially useful for bootstrapping early stage prototypes as well as building hacks, experiments, and adding components to existing sites that weren't built with Origami in mind.  The service offers high availability, reliability, HTTPS with the same hostname and path, and its own CDN cache layer, so can be used for client-side requests.
 
@@ -15,7 +15,7 @@ The build service hosts its own API and technical documentation at [build.origam
 
 ## Building a page
 
-The following steps are a brief tutorial to get you to the point of having a working page made of Origami components working in your browser.  Intentionally this tutorial takes every possible shortcut to allow you to acheive this with no software other than a web browser, but it should arm you with everything you need to add components to a site or build one from scratch.
+The following steps are a brief tutorial to get you to the point of having a working page made of Origami components working in your browser.  Intentionally this tutorial takes every possible shortcut to allow you to achieve this with no software other than a web browser, but it should arm you with everything you need to add components to a site or build one from scratch.
 
 ### Find the boilerplate and start a JS Bin
 
