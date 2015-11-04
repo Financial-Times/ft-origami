@@ -80,7 +80,7 @@ The following requirements apply to creating a Origami-compatible module compone
 * be stored in a Git repo accessible to any FT network (see [recommendations for module locations](#where-to-store-modules) below)
 * not include package management config for any package manager other than Bower, except for package config whose only purpose is to load dependencies for development or testing of the component and which does not render the repo installable by that packaging system
 * where they contain Sass files, conform to the syntax and language standards for [use of Sass in Origami components]({{site.baseurl}}/docs/syntax/scss)
-* where they contain JavaScript files, conform to the syntax and language standards for [use of JavaScript in Origami components]({{site.baseurl}}/docs/syntax/javascript)
+* where they contain JavaScript files, conform to the syntax and language standards for [use of JavaScript in Origami components]({{site.baseurl}}/docs/syntax/js)
 * where they are openly hosted on GitHub and have CI, use [Travis](https://travis-ci.org) to do the CI
 * consider touch, keyboard and mouse interaction where applicable
 * list, in documentation, the minimum versions of each browser family in which the component has been tested using the enhanced experience and the core experience (see [browser support](#browser-support) below)
