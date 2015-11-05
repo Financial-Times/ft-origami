@@ -3,6 +3,7 @@ layout: default
 title: Non-technical explainer
 section: Overview
 permalink: /docs/overview/non-technical/
+site_section: about-origami
 ---
 
 # Non-technical introduction

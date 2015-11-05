@@ -3,6 +3,7 @@ layout: default
 title: SCSS
 section: Syntax
 permalink: /docs/syntax/scss/
+site_section: about-origami
 ---
 
 #SCSS standards

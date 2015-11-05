@@ -7,25 +7,7 @@
 		<div class="o-techdocs-layout">
 			<div class="o-techdocs-sidebar">
 				<ul class="o-techdocs-nav">
-					<li {% if page.title == 'Home' %} aria-expanded="true" aria-selected="true"{% endif %}>
-						<a href="{{ site.baseurl }}/">Overview</a>
-						{% if page.section == 'Overview' %}
-						<ul class="o-techdocs-nav o-techdocs-nav--sub">
-							<li{% if page.title == 'Non-technical explainer' %} aria-selected="true"{% endif %}>
-								<a href="{{ site.baseurl }}/docs/overview/non-technical">Non-technical explainer</a>
-							</li>
-							<li{% if page.title == 'Statement of principles' %} aria-selected="true"{% endif %}>
-								<a href="{{ site.baseurl }}/docs/overview/principles">Statement of principles</a>
-							</li>
-							<li{% if page.title == 'Governance and policy' %} aria-selected="true"{% endif %}>
-								<a href="{{ site.baseurl }}/docs/overview/governance">Governance and policy</a>
-							</li>
-							<li{% if page.title == 'Contributor stats' %} aria-selected="true"{% endif %}>
-								<a href="{{ site.baseurl }}/docs/overview/contributor-stats">Contributor stats</a>
-							</li>
-						</ul>
-						{% endif %}
-					</li>
+					{% if page.site_section == 'developer-guide' %}
 					<li {% if page.title == 'Developer guide' %} aria-expanded="true" aria-selected="true"{% endif %}>
 						<a href="{{ site.baseurl }}/docs/developer-guide/">Developer guide</a>
 						{% if page.section == 'Developer guide' %}
@@ -47,6 +29,27 @@
 							</li>
 							<li{% if page.title == 'Setting up background linters' %} aria-selected="true"{% endif %}>
 								<a href="{{ site.baseurl }}/docs/developer-guide/background-linters/">Setting up background linters</a>
+							</li>
+						</ul>
+						{% endif %}
+					</li>
+					{% endif %}
+					{% if page.site_section == 'about-origami' %}
+					<li {% if page.title == 'Home' %} aria-expanded="true" aria-selected="true"{% endif %}>
+						<a href="{{ site.baseurl }}/">Overview</a>
+						{% if page.section == 'Overview' %}
+						<ul class="o-techdocs-nav o-techdocs-nav--sub">
+							<li{% if page.title == 'Non-technical explainer' %} aria-selected="true"{% endif %}>
+								<a href="{{ site.baseurl }}/docs/overview/non-technical">Non-technical explainer</a>
+							</li>
+							<li{% if page.title == 'Statement of principles' %} aria-selected="true"{% endif %}>
+								<a href="{{ site.baseurl }}/docs/overview/principles">Statement of principles</a>
+							</li>
+							<li{% if page.title == 'Governance and policy' %} aria-selected="true"{% endif %}>
+								<a href="{{ site.baseurl }}/docs/overview/governance">Governance and policy</a>
+							</li>
+							<li{% if page.title == 'Contributor stats' %} aria-selected="true"{% endif %}>
+								<a href="{{ site.baseurl }}/docs/overview/contributor-stats">Contributor stats</a>
 							</li>
 						</ul>
 						{% endif %}
@@ -98,6 +101,7 @@
 					<li{% if page.title == 'Third party component A List' %} aria-selected="true"{% endif %}>
 						<a href="{{ site.baseurl }}/docs/3rd-party-a-list">Third party component A List</a>
 					</li>
+					{% endif %}
 				</ul>
 			</div>
 

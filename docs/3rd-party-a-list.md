@@ -2,6 +2,7 @@
 layout: default
 title: Third party component A List
 permalink: /docs/3rd-party-a-list/
+site_section: about-origami
 ---
 
 # Third party components: the A list

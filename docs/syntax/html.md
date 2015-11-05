@@ -3,6 +3,7 @@ layout: default
 title: HTML
 section: Syntax
 permalink: /docs/syntax/html/
+site_section: about-origami
 ---
 
 # HTML Standards

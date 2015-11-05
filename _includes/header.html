@@ -28,7 +28,18 @@
           --></ul>
         </nav>
       </div>
-      <div class="o-header__secondary"></div>
+      <div class="o-header__secondary o-header__nav--secondary-theme">
+        <nav class="o-header__secondary__left o-hierarchical-nav o-header__nav--secondary-theme" data-o-component="o-hierarchical-nav" data-o-hierarchical-nav--js="" >
+        <ul data-o-hierarchical-nav-level="1">
+          <li class="o-hierarchical-nav__parent {% if page.site_section == 'developer-guide' %}o-hierachical-nav__parent--active{% endif %}">
+            <a href="/docs/developer-guide">Devloper Guide</a>
+          </li>
+          <li class="o-hierarchical-nav__parent {% if page.site_section == 'about-origami' %}o-hierachical-nav__parent--active{% endif %}">
+            <a href="/docs/component-spec/">Origami Spec</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
     </div>
   </div>
 </header>

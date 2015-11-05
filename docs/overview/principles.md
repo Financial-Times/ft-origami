@@ -3,6 +3,7 @@ layout: default
 title: Statement of principles
 section: Overview
 permalink: /docs/overview/principles/
+site_section: about-origami
 ---
 
 # Principles of Origami

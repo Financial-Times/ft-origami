@@ -3,6 +3,7 @@ layout: default
 title: Using modules
 section: Developer guide
 permalink: /docs/developer-guide/using-modules/
+site_section: developer-guide
 ---
 
 # Using Origami modules

@@ -3,6 +3,7 @@ layout: default
 title: Web service index
 section: Syntax
 permalink: /docs/syntax/web-service-index/
+site_section: about-origami
 ---
 
 # Web service index format
