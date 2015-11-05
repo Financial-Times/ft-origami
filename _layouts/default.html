@@ -8,31 +8,27 @@
 			<div class="o-techdocs-sidebar">
 				<ul class="o-techdocs-nav">
 					{% if page.site_section == 'developer-guide' %}
-					<li {% if page.title == 'Developer guide' %} aria-expanded="true" aria-selected="true"{% endif %}>
-						<a href="{{ site.baseurl }}/docs/developer-guide/">Developer guide</a>
-						{% if page.section == 'Developer guide' %}
-						<ul class="o-techdocs-nav o-techdocs-nav--sub">
-							<li{% if page.title == 'Using modules' %} aria-selected="true"{% endif %}>
-								<a href="{{ site.baseurl }}/docs/developer-guide/using-modules/">Using modules</a>
-							</li>
-							<li{% if page.title == 'Installing modules manually' %} aria-selected="true"{% endif %}>
-								<a href="{{ site.baseurl }}/docs/developer-guide/building-modules/">Installing modules manually</a>
-							</li>
-							<li{% if page.title == 'Installing modules with the build service' %} aria-selected="true"{% endif %}>
-								<a href="{{ site.baseurl }}/docs/developer-guide/build-service/">Installing modules with the build service</a>
-							</li>
-							<li{% if page.title == 'Using web services' %} aria-selected="true"{% endif %}>
-								<a href="{{ site.baseurl }}/docs/developer-guide/web-services/">Using web services</a>
-							</li>
-							<li{% if page.title == 'General best practices' %} aria-selected="true"{% endif %}>
-								<a href="{{ site.baseurl }}/docs/developer-guide/general-best-practices/">General best practices</a>
-							</li>
-							<li{% if page.title == 'Setting up background linters' %} aria-selected="true"{% endif %}>
-								<a href="{{ site.baseurl }}/docs/developer-guide/background-linters/">Setting up background linters</a>
-							</li>
-						</ul>
-						{% endif %}
-					</li>
+						<li{% if page.title == 'Developer guide' %} aria-selected="true"{% endif %}>
+							<a href="{{ site.baseurl }}/docs/developer-guide/">Introduction</a>
+						</li>
+						<li{% if page.title == 'Using modules' %} aria-selected="true"{% endif %}>
+							<a href="{{ site.baseurl }}/docs/developer-guide/using-modules/">Using modules</a>
+						</li>
+						<li{% if page.title == 'Installing modules manually' %} aria-selected="true"{% endif %}>
+							<a href="{{ site.baseurl }}/docs/developer-guide/building-modules/">Installing modules manually</a>
+						</li>
+						<li{% if page.title == 'Installing modules with the build service' %} aria-selected="true"{% endif %}>
+							<a href="{{ site.baseurl }}/docs/developer-guide/build-service/">Installing modules with the build service</a>
+						</li>
+						<li{% if page.title == 'Using web services' %} aria-selected="true"{% endif %}>
+							<a href="{{ site.baseurl }}/docs/developer-guide/web-services/">Using web services</a>
+						</li>
+						<li{% if page.title == 'General best practices' %} aria-selected="true"{% endif %}>
+							<a href="{{ site.baseurl }}/docs/developer-guide/general-best-practices/">General best practices</a>
+						</li>
+						<li{% if page.title == 'Setting up background linters' %} aria-selected="true"{% endif %}>
+							<a href="{{ site.baseurl }}/docs/developer-guide/background-linters/">Setting up background linters</a>
+						</li>
 					{% endif %}
 					{% if page.site_section == 'about-origami' %}
 					<li {% if page.title == 'Home' %} aria-expanded="true" aria-selected="true"{% endif %}>
