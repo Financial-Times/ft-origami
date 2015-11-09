@@ -25,51 +25,12 @@ ESLint isn't installed automatically installed as part of OBT, so install it wit
 	<kbd>npm install -g eslint</kbd>
 </pre>
 
-You can have an `.eslintrc` configuration file per folder. It is recommended to use the Origami global configuration when developing Origami components.
+You can have an `.eslintrc` configuration file per folder. It is recommended to use the [Origami global configuration](https://github.com/Financial-Times/origami-build-tools/blob/master/config/.eslintrc) when developing Origami components.
 
 #### Create  a global configuration file
 <pre class="cli">
-	<kbd>touch ~/.eslintrc</kbd>
+	<kbd>curl -o ~/.eslintrc https://raw.githubusercontent.com/Financial-Times/origami-build-tools/master/config/.eslintrc</kbd>
 </pre>
-
-#### And add in the following options
-	{
-		"ecmaFeatures": {
-			"modules": true
-		},
-		"env": {
-			"es6": true,
-			"browser": true
-		},
-		"rules": {
-			"no-unused-vars": 2,
-			"no-undef": 2,
-			"eqeqeq": 2,
-			"guard-for-in": 2,
-			"no-extend-native": 2,
-			"wrap-iife": 2,
-			"new-cap": 2,
-			"no-caller": 2,
-			"no-multi-str": 0,
-			"dot-notation": 0,
-			"strict": [2, "global"],
-			"valid-jsdoc": 1,
-			"no-irregular-whitespace": 1,
-			"no-multi-spaces": 2,
-			"one-var": [2, "never"],
-			"constructor-super": 2,
-			"no-this-before-super": 2,
-			"no-var": 2,
-			"prefer-const": 1,
-			"no-const-assign": 2
-		},
-		"globals": {
-			"require": false,
-			"module": false,
-			"exports": false,
-			"requireText": false
-		}
-	}
 
 ## Installing background linter plugins
 
