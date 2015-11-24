@@ -3,6 +3,7 @@ layout: default
 title: Web services
 section: Component spec
 permalink: /docs/component-spec/web-services/
+site_section: about-origami
 ---
 
 # Web service components

@@ -3,6 +3,7 @@ layout: default
 title: General best practices
 section: Developer guide
 permalink: /docs/developer-guide/general-best-practices/
+site_section: developer-guide
 ---
 
 # General best practices for front end development

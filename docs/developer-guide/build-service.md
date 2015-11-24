@@ -3,6 +3,7 @@ layout: default
 title: Installing modules with the build service
 section: Developer guide
 permalink: /docs/developer-guide/build-service/
+site_section: developer-guide
 ---
 
 # Using the build service

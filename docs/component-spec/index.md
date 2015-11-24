@@ -3,6 +3,7 @@ layout: default
 title: Component spec
 section: Component spec
 permalink: /docs/component-spec/
+site_section: about-origami
 ---
 
 # Component specification

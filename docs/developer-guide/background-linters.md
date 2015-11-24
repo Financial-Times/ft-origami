@@ -3,6 +3,7 @@ layout: default
 title: Setting up background linters
 section: Developer guide
 permalink: /docs/developer-guide/background-linters/
+site_section: developer-guide
 ---
 
 # Setting up background linters

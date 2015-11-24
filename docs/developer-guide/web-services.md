@@ -3,6 +3,7 @@ layout: default
 title: Using web services
 section: Developer guide
 permalink: /docs/developer-guide/web-services/
+site_section: developer-guide
 ---
 
 # Using Origami web services

@@ -3,6 +3,7 @@ layout: default
 title: origami.json
 section: Syntax
 permalink: /docs/syntax/origamijson/
+site_section: about-origami
 ---
 
 # Origami manifests

@@ -3,6 +3,7 @@ layout: default
 title: Contributor stats
 section: Overview
 permalink: /docs/overview/contributor-stats/
+site_section: about-origami
 ---
 
 <link rel="stylesheet" href="//build.origami.ft.com/bundles/css?modules=o-forms@1.0.3,o-buttons@^3.0.0" />

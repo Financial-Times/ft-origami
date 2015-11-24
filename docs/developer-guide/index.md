@@ -3,6 +3,7 @@ layout: default
 title: Developer guide
 section: Developer guide
 permalink: /docs/developer-guide/
+site_section: developer-guide
 ---
 
 #Developer guide

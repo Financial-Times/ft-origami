@@ -3,6 +3,7 @@ layout: default
 title: JavaScript
 section: Syntax
 permalink: /docs/syntax/js/
+site_section: about-origami
 ---
 
 # JavaScript standards

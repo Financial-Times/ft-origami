@@ -3,6 +3,7 @@ layout: default
 title: Governance and policy
 section: Overview
 permalink: /docs/overview/governance/
+site_section: about-origami
 ---
 
 # Governance and policy

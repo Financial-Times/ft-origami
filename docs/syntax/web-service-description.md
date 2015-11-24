@@ -3,6 +3,7 @@ layout: default
 title: Web service description
 section: Syntax
 permalink: /docs/syntax/web-service-description/
+site_section: about-origami
 ---
 
 # Web service description format

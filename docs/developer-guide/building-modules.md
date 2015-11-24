@@ -3,6 +3,7 @@ layout: default
 title: Installing modules manually
 section: Developer guide
 permalink: /docs/developer-guide/building-modules/
+site_section: developer-guide
 ---
 
 # Building Origami modules into your product

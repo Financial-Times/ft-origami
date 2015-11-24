@@ -11,6 +11,10 @@ body {
 	width: 180px;
 }
 
+.o-techdocs-container {
+	padding-bottom: 50px;
+}
+
 @media (min-width: 46.25em) {
 	.o-header__primary__left {
 		min-width: 303px;
@@ -85,30 +89,21 @@ body {
 		font-weight: 200;
 		margin: 0 0 30px;
 	}
-	h2 {
-		font-weight: normal;
-		margin-bottom: 30px;
-	}
+
 	a {
-		text-decoration: none;
-		color: #ffffff;
 		opacity: 0.8;
 		transition: opacity 0.15s ease-in;
-		text-shadow: 0 0 15px #000000;
 
 		&:hover,
 		&:focus {
 			opacity: 1;
 		}
 	}
-	.fa {
-		font-size: 58px;
-	}
+
 }
 .hero__primary {
 	padding-top: 120px;
 	margin-top: -55px;
-	// margin-bottom: 15px;
 	background: #131313 url(/img/hero.png) no-repeat center top;
 	background-size: cover;
 }
@@ -150,66 +145,19 @@ body {
 		background-color: rgba(#000000, 0.15);
 	}
 }
-.hero__secondary,
-.hero__tertiary {
-	background: rgba(#fff, .2);
 
-	a {
-		display: block;
-	}
-}
-.hero__secondary {
-	padding-top: 5px;
-}
-.hero__tertiary {
-	padding-bottom: 30px;
-}
-.tools {
-	list-style-type: none;
-	margin-top: 0;
-	margin-bottom: 0;
-	padding: 0;
-	text-align: center;
-}
-.tools__action {
-	margin-bottom: 3em;
-
-	@media (min-width: 46.25em) {
-		margin-bottom: 1em;
-	}
+.o-techdocs-main--nonav {
+	margin: auto;
 }
 
-.also {
-	padding-top: 15px;
-	font-size: 1em;
-
+.homepage-content {
 	h2 {
-		display: inline-block;
-		margin: 0 0.5em 0.5em;
-		font-size: 1em;
+		padding: 1.5em 0 .5em 0;
+	}
+	.o-techdocs-content {
+		font-size:19px;
 	}
 }
-
-.inline-list {
-	display: inline-block;
-
-	&,
-	li {
-		list-style-type: none;
-		margin: 0;
-		padding: 0;
-		text-align: center;
-	}
-	> li {
-		display: inline-block;
-		margin-right: 0.5em;
-		margin-bottom: 0.5em;
-	}
-	a {
-		font-weight: bold;
-	}
-}
-
 
 .o-header--pull-up {
 	margin-bottom: 0 !important;
@@ -226,6 +174,10 @@ body {
 	[data-o-hierarchical-nav-level] {
 		right: 10px;
 	}
+}
+
+.o-hierachical-nav__parent--active {
+	background-color: #275e86;
 }
 
 .shipit {
