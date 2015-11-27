@@ -11,7 +11,7 @@ At the heart of Origami are its services and modules.
 
 Origami's modules are bits of HTML, CSS and JavaScript to include in your page. Some of them, like [gallery](http://registry.origami.ft.com/components/o-gallery), come with a fully formed look and feel. Some of them, like [colors](http://registry.origami.ft.com/components/o-colors) or [tracking](http://registry.origami.ft.com/components/o-tracking) provide a foundation for building your own interfaces, or provide useful services without any interface at all
 
-Regardless of what they're made of, these modules have been comprehensively tested, comply with web accessibility standards, work or degrade gracefully in all of the browsers we support, and and provide a consistent experience of the FT brand. To see a complete list of the modules visit [registry.ft.com](http://registry.ft.com).
+Regardless of what they're made of, these modules have been comprehensively tested, comply with web accessibility standards, work or degrade gracefully in all of the browsers we support, and and provide a consistent experience of the FT brand. To see a complete list of the modules visit [registry.origami.ft.com/components](http://registry.origami.ft.com/components).
 
 As well as modules, Origami provides the following services:
 
