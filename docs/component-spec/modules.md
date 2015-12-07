@@ -129,7 +129,6 @@ Themes that depend on the target module's JavaScript being active *must* use the
 
 Theming classes *must* be applied to the root element of the component to be themed.
 
-
 ## Packaging and build configuration
 
 <aside>When a developer goes to use a module, and finds that it has config for a particular package management system, they should be able to assume that the same package manager can be used to install <em>any</em> Origami module.  So it's important that all Origami modules share the same package config and do not include any 'special' config for package management systems that aren't compatible with all modules.</aside>
@@ -188,6 +187,22 @@ Some modules' JavaScript may have use cases outside the browser, most notably in
 If the module requires any dependencies which are aimed solely at browsers (e.g. `o-dom`), and consequently are unlikely to define a package.json, the module *must* contain an `index.js` file which requires only those features and dependencies needed in non-browser environments, and set the `main` property of `package.json` to `["index.js"]`.
 
 The module *must not* be added to the NPM registry and the module's documentation *should* advise developers to install by using a tagged tarball (links to which are available from the module's GitHub repo's 'releases' tab).
+
+### Releasing
+
+To ensure issuing a new release doesn't affect current users of a module, as they're generally installed based on a semver range, we have a set of requirements for non major releases:
+
+* Make sure deprecated features still work
+* Deprecated code must go into a private deprecated file, or, if there’s an abundance of deprecated code, to a directory called `deprecated`. This way, it will be much easier to work with the new code while maintaining legacy code. It will also be easier to delete when making a major release
+* Deprecated functions and mixins should log a warning stating that they are now deprecated and offering an alternative when there is one. This warning *may* also be added to the readme
+* When updating a dependency to the latest minor release, make a minor release
+* When updating a dependency to the latest major release, in your bower.json, make sure the semver range includes the previous major release (_e.g. `>=1.2.3 <3`_). If not, a major release is necessary
+* Make sure private Sass functions and mixins are prefixed with an underscore. If not, even if they weren’t intended for public use, they will need to follow the same deprecation process as public functions and mixins
+* All JavaScript components *must* have tests and they *must* pass
+* Run `obt verify` and `obt test` and make sure there are no errors
+* Run `obt demo --runServer --updateorigami` to regenerate the demos and check they work as they should
+* If releasing a module that contains generated content (fonts for example), make sure the new files are in the git repository (git ls-files) at the release commit
+* Don’t make a major release until all or most dependants have removed deprecated features
 
 ## Module dependencies
 
