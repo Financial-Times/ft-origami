@@ -26,9 +26,6 @@
 						<li{% if page.title == 'General best practices' %} aria-selected="true"{% endif %}>
 							<a href="{{ site.baseurl }}/docs/developer-guide/general-best-practices/">General best practices</a>
 						</li>
-						<li{% if page.title == 'Setting up background linters' %} aria-selected="true"{% endif %}>
-							<a href="{{ site.baseurl }}/docs/developer-guide/background-linters/">Setting up background linters</a>
-						</li>
 					{% endif %}
 					{% if page.site_section == 'about-origami' %}
 					<!-- <li {% if page.title == 'Home' %} aria-expanded="true" aria-selected="true"{% endif %}>
@@ -94,9 +91,13 @@
 						</ul>
 						{% endif %}
 					</li>
+					<li{% if page.title == 'Setting up background linters' %} aria-selected="true"{% endif %}>
+						<a href="{{ site.baseurl }}/docs/developer-guide/background-linters/">Setting up background linters</a>
+					</li>
 					<li{% if page.title == 'Third party component A List' %} aria-selected="true"{% endif %}>
 						<a href="{{ site.baseurl }}/docs/3rd-party-a-list">Third party component A List</a>
 					</li>
+
 					{% endif %}
 				</ul>
 			</div>
