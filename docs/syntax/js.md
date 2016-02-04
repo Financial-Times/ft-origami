@@ -38,7 +38,7 @@ Product developers are encouraged to include Origami JavaScript using a 'cuts th
 	<p>Where modern browser features might be vendor-prefixed, you can get the correct prefixed version using <a href="https://github.com/Financial-Times/o-useragent">o-useragent</a>.</p>
 </aside>
 
-###Scoping and binding `this`
+### Scoping and binding `this`
 
 The value of `this` *should not* be copied into non-semantic variables such as `that`, `self` or `_this` in order to embed a child funtion context.  Instead, either use a semantic name, or bind the correct value of `this`.  Some object methods accept the intended value of `this` as an argument, such as [Array.prototype.filter](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Array/filter), and this method *should* be considered most preferred:
 
@@ -199,7 +199,7 @@ Modules that store data on the client via user-agent APIs *must* encapsulate all
 
 Modules *should* avoid containing functions with more than 3 arguments.  Where more parameters are required, consider passing an object (and if so, consider using [lo-dash's defaults function](http://lodash.com/docs#defaults)).
 
-##Objects
+## Objects
 
 Object properties *must not* be named after reserved words in the JavaScript language.  ([Learn more](https://github.com/airbnb/javascript/issues/61))
 
@@ -246,7 +246,7 @@ JavaScript *must* be linted with [ESLint](http://www.eslint.org/).  If you wish 
 
 Developers *should* stick to the above `.eslintrc` config, since this represents a common standard across FT teams, but are permitted to make changes if desired.  In addition to the ESLint rules:
 
-###Comments
+### Comments
 
 Single line comments *should* be placed on a newline above the subject of the comment.  An empty line *should* be inserted before the comment.
 
