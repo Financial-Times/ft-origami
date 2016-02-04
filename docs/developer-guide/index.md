@@ -6,17 +6,17 @@ permalink: /docs/developer-guide/
 site_section: developer-guide
 ---
 
-#Developer guide
+# Developer guide
 
 When you're building a new web product, chances are you need a lot of stuff that's common across many FT sites.  Origami **modules** provide you with common functional components, behaviours, layouts and styles, while Origami **web services** provide dynamic data services and markup feeds.
 
-##Web services
+## Web services
 
 Web services all share a common, recognisable pattern.  For more information on use of web services, consult the web services guide:
 
 * [Using web services](web-services)
 
-##Modules
+## Modules
 
 Modules are more complicated, since they offer units of code that can be integrated into your application.
 
@@ -33,7 +33,7 @@ Once you know which modules you want to use, consult the using modules guide for
 * [Using modules](using-modules)
 
 
-##General best practices
+## General best practices
 
 The information included in this guide will help you use Origami components without the need to really understand their internals.  But since these components follow rigorous standards and implement modern best practices for accessibility, security, maintainability and performance, we also offer a summary checklist of the most important points so you can meet the same standards in your own code.
 
