@@ -87,7 +87,7 @@ Repeat this process for the footer:
 
 The build service is capable of including more than one component in the same bundle, so you can simply add multiple modules into the same URL.  Here's an example:
 
-	<link rel="stylesheet" href="//build.origami.ft.com/bundles/css?modules=o-fonts@^1,o-ft-icons@^2,o-header@^3.0.3,o-footer@^3.0.1" />
+	<link rel="stylesheet" href="//build.origami.ft.com/v2/bundles/css?modules=o-fonts@^1,o-ft-icons@^2,o-header@^3.0.3,o-footer@^3.0.1" />
 
 It's important that you do this, so that any CSS that is shared between the header and footer (there's quite a bit) isn't downloaded twice.
 
