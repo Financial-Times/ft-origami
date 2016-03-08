@@ -10,7 +10,7 @@ Firstly, thank you for deciding to contribute to Origami! Please find the guidel
 
 ### Issues
 
-The first steps before creating an issue of any type on the repository is to search through the repository's Open/Closed issues to see whether there's a ticket that replicates the same issue you are having and if there is a fix in progress or has been fixed. If there is no same issue that you are experiencing, then open a new ticket on the affected repository.
+The first steps before creating an issue of any type on the repository is to search through the repository's Open/Closed issues to see whether there's a ticket that replicates the same issue you are having and if there is a fix in progress or has been fixed (alternatively you can use GitHub's search feature for this). If there is no same issue that you are experiencing, then open a new ticket on the affected repository.
 
 #### Reporting bugs
 
@@ -40,8 +40,9 @@ Note: You can include screenshots/animated gifs if it will help to fix this bug 
 2. [Operating System(s)]
 3. [Which Origami modules were affected (and include the version number)]
 4. [Did you build manually or use the build service?]
+5. [If you build manually then could you say which version of Origami Build Tools & node were used?]
 
-* The problem started happening recently, it did not happen in the older versions of Origami: [Yes/No]
+* The problem started happening recently, it did not happen in the older versions of the module: [Yes/No]
 * The problem can be easily reproduced every time and does not happen randomly: [Yes/No]
 ```
 
