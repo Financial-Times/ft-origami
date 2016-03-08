@@ -10,11 +10,11 @@ Firstly, thank you for deciding to contribute to Origami! Please find the guidel
 
 ### Issues
 
-The first steps to undertake before creating an issue of any type on the repository is to search through the repository's Open/Closed issues to see whenever there's a ticket that replicates the same issue you are having and if there is a fix in progress or has been fixed. If there is no same issue that you are experiencing, then open a new ticket on the affected repository.
+The first steps before creating an issue of any type on the repository is to search through the repository's Open/Closed issues to see whether there's a ticket that replicates the same issue you are having and if there is a fix in progress or has been fixed. If there is no same issue that you are experiencing, then open a new ticket on the affected repository.
 
 #### Reporting bugs
 
-Found a bug with Origami? Fill out the template below before submitting an Issue ticket. Due to a recent new addition to GitHub, the template can be included automatically when an issue is opened.
+Found a bug with Origami? Fill out the template below before submitting an issue. Due to a recent new addition to GitHub, the template can be included automatically when an issue is opened.
 
 ##### The template for reporting bugs
 
@@ -47,7 +47,7 @@ Note: You can include screenshots/animated gifs if it will help to fix this bug 
 
 #### Suggesting improvements to Origami
 
-Before opening an issue ticket which is for enhancement purposes, look through all the Open/Closed issues in the repository to see if there is not a similar suggestion to what you would be suggesting to improve Origami.
+Before opening an issue which is for enhancement purposes, look through all the Open/Closed issues in the repository to see if there is not a similar suggestion to what you would be suggesting to improve Origami.
 
 ```
 [Short description of the enhancement suggestion]
