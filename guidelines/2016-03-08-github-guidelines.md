@@ -10,11 +10,11 @@ Firstly, thank you for deciding to contribute to Origami! Please find the guidel
 
 ### Issues
 
-The first steps before creating an issue of any type on the repository is to search through the repository's Open/Closed issues to see whether there's a ticket that replicates the same issue you are having and if there is a fix in progress or has been fixed (alternatively you can use GitHub's search feature for this). If there is no same issue that you are experiencing, then open a new ticket on the affected repository.
+Before creating a new issue for a component, check the repository's issues list to see if someone else has already created an issue.
 
 #### Reporting bugs
 
-Found a bug with Origami? Fill out the template below before submitting an issue. Due to a recent new addition to GitHub, the template can be included automatically when an issue is opened.
+Found a bug with Origami? It will help us to prioritise and fix the bug if you fill out the template below before submitting an issue. Due to a recent new addition to GitHub, the template can be included automatically when an issue is opened.
 
 ##### The template for reporting bugs
 
@@ -40,7 +40,7 @@ Note: You can include screenshots/animated gifs if it will help to fix this bug 
 2. [Operating System(s)]
 3. [Which Origami modules were affected (and include the version number)]
 4. [Did you build manually or use the build service?]
-5. [If you build manually then could you say which version of Origami Build Tools & node were used?]
+5. [If you build manually, which version of Origami Build Tools & node were used?]
 
 * The problem started happening recently, it did not happen in the older versions of the module: [Yes/No]
 * The problem can be easily reproduced every time and does not happen randomly: [Yes/No]
@@ -48,7 +48,7 @@ Note: You can include screenshots/animated gifs if it will help to fix this bug 
 
 #### Suggesting improvements to Origami
 
-Before opening an issue which is for enhancement purposes, look through all the Open/Closed issues in the repository to see if there is not a similar suggestion to what you would be suggesting to improve Origami.
+Before opening a feature request, look through all the Open/Closed issues in the repository to see if there is not a similar suggestion to what you would be suggesting to improve Origami.
 
 ```
 [Short description of the enhancement suggestion]
@@ -67,7 +67,7 @@ Before opening an issue which is for enhancement purposes, look through all the 
 
 [Explain why the suggested improvement would be better than the current version]
 
-Note: You can include screenshots/animated gifs if you think it will help the cause for the suggested improvement.
+Note: For UI changes, please include screen-shots/animated GIFs
 ```
 
 
@@ -84,6 +84,7 @@ Before committing a pull request, please make sure that it covers the criteria.
 - Use present tense when committing i.e. `Add module-name` not `Added module-name`.
 - The first line of the commit message to be 72 characters or less.
 - Add references to issues or pull requests in the description with a short explanation of the changes proposed in the pull request.
+- Explain why you've made a change as well as what the change is.
 
 
 #### The template for a pull request
@@ -102,15 +103,4 @@ Fix/Improve #[issue number]
 
 ## Creating templates for Issues or Pull Requests in a repository
 
-With the new addition made by GitHub recently, each repository can have its own issues/pull request template which can be tailored in a specific way. To add those to a repository, you need to undergo the following steps below:
-
-1. Navigate to the main page of the repository on GitHub, and click on New File above the file list.
-2. There are two options where the template for either issues or pull requests can live in the repository. It can be placed in the hidden folder `.github` or in the root of the repository.
-3. To make your template public in the repository, add it to the root of the repository. If you want to make it private, make sure it is located inside the hidden folder `./github`.
-
-The specific names to use for the issues/pull request templates are:
-
-- ISSUE_TEMPLATE
-- PULL_REQUEST_TEMPLATE
-
-Note: The template names are not case-sensitive, and can be used with either .md or .txt file extensions.
+As this is a GitHub feature, you can find their [documentation](https://help.github.com/articles/helping-people-contribute-to-your-project/) on creating issues/pull requests templates to assist people in contributing to your repository.
