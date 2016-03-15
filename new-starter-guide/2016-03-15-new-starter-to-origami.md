@@ -13,7 +13,7 @@ The checklist assumes that you have done the following:
 
 IT Services should have enabled admin privileges when they have set up your machine but you should [request admin access to your FT laptop via Salesforce](https://financialtimes.my.salesforce.com/home/home.jsp) to ensure it does not get revoked.
 
-If you do not have admin privileges then email `itservicedesk@ft.com`. Include your desk number (which is usually on the left of the desk) and the machine number with the email. You also will need to say why you need admin privileges, or alternatively copy the template below and edit accordingly.
+If you do not have admin privileges then email `itservicedesk@ft.com`. Include your desk number (which is usually a label on the front of your desk) and the machine number with the email. You also will need to say why you need admin privileges, or alternatively copy the template below and edit accordingly.
 
 ```
 Dear IT Service Desk,
