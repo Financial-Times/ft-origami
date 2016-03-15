@@ -35,10 +35,9 @@ This should expedite your request for admin privileges on your machine.
 ### Slack
 
 1. Install Slack (This can be done without admin privileges).
-
   > To install certain apps without admin privileges, you can access the Self Service app facility by finding it on your machine via Spotlight (under the assumption it's a Mac) Log in with your network details, and do a search for the Slack app and install. This is the same with browsers like Google Chrome or Mozilla Firefox.
 
-2. The Slack domain for FT is `financial-times`. Log into the domain with your FT email address.
+2. The Slack domain for FT is `financialtimes`. Log into the domain with your FT email address.
 
 3. Join the `#ft-origami` channel and ask for invites to the internal channels from the Origami team.
 
@@ -48,11 +47,9 @@ This should expedite your request for admin privileges on your machine.
 1. The public repositories are found at [GitHub/Financial-Times](https://github.com/Financial-Times) on GitHub. The private ones are found at [BitBucket](http://git.svc.ft.com/). The Origami repositories should be public if at all possible.
 
 2. Ask the Origami team for access to the following:
-
   - To be added to the GitHub organisation Financial-Times
   - To be added to the `origami-core` & `origami-colloborators` on the GitHub organisation's teams.
   - Granted admin access to BitBucket.
-
 
 3. If you are using SSH, then don't forget to [generate new keys](https://help.github.com/articles/generating-an-ssh-key/), and add to your GitHub account if you haven't done so already.
 
@@ -64,12 +61,10 @@ Please do not just sign up on LastPass.com for a free account. You need to invit
 
 Ask the Origami team to be added to:
 
-  - [Sentry](https://app.getsentry.com/auth/login/financial-times/)
-  - [Pingdom](https://www.pingdom.com/) (_optional_)
-  - [Heroku](https://www.heroku.com/)
-
-    - You will need to set up a Heroku account with your FT.com email address (Please enable <abbr title="Two Factor Authentication">2FA</abbr>).
-
+- [Sentry](https://app.getsentry.com/auth/login/financial-times/)
+- [Pingdom](https://www.pingdom.com/) (_optional_)
+- [Heroku](https://www.heroku.com/)
+  - You will need to set up a Heroku account with your FT.com email address (Please enable <abbr title="Two Factor Authentication">2FA</abbr>).
 
 ### Two Factor Authentication
 
@@ -84,7 +79,6 @@ It is a good idea to add an app on your phone for <abbr title="Two Factor Authen
 ### FT.com
 
 Check your email to see if you’ve already been registered for the free subscription to the [ft.com](https://www.ft.com/). If not, sign-up for an account on ft.com then ask `corporate.support@ft.com` to upgrade it to a free subscription.
-
 
 ## Development tools
 
@@ -101,16 +95,12 @@ Almost all Origami applications rely on the following tools to be installed glob
 #### Install the following:
 
 - [Node.js](https://nodejs.org/)
-
   - We recommend installing a [Node Version Manager](https://github.com/creationix/nvm) to manage different local node versions.
-
 - [Git](https://git-scm.com/)
 - [Heroku Toolbelt](https://toolbelt.heroku.com/)
 - [Bower](http://bower.io/)
 - [Ruby](http://www.ruby-lang.org/)
-
   - We recommend installing a Ruby Version Manager to manage different ruby versions. There are two choices here. You can go either [Ruby Version Manager](https://rvm.io/) or [Rbenv](https://github.com/rbenv/rbenv).
-
   - This is for the Ruby SCSS-Lint gem which is a part of <abbr title="Origami Build Tools">OBT</abbr>.
 
 #### Work with our ecosystem of components
@@ -133,17 +123,12 @@ If you experience any problems, then please take a look at Next's [troubleshooti
 1. For more significant changes always ask for a peer review by posting a link on the relevant channel on slack or cc-ing one or more developers in GitHub.
 
 2. **If no-one reviews your code after a while**
-
   - Go and ask somebody directly to do so.
-
   - Stand next to them tutting and checking your watch if necessary.
-
   - Review it yourself - the time spent waiting will have given you fresh eyes. If you feel confident everything’s OK go ahead and merge.
 
 3. It’s more important to verify your code works in the wild after deploying than it is to get the code approved by somebody before deploying.
-
   - A thumbs up does not mean your code actually works so if releasing a change to an app keep an eye on it and check Sentry (The changes take about 10 minutes to show up due to Heroku preboot).
-
   - Take all the above with a pinch of salt and trust your judgement.
 
 4. Our test coverage varies from one app to another but in general tests are a valuable thing. If the repo you’re working on is already well covered by tests add some to cover your changes too. If its test coverage is poor/non-existent don’t let that stop you from making a start by adding some to cover your new code.
