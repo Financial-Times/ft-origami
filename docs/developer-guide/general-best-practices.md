@@ -35,12 +35,31 @@ Although you may spend most of your time on your own product, remember that our 
 
 There are a number of best practices to observe on the use of images:
 
-* Make sure you use an appropriate format (typically JPEG for photographs, PNG for illustrations)
+* Make sure you use an appropriate format (typically JPEG for photographs, PNG for illustrations, SVG for icons - see below)
 * Support screens with a high pixel density by creating images at a pixel density of 2, and trade off higher compression to achieve the same file size.  For example, if you want to display a 400x400 image, consider creating an 800x800 image and turning up the compression until the file size is acceptable.  Studies suggest the sharper but more compressed image works equally well on high and low density screens.
 * Use an optimisation tool such as [ImageOptim](https://imageoptim.com/) to remove unnecessary metadata and colour profiles
 * Scale image containers with viewport size so that images do not cause pages to scroll horizontally on small screens
-* Use the Origami [image service](http://image.webservices.ft.com) to rescale your images dynamically based on the size of the container.
+* Use the Origami [responsive image service](http://image.webservices.ft.com) to rescale your images dynamically based on the size of the container.
 
+### Resolution independent SVGs, using the image service
+
+The [responsive image service](http://image.webservices.ft.com/) helps serving resolution-independent SVG icons with a resized PNG fallback:
+
+```scss
+element {
+	display: inline-block;
+	width: 100px;
+	height: 100px;
+
+	// Older browsers: PNG fallback (resized to 100px wide)
+	background-image: url('//image.webservices.ft.com/v1/images/raw/fticon:tick?width=100&format=png&source=my-product');
+
+	// Modern browsers: SVG covering the whole size of the element
+	// we declare multiple backgrounds so that only modern browsers read this property
+	background-image: url('//image.webservices.ft.com/v1/images/raw/fticon:tick?format=svg&source=my-product'), none;
+	background-size: cover;
+}
+```
 
 ## Performance
 
