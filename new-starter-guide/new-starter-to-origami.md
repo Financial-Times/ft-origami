@@ -6,12 +6,12 @@ Welcome to Origami!
 
 The checklist assumes that you have done the following:
 
-1. Visit IT Service Desk to get your computer account up and running.
+1. Visited IT Service Desk (ITSD) to get your computer account up and running.
 2. Logged on your own work machine and email account.
 
 ### Admin privileges on your machine
 
-IT Services should have enabled admin privileges when they have set up your machine but you should [request admin access to your FT laptop via Salesforce](https://financialtimes.my.salesforce.com/home/home.jsp) to ensure it does not get revoked.
+<abbr title="IT Services Desk">ITSD</abbr> should have enabled admin privileges when they have set up your machine but you should [request admin access to your FT laptop via Salesforce](https://financialtimes.my.salesforce.com/home/home.jsp) to ensure it does not get revoked.
 
 If you do not have admin privileges then email `itservicedesk@ft.com`. Include your desk number (which is usually a label on the front of your desk) and the machine number with the email. You also will need to say why you need admin privileges, or alternatively copy the template below and edit accordingly.
 
@@ -24,34 +24,34 @@ The reasons for needing access to admin privileges is so that I can install soft
 
 I look forward to hearing back from you on this matter.
 
-Regards
+Thanks
 
 <your name>
 ```
 
 This should expedite your request for admin privileges on your machine.
 
-
 ### Slack
 
 1. Install Slack (This can be done without admin privileges).
-  > To install certain apps without admin privileges, you can access the Self Service app facility by finding it on your machine via Spotlight (under the assumption it's a Mac) Log in with your network details, and do a search for the Slack app and install. This is the same with browsers like Google Chrome or Mozilla Firefox.
+  > To install certain apps without admin privileges, you can access the Self Service app facility by finding it on your machine via Spotlight (under the assumption it's a Mac) Log in with your network details, and do a search for the Slack app and install. This is the same with browsers like Google Chrome or Mozilla Firefox. You will need to be connected to the FT LAN for this to work.
 
 2. The Slack domain for FT is `financialtimes`. Log into the domain with your FT email address.
 
 3. Join the `#ft-origami` channel and ask for invites to the internal channels from the Origami team.
 
-
 ### Code repositories
 
-1. The public repositories are found at [GitHub/Financial-Times](https://github.com/Financial-Times) on GitHub. The private ones are found at [BitBucket](http://git.svc.ft.com/). The Origami repositories should be public if at all possible. We also are looking into moving all private repositories onto GitHub.
+1. The public repositories are found at [GitHub/Financial-Times](https://github.com/Financial-Times) on GitHub. The private ones are found at [BitBucket](http://git.svc.ft.com/). Origami repositories should be public if at all possible. We also are looking into moving all private repositories onto GitHub.
 
 2. Ask the Origami team for access to the following:
   - To be added to the GitHub organisation Financial-Times
   - To be added to the `origami-core` & `origami-colloborators` on the GitHub organisation's teams.
   - Granted admin access to BitBucket.
 
-3. If you are using SSH, then don't forget to [generate new keys](https://help.github.com/articles/generating-an-ssh-key/), and add to your GitHub account if you haven't done so already.
+3. If you haven't done so already, please set up [2-factor authentication](https://help.github.com/articles/about-two-factor-authentication/) for GitHub.
+
+4. If you are using SSH, then don't forget to [generate new keys](https://help.github.com/articles/generating-an-ssh-key/), and add to your GitHub account if you haven't done so already.
 
 ### LastPass
 
@@ -71,6 +71,7 @@ Ask the Origami team to be added to:
 You will be asked to add <abbr title="Two Factor Authentication">2FA</abbr> for the following:
 
 - Work email
+- GitHub
 - Heroku
 - LastPass
 
@@ -113,11 +114,20 @@ You will need to point Bower at the Origami registry. Running the following in a
 
 You can join all the Origami applications on Heroku by checking out this [shared Google Sheets](https://docs.google.com/a/ft.com/spreadsheets/d/1xk1tyn60ZCmLk1I39Dot-08c9pBJeeX3g9MDENDqjKk/edit?usp=drive_web). You will need one other person from the Origami team to add you.
 
-
 #### Issues with installing/getting access
 
 If you experience any problems, then please take a look at Next's [troubleshooting guide](http://financial-times.github.io/next/docs/developer-guide/troubleshooting/). If your problem is not included in the troubleshooting list and you manage to solve it, then please add it to the list.
 
 ### Peer review and pull requests
 
-With all the work that you would produce for Origami and when you reach the stage of doing a pull request, ask someone within the team for a review of your work. If it gets the thumbs up from the reviewer then you're free to merge it into the master branch of the repository. It also depends on the size of the work that was produced, if it's quite substantial then it would require more people to look over the work before giving the all clear to merge.
+All code in Origami is written by one person and peer reviewed by one or more people using git branches and merging.
+
+#### Here's how it works
+
+1. Branch off of master: `git branch my-great-feature`
+2. [some coding / committing happens in the `my-great-feature branch`]
+3. Push those changes to GitHub / Stash: `git push origin my-great-feature-branch`
+4. Repeat 2 and 3 as much as you like
+5. When you're ready, open a pull request. Tag people you'd like to review the request.
+6. Respond to review comments
+7. Either a reviewer will merge your request, or they will give you a thumbs-up for you to merge.
