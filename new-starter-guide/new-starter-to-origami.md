@@ -95,7 +95,7 @@ Almost all Origami applications rely on the following tools to be installed glob
 
 #### Install the following:
 
-- [Node.js](https://nodejs.org/)
+- [Node.js](https://nodejs.org/) - The components are widely supported in Node v4, not with Node v5.
   - We recommend installing a [Node Version Manager](https://github.com/creationix/nvm) to manage different local node versions.
 - [Git](https://git-scm.com/)
 - [Heroku Toolbelt](https://toolbelt.heroku.com/)
