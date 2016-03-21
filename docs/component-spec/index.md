@@ -6,7 +6,7 @@ permalink: /docs/component-spec/
 site_section: about-origami
 ---
 
-# Component specification
+# Building Origami components
 
 This section defines the requirements for Origami-conforming components and is a [normative specification](http://www.w3.org/TR/qaframe-spec/).  Non-normative (informative) sections are indicated explicitly or by inset and boxed asides.  The words **MUST**, **MUST NOT**, **SHOULD**, **SHOULD NOT**, and **MAY** have the meaning given to them in [RFC 2119](http://www.ietf.org/rfc/rfc2119.txt)
 

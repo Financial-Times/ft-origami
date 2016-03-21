@@ -68,9 +68,22 @@ Markup may contain elements that do not work without accompanying JavaScript.  T
 	<div class="o--if-js">Submit a new comment: ... </div>
 	<div class="o--if-no-js">To comment on this article, you need to upgrade your web browser.  <a href="...">Learn how to upgrade</a>.</div>
 
-To avoid unnecessary HTTP requests, elements with the class `o--if-no-js` *must not* be (or contain) `<img>` tags, and *must not* have a background image URL set with CSS.  Descendent elements of the `o--if-no-js` element *may* have CSS image backgrounds ([Learn more](http://timkadlec.com/2012/04/media-query-asset-downloading-results/))
+With this method it is possible to trigger unwanted HTTP requests to be made should you include an image within the `o--if-no-js` element or use a CSS background image on the element ([Learn more](http://timkadlec.com/2012/04/media-query-asset-downloading-results/)). If you require an image to be added to the page for core experience only, you could use a `<noscript>` tag:
 
-* Learn more about [Core vs enhanced experience]({{site.baseurl}}/docs/developer-guide/using-modules/#core-vs-enhanced-experience)
+	<script>
+		(function () {
+			// Apply your cuts the mustard test to load the image for enhanced experience
+			if (!('querySelector' in document && 'localStorage' in window && 'addEventListener' in window) ) {
+				var img = new Image();
+				img.src = 'https://spoor-api.ft.com/px.gif?xxxxxx';
+			}
+		})();
+	</script>
+	<noscript data-o-component="o-tracking">
+		<img src="https://spoor-api.ft.com/px.gif?xxxxxx"/>
+	</noscript>
+
+Learn more about [Core vs enhanced experience]({{site.baseurl}}/docs/developer-guide/using-modules/#core-vs-enhanced-experience)
 
 ## WAI-ARIA
 
