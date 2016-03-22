@@ -68,7 +68,8 @@ Markup may contain elements that do not work without accompanying JavaScript.  T
 	<div class="o--if-js">Submit a new comment: ... </div>
 	<div class="o--if-no-js">To comment on this article, you need to upgrade your web browser.  <a href="...">Learn how to upgrade</a>.</div>
 
-With this method it is possible to trigger unwanted HTTP requests to be made should you include an image within the `o--if-no-js` element or use a CSS background image on the element ([Learn more](http://timkadlec.com/2012/04/media-query-asset-downloading-results/)). If you require an image to be added to the page for core experience only, you could use a `<noscript>` tag:
+Elements with the class `o--if-no-js` will trigger unnecessary HTTP requests if they are (or contain) `<img>` tags or have a background image URL set with CSS ([learn more](http://timkadlec.com/2012/04/media-query-asset-downloading-results/)).
+If you require an image to be added to a page for core experience only, you should use a `<noscript>` tag:
 
 	<script>
 		(function () {
