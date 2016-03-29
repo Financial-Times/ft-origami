@@ -31,7 +31,7 @@
 						</li>
 					{% endif %}
 					{% if page.site_section == 'about-origami' %}
-					<li {% if page.title == 'Home' %} aria-expanded="true" aria-selected="true"{% endif %}>
+					<!-- <li {% if page.title == 'Home' %} aria-expanded="true" aria-selected="true"{% endif %}>
 						<a href="{{ site.baseurl }}/">Overview</a>
 						{% if page.section == 'Overview' %}
 						<ul class="o-techdocs-nav o-techdocs-nav--sub">
@@ -49,9 +49,9 @@
 							</li>
 						</ul>
 						{% endif %}
-					</li>
+					</li> -->
 					<li {% if page.title == 'Component spec' %} aria-expanded="true" aria-selected="true"{% endif %}>
-						<a href="{{ site.baseurl }}/docs/component-spec">Component spec</a>
+						<a href="{{ site.baseurl }}/docs/component-spec">Component specification</a>
 						{% if page.section == 'Component spec' %}
 						<ul class="o-techdocs-nav o-techdocs-nav--sub">
 							<li{% if page.title == 'Modules' %} aria-selected="true"{% endif %}>

@@ -6,7 +6,7 @@ permalink: /docs/developer-guide/
 site_section: developer-guide
 ---
 
-# Developer guide
+# Using Origami components
 
 When you're building a new web product, chances are you need a lot of stuff that's common across many FT sites.  Origami **modules** provide you with common functional components, behaviours, layouts and styles, while Origami **web services** provide dynamic data services and markup feeds.
 
