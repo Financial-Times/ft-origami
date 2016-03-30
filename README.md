@@ -26,7 +26,7 @@ There are three types of documentation:
 
 1. _Step by step tutorials_: These are the on-ramp for our project. Users should be able to follow one of our step by steps and achieve success within 30 minutes. These live in this project.
 1. _Topic guides_: We don't have these yet. These cover topics in comprehensive detail. They include information that would be too dense for a tutorial.
-1. _Reference_: These are: the Origami Spec and the READMEs in each of our components. This is the complete reference for all APIs Origami (its components, its services) provide.
+1. _Reference_: The Origami Spec is the container for general conventions for Origami components. Each component has it's own reference documentation too, found in its readme, JSdoc and Sassdoc.
 
 ### Style
 We assume good grammar and proper spelling is already a given so it's not in this list. The Origami Spec is a [normative specification](https://www.w3.org/TR/qaframe-spec/) and follows the conventions of normative specifications. For our other documentation (tutorials and topic guides) we use a much less formal tone. They should be informative, but breezy and conversational.
