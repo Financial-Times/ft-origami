@@ -49,7 +49,7 @@ We assume good grammar and proper spelling is already a given so it's not in thi
   - **good**: "this site has everything you need to know"
   - **bad**: "this site is a one stop shop for Origami"
 1. [Avoid "simply" and other words that trivialise concepts and ideas that might not be trivial](https://css-tricks.com/words-avoid-educational-writing/)
-1. Use markdown's capabilities to structure documentation for skim readers
+1. Structure documentation for skim readers
   - Code variables go in `back-ticks`
   - Use tables
   - Use asides for extra tidbits
