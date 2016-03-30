@@ -24,16 +24,16 @@ This guide is based on https://jacobian.org/writing/great-documentation/. It exi
 ### Types of documentation
 There are three types of documentation:
 
-1. _Step by step tutorials_: These are the on-ramp for our project. Users should be able to follow one of our step by steps and achieve success within 30 minutes. These live in this project.
-1. _Topic guides_: We don't have these yet. These cover topics in comprehensive detail. They include information that would be too dense for a tutorial.
-1. _Reference_: The Origami Spec is the container for general conventions for Origami components. Each component has it's own reference documentation too, found in its readme, JSdoc and Sassdoc.
+1. **Step by step tutorials**: These are the on-ramp for our project. Users should be able to follow one of our step-by-steps and achieve success within 30 minutes. These live in this repo (ft-origami).
+1. **Topic guides**: We don't have these yet. They should cover topics in comprehensive detail. They include information that would be too dense for a step-by-step.
+1. **Reference**: The Origami Spec is the container for general conventions for Origami components. Each component has it's own reference documentation too, found in its readme, JSdoc and Sassdoc.
 
 ### Style
-We assume good grammar and proper spelling is already a given so it's not in this list. The Origami Spec is a [normative specification](https://www.w3.org/TR/qaframe-spec/) and follows the conventions of normative specifications. For our other documentation (tutorials and topic guides) we use a much less formal tone. They should be informative, but breezy and conversational.
+We assume good grammar and proper spelling is already a given so it's not in this list. The Origami Spec is a [normative specification](https://www.w3.org/TR/qaframe-spec/) and follows the conventions of normative specifications. For our other documentation (tutorials, topic guides and readmes) we use a much less formal tone. They should be informative, but breezy and conversational.
 
 1. Be conversational
   - Use contractions: "we're" over "we are"
-  - Starting sentences with conjunctions like 'but' or 'so' is also allowed
+  - Starting sentences with conjunctions like 'but' or 'so' is allowed
 1. Prefer "we" to "I"
   - **good**: "we recommend you do X"
   - **bad**: "I recommend you do X"
