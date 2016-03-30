@@ -61,5 +61,5 @@ We assume good grammar and proper spelling is already a given so it's not in thi
   - **good**: o-techdocs, o-component
   - **bad**: O-techdocs, O-Techdocs
 1. Always capitalise Origami services
-  - **good**: the Polyfill Serivce, the Build Service
+  - **good**: the Polyfill Service, the Build Service
   - **bad**: the polyfill service, the build service
