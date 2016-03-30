@@ -36,7 +36,7 @@ We assume good grammar and proper spelling is already a given so it's not in thi
 1. Prefer "we" to "I"
   - **good**: "we recommend you do X"
   - **bad**: "I recommend you do X"
-1. Use the active tense. If you need help with this one, use [http://www.hemingwayapp.com/](http://www.hemingwayapp.com/).
+1. Use the active voice. If you need help with this one, use [http://www.hemingwayapp.com/](http://www.hemingwayapp.com/).
   - **good**: "we recommend you do X"
   - **bad**: "it is recommended you do X"
 1. Omit fluff. Avoid qualifiers like "pretty", "mostly", "probably".
