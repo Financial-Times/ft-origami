@@ -55,3 +55,10 @@ We assume good grammar and proper spelling is already a given so it's not in thi
   - Use **strong** and _emphasis_ where appropriate
   - Use lists
   - Break things up with informative headings
+1. Always capitalise Origami when referring to the product
+1. Never capitalise modules
+  - **good**: o-techdocs, o-component
+  - **bad**: O-techdocs, O-Techdocs
+1. Always capitalise Origami services
+  - **good**: the Polyfill Serivce, the Build Service
+  - **bad**: the polyfill service, the build service
