@@ -168,6 +168,10 @@ body {
 	.o-header__secondary {
 		display: none;
 	}
+
+	[data-o-hierarchical-nav-level] {
+		background: transparent;
+	}
 }
 
 .o-hierarchical-nav__more--all {
