@@ -11,16 +11,18 @@ The checklist assumes that you have done the following:
 
 ### Admin privileges on your machine
 
-<abbr title="IT Services Desk">ITSD</abbr> should have enabled admin privileges when they have set up your machine but you should [request admin access to your FT laptop via Salesforce](https://financialtimes.my.salesforce.com/home/home.jsp) to ensure it does not get revoked.
+<abbr title="IT Services Desk">ITSD</abbr> should have done admin privileges for you and your machine when they did the setup. If not, then you should [request admin access to your FT laptop via Salesforce](https://financialtimes.my.salesforce.com/home/home.jsp) to ensure it does not get revoked.
 
-If you do not have admin privileges then email `itservicedesk@ft.com`. Include your desk number (which is usually a label on the front of your desk) and the machine number with the email. You also will need to say why you need admin privileges, or alternatively copy the template below and edit accordingly.
+If you do not have admin privileges then email `itservicedesk@ft.com`.
+
+Include your desk number (which is usually a label on your desk) and the machine number with the email. You also will need to say why you need admin privileges, or copy the template below and edit to suit the situation.
 
 ```
 Dear IT Service Desk,
 
 I am a new starter within the Origami team, as a <your job title>. I would like to have admin privileges on <machine number> which is at <desk number>.
 
-The reasons for needing access to admin privileges is so that I can install software such as node.js, <your preferred text editor>, <add more if you like> and etc.
+I need to be able to install software like node.js, <your preferred text editor> & <add more if you like>.
 
 I look forward to hearing back from you on this matter.
 
@@ -29,46 +31,46 @@ Thanks
 <your name>
 ```
 
-This should expedite your request for admin privileges on your machine.
+This should hurry your request for admin privileges on your machine.
 
 ### Slack
 
-1. Install Slack (This can be done without admin privileges).
-  > To install certain apps without admin privileges, you can access the Self Service app facility by finding it on your machine via Spotlight (under the assumption it's a Mac) Log in with your network details, and do a search for the Slack app and install. This is the same with browsers like Google Chrome or Mozilla Firefox. You will need to be connected to the FT LAN for this to work.
+1. Install Slack (You can do this without admin privileges).
+  > To install software without having admin privileges. You can access the Self Service application by finding it on your machine. Log in with your network details, and do a search for the Slack app and install. This is the same with browsers like Google Chrome or Mozilla Firefox. You will need to be on the FT LAN for this to work.
 
 2. The Slack domain for FT is `financialtimes`. Log into the domain with your FT email address.
 
-3. Join the `#ft-origami` channel and ask for invites to the internal channels from the Origami team.
+3. Join the `#ft-origami` channel, then ask the team to add you to the internal channels.
 
 ### Code repositories
 
-1. The public repositories are found at [GitHub/Financial-Times](https://github.com/Financial-Times) on GitHub. The private ones are found at [BitBucket](http://git.svc.ft.com/). Origami repositories should be public if at all possible. We also are looking into moving all private repositories onto GitHub.
+1. The public repositories are at [GitHub/Financial-Times](https://github.com/Financial-Times) on GitHub. The private ones are at [BitBucket](http://git.svc.ft.com/). Origami repositories should be public if at all possible. We also are looking into moving all private repositories onto GitHub.
 
 2. Ask the Origami team for access to the following:
-  - To be added to the GitHub organisation Financial-Times
-  - To be added to the `origami-core` & `origami-colloborators` on the GitHub organisation's teams.
+  - The GitHub organisation Financial-Times
+  - The `origami-core` & `origami-colloborators` on the GitHub organisation's teams.
   - Granted admin access to BitBucket.
 
 3. If you haven't done so already, please set up [2-factor authentication](https://help.github.com/articles/about-two-factor-authentication/) for GitHub.
 
-4. If you are using SSH, then don't forget to [generate new keys](https://help.github.com/articles/generating-an-ssh-key/), and add to your GitHub account if you haven't done so already.
+4. If you are using SSH, then don't forget to [generate new keys](https://help.github.com/articles/generating-an-ssh-key/), and add to your GitHub account.
 
 ### LastPass
 
-Please do not just sign up on LastPass.com for a free account. You need to invited to the FT Enterprise LastPass account. To do this, ask `itservicedesk@ft.com` for your LastPass account to be enabled and, once this has been done, ask in the internal Origami channel on Slack to be added to the Origami team shared LastPass folder as an administrator.
+Please do not just sign up on LastPass.com for a free account. You need to invited to the FT Enterprise LastPass account. Ask `itservicedesk@ft.com` to enable your LastPass account. Then ask a member of the team to add you to the Shared-origami folder as an administrator.
 
 ### Other tools
 
-Ask the Origami team to be added to:
+Ask the Origami team for access to:
 
 - [Sentry](https://app.getsentry.com/auth/login/financial-times/)
 - [Pingdom](https://www.pingdom.com/) (_optional_)
 - [Heroku](https://www.heroku.com/)
-  - You will need to set up a Heroku account with your FT.com email address (Please enable <abbr title="Two Factor Authentication">2FA</abbr>).
+  - Set up a Heroku account with your FT.com email address (Please enable <abbr title="Two Factor Authentication">2FA</abbr>).
 
 ### Two Factor Authentication
 
-You will be asked to add <abbr title="Two Factor Authentication">2FA</abbr> for the following:
+You will need to add <abbr title="Two Factor Authentication">2FA</abbr> for the following:
 
 - Work email
 - GitHub
@@ -79,23 +81,23 @@ It is a good idea to add an app on your phone for <abbr title="Two Factor Authen
 
 ### FT.com
 
-Check your email to see if you’ve already been registered for the free subscription to the [ft.com](https://www.ft.com/). If not, sign-up for an account on ft.com then ask `corporate.support@ft.com` to upgrade it to a free subscription.
+Check your email to see if you’ve registered for the free subscription to [ft.com](https://www.ft.com/). If not, sign-up for an account on ft.com and ask `corporate.support@ft.com` to upgrade it.
 
 ## Development tools
 
 ### Environment setup
 
-Before you start installing anything, it is a good idea to do this (with admin privileges) to ensure that <abbr title="Node Package Manager">npm</abbr> is given permissions to install globally on your machine.
+Before anything gets installed on your machine. It is a good idea to ensure that <abbr title="Node Package Manager">npm</abbr> has permissions to install globally.
 
 ```
 chown -R $USER /usr/local
 ```
 
-Almost all Origami applications rely on the following tools to be installed globally on development machines. Please ensure both of these are installed successfully onto your development environment first.
+Almost all Origami applications rely on the following tools to be installed globally on development machines. Please ensure that you install the software in your development environment first.
 
 #### Install the following:
 
-- [Node.js](https://nodejs.org/) - The components are widely supported in Node v4, not with Node v5.
+- [Node.js](https://nodejs.org/) - The components are supported in Node v4 or Node v5.
   - We recommend installing a [Node Version Manager](https://github.com/creationix/nvm) to manage different local node versions.
 - [Git](https://git-scm.com/)
 - [Heroku Toolbelt](https://toolbelt.heroku.com/)
@@ -116,11 +118,11 @@ You can join all the Origami applications on Heroku by checking out this [shared
 
 #### Issues with installing/getting access
 
-If you experience any problems, then please take a look at Next's [troubleshooting guide](http://financial-times.github.io/next/docs/developer-guide/troubleshooting/). If your problem is not included in the troubleshooting list and you manage to solve it, then please add it to the list.
+If you experience any problems, then please take a look at Next's troubleshooting guide. If your problem is not included in the [troubleshooting guide](http://financial-times.github.io/next/docs/developer-guide/troubleshooting/) and you manage to solve it, then add it to the list.
 
 ### Peer review and pull requests
 
-All code in Origami is written by one person and peer reviewed by one or more people using git branches and merging.
+One person writes all the code in a Origami module. The code will be peer reviewed by one or more people using git branches and merging.
 
 #### Here's how it works
 
