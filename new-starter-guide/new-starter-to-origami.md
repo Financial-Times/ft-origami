@@ -122,7 +122,7 @@ If you experience any problems, then please take a look at Next's troubleshootin
 
 ### Peer review and pull requests
 
-One person writes all the code in a Origami module. The code will be peer reviewed by one or more people using git branches and merging.
+All contributors to Origami must use Pull Requests. These should be peer-reviewed by one or more people before merging.
 
 #### Here's how it works
 
