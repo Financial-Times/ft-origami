@@ -162,6 +162,14 @@ body {
 .o-header--pull-up {
 	margin-bottom: 0 !important;
 }
+
+/** Override o-heirachical nav background colours */
+.o-header__nav--primary-theme [data-o-hierarchical-nav-level],
+.o-header__nav--secondary-theme [data-o-hierarchical-nav-level] {
+	background-color: transparent;
+}
+
+
 .o-header--transparent {
 	background: transparent;
 
