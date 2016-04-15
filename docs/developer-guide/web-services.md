@@ -71,7 +71,7 @@ To keep improving our services and managing our maintenance overheads, we someti
 
 In these cases the we'll release a new version of the service and will advertise the deprecation of the old version via a mailing list email and by including an `X-Service-Termination-Date` header in responses to your API requests.
 
-In any request to an Origami service, you should always check the response for the presence of an `X-Service-Termination-Dateheader` and make sure you're alerted if one appears. This will ensure you always get the longest time possible to make your upgrade before the service is turned off.
+In any request to an Origami service, you should always check the response for the presence of an `X-Service-Termination-Date` header and make sure you're alerted if one appears. This will ensure you always get the longest time possible to make your upgrade before the service is turned off.
 
 ## Service robustness
 
