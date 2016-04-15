@@ -274,7 +274,7 @@ Now you need to set up the tasks to stitch everything together.  To do this, you
 * Where you have put your master Sass file and master JavaScript file
 * Where you want the finished bundles to be saved (usually a publicly accessible web server directory unless you are routing the request for the bundle through a front-controller)
 
-We'll assume for the purposes of this example that your CSS and JS are in `/client/scss` and `/client/js` and you want to save the finished bundles in `/public`.  Create a file called `gulpfile.js` in the root of your project's working tree, with the following contents:
+We'll assume for the purposes of this example that your SCSS and JS are in `/client/scss` and `/client/js` and you want to save the finished bundles in `/public`.  Create a file called `gulpfile.js` in the root of your project's working tree, with the following contents:
 
 	const gulp = require('gulp');
 	const obt = require('origami-build-tools');
@@ -309,7 +309,7 @@ Taking it step by step:
 
 The benefit of using gulp is that you can add your own build steps in addition to the standard Origami ones, so at this point, feel free to add your own code to the build and verify tasks.
 
-## 7. Prevent git from committing dependencies
+## 7. Prevent Git from committing dependencies
 
 Please don't commit dependencies into your project. To avoid this, you should add the following lines to a `.gitignore` file in the root of your project:
 
