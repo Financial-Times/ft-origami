@@ -11,16 +11,16 @@ site_section: developer-guide
 We have four different types of documentation:
 
 1. **Tutorials**: these will help you get a quick start with some part of Origami. They're designed to help anyone (developers, designers, product people) get Origami working. They're ideal for beginners. Tutorials have a <span class="o-labels o-labels--big">Tutorial</span> label.
-1. **Guides**: these cover a particular topic on more detail.
-1. **[The Spec](/docs/component-spec/)**: All Origami components conform to a specification. You don't need to read or understand it to use Origami, but it's helpful for understanding more advanced areas of Origami.
-1. **READMEs**: component specific documentation is kept with each component either in the Registry for modules, or on the service domain for services.
+1. **Guides**: these cover a particular topic in more detail.
+1. **[The Spec](/docs/component-spec/)**: all Origami components conform to a specification. You don't need to read or understand it to use Origami, but it's helpful for understanding more advanced areas of Origami.
+1. **READMEs**: component specific documentation is kept with each component either in the [Registry](http://registry.origami.ft.com/components) for modules, or on the service domain for services.
 
 This site is the home for general purpose tutorials and guides and the spec.
 
 
 ## Read more sections
 
-So you can get started as quick as possible some tutorials skip over concepts that you might want to read more about later. These concepts are particularly important if you want to use Origami in production sites. In places where we're skipping some details, there will be a section like this:
+So you can get started as quick as possible, some tutorials skip over concepts that you might want to read more about later. These concepts are particularly important if you want to use Origami in production sites. In places where we're skipping some details, there will be a section like this:
 
 <aside class='read-more'>
 <strong>Read more about [thing]</strong>
