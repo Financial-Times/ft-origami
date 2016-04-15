@@ -80,7 +80,7 @@ If you see an error, or the version does not match the latest version shown on t
 
 ## 2. Install gulp
 
-*This step only applies if you want to make the origami build process run as part of your own Gulp-powered build process. As an alternative you can use Origami build tools as a command line client.  If you prefer to do this (or you are not building your application in Node), skip this and move on to step 3.*
+*This step only applies if you want to make the origami build process run as part of your own gulp-powered build process. As an alternative you can use Origami build tools as a command line client.  If you prefer to do this (or you are not building your application in Node), skip this and move on to step 3.*
 
 [Gulp](http://gulpjs.com/) is a task runner, which we use to run the build process tasks.  Once you have installed Node, type this at a terminal:
 
@@ -93,7 +93,7 @@ This command may prompt you for your password.  You will need administrative acc
 
 ## 3. Install origami build tools
 
-Now you need a Node package to run the Origami build process.  How you install this depends on whether you are intending to use it as a command line tool or as part of a Gulp-powered build process.
+Now you need a Node package to run the Origami build process.  How you install this depends on whether you are intending to use it as a command line tool or as part of a gulp-powered build process.
 
 <aside>
 	<h4>What are build tools for?</h4>
@@ -346,9 +346,9 @@ This will create a `bower_components` directory in the root of your working tree
 </ul>
 </aside>
 
-Now bundle it all together.  There are two ways to do this, one for if you're using Gulp and one if you aren't.
+Now bundle it all together.  There are two ways to do this, one for if you're using gulp and one if you aren't.
 
-### With Gulp:
+### With gulp:
 
 Just type `gulp`:
 
