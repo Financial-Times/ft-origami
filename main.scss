@@ -90,16 +90,6 @@ body {
 		margin: 0 0 30px;
 	}
 
-	a {
-		opacity: 0.8;
-		transition: opacity 0.15s ease-in;
-
-		&:hover,
-		&:focus {
-			opacity: 1;
-		}
-	}
-
 }
 .hero__primary {
 	padding-top: 120px;
@@ -148,6 +138,10 @@ body {
 
 .o-techdocs-main--nonav {
 	margin: auto;
+}
+
+a.o-buttons--standout{
+	color: white;
 }
 
 .homepage-content {

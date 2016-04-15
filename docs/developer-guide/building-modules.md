@@ -1,25 +1,26 @@
 ---
 layout: default
-title: Installing modules manually
-section: Developer guide
-permalink: /docs/developer-guide/building-modules/
+title: Manual build process guide
+section: Modules
+permalink: /docs/developer-guide/modules/building-modules/
 site_section: developer-guide
+redirect_from: "/docs/developer-guide/building-modules/"
 ---
 
-# Building Origami modules into your product
+<h1>Manual build process <span class="o-labels o-labels--big">Tutorial</span></h1>
 
-Building Origami modules manually gives you the most flexibility and control, but you will need to use some specific tools.  Remember that in many cases you may be able to get started faster by using the [build service](../build-service), which will do all this for you.
+Building Origami modules manually gives you the most flexibility and control, but you will need to use some specific tools.  Remember that in many cases you may be able to get started faster by using the [Build Service](../build-service), which will do all this for you.
 
-This tutorial assumes you are starting from a fresh install of a UNIX-like OS with a bash shell and have cloned or initalised a git repo for your project somewhere on the filesystem.  If you're a bit further along than that, feel free to skip any steps you've already completed.
+This tutorial assumes you're starting from a fresh install of a UNIX-like OS with a bash shell and have cloned or initalised a git repo for your project somewhere on the filesystem.  If you're a bit further along than that, feel free to skip any steps you've already completed.
 
 <aside>
 	<h4>No support for Windows</h4>
-	<p>Origami's build tools do not support Windows as a development environment and the instructions on this page assume you are using a UNIX-like OS.  Windows <strong>might</strong> work, to some degree, but we don't make any guarantees, either of what works today or what might continue to work in the future.  If you're a Windows user, consider running a Linux VM.</p>
+	<p>Origami's build tools do not support Windows as a development environment. The instructions on this page assume you are using a UNIX-like OS.  Windows <strong>might</strong> work, to some degree, but we don't make any guarantees, either of what works today or what might continue to work in the future.  If you're a Windows user, consider running a Linux VM.</p>
 </aside>
 
 ## 1. Install Node.js, Ruby and Git
 
-To use Origami components, you need two language runtimes (it doesn't matter if you are not writing your application in Node or Ruby, you still need to install them) and the <code>git(1)</code> version control system:
+To build Origami modules manually, you'll need Ruby, Node and git. It doesn't matter if you're not writing your application in Node or Ruby, you still need to install them for this.
 
 * [Node.js](http://nodejs.org/) is the JavaScript runtime, which we need to run all the build tools, which are written in JavaScript.
 * [Ruby](https://www.ruby-lang.org) is required to run [SCSS-Lint](https://github.com/causes/scss-lint)
@@ -33,11 +34,11 @@ To use Origami components, you need two language runtimes (it doesn't matter if 
 
 ### Node.js
 
-Node.js can be installed manually or via package management, and often ships preinstalled on many OS distributions.  To find out if you have it installed and which version you have, type this at a terminal ([What's a terminal?](#note-terminal)):
+To find out if you have Node.js installed and which version you have, type this in a terminal ([What's a terminal?](#note-terminal)):
 
 <aside class="o-techdocs__aside--toggleable" id="note-terminal">
 	<h4>What's a "terminal"?!</h4>
-	<p>The terminal is an application that enables you to run commands on your computer by typing them in on your keyboard.  It's like having a text-message chat with your computer.  On Mac OS, the terminal is an application you can find in your Applications folder.  On most Linux systems, it's available from the applications or programs menu if you're not using it by default.  On Windows, 'Command prompt' (which is the same thing by a different name) is available in the Apps menu, or prior to Windows 8, press Windows+R, type <code>cmd</code> in the dialog that appears, and press enter.</p>
+	<p>The terminal is an application that enables you to run commands on your computer by typing them in on your keyboard.  It's like having a text-message chat with your computer.  On Mac OS, the terminal is an application you can find in your Applications folder.  On most Linux systems, it's available from the applications or programs menu if you're not using it by default.</p>
 </aside>
 
 <pre class="cli">
@@ -66,7 +67,7 @@ If you see an error, or the version does not match the latest version shown on t
 
 ### Git
 
-To determine whether you have <code>git(1)</code> installed type this at a terminal:
+To determine whether you have <code>git</code> installed type this at a terminal:
 
 <pre class="cli">
 <kbd>git --version</kbd>
@@ -92,20 +93,20 @@ This command may prompt you for your password.  You will need administrative acc
 
 ## 3. Install origami build tools
 
-You now need a Node package to run the Origami build process.  How you install this depends on whether you are intending to use it as a command line tool or as part of a Gulp-powered build process.
+Now you need a Node package to run the Origami build process.  How you install this depends on whether you are intending to use it as a command line tool or as part of a Gulp-powered build process.
 
 <aside>
 	<h4>What are build tools for?</h4>
 	<p>If you compare building a website with making a cake, where your website is the finished cake and all the Origami components you plan to use are the ingredients, these build tools are the mixer and the oven - the tools you need to use to convert the ingredients into the cake.</p>
 </aside>
 
-Choose where you want to start building your project (normally this is also the root of a git repository, but it can be any folder on your computer).  A common pattern is to create a folder called `sandboxes` in your home directory, and then create a subdirectory with the name of your project, eg `~/sandboxes/origami-demo`.  We'll refer to this as the 'root of the working tree', because you'll create files and folders within the project folder which descend from the root of the project.
+Choose where you want to start building your project (normally this is also the root of a git repository, but it can be any folder on your computer). A common pattern is to create a folder called 'sandboxes' in your home directory, and then create a subdirectory with the name of your project, eg ~/sandboxes/origami-demo. We’ll refer to this as the ‘root of the working tree’, because you’ll create files and folders within the project folder which descend from the root of the project.
 
 <aside>
 <h4>Optional: get the finished setup</h4>
-<p>We've created a repository that's set up as yours will be at the end of this tutorial. If you like you can clone the repository in full rather than creating the files one at a time, but you should still follow through the tutorial so you can understand how to create your own. To clone the repository, type this at a terminal:</p>
+<p>We've created a repository that's set up as yours will be at the end of this tutorial. If you like, you can clone the repository in full rather than creating the files one at a time. You should still follow through the tutorial so you can understand how to create your own. To clone the repository, type this at a terminal:</p>
 <pre class="cli">
-<kbd>git clone https://github.com/Financial-Times/origami-manual-build-boilerplate .</kbd>
+<kbd>git clone https://github.com/Financial-Times/origami-manual-build-boilerplate.</kbd>
 </pre>
 </aside>
 
@@ -120,7 +121,7 @@ origami-build-tools@3.0.0 /home/ubuntu/.nvm/v0.12.30/lib/node_modules/origami-bu
 ...</output>
 </pre>
 
-### If you are using Gulp
+### Create a `package.json` (Gulp only)
 
 In the root of your working tree, create a file called `package.json`, with the following contents:
 
@@ -133,41 +134,41 @@ In the root of your working tree, create a file called `package.json`, with the 
 	}
 
 
-The packages are listed in *devDependencies* because they are not required to run your application, only to build it.  Marking your project as *private* means that it cannot accidentally be published to the [npm registry](http://npmjs.org) as a public component.
+The packages are listed in *devDependencies* because they are not required to run your application, only to build it.  Marking your project as *private* means that it won't be published to the [npm registry](http://npmjs.org) as a public component by accident.
 
-## 4. Set up a package manifest to load Origami components
+## 4. Set up a package manifest to load Origami modules
 
-Hopefully you know which Origami modules you want.  If you don't, check out the [Origami registry](http://registry.origami.ft.com) for a list of all our supported components.  You can also add any module from the [bower registry](http://bower.io/search/) that has a [commonJS interface](http://wiki.commonjs.org/wiki/Modules/1.1).
+All Origami modules are in the [Origami registry](http://registry.origami.ft.com). You can also add any module from the [bower registry](http://bower.io/search/) that has a [commonJS interface](http://wiki.commonjs.org/wiki/Modules/1.1). Go to the Registry and pick out some components to use in this exercise.
 
-Once you know which Origami modules you want, create a `bower.json` file in the root of your working tree.   This you have to create yourself, and it will be different for each project, but it must conform to the bower [configuration spec](http://bower.io/docs/creating-packages/), which is very similar to npm's config.  Here is an example that includes a few key components:
+### Create `bower.json`
+
+Once you know which Origami modules you want, create a `bower.json` file in the root of your working tree.  You'll have to create this yourself, and it will be different for each project. It must conform to the bower [configuration spec](http://bower.io/docs/creating-packages/), which is very similar to npm's config.  Here is an example that includes a few key components:
 
 	{
 		"name": "origami-demo",
 		"dependencies": {
 			"o-grid": "^4.0.0",
-			"o-header": "^4.0.0",
+			"o-header": "^5.0.0",
 			"o-footer": "^4.0.0",
 			"o-colors": "^3.3.0",
 			"o-fonts": "^2.0.0",
-			"o-ft-icons": "^2.4.0"
+			"o-ft-icons": "^3.0.0"
 		}
 	}
 
-`dependencies` is a list of the front-end modules you would like to use in your project.  If the module is in the [Origami registry](http://registry.origami.ft.com) or the [bower registry](http://bower.io/search/), you can simply specify the version number you want (using [semver](http://semver.org) rules), otherwise you must provide the full URL of the component's repository followed by a hash and the version you want.
+`dependencies` is a list of the front-end modules you would like to use in your project.  If the module is in the [Origami registry](http://registry.origami.ft.com) or the [bower registry](http://bower.io/search/), you can specify the version number you want. Otherwise you must provide the full URL of the component's repository followed by a hash and the version you want.
 
-<aside>
-	<h4>v0.x.x: Beware!</h4>
-	<p>Versions lower than 1 (eg. <code>v0.3.2</code>) are considered experimental builds, and are treated differently by Bower.  Origami forbids the creation of components with a version lower than 1, so if you see one, it is probably not ready for use.</p>
-</aside>
-
-<aside>
-	<h4>Semver calculator</h4>
-	<p>If you want to understand more about how a <em>semver expression</em> matches specific versions, try npm's <a href='http://semver.npmjs.com'>semver calculator tool</a>.</p>
+<aside class='read-more'>
+<strong>Read more about component versioning</strong>
+<p>The token <code>o-header@^5.0.0</code> contains the component name and a version number as a semver range.</p>
+<a class='o-buttons' href='{{site.baseurl}}/docs/developer-guide/modules/module-versioning/'>Find out more about component versioning</a>
 </aside>
 
 This time we're listing these as *dependencies*, not *devDependencies*, because they are actually required by your project in production.
 
-To ensure that the Origami modules can be found, it needs to be set up to search the Origami registry.  To do this, create a `.bowerrc` file in the root of your project's working tree (or in your home directory, if you want to apply it automatically to all projects), with the following contents:
+
+### Create a `.bowerrc` file
+So that bower can find the modules you've listed in your `bower.json`, it needs to know to search the Origami Registry.  To do this, create a `.bowerrc` file in the root of your project's working tree (or in your home directory, if you want to apply it automatically to all projects). Add the following:
 
 	{
 		"registry": {
@@ -188,7 +189,11 @@ To ensure that the Origami modules can be found, it needs to be set up to search
 
 ## 5. Create your master Sass and JavaScript files
 
-Now you need to create a Sass and/or JavaScript file that requires the Origami components as dependencies.  In Sass, you can do this with the `@import` statement, and in JavaScript, using `require`.  The syntax of the Sass import is:
+Now you need to create a Sass and/or JavaScript file that requires the Origami components as dependencies.  In Sass, you can do this with the `@import` statement, and in JavaScript, using `require`.  
+
+### Create `main.scss`
+
+The syntax of the Sass import is:
 
 	@import '{modulename}/main';
 
@@ -234,8 +239,9 @@ As an example (assuming you loaded these modules in your `bower.json`), create a
 
 	// Add your own styles here…
 
+### Create `main.js`
 
-The syntax of the JavaSript require is:
+The syntax of the JavaScript require is:
 
 	{handle} = require('{modulename}');
 
@@ -253,17 +259,22 @@ As an example, create a `main.js` file at `/client/js/main.js`, containing:
 		document.dispatchEvent(new CustomEvent('o.DOMContentLoaded'));
 	});
 
+<aside class='read-more'>
+<strong>Read more about initialising modules</strong>
+<p>The code snippet above is dispatching an <code>o.DOMContentLoaded</code> event to initialise Origami's JavaScript modules.</p>
+<a class='o-buttons' href='{{site.baseurl}}/docs/developer-guide/modules/initialising-modules/'>Find out more about initialising Origami JavaScript</a>
+</aside>
 
 ## 6. Set up a gulp automation script
 
-*If you are not using gulp, skip this step 6 and proceed to step 7*
+*If you are not using gulp, skip this step and proceed to step 7*
 
 Now you need to set up the tasks to stitch everything together.  To do this, you need to know:
 
 * Where you have put your master Sass file and master JavaScript file
 * Where you want the finished bundles to be saved (usually a publicly accessible web server directory unless you are routing the request for the bundle through a front-controller)
 
-We'll assume for the purposes of this example that your CSS and JS are in `/client/scss` and `/client/js` and you want to save the finshed bundles in `/public`.  Create a file called `gulpfile.js` in the root of your project's working tree, with the following contents:
+We'll assume for the purposes of this example that your CSS and JS are in `/client/scss` and `/client/js` and you want to save the finished bundles in `/public`.  Create a file called `gulpfile.js` in the root of your project's working tree, with the following contents:
 
 	const gulp = require('gulp');
 	const obt = require('origami-build-tools');
@@ -300,7 +311,7 @@ The benefit of using gulp is that you can add your own build steps in addition t
 
 ## 7. Prevent git from committing dependencies
 
-Please don't commit dependencies into your project.  To avoid this, you should add the following lines to a `.gitignore` file in the root of your project:
+Please don't commit dependencies into your project. To avoid this, you should add the following lines to a `.gitignore` file in the root of your project:
 
 	.DS_Store
 	.sass-cache/
@@ -310,22 +321,22 @@ Please don't commit dependencies into your project.  To avoid this, you should a
 	build/
 	demos/local/
 
-This list of ignored files includes your two dependency directories (`node_modules` for your build tools, and `bower_components` for your Origami components), a couple of annoying directories often created by your computer automatically (`.DS_Store` and `.sass-cache`), and finally the `public` directory because the files in there will be generated by the build process and are not part of our application's source code. `node_modules` is only necessary if you're using Node.JS, like for example, if you went with the Gulp build process.
+This list of ignored files includes your two dependency directories (`node_modules` for your build tools, and `bower_components` for your Origami components), a couple of annoying directories often created by your computer automatically (`.DS_Store` and `.sass-cache`), and finally the `public` directory because the files in there will be generated by the build process and are not part of our application's source code.
 
 Remember that because `.gitignore` starts with a dot, it may not show up in your directory listing, and you may need to toggle an option to make hidden files visible in order to see it.
 
 ## 8. Run the build
 
-You're ready to run your build.  First, use origami-build-tools to install everything else that you need, including the Origami components that you want:
+You're ready to run your build.  First, use `origami-build-tools` to install everything else that you need, including the Origami components that you want:
 
 <pre class="cli">
 <kbd>obt install</kbd>
 <output>...output telling us which tools are being installed...</output>
 </pre>
 
-This will install a number of additional tools, and create a `bower_components`directory in the root of your working tree, containing all the Origami modules you've listed in your `bower.json` file.
+This will create a `bower_components` directory in the root of your working tree containing all the Origami modules you've listed in your `bower.json` file.
 
-It will also create a `node_modules` directory in the root of your working tree, containing [origami-build-tools](https://github.com/Financial-Times/origami-build-tools) and [gulp](http://gulpjs.com), which is all you need to run the build process.
+`obt install` also creates a `node_modules` directory in the root of your working tree containing [origami-build-tools](https://github.com/Financial-Times/origami-build-tools) and [gulp](http://gulpjs.com), which is all you need to run the build process.
 
 <aside>
 <h4>Problems running obt install</h4>
@@ -335,7 +346,7 @@ It will also create a `node_modules` directory in the root of your working tree,
 </ul>
 </aside>
 
-Now bundle it all together.  This is done in one of two ways depending on whether you are using Gulp or not.
+Now bundle it all together.  There are two ways to do this, one for if you're using Gulp and one if you aren't.
 
 ### With Gulp:
 
@@ -354,7 +365,7 @@ If the `verify` task fails try to remove the project's local npm_modules and bow
 <kbd>obt install</kbd>
 </pre>
 
-If you want to continue working on your CSS and JS code (edit your own code but not anything in the bower_components directory), you can also tell grunt to watch your files and automatically retrigger the build when you save a change.
+If you want to continue working on your CSS and JS code (edit your own code but not anything in the bower_components directory), you can also tell gulp to watch your files and automatically retrigger the build when you save a change.
 
 <pre class="cli">
 <kbd>gulp watch</kbd>
@@ -365,7 +376,7 @@ If you want to continue working on your CSS and JS code (edit your own code but 
 
 ### With command line interface:
 
-Since you have not saved any configuration specific to your project, you need to tell the build tools where to find the files in your project by passing arguments on the command line:
+Since you haven't saved any configuration specific to your project, you need to tell the build tools where to find the files in your project by passing arguments on the command line:
 
 <pre class="cli">
 <kbd>obt build --js=./client/js/main.js --sass=./client/scss/main.scss --buildJs=bundle.js --buildCss=bundle.css --buildFolder=public</kbd>
@@ -373,23 +384,25 @@ Since you have not saved any configuration specific to your project, you need to
 Compiling ./client/scss/main.scss</output>
 </pre>
 
-You can also watch for changes using the CLI tool, by adding a `--watch` to your command line.
+You can also watch for changes using OBT's CLI , by adding a `--watch` to your command line.
 
 In both cases, (gulp and CLI) this will use origami-build-tools to read your project's JS and CSS master files, pull together all their required dependencies, and pull everything together into two bundles, one for JavaScript, and one for CSS.
 
 
 ## 9. Use the bundles
 
-Now, you can simply load the bundles in your web page.  If you saved your bundles to `/public` and that's also the root of your web server, you would write the following HTML:
+Now, you can load the bundles in your web page.  If you saved your bundles to `/public` and that's also the root of your web server, you would write the following HTML:
 
 	<link rel="stylesheet" href="public/bundle.css" />
 	<script defer async src="public/bundle.css"></script>
 
-It's advisable to put the `defer` and `async` attribute on your `<script>` tags, so that loading of the script does not block page load.  Origami components will never require you to load script prior to the DOM being rendered.  See Nicholas Zakas's post [The truth about non blocking JavaScript](http://calendar.perfplanet.com/2010/the-truth-about-non-blocking-javascript/) for more details.
+We advise that you put the `defer` and `async` attribute on your `<script>` tags, so that loading of the script does not block page load.  Origami components will never require you to load script before the DOM is rendered.  See Nicholas Zakas's post [The truth about non blocking JavaScript](http://calendar.perfplanet.com/2010/the-truth-about-non-blocking-javascript/) for more details.
 
-The Origami spec includes instructions for how to structure your HTML page, so go and grab the boilerplate HTML from here:
-
-* Learn more about [Core vs enhanced experience]({{site.baseurl}}/docs/developer-guide/using-modules/#core-vs-enhanced-experience)
+<aside class='read-more'>
+<strong>Read more about cutting the mustard</strong>
+<p>Origami modules provide two experiences, "core" for older browsers and "enhanced" for newer browsers. To determine if a browser gets a core or enhanced experience we need developers to add a 'cuts the mustard test' to their pages</p>
+<a class='o-buttons' href='{{site.baseurl}}/docs/developer-guide/modules/'>Find out more about core vs enhanced experience</a>
+</aside>
 
 Here's an example of a web page created from the boilerplate that includes the script and link tags in the right place, and also adds some content that we can style using the Origami components.  You can create this in your project root as `index.html`:
 
@@ -432,12 +445,12 @@ Here's an example of a web page created from the boilerplate that includes the s
 		</style>
 
 		<!--
-			Unconditionally load the polyfill service to provide the best support
+			Unconditionally load the Polyfill Service to provide the best support
 			possible for modern web standards.
 			Only features missing in this user agent will be filled.
 			If you want, you can provide a list of features to polyfill, otherwise
 			all features that can be polyfilled will be.
-			See the polyfill service home page for more details:
+			See the Polyfill Service home page for more details:
 			https://cdn.polyfill.io/
 		-->
 		<script src="//polyfill.webservices.ft.com/v1/polyfill.min.js"></script>
@@ -506,3 +519,26 @@ For very simple projects, this may be true.  But it's generally not a great idea
 
 
 If `o-tweet` wanted to load a background image that was at `/img/separator.gif` in the `o-tweet` repo, this config would result in the image being requested from `/resources/o-tweet/img/separator.gif`.  It is then up to you to handle this request and deliver the appropriate file from your `bower_components` directory.
+
+----
+
+### That's it!
+
+Well done, you have built a responsive, FT branded web page with Origami.
+
+## Next
+
+This tutorial has covered getting set up with Origami using the Origami Build Tools to build modules locally.
+
+We've covered:
+- Installing the required technologies
+- Building components to create Sass and JavaScript bundles
+- Adding those bundles to your pages
+- Dealing with assets
+
+We skipped over some areas that you should understand if you want to use Origami in production:
+
+- [The Polyfill Service](/docs/developer-guide/modules/using-the-polyfill-service/)
+- [Core vs Enhanced experience](/docs/developer-guide/modules/cuts-the-mustard/)
+- [Component versioning](/docs/developer-guide/modules/component-versioning/)
+- [Initialising module JavaScript](/docs/developer-guide/modules/initialising-modules/)
