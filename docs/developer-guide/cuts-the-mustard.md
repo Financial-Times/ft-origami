@@ -49,7 +49,7 @@ Then if the browser passes your CTM, you can replace `core` with `enhanced`
 
 ### 3. Asynchronously load any JavaScript
 
-And finally, load the any JavaScript the page needs only if our cuts the mustard test has passed. We do this asynchronously to make sure it doesn't block rendering.
+And finally, load any JavaScript the page needs only if our cuts the mustard test has passed. We do this asynchronously to make sure it doesn't block rendering.
 
 	<script>
 	  (function(src) {
