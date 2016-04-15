@@ -107,7 +107,7 @@ Well done! you've used an o-button on a page. Adding more components is very sim
 1. Add the names of other components to you want to the build service requests
 1. Add the HTML and classes
 
-Some components, like `o-header` have much more complicated HTML than `o-buttons`. Where this is the case, you should copy and the HTML for those elements from the [Origami Registry](http://registry.origami.ft.com/components/).
+Some components, like `o-header` have much more complicated HTML than `o-buttons`. Where this is the case, you should copy and paste the HTML for those elements from the [Origami Registry](http://registry.origami.ft.com/components/).
 
 ## Find out more
 
