@@ -18,9 +18,9 @@ This tutorial assumes you're starting from a fresh install of a UNIX-like OS wit
 	<p>Origami's build tools do not support Windows as a development environment. The instructions on this page assume you are using a UNIX-like OS.  Windows <strong>might</strong> work, to some degree, but we don't make any guarantees, either of what works today or what might continue to work in the future.  If you're a Windows user, consider running a Linux VM.</p>
 </aside>
 
-## 1. Install Node.js, Ruby and Git
+## 1. Install Node.js, Ruby, and Git
 
-To build Origami modules manually, you'll need Ruby, Node and git. It doesn't matter if you're not writing your application in Node or Ruby, you still need to install them for this.
+To build Origami modules manually, you'll need Ruby, Node, and Git. It doesn't matter if you're not writing your application in Node or Ruby, you still need to install them for this.
 
 * [Node.js](http://nodejs.org/) is the JavaScript runtime, which we need to run all the build tools, which are written in JavaScript.
 * [Ruby](https://www.ruby-lang.org) is required to run [SCSS-Lint](https://github.com/causes/scss-lint)
@@ -43,7 +43,7 @@ To find out if you have Node.js installed and which version you have, type this 
 
 <pre class="cli">
 <kbd>node -v</kbd>
-<output>v0.12.2</output>
+<output>v4.2.0</output>
 </pre>
 
 If you get an error, or the number you get does not match the most recent release shown on the [Node website](http://nodejs.org/), you need to install/upgrade Node.  
