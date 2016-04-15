@@ -165,7 +165,7 @@ We've covered:
 
 - Finding component HTML in the registry
 - Adding CSS using the `<link ...>` subresource tag
-- Adding JS using the `<src ...>` subresource tag
+- Adding JS using the `<script ...>` subresource tag
 
 We skipped over some areas that you should understand if you want to use Origami in production:
 

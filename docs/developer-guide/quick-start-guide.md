@@ -49,7 +49,7 @@ This request says "give me the CSS for o-buttons at the latest version"
 Let's add that to our page in the `<head>` as a `<link ...>` tag
 
 ```
-<link rel="stylesheet" href="https://build.origami.ft.com/v2/bundles/css?modules=o-buttons">
+<link rel="stylesheet" href="https://build.origami.ft.com/v2/bundles/css?modules=o-buttons" />
 ```
 
 <aside class='read-more'>
@@ -78,10 +78,10 @@ o-buttons has some design variations. Let's apply the `standout` variation by th
 https://build.origami.ft.com/v2/bundles/js?modules=o-buttons
 ```
 
-Instead of using a `<link ...>` tag, use a `<src ...>` tag.
+Instead of using a `<link ...>` tag, use a `<script ...>` tag.
 
 ```
-<src rel="stylesheet" href="https://build.origami.ft.com/v2/bundles/css?modules=o-buttons">
+<script async type="javascript" src="https://build.origami.ft.com/v2/bundles/js?modules=o-buttons" />
 ```
 
 ## 5. Putting it all together
@@ -90,8 +90,8 @@ Instead of using a `<link ...>` tag, use a `<src ...>` tag.
 <html>
 	<head>
 		<!-- build service links and scripts here -->
-		<src rel="stylesheet" href="https://build.origami.ft.com/v2/bundles/css?modules=o-buttons">
-		<link rel="stylesheet" href="https://build.origami.ft.com/v2/bundles/css?modules=o-buttons">
+		<script async type="javascript" src="https://build.origami.ft.com/v2/bundles/js?modules=o-buttons" />
+		<link rel="stylesheet" href="https://build.origami.ft.com/v2/bundles/css?modules=o-buttons" />
 	</head>
 	<body>
 		Hello!
