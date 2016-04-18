@@ -20,7 +20,7 @@ The JavaScript in Origami modules does not perform any initialisation automatica
 
 This is to avoid them appearing to be "magic" and potentially hard to debug.
 
-There are three ways to initialise Origami modules, each offering an increased level of control.
+There are three ways to initialise Origami modules, each offering an increased level of control. Any of these methods offer an acceptable level of performance, but depending on your use-case, you might be able to improve performance further by delaying the initialisation of some modules.
 
 ## 1. Initialise every Origami module on the page in one go:
 
@@ -56,7 +56,7 @@ So, to initialise all `o-gallery` components on a page, the following code would
 For the most control, you can instantiate new instances of a module 1 by 1.
 
 	// Require the module, assign it to a variable
-	var oGallery = require('o-gallery');
+	const oGallery = require('o-gallery');
 
 	// Initialise an o-gallery for the passed in DOM element
 	// This will initilise exactly 1 o-gallery, even if the DOM element has more than 1 o-gallery in it.
