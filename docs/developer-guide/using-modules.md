@@ -10,7 +10,7 @@ redirect_from: "/docs/developer-guide/using-modules/"
 
 # Using Origami modules
 
-Origami's front end modules contain Sass, JavaScript and markup templates to create great looking UI elements.  The Sass and JavaScript needs to be built into minified bundles that you can serve as subresources using `<link>` and `<script>` tags. The markup templates are there to guide you to generate the necessary HTML in your application.
+Origami's front end modules contain Sass, JavaScript and markup templates to create great looking UI elements. The Sass and JavaScript needs to be 'built' into minified bundles that you can serve as subresources using `<link>` and `<script>` tags. The markup templates are there to help you generate the Origami HTML in your application.
 
 ## The quick way
 If you just want to experiment with Origami modules, we have a 5 minute tutorial especially for you
@@ -21,8 +21,8 @@ If you just want to experiment with Origami modules, we have a 5 minute tutorial
 
 There are three steps to getting an Origami module working on your page properly:
 
-1. Get the module JS and CSS onto your page using either a manual build process, or the Build Service
-1. Add module HTML
+1. Get the module's JS and CSS onto your page using either a manual build process, or the Build Service
+1. Add the module's HTML
 1. Take care of the experience for older browsers
 
 If you want to work through these steps, the jumping off point is this guide:

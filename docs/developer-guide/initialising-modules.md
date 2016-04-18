@@ -16,7 +16,7 @@ _Build Service users don't need to do any JavaScript initialisation. You only ne
 </aside>
 
 
-Individual Origami module JavaScript does not perform any initialisation automatically. ie, putting the JavaScript and HTML for `o-gallery` on a page is not enough to get a working `o-gallery` (unless you're using the Build Service, which will auto-initialise components).
+The JavaScript in Origami modules does not perform any initialisation automatically. ie, putting the JavaScript and HTML for `o-gallery` on a page is not enough to get a working `o-gallery` (unless you're using the Build Service, which will auto-initialise components).
 
 This is to avoid them appearing to be "magic" and potentially hard to debug.
 
@@ -46,7 +46,7 @@ For more fine-grained control, you can initialise all modules of a specific type
 So, to initialise all `o-gallery` components on a page, the following code would work:
 
 	// Require the module, assign it to a variable
-	var oGallery = require('o-gallery');
+	const oGallery = require('o-gallery');
 
 	// Initialise all the oGallerys
 	oGallery.init();
@@ -59,7 +59,7 @@ For the most control, you can instantiate new instances of a module 1 by 1.
 	var oGallery = require('o-gallery');
 
 	// Initialise an o-gallery for the passed in DOM element
-	// This will initilise exactly 1 oGallery, even if the DOM element has more than 1 o-gallery in it.
+	// This will initilise exactly 1 o-gallery, even if the DOM element has more than 1 o-gallery in it.
 	new oGallery(HTMLElement);
 
 	// == or ==
