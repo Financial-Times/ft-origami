@@ -531,6 +531,7 @@ Well done, you have built a responsive, FT branded web page with Origami.
 This tutorial has covered getting set up with Origami using the Origami Build Tools to build modules locally.
 
 We've covered:
+
 - Installing the required technologies
 - Building components to create Sass and JavaScript bundles
 - Adding those bundles to your pages
