@@ -3,6 +3,7 @@ layout: default
 title: HTML
 section: Syntax
 permalink: /docs/syntax/html/
+site_section: about-origami
 ---
 
 # HTML Standards
@@ -35,10 +36,10 @@ Where Origami components include or output HTML, it should meet the following re
 	* `<base>`
 	* `<link>`
 	* `<noscript>`
-* Those elements and attributes which are deprecated in the HTML5 spec *should* not be used:
+* Those elements and attributes which are deprecated in the HTML5 spec *should not* be used:
 	- BAD: `<applet>`, `<frameset>`, `<font>`, `<link rev="">`, `<td align="right">`
-* `<iframe>` *must* not be used in markup. Iframes may be created by JavaScript.
-* Conditional comments *must not* be used in components or recommended to product developers. Components should instead rely on classes on the `body` or `html` element that indicate feature support. Component authors may require the product application to set any feature support classes supported by [Modernizr](http://modernizr.com/docs/).  Product developers may of course choose to apply those classes using conditional comments rather than using Modernizr.
+* `<iframe>` *must not* be used in markup. Iframes may be created by JavaScript.
+* Conditional comments *must not* be used in components or recommended to product developers. Components should instead rely on classes on the `html` element that indicate feature support. Component authors may require the product application to set any feature support classes supported by [Modernizr](http://modernizr.com/docs/). Product developers may of course choose to apply those classes using conditional comments.
 * HREFs in markup *must not* use the `javascript:` protocol.
 * The following **attributes** must not be present on any element:
 	* target
@@ -50,10 +51,15 @@ Where Origami components include or output HTML, it should meet the following re
 
 ## Owned DOM
 
-If a module has a single root element, that element (with the appropriate class and data attributes defined above) is the root of that module's "owned DOM".  Any CSS or JavaScript that is included in the module *must* only act on elements within the owned DOM.  A module may choose not to mark a portion of DOM as owned if it:
+Any CSS or JavaScript that is included in a module *must* only act on elements already in the DOM if those elements have opted into control by that module.
 
-* has no specific markup (though it may provide styles to apply to existing markup in the page, e.g. `o-grid` and `o-typography`); and
-* has no JavaScript that intends to manipulate the DOM
+* A module *may* act on an element using JavaScript (e.g. to attach event handlers, change the element's properties or content) if it or any ancestor has a data attribute `data-o-component` containing the module's name (note that an element may list multiple modules).
+* A module *may* act on an element using CSS (to style it) if it or any ancestor has a class which starts with the name of the module.
+
+As an example, the `o-date` component is permitted to style and apply JavaScript behaviour to the following element:
+
+	<time data-o-component="o-date" class="o-date" datetime="2000-06-14T23:00:00.000Z">June 15, 2000</time>
+
 
 ## Anticipating lack of script
 
@@ -62,9 +68,23 @@ Markup may contain elements that do not work without accompanying JavaScript.  T
 	<div class="o--if-js">Submit a new comment: ... </div>
 	<div class="o--if-no-js">To comment on this article, you need to upgrade your web browser.  <a href="...">Learn how to upgrade</a>.</div>
 
-To avoid unnecessary HTTP requests, elements with the class `o--if-no-js` *must not* be (or contain) `<img>` tags, and *must not* have a background image URL set with CSS.  Descendent elements of the `o--if-no-js` element *may* have CSS image backgrounds ([Learn more](http://timkadlec.com/2012/04/media-query-asset-downloading-results/))
+Elements with the class `o--if-no-js` will trigger unnecessary HTTP requests if they are (or contain) `<img>` tags or have a background image URL set with CSS ([learn more](http://timkadlec.com/2012/04/media-query-asset-downloading-results/)).
+If you require an image to be added to a page for core experience only, you should use a `<noscript>` tag:
 
-* Learn more about [Core vs enhanced experience]({{site.baseurl}}/docs/developer-guide/using-modules/#core-vs-enhanced-experience)
+	<script>
+		(function () {
+			// Apply your cuts the mustard test to load the image for enhanced experience
+			if (!('querySelector' in document && 'localStorage' in window && 'addEventListener' in window) ) {
+				var img = new Image();
+				img.src = 'https://spoor-api.ft.com/px.gif?xxxxxx';
+			}
+		})();
+	</script>
+	<noscript data-o-component="o-tracking">
+		<img src="https://spoor-api.ft.com/px.gif?xxxxxx"/>
+	</noscript>
+
+Learn more about [Core vs enhanced experience]({{site.baseurl}}/docs/developer-guide/using-modules/#core-vs-enhanced-experience)
 
 ## WAI-ARIA
 
@@ -86,7 +106,7 @@ In accordance with the [JavaScript standards]({{site.baseurl}}/docs/syntax/js), 
 
 Headlines fragment:
 
-	<nav class="o-headlines" data-o-component="o-headlines" data-o-version="0.0.1">
+	<nav class="o-headlines" data-o-component="o-headlines">
 		<ul>
 			<li data-track-pos="0"><a href="http://www.ft.com">Home</a></li>
 			<li data-track-pos="1"><a href="http://www.ft.com/uk">UK</a></li>

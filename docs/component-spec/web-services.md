@@ -3,6 +3,7 @@ layout: default
 title: Web services
 section: Component spec
 permalink: /docs/component-spec/web-services/
+site_section: about-origami
 ---
 
 # Web service components
@@ -103,7 +104,7 @@ If a web service has two versions, `v1` and `v2`, there *must* be three of each 
 
 ### De-duplication of output
 
-Web service components *should* not offer any de-duplication of content.  If a product developer wants to draw from multiple Origami sources, and de-dupe where the same individual content item may appear from more than one of those sources, that's not a problem that Origami will solve for them, but could be solved at the product level by consuming data rather than markup.
+Web service components *should not* offer any de-duplication of content.  If a product developer wants to draw from multiple Origami sources, and de-dupe where the same individual content item may appear from more than one of those sources, that's not a problem that Origami will solve for them, but could be solved at the product level by consuming data rather than markup.
 
 ## Metrics
 

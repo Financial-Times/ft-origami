@@ -3,39 +3,39 @@ layout: default
 title: Developer guide
 section: Developer guide
 permalink: /docs/developer-guide/
+site_section: developer-guide
 ---
 
-#Developer guide
+# How this documentation is organised
 
-When you're building a new web product, chances are you need a lot of stuff that's common across many FT sites.  Origami **modules** provide you with common functional components, behaviours, layouts and styles, while Origami **web services** provide dynamic data services and markup feeds.
+We have four different types of documentation:
 
-##Web services
+1. **Tutorials**: these will help you get a quick start with some part of Origami. They're designed to help anyone (developers, designers, product people) get Origami working. They're ideal for beginners. Tutorials have a <span class="o-labels o-labels--big">Tutorial</span> label.
+1. **Guides**: these cover a particular topic in more detail.
+1. **[The Spec](/docs/component-spec/)**: all Origami components conform to a specification. You don't need to read or understand it to use Origami, but it's helpful for understanding more advanced areas of Origami.
+1. **READMEs**: component specific documentation is kept with each component either in the [Registry](http://registry.origami.ft.com/components) for modules, or on the service domain for services.
 
-Web services all share a common, recognisable pattern.  For more information on use of web services, consult the web services guide:
-
-* [Using web services](web-services)
-
-##Modules
-
-Modules are more complicated, since they offer units of code that can be integrated into your application.
-
-Origami's front end modules contain Sass, JavaScript and markup templates to create great looking UI elements.  The Sass and JavaScript are designed to be built into minified bundles that you can serve as subresources using `<link>` and `<script>` tags, while the markup templates are there to guide you to generate the necessary HTML in your application.
-
-Modules are all compliant with a single standardised build process, and are delivered unbuilt, so you need to build them in order to use them in your application.  There are two ways to do this - either set up the standard build process in your own project, or use our build service to fetch pre-built bundles containing the modules of your choice.
-
-For a complete list of available modules, demos, dependency information and usage instructions, the [Origami Registry](http://registry.origami.ft.com) provides a one stop shop:
-
-* [Go to Origami Registry](http://registry.origami.ft.com)
-
-Once you know which modules you want to use, consult the using modules guide for information on how to integrate them into your project:
-
-* [Using modules](using-modules)
+This site is the home for general purpose tutorials and guides and the spec.
 
 
-##General best practices
+## Read more sections
 
-The information included in this guide will help you use Origami components without the need to really understand their internals.  But since these components follow rigorous standards and implement modern best practices for accessibility, security, maintainability and performance, we also offer a summary checklist of the most important points so you can meet the same standards in your own code.
+So you can get started as quick as possible, some tutorials skip over concepts that you might want to read more about later. These concepts are particularly important if you want to use Origami in production sites. In places where we're skipping some details, there will be a section like this:
 
-While use of Origami components doesn't require that you meet any of these requirements, they are all good practices that will deliver a better experience for our readers, and we strongly encourage you to take a look.
+<aside class='read-more'>
+<strong>Read more about [thing]</strong>
+<p>[thing] is a placeholder for the name of some concept that's out of scope for this tutorial. </p>
+<a class='o-buttons'>Find out more about thing</a>
+</aside>
 
-* [Front end best practices](general-best-practices)
+## Getting help
+
+If you have any questions about using Origami in your project, you can email [origami.support@ft.com](mailto://origami.support@ft.com) or [raise an issue on the repo](https://github.com/Financial-Times/ft-origami/issues). Users at the FT can contact us via the #ft-origami channel on Slack.
+
+## Modules, Services, Best practices
+
+Our developer documentation is divided into three topics:
+
+* [**Modules**](/docs/developer-guide/using-modules/): How to use Origami's UI components
+* [**Services**](/docs/developer-guide/web-services/): How to use Origami's web services
+* [**General best practices**](/docs/developer-guide/general-best-practices/): General approaches and standards for writing frontend code

@@ -1,0 +1,52 @@
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<title>
+		{% if page.title != 'Home' %}{{ page.title }} - {{ site.name }}{% endif %}
+		{% if page.title == 'Home' %}Origami: unifying our brand, making development faster{% endif %}
+	</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<link rel="icon" href="/img/favicon.png" type="image/x-icon" />
+
+	<script>
+		var cutsTheMustard = ('querySelector' in document && 'localStorage' in window && 'addEventListener' in window);
+
+		if (cutsTheMustard) {
+			// Swap the `core` class on the HTML element for an `enhanced` one
+			// We're doing it early in the head to avoid a flash of unstyled content
+			document.documentElement.className = document.documentElement.className.replace(/\bcore\b/g, 'enhanced');
+		}
+	</script>
+
+	<link rel="stylesheet" href="https://build.origami.ft.com/v2/bundles/css?modules=o-techdocs@^5.0.0,o-grid@^4.0.0,o-buttons@^3.0.0,o-labels@^1.0.5" />
+	<link href="{{ site.baseurl }}/buildcache/bundle.css" rel="stylesheet" />
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" />
+
+	<script src="//polyfill.webservices.ft.com/v1/polyfill.min.js"></script>
+
+	<script>
+		(function(src) {
+			if (cutsTheMustard) {
+				var o = document.createElement('script');
+				o.async = o.defer = true;
+				o.src = src;
+				var s = document.getElementsByTagName('script')[0];
+				s.parentNode.insertBefore(o, s);
+			}
+		}('https://build.origami.ft.com/v2/bundles/js?modules=o-fonts@^1.6.7,o-techdocs@^5.0.0,o-ft-icons@^3.2.0,o-grid@^4.0.0,o-buttons@^2.0.3'));
+
+		// Redirect the GH pages hostname to the custom one
+		if (location.hostname.indexOf('.github.io') !== -1) {
+			location.replace(location.href.replace(/[-\w]+\.github\.io\/ft\-origami/, 'origami.ft.com'));
+		}
+
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+		ga('create', 'UA-39387659-5', 'auto');
+		ga('require', 'linkid', 'linkid.js');
+		ga('send', 'pageview');
+	</script>
+</head>

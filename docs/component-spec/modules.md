@@ -3,6 +3,7 @@ layout: default
 title: Modules
 section: Component spec
 permalink: /docs/component-spec/modules/
+site_section: about-origami
 ---
 
 # Module components
@@ -69,8 +70,9 @@ The following requirements apply to creating a Origami-compatible module compone
 * store CSS as SCSS, to enable products and other modules to make use of variables and mixins
 * not be used for imperative code except JavaScript (and JavaScript must have a client-side use case to be considered a front end component)
 * not contain build scripts except as required for development and testing.
+* not contain configuration files that create exceptions to rules advised by this spec (such as `editorconfig`, `bowerrc` or `jshintrc`) unless absolutely necessary.
 * be buildable using the standard build process described by the [build service]({{site.baseurl}}/docs/developer-guide/build-service/)
-* list all build, development and testing scripts as ignored in the module's bowser configuration.
+* list all build, development and testing scripts as ignored in the module's bower configuration.
 * where there is a dependency on a web service component (e.g. because the module is a JavaScript library that makes AJAX requests to a service), be compatible with the version of the web service API that carries the same major version number as the module.  For example, version 2.4.5, 2.4.6, and 2.7 of a module *must* all be compatible with API version 2 of the web service.
 * contain a single 'main' file for each included language from which all other files of the same language are ultimate dependencies (using `require` for JS, `@import` for CSS or `{>}` for mustache as appropriate).  These main files *must* be called `main.js`, `main.scss` and `main.mustache` respectively and *must* be in the module root.
 * include a README.md file in the root of the repo, which must contain, where applicable:
@@ -79,7 +81,7 @@ The following requirements apply to creating a Origami-compatible module compone
 * be stored in a Git repo accessible to any FT network (see [recommendations for module locations](#where-to-store-modules) below)
 * not include package management config for any package manager other than Bower, except for package config whose only purpose is to load dependencies for development or testing of the component and which does not render the repo installable by that packaging system
 * where they contain Sass files, conform to the syntax and language standards for [use of Sass in Origami components]({{site.baseurl}}/docs/syntax/scss)
-* where they contain JavaScript files, conform to the syntax and language standards for [use of JavaScript in Origami components]({{site.baseurl}}/docs/syntax/javascript)
+* where they contain JavaScript files, conform to the syntax and language standards for [use of JavaScript in Origami components]({{site.baseurl}}/docs/syntax/js)
 * where they are openly hosted on GitHub and have CI, use [Travis](https://travis-ci.org) to do the CI
 * consider touch, keyboard and mouse interaction where applicable
 * list, in documentation, the minimum versions of each browser family in which the component has been tested using the enhanced experience and the core experience (see [browser support](#browser-support) below)
@@ -100,6 +102,23 @@ When new versions of components are released, updates may be needed to component
 * If the release is a new **patch** version, no notifications need be sent.
 
 The first released version of a module *must* be `v1.0.0`.  Versions lower than 1 are subject to different semver parsing logic, which is a nuance best avoided.
+
+### Releasing
+
+Origami modules are generally installed based on a semver range. To ensure new releases don't affect the current users of a module we have a set of requirements for non-major releases:
+
+* Make sure deprecated features still work
+* Deprecated code must go into a private deprecated file, or, if there’s an abundance of deprecated code, to a directory called `deprecated`. This way, it will be much easier to work with the new code while maintaining legacy code. It will also be easier to delete when making a major release
+* Deprecated functions and mixins should log a warning stating that they are now deprecated and offering an alternative when there is one. This warning *may* also be added to the readme
+* When updating a dependency to the latest minor release, make a minor release
+* When updating a dependency to the latest major release, in your bower.json, make sure the semver range includes the previous major release (_e.g. `>=1.2.3 <3`_). If not, a major release is necessary
+* When adding a new dependency, make a major release as it may break existing bundles
+* Make sure private Sass functions and mixins are prefixed with an underscore. If not, even if they weren’t intended for public use, they will need to follow the same deprecation process as public functions and mixins
+* All JavaScript components *must* have tests and they *must* pass
+* Run `obt verify` and `obt test` and make sure there are no errors
+* Run `obt demo --runServer --updateorigami` to regenerate the demos and check they work as they should
+* If releasing a module that contains generated content (fonts for example), make sure the new files are in the git repository (git ls-files) at the release commit
+* Don’t make a major release until all or most dependants have removed deprecated features
 
 
 ## Themes
@@ -127,7 +146,6 @@ Themes that depend on the target module's JavaScript being active *must* use the
 
 Theming classes *must* be applied to the root element of the component to be themed.
 
-
 ## Packaging and build configuration
 
 <aside>When a developer goes to use a module, and finds that it has config for a particular package management system, they should be able to assume that the same package manager can be used to install <em>any</em> Origami module.  So it's important that all Origami modules share the same package config and do not include any 'special' config for package management systems that aren't compatible with all modules.</aside>
@@ -137,10 +155,10 @@ Theming classes *must* be applied to the root element of the component to be the
 * *Must* include a `name` property set to the repo name, e.g. 'o-grid'
 * *Must* include a `main` property *if* the module contains any JavaScript, and if present, *must* be set to the value `main.js`.
 * *Must* include a `dependencies` object *if* the module has any Origami dependencies, specify dependencies without URLs, and accept as wide a range of versions of dependencies as possible (also see 'Module sub-dependencies' below)
-* *Must* include an `ignore` property listing all files and directories in the module that are not required by product developers, which *must* include anything that is not declarative code or front end JavaScript.  The `origami.json` and `README.md` files *should not* be ignored, since they may be needed by Origami-aware tools that install and catalogue Origami modules.
+* *Must* include an `ignore` property listing all files and directories in the module that are not required by product developers, which *must* include anything that is not declarative code or front end JavaScript.  The `origami.json` and `README.md` files, and any demo files, *should not* be ignored, since they may be needed by Origami-aware tools that install and catalogue Origami modules.
 * *May* include `devDependencies` if appropriate
 * *Must not* include a `version` property.  The version property is not needed and risks being out of sync with the repo tag
-* *Should* not include anything else
+* *Should not* include anything else
 
 The following is an example `bower.json` file that meets the above spec:
 
@@ -187,9 +205,9 @@ If the module requires any dependencies which are aimed solely at browsers (e.g.
 
 The module *must not* be added to the NPM registry and the module's documentation *should* advise developers to install by using a tagged tarball (links to which are available from the module's GitHub repo's 'releases' tab).
 
-## Module subdependencies
+## Module dependencies
 
-Modules *should* have as few sub-dependencies as possible.  Where the dependency is required to test the module or view the examples, but not to use it, it should be listed in `devDependencies` not in `dependencies`.
+Modules *should* have as few dependencies as possible.  Where the dependency is required to test the module or view the examples, but not to use it, it should be listed in `devDependencies` not in `dependencies`.
 
 If any feature of a dependency's sub-dependencies are used directly then that sub-dependency *must* also be added as a direct dependency e.g. if your module has `o-typography` as a dependency but makes use of `oFontsInclude()` in its stylesheets then `o-fonts` must also be added as a dependency.
 
@@ -216,9 +234,24 @@ Where a dependency is an Origami module it *must* be listed under its original n
 * Good: `"o-colors": "^1.2.0"`
 * Bad: `"colors-legacy": "1.1.0"`
 
+<aside>
+	<h4>Semver calculator</h4>
+	<p>If you want to understand more about how a <em>semver expression</em> matches specific versions, try npm's <a href='http://semver.npmjs.com'>semver calculator tool</a>.</p>
+</aside>
+
+### Soft dependencies
+
+Where a module has a JavaScript dependency or submodule that is only required under some use cases, for simplicity it *should* be treated the same as a required dependency.  However, if the dependency is:
+
+* large; and
+* either a single file that does not require build or a built bundle that shares no dependencies with the component
+
+then it *may* be omitted from the dependency list and not imported at build time, instead loaded at runtime using [o-assets](http://registry.origami.ft.com/components/o-assets) to resolve the path, and the `fetch` API to perform the request.
+
+
 ## Tests and demos
 
-Components *should* include tests which at least verify that the component can be built using [origami-build-tools](https://github.com/Financial-Times/origami-build-tools). Component authors *may* additionally test their component however they like, provided that all test related files *should* be in the `tests` directory, and that test related files *must* not be installable.  The source files of the component *should* be in `src` (except the main JS and/or Sass file).  The project *must* contain a `README.md` formatted in markdown.
+Components *should* include tests which at least verify that the component can be built using [origami-build-tools](https://github.com/Financial-Times/origami-build-tools). Component authors *may* additionally test their component however they like, provided that all test related files *should* be in the `tests` directory, and that test related files *must not* be installable.  The source files of the component *should* be in `src` (except the main JS and/or Sass file).  The project *must* contain a `README.md` formatted in markdown.
 
 Component authors *may* include a `demos` folder to provide examples.  Demos *must* be created using [origami-build-tools](https://github.com/Financial-Times/origami-build-tools), and *must* be compatible with the demo viewer in the Origami registry.  Demos *must* include only the minimum amount of content to show the component, and particularly should not include any headings, backgrounds, margins or other content that are not part of the component itself, unless absolutely essential to the ability to demonstrate the component.
 
@@ -233,36 +266,24 @@ Where styles need to be added specifically for a demo (e.g. to make the content 
 
 When choosing content for a demo, and deciding on the composition of a demo, component developers *must* craft realistic examples using real use cases.  If it's necessary to make demos contrived in order to demonstrate the full range of features of the component, multiple demos *should* be created, so that at least one demo (which *should* be the default-expanded demo) shows a realistic use case.
 
-### Demo config file
+### Demo config
 
-The demo config file tells the Build Service and the [origami-build-tools](https://github.com/Financial-Times/origami-build-tools) what demo files to build. It has two properties:
+The demo config properties in your `origami.json` tells the Build Service and the [origami-build-tools](https://github.com/Financial-Times/origami-build-tools) what demo files to build. It has two properties:
 
-* `options`: __Object__ configuration to apply to all demos (unless overridden for a specific demo)
+* `demosDefaults`: __Object__ configuration to apply to all demos (unless overridden for a specific demo)
 * `demos`: __Array__ list of demos to build
 
-Options, and individual demos, can have the following properties:
-
-* `template`: __String__ The mustache template to render. (_Required_)
-* `sass`: __String__ The Sass file to compile. (_Optional_)
-* `js`: __String__ The JS file to build with Browserify. (_Optional_)
-* `data`: __String__ Data to pass to the mustache template. (_Optional_)
-* `bodyClasses`: __String__ CSS classes to set on the body. (_Optional_)
-* `expanded`: __Boolean__ (default: `true`) Whether the demo should be shown in expanded form in the [Registry](registry.origami.ft.com). (_Optional_)
-* `description`: __String__ Explanation of the purpose of the demo. (_Optional_)
-* `dependencies`: __Array__ List of strings of other modules that are only needed for one or more demos and will be loaded via the build service. They follow the same structure as how the build service works. (e.g.: "o-ft-icons@^2.3.1" or "o-ft-icons") (_Optional_)
-
-Individual demos also have another property:
-
-* `name`: __String__ Demo name which will also be used as the name of the outputted html file. (_Required_)
+You can check out an in depth guide of all the properties in the [origami.json syntax page](http://origami.ft.com/docs/syntax/origamijson/#format).
 
 Example:
 
 
 	{
-		"options": {
+		....
+		"demosDefaults": {
 			"sass": "demos/src/demo.scss",
 			"data": "demos/src/data.json",
-			"bodyClasses": "o-hoverable-on",
+			"documentClasses": "o-hoverable-on",
 			"dependencies": ["o-custom-module@^1.0.0"]
 		},
 		"demos": [
@@ -279,6 +300,7 @@ Example:
 				"description": "Demo of obscure but realistic scenario."
 			}
 		]
+		....
 	}
 
 
@@ -286,13 +308,26 @@ Example:
 
 Modules *should* implement CI. If a module does so and is openly hosted on GitHub, it *must* use Travis CI, via the [origami-build-tools](https://github.com/Financial-Times/origami-build-tools) utility.  To invoke this in a module simply create a `.travis.yml` file in the root of the repo containing:
 
-<script src="https://gist.github.com/samgiles/a518205002ce9de60a39.js"></script>
+<div class="o-techdocs-gist" data-repo="Financial-Times/ft-origami" data-branch="gh-pages" data-path="/examples/travis.yml"></div>
 
 Then enable Travis for the project from your [Travis profile page](https://travis-ci.org/profile).  The origami build tool will read the `bower.json` file, build the CSS and JavaScript bundles from the main files (the CSS in both silent and non-silent mode), and will verify that the resulting bundles are valid.
 
 Modules that are not openly published on GitHub *should* use Jenkins for CI.
 
-## Browser support
+## Documentation
+
+Module developers *should* apply the following checklist when creating documentation for the component:
+
+* Document code inline using [SassDoc](http://sassdoc.com/) and [JSDoc](http://usejsdoc.org/) — Test rendering using the [code docs service](http://codedocs.webservices.ft.com/v1/docs/)
+* Write a README, comprising:
+	* A single-line description of what the module does
+	* Examples detailing the most common use cases
+	* The licence, which should conform to the [Open source release policy](https://docs.google.com/document/d/1pI-qI3BrO5edFYdHcoDCH9wVbfbFvroclxSEtkXwpCw/edit)
+* Only document methods and functions in the README if they couldn't be covered using JSDoc/SassDoc.
+* Avoid generic information in the README (e.g. installation steps that apply equally to all spec-compliant modules in general)
+* If the repository is hosted on GitHub, set its "Website" URL to point to the registry (e.g. `http://registry.origami.ft.com/components/o-grid`)
+
+### Browser support
 
 All modules *must* be tested with all the browsers [listed in the FT browser support policy](https://docs.google.com/a/ft.com/document/d/1dX92MPm9ZNY2jqFidWf_E6V4S6pLkydjcPmk5F989YI/edit#heading=h.wcrwnubj26sk), and if a module includes JavaScript, it must be error free in all the browsers that fall above the recommended minimum boundary for enhanced experience in that policy.
 

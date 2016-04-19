@@ -3,6 +3,7 @@ layout: default
 title: Metrics format
 section: Syntax
 permalink: /docs/syntax/metrics/
+site_section: about-origami
 ---
 
 # Metrics format

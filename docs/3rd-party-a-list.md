@@ -2,11 +2,14 @@
 layout: default
 title: Third party component A List
 permalink: /docs/3rd-party-a-list/
+site_section: about-origami
 ---
 
 # Third party components: the A list
 
 Origami components may have dependencies (via Bower) on third party components.  This page documents which third party libraries are preferred where there may be multiple libraries that achieve the same goal.
+
+<aside>Like the rest of the Origami spec (except for the developer guide) these guidelines do not apply to products, only to components.</aside>
 
 <table class="o-techdocs-table">
 <thead>
@@ -17,17 +20,17 @@ Origami components may have dependencies (via Bower) on third party components. 
 		<td>DOM manipulation</td>
 		<td>o-dom (TBC)</td>
 		<td>jQuery<br/>Mootools<br/>Dojo<br/>Prototype<br/>YUI</td>
-		<td>A general purpose DOM manipulation library is invariably a common request, but large DOM libraries should be avoided since they contain numerous other features beyond simple DOM manipulation.  See also <a href="#why_not_jquery">Why not jQuery</a></td>
+		<td>A general purpose DOM manipulation library is invariably a common request, but large DOM libraries should be avoided since they contain numerous other features beyond simple DOM manipulation.  See also <a href="#why-not-jquery">Why not jQuery</a></td>
 	</tr><tr>
 		<td>AJAX</td>
-		<td><a href="https://github.com/Financial-Times/superagent/tree/bower">superagent</a></td>
-		<td>jQuery</td>
-		<td>Components should <a href="#why_not_jquery">not use jQuery</a>, and superagent is better. For the time being the superagent master branch is incompatible with browserify, so use <a href="https://github.com/Financial-Times/superagent/tree/bower">our temporary clone</a></td>
+		<td><a href="https://github.com/whatwg/fetch">fetch</a></td>
+		<td>jQuery, superagent</td>
+		<td>Components should <a href="#why-not-jquery">not use jQuery</a>, fetch is better and will be supported natively by browsers.  In the meantime a <a href="https://github.com/github/fetch">polyfill exists</a> and is <a href="https://cdn.polyfill.io/">available through the Polyfill Service</a>.</td>
 	</tr><tr>
 		<td>Event delegation</td>
 		<td><a href="https://github.com/ftlabs/ftdomdelegate">ftdomdelegate</a></td>
 		<td>jQuery</td>
-		<td>Components should <a href="#why_not_jquery">not use jQuery</a>.</td>
+		<td>Components should <a href="#why-not-jquery">not use jQuery</a>.</td>
 	</tr><tr>
  		<td>JavaScript utils</td>
  		<td><a href="https://github.com/lodash/lodash">Lodash</a></td>

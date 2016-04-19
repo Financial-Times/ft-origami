@@ -1,100 +1,174 @@
 ---
 layout: default
-title: Installing modules with the build service
-section: Developer guide
-permalink: /docs/developer-guide/build-service/
+title: Build Service guide
+section: Modules
+permalink: /docs/developer-guide/modules/build-service/
+site_section: developer-guide
+redirect_from: "/docs/developer-guide/build-service/"
+
 ---
 
-# Using the build service
+<h1>Using the Build Service <span class="o-labels o-labels--big">Tutorial</span></h1>
 
-If building modules sounds like a lot of work, you can let someone else do it for you and use our **build service**, which performs all the build steps in the [Installing modules manually]({{site.baseurl}}/docs/developer-guide/building-modules) on a central build server and then serves your requested bundles directly to your user's browser.
+The Build Service is the quickest and simplest way to get Origami Modules into your product.
 
-This is especially useful for bootstrapping early stage prototypes as well as building hacks, experiments, and adding components to existing sites that weren't built with Origami in mind.  The service offers high availability, reliability, HTTPS with the same hostname and path, and its own CDN cache layer, so can be used for client-side requests.
+The Build Service performs all the steps you need to use a module (detailed in the [manual build process tutorial]({{site.baseurl}}/docs/developer-guide/modules/building-modules/)) on a central server. You request the bundles using a `<link ...>` or `<script ...>` tag, and the Build Service handles the rest.
 
-The build service hosts its own API and technical documentation at [build.origami.ft.com](http://build.origami.ft.com).
+This is particularly useful for:
+
+- early stage prototypes
+- building hacks and experiments
+- adding components to existing sites that weren't built with Origami in mind
+
+The Build Service hosts its own API and technical documentation at [build.origami.ft.com](http://build.origami.ft.com). For a step by step tutorial on how to use the Build Service, keep reading!
+
 
 ## Building a page
 
-The following steps are a brief tutorial to get you to the point of having a working page made of Origami components working in your browser.  Intentionally this tutorial takes every possible shortcut to allow you to acheive this with no software other than a web browser, but it should arm you with everything you need to add components to a site or build one from scratch.
+This tutorial will take you though building a page that includes some Origami modules. By the end you'll have built a page using the Build Service with a [cuts the mustard test]({{site.baseurl}}/docs/developer-guide/modules/core-vs-enhanced-experience/) for older web browsers.
 
-### Find the boilerplate and start a JS Bin
+## 1. Create a new JS Bin
+We're going to use a website called **JS Bin** for this tutorial. JS Bin lets you paste HTML, JavaScript and CSS into one panel and see the result in another. You could also use [Codepen](http://codepen.io/pen/?editors=1000), or run your own server locally.
 
-First, you need something to start from.  Origami provides a recommended skeleton of an HTML page to get you started, so first, find that and copy it to your clipboard:
+To create a new JS Bin, open this link in a new tab: [Create new JS Bin](https://jsbin.com/?html,output).
 
-* Learn more about [Core vs enhanced experience]({{site.baseurl}}/docs/developer-guide/using-modules/#core-vs-enhanced-experience)
+## 2. Put the boilerplate into the JS Bin
+For this tutorial, we'll use some boilerplate HTML. There are two things in the boilerplate that we won't be covering here; the Polyfill Service and a 'cuts the mustard test'.
 
-Once you have the recommended boilerplate, you can begin to build your page.  You need an editor that allows you to edit HTML and view the result.  To do this we recommend using **JS Bin**.  Since you'll want to keep this tutorial around, open the link below in a separate tab:
+<aside class='read-more'>
+<strong>Read more about the Polyfill Service</strong>
+<p>The Polyfill Service is an Origami service that makes newer APIs available to older browsers, ensuring Origami developers can write code to modern standards</p>
+<a class='o-buttons' href='{{site.baseurl}}/docs/developer-guide/modules/core-vs-enhanced-experience/'>Find out more about the Polyfill Service</a>
+</aside>
 
-* [Start a new JS Bin](http://jsbin.com)
+<aside class='read-more'>
+<strong>Read more about cutting the mustard</strong>
+<p>Origami modules provide two experiences, core for older browsers and enhanced for newer browsers. To determine if a browser gets a core or enhanced experience we need developers to add a 'cuts the mustard test' to their pages</p>
+<a class='o-buttons' href='{{site.baseurl}}/docs/developer-guide/modules/'>Find out more about core vs enhanced experience</a>
+</aside>
 
-You'll see something like this:
-
-![JS Bin start screen](/img/jsbin.png)
-
-If the panels you see are not 'HTML' and 'Output', click the buttons at the top of the page until you see only HTML and Output panels displayed.  Click anywhere in the 'HTML' view, press CTRL+A (CMD+A on MacOS) to select all the existing HTML, and then paste the HTML you copied earlier.
-
-The right hand side of the screen should be blank, which is fine.
+### The boilerplate
+<div class="o-techdocs-gist" data-repo="Financial-Times/ft-origami" data-branch="gh-pages" data-path="/examples/build-service-tutorial-boilerplate.html"></div>
 
 
-### Add some components
+Your JS Bin should look something like this:
 
-Prepare your jsbin by pasting in the Origami boilerplate code explained above; now you're ready to add some components to your page.
+![JS Bin start screen](/img/build-service-tutorial/js-bin-start-page.png)
 
-As an example, we'll add the standard FT header and footer.  All Origami components are listed in a directory called the Origami registry, so go there now and find the header component:
+Delete the contents of the HTML panel and paste the Origami boilerplate in there instead.
 
-* [Go to Origami Registry](http://registry.origami.ft.com)
+The right hand side of the screen now say: `It worked!`.
 
-To find the header:
+![JS Bin with boilerplate pasted in](/img/build-service-tutorial/js-bin-with-boilerplate.png)
 
-1. Type 'head' in the filter bar on the registry homepage
-2. The list below the filter bar should start to change to show only components with 'head' in their name.  At time of writing this tutorial, `o-header` was the only one that matched 'head'.
-3. Either click on the o-header component or, if it's the top one in the list, just press enter.
 
-Now, you'll be looking at a demo of the header that you want.  Find the demo you like best ('Branded' is often a good choice) by ticking and unticking the demo names on the right of the registry page.  When you have it, look below the demo to find the HTML.
+## 3. Add the HTML for the components
 
-![HTML source of a demo in the Origami registry](/img/registry-demo-html.png)
+Now that you've added the boilerplate, it's time to add some components.
 
-Copy all the HTML to your clipboard.
+For this guide we'll add the standard FT header and footer. All Origami components are listed on the [Origami Registry](http://registry.origami.ft.com), so go there now and use the search box to find the header component:
 
-Switch to your JS Bin window and find the bit that says `<!-- Body content here -->`.  Paste your header HTML just below that.
+* [Go to the Origami Registry](http://registry.origami.ft.com)
 
-![After pasting the source of a component into a JS Bin](/img/jsbin-unstyled-component.png)
+At the top of every module page on the registry there are some demos. Pick a demo header to use (we've chosen the minimal theme header).
 
-Now on the right of your JS Bin window, you'll see the content for your header, but it will be unstyled.  You need to add the CSS and JavaScript to style it and activate its behaviours, like dropdown menus.  Go back to the registry, and on the o-header page, scroll down to the section called 'Quick start'.
+![HTML source of a demo in the Origami registry](/img/build-service-tutorial/registry-demo-html.png)
 
-In quick start, you'll see a token you can add to your build service `<link...>` and `<script...>` tags.  Copy the token, which will look something like `o-header@^2.5.16` to your clipboard, and switch back to JS Bin.  Find the two references to `build.origami.ft.com` in the header of the HTML document, and insert the token in place of the example `a,b,c` in both places.
+Copy all the HTML to your clipboard (there is quite a lot of it).
 
-This is the CSS bit you need to update:
+Switch to your JS Bin window and find the bit that says `<!-- Body content here -->` (it's towards the bottom of the file).  Paste your header HTML just below that.
 
-![Updating the boilerplate HTML to load your modules' CSS](/img/build-service-link-example.png)
+![After pasting the source of a component into a JS Bin](/img/build-service-tutorial/jsbin-unstyled-component.png)
 
-And this is the JavaScript bit:
+## 4. Add the CSS and JavaScript for your components
 
-![Updating the boilerplate HTML to load your modules' JavaScript](/img/build-service-script-example.png)
+Now on the right of your JS Bin window, you'll see the content for your header, but it will be unstyled.  You need to add the CSS and JavaScript to style it and activate its behaviours, like dropdown menus. To do this, we'll need to update the `<link...>` and `<script ...>` tags in the boilerplate.
 
-This has now added the behaviour to your page, enabling drop-down menus to work.
+Go back to the registry, and on the o-header page, scroll down to the section called 'Quick start'.
 
-<aside>Sometimes you may have to wait a few minutes after updating these tags before the styles and script are applied successfully.  To reload the output, click 'Run with JS' in the top right of the JSBin Output window.</aside>
+In quick start, you'll see a token, it will look something like: `o-header@^5.0.0`. This is the bit you need to add to the Build Service requests in the boilerplate.
 
-Repeat this process for the footer:
+<aside class='read-more'>
+<strong>Read more about component versioning</strong>
+<p>The token <code>o-header@^5.0.0</code> contains the component name and a version number as a semver range.</p>
+<a class='o-buttons' href='{{site.baseurl}}/docs/developer-guide/modules/module-versioning/'>Find out more about component versioning</a>
+</aside>
+
+In JS Bin, find the Build Service CSS bundle request and replace `a,b,c` in the URL with the o-header token.
+
+```
+<!--
+	Load the Origami stylesheet, including fonts and icons by default.
+	Replace a,b,c with the names of the additional modules you want to load.
+-->
+<link rel="stylesheet" href="https://build.origami.ft.com/v2/bundles/css?modules=a,b,c" />
+```
+
+After adding this, you should see that the header is now styled! JS Bin is pretty cool.
+Next you need to add the JavaScript, which will make the header menus work. The JavaScript request is in a different place in the file.
+
+```
+<!--
+	Load main JavaScript bundle (asynchronously, to make sure it's non-blocking).
+-->
+<script>
+	(function(src) {
+		if (cutsTheMustard) {
+			var o = document.createElement('script');
+			o.async = o.defer = true;
+			o.src = src;
+			var s = document.getElementsByTagName('script')[0];
+			s.parentNode.insertBefore(o, s);
+		}
+	}('https://build.origami.ft.com/v2/bundles/js?modules=a,b,c')); <---- this line here
+</script>
+```
+This has now added the o-header JavaScript to your page, so the drop-down menus will work.
+
+![Once you've added the JS and CSS bundles](/img//build-service-tutorial/jsbin-styled-component.png)
+
+<aside>Sometimes you'll have to wait a few minutes after updating these tags before the styles and script are applied successfully.  To reload the output, click 'Run with JS' in the top right of the JSBin Output window.</aside>
+
+
+## 5. Repeat
+
+Now, repeat this process for the footer:
 
 1. Find the component page in the registry
 1. Copy the HTML of the demo you want
 1. Paste it in the `<body>` section of your JS Bin page
-1. Back on the component registry page, find the token from the quick start section, e.g. `o-footer@^1.2.3`
-1. Add this to the build service loader tags alongside the one for the header.  You can separate the two with a comma.
+1. Back on the component registry page, find the token from the quick start section, e.g. `o-footer@^3.0.1`
+1. Add this to the Build Service loader tags alongside the one for the header. Separate the two with a comma.
 
-The build service is capable of including more than one component in the same bundle, so you can simply add multiple modules into the same URL.  Here's an example:
+The Build Service is capable of including more than one component in the same bundle, so you can add many modules into the same URL.  Here's an example:
 
-	<link rel="stylesheet" href="//build.origami.ft.com/bundles/css?modules=o-fonts@^1,o-ft-icons@^2,o-header@^3.0.0,o-footer@^3.0.0" />
+	<link rel="stylesheet" href="//build.origami.ft.com/v2/bundles/css?modules=o-fonts@^1,o-ft-icons@^2,o-header@^3.0.3,o-footer@^3.0.1" />
 
-It's important that you do this, so that any CSS that is shared between the header and footer (there's quite a bit) isn't downloaded twice.
+It's important that you do this, so that any CSS that's shared between the header and footer (there's quite a bit) isn't downloaded twice.
 
-<aside>Remember that when you change the modules you are requesting in your build service tags, it may take a few minutes to build the resulting bundle of code.  Be patient and hit 'Run with JS' a few times until the styling appears.</aside>
+<aside>Remember, when you change the modules you are requesting in your Build Service tags, it may take a few minutes to build the resulting bundle of code.  Be patient and hit 'Run with JS' a few times until the styling appears.</aside>
 
 
 ----
 
-Well done, you have built a responsive, FT branded web document with Origami.
+## That's it!
 
-Using the techniques you just learned, you can now bring your content to life very easily by adding various components between the header and the footer.
+Well done, you have built a responsive, FT branded web page with Origami.
+
+Using the techniques you just learned, you can now bring your content to life easily by adding various components and HTML between the header and footer.
+
+### Next
+
+This tutorial has covered getting Origami components onto a page using the Build Service.
+
+We've covered:
+
+- Finding component HTML in the registry
+- Adding CSS using the `<link ...>` subresource tag
+- Adding JS using the `<script ...>` subresource tag
+
+We skipped over some areas that you should understand if you want to use Origami in production:
+
+- [The Polyfill Service](/docs/developer-guide/modules/using-the-polyfill-service/)
+- [Core vs Enhanced experience](/docs/developer-guide/modules/cuts-the-mustard/)
+- [Component versioning](/docs/developer-guide/modules/component-versioning/)

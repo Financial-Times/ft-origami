@@ -2,6 +2,7 @@
 layout: default
 title: Dependency management
 permalink: /docs/research/dep-man/
+site_section: about-origami
 ---
 
 # Dependency manager research

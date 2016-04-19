@@ -3,11 +3,12 @@ layout: default
 title: Web service index
 section: Syntax
 permalink: /docs/syntax/web-service-index/
+site_section: about-origami
 ---
 
 # Web service index format
 
-All Origami web services are required to expose an `/__about` endpoint to list the available versions of the service.  The response give at this URL must be a JSON document conforming to the following format.
+All Origami web services are required to expose an `/__about` endpoint to list the available versions of the service.  The response given at this URL must be a JSON document conforming to the following format.
 
 ## Format
 

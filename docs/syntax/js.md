@@ -3,6 +3,7 @@ layout: default
 title: JavaScript
 section: Syntax
 permalink: /docs/syntax/js/
+site_section: about-origami
 ---
 
 # JavaScript standards
@@ -37,7 +38,7 @@ Product developers are encouraged to include Origami JavaScript using a 'cuts th
 	<p>Where modern browser features might be vendor-prefixed, you can get the correct prefixed version using <a href="https://github.com/Financial-Times/o-useragent">o-useragent</a>.</p>
 </aside>
 
-###Scoping and binding `this`
+### Scoping and binding `this`
 
 The value of `this` *should not* be copied into non-semantic variables such as `that`, `self` or `_this` in order to embed a child funtion context.  Instead, either use a semantic name, or bind the correct value of `this`.  Some object methods accept the intended value of `this` as an argument, such as [Array.prototype.filter](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Array/filter), and this method *should* be considered most preferred:
 
@@ -59,11 +60,11 @@ If you do copy a reference to `this` into a separate variable, make it semantic:
 <?prettify?>
 	var post = this;
 
-<aside>ES6 offers lexical <code>this</code> binding as part of arrow functions, which provides a much more elegant solution to this problem, but currently we require Origami code to be written in ES5 syntax.  ES6 methods that can be polyfilled by the [polyfill service](https://cdn.polyfill.io) down to IE9 **may** be used (e.g. Promises), provided the component [declares each feature in the `browserFeatures` section of its `origami.json` file](http://origami.ft.com/docs/syntax/origamijson/#format).</aside>
+<aside>ES6 offers lexical <code>this</code> binding as part of arrow functions, which provides a much more elegant solution to this problem, but currently we require Origami code to be written in ES5 syntax.  ES6 methods that can be polyfilled by the <a href="https://cdn.polyfill.io">Polyfill Service</a> down to IE9 <em>may</em> be used (e.g. Promises), provided the component <a href="http://origami.ft.com/docs/syntax/origamijson/#format">declares each feature in the <code>browserFeatures</code> section of its <code>origami.json</code> file</a>.</aside>
 
 
 
-## Initialisation
+## Initialisation
 
 Modules *must* do as little as possible on parse, instead deferring start-up tasks to a publicly exported, static 'init' function that should be either invoked explicitly using the module's API, or automatically by binding to the `o.DOMContentLoaded` or `o.load` events.
 
@@ -77,18 +78,49 @@ Modules that expose an `init` method or an instance constructor which takes an a
 
 Where this reference is passed to an `init` function, the module *may* create multiple instances and return them in an array.  Where passed to a constructor, the module must only create one instance and return it.
 
+Where the reference is to an element that is not itself owned DOM, the init function *may* traverse the subtree looking for elements that are.
 
-## Data attributes
+Where JavaScript exists to enhance elements, and accompanying CSS depends on knowing whether the JavaScript intends to apply (or has applied) that enhancement, the JavaScript *may* add a data attribute of the form `data-{modulename}-js` with no value to the root element of the component when the JavaScript initialises.  For example, o-tabs markup would not contain a `o--if-js` class, because the tabs content should remain visible even if the tabs JavaScript is not running on the page, but if the JavaScript does run, it could apply an `data-o-tabs-js` data attribute to allow the tabs CSS to hide all but the selected tab panel.
 
-If a module's JavaScript requires configuration, this should be done using data- attributes on the HTML element that is the root element of the DOM owned by the module.  Data attributes should be named `data-{modulename}-{key}`, e.g. `data-o-tweet-id`.  The module may also create attributes of this form at runtime.
+## Error handling
 
-In some cases, especially for tracking use cases, a module may act on portions of DOM not exclusively controlled by it.  In this case the same naming conventions apply, but the module *must not* create these attributes itself.  Instead, it may only act on elements outside of its own portions of 'owned DOM' if the element has already has a data attribute in the module's namespace.
+Modules *should* use [o-errors](http://registry.origami.ft.com/components/o-errors) to report runtime JavaScript errors and exceptions, as well as log notices and other significant events, using the `oErrors.log` custom event.
 
-Where JavaScript exists to enhance elements, and accompanying CSS depends on knowing whether the JavaScript intends to apply that enhancement, the JavaScript *may* add a data attribute of the form `data-{modulename}-js` with no value to the root element of the component when the JavaScript initialises.  For example, o-tabs markup would not contain a `o--if-js` class, because the tabs content should remain visible even if the tabs JavaScript is not running on the page, but if the JavaScript does run, it could apply an `data-o-tabs-js` data attribute to allow the tabs CSS to hide all but the selected tab.
+<aside>
+Where modules do not explicitly convert exceptions into o-errors events, any unhandled exceptions will still be caught and reported if o-errors has been initalised on the page.  However, the report will lack critical information about the DOM elements to which the error relates.</aside>
+
+## Configuration
+
+If a module's JavaScript requires configuration, the following methods of passing that configuration *must be* supported.
+
+### Data attributes on owned DOM
+
+If a module acts to enhance markup, the module *must* be configurable using data- attributes on the HTML element that is the root element of the DOM owned by the module.  Data attributes *must* be named `data-{modulename}-{key}`, e.g. `data-o-tweet-id`.  The module *may* also create attributes of this form at runtime, provided that the element is already within owned DOM for that module.
 
 <aside>
 	Developers should avoid the temptation to name data attributes based on the same naming conventions as BEM in CSS.  Data attributes are not subject to the same semantics as classes so BEM is not a great fit.
 </aside>
+
+### Global declarative config block
+
+Where it is possible for multiple instances of a module to exist on a page and for the same configuration to apply to all of them, or where a module has no markup (e.g. o-tracking or o-errors), the module *must* support declarative configuration via JSON data placed within a `<script>` block with a `type='application/json'` and a data attribute in the module's namespace with the key 'config' and no value, ie. `data-{modulename}-config`.  For example:
+
+	<script data-o-errors-config type='application/json'>
+	    {
+	        "sentryEndpoint": "https://....",
+	        "application": {
+	            "version": "1.2.3",
+	            "name": "Foo Application"
+	        }
+	    }
+	</script>
+
+Components *must* parse any such configuration using `JSON.parse` and only in response to an event (such as `o.DOMContentLoaded`) or function call.  Components *must not* expect more than one global declarative config block in their namespace to be present on the page.
+
+Any configuration option expecting a `function` *must* not be defined in a declarative config block and *must* be optional, providing default behaviour where the imperative configuration using `init()` is absent.  If a configuration key is present in the declarative config block that expects a `function`, an `Error` *should* be thrown to warn the developer of the invalid configuration.
+
+<aside>Global declarative config is not useful in situations where a developer chooses to call a component's static <code>init()</code> function directly, since the config could simply be passed into the function.  Components should support that, and consider throwing an error if declarative config exists when init is called.</aside>
+
 
 
 ## DOM Selectors
@@ -97,7 +129,7 @@ When using selector engines other than native `querySelector`, modules *must not
 
 Modules *may* assume that any HTML markup that relates to their component follows the hierarchical structure specified in their module's Mustache template. However, modules *should not* make assumptions about the order of HTML elements, and should, as far as possible, cope with the presence within the component of elements not specified in the template.
 
-Modules *must* not throw an error if there are no instances of the module's owned DOM in the page.
+Modules *must not* throw an error if there are no instances of the module's owned DOM in the page.
 
 ## Communicating with host page code and other components
 
@@ -167,7 +199,7 @@ Modules that store data on the client via user-agent APIs *must* encapsulate all
 
 Modules *should* avoid containing functions with more than 3 arguments.  Where more parameters are required, consider passing an object (and if so, consider using [lo-dash's defaults function](http://lodash.com/docs#defaults)).
 
-##Objects
+## Objects
 
 Object properties *must not* be named after reserved words in the JavaScript language.  ([Learn more](https://github.com/airbnb/javascript/issues/61))
 
@@ -193,30 +225,30 @@ Overwriting the prototype wipes out the `constructor` property and makes inherit
 
 ## Animation
 
-Modules *must not* animate elements using methods that do not utilise hardware acceleration if hardware accelerated alternatives are available.  For example, repositioning an element repeatedly using its `left` or `top` CSS properties is not allowed.  Instead, use [CSS transitions](https://developer.mozilla.org/en-US/docs/Web/Guide/CSS/Using_CSS_transitions) and [`will-change`](http://tabatkins.github.io/specs/css-will-change/).  On user agents that do not support accelerated animation, animation *should* not be used.
+Modules *must not* animate elements using methods that do not utilise hardware acceleration if hardware accelerated alternatives are available.  For example, repositioning an element repeatedly using its `left` or `top` CSS properties is not allowed.  Instead, use [CSS transitions](https://developer.mozilla.org/en-US/docs/Web/Guide/CSS/Using_CSS_transitions) and [`will-change`](http://tabatkins.github.io/specs/css-will-change/).  On user agents that do not support accelerated animation, animation *should not* be used.
+
+## Feature stability
+
+JavaScript in modules *may* use ES6.  Modules *must not* use JavaScript features that are not yet part of a finalised standard, or which are proprietary, even if polyfills for them are available.
+
+Product developers are expected to transpile ES6 syntax to be ES5 compatible if required.  Currently [Origami build tools](https://github.com/Financial-Times/origami-build-tools) does this automatically in all cases using BabelJS, with the assumption that no browser supports the ES6 syntax natively.
+
+<aside>
+  <h4>Polyfilling ES6 features</h4>
+  <p>Not all ES6 features are available in the <a href='https://cdn.polyfill.io'>Polyfill Service</a>.  It's OK to use these features anyway and use polyfills from Babel, but it's a good idea to get the polyfill into the service as soon as possible so that sites can benefit from selective polyfilling.</p>
+</aside>
 
 ## Syntax convention rules
 
-JavaScript *must* be linted with [JSHint](http://www.jshint.com/).  If you wish to specify a particular JSHint configuration you may do so at the module level with a `.jshintrc` file, and at the file level with a `/*jshint: ... */` comment.  If you specify neither of these, code *must* pass a JSHint check with the following settings:
+JavaScript *must* be linted with [ESLint](http://www.eslint.org/).  If you wish to specify a particular ESLint configuration you may do so at the module level with a `.eslintrc` file, and at the file level with a `/*eslint ... */` comment.  If you specify neither of these, code *must* pass a ESLint check with the following settings:
 
-<div class="o-techdocs-gist" data-repo="Financial-Times/origami-build-tools" data-path="/config/jshint.json"></div>
+<div class="o-techdocs-gist" data-repo="Financial-Times/origami-build-tools" data-path="/config/.eslintrc"></div>
 
-Developers *should* stick to the above `jshintrc` config, since this represents a common standard across FT teams, but are permitted to make changes if desired.  In addition to the jshint rules:
+Developers *should* stick to the above `.eslintrc` config, since this represents a common standard across FT teams, but are permitted to make changes if desired.  In addition to the ESLint rules:
 
-###One var per line
+### Comments
 
-The `var` statement *must* declare only one variable.  Use additional `var` statements for subsequent declarations:
-
-
-	var foo = "hello";
-	var bar = "goodbye";
-	var novalue;
-
-This makes diffs easier to read, and reduces the chance of errors associated with missing semicolons or commas.
-
-###Comments
-
-Single line comments *should* be placeed on a newline above the subject of the comment.  An empty line *should* be inserted before the comment.
+Single line comments *should* be placed on a newline above the subject of the comment.  An empty line *should* be inserted before the comment.
 
 
 ## Subresources
@@ -233,7 +265,7 @@ Where external resources are not within Origami modules, a [protocol-relative UR
 
 ### Inlining subresources
 
-In some cases it may be desirable or necessary to include the content of a static asset in a JavaScript source bundle (typically to include templates).  To do this, use the [textrequireify](http://git.svc.ft.com:8080/projects/OT/repos/textrequireify) transform for browserify, which provides a `requireText` method.  The [standard Origami build process]({{site.baseurl}}/docs/developer-guide/building-modules) includes this, so it is available through the build service ([learn more](https://github.com/Financial-Times/ft-origami/issues/110)).
+In some cases it may be desirable or necessary to include the content of a static asset in a JavaScript source bundle (typically to include templates).  To do this, use the [textrequireify](https://github.com/Financial-Times/origami-build-tools/blob/master/lib/plugins/textrequireify-loader.js) loader for webpack, which provides a `requireText` method.  The [standard Origami build process]({{site.baseurl}}/docs/developer-guide/building-modules) includes this, so it is available through the build service ([learn more](https://github.com/Financial-Times/ft-origami/issues/110)).
 
 You would write this in your JavaScript source:
 

@@ -3,6 +3,7 @@ layout: default
 title: Mustache
 section: Syntax
 permalink: /docs/syntax/mustache/
+site_section: about-origami
 ---
 
 # Mustache Standards
