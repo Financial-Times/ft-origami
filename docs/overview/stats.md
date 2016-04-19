@@ -6,7 +6,7 @@ permalink: /docs/overview/contributor-stats/
 site_section: about-origami
 ---
 
-<link rel="stylesheet" href="//build.origami.ft.com/v2/bundles/css?modules=o-forms@1.0.3,o-buttons@^3.0.0" />
+<link rel="stylesheet" href="https://origami-build.ft.com/v2/bundles/css?modules=o-forms@1.0.3,o-buttons@^3.0.0" />
 
 # Contributor stats
 
