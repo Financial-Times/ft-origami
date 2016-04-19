@@ -60,7 +60,7 @@ If you do copy a reference to `this` into a separate variable, make it semantic:
 <?prettify?>
 	var post = this;
 
-<aside>ES6 offers lexical <code>this</code> binding as part of arrow functions, which provides a much more elegant solution to this problem, but currently we require Origami code to be written in ES5 syntax.  ES6 methods that can be polyfilled by the <a href="https://cdn.polyfill.io">polyfill service</a> down to IE9 <em>may</em> be used (e.g. Promises), provided the component <a href="http://origami.ft.com/docs/syntax/origamijson/#format">declares each feature in the <code>browserFeatures</code> section of its <code>origami.json</code> file</a>.</aside>
+<aside>ES6 offers lexical <code>this</code> binding as part of arrow functions, which provides a much more elegant solution to this problem, but currently we require Origami code to be written in ES5 syntax.  ES6 methods that can be polyfilled by the <a href="https://cdn.polyfill.io">Polyfill Service</a> down to IE9 <em>may</em> be used (e.g. Promises), provided the component <a href="http://origami.ft.com/docs/syntax/origamijson/#format">declares each feature in the <code>browserFeatures</code> section of its <code>origami.json</code> file</a>.</aside>
 
 
 
@@ -235,7 +235,7 @@ Product developers are expected to transpile ES6 syntax to be ES5 compatible if 
 
 <aside>
   <h4>Polyfilling ES6 features</h4>
-  <p>Not all ES6 features are available in the <a href='https://cdn.polyfill.io'>polyfill service</a>.  It's OK to use these features anyway and use polyfills from Babel, but it's a good idea to get the polyfill into the service as soon as possible so that sites can benefit from selective polyfilling.</p>
+  <p>Not all ES6 features are available in the <a href='https://cdn.polyfill.io'>Polyfill Service</a>.  It's OK to use these features anyway and use polyfills from Babel, but it's a good idea to get the polyfill into the service as soon as possible so that sites can benefit from selective polyfilling.</p>
 </aside>
 
 ## Syntax convention rules

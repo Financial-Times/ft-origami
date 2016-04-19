@@ -7,16 +7,17 @@ Please visit http://origami.ft.com to view the site
 Since this is a GitHub pages site, built CSS bundle must be committed to the repository.  We store it in `buildcache` to avoid any confusion - files in the `buildcache` directory should not be edited.  To regenerate them, use Grunt:
 
 1. Clone the repository
-2. Ensure `grunt-cli` is installed globally by checking it's listed with `grunt --version`.  If it's not, install with `npm install -g grunt-cli`.
-3. Run `npm install`
-4. Edit main.scss as desired
-5. Run `grunt`
+1. Ensure `grunt-cli` is installed globally by checking it's listed with `grunt --version`.  If it's not, install with `npm install -g grunt-cli`.
+1. Run `npm install`
+1. Edit main.scss as desired
+1. Run `grunt`
 
 ## Viewing locally
 
 1. Install Jekyll `gem install jekyll`
-2. Run `jekyll serve --watch --baseurl=''` and view on http://localhost:4000/
-3. Run `grunt watch` in parallel if you're editing styles
+1. Install Jekyll redirect gem `gem install jekyll-redirect-from`
+1. Run `jekyll serve --watch --baseurl=''` and view on http://localhost:4000/
+1. Run `grunt watch` in parallel if you're editing styles
 
 ## Documentation style guide
 This guide is based on https://jacobian.org/writing/great-documentation/. It exists as guidance to help keep our documentation consistent.

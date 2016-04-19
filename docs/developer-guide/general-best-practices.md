@@ -8,7 +8,7 @@ site_section: developer-guide
 
 # General best practices for front end development
 
-Origami requires a high standard of developers who make components for use by others, but many of these same rules are just good practices for anyone that builds websites using the web technologies of HTML, CSS and JavaScript.  If you are building an FT site, please use the following checklist for up to date guidance on the best practices you should be following in your web development.
+Origami modules and services are built to a high standard, following best practices for browser support, accessibility, security and performance. Use of Origami components doesn't mean that you have to follow the same standards, but they are all good practices that will deliver a better experience for our readers, and we strongly encourage you to take a look.
 
 In addition to the rules below, the [Google Web Fundamentals documentation](https://developers.google.com/web/fundamentals) is a good resource for developing best practices.
 
@@ -67,9 +67,9 @@ element {
 
 Use Google's [PageSpeed Insights](http://developers.google.com/speed/pagespeed/insights) service to analyse your page and try to score at least 80 on both the mobile and desktop categories.  This will cover off a wide variety of performance related best practices, including minification and concatenation of assets, image sizing and avoiding subresource requests that block rendering.
 
-### Use the polyfill service
+### Use the Polyfill Service
 
-The [Origami polyfill service](http://polyfill.webservices.ft.com) creates custom bundles of polyfills based on the exact requirements of the user's browser, so we can avoid serving unnecessary code to browsers that already support a feature natively, but we can automatically upgrade browsers that don't support the feature.
+The [Origami Polyfill Service](http://polyfill.webservices.ft.com) creates custom bundles of polyfills based on the exact requirements of the user's browser, so we can avoid serving unnecessary code to browsers that already support a feature natively, but we can automatically upgrade browsers that don't support the feature.
 
 This means you can assume modern web standards, you don't have to bundle any polyfills with your code, and performance on modern browsers is great - they get an empty file.
 
@@ -192,7 +192,7 @@ If the user is on a touchscreen device and does not have a mouse or similar devi
 
 Equally, when a user is scrolling, hover effects can be unintentionally triggered by content moving *under* the mouse rather than the mouse moving *over* the content, which can have a [detrimental effect on scroll performance](http://www.html5rocks.com/en/tutorials/speed/unnecessary-paints/).
 
-Consider using [o-hoverable](http://registry.origami.ft.com/components/o-hoverable), which intelligently flags when hover effects are desiriableby toggling a class on the `<html>` element.
+Consider using [o-hoverable](http://registry.origami.ft.com/components/o-hoverable), which intelligently flags when hover effects are desirable by toggling a class on the `<html>` element.
 
 
 ### Choose breakpoints based on content

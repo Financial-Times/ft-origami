@@ -1,9 +1,9 @@
 ---
 layout: default
 title: Setting up background linters
-section: Developer guide
-permalink: /docs/developer-guide/background-linters/
-site_section: developer-guide
+permalink: /docs/background-linters/
+site_section: about-origami
+redirect_from: "/docs/developer-guide/background-linters/"
 ---
 
 # Setting up background linters
