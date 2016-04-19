@@ -25,7 +25,7 @@ Origami services and modules all comply with the [Origami Spec](/docs/component-
 To help you use the modules and services in your product there are the following tools:
 
 - [Origami Build Tools](https://github.com/Financial-Times/origami-build-tools) - Build Origami components as part of your existing build process
-- [Origami Build Service](http://build.origami.ft.com/v2/) - Deliver components directly to your user's browser using the build service
+- [Origami Build Service](https://origami-build.ft.com/v2/) - Deliver components directly to your user's browser using the build service
 - [The Registry](http://registry.origami.ft.com/) - Find and use the components you need from our component registry
 
 <h2> <i class="fa fa-book"></i> The Spec</h2>

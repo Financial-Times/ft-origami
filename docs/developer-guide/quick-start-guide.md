@@ -41,7 +41,7 @@ We're going to use the Build Service to provide the styles.
 To do that we need to request the `o-buttons` CSS from the Build Service:
 
 ```
-https://build.origami.ft.com/v2/bundles/css?modules=o-buttons
+https://origami-build.ft.com/v2/bundles/css?modules=o-buttons
 ```
 
 This request says "give me the CSS for o-buttons at the latest version"
@@ -49,7 +49,7 @@ This request says "give me the CSS for o-buttons at the latest version"
 Let's add that to our page in the `<head>` as a `<link ...>` tag
 
 ```
-<link rel="stylesheet" href="https://build.origami.ft.com/v2/bundles/css?modules=o-buttons" />
+<link rel="stylesheet" href="https://origami-build.ft.com/v2/bundles/css?modules=o-buttons" />
 ```
 
 <aside class='read-more'>
@@ -75,13 +75,13 @@ o-buttons has some design variations. Let's apply the `standout` variation by th
 `o-buttons` also has some JavaScript to make buttons work better on touch devices like phones. Getting JavaScript from the build service is as easy as getting the CSS.
 
 ```
-https://build.origami.ft.com/v2/bundles/js?modules=o-buttons
+https://origami-build.ft.com/v2/bundles/js?modules=o-buttons
 ```
 
 Instead of using a `<link ...>` tag, use a `<script ...>` tag.
 
 ```
-<script async type="javascript" src="https://build.origami.ft.com/v2/bundles/js?modules=o-buttons" />
+<script async type="javascript" src="https://origami-build.ft.com/v2/bundles/js?modules=o-buttons" />
 ```
 
 ## 5. Putting it all together
@@ -90,8 +90,8 @@ Instead of using a `<link ...>` tag, use a `<script ...>` tag.
 <html>
 	<head>
 		<!-- build service links and scripts here -->
-		<script async type="javascript" src="https://build.origami.ft.com/v2/bundles/js?modules=o-buttons" />
-		<link rel="stylesheet" href="https://build.origami.ft.com/v2/bundles/css?modules=o-buttons" />
+		<script async type="javascript" src="https://origami-build.ft.com/v2/bundles/js?modules=o-buttons" />
+		<link rel="stylesheet" href="https://origami-build.ft.com/v2/bundles/css?modules=o-buttons" />
 	</head>
 	<body>
 		Hello!
