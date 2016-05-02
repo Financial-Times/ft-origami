@@ -540,6 +540,6 @@ We've covered:
 We skipped over some areas that you should understand if you want to use Origami in production:
 
 - [The Polyfill Service](/docs/developer-guide/modules/using-the-polyfill-service/)
-- [Core vs Enhanced experience](/docs/developer-guide/modules/cuts-the-mustard/)
-- [Component versioning](/docs/developer-guide/modules/component-versioning/)
+- [Core vs Enhanced experience](/docs/developer-guide/modules/core-vs-enhanced-experience/)
+- [Component versioning](/docs/developer-guide/modules/module-versioning/)
 - [Initialising module JavaScript](/docs/developer-guide/modules/initialising-modules/)
