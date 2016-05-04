@@ -208,6 +208,9 @@ As an example (assuming you loaded these modules in your `bower.json`), create a
 	// Output icon helper classes
 	$o-ft-icons-is-silent: false;
 
+	// Output header classes
+	$o-header-is-silent: false;
+
 	// Import Origami components
 	@import 'o-grid/main';
 	@import 'o-fonts/main';
