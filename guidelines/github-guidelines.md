@@ -1,6 +1,6 @@
 ---
 layout: default
-title: New Origami starter guide
+title: Origami GitHub Guidelines
 permalink: /github-guidelines/
 ---
 
