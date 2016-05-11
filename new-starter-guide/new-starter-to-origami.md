@@ -1,3 +1,9 @@
+---
+layout: default
+title: New Origami starter guide
+permalink: /new-starter-guide/
+---
+
 # New starter guide
 
 Welcome to Origami!

@@ -1,7 +1,10 @@
+---
+layout: default
+title: New Origami starter guide
+permalink: /github-guidelines/
+---
+
 # GitHub Guidelines
-
-`Editor note: This is the first draft of the GitHub guidelines for Origami.`
-
 
 ## How to contribute to Origami
 
