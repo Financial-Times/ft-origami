@@ -4,7 +4,7 @@ title: New Origami starter guide
 permalink: /new-starter-guide/
 ---
 
-# New starter guide
+# New Origami starter guide
 
 Welcome to Origami!
 
