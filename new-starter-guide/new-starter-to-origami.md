@@ -8,7 +8,7 @@ permalink: /new-starter-guide/
 
 Welcome to Origami!
 
-## Checklist of things to do
+## Things to do
 
 The checklist assumes that you have done the following:
 
@@ -139,3 +139,9 @@ All contributors to Origami must use Pull Requests. These should be peer-reviewe
 5. When you're ready, open a pull request. Tag people you'd like to review the request.
 6. Respond to review comments
 7. Either a reviewer will merge your request, or they will give you a thumbs-up for you to merge.
+
+## Using Origami
+
+Being a part of the Origami team does need you to understand how the components library works. It is a good practice to go through [the tutorials and the documentation](http://origami.ft.com/).
+
+There are two ways of adding Origami modules. The first one is by the [Origami Build Service](http://origami.ft.com/docs/developer-guide/modules/build-service/). The second way is by doing it the manual way with [Origami Build Tools](http://origami.ft.com/docs/developer-guide/modules/building-modules/) via the CLI.
