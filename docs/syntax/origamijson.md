@@ -65,6 +65,10 @@ All origami components, whether modules or web services, should be discoverable 
 	<td>object</td>
 	<td>(optional) A set of one or more URLs where build validity information can be found</td>
 </tr><tr>
+	<td><code>&nbsp;&nbsp;&nbsp;&nbsp;circle</code></td>
+	<td>string</td>
+	<td>A <a href="https://circleci.com/">CircleCI</a> build status URL (<code>https://circleci.com/api/v1/project/<em>owner</em>/<em>repo</em></code>)</td>
+</tr><tr>
 	<td><code>&nbsp;&nbsp;&nbsp;&nbsp;travis</code></td>
 	<td>string</td>
 	<td>A <a href="https://travis-ci.org/">Travis CI</a> build status URL (normally <code>https://api.travis-ci.org/repos/<em>owner</em>/<em>repo</em>/builds.json</code>)</td>
