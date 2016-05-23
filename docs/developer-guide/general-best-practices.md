@@ -17,7 +17,7 @@ In addition to the rules below, the [Google Web Fundamentals documentation](http
 Conform to the [FT Browser support standard](https://docs.google.com/a/ft.com/document/d/1dX92MPm9ZNY2jqFidWf_E6V4S6pLkydjcPmk5F989YI/edit).  In principle this means that your site will:
 
 * Choose a sensible boundary level between core and enhanced experience
-* Not load JavaScript when in core experience (we advocate using a [cuts the mustard]({{site.baseurl}}/docs/developer-guide/using-modules#core-vs-enhanced-experience) technique)
+* Not load JavaScript when in core experience (we advocate using a [cuts the mustard]({{site.baseurl}}/docs/developer-guide/modules/core-vs-enhanced-experience) technique)
 * Present a consistent, functional and high quality experience to users in both core and enhanced experience
 
 
