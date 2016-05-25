@@ -1,8 +1,22 @@
-name: Origami
-highlighter: rouge
-relative_permalinks: false
-baseurl:
-exclude: [scss, node_modules, bower.json, Gruntfile.js, package.json, README.md]
-markdown: kramdown
+# Files to exclude from compilation
+exclude:
+- CNAME
+- Gruntfile.js
+- Makefile
+- node_modules
+- package.json
+- README.md
+
+# Jekyll plugins
 gems:
 - jekyll-redirect-from
+- jekyll-sitemap
+
+# Markdown settings
+highlighter: rouge # syntax
+markdown: kramdown # engine
+
+# Website settings
+baseurl: '' # This is empty on purpose
+name: Origami
+relative_permalinks: false

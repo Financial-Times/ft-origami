@@ -1,0 +1,16 @@
+machine:
+  node:
+    version: 4
+  ruby:
+    version: 2.3.0
+dependencies:
+  pre:
+  - make install
+  cache_directories:
+    - "node_modules"
+test:
+  override:
+    - make serve:
+        background: true
+    - sleep 5
+    - make test
