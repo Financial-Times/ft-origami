@@ -220,7 +220,7 @@ As an example (assuming you loaded these modules in your `bower.json`), create a
 	@import 'o-colors/main';
 
 	// Store the default FT sans-serif font stack in a variable
-	$sans-serif: oFontsGetFontFamilyWithFallbacks(BentonSans);
+	$sans-serif: oFontsGetFontFamilyWithFallbacks(Metric);
 
 	html {
 		// The iconic pink background
