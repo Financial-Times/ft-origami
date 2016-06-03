@@ -53,7 +53,7 @@ Sass does not have proper encapsulation or scope, so strict adherence to namespa
 * Specificity *must* be minimised. Use [BEM](http://csswizardry.com/2013/01/mindbemding-getting-your-head-round-bem-syntax/), especially if the component might contain other components (e.g. in the case of a 'grid' component), to avoid one component's styles affecting the appearance of a component within it.  Where a component can never contain any child components (e.g. a 'tweet' component or a 'gallery' component), they may instead choose to use simple class names and increase specificity with the module root selector as a parent.
 * Selectors *should* contain a single operand, with the following exceptions:
 	* To prefix a class for feature targeting, where the first operand is a documented [Modernizr](http://modernizr.com/docs/) test class name, and the second is a correctly namespaced selector (the feature selector *should* be configurable, and set to the Modernizr value by default)
-        - GOOD: `$o-tweet-featureflag-svg .o-tweet__twitter-logo`  
+        - GOOD: `$o-tweet-featureflag-svg .o-tweet__twitter-logo`
 	* To apply styles to naked tags (those without a class) inside an element marked with a module specific class.  In these cases, use a child operator to minimise the chance of interference with other modules
 		- ACCEPTABLE: `.o-thing__content h1`
 		- BETTER: `.o-thing__content > h1`
@@ -250,7 +250,7 @@ Where a module contains only CSS, it *should* support silent styles.  Where Java
 	});
 
 
-Modules that support silent mode *must* include a `$o-{modulename}-is-silent` variable, with a default value (which *may* or be either true or false).  When the variable is true, styles that would normally be output as class selectors *must* instead be defined as mixins, with the same styles.  E.g.:
+Modules that support silent mode *must* include a `$o-{modulename}-is-silent` variable, which *must* be set to `true` by default. When a module supports silent mode, styles that would normally be output as class selectors *must* instead be defined as mixins, with the same styles.  E.g.:
 
 
 	@mixin oThingFoo {
@@ -278,7 +278,7 @@ Modules that make use of styles defined in other modules that support silent mod
 		@include oAnotherThingFoo();
 	}
 
-Finally, in documentation, modules *must* provide information about both silent and non-silent methods, where supported, and must put the default first (i.e. if silent mode is by default **on**, the module must document the silent mode integration first).
+Finally, in documentation, modules *must* provide information about both silent and non-silent methods, where supported, documenting the silent mode integration first.
 
 
 ## Code organisation and formatting
