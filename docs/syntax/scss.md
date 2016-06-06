@@ -278,7 +278,7 @@ Modules that make use of styles defined in other modules that support silent mod
 		@include oAnotherThingFoo();
 	}
 
-When a module that supports silent mode is used with silent mode turned off (i.e. `$o-{modulename}-is-silent: false`), after the module has output the CSS, it *must* also reset the value of `$o-{modulename}-is-silent` to true, (this prevents the accidental output of styles if the module is included a second time):
+When a module that supports silent mode has output the CSS, it *must* also reset the value of `$o-{modulename}-is-silent` to true:
 
 	@if ($o-expander-is-silent == false) {
 		.o-expander__content {
@@ -293,6 +293,7 @@ When a module that supports silent mode is used with silent mode turned off (i.e
 		$o-expander-is-silent: true !global;
 	}
 
+This prevents the accidental output of styles if the module is included twice in the same product. For example given `module A` and `module B` both have a dependency of `module C`. Where `module A` is imported first and sets `$o-{modulename}-is-silent: false` when importing `module C`, the variable is then set for when `module B` - imported second - also imports `module C` as well, which would cause `module C`'s styles to be output a second time.
 
 Finally, in documentation, modules *must* provide information about both silent and non-silent methods, where supported, documenting the silent mode integration first.
 
