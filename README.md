@@ -2,6 +2,19 @@
 
 Please visit http://origami.ft.com to view the site
 
+## Installing a local version of the website
+
+To start the process, use `make install`. This will install Pa11y, Jekyll and Jekyll plugins so that you can run this locally.
+
+### Dependencies
+
+1. [Node.js](https://nodejs.org)
+2. [Ruby](https://rubylang.org)
+3. [Jekyll](https://jekyllrb.com)
+4. [Jekyll Sitemap](https://github.com/jekyll/jekyll-sitemap)
+5. [Jekyll Redirect From](https://github.com/jekyll/jekyll-redirect-from)
+6. [Pa11y](http://www.pally.org)
+
 ## Building
 
 Since this is a GitHub pages site, built CSS bundle must be committed to the repository.  We store it in `buildcache` to avoid any confusion - files in the `buildcache` directory should not be edited.  To regenerate them, use Grunt:
@@ -12,12 +25,21 @@ Since this is a GitHub pages site, built CSS bundle must be committed to the rep
 1. Edit main.scss as desired
 1. Run `grunt`
 
+To build the website locally, you can use `make build` instead of the method above to regenerate the changes. This will use Jekyll's function to build locally.
+
 ## Viewing locally
 
 1. Install Jekyll `gem install jekyll`
 1. Install Jekyll redirect gem `gem install jekyll-redirect-from`
+1. Install Jekyll sitemap gem `gem install jekyll-sitemap`
 1. Run `jekyll serve --watch --baseurl=''` and view on http://localhost:4000/
 1. Run `grunt watch` in parallel if you're editing styles
+
+To serve the website locally, you can use `make serve` as a background process in the CLI to view on a browser with `http://localhost:4000/`.
+
+## Pa11y
+
+This website is tested against Pa11y and CircleCI. If there are accessibility errors on the website, it will fail on CircleCI. Test the website with `make test` and it will use Pa11y to output the accessibility results.
 
 ## Documentation style guide
 This guide is based on https://jacobian.org/writing/great-documentation/. It exists as guidance to help keep our documentation consistent.

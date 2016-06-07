@@ -35,6 +35,6 @@ list-urls:
 # Run pa11y against the site
 test:
 	@echo "Testing site"
-	@make list-urls | sed '/^$$/d' | { while read i; do pa11y --ignore "notice;warning" $$i || exit 1; done }
+	@make list-urls | sed '/^$$/d' | { while read i; do pa11y --hide-elements ".c-search" --ignore "notice;warning" $$i || exit 1; done }
 # This is set up to fail on a page when it finds at least one accessibility error.
 # If it passes on a page, it will move onto the next until an error is found.
