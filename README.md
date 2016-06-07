@@ -15,18 +15,6 @@ To start the process, use `make install`. This will install Pa11y, Jekyll and Je
 5. [Jekyll Redirect From](https://github.com/jekyll/jekyll-redirect-from)
 6. [Pa11y](http://www.pally.org)
 
-## Building
-
-Since this is a GitHub pages site, built CSS bundle must be committed to the repository.  We store it in `buildcache` to avoid any confusion - files in the `buildcache` directory should not be edited.  To regenerate them, use Grunt:
-
-1. Clone the repository
-1. Ensure `grunt-cli` is installed globally by checking it's listed with `grunt --version`.  If it's not, install with `npm install -g grunt-cli`.
-1. Run `npm install`
-1. Edit main.scss as desired
-1. Run `grunt`
-
-To build the website locally, you can use `make build` instead of the method above to regenerate the changes. This will use Jekyll's function to build locally.
-
 ## Viewing locally
 
 1. Install Jekyll `gem install jekyll`
