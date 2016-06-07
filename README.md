@@ -1,45 +1,39 @@
-## This is a gh-pages branch
 
-Please visit http://origami.ft.com to view the site
+## Origami
 
-## Installing a local version of the website
+This is the source code for the Origami website. Please visit [http://origami.ft.com/](http://origami.ft.com/) if you're looking for the documentation.
 
-To start the process, use `make install`. This will install Pa11y, Jekyll and Jekyll plugins so that you can run this locally.
 
-### Dependencies
+## Running locally
 
-1. [Node.js](https://nodejs.org)
-2. [Ruby](https://rubylang.org)
-3. [Jekyll](https://jekyllrb.com)
-4. [Jekyll Sitemap](https://github.com/jekyll/jekyll-sitemap)
-5. [Jekyll Redirect From](https://github.com/jekyll/jekyll-redirect-from)
-6. [Pa11y](http://www.pally.org)
+[Jekyll](https://jekyllrb.com/) is used to build this site, and we host it on GitHub pages. Before we can run the site locally, you'll need:
 
-## Building
+  1. [Node.js](https://nodejs.org)
+  2. [Ruby](https://rubylang.org)
 
-Since this is a GitHub pages site, built CSS bundle must be committed to the repository.  We store it in `buildcache` to avoid any confusion - files in the `buildcache` directory should not be edited.  To regenerate them, use Grunt:
+Now install all the dependencies required to build the site:
 
-1. Clone the repository
-1. Ensure `grunt-cli` is installed globally by checking it's listed with `grunt --version`.  If it's not, install with `npm install -g grunt-cli`.
-1. Run `npm install`
-1. Edit main.scss as desired
-1. Run `grunt`
+```sh
+make install
+```
 
-To build the website locally, you can use `make build` instead of the method above to regenerate the changes. This will use Jekyll's function to build locally.
+After this, you can start running the site using:
 
-## Viewing locally
+```sh
+make serve
+```
 
-1. Install Jekyll `gem install jekyll`
-1. Install Jekyll redirect gem `gem install jekyll-redirect-from`
-1. Install Jekyll sitemap gem `gem install jekyll-sitemap`
-1. Run `jekyll serve --watch --baseurl=''` and view on http://localhost:4000/
-1. Run `grunt watch` in parallel if you're editing styles
+The locally running website will be viewable here: [`http://localhost:4000/`](http://localhost:4000/).
 
-To serve the website locally, you can use `make serve` as a background process in the CLI to view on a browser with `http://localhost:4000/`.
 
-## Pa11y
+## Testing
 
-This website is tested against Pa11y and CircleCI. If there are accessibility errors on the website, it will fail on CircleCI. Test the website with `make test` and it will use Pa11y to output the accessibility results.
+This website is tested with [Pa11y](http://www.pally.org) using CircleCI. If there are accessibility errors on the website, the build will fail. You can run these tests locally with:
+
+```sh
+make test
+```
+
 
 ## Documentation style guide
 This guide is based on https://jacobian.org/writing/great-documentation/. It exists as guidance to help keep our documentation consistent.

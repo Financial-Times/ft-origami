@@ -1,10 +1,8 @@
 # Files to exclude from compilation
 exclude:
 - CNAME
-- Gruntfile.js
 - Makefile
 - node_modules
-- package.json
 - README.md
 
 # Jekyll plugins
