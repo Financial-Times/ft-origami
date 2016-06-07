@@ -25,8 +25,6 @@ Since this is a GitHub pages site, built CSS bundle must be committed to the rep
 1. Edit main.scss as desired
 1. Run `grunt`
 
-### Alternative method with `Makefile`
-
 To build the website locally, you can use `make build` instead of the method above to regenerate the changes. This will use Jekyll's function to build locally.
 
 ## Viewing locally
@@ -36,8 +34,6 @@ To build the website locally, you can use `make build` instead of the method abo
 1. Install Jekyll sitemap gem `gem install jekyll-sitemap`
 1. Run `jekyll serve --watch --baseurl=''` and view on http://localhost:4000/
 1. Run `grunt watch` in parallel if you're editing styles
-
-### Alternative method with `Makefile`
 
 To serve the website locally, you can use `make serve` as a background process in the CLI to view on a browser with `http://localhost:4000/`.
 
