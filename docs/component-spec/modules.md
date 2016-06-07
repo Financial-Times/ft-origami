@@ -122,9 +122,9 @@ Origami modules are generally installed based on a semver range. To ensure new r
 
 #### Deprecation of a module
 
-In an event of deprecating a module within Origami, the following steps will be undertaken.
+In the event of deprecating a module within Origami, the following steps must be followed.
 
-1. Modify `origami.json` to change the `supportStatus` from `active` to `deprecated`.
+1. Modify `origami.json` to change the `supportStatus` to `deprecated`.
 2. Change the `README.md` to have a paragraph at the top outlining the deprecation status. It must also point to the module that has replaced the deprecated module.
 3. Disable the Issues functionality from the deprecated module's repository.
 4. Update the repository's description to "deprecated - please use <module> instead" and change the URL to point towards the replacement's repository on GitHub.
