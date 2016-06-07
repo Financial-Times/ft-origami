@@ -120,6 +120,14 @@ Origami modules are generally installed based on a semver range. To ensure new r
 * If releasing a module that contains generated content (fonts for example), make sure the new files are in the git repository (git ls-files) at the release commit
 * Don’t make a major release until all or most dependants have removed deprecated features
 
+#### Deprecation of a module
+
+In an event of deprecating a module within Origami, the following steps will be undertaken.
+
+1. Modify `origami.json` to change the `supportStatus` from `active` to `deprecated`.
+2. Change the `README.md` to have a paragraph at the top outlining the deprecation status. It must also point to the module that has replaced the deprecated module.
+3. Disable the Issues functionality from the deprecated module's repository.
+4. Update the repository's description to "deprecated - please use <module> instead" and change the URL to point towards the replacement's repository on GitHub.
 
 ## Themes
 
