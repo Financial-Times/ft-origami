@@ -6,11 +6,11 @@ body {
 	font-family: Helvetica, Arial, sans-serif;
 }
 
-.o-header {
+.o-techdocs-header {
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 }
-.o-header__primary__left {
+.o-techdocs-header__primary__left {
 	width: 180px;
 }
 
@@ -19,7 +19,7 @@ body {
 }
 
 @media (min-width: 46.25em) {
-	.o-header__primary__left {
+	.o-techdocs-header__primary__left {
 		min-width: 303px;
 		width: 33%;
 	}
@@ -95,8 +95,6 @@ body {
 
 }
 .hero__primary {
-	padding-top: 120px;
-	margin-top: -55px;
 	background: #131313 url(/img/hero.png) no-repeat center top;
 	background-size: cover;
 }
@@ -108,8 +106,6 @@ body {
 		margin-top: 0;
 	}
 	.hero {
-		padding-top: 30px;
-		margin-top: -55px;
 		background: #131313 url(/img/hero.png) no-repeat center top;
 		background-size: cover;
 	}
@@ -156,23 +152,21 @@ a.o-buttons--standout{
 	}
 }
 
-.o-header--pull-up {
+.o-techdocs-header--pull-up {
 	margin-bottom: 0 !important;
 }
 
 /** Override o-heirachical nav background colours */
-.o-header__nav--primary-theme [data-o-hierarchical-nav-level],
-.o-header__nav--secondary-theme [data-o-hierarchical-nav-level] {
+.o-techdocs-header__nav--primary-theme [data-o-hierarchical-nav-level],
+.o-techdocs-header__nav--secondary-theme [data-o-hierarchical-nav-level] {
 	background-color: transparent;
 }
 
 
-.o-header--transparent {
-
-	.o-header__secondary {
+.o-techdocs-header--transparent {
+	.docs-section-nav__section-link {
 		display: none;
 	}
-
 	[data-o-hierarchical-nav-level] {
 		background: transparent;
 	}
@@ -182,6 +176,14 @@ a.o-buttons--standout{
 	[data-o-hierarchical-nav-level] {
 		right: 10px;
 	}
+}
+
+.docs-section-nav {
+	margin-bottom: 2em;
+}
+.docs-section-nav__section-link {
+	padding: .5em 1em .5em 1em;
+	display: inline-block;
 }
 
 .o-hierachical-nav__parent--active {

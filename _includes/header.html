@@ -1,12 +1,12 @@
-<header data-o-component="o-header" class="o-header {% if page.title == 'Home' %}o-header--pull-up o-header--transparent{% endif %}">
-  <div class="o-header__container">
-    <div class="o-header__inner">
-      <div class="o-header__primary">
-        <a class="o-header__primary__left" href="/">
+<header data-o-component="o-techdocs-header" class="o-techdocs-header {% if page.title == 'Home' %}o-techdocs-header--pull-up o-techdocs-header--transparent{% endif %}">
+  <div class="o-techdocs-header__container">
+    <div class="o-techdocs-header__inner">
+      <div class="o-techdocs-header__primary">
+        <a class="o-techdocs-header__primary__left" href="/">
           <span class="origami-logo"></span>
-          <h1 class="o-header__title">{{site.name}}</h1>
+          <h1 class="o-techdocs-header__title">{{site.name}}</h1>
         </a>
-        <div class="o-header__primary__center c-search">
+        <div class="o-techdocs-header__primary__center c-search">
           <script>
           (function() {
             var cx = '013700166063307641389:hr156qdcx6w';
@@ -19,25 +19,19 @@
           </script>
           <gcse:search></gcse:search>
         </div>
-        <nav class="o-header__primary__right o-hierarchical-nav o-header__nav--primary-theme" data-o-component="o-hierarchical-nav">
+        <nav class="o-techdocs-header__primary__right o-hierarchical-nav o-techdocs-header__nav--primary-theme" data-o-component="o-hierarchical-nav">
           <ul data-o-hierarchical-nav-level="1"><!--
 	        --><li data-priority="1" aria-selected="true"><a href="http://origami.ft.com">Spec</a></li><!--
 	        --><li data-priority="1"><a href="http://registry.origami.ft.com">Registry</a></li><!--
 	      --></ul>
         </nav>
       </div>
-      <div class="o-header__secondary o-header__nav--secondary-theme">
-        <nav class="o-header__secondary__left o-hierarchical-nav o-header__nav--secondary-theme" data-o-component="o-hierarchical-nav" data-o-hierarchical-nav--js="" >
-        <ul data-o-hierarchical-nav-level="1">
-          <li class="o-hierarchical-nav__parent {% if page.site_section == 'developer-guide' %}o-hierachical-nav__parent--active{% endif %}">
-            <a href="/docs/developer-guide">Developer Guide</a>
-          </li>
-          <li class="o-hierarchical-nav__parent {% if page.site_section == 'about-origami' %}o-hierachical-nav__parent--active{% endif %}">
-            <a href="/docs/component-spec/">Origami Spec</a>
-          </li>
-        </ul>
-      </nav>
-    </div>
+      <div class="docs-section-nav">
+        <nav>
+          <a class="{% if page.site_section == 'developer-guide' %}o-hierachical-nav__parent--active{% endif %} docs-section-nav__section-link" href="/docs/developer-guide">Developer Guide</a>
+          <a class="{% if page.site_section == 'about-origami' %}o-hierachical-nav__parent--active{% endif %} docs-section-nav__section-link" href="/docs/component-spec/">Origami Spec</a>
+          </nav>
+      </div>
     </div>
   </div>
 </header>
