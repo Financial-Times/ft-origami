@@ -28,7 +28,9 @@ The locally running website will be viewable here: [`http://localhost:4000/`](ht
 
 ## Testing
 
-This website is tested with [Pa11y](http://www.pally.org) using CircleCI. If there are accessibility errors on the website, the build will fail. You can run these tests locally with:
+This website is tested with [Pa11y](http://www.pally.org) using CircleCI. If there are accessibility errors on the website, the build will fail.
+
+If you'd like to run these tests locally, you'll need [PhantomJS](http://phantomjs.org/) to be installed. You'll also need the site to be running (using `make serve`). Once these requirements have been met, you can run:
 
 ```sh
 make test
