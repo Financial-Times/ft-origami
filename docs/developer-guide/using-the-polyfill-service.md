@@ -21,4 +21,4 @@ If you want to use a polyfill that isn't provided by Polyfill.io, you should not
 
 
 ## Polyfill.io and the Build Service.
-Origami Build Tools and The Build Service both include some polyfills from core-js which conflict with the Polyfill.io's default set. Until we remove these conflicting polyfills from the Build Service (when Polyfill.io can provide the same coverage for ES6 as offered in core-js) you should use `?excludes=Symbol,Symbol.iterator,Symbol.species,Map,Set` to prevent conflicts.
+Origami Build Tools and the Build Service both include some polyfills from core-js which conflict with the Polyfill.io's default set. Until we remove these conflicting polyfills from the Build Service (when Polyfill.io can provide the same coverage for ES6 as offered in core-js) you should use `?excludes=Symbol,Symbol.iterator,Symbol.species,Map,Set` to prevent conflicts.
