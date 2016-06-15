@@ -38,13 +38,13 @@ For this tutorial, we'll use some boilerplate HTML. There are two things in the 
 <aside class='read-more'>
 <strong>Read more about the Polyfill Service</strong>
 <p>The Polyfill Service is an Origami service that makes newer APIs available to older browsers, ensuring Origami developers can write code to modern standards</p>
-<a class='o-buttons' href='{{site.baseurl}}/docs/developer-guide/modules/core-vs-enhanced-experience/'>Find out more about the Polyfill Service</a>
+<a class='o-buttons' href='{{site.baseurl}}/docs/developer-guide/modules/modules/using-the-polyfill-service/'>Find out more about the Polyfill Service</a>
 </aside>
 
 <aside class='read-more'>
 <strong>Read more about cutting the mustard</strong>
 <p>Origami modules provide two experiences, core for older browsers and enhanced for newer browsers. To determine if a browser gets a core or enhanced experience we need developers to add a 'cuts the mustard test' to their pages</p>
-<a class='o-buttons' href='{{site.baseurl}}/docs/developer-guide/modules/'>Find out more about core vs enhanced experience</a>
+<a class='o-buttons' href='{{site.baseurl}}/docs/developer-guide/modules/core-vs-enhanced-experience/'>Find out more about core vs enhanced experience</a>
 </aside>
 
 ### The boilerplate
