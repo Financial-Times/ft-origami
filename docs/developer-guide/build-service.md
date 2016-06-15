@@ -38,7 +38,7 @@ For this tutorial, we'll use some boilerplate HTML. There are two things in the 
 <aside class='read-more'>
 <strong>Read more about the Polyfill Service</strong>
 <p>The Polyfill Service is an Origami service that makes newer APIs available to older browsers, ensuring Origami developers can write code to modern standards</p>
-<a class='o-buttons' href='{{site.baseurl}}/docs/developer-guide/modules/modules/using-the-polyfill-service/'>Find out more about the Polyfill Service</a>
+<a class='o-buttons' href='{{site.baseurl}}/docs/developer-guide/modules/using-the-polyfill-service/'>Find out more about the Polyfill Service</a>
 </aside>
 
 <aside class='read-more'>
