@@ -10,9 +10,9 @@ site_section: developer-guide
 
 Not all browsers are equal. As new standards and features are added to browsers, older ones (eg ie8) are left behind. "Polyfilling" is a technique where older browsers are served JavaScript which upgrades their feature-set. This frees up developers to write modern JavaScript without having to spend time getting it working on older browsers.
 
-Ordinarily, developers have to identify and manage the polyfills they need. This is where [Polyfill.io](https://polyfill.io) comes in. Polyfill.io uses user-agent sniffing to return only the polyfills that the requesting browser needs. Polyfill.io is built and maintained by a community of developers led by Origami.
+Ordinarily, developers have to identify and manage the polyfills they need. This is where [Polyfill.io](http://polyfill.io) comes in. Polyfill.io uses user-agent sniffing to return only the polyfills that the requesting browser needs. Polyfill.io is built and maintained by a community of developers led by Origami.
 
-All documentation for Polyfill.io is available at (Polyfill.io)[http://polyfill.io].
+All documentation for Polyfill.io is available at [Polyfill.io](http://polyfill.io).
 
 
 ## Using Polyfill.io with other polyfills
