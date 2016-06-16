@@ -123,7 +123,7 @@ All origami components, whether modules or web services, should be discoverable 
 </tr><tr>
 	<td><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;documentClasses</code></td>
 	<td>string</td>
-	<td>(optional) CSS classes to set on the `<html>` tag.</td>
+	<td>(optional) CSS classes to set on the <code>html</code> tag.</td>
 </tr><tr>
 	<td><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;dependencies</code></td>
 	<td>array</td>
