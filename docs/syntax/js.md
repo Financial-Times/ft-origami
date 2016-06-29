@@ -19,7 +19,7 @@ Product developers are encouraged to include Origami JavaScript using a 'cuts th
 * Add no objects to the global scope, other than JSONp callback function names.  Variables declared outside of any enclosing function are permitted, provided that the module requires a commonJS interface.  If you don't want to depend on CommonJS, wrap the module in an [IIFE](http://en.wikipedia.org/wiki/Immediately-invoked_function_expression).
 * If the module does not require CommonJS it must include a [Universal Module Definition](https://github.com/umdjs/umd/blob/master/returnExports.js) that includes support for CommonJS.
 * Do not read or modify the DOM on parse
-* If it's possible for the module to create DOM nodes, timers, or otherwise occupy more than a token amount of memory, export a `destroy` method that reverts the module to a pre-`init` state.
+* If it's possible for the module to create DOM nodes, timers, or otherwise occupy more than a token amount of memory, it *should* export a `destroy` method that reverts the module to a pre-`init` state. This is not necessary for large modules like `o-header` where it doesn't make sense for it to be reverted
 * Do not leave any non-garbage collectable traces after `destroy` is called
 * Do not modify the DOM outside of areas of [owned DOM]({{site.baseurl}}/docs/syntax/html/#owned-dom), except:
 	* to add feature flag CSS classes to the `documentElement`; or
