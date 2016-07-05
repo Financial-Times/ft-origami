@@ -152,7 +152,7 @@ Once you know which Origami modules you want, create a `bower.json` file in the 
 			"o-footer": "^4.0.0",
 			"o-colors": "^3.3.0",
 			"o-fonts": "^2.0.0",
-			"o-ft-icons": "^3.0.0"
+			"o-icons": "^4.0.0"
 		}
 	}
 
@@ -214,7 +214,7 @@ As an example (assuming you loaded these modules in your `bower.json`), create a
 	// Import Origami components
 	@import 'o-grid/main';
 	@import 'o-fonts/main';
-	@import 'o-ft-icons/main';
+	@import 'o-icons/main';
 	@import 'o-header/main';
 	@import 'o-footer/main';
 	@import 'o-colors/main';
