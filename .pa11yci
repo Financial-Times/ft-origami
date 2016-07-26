@@ -1,5 +1,6 @@
 {
 	"defaults": {
+		"concurrency": 6,
 		"hideElements": ".c-search"
 	}
 }
