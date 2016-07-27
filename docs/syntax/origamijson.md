@@ -36,6 +36,10 @@ All origami components, whether modules or web services, should be discoverable 
 	<td>integer*</td>
 	<td>Version of Origami to which the component conforms.  Currently must be set to 1.</td>
 </tr><tr>
+	<td><code>&nbsp;&nbsp;origamiCategory</code></td>
+	<td>string*</td>
+	<td>The organisational category the module belongs to.  Must be set to one of the following: "components", "primitives", "utilities", "layouts".</td>
+</tr><tr>
 	<td><code>&nbsp;&nbsp;support</code></td>
 	<td>string*</td>
 	<td>
@@ -196,7 +200,7 @@ All origami components, whether modules or web services, should be discoverable 
 			"name": "demo1",
 			"description": "Basic module implementation",
 			"expanded": true,
-			"template": "demos/src/demo1.mustache"	  		
+			"template": "demos/src/demo1.mustache"
 	  	}
 	  ],
 	  "ci": {
