@@ -16,6 +16,7 @@ body {
 
 .o-techdocs-container {
 	padding-bottom: 50px;
+	margin-top: 3em;
 }
 
 @media (min-width: 46.25em) {
@@ -164,9 +165,6 @@ a.o-buttons--standout{
 
 
 .o-techdocs-header--transparent {
-	.docs-section-nav__section-link {
-		display: none;
-	}
 	[data-o-hierarchical-nav-level] {
 		background: transparent;
 	}
@@ -176,14 +174,6 @@ a.o-buttons--standout{
 	[data-o-hierarchical-nav-level] {
 		right: 10px;
 	}
-}
-
-.docs-section-nav {
-	margin-bottom: 2em;
-}
-.docs-section-nav__section-link {
-	padding: .5em 1em .5em 1em;
-	display: inline-block;
 }
 
 .o-hierachical-nav__parent--active {

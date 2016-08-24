@@ -21,17 +21,11 @@
         </div>
         <nav class="o-techdocs-header__primary__right o-hierarchical-nav o-techdocs-header__nav--primary-theme" data-o-component="o-hierarchical-nav">
           <ul data-o-hierarchical-nav-level="1"><!--
-	        --><li data-priority="1" aria-selected="true"><a href="http://origami.ft.com/docs/developer-guide/">Docs</a></li><!--
-	        --><li data-priority="1" aria-selected="true"><a href="http://origami.ft.com/docs/component-spec/">Spec</a></li><!--
+	        --><li data-priority="1" {% if page.site_section == 'developer-guide' %}aria-selected="true"{% endif %}><a href="http://origami.ft.com/docs/developer-guide/">Docs</a></li><!--
+	        --><li data-priority="1" {% if page.site_section == 'about-origami' %}aria-selected="true"{% endif %}><a href="http://origami.ft.com/docs/component-spec/">Spec</a></li><!--
 	        --><li data-priority="1"><a href="http://registry.origami.ft.com">Registry</a></li><!--
 	      --></ul>
         </nav>
-      </div>
-      <div class="docs-section-nav">
-        <nav>
-          <a class="{% if page.site_section == 'developer-guide' %}o-hierachical-nav__parent--active{% endif %} docs-section-nav__section-link" href="/docs/developer-guide">Developer Guide</a>
-          <a class="{% if page.site_section == 'about-origami' %}o-hierachical-nav__parent--active{% endif %} docs-section-nav__section-link" href="/docs/component-spec/">Origami Spec</a>
-          </nav>
       </div>
     </div>
   </div>
