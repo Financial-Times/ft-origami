@@ -36,6 +36,10 @@ All origami components, whether modules or web services, should be discoverable 
 	<td>integer*</td>
 	<td>Version of Origami to which the component conforms.  Currently must be set to 1.</td>
 </tr><tr>
+	<td><code>&nbsp;&nbsp;keywords</code></td>
+	<td>string*</td>
+	<td>Keywords related to the component to help discovery in the Registry. These should be stored as a comma separate string, i.e. "colours, palette, pink" for <code>o-colors</code>.</td>
+</tr><tr>
 	<td><code>&nbsp;&nbsp;origamiCategory</code></td>
 	<td>string*</td>
 	<td>The organisational category the module belongs to.  Must be set to one of the following: "components", "primitives", "utilities", "layouts".</td>
