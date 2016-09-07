@@ -272,7 +272,19 @@ Where styles need to be added specifically for a demo (e.g. to make the content 
 
 ### Choosing demo content
 
-When choosing content for a demo, and deciding on the composition of a demo, component developers *must* craft realistic examples using real use cases.  If it's necessary to make demos contrived in order to demonstrate the full range of features of the component, multiple demos *should* be created, so that at least one demo (which *should* be the default-expanded demo) shows a realistic use case.
+When choosing content for a demo, and deciding on the composition of a demo, component developers *must* craft realistic examples using real use cases. The following guidelines for what a demo should and should not do *must* be followed.
+
+**Demos should:**
+
+- Be a recommended use of the component (i.e. this is how the component should look and be used)
+- Allow the HTML to be copied, and without modification (except adding content) be able to recreate the demo using the [Origami Build Service](http://origami.ft.com/docs/developer-guide/modules/build-service/).
+- Be visually different from one another where there are multiple demos for the same component.
+- Have a description explaining the usage and the context in which the demo should be implemented in design.
+
+**Demos should not:**
+
+- Be used to explain configuration and implementation differences, these should be explained in the component's readme.
+- Leave ambiguity in how the component should be used in a product.
 
 ### Demo config
 
