@@ -283,8 +283,7 @@ When choosing content for a demo, and deciding on the composition of a demo, com
 
 **Demos should not:**
 
-- Be used to explain configuration and implementation differences, these should be explained in the component's readme.
-- Leave ambiguity in how the component should be used in a product.
+- Be used to explain configuration and implementation differences, these should be explained in the component's README.
 
 ### Demo config
 
