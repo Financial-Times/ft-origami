@@ -113,6 +113,7 @@ Origami modules are generally installed based on a semver range. To ensure new r
 * When updating a dependency to the latest minor release, make a minor release
 * When updating a dependency to the latest major release, in your bower.json, make sure the semver range includes the previous major release (_e.g. `>=1.2.3 <3`_). If not, a major release is necessary
 * When adding a new dependency, make a major release as it may break existing bundles
+* When using a new browser API which requires support from the Polyfill service (added in the features list of the `origami.json`) and is outside of the default set, make a major release.
 * Make sure private Sass functions and mixins are prefixed with an underscore. If not, even if they weren’t intended for public use, they will need to follow the same deprecation process as public functions and mixins
 * All JavaScript components *must* have tests and they *must* pass
 * Run `obt verify` and `obt test` and make sure there are no errors
