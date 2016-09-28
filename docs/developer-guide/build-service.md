@@ -74,7 +74,7 @@ At the top of every module page on the registry there are some demos. Pick a dem
 
 ![HTML source of a demo in the Origami registry](/img/build-service-tutorial/registry-demo-html.png)
 
-Copy all the HTML to your clipboard (there is quite a lot of it).
+Select the HTML tab and copy all the HTML to your clipboard (there is quite a lot of it).
 
 Switch to your JS Bin window and find the bit that says `<!-- Body content here -->` (it's towards the bottom of the file).  Paste your header HTML just below that.
 
