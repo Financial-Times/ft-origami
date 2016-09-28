@@ -46,7 +46,7 @@ To find out if you have Node.js installed and which version you have, type this 
 <output>v4.2.0</output>
 </pre>
 
-If you get an error, or the number you get does not match the most recent release shown on the [Node website](http://nodejs.org/), you need to install/upgrade Node.  
+If you get an error, or the number you get does not match the most recent release shown on the [Node website](http://nodejs.org/), you need to install/upgrade Node.
 
 Node is available in most package management repositories, and instructions are available in the Node install guide:
 
@@ -106,7 +106,7 @@ Choose where you want to start building your project (normally this is also the 
 <h4>Optional: get the finished setup</h4>
 <p>We've created a repository that's set up as yours will be at the end of this tutorial. If you like, you can clone the repository in full rather than creating the files one at a time. You should still follow through the tutorial so you can understand how to create your own. To clone the repository, type this at a terminal:</p>
 <pre class="cli">
-<kbd>git clone https://github.com/Financial-Times/origami-manual-build-boilerplate.</kbd>
+<kbd>git clone https://github.com/Financial-Times/origami-manual-build-boilerplate</kbd>
 </pre>
 </aside>
 
@@ -189,7 +189,7 @@ So that bower can find the modules you've listed in your `bower.json`, it needs 
 
 ## 5. Create your master Sass and JavaScript files
 
-Now you need to create a Sass and/or JavaScript file that requires the Origami components as dependencies.  In Sass, you can do this with the `@import` statement, and in JavaScript, using `require`.  
+Now you need to create a Sass and/or JavaScript file that requires the Origami components as dependencies.  In Sass, you can do this with the `@import` statement, and in JavaScript, using `require`.
 
 ### Create `main.scss`
 
