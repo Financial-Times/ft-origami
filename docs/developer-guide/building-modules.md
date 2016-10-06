@@ -512,7 +512,7 @@ For very simple projects, this may be true.  But it's generally not a great idea
 	$o-assets-global-path: '/resources';
 
 	/* Import Origami components */
-	@import 'o-tweet/main';
+	@import 'o-share/main';
 	@import 'o-techdocs/main';
 
 	/* Add our own Sass */
@@ -521,7 +521,7 @@ For very simple projects, this may be true.  But it's generally not a great idea
 	}
 
 
-If `o-tweet` wanted to load a background image that was at `/img/separator.gif` in the `o-tweet` repo, this config would result in the image being requested from `/resources/o-tweet/img/separator.gif`.  It is then up to you to handle this request and deliver the appropriate file from your `bower_components` directory.
+If `o-share` wanted to load a background image that was at `/img/separator.gif` in the `o-share` repo, this config would result in the image being requested from `/resources/o-share/img/separator.gif`.  It is then up to you to handle this request and deliver the appropriate file from your `bower_components` directory.
 
 ----
 
