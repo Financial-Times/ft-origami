@@ -185,10 +185,10 @@ All origami components, whether modules or web services, should be discoverable 
 
 
 	{
-	  "description": "Tweet module",
+	  "description": "Tables module",
 	  "origamiType": "module",
 	  "origamiVersion": 1,
-	  "keywords": "twitter, tweets, social media",
+	  "keywords": "data, information, numbers",
 	  "origamiCategory": "component",
 	  "support": "developer@example.com",
 	  "supportStatus": "active",
@@ -219,6 +219,6 @@ All origami components, whether modules or web services, should be discoverable 
 	  	}
 	  ],
 	  "ci": {
-	    "circle": "https://circleci.com/api/v1/project/Financial-Times/o-tweet"
+	    "circle": "https://circleci.com/api/v1/project/Financial-Times/o-table"
 	  }
 	}

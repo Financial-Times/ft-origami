@@ -95,7 +95,7 @@ If a module's JavaScript requires configuration, the following methods of passin
 
 ### Data attributes on owned DOM
 
-If a module acts to enhance markup, the module *must* be configurable using data- attributes on the HTML element that is the root element of the DOM owned by the module.  Data attributes *must* be named `data-{modulename}-{key}`, e.g. `data-o-tweet-id`.  The module *may* also create attributes of this form at runtime, provided that the element is already within owned DOM for that module.
+If a module acts to enhance markup, the module *must* be configurable using data- attributes on the HTML element that is the root element of the DOM owned by the module.  Data attributes *must* be named `data-{modulename}-{key}`, e.g. `data-o-share-id`.  The module *may* also create attributes of this form at runtime, provided that the element is already within owned DOM for that module.
 
 <aside>
 	Developers should avoid the temptation to name data attributes based on the same naming conventions as BEM in CSS.  Data attributes are not subject to the same semantics as classes so BEM is not a great fit.
