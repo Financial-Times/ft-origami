@@ -20,17 +20,19 @@ Polyfilling things twice will give unpredictable results and is likely to lead t
 
 If you want to use a polyfill that isn't provided by Polyfill.io, you should not use the default set from Polyfill.io as this can lead to conflicts. These conflicts are especially common for ES6 features while Polyfill.io brings in polyfills for these new language features.
 
+## Polyfill.io and babel gotcha
+Currently, babel implicitly loads core-js polyfills for symbol _even when you ask it not to_. To avoid this, use this [microlibrary](https://www.npmjs.com/package/babel-polyfill-silencer).
 
 ## Polyfill.io and the Build Service
 Origami Build Tools and the Build Service both include some polyfills from core-js which conflict with the Polyfill.io's default set. Until we remove these conflicting polyfills from Origami's tools (when Polyfill.io can provide the same coverage for ES6 as offered in core-js) this will continue to be a problem.
 
 Right now, the conflict exists with `Symbol`, `Map` and `Set` polyfills. If you are using these features, there are two possible solutions:
 
-- If possible, only use polyfills delivered by the Polyfill-Service - ​*recommended, future-proof*
+- If possible, only use polyfills delivered by the Polyfill-Service - ​*recommended, future-proof*.
 - Alternatively, if you need to include the Babel polyfills, you can exclude polyfills from the default set in Polyfill.io by adding the following parameters to your Polyfill.io request:  `?excludes=Symbol,Symbol.iterator,Symbol.species,Map,Set`
 
 ### Exclude Symbol polyfills from the Build Service or OBT
 In OBT you can exclude all the Babel polyfills by setting a the `babelRuntime` flag eg
 `obt build --babelRuntime=false`
 
-There is an open issue on the Build Service to exclude the core-js polyfills there too: https://github.com/Financial-Times/origami-build-service/issues/58.
+You can exclude all core-js polyfills from the Build Service using `?polyfills=none`. See the [Build Service documentation](https://build.origami.ft.com/v2/#api-reference) for more information.
