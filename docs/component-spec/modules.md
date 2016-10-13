@@ -349,7 +349,7 @@ Module developers *should* apply the following checklist when creating documenta
 
 ### Browser support
 
-All modules *must* be tested with all the browsers [listed in the FT browser support policy](https://docs.google.com/a/ft.com/document/d/1dX92MPm9ZNY2jqFidWf_E6V4S6pLkydjcPmk5F989YI/edit#heading=h.wcrwnubj26sk), and if a module includes JavaScript, it must be error free in all the browsers that fall above the recommended minimum boundary for enhanced experience in that policy.
+All modules *must* be tested with all the browsers [listed in the FT browser support policy](https://docs.google.com/document/d/1mByh6sT8zI4XRyPKqWVsC2jUfXHZvhshS5SlHErWjXU/edit), and if a module includes JavaScript, it must be error free in all the browsers that fall above the recommended minimum boundary for enhanced experience in that policy.
 
 The versions tested *should* be listed in the module's documentation, so that when boundary recommendations are changed, it is still possible to determine the support that was designed into an older module.
 
