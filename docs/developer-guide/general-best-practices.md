@@ -26,7 +26,7 @@ Conform to the [FT Browser support standard](https://docs.google.com/document/d/
 Although you may spend most of your time on your own product, remember that our readers move from one FT product to another all the time, and we need to make their life as easy as possible by offering a <strong>consistent brand experience</strong>.  Consider the following points when you are making your product:
 
 * Are there elements of your site for which there is a standard FT design expressed in an Origami component?  Search the [Origami registry](http://registry.origami.ft.com) to find out.  If so, you should be matching that style exactly, ideally by using the Origami component.  This includes things like [fonts](http://registry.origami.ft.com/components/o-fonts), [typography](http://registry.origami.ft.com/components/o-typography), [forms](http://registry.origami.ft.com/components/o-forms), [sharing buttons](http://registry.origami.ft.com/components/o-share), [galleries](http://registry.origami.ft.com/components/o-gallery) etc.
-* Are you using standard brand assets like the FT logo, social media network icons, headshots of FT journalists or font files?  You must use the correct versions of these, available from the [data sets](http://git.svc.ft.com/projects/DATA) collection of repos in Stash.  In many cases it's a lot easier to retrieve these files though the [build service](https://origami-build.ft.com/v2) or [image service](http://image.webservices.ft.com), rather than hosting them within your product.  That way, you can be sure you're using the right one.
+* Are you using standard brand assets like the FT logo, social media network icons, headshots of FT journalists or font files?  You must use the correct versions of these, available from the image sets in the Registry. ([logos](http://registry.origami.ft.com/components/logo-images), [icons](http://registry.origami.ft.com/components/fticons).  In many cases it's a lot easier to retrieve these files though the [build service](https://origami-build.ft.com/v2) or [image service](http://image.webservices.ft.com), rather than hosting them within your product.  That way, you can be sure you're using the right one.
 
 
 ## Images
@@ -52,11 +52,11 @@ element {
 	height: 100px;
 
 	// Older browsers: PNG fallback (resized to 100px wide)
-	background-image: url('//image.webservices.ft.com/v1/images/raw/fticon:tick?width=100&format=png&source=my-product');
+	background-image: url('//image.webservices.ft.com/v1/images/raw/fticon-v1:tick?width=100&format=png&source=my-product');
 
 	// Modern browsers: SVG covering the whole size of the element
 	// we declare multiple backgrounds so that only modern browsers read this property
-	background-image: url('//image.webservices.ft.com/v1/images/raw/fticon:tick?format=svg&source=my-product'), none;
+	background-image: url('//image.webservices.ft.com/v1/images/raw/fticon-v1:tick?format=svg&source=my-product'), none;
 	background-size: cover;
 }
 ```
@@ -89,7 +89,7 @@ It's often considered OK to serve forms on insecure pages as long as the form po
 
 ## Accessibility
 
-Not only is it a legal requirment to make reasonable adjustments to accomodate the needs of disabled readers, it also provides SEO benefits, and generally makes life easier for everyone.  Consider the following points:
+Not only is it a legal requirement to make reasonable adjustments to accommodate the needs of disabled readers, it also provides SEO benefits, and generally makes life easier for everyone.  Consider the following points:
 
 * Don't disable zoom.  It should be possible for users to zoom the page using pinch gestures on touch screen devices
 * Use ARIA to describe all labels, roles and states
@@ -112,7 +112,7 @@ Use an HTML5 DOCTYPE, and add the `X-UA-Compatible` meta tag to force Internet E
 
 ### Use UTF-8
 
-Character encoding can cause problems, especially on sites that are predominently in English with a few foreign characters here and there, where issues with character encoding can easily go unnnoticed.
+Character encoding can cause problems, especially on sites that are predominantly in English with a few foreign characters here and there, where issues with character encoding can easily go unnoticed.
 
 Ensure that your pages are **UTF-8** encoded, using both an HTTP response header **and** an HTML meta tag:
 
@@ -163,7 +163,7 @@ Consider running [SCSS-Lint](https://github.com/causes/scss-lint) or CSSlint on 
 
 ### Minimise CSS specificity
 
-CSS selectors have a heirarchy of specificity, which can lead to 'specificity wars', especially in products that are maintained by multiple non-collaborating teams.  Avoid these problems by following CSS best practices:
+CSS selectors have a hierarchy of specificity, which can lead to 'specificity wars', especially in products that are maintained by multiple non-collaborating teams.  Avoid these problems by following CSS best practices:
 
 * Keep your selectors short: one single class token is ideal, and this is easily achievable with a convention such as BEM.
 * Don't use IDs (you may need IDs in your HTML to connect together elements for accessibility, but you shouldn't ever need to reference them in CSS)
