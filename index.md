@@ -3,7 +3,7 @@ layout: home
 title: Home
 section: Overview
 ---
-<p class='alert-big'>Origami is a group of services, modules and tools help build websites. Origami aspires to create a <strong>unified style and experience for FT websites</strong>, and <strong>make web development at the FT faster</strong>.</p>
+<p class='alert-big'>Origami is a group of services, modules and tools to help build websites. Origami aspires to create a <strong>unified style and experience for FT websites</strong>, and <strong>make web development at the FT faster</strong>.</p>
 
 <h2> <i class="fa fa-cubes"></i> Origami modules and services</h2>
 
