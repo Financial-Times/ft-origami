@@ -16,7 +16,7 @@ Regardless of what they're made of, these modules have been comprehensively test
 As well as modules, Origami provides the following services:
 
 - [Polyfill.io](http://polyfill.io) - Upgrade the web automatically, code using the latest standards when writing JavaScript applications
-- [The Image Service](http://image.webservices.ft.com/) - Deliver pictures in many formats and sizes; optimised and delivered over a CDN.
+- [The Image Service](https://www.ft.com/__origami/service/image/v2) - Deliver pictures in many formats and sizes; optimised and delivered over a CDN.
 
 Origami services and modules all comply with the [Origami Spec](/docs/component-spec/) and [Coding Standards](/docs/syntax/) to ensure they are high quality and interoperable. All modules are developed in the open on [GitHub](http://github.com/Financial-Times).
 
