@@ -52,11 +52,11 @@ element {
 	height: 100px;
 
 	// Older browsers: PNG fallback (resized to 100px wide)
-	background-image: url('//www.ft.com/__origami/service/image/v2/images/raw/fticon:tick?width=100&format=png&source=my-product');
+	background-image: url('https://www.ft.com/__origami/service/image/v2/images/raw/fticon:tick?width=100&format=png&source=my-product');
 
 	// Modern browsers: SVG covering the whole size of the element
 	// we declare multiple backgrounds so that only modern browsers read this property
-	background-image: url('//www.ft.com/__origami/service/image/v2/images/raw/fticon:tick?format=svg&source=my-product'), none;
+	background-image: url('https://www.ft.com/__origami/service/image/v2/images/raw/fticon:tick?format=svg&source=my-product'), none;
 	background-size: cover;
 }
 ```
