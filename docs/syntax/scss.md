@@ -50,15 +50,16 @@ Sass does not have proper encapsulation or scope, so strict adherence to namespa
 
 ### Specificity
 
-* Specificity *must* be minimised. Use [BEM](http://csswizardry.com/2013/01/mindbemding-getting-your-head-round-bem-syntax/), especially if the component might contain other components (e.g. in the case of a 'grid' component), to avoid one component's styles affecting the appearance of a component within it.  Where a component can never contain any child components (e.g. a 'tweet' component or a 'gallery' component), they may instead choose to use simple class names and increase specificity with the module root selector as a parent.
+* Specificity *must* be minimised. Use [BEM](http://csswizardry.com/2013/01/mindbemding-getting-your-head-round-bem-syntax/), especially if the component might contain other components (e.g. in the case of a 'grid' component), to avoid one component's styles affecting the appearance of a component within it.  Where a component can never contain any child components (e.g. a 'table' component or a 'gallery' component), they may instead choose to use simple class names and increase specificity with the module root selector as a parent.
 * Selectors *should* contain a single operand, with the following exceptions:
+
 	* To prefix a class for feature targeting, where the first operand is a documented [Modernizr](http://modernizr.com/docs/) test class name, and the second is a correctly namespaced selector (the feature selector *should* be configurable, and set to the Modernizr value by default)
         - GOOD: `$o-tweet-featureflag-svg .o-tweet__twitter-logo`
 	* To apply styles to naked tags (those without a class) inside an element marked with a module specific class.  In these cases, use a child operator to minimise the chance of interference with other modules
 		- ACCEPTABLE: `.o-thing__content h1`
 		- BETTER: `.o-thing__content > h1`
 	* To use the adjacent element operator:
-		- GOOD: `.o-tweet__media + .o-tweet__stats`
+		- GOOD: `.o-table__caption + .o-table__heading`
 * Combination selectors, those that specify a combination of tag name, class and/or ID in the same selector token *must not* be used
 	- GOOD: `.o-thing`
 	- BAD: `div.o-thing`, `span#output-area`
@@ -225,7 +226,7 @@ If a module contains SCSS files other than the main file listed in bower.json, t
 Modules are responsible for providing responsive behaviours where appropriate, but take care not to build in responsive behaviour that may not be desired by the product.
 
 * Modules that in most or all use cases will span the full width of a page (e.g. o-header, o-footer, o-grid) *may* contain media queries, or include mixins from other modules that contain media queries.  If so, the breakpoints in the media queries *must* be configurable as Sass variables.
-* All other modules *must* provide mixins (and concrete classes if not in silent mode) to modify their appearance to suit different sizes of container, e.g. `.o-tweet--large` (class), `oTweetMedium` (mixin) etc.  Product developers may then use these mixins to trigger module responsiveness in their own media query breakpoints.
+* All other modules *must* provide mixins (and concrete classes if not in silent mode) to modify their appearance to suit different sizes of container, e.g. `.o-table--compact` (class), `oTableCompact` (mixin) etc.  Product developers may then use these mixins to trigger module responsiveness in their own media query breakpoints.
 * When there is no media query support in the user agent (in the case of modules that use media queries) or the module's responsive mixins have not been used, the module *must* render in its most **compact** visual form.
 
 

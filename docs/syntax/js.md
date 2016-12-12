@@ -19,12 +19,12 @@ Product developers are encouraged to include Origami JavaScript using a 'cuts th
 * Add no objects to the global scope, other than JSONp callback function names.  Variables declared outside of any enclosing function are permitted, provided that the module requires a commonJS interface.  If you don't want to depend on CommonJS, wrap the module in an [IIFE](http://en.wikipedia.org/wiki/Immediately-invoked_function_expression).
 * If the module does not require CommonJS it must include a [Universal Module Definition](https://github.com/umdjs/umd/blob/master/returnExports.js) that includes support for CommonJS.
 * Do not read or modify the DOM on parse
-* If it's possible for the module to create DOM nodes, timers, or otherwise occupy more than a token amount of memory, export a `destroy` method that reverts the module to a pre-`init` state.
+* If it's possible for the module to create DOM nodes, timers, or otherwise occupy more than a token amount of memory, it *should* export a `destroy` method that reverts the module to a pre-`init` state. This is not necessary for large modules like `o-header` where it doesn't make sense for it to be reverted
 * Do not leave any non-garbage collectable traces after `destroy` is called
 * Do not modify the DOM outside of areas of [owned DOM]({{site.baseurl}}/docs/syntax/html/#owned-dom), except:
 	* to add feature flag CSS classes to the `documentElement`; or
 	* to add a new section of owned DOM to an element explicitly nominated by the host application (e.g. by the host application calling a method of the module's API and passing an element to which the module is asked to append its DOM)
-* Do not require global variables to be defined prior to the script loading.  If your module requires configuration, read the config from data attributes attached to parts of DOM that your module will own (see [Data attributes](#data-attributes) for details)
+* Do not require global variables to be defined prior to the script loading.  If your module requires configuration, read the config from data attributes attached to parts of DOM that your module will own (see [Data attributes](#data-attributes-on-owned-dom) for details)
 * Do not assume the existence of globals except those defined as part of ECMAScript 5 and features listed in the `browserFeatures/required` section of `origami.json`.
 
 <aside>
@@ -95,7 +95,7 @@ If a module's JavaScript requires configuration, the following methods of passin
 
 ### Data attributes on owned DOM
 
-If a module acts to enhance markup, the module *must* be configurable using data- attributes on the HTML element that is the root element of the DOM owned by the module.  Data attributes *must* be named `data-{modulename}-{key}`, e.g. `data-o-tweet-id`.  The module *may* also create attributes of this form at runtime, provided that the element is already within owned DOM for that module.
+If a module acts to enhance markup, the module *must* be configurable using data- attributes on the HTML element that is the root element of the DOM owned by the module.  Data attributes *must* be named `data-{modulename}-{key}`, e.g. `data-o-share-id`.  The module *may* also create attributes of this form at runtime, provided that the element is already within owned DOM for that module.
 
 <aside>
 	Developers should avoid the temptation to name data attributes based on the same naming conventions as BEM in CSS.  Data attributes are not subject to the same semantics as classes so BEM is not a great fit.

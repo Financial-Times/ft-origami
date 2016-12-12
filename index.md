@@ -3,7 +3,7 @@ layout: home
 title: Home
 section: Overview
 ---
-<p class='alert-big'>Origami is a group of services, modules and tools help build websites. Origami aspires to create a <strong>unified style and experience for FT websites</strong>, and <strong>make web development at the FT faster</strong>.</p>
+<p class='alert-big'>Origami is a group of services, modules and tools to help build websites. Origami aspires to create a <strong>unified style and experience for FT websites</strong>, and <strong>make web development at the FT faster</strong>.</p>
 
 <h2> <i class="fa fa-cubes"></i> Origami modules and services</h2>
 
@@ -16,7 +16,7 @@ Regardless of what they're made of, these modules have been comprehensively test
 As well as modules, Origami provides the following services:
 
 - [Polyfill.io](http://polyfill.io) - Upgrade the web automatically, code using the latest standards when writing JavaScript applications
-- [The Image Service](http://image.webservices.ft.com/) - Deliver pictures in many formats and sizes; optimised and delivered over a CDN.
+- [The Image Service](https://www.ft.com/__origami/service/image/v2) - Deliver pictures in many formats and sizes; optimised and delivered over a CDN.
 
 Origami services and modules all comply with the [Origami Spec](/docs/component-spec/) and [Coding Standards](/docs/syntax/) to ensure they are high quality and interoperable. All modules are developed in the open on [GitHub](http://github.com/Financial-Times).
 
@@ -25,7 +25,7 @@ Origami services and modules all comply with the [Origami Spec](/docs/component-
 To help you use the modules and services in your product there are the following tools:
 
 - [Origami Build Tools](https://github.com/Financial-Times/origami-build-tools) - Build Origami components as part of your existing build process
-- [Origami Build Service](https://origami-build.ft.com/v2/) - Deliver components directly to your user's browser using the build service
+- [Origami Build Service](https://www.ft.com/__origami/service/build/v2/) - Deliver components directly to your user's browser using the build service
 - [The Registry](http://registry.origami.ft.com/) - Find and use the components you need from our component registry
 
 <h2> <i class="fa fa-book"></i> The Spec</h2>

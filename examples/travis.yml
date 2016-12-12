@@ -1,9 +1,9 @@
 sudo: false
 language: node_js
 node_js:
-  - "4"
+  - "6"
 before_install:
-  - npm install -g Financial-Times/origami-build-tools#node4
+  - npm install -g origami-build-tools
   - obt install
 script:
   - obt test
@@ -11,4 +11,4 @@ script:
 cache:
   directories:
   - node_modules
-  
+

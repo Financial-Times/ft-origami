@@ -46,7 +46,7 @@ To find out if you have Node.js installed and which version you have, type this 
 <output>v4.2.0</output>
 </pre>
 
-If you get an error, or the number you get does not match the most recent release shown on the [Node website](http://nodejs.org/), you need to install/upgrade Node.  
+If you get an error, or the number you get does not match the most recent release shown on the [Node website](http://nodejs.org/), you need to install/upgrade Node.
 
 Node is available in most package management repositories, and instructions are available in the Node install guide:
 
@@ -106,7 +106,7 @@ Choose where you want to start building your project (normally this is also the 
 <h4>Optional: get the finished setup</h4>
 <p>We've created a repository that's set up as yours will be at the end of this tutorial. If you like, you can clone the repository in full rather than creating the files one at a time. You should still follow through the tutorial so you can understand how to create your own. To clone the repository, type this at a terminal:</p>
 <pre class="cli">
-<kbd>git clone https://github.com/Financial-Times/origami-manual-build-boilerplate.</kbd>
+<kbd>git clone https://github.com/Financial-Times/origami-manual-build-boilerplate</kbd>
 </pre>
 </aside>
 
@@ -152,7 +152,7 @@ Once you know which Origami modules you want, create a `bower.json` file in the 
 			"o-footer": "^4.0.0",
 			"o-colors": "^3.3.0",
 			"o-fonts": "^2.0.0",
-			"o-ft-icons": "^3.0.0"
+			"o-icons": "^4.0.0"
 		}
 	}
 
@@ -189,7 +189,7 @@ So that bower can find the modules you've listed in your `bower.json`, it needs 
 
 ## 5. Create your master Sass and JavaScript files
 
-Now you need to create a Sass and/or JavaScript file that requires the Origami components as dependencies.  In Sass, you can do this with the `@import` statement, and in JavaScript, using `require`.  
+Now you need to create a Sass and/or JavaScript file that requires the Origami components as dependencies.  In Sass, you can do this with the `@import` statement, and in JavaScript, using `require`.
 
 ### Create `main.scss`
 
@@ -214,7 +214,7 @@ As an example (assuming you loaded these modules in your `bower.json`), create a
 	// Import Origami components
 	@import 'o-grid/main';
 	@import 'o-fonts/main';
-	@import 'o-ft-icons/main';
+	@import 'o-icons/main';
 	@import 'o-header/main';
 	@import 'o-footer/main';
 	@import 'o-colors/main';
@@ -364,7 +364,7 @@ Compiling ./client/scss/main.scss</output>
 If the `verify` task fails try to remove the project's local npm_modules and bower_components folder and run obt install again:
 
 <pre class="cli">
-<kbd>rm -rf ./npm_modules ./bower_components</kbd>
+<kbd>rm -rf npm_modules ./bower_components</kbd>
 <kbd>obt install</kbd>
 </pre>
 
@@ -512,7 +512,7 @@ For very simple projects, this may be true.  But it's generally not a great idea
 	$o-assets-global-path: '/resources';
 
 	/* Import Origami components */
-	@import 'o-tweet/main';
+	@import 'o-share/main';
 	@import 'o-techdocs/main';
 
 	/* Add our own Sass */
@@ -521,7 +521,7 @@ For very simple projects, this may be true.  But it's generally not a great idea
 	}
 
 
-If `o-tweet` wanted to load a background image that was at `/img/separator.gif` in the `o-tweet` repo, this config would result in the image being requested from `/resources/o-tweet/img/separator.gif`.  It is then up to you to handle this request and deliver the appropriate file from your `bower_components` directory.
+If `o-share` wanted to load a background image that was at `/img/separator.gif` in the `o-share` repo, this config would result in the image being requested from `/resources/o-share/img/separator.gif`.  It is then up to you to handle this request and deliver the appropriate file from your `bower_components` directory.
 
 ----
 

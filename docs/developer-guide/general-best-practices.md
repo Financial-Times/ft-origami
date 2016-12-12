@@ -26,7 +26,7 @@ Conform to the [FT Browser support standard](https://docs.google.com/a/ft.com/do
 Although you may spend most of your time on your own product, remember that our readers move from one FT product to another all the time, and we need to make their life as easy as possible by offering a <strong>consistent brand experience</strong>.  Consider the following points when you are making your product:
 
 * Are there elements of your site for which there is a standard FT design expressed in an Origami component?  Search the [Origami registry](http://registry.origami.ft.com) to find out.  If so, you should be matching that style exactly, ideally by using the Origami component.  This includes things like [fonts](http://registry.origami.ft.com/components/o-fonts), [typography](http://registry.origami.ft.com/components/o-typography), [forms](http://registry.origami.ft.com/components/o-forms), [sharing buttons](http://registry.origami.ft.com/components/o-share), [galleries](http://registry.origami.ft.com/components/o-gallery) etc.
-* Are you using standard brand assets like the FT logo, social media network icons, headshots of FT journalists or font files?  You must use the correct versions of these, available from the [data sets](http://git.svc.ft.com/projects/DATA) collection of repos in Stash.  In many cases it's a lot easier to retrieve these files though the [build service](https://origami-build.ft.com/v2) or [image service](http://image.webservices.ft.com), rather than hosting them within your product.  That way, you can be sure you're using the right one.
+* Are you using standard brand assets like the FT logo, social media network icons, headshots of FT journalists or font files?  You must use the correct versions of these, available from the [data sets](http://git.svc.ft.com/projects/DATA) collection of repos in Stash.  In many cases it's a lot easier to retrieve these files though the [build service](https://www.ft.com/__origami/service/build/v2) or [image service](https://www.ft.com/__origami/service/image/v2), rather than hosting them within your product.  That way, you can be sure you're using the right one.
 
 
 ## Images
@@ -39,11 +39,11 @@ There are a number of best practices to observe on the use of images:
 * Support screens with a high pixel density by creating images at a pixel density of 2, and trade off higher compression to achieve the same file size.  For example, if you want to display a 400x400 image, consider creating an 800x800 image and turning up the compression until the file size is acceptable.  Studies suggest the sharper but more compressed image works equally well on high and low density screens.
 * Use an optimisation tool such as [ImageOptim](https://imageoptim.com/) to remove unnecessary metadata and colour profiles
 * Scale image containers with viewport size so that images do not cause pages to scroll horizontally on small screens
-* Use the Origami [responsive image service](http://image.webservices.ft.com) to rescale your images dynamically based on the size of the container.
+* Use the Origami [responsive image service](https://www.ft.com/__origami/service/image/v2) to rescale your images dynamically based on the size of the container.
 
 ### Resolution independent SVGs, using the image service
 
-The [responsive image service](http://image.webservices.ft.com/) helps serving resolution-independent SVG icons with a resized PNG fallback:
+The [responsive image service](https://www.ft.com/__origami/service/image/v2) helps serving resolution-independent SVG icons with a resized PNG fallback:
 
 ```scss
 element {
@@ -52,11 +52,11 @@ element {
 	height: 100px;
 
 	// Older browsers: PNG fallback (resized to 100px wide)
-	background-image: url('//image.webservices.ft.com/v1/images/raw/fticon:tick?width=100&format=png&source=my-product');
+	background-image: url('//www.ft.com/__origami/service/image/v2/images/raw/fticon:tick?width=100&format=png&source=my-product');
 
 	// Modern browsers: SVG covering the whole size of the element
 	// we declare multiple backgrounds so that only modern browsers read this property
-	background-image: url('//image.webservices.ft.com/v1/images/raw/fticon:tick?format=svg&source=my-product'), none;
+	background-image: url('//www.ft.com/__origami/service/image/v2/images/raw/fticon:tick?format=svg&source=my-product'), none;
 	background-size: cover;
 }
 ```

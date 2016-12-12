@@ -36,6 +36,14 @@ All origami components, whether modules or web services, should be discoverable 
 	<td>integer*</td>
 	<td>Version of Origami to which the component conforms.  Currently must be set to 1.</td>
 </tr><tr>
+	<td><code>&nbsp;&nbsp;keywords</code></td>
+	<td>string*</td>
+	<td>Keywords related to the component to help discovery in the Registry. These should be stored as a comma separate string, i.e. "colours, palette, pink" for <code>o-colors</code>.</td>
+</tr><tr>
+	<td><code>&nbsp;&nbsp;origamiCategory</code></td>
+	<td>string*</td>
+	<td>The organisational category the module belongs to.  Must be set to one of the following: "components", "primitives", "utilities", "layouts".</td>
+</tr><tr>
 	<td><code>&nbsp;&nbsp;support</code></td>
 	<td>string*</td>
 	<td>
@@ -123,15 +131,11 @@ All origami components, whether modules or web services, should be discoverable 
 </tr><tr>
 	<td><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;documentClasses</code></td>
 	<td>string</td>
-	<td>(optional) CSS classes to set on the `<html>` tag.</td>
+	<td>(optional) CSS classes to set on the <code>html</code> tag.</td>
 </tr><tr>
 	<td><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;dependencies</code></td>
 	<td>array</td>
 	<td>(optional) List of strings of other modules that are only needed for one or more demos and will be loaded via the build service. They follow the same structure as how the build service works. (e.g.: "o-ft-icons@^2.3.1" or "o-ft-icons").</td>
-</tr><tr>
-	<td><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;expanded</code></td>
-	<td>boolean</td>
-	<td>(optional) Whether the demo should be shown in expanded form in the [Registry](registry.origami.ft.com).</td>
 </tr><tr>
 	<td><code>&nbsp;&nbsp;}</code></td>
 	<td></td>
@@ -143,7 +147,7 @@ All origami components, whether modules or web services, should be discoverable 
 </tr><tr>
 	<td><code>&nbsp;&nbsp;&nbsp;&nbsp;{</code></td>
 	<td>object</td>
-	<td>A config object to be applied for each demo (repeatable). Please check out the options in the [modules component spec](http://origami.ft.com/docs/component-spec/modules/#demo-config)</td>
+	<td>A config object to be applied for each demo (repeatable). Please check out the options in the <a href="http://origami.ft.com/docs/component-spec/modules/#demo-config">modules component spec</a></td>
 </tr><tr>
 	<td><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;name</code></td>
 	<td>string*</td>
@@ -152,6 +156,14 @@ All origami components, whether modules or web services, should be discoverable 
 	<td><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;description</code></td>
 	<td>string*</td>
 	<td>Explanation of the purpose of the demo.</td>
+</tr><tr>
+	<td><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;hidden</code></td>
+	<td>boolean</td>
+	<td>(optional) Whether the demo should be hidden in the Registry.</td>
+</tr><tr>
+	<td><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;display_html</code></td>
+	<td>boolean</td>
+	<td>(optional) Whether the demo should have a HTML tab in the Registry (defaults to <code>true</code>).</td>
 </tr><tr>
 	<td><code>&nbsp;&nbsp;&nbsp;&nbsp;}</code></td>
 	<td></td>
@@ -173,9 +185,11 @@ All origami components, whether modules or web services, should be discoverable 
 
 
 	{
-	  "description": "Tweet module",
+	  "description": "Tables module",
 	  "origamiType": "module",
 	  "origamiVersion": 1,
+	  "keywords": "data, information, numbers",
+	  "origamiCategory": "component",
 	  "support": "developer@example.com",
 	  "supportStatus": "active",
 	  "browserFeatures": {
@@ -195,11 +209,16 @@ All origami components, whether modules or web services, should be discoverable 
 	  	{
 			"name": "demo1",
 			"description": "Basic module implementation",
-			"expanded": true,
-			"template": "demos/src/demo1.mustache"	  		
+			"template": "demos/src/demo1.mustache"
+		},
+	  	{
+			"name": "pa11y",
+			"description": "Hidden test for pa11y",
+			"hidden": true,
+			"template": "demos/src/demo-pa11y.mustache"
 	  	}
 	  ],
 	  "ci": {
-	    "travis": "https://api.travis-ci.org/repos/Financial-Times/o-tweet/builds.json"
+	    "circle": "https://circleci.com/api/v1/project/Financial-Times/o-table"
 	  }
 	}

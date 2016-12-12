@@ -38,7 +38,7 @@ This section is non-normative.  A module component *may* be organised as follows
 	|   └─ svg
 	|       └─ icon1.svg
 	├─ .gitignore
-	├─ .travis.yml
+	├─ circle.yml
 	├─ bower.json
 	├─ main.js
 	├─ main.scss
@@ -49,13 +49,13 @@ When building a new module, you may create the directory structure and add all n
 
 	mkdir o-my-module
 	cd o-my-module
-	mkdir -p src/scss src/js demos/src/scss demos/src/js test && touch .travis.yml .gitignore main.scss main.js README.md origami.json bower.json demos/src/config.js src/scss/_variables.scss src/scss/_mixins.scss && git init .
+	mkdir -p src/scss src/js demos/src/scss demos/src/js test && touch circle.yml .gitignore main.scss main.js README.md origami.json bower.json src/scss/_variables.scss src/scss/_mixins.scss && git init .
 
 ## Naming conventions
 
 Modules *must* be named using a short descriptive term (hyphenated if necessary) prefixed with `o-` (for Origami) as the name for the repository and CSS classes.
 
-<aside>Examples of good module names include <code>o-tweet</code>, <code>o-colors</code>, <code>o-grid</code>, <code>o-tabs</code>, <code>o-tabs-style1</code>, <code>o-cookiewarn</code>, <code>o-nav</code>.  There is no standard or requirement for the use of <code>-ft-</code> in the name, and for the purposes of this spec it is semantically meaningless.</aside>
+<aside>Examples of good module names include <code>o-colors</code>, <code>o-grid</code>, <code>o-tabs</code>, <code>o-table</code>, <code>o-cookie-messsage</code>, <code>o-footer</code>.  There is no standard or requirement for the use of <code>-ft-</code> in the name, and for the purposes of this spec it is semantically meaningless.</aside>
 
 
 ## Requirements
@@ -70,7 +70,7 @@ The following requirements apply to creating a Origami-compatible module compone
 * store CSS as SCSS, to enable products and other modules to make use of variables and mixins
 * not be used for imperative code except JavaScript (and JavaScript must have a client-side use case to be considered a front end component)
 * not contain build scripts except as required for development and testing.
-* not contain configuration files that create exceptions to rules advised by this spec (such as `editorconfig`, `bowerrc` or `jshintrc`) unless absolutely necessary.
+* not contain configuration files that create exceptions to rules advised by this spec (such as `editorconfig`, `bowerrc` or `eslintrc`) unless absolutely necessary.
 * be buildable using the standard build process described by the [build service]({{site.baseurl}}/docs/developer-guide/build-service/)
 * list all build, development and testing scripts as ignored in the module's bower configuration.
 * where there is a dependency on a web service component (e.g. because the module is a JavaScript library that makes AJAX requests to a service), be compatible with the version of the web service API that carries the same major version number as the module.  For example, version 2.4.5, 2.4.6, and 2.7 of a module *must* all be compatible with API version 2 of the web service.
@@ -113,6 +113,7 @@ Origami modules are generally installed based on a semver range. To ensure new r
 * When updating a dependency to the latest minor release, make a minor release
 * When updating a dependency to the latest major release, in your bower.json, make sure the semver range includes the previous major release (_e.g. `>=1.2.3 <3`_). If not, a major release is necessary
 * When adding a new dependency, make a major release as it may break existing bundles
+* When using a new browser API which requires support from the Polyfill service (added in the features list of the `origami.json`) and is outside of the default set, make a major release.
 * Make sure private Sass functions and mixins are prefixed with an underscore. If not, even if they weren’t intended for public use, they will need to follow the same deprecation process as public functions and mixins
 * All JavaScript components *must* have tests and they *must* pass
 * Run `obt verify` and `obt test` and make sure there are no errors
@@ -120,6 +121,14 @@ Origami modules are generally installed based on a semver range. To ensure new r
 * If releasing a module that contains generated content (fonts for example), make sure the new files are in the git repository (git ls-files) at the release commit
 * Don’t make a major release until all or most dependants have removed deprecated features
 
+#### Deprecation of a module
+
+In the event of deprecating a module within Origami, the following steps must be followed.
+
+1. Modify `origami.json` to change the `supportStatus` to `deprecated`.
+2. Change the `README.md` to have a paragraph at the top outlining the deprecation status. If it has been replaced, it must point to the new replacement module from the deprecated module.
+3. Disable the Issues functionality from the deprecated module's repository.
+4. Update the repository's description to "deprecated - please use <module> instead" if it has been replaced and change the URL to point towards the replacement's repository on GitHub.
 
 ## Themes
 
@@ -264,7 +273,18 @@ Where styles need to be added specifically for a demo (e.g. to make the content 
 
 ### Choosing demo content
 
-When choosing content for a demo, and deciding on the composition of a demo, component developers *must* craft realistic examples using real use cases.  If it's necessary to make demos contrived in order to demonstrate the full range of features of the component, multiple demos *should* be created, so that at least one demo (which *should* be the default-expanded demo) shows a realistic use case.
+When choosing content for a demo, and deciding on the composition of a demo, component developers *must* craft realistic examples using real use cases. The following guidelines for what a demo should and should not do *must* be followed.
+
+**Demos should:**
+
+- Be a recommended use of the component (i.e. this is how the component should look and be used)
+- Allow the HTML to be copied, and without modification (except adding content) be able to recreate the demo using the [Origami Build Service](http://origami.ft.com/docs/developer-guide/modules/build-service/).
+- Be visually different from one another where there are multiple demos for the same component.
+- Have a description explaining the usage and the context in which the demo should be implemented in design.
+
+**Demos should not:**
+
+- Be used to explain configuration and implementation differences, these should be explained in the component's README.
 
 ### Demo config
 

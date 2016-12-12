@@ -1,23 +1,47 @@
-## This is a gh-pages branch
 
-Please visit http://origami.ft.com to view the site
+## Origami
 
-## Building
+This is the source code for the Origami website. Please visit [http://origami.ft.com/](http://origami.ft.com/) if you're looking for the documentation.
 
-Since this is a GitHub pages site, built CSS bundle must be committed to the repository.  We store it in `buildcache` to avoid any confusion - files in the `buildcache` directory should not be edited.  To regenerate them, use Grunt:
 
-1. Clone the repository
-1. Ensure `grunt-cli` is installed globally by checking it's listed with `grunt --version`.  If it's not, install with `npm install -g grunt-cli`.
-1. Run `npm install`
-1. Edit main.scss as desired
-1. Run `grunt`
+## Running locally
 
-## Viewing locally
+[Jekyll](https://jekyllrb.com/) is used to build this site, and we host it on GitHub pages. Before we can run the site locally, you'll need:
 
-1. Install Jekyll `gem install jekyll`
-1. Install Jekyll redirect gem `gem install jekyll-redirect-from`
-1. Run `jekyll serve --watch --baseurl=''` and view on http://localhost:4000/
-1. Run `grunt watch` in parallel if you're editing styles
+  1. [Node.js](https://nodejs.org)
+  2. [Ruby](https://rubylang.org)
+
+Now install all the dependencies required to build the site:
+
+```sh
+make install
+```
+
+After this, you can start running the site using:
+
+```sh
+make serve
+```
+
+The locally running website will be viewable here: [`http://localhost:4000/`](http://localhost:4000/).
+
+
+## Testing
+
+This website is tested with [Pa11y CI](https://github.com/pa11y/ci) using CircleCI. If there are accessibility errors on the website, the build will fail.
+
+If you'd like to run these tests locally, you'll need:
+
+  - [PhantomJS](http://phantomjs.org/) installed
+  - [Pa11y CI](https://github.com/pa11y/ci) installed (`npm install -g pa11y-ci`)
+  - The site to be running (`make serve`).
+
+You should now be able to run the following to test the site:
+
+```sh
+make test
+```
+
 
 ## Documentation style guide
 This guide is based on https://jacobian.org/writing/great-documentation/. It exists as guidance to help keep our documentation consistent.
