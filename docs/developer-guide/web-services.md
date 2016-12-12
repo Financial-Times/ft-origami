@@ -8,7 +8,7 @@ site_section: developer-guide
 
 # Using Origami web services
 
-Origami web services provide a variety of front-end related data services and content that can be used to improve your site and speed up development. Our current services are the [Polyfill Service](http://polyfill.io), the [Image Service](https://www.ft.com/__origami/service/image/v2), the [Build Service](https://origami-build.ft.com/v2/) and the [Code Docs service](http://codedocs.webservices.ft.com/v1/docs/).
+Origami web services provide a variety of front-end related data services and content that can be used to improve your site and speed up development. Our current services are the [Polyfill Service](http://polyfill.io), the [Image Service](https://www.ft.com/__origami/service/image/v2), the [Build Service](https://www.ft.com/__origami/service/build/v2/) and the [Code Docs service](http://codedocs.webservices.ft.com/v1/docs/).
 
 Each service hosts its own documentation. This page covers some general approaches and concerns for integrating an Origami web service into your application.
 

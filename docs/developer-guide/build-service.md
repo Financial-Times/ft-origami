@@ -20,7 +20,7 @@ This is particularly useful for:
 - building hacks and experiments
 - adding components to existing sites that weren't built with Origami in mind
 
-The Build Service hosts its own API and technical documentation at [origami-build.ft.com](https://origami-build.ft.com). For a step by step tutorial on how to use the Build Service, keep reading!
+The Build Service hosts its own API and technical documentation at [www.ft.com/__origami/service/build](https://www.ft.com/__origami/service/build). For a step by step tutorial on how to use the Build Service, keep reading!
 
 
 ## Building a page
@@ -101,7 +101,7 @@ In JS Bin, find the Build Service CSS bundle request and replace `a,b,c` in the 
 	Load the Origami stylesheet, including fonts and icons by default.
 	Replace a,b,c with the names of the additional modules you want to load.
 -->
-<link rel="stylesheet" href="https://origami-build.ft.com/v2/bundles/css?modules=a,b,c" />
+<link rel="stylesheet" href="https://www.ft.com/__origami/service/build/v2/bundles/css?modules=a,b,c" />
 ```
 
 After adding this, you should see that the header is now styled! JS Bin is pretty cool.
@@ -120,7 +120,7 @@ Next you need to add the JavaScript, which will make the header menus work. The 
 			var s = document.getElementsByTagName('script')[0];
 			s.parentNode.insertBefore(o, s);
 		}
-	}('https://origami-build.ft.com/v2/bundles/js?modules=a,b,c')); <---- this line here
+	}('https://www.ft.com/__origami/service/build/v2/bundles/js?modules=a,b,c')); <---- this line here
 </script>
 ```
 This has now added the o-header JavaScript to your page, so the drop-down menus will work.
@@ -142,7 +142,7 @@ Now, repeat this process for the footer:
 
 The Build Service is capable of including more than one component in the same bundle, so you can add many modules into the same URL.  Here's an example:
 
-	<link rel="stylesheet" href="https://origami-build.ft.com/v2/bundles/css?modules=o-fonts@^1,o-icons@^4,o-header@^3.0.3,o-footer@^3.0.1" />
+	<link rel="stylesheet" href="https://www.ft.com/__origami/service/build/v2/bundles/css?modules=o-fonts@^1,o-icons@^4,o-header@^3.0.3,o-footer@^3.0.1" />
 
 It's important that you do this, so that any CSS that's shared between the header and footer (there's quite a bit) isn't downloaded twice.
 
