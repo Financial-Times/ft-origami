@@ -8,11 +8,11 @@ site_section: about-origami
 
 # Design guidelines workflow
 
-Design guidelines can be added to any component in [The Registry](http://registry.origami.ft.com/components) and are written in [Mastering Markdown · GitHub Guides](https://guides.GitHub.com/features/mastering-markdown/). Guidelines will appear below the component title and above the component demos.
-This guide will take you through how to add design guidelines to a component using GitHub, by the end of the tutorial, you should be able to create, write, and submit a pull request to add the guidelines to the component.
+Design guidelines can be added to any component in [The Registry](http://registry.origami.ft.com/components) and are written in [Markdown](https://guides.GitHub.com/features/mastering-markdown/). Guidelines will appear below the component title and above the component demos.
+This guide will take you through how to add design guidelines to a component using GitHub. By the end of the tutorial you should be able to create, write, and submit a pull request to add the guidelines to the component.
 
 ## 1. Find the component on GitHub
-To add or edit guidelines you need to use GitHub. An easy way to find the component on GitHub, is to navigate to the component in the Registry and click the “View on GitHub” button in the top-right of the screen. Alternatively, you can search for the component on [github.com](http://github.com).
+To add or edit guidelines you need to use GitHub. An easy way to find the component on GitHub is to navigate to the component in the Registry and click the “View on GitHub” button in the top-right of the screen. Alternatively, you can search for the component on [github.com](http://github.com).
 
 ![o-header on the Origami Registry](/img/design-guidelines/registry-o-header.png)
 
@@ -20,18 +20,18 @@ NB: At this point you will need to have a GitHub account. If you don’t have on
 
 ## 2. Add or select the `designguidelines.md` file
 The next step is to add or update the design guidelines file.
-In the main view of the component, you will see a list of files, if the file does not already exist, select the “Create new file” option at the top-right of the file list and name the file `designguidelines.md`.
+In the main view of the component you will see a list of files. If the file does not already exist, select the “Create new file” option at the top-right of the file list and name the file `designguidelines.md`.
 
 ![Create a new file on GitHub](/img/design-guidelines/create-new-file.png)
 
-This will take you into an edit mode for the file, where you can start writing the guidelines using [Mastering Markdown · GitHub Guides](https://guides.GitHub.com/features/mastering-markdown/).
+This will take you into an edit mode for the file, where you can start writing the guidelines using [Markdown](https://guides.GitHub.com/features/mastering-markdown/).
 
 Alternatively, if the `designguidelines.md` file is already in the list of files, you can select the file to view the guidelines that have already been added.
-To edit the guidelines, select the “edit” option from the line above the file:
+To edit the guidelines select the “edit” option from the line above the file:
 
 ![Edit file on GitHub](/img/design-guidelines/edit-file.png)
 
-Once you have the file open or in edit mode, you’re ready to add the new guidelines. To format the guidelines, you’ll be using Markdown. A good guide to the Markdown syntax is found here: [Mastering Markdown · GitHub Guides](https://guides.GitHub.com/features/mastering-markdown/).
+Once you have the file open or in edit mode, you’re ready to add the new guidelines. To format the guidelines you’ll be using Markdown. A good guide to the Markdown syntax is found here: [Mastering Markdown · GitHub Guides](https://guides.GitHub.com/features/mastering-markdown/).
 You can also preview the text you’re adding at any time using the preview tab in the top-left of the editor window.
 
 ![Preview file changes on GitHub](/img/design-guidelines/preview-changes.png)
@@ -41,7 +41,7 @@ Once you’ve finished making your edits, you need to save or “commit” your 
 
 ![Committing a file on GitHub](/img/design-guidelines/commit-file.png)
 
-In this section, you need to fill in at least the first field (description of the commit). Use either “Add design guidelines” or “Update design guidelines” depending on the work you’ve done. Leave the remainder of the form as above, and hit the “Commit new file” button. This will take you to the Pull Request screen.
+In this section you need to fill in at least the first field (description of the commit). Use either “Add design guidelines” or “Update design guidelines” depending on the work you’ve done. Leave the remainder of the form as above and hit the “Commit new file” button. This will take you to the Pull Request screen.
 
 ## 4. Submit the changes as a pull request
 The final step is to open a Pull Request to submit the new file or changes for approval. Opening a Pull Request is a signal to the Origami team that you'd like them to review your changes and add them to the project. 
