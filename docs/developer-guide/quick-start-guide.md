@@ -81,7 +81,7 @@ https://www.ft.com/__origami/service/build/v2/bundles/js?modules=o-buttons
 Instead of using a `<link ...>` tag, use a `<script ...>` tag.
 
 ```
-<script async type="javascript" src="https://www.ft.com/__origami/service/build/v2/bundles/js?modules=o-buttons" />
+<script async type="javascript" src="https://www.ft.com/__origami/service/build/v2/bundles/js?modules=o-buttons"></script>
 ```
 
 ## 5. Putting it all together
@@ -90,7 +90,7 @@ Instead of using a `<link ...>` tag, use a `<script ...>` tag.
 <html>
 	<head>
 		<!-- build service links and scripts here -->
-		<script async type="javascript" src="https://www.ft.com/__origami/service/build/v2/bundles/js?modules=o-buttons" />
+		<script async type="javascript" src="https://www.ft.com/__origami/service/build/v2/bundles/js?modules=o-buttons"></script>
 		<link rel="stylesheet" href="https://www.ft.com/__origami/service/build/v2/bundles/css?modules=o-buttons" />
 	</head>
 	<body>
