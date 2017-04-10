@@ -40,6 +40,5 @@ Origami is used widely throughout the FT and by a range of third parties:
 - [Bluetel Solutions](http://www.bluetel.co.uk/)
 - [Markit On Demand](http://www.markit.com/)
 - [iQuest Group](http://www.iquestgroup.com/en/)
-- [Pearson Higher Education](http://home.pearsonhighered.com/) ([GitHub fork](https://github.com/Pearson-Higher-Ed/he-origami))
 
 If your team is using or plans to use Origami, [let us know](mailto:origami.support@ft.com): we're here to help.
