@@ -6,26 +6,37 @@ body {
 	font-family: Helvetica, Arial, sans-serif;
 }
 
-.o-techdocs-header {
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
-}
-.o-techdocs-header__primary__left {
-	width: 180px;
-}
+.search-icon {
+	// Older browsers: PNG fallback (resized to 40px wide)
+	background-image: url('https://www.ft.com/__origami/service/image/v2/images/raw/fticon:search?width=40&format=png&source=o-icons');
+	// Modern browsers: SVG covering the whole size of the element
+	// we declare multiple backgrounds so that only modern browsers read this property
+	background-image: url('https://www.ft.com/__origami/service/image/v2/images/raw/fticon-v1:search?format=svg&source=o-icons'), none;
 
-.o-techdocs-container {
-	padding-bottom: 50px;
-	margin-top: 3em;
-}
+	display: inline-block;
+	width: 40px;
+	height: 40px;
+	background-repeat: no-repeat;
+	background-size: contain;
+	background-position: 50%;
+	background-color: transparent;
+	vertical-align: middle;
+	float: right;
+	cursor: pointer;
 
-@media (min-width: 46.25em) {
-	.o-techdocs-header__primary__left {
-		min-width: 303px;
-		width: 33%;
+	&:hover {
+		background-color: #f2e5da;
 	}
 }
 
+.o-header-services__nav-list {
+	display: inline-block;
+	@media (max-width: 46.24em) {
+		.o-header-services__nav-item {
+			display: inline-block;
+		}
+	}
+}
 /* Google custom search overrides */
 .gsc-control-cse {
 	background-color: transparent !important;
@@ -35,15 +46,24 @@ body {
 .gsc-input {
 	padding-right: 0 !important;
 }
-.gsc-input-box {
-	opacity: 0.7;
-}
 .gsc-input-box-focus {
 	opacity: 1;
 }
 .gsc-search-button {
 	display: none;
 }
+
+.c-search {
+	padding-top: 7px;
+	display: inline-block;
+	width: 40%;
+	float: right;
+}
+
+.searchbox.hidden {
+	display: none;
+}
+
 
 .footer-logo {
 	float: right;
@@ -61,19 +81,6 @@ body {
 	background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHZpZXdCb3g9JzAgMCA2My4zIDYzLjMnPjxnPjxnPjxwb2x5Z29uIGZpbGw9JyNEN0QxQzYnIHBvaW50cz0nMzEuNyw1MS4zIDE5LjksNjMuMiAwLjEsNDMuNCAwLjEsMTkuNycvPjxwb2x5bGluZSBmaWxsPScjQjdCNUFCJyBwb2ludHM9JzQzLjYsMCAxOS45LDAgMC4xLDE5LjcgMTIsMzEuNiA0My42LDAnLz48cG9seWxpbmUgZmlsbD0nIzg3ODY4MCcgcG9pbnRzPSc2My4zLDQzLjQgNjMuMywxOS43IDQzLjYsMCAzMS43LDExLjggNjMuMyw0My40Jy8+PHBvbHlnb24gZmlsbD0nIzY0NjQ2NCcgcG9pbnRzPScxOS45LDYzLjIgNDMuNiw2My4yIDYzLjMsNDMuNCA1MS41LDMxLjYnLz48cGF0aCBmaWxsPScjRDdEMUM2JyBkPSdtMC4wOTgwNjggMTkuNycvPjwvZz48L2c+PC9zdmc+");
 	vertical-align: top;
 	margin-right: 10px;
-}
-
-.c-search {
-	padding-top: 4px;
-
-	@media (max-width: 46.25em) {
-		position: absolute;
-		top: 100%;
-		width: 100%;
-		left: 0;
-		padding: 10px;
-		box-sizing: border-box;
-	}
 }
 
 .hero {
@@ -136,62 +143,12 @@ body {
 	}
 }
 
-.o-techdocs-main--nonav {
-	margin: auto;
-}
-
-a.o-buttons--standout{
-	color: white;
-}
-
-.homepage-content {
-	h2 {
-		padding: 1.5em 0 .5em 0;
-	}
-	.o-techdocs-content {
-		font-size:19px;
-	}
-}
-
-.o-techdocs-header--pull-up {
-	margin-bottom: 0 !important;
-}
-
-/** Override o-heirachical nav background colours */
-.o-techdocs-header__nav--primary-theme [data-o-hierarchical-nav-level],
-.o-techdocs-header__nav--secondary-theme [data-o-hierarchical-nav-level] {
-	background-color: transparent;
-}
-
-
-.o-techdocs-header--transparent {
-	[data-o-hierarchical-nav-level] {
+.homepage-header {
+	.o-header-services,
+	.o-header-services__top {
 		background: transparent;
 	}
-}
-
-.o-hierarchical-nav__more--all {
-	[data-o-hierarchical-nav-level] {
-		right: 10px;
-	}
-}
-
-.o-hierachical-nav__parent--active {
-	background-color: #275e86;
-}
-
-.shipit {
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
-	margin: 20px 0;
-	text-align: center;
-	font-style: italic;
-	font-weight: 200;
-	color: #767676;
-
-	svg {
-		fill: #999999;
-		display: block;
-		margin: 0 auto;
+	.o-header-services__primary-nav {
+		display: none;
 	}
 }

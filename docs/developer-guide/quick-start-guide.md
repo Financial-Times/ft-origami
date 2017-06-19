@@ -67,7 +67,7 @@ For this tutorial though, you need to add the class `o-buttons` to the `<button>
 o-buttons has some design variations. Let's apply the `standout` variation by the adding `o-buttons--standout` class.
 
 ```
-<button class="o-buttons o-buttons--standout">Here's a button</button>
+<button class="o-buttons o-buttons--secondary">Here's a button</button>
 ```
 
 ## 4. Include the JavaScript
@@ -95,7 +95,7 @@ Instead of using a `<link ...>` tag, use a `<script ...>` tag.
 	</head>
 	<body>
 		Hello!
-		<button class="o-buttons o-buttons--standout">Here's a button</button>
+		<button class="o-buttons o-buttons--secondary">Here's a button</button>
 	</body>
 </html>
 ~~~
@@ -113,4 +113,4 @@ Some components, like `o-header` have much more complicated HTML than `o-buttons
 
 This tutorial is a very quick guide to Origami. It skipped over a few important concepts that you'll need to know for using Origami modules in a live service. The next tutorial will take you through using Origami in more detail.
 
-<a href="/docs/developer-guide/modules/choosing-your-build-method/" class="o-buttons o-buttons--standout">Let's do this the proper way</a>
+<a href="/docs/developer-guide/modules/choosing-your-build-method/" class="o-buttons o-buttons--secondary">Let's do this the proper way</a>

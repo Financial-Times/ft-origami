@@ -47,4 +47,4 @@ Origami modules are written as Sass and JavaScript and need 'building' before th
 Once you've decided how to build Origami's modules, we have a tutorial for each method.
 
 
-<a href="{{site.baseurl}}/docs/developer-guide/modules/build-service" class="o-buttons o-buttons--standout">Build service tutorial</a> <a href="{{site.baseurl}}/docs/developer-guide/modules/building-modules" class="o-buttons o-buttons--standout">Manual build tutorial</a>
+<a href="{{site.baseurl}}/docs/developer-guide/modules/build-service" class="o-buttons  o-buttons--secondary o-buttons--big">Build service tutorial</a> <a href="{{site.baseurl}}/docs/developer-guide/modules/building-modules" class="o-buttons  o-buttons--secondary o-buttons--big">Manual build tutorial</a>
