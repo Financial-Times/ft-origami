@@ -1,32 +1,37 @@
-<header data-o-component="o-techdocs-header" class="o-techdocs-header {% if page.title == 'Home' %}o-techdocs-header--pull-up o-techdocs-header--transparent{% endif %}">
-  <div class="o-techdocs-header__container">
-    <div class="o-techdocs-header__inner">
-      <div class="o-techdocs-header__primary">
-        <a class="o-techdocs-header__primary__left" href="/">
-          <span class="origami-logo"></span>
-          <h1 class="o-techdocs-header__title">{{site.name}}</h1>
-        </a>
-        <div class="o-techdocs-header__primary__center c-search">
-          <script>
-          (function() {
-            var cx = '013700166063307641389:hr156qdcx6w';
-            var gcse = document.createElement('script');
-            gcse.async = true;
-            gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//www.google.com/cse/cse.js?cx=' + cx;
-            var s = document.getElementsByTagName('script')[0];
-            s.parentNode.insertBefore(gcse, s);
-          })();
-          </script>
-          <gcse:search></gcse:search>
-        </div>
-        <nav class="o-techdocs-header__primary__right o-hierarchical-nav o-techdocs-header__nav--primary-theme" data-o-component="o-hierarchical-nav">
-          <ul data-o-hierarchical-nav-level="1"><!--
-	        --><li data-priority="1" {% if page.site_section == 'developer-guide' %}aria-selected="true"{% endif %}><a href="http://origami.ft.com/docs/developer-guide/">Docs</a></li><!--
-	        --><li data-priority="1" {% if page.site_section == 'about-origami' %}aria-selected="true"{% endif %}><a href="http://origami.ft.com/docs/component-spec/">Spec</a></li><!--
-	        --><li data-priority="1"><a href="http://registry.origami.ft.com">Components</a></li><!--
-	      --></ul>
-        </nav>
-      </div>
-    </div>
-  </div>
+<header class="o-header-services {% if page.title == 'Home' %}homepage-header{% endif %}" data-o-component="o-header">
+	<div class="o-header-services__top o-header-services__container">
+		<div class="o-header-services__ftlogo"></div>
+		<div class="o-header-services__title">
+			<h1 class="o-header-services__product-name"><a href="/">Origami</a></h1><span class="o-header-subrand__product-tagline">Documentation site</span>
+		</div>
+		<div class="o-header-services__related-content">
+			<a class="o-header-services__related-content-link" href="http://registry.origami.ft.com">Components</a>
+		</div>
+	</div>
+	<div class="o-header-services__primary-nav">
+		<div class="o-header-services__container">
+			<ul class="o-header-services__nav-list">
+				<li class="o-header-services__nav-item {% if page.site_section == 'developer-guide' %}o-header-services__nav-link--selected{% endif %}">
+					<a class="o-header-services__nav-link" href="http://origami.ft.com/docs/developer-guide/">Docs</a></li>
+				</li>
+				<li class="o-header-services__nav-item {% if page.site_section == 'about-origami' %}o-header-services__nav-link--selected{% endif %}">
+					<a class="o-header-services__nav-link" href="http://origami.ft.com/docs/component-spec/">Spec</a></li>
+				</li>
+			</ul>
+			<i class="search-icon searchbutton"></i>
+			<div class="o-techdocs-header__primary__center c-search searchbox">
+				<script>
+				(function() {
+					var cx = '013700166063307641389:hr156qdcx6w';
+					var gcse = document.createElement('script');
+					gcse.async = true;
+					gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//www.google.com/cse/cse.js?cx=' + cx;
+					var s = document.getElementsByTagName('script')[0];
+					s.parentNode.insertBefore(gcse, s);
+				})();
+				</script>
+				<gcse:search></gcse:search>
+			</div>
+		</div>
+	</div>
 </header>
