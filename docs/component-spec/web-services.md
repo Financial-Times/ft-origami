@@ -37,11 +37,11 @@ This *must* be suffixed with an environment identifier for non-production applic
 
 ### URLs
 
-Origami web services *should* exist on a path under `ft.com` if users would benefit from HTTP2 in this case. If this is not possible for some reason then a subdomain must be used.
+Origami web services *should* exist on a path under `ft.com` if users would benefit from HTTP2 in this case. If this is not possible for some reason then a subdomain *must* be used.
 
-When using a path, it should be `/__origami/service/<short-name>`. The short name in this case is the slugified service name with `origami-` and `-service` removed, E.g. `/__origami/service/build`.
+When using a path, it *should* be `/__origami/service/<short-name>`. The short name in this case is the slugified service name with `origami-` and `-service` removed, E.g. `/__origami/service/build`.
 
-When using a subdomain, it should be `<short-name>.ft.com`. The short name in this case is the slugified service name with `-service` removed, E.g. `origami-build.ft.com`.
+When using a subdomain, it *should* be `<short-name>.ft.com`. The short name in this case is the slugified service name with `-service` removed, E.g. `origami-build.ft.com`.
 
 ### Examples
 
