@@ -10,11 +10,9 @@ site_section: about-origami
 
 A **web service** component is offered as a URL endpoint that delivers content or data services. Web service components are available as raw source in git, but are not intended to be cloned or run by product developers unless they want to for testing. The component is the hosted service, rather than the application that runs it. Examples of good use cases for web services are:
 
-  * FT Main navigation
-  * Most read / shared / commented
-  * Jobs from exec-appointments
-  * Fetching individual tweets from twitter
-  * Collecting analytics
+  * [Serving optimised images](https://www.ft.com/__origami/service/image)
+  * [Serving JS/CSS bundles of Origami components](https://www.ft.com/__origami/service/build)
+  * [Providing standard navigation data](https://www.ft.com/__origami/service/navigation)
 
 
 ## Naming conventions
