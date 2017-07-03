@@ -95,6 +95,8 @@ Many of the requirements below can be met by using Node.js and the [Origami Serv
 
   * Require requests to API endpoints to contain an identification string set by the requesting application, in a `source` query string parameter. If the query parameter is missing, *must* return a `400 Bad Request` response status code. Requests to non-API endpoints such as the root path or `/__about` *should not* require the source parameter.
 
+    The only exception to this rule is when the service is replicating a third-party API. E.g. a Bower registry
+
     If you are using Node.js to build the service, then we provide [Express middleware to check source parameters](https://github.com/Financial-Times/source-param-middleware).
 
   * When an error occurs that prevents the service from returning the output requested, the HTTP response code *must* be in the `5xx` or `4xx` range
