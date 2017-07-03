@@ -8,7 +8,7 @@ site_section: about-origami
 
 # Web services
 
-A **web service** component is offered as a URL endpoint that delivers content or data services. Content fragments can be included in projects either on demand on a request by request basis (using [ESI](http://en.wikipedia.org/wiki/Edge_Side_Includes) or similar technology), or by downloading the content on a regular schedule and pushing it into a local cache. Other web services may act as data collectors (for analytics) or do almost anything else. Web service components are available as raw source in git, but are not intended to be cloned or run by product developers unless they want to for testing. The component is the hosted service, rather than the application that runs it. Examples of good use cases for web services are:
+A **web service** component is offered as a URL endpoint that delivers content or data services. Web service components are available as raw source in git, but are not intended to be cloned or run by product developers unless they want to for testing. The component is the hosted service, rather than the application that runs it. Examples of good use cases for web services are:
 
   * FT Main navigation
   * Most read / shared / commented
