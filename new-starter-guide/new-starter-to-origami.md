@@ -50,12 +50,11 @@ This should hurry your request for admin privileges on your machine.
 
 ### Code repositories
 
-1. The public repositories are at [GitHub/Financial-Times](https://github.com/Financial-Times) on GitHub. The private ones are at [BitBucket](http://git.svc.ft.com/). Origami repositories should be public if at all possible. We also are looking into moving all private repositories onto GitHub.
+1. The public repositories are at [GitHub/Financial-Times](https://github.com/Financial-Times) on GitHub. There is some private FT code at [BitBucket](http://git.svc.ft.com/). Origami repositories should be public if at all possible.
 
 2. Ask the Origami team for access to the following:
   - The GitHub organisation Financial-Times
   - The `origami-core` & `origami-colloborators` on the GitHub organisation's teams.
-  - Granted admin access to BitBucket.
 
 3. If you haven't done so already, please set up [2-factor authentication](https://help.github.com/articles/about-two-factor-authentication/) for GitHub.
 
@@ -63,7 +62,7 @@ This should hurry your request for admin privileges on your machine.
 
 ### LastPass
 
-Please do not just sign up on LastPass.com for a free account. You need to invited to the FT Enterprise LastPass account. Ask `itservicedesk@ft.com` to enable your LastPass account. Then ask a member of the team to add you to the Shared-origami folder as an administrator.
+The FT uses LastPass for managing passwords etc. You need to be invited to the FT Enterprise LastPass account. Ask `itservicedesk@ft.com` to enable your LastPass account. Then ask a member of the team to add you to the Shared-origami folder as an administrator.
 
 ### Other tools
 
@@ -142,6 +141,4 @@ All contributors to Origami must use Pull Requests. These should be peer-reviewe
 
 ## Using Origami
 
-Being a part of the Origami team does need you to understand how the components library works. It is a good practice to go through [the tutorials and the documentation](http://origami.ft.com/).
-
-There are two ways of adding Origami modules. The first one is by the [Origami Build Service](http://origami.ft.com/docs/developer-guide/modules/build-service/). The second way is by doing it the manual way with [Origami Build Tools](http://origami.ft.com/docs/developer-guide/modules/building-modules/) via the CLI.
+All documentation on how to use Origami is here: [the tutorials and the documentation](http://origami.ft.com/).
