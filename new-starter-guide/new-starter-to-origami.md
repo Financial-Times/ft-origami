@@ -48,6 +48,11 @@ This should hurry your request for admin privileges on your machine.
 
 3. Join the `#ft-origami` channel, then ask the team to add you to the internal channels.
 
+4. Ask to be added to the @origami-team notifications handle.
+
+**A notice about @channel and @here** Slack has a feature whereby you can alert everyone in the channel about something you want them to read.  This can be very useful where something is incredibly important and needs an immediate response. In a lot of channels, there are more than 100 people in the channel, and notifying all of them about something is a bit inconsiderate unless it's an emergency. Please bear this in mind when using this feature.
+In emergencies, you can use this feature by typing `@here` (for everyone who is logged in) or `@channel` (is for even people who are not logged in).
+
 ### Code repositories
 
 1. The public repositories are at [GitHub/Financial-Times](https://github.com/Financial-Times) on GitHub. There is some private FT code at [BitBucket](http://git.svc.ft.com/). Origami repositories should be public if at all possible.
