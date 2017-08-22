@@ -50,12 +50,12 @@ This should hurry your request for admin privileges on your machine.
 
 ### Code repositories
 
-1. The public repositories are at [GitHub/Financial-Times](https://github.com/Financial-Times) on GitHub. The private ones are at [BitBucket](http://git.svc.ft.com/). Origami repositories should be public if at all possible. We also are looking into moving all private repositories onto GitHub.
+1. Origami repositories are at [GitHub/Financial-Times](https://github.com/Financial-Times) on GitHub. They should be public if at all possible. Further repositories can be found on [BitBucket](http://git.svc.ft.com/), these are private and archived.
 
 2. Ask the Origami team for access to the following:
-  - The GitHub organisation Financial-Times
+  - The GitHub organisation Financial-Times.
   - The `origami-core` & `origami-colloborators` on the GitHub organisation's teams.
-  - Granted admin access to BitBucket.
+  - Granted admin access to BitBucket. (_optional_)
 
 3. If you haven't done so already, please set up [2-factor authentication](https://help.github.com/articles/about-two-factor-authentication/) for GitHub.
 
