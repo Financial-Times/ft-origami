@@ -171,4 +171,4 @@ We skipped over some areas that you should understand if you want to use Origami
 
 - [The Polyfill Service](/docs/developer-guide/modules/using-the-polyfill-service/)
 - [Core vs Enhanced experience](/docs/developer-guide/modules/cuts-the-mustard/)
-- [Component versioning](/docs/developer-guide/modules/component-versioning/)
+- [Component versioning](/docs/developer-guide/modules/module-versioning/)
