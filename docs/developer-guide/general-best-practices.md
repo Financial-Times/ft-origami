@@ -156,7 +156,7 @@ Run your fully assembled page through the [W3C validator](http://validator.w3.or
 
 ### Lint your code
 
-Consider running [SCSS-Lint](https://github.com/causes/scss-lint) or CSSlint on your CSS.  The syntax standards used by Origami are a good set of rules to use:
+Consider running [SASS Lint](https://github.com/sasstools/sass-lint) or CSSlint on your CSS. The syntax standards used by Origami are a good set of rules to use:
 
 * [Origami Sass syntax standard]({{site.baseurl}}/docs/syntax/scss/#syntax-convention-rules)
 
