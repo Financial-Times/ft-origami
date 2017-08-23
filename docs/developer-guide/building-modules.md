@@ -18,18 +18,17 @@ This tutorial assumes you're starting from a fresh install of a UNIX-like OS wit
 	<p>Origami's build tools do not support Windows as a development environment. The instructions on this page assume you are using a UNIX-like OS.  Windows <strong>might</strong> work, to some degree, but we don't make any guarantees, either of what works today or what might continue to work in the future.  If you're a Windows user, consider running a Linux VM.</p>
 </aside>
 
-## 1. Install Node.js, Ruby, and Git
+## 1. Install Node.js and Git
 
-To build Origami modules manually, you'll need Ruby, Node, and Git. It doesn't matter if you're not writing your application in Node or Ruby, you still need to install them for this.
+To build Origami modules manually, you'll need Node and Git. It doesn't matter if you're not writing your application in Node, you still need to install it for this.
 
 * [Node.js](http://nodejs.org/) is the JavaScript runtime, which we need to run all the build tools, which are written in JavaScript.
-* [Ruby](https://www.ruby-lang.org) is required to run [SCSS-Lint](https://github.com/causes/scss-lint)
 * [Git](https://www.git-scm.com) is required to install packages from Git repositories using [Bower](http://bower.io/), a package manager.
 
 <aside>
 	<h4>Installing packages should not require root</h4>
-	<p>Node.js and Ruby come with the npm and RubyGems package managers respectively. You will need to ensure the package managers can install packages without requiring root access. If you get an <code>EACCES</code> error or <code>Gem::FilePermissionError</code> when installing a package you'll need to set up npm or RubyGems to
-	<a href="https://github.com/Financial-Times/origami-build-tools/blob/master/TROUBLESHOOT.md#install">fix npm and Ruby permissions</a></p>
+	<p>Node.js comes with the npm package manager. You will need to ensure it can install packages without requiring root access. If you get an <code>EACCES</code> error when installing a package you'll need to set up npm to 
+	<a href="https://github.com/Financial-Times/origami-build-tools/blob/master/TROUBLESHOOT.md#install">fix permissions</a></p>
 </aside>
 
 ### Node.js
@@ -51,19 +50,6 @@ If you get an error, or the number you get does not match the most recent releas
 Node is available in most package management repositories, and instructions are available in the Node install guide:
 
 * [Install Node via package manager](https://nodejs.org/en/download/package-manager)
-
-### Ruby
-
-You may already have Ruby, since it ships preinstalled on many computers.  To find out, type this at a terminal:
-
-<pre class="cli">
-<kbd>ruby -v</kbd>
-<output>ruby 2.0.0p247 (2013-06-27 revision 41674) [universal.x86_64-darwin13]</output>
-</pre>
-
-If you see an error, or the version does not match the latest version shown on the [Ruby website](https://www.ruby-lang.org/en/downloads/), you need to install/upgrade it. You can install it from the rbenv version manager.
-
-* [View Ruby install guide](https://github.com/Financial-Times/origami-build-tools/blob/master/TROUBLESHOOT.md#installing-ruby)
 
 ### Git
 
@@ -307,7 +293,7 @@ Taking it step by step:
 
 * We configure three gulp tasks: `build`, `verify` and `watch`
 * `build` runs Sass to compile and minify `/client/scss/main.scss` to `/public/bundle.css`, and Browserify to compile `/client/js/main.js` to `/public/bundle.js`
-* `verify` runs [SCSS-Lint](https://github.com/brigade/scss-lint) on `/client/scss/main.scss` and [ESLint](http://eslint.org/) on `/client/js/main.js` to make sure the code is readable and free of syntax errors.  It enforces the coding standards defined by Origami for ([SCSS]({{site.baseurl}}/docs/syntax/scss/#syntax-convention-rules) and [JavaScript]({{site.baseurl}}/docs/syntax/js/#syntax-convention-rules))
+* `verify` runs [SASS Lint](https://github.com/sasstools/sass-lint) on `/client/scss/main.scss` and [ESLint](http://eslint.org/) on `/client/js/main.js` to make sure the code is readable and free of syntax errors.  It enforces the coding standards defined by Origami for ([SCSS]({{site.baseurl}}/docs/syntax/scss/#syntax-convention-rules) and [JavaScript]({{site.baseurl}}/docs/syntax/js/#syntax-convention-rules))
 * `watch` runs the `build` tasks automatically when files in your client-side Sass or JS directories are updated
 
 The benefit of using gulp is that you can add your own build steps in addition to the standard Origami ones, so at this point, feel free to add your own code to the build and verify tasks.

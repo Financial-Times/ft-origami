@@ -103,14 +103,11 @@ Almost all Origami applications rely on the following tools to be installed glob
 
 #### Install the following:
 
-- [Node.js](https://nodejs.org/) - The components are supported in Node v4 or Node v5.
+- [Node.js](https://nodejs.org/)
   - We recommend installing a [Node Version Manager](https://github.com/creationix/nvm) to manage different local node versions.
 - [Git](https://git-scm.com/)
 - [Heroku Toolbelt](https://toolbelt.heroku.com/)
 - [Bower](http://bower.io/)
-- [Ruby](http://www.ruby-lang.org/)
-  - We recommend installing a Ruby Version Manager to manage different ruby versions. There are two choices here. You can go either [Ruby Version Manager](https://rvm.io/) or [Rbenv](https://github.com/rbenv/rbenv).
-  - This is for the Ruby SCSS-Lint gem which is a part of <abbr title="Origami Build Tools">OBT</abbr>.
 
 #### Work with our ecosystem of components
 

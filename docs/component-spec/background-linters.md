@@ -14,7 +14,7 @@ ESLint *should* be used when developing Origami components. It's useful to have 
 
 If you already have Origami Build Tools (OBT) and ESLint configured, skip to the [Installing background linter plugins](#installing-background-linter-plugins) section.
 
-Ensure you have installed [Origami Build Tools](https://www.npmjs.com/package/origami-build-tools). This will provide you with Sass, scss-lint and provide instructions on how to set up Node.js and Ruby.
+Ensure you have installed [Origami Build Tools](https://www.npmjs.com/package/origami-build-tools). This will provide you with Sass, [SASS Lint](https://github.com/sasstools/sass-lint) and provide instructions on how to set up Node.js.
 
 ### Install ESLint
 
