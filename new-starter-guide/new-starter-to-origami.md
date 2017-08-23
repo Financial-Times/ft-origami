@@ -17,9 +17,7 @@ The checklist assumes that you have done the following:
 
 ### Admin privileges on your machine
 
-<abbr title="IT Services Desk">ITSD</abbr> should have done admin privileges for you and your machine when they did the setup. If not, then you should [request admin access to your FT laptop via Salesforce](https://financialtimes.my.salesforce.com/home/home.jsp) to ensure it does not get revoked.
-
-If you do not have admin privileges then email `itservicedesk@ft.com`.
+<abbr title="IT Services Desk">ITSD</abbr> should have done admin privileges for you and your machine when they did the setup. If not, then search for the &ldquo;Account Amendment/Administration&rdquo; form at [selfservice.ft.com](http://selfservice.ft.com).
 
 Include your desk number (which is usually a label on your desk) and the machine number with the email. You also will need to say why you need admin privileges, or copy the template below and edit to suit the situation.
 
@@ -37,7 +35,7 @@ Thanks
 <your name>
 ```
 
-This should hurry your request for admin privileges on your machine.
+This should hurry your request for admin privileges on your machine. You may email <abbr title="IT Services Desk">ITSD</abbr> directly at `itservicedesk@ft.com` with any queries.
 
 ### Slack
 
