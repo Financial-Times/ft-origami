@@ -63,7 +63,7 @@ This should hurry your request for admin privileges on your machine.
 
 ### LastPass
 
-Please do not just sign up on LastPass.com for a free account. You need to invited to the FT Enterprise LastPass account. Ask `itservicedesk@ft.com` to enable your LastPass account. Then ask a member of the team to add you to the Shared-origami folder as an administrator.
+The FT uses LastPass for managing passwords etc. Follow [the security guide](https://sites.google.com/a/ft.com/security/security-guides/lastpass) to setup your Enterprise LastPass account, else ask `itservicedesk@ft.com` should you have any problems. Then ask a member of the team to add you to the Shared-origami folder as an administrator.
 
 ### Other tools
 
