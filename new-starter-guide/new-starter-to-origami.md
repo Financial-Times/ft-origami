@@ -46,6 +46,11 @@ This should hurry your request for admin privileges on your machine. You may ema
 
 3. Join the `#ft-origami` channel, then ask the team to add you to the internal channels.
 
+4. Ask to be added to the @origami-team notifications handle.
+
+**A notice about @channel and @here** Slack has a feature whereby you can alert everyone in the channel about something you want them to read.  This can be very useful where something is incredibly important and needs an immediate response. In a lot of channels, there are more than 100 people in the channel, and notifying all of them about something is a bit inconsiderate unless it's an emergency. Please bear this in mind when using this feature.
+In emergencies, you can use this feature by typing `@here` (for everyone who is logged in) or `@channel` (is for even people who are not logged in).
+
 ### Code repositories
 
 1. Origami repositories are at [GitHub/Financial-Times](https://github.com/Financial-Times) on GitHub. They should be public if at all possible. Further repositories can be found on [BitBucket](http://git.svc.ft.com/), these are private and archived.
@@ -61,7 +66,7 @@ This should hurry your request for admin privileges on your machine. You may ema
 
 ### LastPass
 
-The FT uses LastPass for managing passwords etc. Follow [the security guide](https://sites.google.com/a/ft.com/security/security-guides/lastpass) to setup your Enterprise LastPass account, else ask `itservicedesk@ft.com` should you have any problems. Then ask a member of the team to add you to the Shared-origami folder as an administrator.
+The FT uses LastPass for managing passwords etc. Follow [the security guide](https://sites.google.com/a/ft.com/security/security-guides/lastpass) to setup your Enterprise LastPass account (ask `itservicedesk@ft.com` if you have any problems). Then ask a member of the team to add you to the Shared-origami folder as an administrator.
 
 ### Other tools
 
@@ -137,6 +142,4 @@ All contributors to Origami must use Pull Requests. These should be peer-reviewe
 
 ## Using Origami
 
-Being a part of the Origami team does need you to understand how the components library works. It is a good practice to go through [the tutorials and the documentation](http://origami.ft.com/).
-
-There are two ways of adding Origami modules. The first one is by the [Origami Build Service](http://origami.ft.com/docs/developer-guide/modules/build-service/). The second way is by doing it the manual way with [Origami Build Tools](http://origami.ft.com/docs/developer-guide/modules/building-modules/) via the CLI.
+All documentation on how to use Origami is here: [the tutorials and the documentation](http://origami.ft.com/).
