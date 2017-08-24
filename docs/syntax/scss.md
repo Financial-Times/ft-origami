@@ -18,7 +18,7 @@ Component developers and Origami build tools *must* use LibSass version ~3.2.0.
 
 ## Syntax convention rules
 
-Sass *must* validate using the following [SCSS-lint](https://github.com/causes/scss-lint) rules:
+Sass *must* validate using the following [SASS Lint](https://github.com/sasstools/sass-lint) rules:
 
 <div class="o-techdocs-gist" data-repo="Financial-Times/origami-build-tools" data-path="/config/scss-lint.yml"></div>
 

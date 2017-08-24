@@ -20,7 +20,7 @@ Origami modules are written as Sass and JavaScript and need 'building' before th
 <tr>
 	<td>Server-side technology requirements</td>
 	<td>None, there is no need for any server-side code</td>
-	<td>Node and Ruby. You'll need Node.js (for package management and build automation) and Ruby (for Sass linting)</td>
+	<td>Node. You'll need Node.js (for package management and build automation).</td>
 </tr>
 <tr>
 	<td>Set up time</td>
