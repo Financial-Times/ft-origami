@@ -107,9 +107,7 @@ The first released version of a module *must* be `v1.0.0`.  Versions lower than 
 
 Origami modules are generally installed based on a semver range. To ensure new releases don't affect the current users of a module we have a set of requirements for non-major releases:
 
-* Make sure deprecated features still work
-* Deprecated code must go into a private deprecated file, or, if there’s an abundance of deprecated code, to a directory called `deprecated`. This way, it will be much easier to work with the new code while maintaining legacy code. It will also be easier to delete when making a major release
-* Deprecated functions and mixins should log a warning stating that they are now deprecated and offering an alternative when there is one. This warning *may* also be added to the readme
+* Follow our guidelines on [deprecating module features](#deprecation-of-a-module-feature), making sure deprecated features still work
 * When updating a dependency to the latest minor release, make a minor release
 * When updating a dependency to the latest major release, in your bower.json, make sure the semver range includes the previous major release (_e.g. `>=1.2.3 <3`_). If not, a major release is necessary
 * When adding a new dependency, make a major release as it may break existing bundles
@@ -129,6 +127,12 @@ In the event of deprecating a module within Origami, the following steps must be
 2. Change the `README.md` to have a paragraph at the top outlining the deprecation status. If it has been replaced, it must point to the new replacement module from the deprecated module.
 3. Disable the Issues functionality from the deprecated module's repository.
 4. Update the repository's description to "deprecated - please use <module> instead" if it has been replaced and change the URL to point towards the replacement's repository on GitHub.
+
+#### Deprecation of a module feature
+
+* Deprecated code should go into a private deprecated file, or, if there’s an abundance of deprecated code, to a directory called `deprecated`. This way, it will be much easier to work with the new code while maintaining legacy code. It will also be easier to delete when making a major release. If separating deprecated code into its own `deprecated` file or directory is not pragmatic, modified code must be prepended and post-appended with a comment which begins ```@deprecated```, followed by text which describes the deprecation
+* Deprecated functions and mixins should log a warning stating that they are now deprecated and offering an alternative when there is one. This warning *may* also be added to the readme
+* An issue with label `breaking` must be created or updated to remind us to remove deprecated code upon a future major release
 
 ## Themes
 
