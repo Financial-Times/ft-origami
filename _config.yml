@@ -4,6 +4,8 @@ exclude:
 - Makefile
 - node_modules
 - README.md
+- package.json
+- package-lock.json
 
 # Jekyll plugins
 gems:
