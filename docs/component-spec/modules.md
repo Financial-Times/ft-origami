@@ -130,9 +130,9 @@ In the event of deprecating a module within Origami, the following steps must be
 
 #### Deprecation of a module feature
 
-* Deprecated code should go into a private deprecated file, or, if there’s an abundance of deprecated code, to a directory called `deprecated`. This way, it will be much easier to work with the new code while maintaining legacy code. It will also be easier to delete when making a major release. If separating deprecated code into its own `deprecated` file or directory is not pragmatic, modified code must be prepended and post-appended with a comment which begins ```@deprecated```, followed by text which describes the deprecation
+* Deprecated code should go into a private deprecated file, or, if there’s an abundance of deprecated code, to a directory called `deprecated`. This way, it will be much easier to work with the new code while maintaining legacy code. It will also be easier to delete when making a major release. If separating deprecated code into its own `deprecated` file or directory is not pragmatic, modified code must be appended and prepended with a comment which begins ```@deprecated```, followed by text which describes the deprecation
 * Deprecated functions and mixins should log a warning stating that they are now deprecated and offering an alternative when there is one. This warning *may* also be added to the readme
-* An issue with label `breaking` must be created or updated to remind us to remove deprecated code upon a future major release
+* An issue with label `type: breaking` must be created or updated to remind us to remove deprecated code upon a future major release
 
 ## Themes
 
