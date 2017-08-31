@@ -3,24 +3,13 @@
   "version": "1.0.0",
   "description": "This is the source code for the Origami website. Please visit [http://origami.ft.com/](http://origami.ft.com/) if you're looking for the documentation.",
   "main": "index.js",
-  "directories": {
-    "doc": "docs",
-    "example": "examples"
-  },
   "dependencies": {
     "pa11y-ci": "^1.2.0"
-  },
-  "devDependencies": {},
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Financial-Times/ft-origami.git"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "bugs": {
     "url": "https://github.com/Financial-Times/ft-origami/issues"
   },
