@@ -8,7 +8,7 @@ site_section: about-origami
 
 # Origami manifests
 
-All origami components, whether modules or web services, should be discoverable by the Origami registry and provide information on how the component is supported.  To do this, the component must contain an `origami.json` file in the root of its repository.
+All origami components, whether imageset,modules or web services, should be discoverable by the Origami registry and provide information on how the component is supported.  To do this, the component must contain an `origami.json` file in the root of its repository.
 
 ## Format
 
@@ -30,7 +30,7 @@ All origami components, whether modules or web services, should be discoverable 
 </tr><tr>
 	<td><code>&nbsp;&nbsp;origamiType</code></td>
 	<td>string*</td>
-	<td>The value 'module' where the component conforms to the <a href="{{site.baseurl}}/docs/component-spec/modules/">module</a> spec, or "service" where it conforms to the <a href="{{site.baseurl}}/docs/component-spec/web-services/">web service</a> spec.</td>
+	<td>The value 'imageset' where the component conforms to the <a href="{{site.baseurl}}/docs/component-spec/imageset/">imageset</a> spec, 'module' where the component conforms to the <a href="{{site.baseurl}}/docs/component-spec/modules/">module</a> spec, or "service" where it conforms to the <a href="{{site.baseurl}}/docs/component-spec/web-services/">web service</a> spec.</td>
 </tr><tr>
 	<td><code>&nbsp;&nbsp;origamiVersion</code></td>
 	<td>integer*</td>
