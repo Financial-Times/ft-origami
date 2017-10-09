@@ -27,8 +27,8 @@ The Build Service hosts its own API and technical documentation at [www.ft.com/_
 
 This tutorial will take you though building a page that includes some Origami modules. By the end you'll have built a page using the Build Service with a [cuts the mustard test]({{site.baseurl}}/docs/developer-guide/modules/core-vs-enhanced-experience/) for older web browsers.
 
-## 1. Create a new JS Bin
-We're going to use a website called **JS Bin** for this tutorial. JS Bin lets you paste HTML, JavaScript and CSS into one panel and see the result in another. You could also use [Codepen](http://codepen.io/pen/?editors=1000), or run your own server locally.
+## 1. Create HTML, CSS & JS files
+We're going to use a website called **JS Bin** to set up the files for this tutorial. JS Bin lets you paste HTML, JavaScript and CSS into one panel and see the result in another. You could also use [Codepen](http://codepen.io/pen/?editors=1000), or run your own server locally.
 
 To create a new JS Bin, open this link in a new tab: [Create new JS Bin](https://jsbin.com/?html,output).
 
