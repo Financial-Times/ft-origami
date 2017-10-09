@@ -20,13 +20,17 @@ As well as modules, Origami provides the following services:
 
 Origami services and modules all comply with the [Origami Spec](/docs/component-spec/) and [Coding Standards](/docs/syntax/) to ensure they are high quality and interoperable. All modules are developed in the open on [GitHub](http://github.com/Financial-Times).
 
-<h2> <i class="fa fa-wrench"></i> Origami tools</h2>
+<h2> <i class="fa fa-wrench"></i> Using Origami</h2>
 
-To help you use the modules and services in your product there are the following tools:
+There are three ways to include Origami in your project:
 
-- [Origami Build Tools](https://github.com/Financial-Times/origami-build-tools) - Build Origami components as part of your existing build process
-- [Origami Build Service](https://www.ft.com/__origami/service/build/v2/) - Deliver components directly to your user's browser using the build service
-- [The Registry](http://registry.origami.ft.com/) - Find and use the components you need from our component registry
+1) [Origami Build Service](https://www.ft.com/__origami/service/build/v2/) - the simplest way. Pull in the Origami CSS and Javascript as external files into your webpage. [See tutorial](http://origami.ft.com/docs/developer-guide/modules/very-quick-origami/).
+
+2) [Origami Build Tools](https://github.com/Financial-Times/origami-build-tools) - using this Origami-created tool as your build tool is more complex than using the Build Service, but it lets you install Origami components from the command line. [See tutorial](http://origami.ft.com/docs/developer-guide/modules/building-modules/).
+
+3) [Bower](https://bower.io/) - adding third-party build tool Bower to your project, lets you have a custom build process (using eg. Webpack) and install Origami components from the command line. [See Bower tutorial](https://bower.io/#install-bower).
+
+To figure out which Origami components you will need, browse through [The Registry](http://registry.origami.ft.com/).
 
 <h2> <i class="fa fa-book"></i> The Spec</h2>
 
