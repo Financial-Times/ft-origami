@@ -8,7 +8,15 @@ site_section: developer-guide
 
 # How to pick your build method
 
-Origami modules are written as Sass and JavaScript and need 'building' before they can be delivered to users' browsers. There are two ways to 'build' a module. You can use the Build Service which is quick and simple but inflexible. For a more customisable build process Origami has the Origami Build Tools (OBT).
+Origami modules are written as Sass and JavaScript and need 'building' before they can be delivered to users' browsers. There are two ways to 'build' a module. You can use the Build Service which is quick and simple but inflexible. For a more customisable build process Origami has the Origami Build Tools (OBT). To fully customise the process, add Bower to your existing build process. Under the hood, the Origami Build Tools use Bower packages.
+
+### You have three choices
+
+1) [Origami Build Service](https://www.ft.com/__origami/service/build/v2/) - the simplest way. Pull in the Origami CSS and Javascript as external files into your webpage. [See tutorial for using the Build Service in production](http://origami.ft.com/docs/developer-guide/modules/build-service/).
+
+2) Manual build with the [Origami Build Tools](https://github.com/Financial-Times/origami-build-tools) - setting up a build process with Origami Build Tools gives you more customisation. [See Origami Build Tools tutorial](http://origami.ft.com/docs/developer-guide/modules/building-modules/).
+
+3) Manual build with [Bower](https://bower.io/) - adding third-party build tool Bower to your project, lets you have a custom build process (using eg. Webpack) and install Origami components from the command line. [See Bower tutorial](https://bower.io/#install-bower).
 
 ### Build service vs manual build comparison
 <table class="o-techdocs-table">
