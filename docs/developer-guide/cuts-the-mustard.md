@@ -87,7 +87,7 @@ This matches the expression published by the BBC in their [original post about C
 * Chrome (all)
 * Mobile Firefox (all)
 
-This is a close match for the recommended minimum support in the [FT browser support policy](https://docs.google.com/a/ft.com/document/d/1dX92MPm9ZNY2jqFidWf_E6V4S6pLkydjcPmk5F989YI/edit#heading=h.wcrwnubj26sk).
+This is a close match for the recommended minimum support in the [FT browser support policy](https://docs.google.com/document/d/1mByh6sT8zI4XRyPKqWVsC2jUfXHZvhshS5SlHErWjXU/edit#heading=h.er7no6jwfim1).
 
 
 ## Customising your cuts the mustard test
