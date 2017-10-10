@@ -151,7 +151,11 @@ All origami components, whether modules or web services, should be discoverable 
 </tr><tr>
 	<td><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;name</code></td>
 	<td>string*</td>
-	<td>Demo name which will also be used as the name of the outputted html file.</td>
+	<td>Demo name which will be used as the name of the outputted html file.</td>
+</tr><tr>
+	<td><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;title</code></td>
+	<td>string*</td>
+	<td>A title for the demo which will appear when listed in the Registry.</td>
 </tr><tr>
 	<td><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;description</code></td>
 	<td>string*</td>
