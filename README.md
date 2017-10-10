@@ -44,7 +44,7 @@ make test
 
 
 ## Documentation style guide
-This guide is based on https://jacobian.org/writing/great-documentation/. It exists as guidance to help keep our documentation consistent.
+This guide is based on Jacob Kaplan-Moss' documentation series [[1]](https://jacobian.org/writing/what-to-write/) [[2]](https://jacobian.org/writing/technical-style/) [[3]](https://jacobian.org/writing/editors/). It exists as guidance to help keep our documentation consistent.
 
 ### Types of documentation
 There are three types of documentation:

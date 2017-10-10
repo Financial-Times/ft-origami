@@ -41,7 +41,7 @@ We're going to use the Build Service to provide the styles.
 To do that we need to request the `o-buttons` CSS from the Build Service:
 
 ```
-https://origami-build.ft.com/v2/bundles/css?modules=o-buttons
+https://www.ft.com/__origami/service/build/v2/bundles/css?modules=o-buttons
 ```
 
 This request says "give me the CSS for o-buttons at the latest version"
@@ -49,7 +49,7 @@ This request says "give me the CSS for o-buttons at the latest version"
 Let's add that to our page in the `<head>` as a `<link ...>` tag
 
 ```
-<link rel="stylesheet" href="https://origami-build.ft.com/v2/bundles/css?modules=o-buttons" />
+<link rel="stylesheet" href="https://www.ft.com/__origami/service/build/v2/bundles/css?modules=o-buttons" />
 ```
 
 <aside class='read-more'>
@@ -67,7 +67,7 @@ For this tutorial though, you need to add the class `o-buttons` to the `<button>
 o-buttons has some design variations. Let's apply the `standout` variation by the adding `o-buttons--standout` class.
 
 ```
-<button class="o-buttons o-buttons--standout">Here's a button</button>
+<button class="o-buttons o-buttons--secondary">Here's a button</button>
 ```
 
 ## 4. Include the JavaScript
@@ -75,13 +75,13 @@ o-buttons has some design variations. Let's apply the `standout` variation by th
 `o-buttons` also has some JavaScript to make buttons work better on touch devices like phones. Getting JavaScript from the build service is as easy as getting the CSS.
 
 ```
-https://origami-build.ft.com/v2/bundles/js?modules=o-buttons
+https://www.ft.com/__origami/service/build/v2/bundles/js?modules=o-buttons
 ```
 
 Instead of using a `<link ...>` tag, use a `<script ...>` tag.
 
 ```
-<script async type="javascript" src="https://origami-build.ft.com/v2/bundles/js?modules=o-buttons" />
+<script async type="javascript" src="https://www.ft.com/__origami/service/build/v2/bundles/js?modules=o-buttons"></script>
 ```
 
 ## 5. Putting it all together
@@ -90,12 +90,12 @@ Instead of using a `<link ...>` tag, use a `<script ...>` tag.
 <html>
 	<head>
 		<!-- build service links and scripts here -->
-		<script async type="javascript" src="https://origami-build.ft.com/v2/bundles/js?modules=o-buttons" />
-		<link rel="stylesheet" href="https://origami-build.ft.com/v2/bundles/css?modules=o-buttons" />
+		<script async type="javascript" src="https://www.ft.com/__origami/service/build/v2/bundles/js?modules=o-buttons"></script>
+		<link rel="stylesheet" href="https://www.ft.com/__origami/service/build/v2/bundles/css?modules=o-buttons" />
 	</head>
 	<body>
 		Hello!
-		<button class="o-buttons o-buttons--standout">Here's a button</button>
+		<button class="o-buttons o-buttons--secondary">Here's a button</button>
 	</body>
 </html>
 ~~~
@@ -113,4 +113,4 @@ Some components, like `o-header` have much more complicated HTML than `o-buttons
 
 This tutorial is a very quick guide to Origami. It skipped over a few important concepts that you'll need to know for using Origami modules in a live service. The next tutorial will take you through using Origami in more detail.
 
-<a href="/docs/developer-guide/modules/choosing-your-build-method/" class="o-buttons o-buttons--standout">Let's do this the proper way</a>
+<a href="/docs/developer-guide/modules/choosing-your-build-method/" class="o-buttons o-buttons--secondary">Let's do this the proper way</a>

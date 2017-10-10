@@ -58,7 +58,7 @@ In some cases, you might want to tightly lock down the versions of components yo
 
 If you're using the Build Service, you can see the shrinkwrapped version of any build service request at the top of a response. So, if you visit
 
-`https://origami-build.ft.com/v2/bundles/css?modules=o-grid@^4.0.0,o-fonts@^1.4.0`
+`https://www.ft.com/__origami/service/build/v2/bundles/css?modules=o-grid@^4.0.0,o-fonts@^1.4.0`
 
 at the top you'll see it's shrinkwrapped equivalent:
 

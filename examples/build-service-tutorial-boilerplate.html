@@ -47,7 +47,7 @@
 		Load the Origami stylesheet.
 		Replace a,b,c with the names of the additional modules you want to load.
 	-->
-	<link rel="stylesheet" href="https://origami-build.ft.com/v2/bundles/css?modules=a,b,c" />
+	<link rel="stylesheet" href="https://www.ft.com/__origami/service/build/v2/bundles/css?modules=a,b,c" />
 
 	<!--
 		Unconditionally load the polyfill service to provide the best support
@@ -58,7 +58,7 @@
 		See the polyfill service home page for more details:
 		https://cdn.polyfill.io/
 	-->
-	<script src="//polyfill.webservices.ft.com/v1/polyfill.min.js"></script>
+	<script src="https://polyfill.io/v2/polyfill.min.js"></script>
 
 	<!--
 		Load main JavaScript bundle (asynchronously, to make sure it's non-blocking).
@@ -72,7 +72,7 @@
 				var s = document.getElementsByTagName('script')[0];
 				s.parentNode.insertBefore(o, s);
 			}
-		}('https://origami-build.ft.com/v2/bundles/js?modules=a,b,c'));
+		}('https://www.ft.com/__origami/service/build/v2/bundles/js?modules=a,b,c'));
 	</script>
 </head>
 <body>

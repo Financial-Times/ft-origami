@@ -5,7 +5,7 @@ export PATH := $(NPM_BIN):$(PATH)
 # Install dependencies
 install:
 	@echo "Installing Pa11y..."
-	@npm install pa11y-ci@^0.2
+	@npm install
 	@echo "Installing GitHub Pages gem..."
 	@gem install github-pages
 

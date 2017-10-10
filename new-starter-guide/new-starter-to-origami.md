@@ -17,9 +17,7 @@ The checklist assumes that you have done the following:
 
 ### Admin privileges on your machine
 
-<abbr title="IT Services Desk">ITSD</abbr> should have done admin privileges for you and your machine when they did the setup. If not, then you should [request admin access to your FT laptop via Salesforce](https://financialtimes.my.salesforce.com/home/home.jsp) to ensure it does not get revoked.
-
-If you do not have admin privileges then email `itservicedesk@ft.com`.
+<abbr title="IT Services Desk">ITSD</abbr> should have done admin privileges for you and your machine when they did the setup. If not, then search for the &ldquo;Account Amendment/Administration&rdquo; form at [selfservice.ft.com](http://selfservice.ft.com).
 
 Include your desk number (which is usually a label on your desk) and the machine number with the email. You also will need to say why you need admin privileges, or copy the template below and edit to suit the situation.
 
@@ -37,7 +35,7 @@ Thanks
 <your name>
 ```
 
-This should hurry your request for admin privileges on your machine.
+This should hurry your request for admin privileges on your machine. You may email <abbr title="IT Services Desk">ITSD</abbr> directly at `itservicedesk@ft.com` with any queries.
 
 ### Slack
 
@@ -48,14 +46,19 @@ This should hurry your request for admin privileges on your machine.
 
 3. Join the `#ft-origami` channel, then ask the team to add you to the internal channels.
 
+4. Ask to be added to the @origami-team notifications handle.
+
+**A notice about @channel and @here** Slack has a feature whereby you can alert everyone in the channel about something you want them to read.  This can be very useful where something is incredibly important and needs an immediate response. In a lot of channels, there are more than 100 people in the channel, and notifying all of them about something is a bit inconsiderate unless it's an emergency. Please bear this in mind when using this feature.
+In emergencies, you can use this feature by typing `@here` (for everyone who is logged in) or `@channel` (is for even people who are not logged in).
+
 ### Code repositories
 
-1. The public repositories are at [GitHub/Financial-Times](https://github.com/Financial-Times) on GitHub. The private ones are at [BitBucket](http://git.svc.ft.com/). Origami repositories should be public if at all possible. We also are looking into moving all private repositories onto GitHub.
+1. Origami repositories are at [GitHub/Financial-Times](https://github.com/Financial-Times) on GitHub. They should be public if at all possible. Further repositories can be found on [BitBucket](http://git.svc.ft.com/), these are private and archived.
 
 2. Ask the Origami team for access to the following:
-  - The GitHub organisation Financial-Times
+  - The GitHub organisation Financial-Times.
   - The `origami-core` & `origami-colloborators` on the GitHub organisation's teams.
-  - Granted admin access to BitBucket.
+  - Granted admin access to BitBucket. (_optional_)
 
 3. If you haven't done so already, please set up [2-factor authentication](https://help.github.com/articles/about-two-factor-authentication/) for GitHub.
 
@@ -63,7 +66,7 @@ This should hurry your request for admin privileges on your machine.
 
 ### LastPass
 
-Please do not just sign up on LastPass.com for a free account. You need to invited to the FT Enterprise LastPass account. Ask `itservicedesk@ft.com` to enable your LastPass account. Then ask a member of the team to add you to the Shared-origami folder as an administrator.
+The FT uses LastPass for managing passwords etc. Follow [the security guide](https://sites.google.com/a/ft.com/security/security-guides/lastpass) to setup your Enterprise LastPass account (ask `itservicedesk@ft.com` if you have any problems). Then ask a member of the team to add you to the Shared-origami folder as an administrator.
 
 ### Other tools
 
@@ -103,21 +106,18 @@ Almost all Origami applications rely on the following tools to be installed glob
 
 #### Install the following:
 
-- [Node.js](https://nodejs.org/) - The components are supported in Node v4 or Node v5.
+- [Node.js](https://nodejs.org/)
   - We recommend installing a [Node Version Manager](https://github.com/creationix/nvm) to manage different local node versions.
 - [Git](https://git-scm.com/)
 - [Heroku Toolbelt](https://toolbelt.heroku.com/)
 - [Bower](http://bower.io/)
-- [Ruby](http://www.ruby-lang.org/)
-  - We recommend installing a Ruby Version Manager to manage different ruby versions. There are two choices here. You can go either [Ruby Version Manager](https://rvm.io/) or [Rbenv](https://github.com/rbenv/rbenv).
-  - This is for the Ruby SCSS-Lint gem which is a part of <abbr title="Origami Build Tools">OBT</abbr>.
 
 #### Work with our ecosystem of components
 
 You will need to point Bower at the Origami registry. Running the following in a <abbr title="Command Line Interface">CLI</abbr> will do this for you.
 
 ```
-[ -e ~/.bowerrc ] || echo '{ "registry": { "search": [ "http://registry.origami.ft.com", "https://bower.herokuapp.com" ] } }' > ~/.bowerrc
+[ -e ~/.bowerrc ] || echo '{ "registry": { "search": [ "https://origami-bower-registry.ft.com", "https://bower.herokuapp.com" ] } }' > ~/.bowerrc
 ```
 
 You can join all the Origami applications on Heroku by checking out this [shared Google Sheets](https://docs.google.com/a/ft.com/spreadsheets/d/1xk1tyn60ZCmLk1I39Dot-08c9pBJeeX3g9MDENDqjKk/edit?usp=drive_web). You will need one other person from the Origami team to add you.
@@ -142,6 +142,4 @@ All contributors to Origami must use Pull Requests. These should be peer-reviewe
 
 ## Using Origami
 
-Being a part of the Origami team does need you to understand how the components library works. It is a good practice to go through [the tutorials and the documentation](http://origami.ft.com/).
-
-There are two ways of adding Origami modules. The first one is by the [Origami Build Service](http://origami.ft.com/docs/developer-guide/modules/build-service/). The second way is by doing it the manual way with [Origami Build Tools](http://origami.ft.com/docs/developer-guide/modules/building-modules/) via the CLI.
+All documentation on how to use Origami is here: [the tutorials and the documentation](http://origami.ft.com/).
