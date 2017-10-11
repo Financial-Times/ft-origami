@@ -117,7 +117,7 @@ Almost all Origami applications rely on the following tools to be installed glob
 You will need to point Bower at the Origami registry. Running the following in a <abbr title="Command Line Interface">CLI</abbr> will do this for you.
 
 ```
-[ -e ~/.bowerrc ] || echo '{ "registry": { "search": [ "https://origami-bower-registry.ft.com", "https://bower.herokuapp.com" ] } }' > ~/.bowerrc
+[ -e ~/.bowerrc ] || echo '{ "registry": { "search": [ "https://origami-bower-registry.ft.com", "https://registry.bower.io" ] } }' > ~/.bowerrc
 ```
 
 You can join all the Origami applications on Heroku by checking out this [shared Google Sheets](https://docs.google.com/a/ft.com/spreadsheets/d/1xk1tyn60ZCmLk1I39Dot-08c9pBJeeX3g9MDENDqjKk/edit?usp=drive_web). You will need one other person from the Origami team to add you.
