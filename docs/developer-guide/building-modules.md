@@ -27,7 +27,7 @@ To build Origami modules manually, you'll need Node and Git. It doesn't matter i
 
 <aside>
 	<h4>Installing packages should not require root</h4>
-	<p>Node.js comes with the npm package manager. You will need to ensure it can install packages without requiring root access. If you get an <code>EACCES</code> error when installing a package you'll need to set up npm to 
+	<p>Node.js comes with the npm package manager. You will need to ensure it can install packages without requiring root access. If you get an <code>EACCES</code> error when installing a package you'll need to set up npm to
 	<a href="https://github.com/Financial-Times/origami-build-tools/blob/master/TROUBLESHOOT.md#install">fix permissions</a></p>
 </aside>
 
@@ -160,7 +160,7 @@ So that bower can find the modules you've listed in your `bower.json`, it needs 
 		"registry": {
 			"search": [
 				"http://registry.origami.ft.com",
-				"https://bower.herokuapp.com"
+				"https://registry.bower.io"
 			]
 		}
 	}
