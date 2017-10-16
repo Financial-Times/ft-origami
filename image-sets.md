@@ -42,7 +42,7 @@ Both of these actions have been automated so once you've set up Circleci, you sh
 
 #### Create a circle.yml
 
-It should be something like this one in [o-icons]https://github.com/Financial-Times/fticons/blob/master/circle.yml
+It should be something like this one in [o-icons](https://github.com/Financial-Times/fticons/blob/master/circle.yml)
 
 To get the image set manifest step to work you'll need to give circleci some permissions.
 
