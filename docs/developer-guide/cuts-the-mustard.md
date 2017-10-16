@@ -23,7 +23,21 @@ For an example of what is considered the core experience of a module compared to
 ### 1. Define the test
 A `cuts the mustard` test works by testing for some features only implemented in modern browsers. Our recommended cuts the mustard test is as follows:
 
-	var cutsTheMustard = ('querySelector' in document && 'localStorage' in window && 'addEventListener' in window);
+	var supportsBlobConstructor;
+	try {
+		new Blob;
+		supportsBlobConstructor = true;
+	} catch (e) {
+		supportsBlobConstructor = false;
+	}
+
+	var cutsTheMustard = (
+		typeof Function.prototype.bind !== 'undefined'
+		&& typeof document.documentElement.dataset === 'object'
+		&& ('withCredentials' in new XMLHttpRequest())
+		&& supportsBlobConstructor
+	);
+
 
 ### 2. Add styles to hide core-only HTML in Origami
 
