@@ -8,7 +8,7 @@ site_section: about-origami
 
 # Origami manifests
 
-All origami components, whether imageset,modules or web services, should be discoverable by the Origami registry and provide information on how the component is supported.  To do this, the component must contain an `origami.json` file in the root of its repository.
+All origami components, whether imagesets, modules or web services, should be discoverable by the Origami registry and provide information on how the component is supported.  To do this, the component must contain an `origami.json` file in the root of its repository.
 
 ## Format
 
