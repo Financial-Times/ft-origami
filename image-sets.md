@@ -31,48 +31,27 @@ The origami.json file contains metadata used by the registry.
 All images should be the same format (eg all PNG, all SVG). This is due to a limitation in the image service.
 These images should all go in a folder in the root of your project called `src`.
 
-### Create an imageList.json in the root
+### Getting your images into the Image Service and Registry
 
-This file should contain an array of objects, one object for each image. The name is the filename of your image, with the file extension removed.
+All image sets should be available via the Image Service and Registry.
 
-```
-{
-	"images": [
-		{
-			"name": "ned-logo"
-		},
-		{
-			"name": "other-logo"
-		}
-	]
-}
-```
+Both of these actions have been automated so once you've set up Circleci, you should be able to forget about both of these things.
 
-#### Automating imageList.json
+- Generate an imageset.json as a post merge step
+- Set up auto uploading to the Image Service as a post-release step
 
-Currently, all origami image sets are set up to auto generate this list as a post deploy step in Circleci.
+#### Create a circle.yml
 
-Copy the circle.yml and buildImageList.js from http://github.com/financial-times/logo-images.
+It should be something like this one in [o-icons]https://github.com/Financial-Times/fticons/blob/master/circle.yml
 
-- **buildImageList.js** reads the contents of your src folder and generates your JSON which it then writes to imageList.json.
-- **circle.yml** runs the JSON building JavaScript and, if that results in a file change, commits it.
+To get the image set manifest step to work you'll need to give circleci some permissions.
 
-To get this to work, you have to do some set up in circle and github too:
-
-- In Github, set up Origamiserviceuser as a collaborator with write access to the image set. Origamiserviceuser doesn't have 2FA enabled so it should only be given write access explicitly and only where absolutely necessary.
+- Logged in as you, In Github, set up Origamiserviceuser as a collaborator with write access to the image set. Origamiserviceuser doesn't have 2FA enabled so it should only be given write access explicitly and only where absolutely necessary.
 - Log out of Github.
 - Log in to Github as origamiserviceuser (details in Lastpass)
 - Now log in to Circleci using Github (as origamiservivceuser)
 - Go to "Add Projects" and find the new Image Set (It should be under the Financial Times organisation)
 - In the Project window, click the cog in the top left and then go to Checkout SSH keys (or go to /edit#checkout)
-- Click "add origamiserviceuser user key". This will give Circleci write access so that it can write imageList.json as a post-test step.
+- Click "add origamiserviceuser user key". This will give Circleci write access so that it can write imageList.json as a post-merge step.
 
-## Adding the image set to the Image Service
-
-1. Update the [imageset map](https://github.com/Financial-Times/origami-imageset-uploader/blob/master/imageset-map.json) in Origami Image Set uploader, to include the new image set. The keys relate to the name of the repository under Financial-Times on GitHub, the values reference the scheme that the Image Service will implement and the name of the folder in the repo where images live.
-
-1. Once your PR is merged, deploy the Image Set uploader.
-
-1. Go to `https://github.com/Financial-Times/<your-repo>/settings/hooks` and add a new webhook. Set the Payload URL to `http://origami-imageset-uploader.herokuapp.com/release`, check "Let me select individual events", then check only "Release" (you'll need to uncheck "Push").
-
-1. You'll now need to create a release on the image set repo. This should trigger the webhook and upload a copy of the image set to our S3 bucket. You can check that this has worked by going to: `http://origami-imageset-uploader-s3.s3.amazonaws.com/<scheme>/v1/<image>.<ext>`.
+#### Add to the Image Service
