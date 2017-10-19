@@ -53,11 +53,11 @@ To get the `build-manifest` step in your `circle.yml` to work, you'll need to se
 
   - Logged in as you, In Github, set up origamiserviceuser as a collaborator with write access to the image set. origamiserviceuser doesn't have 2FA enabled so it should only be given write access explicitly and only where absolutely necessary
 
+  - Log in to CircleCI and add your new image set as a project
+
   - Log out of Github
 
-  - Log in to Github as origamiserviceuser (details in Lastpass)
-
-  - Now log in to CircleCI using Github (as origamiservivceuser)
+  - Now log in to CircleCI using Github as origamiservivceuser (Details in LastPass)
 
   - Go to "Add Projects" and find the new Image Set (It should be under the Financial-Times organisation)
 
@@ -102,5 +102,6 @@ If the above is all working, we're ready to add the image set to the Image Servi
   - In `views/api.html`, update the URI part of the table to include the new custom scheme. In the documentation, you'll need to suffix the custom scheme you specify with `-v1`
 
   - Add tests for the above where appropriate. A good indicator of whether you need to include a test is when there's already a test which mentions an existing image set. Grepping the `test` directory for `ftsocial` is a quick way to determine this
+
 
   - Run the Image Service locally to test all of this, and open a PR. When merged the new image set will be available on the Image Service QA instance, test here before promoting to production
