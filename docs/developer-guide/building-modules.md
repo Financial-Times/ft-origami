@@ -159,7 +159,7 @@ So that bower can find the modules you've listed in your `bower.json`, it needs 
 	{
 		"registry": {
 			"search": [
-				"http://registry.origami.ft.com",
+				"https://origami-bower-registry.ft.com",
 				"https://registry.bower.io"
 			]
 		}
