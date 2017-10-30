@@ -40,7 +40,7 @@ Product developers are encouraged to include Origami JavaScript using a 'cuts th
 
 ### Scoping and binding `this`
 
-The value of `this` *should not* be copied into non-semantic variables such as `that`, `self` or `_this` in order to embed a child funtion context.  Instead, either use a semantic name, or bind the correct value of `this`.  Some object methods accept the intended value of `this` as an argument, such as [Array.prototype.filter](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Array/filter), and this method *should* be considered most preferred:
+The value of `this` *should not* be copied into non-semantic variables such as `that`, `self` or `_this` in order to embed a child function context.  Instead, either use a semantic name, or bind the correct value of `this`.  Some object methods accept the intended value of `this` as an argument, such as [Array.prototype.filter](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Array/filter), and this method *should* be considered most preferred:
 
 
 	arr.filter(function(item) {
