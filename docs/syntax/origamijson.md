@@ -47,14 +47,8 @@ All origami components, whether imagesets, modules or web services, should be di
 	<td><code>&nbsp;&nbsp;support</code></td>
 	<td>string*</td>
 	<td>
-		<p>Where a product developer can go for support on this component.  Either an email address (which should be a group or role based address, not a named individual), or the URL of the component's bug or issue tracker (e.g. a GitHub issues URL, or other issue tracker such as Redmine).</p>
-		<p>The owner identified here by email address or URL commits to the following obligations:</p>
-		<ul>
-			<li>review code prior to a release</li>
-			<li>sign off deployments</li>
-			<li>publish and keep up to date release notes and documentation</li>
-			<li>move to decommission the component when appropriate</li>
-		</ul>
+		<p>Where a product developer can go for support on this component, normally the URL of the component's bug or issue tracker (e.g. a GitHub issues URL, or other issue tracker such as Redmine).</p>
+		<p>It's valid to use an email address in place of an issue tracker URL, but this is deprecated: use <code>supportContact.email</code> instead.</p>
 	</td>
 </tr><tr>
 	<td><code>&nbsp;&nbsp;supportStatus</code></td>
@@ -68,6 +62,31 @@ All origami components, whether imagesets, modules or web services, should be di
 			<li>'experimental' (the component is not ready for production use.  This was previously called 'not implemented')</li>
 		</ul>
 	</td>
+</tr><tr>
+	<td><code>&nbsp;&nbsp;supportContact&nbsp;{</code></td>
+	<td>object</td>
+	<td>
+		<p>Contact details which a product developer can use to find support for this component. The owner(s) identified commit to the following obligations:</p>
+		<ul>
+			<li>review code prior to a release</li>
+			<li>sign off deployments</li>
+			<li>publish and keep up to date release notes and documentation</li>
+			<li>move to decommission the component when appropriate</li>
+			<li>provide help and support to users of the component</li>
+		</ul>
+	</td>
+</tr><tr>
+	<td><code>&nbsp;&nbsp;&nbsp;&nbsp;email</code></td>
+	<td>string</td>
+	<td>An email address that users can request support from. This email must group or role based, not a named individual.</td>
+</tr><tr>
+	<td><code>&nbsp;&nbsp;&nbsp;&nbsp;slack</code></td>
+	<td>string</td>
+	<td>A slack channel that users can go to for support. This must be in the format: <code><em>organisation</em>/<em>channel-name</em></code>. E.g. <code>financialtimes/ft-origami</code></td>
+</tr><tr>
+	<td><code>&nbsp;&nbsp;},</code></td>
+	<td></td>
+	<td></td>
 </tr><tr>
 	<td><code>&nbsp;&nbsp;ci&nbsp;{</code></td>
 	<td>object</td>
