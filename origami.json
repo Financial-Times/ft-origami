@@ -1,0 +1,12 @@
+{
+	"description": "This is the source code for the Origami website. Please visit [http://origami.ft.com/](http://origami.ft.com/) if you're looking for the documentation.",
+	"origamiType": null,
+	"origamiVersion": 1,
+	"keywords": [],
+	"support": "https://github.com/Financial-Times/ft-origami/issues",
+	"supportStatus": "active",
+	"supportContact": {
+		"email": "origami.support@ft.com",
+		"slack": "financialtimes/ft-origami"
+	}
+}
