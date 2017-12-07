@@ -5,7 +5,7 @@ machine:
     version: 2.3.0
 dependencies:
   pre:
-  - make install
+  - npm install && make install
   cache_directories:
     - "node_modules"
 test:
@@ -14,3 +14,4 @@ test:
         background: true
     - sleep 5
     - make test
+    - if [ "${CIRCLE_BRANCH}" == "master" ]; then make auto-version; fi
