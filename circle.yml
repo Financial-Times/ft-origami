@@ -14,4 +14,4 @@ test:
         background: true
     - sleep 5
     - make test
-    - if [ "${CIRCLE_BRANCH}" == "master" ]; then make auto-version; fi
+    - if [ "${CIRCLE_BRANCH}" == "gh-pages" ]; then make auto-version; fi
