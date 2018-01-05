@@ -59,7 +59,7 @@ At the moment a 'new' developer, whether 3rd party or internal, looking to creat
 
 Right now, given the way in which products have historically been (and to some extent still are) built in isolation by separated teams (and often by outside agencies), it's actually hard to know where a particular style or feature has been copied and might still exist.  Equally, low level foundations need to be kept around for years even though they've been superseded, simply because we don't know what might be using them.
 
-<p class="lead">In 2006, when Assanka started working with the FT, their team was told to ignore an old cookie called <code>FT_User</code>, which would soon be removed.  <em>Seven years later</em>, that cookie <b>is still being served today</b>, even as plans are being made to retire its successor.</p>
+<p class="lead">In 2006, when Assanka started working with the FT, their team was told to ignore an old cookie called <code>FT_User</code>, which would soon be removed.  <em>Twelve years later</em> that cookie was still being served, even as plans were being made to retire its successor.</p>
 
 Having to keep old stuff running is (like a ship dragging an anchor) a major handicap on the ability of the FT to adopt new, modern practices.
 
