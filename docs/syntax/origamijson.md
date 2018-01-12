@@ -210,7 +210,7 @@ All origami components, whether imagesets, modules or web services, should be di
 </tr><tr>
 	<td><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;dependencies</code></td>
 	<td>array</td>
-	<td>(optional) List of strings of other modules that are only needed for one or more demos and will be loaded via the build service. They follow the same structure as how the build service works. (e.g.: "o-ft-icons@^2.3.1" or "o-ft-icons").</td>
+	<td>(optional) List of strings of other modules that are needed for this demo and will be loaded via the build service.</td>
 </tr><tr>
 	<td><code>&nbsp;&nbsp;&nbsp;&nbsp;}</code></td>
 	<td></td>
