@@ -162,7 +162,7 @@ All origami components, whether imagesets, modules or web services, should be di
 </tr><tr>
 	<td><code>&nbsp;&nbsp;demos:&nbsp;[</code></td>
 	<td>array</td>
-	<td>(optional) Array of individual demos. You can also apply the same properties as `demosDefaults` to specific demos. </td>
+	<td>(optional) Array of individual demos.</td>
 </tr><tr>
 	<td><code>&nbsp;&nbsp;&nbsp;&nbsp;{</code></td>
 	<td>object</td>
@@ -187,6 +187,30 @@ All origami components, whether imagesets, modules or web services, should be di
 	<td><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;display_html</code></td>
 	<td>boolean</td>
 	<td>(optional) Whether the demo should have a HTML tab in the Registry (defaults to <code>true</code>).</td>
+</tr><tr>
+	<td><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;template</code></td>
+	<td>string*</td>
+	<td>The mustache template to render.</td>
+</tr><tr>
+	<td><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sass</code></td>
+	<td>string</td>
+	<td>(optional) The Sass file to compile.</td>
+</tr><tr>
+	<td><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;js</code></td>
+	<td>string</td>
+	<td>(optional) The JS file to build with Browserify.</td>
+</tr><tr>
+	<td><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;data</code></td>
+	<td>string</td>
+	<td>(optional) Data to pass to the mustache template.</td>
+</tr><tr>
+	<td><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;documentClasses</code></td>
+	<td>string</td>
+	<td>(optional) CSS classes to set on the <code>html</code> tag.</td>
+</tr><tr>
+	<td><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;dependencies</code></td>
+	<td>array</td>
+	<td>(optional) List of strings of other modules that are needed for this demo and will be loaded via the build service.</td>
 </tr><tr>
 	<td><code>&nbsp;&nbsp;&nbsp;&nbsp;}</code></td>
 	<td></td>
