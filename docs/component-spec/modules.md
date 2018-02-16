@@ -114,8 +114,8 @@ Origami modules are generally installed based on a semver range. To ensure new r
 * When using a new browser API which requires support from the Polyfill service (added in the features list of the `origami.json`) and is outside of the default set, make a major release.
 * Make sure private Sass functions and mixins are prefixed with an underscore. If not, even if they weren’t intended for public use, they will need to follow the same deprecation process as public functions and mixins
 * All JavaScript components *must* have tests and they *must* pass
-* Run `obt verify` and `obt test` and make sure there are no errors
-* Run `obt demo --runServer --updateorigami` to regenerate the demos and check they work as they should
+* Verify and test using [Origami Build Tools](https://github.com/Financial-Times/origami-build-tools) to make sure there are no errors
+* Build demos using [Origami Build Tools](https://github.com/Financial-Times/origami-build-tools) to check they work as they should
 * If releasing a module that contains generated content (fonts for example), make sure the new files are in the git repository (git ls-files) at the release commit
 * Don’t make a major release until all or most dependants have removed deprecated features
 
