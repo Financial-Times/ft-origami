@@ -82,7 +82,6 @@ The following requirements apply to creating a Origami-compatible module compone
 * not include package management config for any package manager other than Bower, except for package config whose only purpose is to load dependencies for development or testing of the component and which does not render the repo installable by that packaging system
 * where they contain Sass files, conform to the syntax and language standards for [use of Sass in Origami components]({{site.baseurl}}/docs/syntax/scss)
 * where they contain JavaScript files, conform to the syntax and language standards for [use of JavaScript in Origami components]({{site.baseurl}}/docs/syntax/js)
-* where they are openly hosted on GitHub and have CI, use [Travis](https://travis-ci.org) to do the CI
 * consider touch, keyboard and mouse interaction where applicable
 * list, in documentation, the minimum versions of each browser family in which the component has been tested using the enhanced experience and the core experience (see [browser support](#browser-support) below)
 
@@ -330,13 +329,9 @@ Example:
 
 ### Continuous integration
 
-Modules *should* implement CI. If a module does so and is openly hosted on GitHub, it *must* use Travis CI, via the [origami-build-tools](https://github.com/Financial-Times/origami-build-tools) utility.  To invoke this in a module simply create a `.travis.yml` file in the root of the repo containing:
+Modules *should* implement CI. If a module does so it *must* build via the [origami-build-tools](https://github.com/Financial-Times/origami-build-tools) utility.
 
-<div class="o-techdocs-gist" data-repo="Financial-Times/ft-origami" data-branch="gh-pages" data-path="/examples/travis.yml"></div>
-
-Then enable Travis for the project from your [Travis profile page](https://travis-ci.org/profile).  The origami build tool will read the `bower.json` file, build the CSS and JavaScript bundles from the main files (the CSS in both silent and non-silent mode), and will verify that the resulting bundles are valid.
-
-Modules that are not openly published on GitHub *should* use Jenkins for CI.
+For continuous integration we recommend CircleCI. See `circle.yml` in [Financial-Times/o-component-boilerplate](https://github.com/Financial-Times/o-component-boilerplate/blob/master/circle.yml) for example configuration.
 
 ## Documentation
 
