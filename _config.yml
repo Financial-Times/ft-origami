@@ -1,0 +1,38 @@
+
+# Content collections
+collections:
+  documentation:
+    output: true
+    permalink: /:collection/:name/
+  tutorials:
+    output: true
+    permalink: /:collection/:name/
+  specification:
+    output: true
+    permalink: /:collection/:name/
+
+# Default front-matter
+defaults:
+  - scope:
+      path: ""
+    values:
+      layout: default
+
+# Files and directories to exclude from compilation
+exclude:
+  - CNAME
+  - Gemfile
+  - Gemfile.lock
+  - LICENSE
+  - Makefile
+  - node_modules
+  - README.md
+
+# Jekyll plugins
+plugins:
+  - jekyll-redirect-from
+  - jekyll-sitemap
+  - jemoji
+
+# Timezone setting
+timezone: Europe/London

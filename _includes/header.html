@@ -1,0 +1,54 @@
+
+<header role="banner">
+	<nav role="navigation" aria-label="Main Navigation">
+		<ul>
+			<li>
+				<a href="/" {% if page.url == '/' %}aria-current="page"{% endif %}>
+					Home
+				</a>
+			</li>
+			<li>
+				<a href="/documentation/" {% if page.url == '/documentation/' %}aria-current="page"{% endif %}>
+					Documentation
+				</a>
+				<ul>
+					{% for doc in site.documentation %}
+						<li>
+							<a href="{{ doc.url }}" {% if page.url == doc.url %}aria-current="page"{% endif %}>
+								{{ doc.title }}
+							</a>
+						</li>
+					{% endfor %}
+				</ul>
+			</li>
+			<li>
+				<a href="/tutorials/" {% if page.url == '/tutorials/' %}aria-current="page"{% endif %}>
+					Tutorials
+				</a>
+				<ul>
+					{% for doc in site.tutorials %}
+						<li>
+							<a href="{{ doc.url }}" {% if page.url == doc.url %}aria-current="page"{% endif %}>
+								{{ doc.title }}
+							</a>
+						</li>
+					{% endfor %}
+				</ul>
+			</li>
+			<li>
+				<a href="/specification/" {% if page.url == '/specification/' %}aria-current="page"{% endif %}>
+					<abbr title="Specification">Spec</abbr>
+				</a>
+				<ul>
+					{% for doc in site.specification %}
+						<li>
+							<a href="{{ doc.url }}" {% if page.url == doc.url %}aria-current="page"{% endif %}>
+								{{ doc.title }}
+							</a>
+						</li>
+					{% endfor %}
+				</ul>
+			</li>
+		</ul>
+	</nav>
+</header>

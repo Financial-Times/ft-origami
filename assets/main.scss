@@ -1,0 +1,53 @@
+---
+#// Empty front-matter to ensure that Jekyll processes this file
+---
+
+// NOTE
+// Some temporary styles just to make this look less awful while
+// we work on it. Remove these as soon as styling work begins
+
+html, body {
+	margin: 0;
+}
+html {
+	font-family: sans-serif;
+}
+body {
+	padding: 30px;
+}
+main {
+	max-width: 600px;
+	padding: 30px 0;
+}
+nav {
+	ul {
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+	> ul {
+		display: flex;
+		> li {
+			position: relative;
+			> ul {
+				display: none;
+				position: absolute;
+				left: 0;
+				background: #fff;
+				white-space: nowrap;
+				border: solid 1px #eee;
+			}
+			&:hover > ul {
+				display: block;
+			}
+		}
+	}
+	a {
+		display: block;
+		padding: 10px 10px;
+	}
+	a:hover,
+	li:hover > a {
+		background: #eee;
+	}
+}
