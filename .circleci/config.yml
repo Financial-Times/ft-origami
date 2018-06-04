@@ -4,12 +4,12 @@ version: 2
 references:
   container: &container_config
     docker:
-      - image: circleci/ruby:2.4-node
+      - image: circleci/ruby:2.3-node
   cache_dependencies: &cache_dependencies
     save_cache:
       key: dependency-cache-{{ checksum "Gemfile.lock" }}
       paths:
-        - node_modules
+        - vendor/bundle
   restore_dependencies: &restore_dependencies
     restore_cache:
       keys:
