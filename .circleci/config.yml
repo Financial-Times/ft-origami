@@ -7,14 +7,14 @@ references:
       - image: circleci/ruby:2.3-node
   cache_dependencies: &cache_dependencies
     save_cache:
-      key: dependency-cache-{{ checksum "Gemfile.lock" }}
+      key: dependency-cache-gemfile-{{ checksum "Gemfile.lock" }}
       paths:
         - vendor/bundle
   restore_dependencies: &restore_dependencies
     restore_cache:
       keys:
-        - dependency-cache-{{ checksum "Gemfile.lock" }}
-        - dependency-cache-
+        - dependency-cache-gemfile-{{ checksum "Gemfile.lock" }}
+        - dependency-cache-gemfile-
 
 # Circle jobs
 jobs:
@@ -30,12 +30,8 @@ jobs:
           command: make install
       - *cache_dependencies
       - run:
-          name: Serve the website
-          command: make serve
-          background: true
-      - run:
-          name: Wait for website to start
-          command: sleep 5
+          name: Build the website
+          command: make build
       - run:
           name: Run accessibility tests
           command: make test

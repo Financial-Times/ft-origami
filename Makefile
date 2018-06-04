@@ -1,6 +1,4 @@
 
-HOST = localhost:4000
-
 # Install dependencies
 install:
 	@echo "Installing dependencies"
@@ -9,7 +7,7 @@ install:
 # Build the site
 build:
 	@echo "Building site"
-	@bundle exec jekyll build --drafts
+	@bundle exec jekyll build
 
 # Watch the site for changes, then build
 watch:
@@ -24,4 +22,4 @@ serve:
 # Run pa11y against the site
 test:
 	@echo "Testing site"
-	@npx pa11y-ci --sitemap "http://$(HOST)/sitemap.xml"
+	@npx pa11y-ci --sitemap "./_site/sitemap.xml"
