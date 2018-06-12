@@ -347,10 +347,10 @@ Just type `gulp`:
 Compiling ./client/scss/main.scss</output>
 </pre>
 
-If the `verify` task fails try to remove the project's local npm_modules and bower_components folder and run obt install again:
+If the `verify` task fails try to remove the project's local node_modules and bower_components folder and run obt install again:
 
 <pre class="cli">
-<kbd>rm -rf npm_modules ./bower_components</kbd>
+<kbd>rm -rf node_modules ./bower_components</kbd>
 <kbd>obt install</kbd>
 </pre>
 
