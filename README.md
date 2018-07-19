@@ -14,7 +14,7 @@ This is the source code for the Origami website. Please visit [http://origami.ft
 Now install all the dependencies required to build the site:
 
 ```sh
-make install
+npm install && make install
 ```
 
 After this, you can start running the site using:
