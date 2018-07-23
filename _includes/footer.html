@@ -1,18 +1,19 @@
-
-<footer role="contentinfo">
-	<nav>
-		<ul>
-			<li>
-				<!-- TODO change this URL to "{{site.github.repository_url}}/edit/master/{{page.path}}" on launch -->
-				<a href="{{site.github.repository_url}}/edit/new/{{page.path}}">
-					Suggest an edit to this page
-				</a>
-			</li>
-		</ul>
-	</nav>
-
-	<small>
-		© THE FINANCIAL TIMES LTD {{ site.time | date: '%Y' }}. FT and 'Financial Times' are trademarks of The Financial Times Ltd.
-	</small>
-
+<footer class="o-layout__footer o-footer-services o-footer-services--wide">
+	<div class="o-footer-services__container">
+			<div class="o-footer-services__info">
+				<span class="o-footer-services__logo">Origami</span>
+				<p class="o-footer-services__contact-email">Help or advice can be found here
+					<a href="mailto:origami.support@ft.com">origami.support@ft.com</a>.
+					<!-- TODO change this URL to "{{site.github.repository_url}}/edit/master/{{page.path}}" on launch -->
+					<a href="{{site.github.repository_url}}/edit/new/{{page.path}}">
+						Suggest an edit to this page
+					</a>
+				</p>
+				<p class="o-footer-services__contact-slack"><a href="https://slack.com/messages/[id]/">#slack-channel</a></p>
+			</div>
+			<div class="o-footer-services__base">
+				<p class="o-footer-services__source-code"><a href="{{site.github.repository_url}}">View project on GitHub</a></p>
+				<p class="o-footer-services__copyright">&#xA9; THE FINANCIAL TIMES LTD {{ site.time | date: '%Y' }}. FT and &apos;Financial Times&apos; are trademarks of The Financial Times Ltd.</p>
+			</div>
+	</div>
 </footer>

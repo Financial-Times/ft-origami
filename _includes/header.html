@@ -1,54 +1,40 @@
+<header class="o-header-services o-layout__header" data-o-component="o-header">
+	<div class="o-header-services__top o-header-services__container">
 
-<header role="banner">
-	<nav role="navigation" aria-label="Main Navigation">
-		<ul>
-			<li>
-				<a href="/" {% if page.url == '/' %}aria-current="page"{% endif %}>
-					Home
-				</a>
-			</li>
-			<li>
-				<a href="/documentation/" {% if page.url == '/documentation/' %}aria-current="page"{% endif %}>
-					Documentation
-				</a>
-				<ul>
-					{% for doc in site.documentation %}
-						<li>
-							<a href="{{ doc.url }}" {% if page.url == doc.url %}aria-current="page"{% endif %}>
-								{{ doc.title }}
-							</a>
-						</li>
-					{% endfor %}
-				</ul>
-			</li>
-			<li>
-				<a href="/tutorials/" {% if page.url == '/tutorials/' %}aria-current="page"{% endif %}>
-					Tutorials
-				</a>
-				<ul>
-					{% for doc in site.tutorials %}
-						<li>
-							<a href="{{ doc.url }}" {% if page.url == doc.url %}aria-current="page"{% endif %}>
-								{{ doc.title }}
-							</a>
-						</li>
-					{% endfor %}
-				</ul>
-			</li>
-			<li>
-				<a href="/specification/" {% if page.url == '/specification/' %}aria-current="page"{% endif %}>
-					<abbr title="Specification">Spec</abbr>
-				</a>
-				<ul>
-					{% for doc in site.specification %}
-						<li>
-							<a href="{{ doc.url }}" {% if page.url == doc.url %}aria-current="page"{% endif %}>
-								{{ doc.title }}
-							</a>
-						</li>
-					{% endfor %}
-				</ul>
-			</li>
-		</ul>
+			<!-- <div class="o-header-services__hamburger">
+				<a class="o-header-services__hamburger-icon" href="#o-header-drawer" aria-controls="o-header-drawer"><span class="o-header__visually-hidden">Menu</span></a>
+			</div> -->
+
+			<div class="o-header-services__ftlogo"></div>
+			<div class="o-header-services__title">
+				<h1 class="o-header-services__product-name">
+					<a href="/">Origami</a>
+				</h1>
+				<span class="o-header-subrand__product-tagline">*THE* Component Library.</span>
+			</div>
+	</div>
+
+	<nav class="o-header-services__primary-nav">
+		<div class="o-header-services__container">
+			<ul class="o-layout__primary-nav o-header-services__nav-list">
+				<li class="o-header-services__nav-item">
+
+					<a class="o-header-services__nav-link" href="/documentation/" {% if page.url == '/documentation' %}aria-selected="true"{% endif %}>
+						Documentation
+					</a>
+				</li>
+
+				<li class="o-header-services__nav-item">
+					<a class="o-header-services__nav-link"  href="/tutorials/" {% if page.url == '/tutorials/' %}aria-selected="true"{% endif %}>
+						Tutorials
+					</a>
+				</li>
+
+				<li class="o-header-services__nav-item">
+					<a class="o-header-services__nav-link"  href="/specification/" {% if page.url == '/specification/' %}aria-selected="true"{% endif %}>
+						<abbr title="Specification">Spec</abbr>
+					</a>
+			</ul>
+		</div>
 	</nav>
 </header>
