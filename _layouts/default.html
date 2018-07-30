@@ -25,33 +25,38 @@
 			display: none !important;
 		}
 	</style>
-	<link rel="stylesheet" href="https://www.ft.com/__origami/service/build/v2/bundles/css?modules=o-fonts@^3,o-layout@initalise" />
+	<link rel="stylesheet" href="https://www.ft.com/__origami/service/build/v2/bundles/css?modules=o-fonts@^3,o-layout@^1.2.1" />
 	<link rel="stylesheet" href="/assets/main.css" />
 	<!-- Site links -->
 	<link rel="sitemap" type="application/xml" href="/sitemap.xml" title="Sitemap" />
 	<link rel="canonical" href="{{site.github.url}}{{ page.url | replace: 'index.html', '' }}" />
 
+	<script>
+		(function(src) {
+			if (cutsTheMustard) {
+				var o = document.createElement('script');
+				o.async = o.defer = true;
+				o.src = src;
+				var s = document.getElementsByTagName('script')[0];
+				s.parentNode.insertBefore(o, s);
+			}
+		}('https://www.ft.com/__origami/service/build/v2/bundles/js?modules=o-fonts@^3,o-layout@^1.2.1'));
+	</script>
+
 </head>
 <body>
-	<div class="o-layout">
+	<div class="o-layout" data-o-component="o-layout">
 
 		{% include header.html %}
 
-		<div class="o-layout__sidebar">
-			<ol class="o-layout__navigation">
-				{% for item in page.navigation %}
-					<li>
-						<a href="#{{ item.name | downcase }}"> {{ item.name }} </a>
-					</li>
-				{% endfor %}
-			</ol>
-		</div>
+		<div class="o-layout__sidebar"></div>
+
 		<div class="o-layout__main">
 			{{content}}
 		</div>
 
 		{% include footer.html %}
-	</div>
 
+	</div>
 </body>
 </html>

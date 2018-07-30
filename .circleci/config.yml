@@ -1,0 +1,42 @@
+version: 2
+
+# References to reduce duplication in the rest of the config
+references:
+  container: &container_config
+    docker:
+      - image: circleci/ruby:2.3-node
+  cache_dependencies: &cache_dependencies
+    save_cache:
+      key: dependency-cache-gemfile-{{ checksum "Gemfile.lock" }}
+      paths:
+        - vendor/bundle
+  restore_dependencies: &restore_dependencies
+    restore_cache:
+      keys:
+        - dependency-cache-gemfile-{{ checksum "Gemfile.lock" }}
+        - dependency-cache-gemfile-
+
+# Circle jobs
+jobs:
+
+  # Verify code then run unit and integration tests
+  test:
+    <<: *container_config
+    steps:
+      - checkout
+      - *restore_dependencies
+      - run:
+          name: Install dependencies
+          command: make install
+      - *cache_dependencies
+      - run:
+          name: Build the website
+          command: make build
+      # TODO later run a11y tests with `make test`
+
+# Circle workflows
+workflows:
+  version: 2
+  test:
+    jobs:
+      - test
