@@ -8,7 +8,7 @@ collection_id: specification
 # Navigation config
 nav_display: true
 nav_label: Spec
-nav_priority: 70
+nav_order: 30
 ---
 
 

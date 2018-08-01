@@ -18,7 +18,7 @@
 		<div class="o-header-services__container">
 			<ul class="o-layout__primary-nav o-header-services__nav-list">
 
-				{% assign nav_items = (site.pages | where: 'nav_display', 'true' | sort: 'nav_priority' | reverse) %}
+				{% assign nav_items = (site.pages | where: 'nav_display', 'true' | sort: 'nav_order', 'last') %}
 				{% for nav_item in nav_items %}
 					<li class="o-header-services__nav-item">
 						<a class="o-header-services__nav-link" href="{{ nav_item.url }}"
@@ -123,7 +123,7 @@
 		<nav class="o-header__drawer-menu o-header__drawer-menu--primary" role="navigation" aria-label="Primary navigation">
 			<ul class="o-header__drawer-menu-list">
 
-				{% assign nav_items = (site.pages | where: 'nav_display', 'true' | sort: 'nav_priority' | reverse) %}
+				{% assign nav_items = (site.pages | where: 'nav_display', 'true' | sort: 'nav_order', 'last') %}
 				{% for nav_item in nav_items %}
 					<li class="o-header__drawer-menu-item">
 						<a class="o-header__drawer-menu-link" href="{{ nav_item.url }}"

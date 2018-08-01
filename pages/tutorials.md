@@ -8,7 +8,7 @@ collection_id: tutorials
 # Navigation config
 nav_display: true
 nav_label: Tutorials
-nav_priority: 80
+nav_order: 20
 ---
 
 

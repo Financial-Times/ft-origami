@@ -6,7 +6,7 @@ permalink: /
 # Navigation config
 nav_display: true
 nav_label: Home
-nav_priority: 100
+nav_order: 1
 ---
 
 
