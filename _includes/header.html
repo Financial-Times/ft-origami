@@ -1,40 +1,148 @@
+
 <header class="o-header-services o-layout__header" data-o-component="o-header">
+
 	<div class="o-header-services__top o-header-services__container">
-
-			<!-- <div class="o-header-services__hamburger">
-				<a class="o-header-services__hamburger-icon" href="#o-header-drawer" aria-controls="o-header-drawer"><span class="o-header__visually-hidden">Menu</span></a>
-			</div> -->
-
-			<div class="o-header-services__ftlogo"></div>
-			<div class="o-header-services__title">
-				<h1 class="o-header-services__product-name">
-					<a href="/">Origami</a>
-				</h1>
-				<span class="o-header-subrand__product-tagline">*THE* Component Library.</span>
-			</div>
+		<div class="o-header-services__hamburger">
+			<a class="o-header-services__hamburger-icon" href="#o-header-drawer" aria-controls="o-header-drawer"><span class="o-header__visually-hidden">Menu</span></a>
+		</div>
+		<div class="o-header-services__ftlogo"></div>
+		<div class="o-header-services__title">
+			<h1 class="o-header-services__product-name">
+				<a href="/">Origami</a>
+			</h1>
+			<span class="o-header-subrand__product-tagline">A component system for the FT</span>
+		</div>
 	</div>
 
 	<nav class="o-header-services__primary-nav">
 		<div class="o-header-services__container">
 			<ul class="o-layout__primary-nav o-header-services__nav-list">
-				<li class="o-header-services__nav-item">
 
-					<a class="o-header-services__nav-link" href="/documentation/" {% if page.url == '/documentation' %}aria-selected="true"{% endif %}>
-						Documentation
-					</a>
-				</li>
+				{% assign nav_items = (site.pages | where: 'nav_display', 'true' | sort: 'nav_priority' | reverse) %}
+				{% for nav_item in nav_items %}
+					<li class="o-header-services__nav-item">
+						<a class="o-header-services__nav-link" href="{{ nav_item.url }}"
+							{% if nav_item.url == '/' %}
+								{% if page.url == nav_item.url %}aria-selected="true"{% endif %}
+							{% else %}
+								{% if page.url contains nav_item.url %}aria-selected="true"{% endif %}
+							{% endif %}
+						>
+							{% if nav_item.nav_label %}
+								{{ nav_item.nav_label }}
+							{% else %}
+								{{ nav_item.title }}
+							{% endif %}
+						</a>
+					</li>
+				{% endfor %}
 
-				<li class="o-header-services__nav-item">
-					<a class="o-header-services__nav-link"  href="/tutorials/" {% if page.url == '/tutorials/' %}aria-selected="true"{% endif %}>
-						Tutorials
-					</a>
-				</li>
-
-				<li class="o-header-services__nav-item">
-					<a class="o-header-services__nav-link"  href="/specification/" {% if page.url == '/specification/' %}aria-selected="true"{% endif %}>
-						<abbr title="Specification">Spec</abbr>
-					</a>
 			</ul>
 		</div>
 	</nav>
+
+	{% if page.collection or page.collection_id %}
+		<nav class="o-header__subnav" role="navigation" aria-label="Sub navigation" data-o-header-subnav="">
+			<div class="o-header-services__container">
+				<div class="o-header__subnav-wrap-outside">
+					<div class="o-header__subnav-wrap-inside" data-o-header-subnav-wrapper="">
+						<div class="o-header__subnav-content">
+							<ol class="o-header__subnav-list o-header__subnav-list--breadcrumb" aria-label="Breadcrumb">
+
+								{% if page.collection_id %}
+									<!-- Collection index page-->
+									<li class="o-header__subnav-item">
+										<a class="o-header__subnav-link" href="{{ page.url }}" aria-selected="true" aria-label="Current page">
+											{% if page.nav_label %}
+												{{ page.nav_label }}
+											{% else %}
+												{{ page.title }}
+											{% endif %}
+										</a>
+									</li>
+								{% else if page.collection %}
+									<!-- Collection item page -->
+									<li class="o-header__subnav-item">
+										{% assign collection = site.pages | where: 'collection_id', page.collection | first %}
+										<a class="o-header__subnav-link" href="{{ collection.url }}">
+											{% if collection.nav_label %}
+												{{ collection.nav_label }}
+											{% else %}
+												{{ collection.title }}
+											{% endif %}
+										</a>
+									</li>
+									<li class="o-header__subnav-item">
+										<a class="o-header__subnav-link" href="{{ page.url }}" aria-selected="true" aria-label="Current page">
+											{% if page.nav_label %}
+												{{ page.nav_label }}
+											{% else %}
+												{{ page.title }}
+											{% endif %}
+										</a>
+									</li>
+								{% endif %}
+
+							</ol>
+
+							{% if page.collection_id %}
+								<ul class="o-header__subnav-list o-header__subnav-list--children" aria-label="Subsections">
+									{% for nav_item in site[page.collection_id] %}
+										<li class="o-header__subnav-item">
+											<a class="o-header__subnav-link" href="{{ nav_item.url }}" >
+												{% if nav_item.nav_label %}
+													{{ nav_item.nav_label }}
+												{% else %}
+													{{ nav_item.title }}
+												{% endif %}
+											</a>
+										</li>
+									{% endfor %}
+								</ul>
+							{% endif %}
+
+						</div>
+					</div>
+					<button class="o-header__subnav-button o-header__subnav-button--left" title="scroll left" aria-hidden="true" disabled></button>
+					<button class="o-header__subnav-button o-header__subnav-button--right" title="scroll right" aria-hidden="true" disabled></button>
+				</div>
+			</div>
+		</nav>
+	{% endif %}
+
 </header>
+
+<div class="o-header__drawer--services o-header__drawer o--if-js" id="o-header-drawer" data-o-header-drawer="" data-o-header-drawer--no-js="">
+	<div class="o-header__drawer-inner">
+		<div class="o-header__drawer-tools">
+			<span>Origami</span>
+			<button type="button" class="o-header__drawer-tools-close" aria-controls="o-header-drawer">
+				<span class="o-header__visually-hidden">Close</span>
+			</button>
+		</div>
+		<nav class="o-header__drawer-menu o-header__drawer-menu--primary" role="navigation" aria-label="Primary navigation">
+			<ul class="o-header__drawer-menu-list">
+
+				{% assign nav_items = (site.pages | where: 'nav_display', 'true' | sort: 'nav_priority' | reverse) %}
+				{% for nav_item in nav_items %}
+					<li class="o-header__drawer-menu-item">
+						<a class="o-header__drawer-menu-link" href="{{ nav_item.url }}"
+							{% if nav_item.url == '/' %}
+								{% if page.url == nav_item.url %}aria-selected="true"{% endif %}
+							{% else %}
+								{% if page.url contains nav_item.url %}aria-selected="true"{% endif %}
+							{% endif %}
+						>
+							{% if nav_item.nav_label %}
+								{{ nav_item.nav_label }}
+							{% else %}
+								{{ nav_item.title }}
+							{% endif %}
+						</a>
+					</li>
+				{% endfor %}
+
+			</ul>
+		</nav>
+	</div>
+</div>

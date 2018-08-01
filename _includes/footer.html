@@ -3,13 +3,13 @@
 			<div class="o-footer-services__info">
 				<span class="o-footer-services__logo">Origami</span>
 				<p class="o-footer-services__contact-email">Help or advice can be found here
-					<a href="mailto:origami.support@ft.com">origami.support@ft.com</a>.
+					<a href="mailto:{{site.data.contact.email}}">{{site.data.contact.email}}</a>.
 					<!-- TODO change this URL to "{{site.github.repository_url}}/edit/master/{{page.path}}" on launch -->
 					<a href="{{site.github.repository_url}}/edit/new/{{page.path}}">
 						Suggest an edit to this page
 					</a>
 				</p>
-				<p class="o-footer-services__contact-slack"><a href="https://slack.com/messages/[id]/">#slack-channel</a></p>
+				<p class="o-footer-services__contact-slack"><a href="https://financialtimes.slack.com/messages/{{site.data.contact.slack}}">#{{site.data.contact.slack}}</a></p>
 			</div>
 			<div class="o-footer-services__base">
 				<p class="o-footer-services__source-code"><a href="{{site.github.repository_url}}">View project on GitHub</a></p>
