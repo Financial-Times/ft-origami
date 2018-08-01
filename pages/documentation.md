@@ -8,7 +8,7 @@ collection_id: documentation
 # Navigation config
 nav_display: true
 nav_label: Documentation
-nav_priority: 90
+nav_order: 10
 ---
 
 
