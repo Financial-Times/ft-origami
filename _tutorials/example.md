@@ -3,6 +3,6 @@ title: Example Tutorial
 ---
 
 
-# {{ page.title }}
+# {{page.title}}
 
 This is an example tutorial.

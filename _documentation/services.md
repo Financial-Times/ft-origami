@@ -3,6 +3,6 @@ title: Example Services
 ---
 
 
-# {{ page.title }}
+# {{page.title}}
 
 This is example services.

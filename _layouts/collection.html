@@ -1,0 +1,19 @@
+---
+layout: default
+---
+
+{{content}}
+
+{% if page.collection_id %}
+
+	<h2 id="documents">Documents</h2>
+
+	<ul>
+		{% for item in site[page.collection_id] %}
+			<li>
+				<a href="{{item.url}}">{{item.title}}</a>
+			</li>
+		{% endfor %}
+	</ul>
+
+{% endif %}
