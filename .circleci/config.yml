@@ -1,0 +1,66 @@
+version: 2
+
+# References to reduce duplication in the rest of the config
+references:
+  container: &container_config
+    docker:
+      - image: circleci/ruby:2.4-node # required to install gems
+  cache_key: &cache_key
+    dependency-cache-{{ checksum "package.json" }}
+  cache_node_modules: &cache_node_modules
+    save_cache:
+      key: *cache_key
+      paths:
+        - node_modules
+  restore_node_modules: &restore_node_modules
+    restore_cache:
+      keys:
+        - *cache_key
+
+# Circle jobs
+jobs:
+
+  # Run Pa11y tests against the site
+  test:
+    <<: *container_config
+    steps:
+      - checkout
+      - *restore_node_modules
+      - run:
+          name: Install dependencies
+          command: npm install && make install
+      - *cache_node_modules
+      - run:
+          name: Run the site
+          command: make serve
+          background: true
+      - run:
+          name: Wait for site to be ready
+          command: sleep 5
+      - run:
+          name: Run Pa11y tests
+          command: make test
+
+  # Autoversion the repo
+  autoversion:
+    <<: *container_config
+    steps:
+      - checkout
+      - *restore_node_modules
+      - run:
+          name: Auto-version the repo
+          command: make auto-version
+
+# Circle workflows
+workflows:
+  version: 2
+  test-and-autoversion:
+    jobs:
+      - test
+      - autoversion:
+          requires:
+            - test
+          filters:
+            branches:
+              only:
+                - gh-pages
