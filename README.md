@@ -1,5 +1,5 @@
 
-## Origami
+## Origami [![CircleCI](https://circleci.com/gh/Financial-Times/ft-origami.svg?style=svg)](https://circleci.com/gh/Financial-Times/ft-origami)
 
 This is the source code for the Origami website. Please visit [http://origami.ft.com/](http://origami.ft.com/) if you're looking for the documentation.
 
