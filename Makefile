@@ -11,10 +11,10 @@ HOST = localhost:4000
 
 # Install dependencies
 install:
-	@echo "Installing Pa11y..."
+	@echo "Installing Node.js dependencies..."
 	@npm install
-	@echo "Installing GitHub Pages gem..."
-	@gem install github-pages
+	@echo "Installing Ruby dependencies..."
+	@bundle install
 
 # Build the site
 build:
