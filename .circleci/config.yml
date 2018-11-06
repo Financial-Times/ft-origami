@@ -5,17 +5,16 @@ references:
   container: &container_config
     docker:
       - image: circleci/ruby:2.4-node # required to install gems
-  cache_key: &cache_key
-    dependency-cache-{{ checksum "package.json" }}
-  cache_node_modules: &cache_node_modules
+  cache_dependencies: &cache_dependencies
     save_cache:
-      key: *cache_key
+      key: dependency-cache-gemfile-{{ checksum "Gemfile.lock" }}
       paths:
-        - node_modules
-  restore_node_modules: &restore_node_modules
+        - ~/.bundle
+  restore_dependencies: &restore_dependencies
     restore_cache:
       keys:
-        - *cache_key
+        - dependency-cache-gemfile-{{ checksum "Gemfile.lock" }}
+        - dependency-cache-gemfile-
 
 # Circle jobs
 jobs:
@@ -25,11 +24,11 @@ jobs:
     <<: *container_config
     steps:
       - checkout
-      - *restore_node_modules
+      - *restore_dependencies
       - run:
           name: Install dependencies
           command: npm install && make install
-      - *cache_node_modules
+      - *cache_dependencies
       - run:
           name: Run the site
           command: make serve
@@ -46,7 +45,7 @@ jobs:
     <<: *container_config
     steps:
       - checkout
-      - *restore_node_modules
+      - *restore_dependencies
       - run:
           name: Auto-version the repo
           command: make auto-version
