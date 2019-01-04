@@ -7,9 +7,10 @@ references:
       - image: circleci/ruby:2.4-node # required to install gems
   cache_dependencies: &cache_dependencies
     save_cache:
-      key: dependency-cache-gemfile-{{ checksum "Gemfile.lock" }}
+      key: dependency-cache-package-{{ checksum "package.json" }}-gemfile-{{ checksum "Gemfile.lock" }}
       paths:
         - ~/.bundle
+        - node_modules
   restore_dependencies: &restore_dependencies
     restore_cache:
       keys:
