@@ -42,7 +42,6 @@ You should now be able to run the following to test the site:
 make test
 ```
 
-
 ## Documentation style guide
 This guide is based on Jacob Kaplan-Moss' documentation series [[1]](https://jacobian.org/writing/what-to-write/) [[2]](https://jacobian.org/writing/technical-style/) [[3]](https://jacobian.org/writing/editors/). It exists as guidance to help keep our documentation consistent.
 
