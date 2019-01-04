@@ -4,7 +4,7 @@
   "description": "This is the source code for the Origami website. Please visit [http://origami.ft.com/](http://origami.ft.com/) if you're looking for the documentation.",
   "main": "index.js",
   "dependencies": {
-    "@financial-times/origami-service-makefile": "^6.1.0",
+    "@financial-times/origami-service-makefile": "^6.3.0",
     "pa11y-ci": "^1.2.0"
   },
   "repository": {
