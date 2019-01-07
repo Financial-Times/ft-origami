@@ -14,8 +14,7 @@ references:
   restore_dependencies: &restore_dependencies
     restore_cache:
       keys:
-        - dependency-cache-gemfile-{{ checksum "Gemfile.lock" }}
-        - dependency-cache-gemfile-
+        - dependency-cache-package-{{ checksum "package.json" }}-gemfile-{{ checksum "Gemfile.lock" }}
 
 # Circle jobs
 jobs:
